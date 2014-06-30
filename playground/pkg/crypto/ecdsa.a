@@ -1,4 +1,4 @@
-0‚ggcrypto/ecdsa‚Fÿpackage ecdsa
+0‚ncrypto/ecdsa‚Opackage ecdsa
 import elliptic "crypto/elliptic"
 import io "io"
 import big "math/big"
@@ -8,59 +8,61 @@ type @"".PublicKey struct { ? @"crypto/elliptic".Curve; @"".X *@"math/big".Int; 
 func @"".Sign(@"".rand @"io".Reader, @"".priv *@"".PrivateKey, @"".hash []byte) (@"".r *@"math/big".Int, @"".s *@"math/big".Int, @"".err error)
 func @"".Verify(@"".pub *@"".PublicKey, @"".hash []byte, @"".r *@"math/big".Int, @"".s *@"math/big".Int) (? bool)
 type @"crypto/elliptic".Curve interface { @"crypto/elliptic".Add(@"crypto/elliptic".x1 *@"math/big".Int, @"crypto/elliptic".y1 *@"math/big".Int, @"crypto/elliptic".x2 *@"math/big".Int, @"crypto/elliptic".y2 *@"math/big".Int) (@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int); @"crypto/elliptic".Double(@"crypto/elliptic".x1 *@"math/big".Int, @"crypto/elliptic".y1 *@"math/big".Int) (@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int); @"crypto/elliptic".IsOnCurve(@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int) (? bool); @"crypto/elliptic".Params() (? *@"crypto/elliptic".CurveParams); @"crypto/elliptic".ScalarBaseMult(@"crypto/elliptic".k []byte) (@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int); @"crypto/elliptic".ScalarMult(@"crypto/elliptic".x1 *@"math/big".Int, @"crypto/elliptic".y1 *@"math/big".Int, @"crypto/elliptic".k []byte) (@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int) }
-type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"math/big".Int struct { @"math/big".neg bool; @"math/big".abs @"math/big".nat }
-func (? *@"math/big".Int) @"math/big".Abs(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Add(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".And(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".AndNot(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Binomial(@"".n int64, @"".k int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Bit(@"".i int) (? uint)
+func (? *@"math/big".Int) @"math/big".Abs(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Add(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".And(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".AndNot(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Binomial(@"math/big".n int64, @"math/big".k int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Bit(@"math/big".i int) (? uint)
 func (? *@"math/big".Int) @"math/big".BitLen() (? int)
 func (? *@"math/big".Int) @"math/big".Bits() (? []@"math/big".Word)
 func (? *@"math/big".Int) @"math/big".Bytes() (? []byte)
-func (? *@"math/big".Int) @"math/big".Cmp(@"".y *@"math/big".Int) (@"".r int)
-func (? *@"math/big".Int) @"math/big".Div(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".DivMod(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Exp(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Cmp(@"math/big".y *@"math/big".Int) (@"math/big".r int)
+func (? *@"math/big".Int) @"math/big".Div(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".DivMod(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Exp(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".m *@"math/big".Int) (? *@"math/big".Int)
 import fmt "fmt"
-func (? *@"math/big".Int) @"math/big".Format(@"".s @"fmt".State, @"".ch rune) ()
-func (? *@"math/big".Int) @"math/big".GCD(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".GobDecode(@"".buf []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Format(@"math/big".s @"fmt".State, @"math/big".ch rune) ()
+func (? *@"math/big".Int) @"math/big".GCD(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".a *@"math/big".Int, @"math/big".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".GobDecode(@"math/big".buf []byte) (? error)
 func (? *@"math/big".Int) @"math/big".GobEncode() (? []byte, ? error)
 func (? *@"math/big".Int) @"math/big".Int64() (? int64)
-func (? *@"math/big".Int) @"math/big".Lsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Lsh(@"math/big".x *@"math/big".Int, @"math/big".n uint) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".MarshalJSON() (? []byte, ? error)
-func (? *@"math/big".Int) @"math/big".Mod(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".ModInverse(@"".g *@"math/big".Int, @"".p *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Mul(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".MulRange(@"".a int64, @"".b int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Neg(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Not(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Or(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"".n int) (? bool)
-func (? *@"math/big".Int) @"math/big".Quo(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".QuoRem(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MarshalText() (@"math/big".text []byte, @"math/big".err error)
+func (? *@"math/big".Int) @"math/big".Mod(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ModInverse(@"math/big".g *@"math/big".Int, @"math/big".p *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Mul(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MulRange(@"math/big".a int64, @"math/big".b int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Neg(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Not(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Or(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"math/big".n int) (? bool)
+func (? *@"math/big".Int) @"math/big".Quo(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".QuoRem(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
 import rand "math/rand"
-func (? *@"math/big".Int) @"math/big".Rand(@"".rnd *@"math/rand".Rand, @"".n *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Rem(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Rsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
-func (? *@"math/big".Int) @"math/big".Set(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBit(@"".x *@"math/big".Int, @"".i int, @"".b uint) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBits(@"".abs []@"math/big".Word) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBytes(@"".buf []byte) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetInt64(@"".x int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetString(@"".s string, @"".base int) (? *@"math/big".Int, ? bool)
-func (? *@"math/big".Int) @"math/big".SetUint64(@"".x uint64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rand(@"math/big".rnd *@"math/rand".Rand, @"math/big".n *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rem(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rsh(@"math/big".x *@"math/big".Int, @"math/big".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Scan(@"math/big".s @"fmt".ScanState, @"math/big".ch rune) (? error)
+func (? *@"math/big".Int) @"math/big".Set(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBit(@"math/big".x *@"math/big".Int, @"math/big".i int, @"math/big".b uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBits(@"math/big".abs []@"math/big".Word) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBytes(@"math/big".buf []byte) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetInt64(@"math/big".x int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetString(@"math/big".s string, @"math/big".base int) (? *@"math/big".Int, ? bool)
+func (? *@"math/big".Int) @"math/big".SetUint64(@"math/big".x uint64) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Sign() (? int)
 func (? *@"math/big".Int) @"math/big".String() (? string)
-func (? *@"math/big".Int) @"math/big".Sub(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Sub(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Uint64() (? uint64)
-func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".x []byte) (? error)
-func (? *@"math/big".Int) @"math/big".Xor(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".binaryGCD(@"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? *@"math/big".Int, ? int, ? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"math/big".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalText(@"math/big".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Xor(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".binaryGCD(@"math/big".a *@"math/big".Int, @"math/big".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? *@"math/big".Int, ? int, ? error)
 type @"crypto/elliptic".CurveParams struct { @"crypto/elliptic".P *@"math/big".Int; @"crypto/elliptic".N *@"math/big".Int; @"crypto/elliptic".B *@"math/big".Int; @"crypto/elliptic".Gx *@"math/big".Int; @"crypto/elliptic".Gy *@"math/big".Int; @"crypto/elliptic".BitSize int }
 func (? *@"crypto/elliptic".CurveParams) @"crypto/elliptic".Add(@"crypto/elliptic".x1 *@"math/big".Int, @"crypto/elliptic".y1 *@"math/big".Int, @"crypto/elliptic".x2 *@"math/big".Int, @"crypto/elliptic".y2 *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
 func (? *@"crypto/elliptic".CurveParams) @"crypto/elliptic".Double(@"crypto/elliptic".x1 *@"math/big".Int, @"crypto/elliptic".y1 *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
@@ -72,223 +74,104 @@ func (? *@"crypto/elliptic".CurveParams) @"crypto/elliptic".addJacobian(@"crypto
 func (? *@"crypto/elliptic".CurveParams) @"crypto/elliptic".affineFromJacobian(@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int, @"crypto/elliptic".z *@"math/big".Int) (@"crypto/elliptic".xOut *@"math/big".Int, @"crypto/elliptic".yOut *@"math/big".Int)
 func (? *@"crypto/elliptic".CurveParams) @"crypto/elliptic".doubleJacobian(@"crypto/elliptic".x *@"math/big".Int, @"crypto/elliptic".y *@"math/big".Int, @"crypto/elliptic".z *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int, ? *@"math/big".Int)
 type @"math/big".nat []@"math/big".Word
-func (? @"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".add(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".and(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".andNot(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".bit(@"math/big".i uint) (? uint)
 func (? @"math/big".nat) @"math/big".bitLen() (? int)
-func (? @"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? @"math/big".nat) @"math/big".bytes(@"math/big".buf []byte) (@"math/big".i int)
 func (? @"math/big".nat) @"math/big".clear() ()
-func (? @"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
-func (? @"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? @"math/big".nat) @"math/big".cmp(@"math/big".y @"math/big".nat) (@"math/big".r int)
+func (? @"math/big".nat) @"math/big".convertWords(@"math/big".s []byte, @"math/big".charset string, @"math/big".b @"math/big".Word, @"math/big".ndigits int, @"math/big".bb @"math/big".Word, @"math/big".table []@"math/big".divisor) ()
 func (? @"math/big".nat) @"math/big".decimalString() (? string)
-func (? @"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? @"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? @"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
-func (? @"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
-func (? @"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".div(@"math/big".z2 @"math/big".nat, @"math/big".u @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divLarge(@"math/big".u @"math/big".nat, @"math/big".uIn @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".expNN(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expNNWindowed(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expWW(@"math/big".x @"math/big".Word, @"math/big".y @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".make(@"math/big".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".modW(@"math/big".d @"math/big".Word) (@"math/big".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".mul(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulAddWW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word, @"math/big".r @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulRange(@"math/big".a uint64, @"math/big".b uint64) (? @"math/big".nat)
 func (? @"math/big".nat) @"math/big".norm() (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
-func (? @"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
-func (? @"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".string(@"".charset string) (? string)
-func (? @"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".or(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".probablyPrime(@"math/big".reps int) (? bool)
+func (? @"math/big".nat) @"math/big".random(@"math/big".rand *@"math/rand".Rand, @"math/big".limit @"math/big".nat, @"math/big".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? @"math/big".nat, ? int, ? error)
+func (? @"math/big".nat) @"math/big".set(@"math/big".x @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBit(@"math/big".x @"math/big".nat, @"math/big".i uint, @"math/big".b uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBytes(@"math/big".buf []byte) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setUint64(@"math/big".x uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setWord(@"math/big".x @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shl(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shr(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".string(@"math/big".charset string) (? string)
+func (? @"math/big".nat) @"math/big".sub(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 func (? @"math/big".nat) @"math/big".trailingZeroBits() (? uint)
-func (? @"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".xor(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".add(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".and(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".andNot(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".bit(@"math/big".i uint) (? uint)
 func (? *@"math/big".nat) @"math/big".bitLen() (? int)
-func (? *@"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? *@"math/big".nat) @"math/big".bytes(@"math/big".buf []byte) (@"math/big".i int)
 func (? *@"math/big".nat) @"math/big".clear() ()
-func (? *@"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
-func (? *@"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? *@"math/big".nat) @"math/big".cmp(@"math/big".y @"math/big".nat) (@"math/big".r int)
+func (? *@"math/big".nat) @"math/big".convertWords(@"math/big".s []byte, @"math/big".charset string, @"math/big".b @"math/big".Word, @"math/big".ndigits int, @"math/big".bb @"math/big".Word, @"math/big".table []@"math/big".divisor) ()
 func (? *@"math/big".nat) @"math/big".decimalString() (? string)
-func (? *@"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
-func (? *@"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
-func (? *@"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".div(@"math/big".z2 @"math/big".nat, @"math/big".u @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divLarge(@"math/big".u @"math/big".nat, @"math/big".uIn @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".expNN(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expNNWindowed(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expWW(@"math/big".x @"math/big".Word, @"math/big".y @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".make(@"math/big".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".modW(@"math/big".d @"math/big".Word) (@"math/big".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".mul(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulAddWW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word, @"math/big".r @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulRange(@"math/big".a uint64, @"math/big".b uint64) (? @"math/big".nat)
 func (? *@"math/big".nat) @"math/big".norm() (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
-func (? *@"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
-func (? *@"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".string(@"".charset string) (? string)
-func (? *@"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".or(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".probablyPrime(@"math/big".reps int) (? bool)
+func (? *@"math/big".nat) @"math/big".random(@"math/big".rand *@"math/rand".Rand, @"math/big".limit @"math/big".nat, @"math/big".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? @"math/big".nat, ? int, ? error)
+func (? *@"math/big".nat) @"math/big".set(@"math/big".x @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBit(@"math/big".x @"math/big".nat, @"math/big".i uint, @"math/big".b uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBytes(@"math/big".buf []byte) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setUint64(@"math/big".x uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setWord(@"math/big".x @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shl(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shr(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".string(@"math/big".charset string) (? string)
+func (? *@"math/big".nat) @"math/big".sub(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 func (? *@"math/big".nat) @"math/big".trailingZeroBits() (? uint)
-func (? *@"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".xor(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 type @"math/big".Word uintptr
-type @"fmt".State interface { @"fmt".Flag(@"".c int) (? bool); @"fmt".Precision() (@"".prec int, @"".ok bool); @"fmt".Width() (@"".wid int, @"".ok bool); @"fmt".Write(@"".b []byte) (@"".ret int, @"".err error) }
+type @"fmt".State interface { @"fmt".Flag(@"fmt".c int) (? bool); @"fmt".Precision() (@"fmt".prec int, @"fmt".ok bool); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool); @"fmt".Write(@"fmt".b []byte) (@"fmt".ret int, @"fmt".err error) }
 type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
 func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
 func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
 func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
 func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
 func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
-func (? *@"math/rand".Rand) @"math/rand".Int31n(@"".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"math/rand".n int32) (? int32)
 func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
-func (? *@"math/rand".Rand) @"math/rand".Int63n(@"".n int64) (? int64)
-func (? *@"math/rand".Rand) @"math/rand".Intn(@"".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"math/rand".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"math/rand".n int) (? int)
 func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
-func (? *@"math/rand".Rand) @"math/rand".Perm(@"".n int) (? []int)
-func (? *@"math/rand".Rand) @"math/rand".Seed(@"".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"math/rand".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"math/rand".seed int64) ()
 func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
-type @"fmt".ScanState interface { @"fmt".Read(@"".buf []byte) (@"".n int, @"".err error); @"fmt".ReadRune() (@"".r rune, @"".size int, @"".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"".skipSpace bool, @"".f func (? rune) (? bool)) (@"".token []byte, @"".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"".wid int, @"".ok bool) }
-type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @"".err error); @"io".UnreadRune() (? error) }
+type @"fmt".ScanState interface { @"fmt".Read(@"fmt".buf []byte) (@"fmt".n int, @"fmt".err error); @"fmt".ReadRune() (@"fmt".r rune, @"fmt".size int, @"fmt".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"fmt".skipSpace bool, @"fmt".f func (? rune) (? bool)) (@"fmt".token []byte, @"fmt".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool) }
+type @"io".RuneScanner interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error); @"io".UnreadRune() (? error) }
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
-type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"math/rand".seed int64) () }
 $$
-0½runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig0‚V0‚	PublicKey‚O	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
-		this.go$val = this;
-		this.Curve = Curve_ !== undefined ? Curve_ : null;
-		this.X = X_ !== undefined ? X_ : (go$ptrType(big.Int)).nil;
-		this.Y = Y_ !== undefined ? Y_ : (go$ptrType(big.Int)).nil;
-	});
-‚Q		PublicKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
-		(go$ptrType(PublicKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
-		PublicKey.init([["Curve", "", "", elliptic.Curve, ""], ["X", "X", "", (go$ptrType(big.Int)), ""], ["Y", "Y", "", (go$ptrType(big.Int)), ""]]);
-0	PublicKey0Bcrypto/elliptic:Curvecrypto/elliptic:CurveParamsmath/big:Int0‚¿
-PrivateKey‚0	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.PrivateKey", "PrivateKey", "crypto/ecdsa", function(PublicKey_, D_) {
-		this.go$val = this;
-		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
-		this.D = D_ !== undefined ? D_ : (go$ptrType(big.Int)).nil;
-	});
-‚(		PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
-		(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
-		PrivateKey.init([["PublicKey", "", "", PublicKey, ""], ["D", "D", "", (go$ptrType(big.Int)), ""]]);
-0
-PrivateKey0Ccrypto/ecdsa:PublicKeycrypto/elliptic:CurveParamsmath/big:Int0‚¹randFieldElement‚^	randFieldElement = function(c, rand) {
-		var k, err, params, _q, b, _tuple, n;
-		k = (go$ptrType(big.Int)).nil;
-		err = null;
-		params = c.Params();
-		b = (go$sliceType(Go$Uint8)).make((_q = params.BitSize / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) + 8 >> 0, 0, function() { return 0; });
-		_tuple = io.ReadFull(rand, b), err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [k, err];
-		}
-		k = new big.Int.Ptr().SetBytes(b);
-		n = new big.Int.Ptr().Sub(params.N, one);
-		k.Mod(k, n);
-		k.Add(k, one);
-		return [k, err];
-	};
- 0randFieldElement0-crypto/ecdsa:oneio:ReadFullmath/big:Int0‚HGenerateKey‚ì	GenerateKey = go$pkg.GenerateKey = function(c, rand) {
-		var priv, err, _tuple, k, _tuple$1;
-		priv = (go$ptrType(PrivateKey)).nil;
-		err = null;
-		_tuple = randFieldElement(c, rand), k = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [priv, err];
-		}
-		priv = new PrivateKey.Ptr();
-		priv.PublicKey.Curve = c;
-		priv.D = k;
-		_tuple$1 = c.ScalarBaseMult(k.Bytes()), priv.PublicKey.X = _tuple$1[0], priv.PublicKey.Y = _tuple$1[1];
-		return [priv, err];
-	};
- 0GenerateKey08crypto/ecdsa:PrivateKeycrypto/ecdsa:randFieldElement0‚	hashToInt‚Q	hashToInt = function(hash, c) {
-		var orderBits, _q, orderBytes, ret, x, x$1, excess;
-		orderBits = c.Params().N.BitLen();
-		orderBytes = (_q = ((orderBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (hash.length > orderBytes) {
-			hash = go$subslice(hash, 0, orderBytes);
-		}
-		ret = new big.Int.Ptr().SetBytes(hash);
-		excess = (x = hash.length, x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) - orderBits >> 0;
-		if (excess > 0) {
-			ret.Rsh(ret, (excess >>> 0));
-		}
-		return ret;
-	};
- 0	hashToInt0math/big:Int0‚Sign‚À	Sign = go$pkg.Sign = function(rand, priv, hash) {
-		var r, s, err, c, N, _tuple, k, kInv, _tuple$1, _tuple$2, e;
-		r = (go$ptrType(big.Int)).nil;
-		s = (go$ptrType(big.Int)).nil;
-		err = null;
-		c = priv.PublicKey.Curve;
-		N = c.Params().N;
-		_tuple = [(go$ptrType(big.Int)).nil, (go$ptrType(big.Int)).nil], k = _tuple[0], kInv = _tuple[1];
-		while (true) {
-			while (true) {
-				_tuple$1 = randFieldElement(c, rand), k = _tuple$1[0], err = _tuple$1[1];
-				if (!(go$interfaceIsEqual(err, null))) {
-					r = (go$ptrType(big.Int)).nil;
-					return [r, s, err];
-				}
-				kInv = new big.Int.Ptr().ModInverse(k, N);
-				_tuple$2 = priv.PublicKey.Curve.ScalarBaseMult(k.Bytes()), r = _tuple$2[0];
-				r.Mod(r, N);
-				if (!((r.Sign() === 0))) {
-					break;
-				}
-			}
-			e = hashToInt(hash, c);
-			s = new big.Int.Ptr().Mul(priv.D, r);
-			s.Add(s, e);
-			s.Mul(s, kInv);
-			s.Mod(s, N);
-			if (!((s.Sign() === 0))) {
-				break;
-			}
-		}
-		return [r, s, err];
-	};
- 0Sign0Ecrypto/ecdsa:hashToIntcrypto/ecdsa:randFieldElementmath/big:Int0‚LVerify‚	Verify = go$pkg.Verify = function(pub, hash, r, s) {
-		var c, N, e, w, u1, u2, _tuple, x1, y1, _tuple$1, x2, y2, _tuple$2, x, y;
-		c = pub.Curve;
-		N = c.Params().N;
-		if ((r.Sign() === 0) || (s.Sign() === 0)) {
-			return false;
-		}
-		if (r.Cmp(N) >= 0 || s.Cmp(N) >= 0) {
-			return false;
-		}
-		e = hashToInt(hash, c);
-		w = new big.Int.Ptr().ModInverse(s, N);
-		u1 = e.Mul(e, w);
-		u1.Mod(u1, N);
-		u2 = w.Mul(r, w);
-		u2.Mod(u2, N);
-		_tuple = c.ScalarBaseMult(u1.Bytes()), x1 = _tuple[0], y1 = _tuple[1];
-		_tuple$1 = c.ScalarMult(pub.X, pub.Y, u2.Bytes()), x2 = _tuple$1[0], y2 = _tuple$1[1];
-		_tuple$2 = c.Add(x1, y1, x2, y2), x = _tuple$2[0], y = _tuple$2[1];
-		if ((x.Sign() === 0) && (y.Sign() === 0)) {
-			return false;
-		}
-		x.Mod(x, N);
-		return x.Cmp(r) === 0;
-	};
- 0Verify0&crypto/ecdsa:hashToIntmath/big:Int0one  0one0 0b  8		one = new big.Int.Ptr().SetInt64(new Go$Int64(0, 1));
-0 0 crypto/ecdsa:onemath/big:Int0
-   0 0 0
-   0 0 0 
+0×github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binaryunicodebytessyscalltimeosfmt	math/randstringsmath/bigcrypto/elliptic0.0crypto/ellipticA0ioB0math/bigC0‚¾0‚å 0D‚D=$pkg.PublicKey=$newType(0,"Struct","ecdsa.PublicKey","PublicKey","crypto/ecdsa",function(Curve_,X_,Y_){this.$val=this;this.Curve=Curve_!==undefined?Curve_:null;this.X=X_!==undefined?X_:($ptrType(C.Int)).nil;this.Y=Y_!==undefined?Y_:($ptrType(C.Int)).nil;});‚D.methods=[["Add","Add","",[($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["Double","Double","",[($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["IsOnCurve","IsOnCurve","",[($ptrType(C.Int)),($ptrType(C.Int))],[$Bool],false,0],["Params","Params","",[],[($ptrType(A.CurveParams))],false,0],["ScalarBaseMult","ScalarBaseMult","",[($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["ScalarMult","ScalarMult","",[($ptrType(C.Int)),($ptrType(C.Int)),($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0]];($ptrType(D)).methods=[["Add","Add","",[($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["Double","Double","",[($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["IsOnCurve","IsOnCurve","",[($ptrType(C.Int)),($ptrType(C.Int))],[$Bool],false,0],["Params","Params","",[],[($ptrType(A.CurveParams))],false,0],["ScalarBaseMult","ScalarBaseMult","",[($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["ScalarMult","ScalarMult","",[($ptrType(C.Int)),($ptrType(C.Int)),($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0]];D.init([["Curve","","",A.Curve,""],["X","X","",($ptrType(C.Int)),""],["Y","Y","",($ptrType(C.Int)),""]]);0	PublicKey0Bcrypto/elliptic:Curvecrypto/elliptic:CurveParamsmath/big:Int 0‚ª 0EëE=$pkg.PrivateKey=$newType(0,"Struct","ecdsa.PrivateKey","PrivateKey","crypto/ecdsa",function(PublicKey_,D_){this.$val=this;this.PublicKey=PublicKey_!==undefined?PublicKey_:new D.Ptr();this.D=D_!==undefined?D_:($ptrType(C.Int)).nil;});‚[E.methods=[["Add","Add","",[($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["Double","Double","",[($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["IsOnCurve","IsOnCurve","",[($ptrType(C.Int)),($ptrType(C.Int))],[$Bool],false,0],["Params","Params","",[],[($ptrType(A.CurveParams))],false,0],["ScalarBaseMult","ScalarBaseMult","",[($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["ScalarMult","ScalarMult","",[($ptrType(C.Int)),($ptrType(C.Int)),($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0]];($ptrType(E)).methods=[["Add","Add","",[($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["Double","Double","",[($ptrType(C.Int)),($ptrType(C.Int))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["IsOnCurve","IsOnCurve","",[($ptrType(C.Int)),($ptrType(C.Int))],[$Bool],false,0],["Params","Params","",[],[($ptrType(A.CurveParams))],false,0],["ScalarBaseMult","ScalarBaseMult","",[($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0],["ScalarMult","ScalarMult","",[($ptrType(C.Int)),($ptrType(C.Int)),($sliceType($Uint8))],[($ptrType(C.Int)),($ptrType(C.Int))],false,0]];E.init([["PublicKey","","",D,""],["D","D","",($ptrType(C.Int)),""]]);0
+PrivateKey0Ccrypto/ecdsa:PublicKeycrypto/elliptic:CurveParamsmath/big:Int 0 0F  0one0  0` 0  1    F=new C.Int.Ptr().SetInt64(new $Int64(0,1));0 0 crypto/ecdsa:onemath/big:Int 0‚>crypto/ecdsa.randFieldElement0G‚ÎG=function(a,b){var c,d,e,f,g,h,i;c=($ptrType(C.Int)).nil;d=null;  Ðe=a.Params();  æg=($sliceType($Uint8)).make(((f=e.BitSize/8,(f===f&&f!==1/0&&f!==-1/0)?f>>0:$throwRuntimeError("integer divide by zero"))+8>>0),0,function(){return 0;});  h=B.ReadFull(b,g);d=h[1];  ,    if(!($interfaceIsEqual(d,null))){  >return[c,d];    }  Jc=new C.Int.Ptr().SetBytes(g);  hi=new C.Int.Ptr().Sub(e.N,F);  Žc.Mod(c,i);  ›c.Add(c,F);  ªreturn[c,d];    }; 0randFieldElement0-crypto/ecdsa:oneio:ReadFullmath/big:Int 0‚±crypto/ecdsa.GenerateKey0H‚@H=$pkg.GenerateKey=function(a,b){var c,d,e,f,g;c=($ptrType(E)).nil;d=null;  @e=G(a,b);f=e[0];d=e[1];  e    if(!($interfaceIsEqual(d,null))){  wreturn[c,d];    }  ƒc=new E.Ptr();  ›c.PublicKey.Curve=a;  µc.D=f;  Ág=a.ScalarBaseMult(f.Bytes());c.PublicKey.X=g[0];c.PublicKey.Y=g[1];  return[c,d];    }; 0GenerateKey08crypto/ecdsa:PrivateKeycrypto/ecdsa:randFieldElement 0‚Åcrypto/ecdsa.hashToInt0I‚‚I=function(a,b){var c,d,e,f,g,h;  àc=b.Params().N.BitLen();  e=(d=((c+7>>0))/8,(d===d&&d!==1/0&&d!==-1/0)?d>>0:$throwRuntimeError("integer divide by zero"));  '    if(a.$length>e){  Ea=$subslice(a,0,e);    }  cf=new C.Int.Ptr().SetBytes(a);  ‡h=(g=a.$length,(((g>>>16<<16)*8>>0)+(g<<16>>>16)*8)>>0)-c>>0;  ª    if(h>0){  ¼f.Rsh(f,(h>>>0));    }  Ûreturn f;    }; 0	hashToInt0math/big:Int 0âcrypto/ecdsa.fermatInverse0J‡J=function(a,b){var c,d;  
+c=C.NewInt(new $Int64(0,2));  
+5d=new C.Int.Ptr().Sub(b,c);  
+Zreturn new C.Int.Ptr().Exp(a,d,b);    }; 0fermatInverse0math/big:Intmath/big:NewInt 0‚Icrypto/ecdsa.Sign0K‚½K=$pkg.Sign=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n,o;d=($ptrType(C.Int)).nil;e=($ptrType(C.Int)).nil;f=null;  åg=b.PublicKey.Curve;   h=g.Params().N;    i=($ptrType(C.Int)).nil;j=($ptrType(C.Int)).nil;k=i;l=j;  *while(true){  2while(true){  ;m=G(g,a);k=m[0];f=m[1];  a    if(!($interfaceIsEqual(f,null))){  ud=($ptrType(C.Int)).nil;  return[d,e,f];    }  ‘l=J(k,h);  ¯n=b.PublicKey.Curve.ScalarBaseMult(k.Bytes());d=n[0];  Þd.Mod(d,h);  í    if(!((d.Sign()===0))){  break;    }    }  o=I(c,g);  0e=new C.Int.Ptr().Mul(b.D,d);  Re.Add(e,o);  `e.Mul(e,l);  qe.Mod(e,h);      if(!((e.Sign()===0))){  •break;    }    }  ¤return[d,e,f];    }; 0Sign0acrypto/ecdsa:fermatInversecrypto/ecdsa:hashToIntcrypto/ecdsa:randFieldElementmath/big:Int 0‚¶crypto/ecdsa.Verify0L‚aL=$pkg.Verify=function(a,b,c,d){var e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;  Še=a.Curve;  šf=e.Params().N;  ®    if((c.Sign()===0)||(d.Sign()===0)){  Ôreturn false;    }  å    if(c.Cmp(f)>=0||d.Cmp(f)>=0){  return false;    }  g=I(b,e);  5h=new C.Int.Ptr().ModInverse(d,f);  Zi=g.Mul(g,h);  mi.Mod(i,f);  |j=h.Mul(c,h);  j.Mod(j,f);  Ÿk=e.ScalarBaseMult(i.Bytes());l=k[0];m=k[1];  Çn=e.ScalarMult(a.X,a.Y,j.Bytes());o=n[0];p=n[1];  ùq=e.Add(l,m,o,p);r=q[0];s=q[1];      if((r.Sign()===0)&&(s.Sign()===0)){  >return false;    }  Or.Mod(r,f);  \return r.Cmp(c)===0;    }; 0Verify0&crypto/ecdsa:hashToIntmath/big:Int 0 ‚Š{"Base":4212,"Files":[{"Name":"/usr/local/go/src/pkg/crypto/ecdsa/ecdsa.go","Base":1,"Size":4210,"Lines":[0,55,109,159,160,239,265,279,280,295,350,396,420,476,477,486,505,511,523,525,526,571,595,611,626,628,629,675,700,711,723,725,726,761,762,841,892,974,996,1035,1066,1083,1092,1095,1096,1126,1164,1177,1192,1200,1202,1203,1259,1342,1379,1396,1405,1408,1409,1433,1459,1471,1537,1545,1547,1548,1625,1700,1778,1853,1930,1957,2014,2050,2085,2114,2141,2144,2145,2181,2216,2233,2262,2265,2277,2279,2280,2357,2435,2506,2544,2589,2611,2648,2688,2690,2691,2771,2849,2928,2937,3023,3043,3070,3089,3090,3112,3119,3127,3165,3184,3196,3207,3212,3213,3243,3290,3305,3327,3337,3342,3346,3347,3373,3407,3421,3438,3452,3473,3482,3486,3489,3490,3498,3500,3501,3581,3637,3700,3720,3736,3755,3756,3793,3808,3811,3848,3863,3866,3891,3927,3928,3947,3962,3981,3996,3997,4037,4087,4118,4155,4170,4173,4186,4208],"Infos":null}]}
+ ÿ

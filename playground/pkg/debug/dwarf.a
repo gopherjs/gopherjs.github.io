@@ -1,7 +1,8 @@
-0Éd¸debug/dwarfÇ-Âpackage dwarf
+0Éyädebug/dwarfÇ3package dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
+import fmt "fmt"
 type @"".AddrType struct { ? @"".BasicType }
 type @"".ArrayType struct { ? @"".CommonType; @"".Type @"".Type; @"".StrideBitSize int64; @"".Count int64 }
 func (? *@"".ArrayType) @"".Size() (? int64)
@@ -92,11 +93,15 @@ type @"".CommonType struct { @"".ByteSize int64; @"".Name string }
 func (? *@"".CommonType) @"".Common() (? *@"".CommonType)
 func (? *@"".CommonType) @"".Size() (? int64)
 type @"".ComplexType struct { ? @"".BasicType }
-type @"".Data struct { @"".abbrev []byte; @"".aranges []byte; @"".frame []byte; @"".info []byte; @"".line []byte; @"".pubnames []byte; @"".ranges []byte; @"".str []byte; @"".abbrevCache map[uint32]@"".abbrevTable; @"".addrsize int; @"".order @"encoding/binary".ByteOrder; @"".typeCache map[@"".Offset]@"".Type; @"".unit []@"".unit }
+type @"".Data struct { @"".abbrev []byte; @"".aranges []byte; @"".frame []byte; @"".info []byte; @"".line []byte; @"".pubnames []byte; @"".ranges []byte; @"".str []byte; @"".abbrevCache map[uint32]@"".abbrevTable; @"".order @"encoding/binary".ByteOrder; @"".typeCache map[@"".Offset]@"".Type; @"".typeSigs map[uint64]*@"".typeUnit; @"".unit []@"".unit }
+func (? *@"".Data) @"".AddTypes(@"".name string, @"".types []byte) (? error)
 func (? *@"".Data) @"".Reader() (? *@"".Reader)
 func (? *@"".Data) @"".Type(@"".off @"".Offset) (? @"".Type, ? error)
 func (? *@"".Data) @"".parseAbbrev(@"".off uint32) (? @"".abbrevTable, ? error)
+func (? *@"".Data) @"".parseTypes(@"".name string, @"".types []byte) (? error)
 func (? *@"".Data) @"".parseUnits() (? []@"".unit, ? error)
+func (? *@"".Data) @"".readType(@"".name string, @"".r @"".typeReader, @"".off @"".Offset, @"".typeCache map[@"".Offset]@"".Type) (? @"".Type, ? error)
+func (? *@"".Data) @"".sigToType(@"".sig uint64) (? @"".Type, ? error)
 type @"".DecodeError struct { @"".Name string; @"".Offset @"".Offset; @"".Err string }
 func (? @"".DecodeError) @"".Error() (? string)
 func (? *@"".DecodeError) @"".Error() (? string)
@@ -123,7 +128,9 @@ type @"".Reader struct { @"".b @"".buf; @"".d *@"".Data; @"".err error; @"".unit
 func (? *@"".Reader) @"".Next() (? *@"".Entry, ? error)
 func (? *@"".Reader) @"".Seek(@"".off @"".Offset) ()
 func (? *@"".Reader) @"".SkipChildren() ()
+func (? *@"".Reader) @"".clone() (? @"".typeReader)
 func (? *@"".Reader) @"".maybeNextUnit() ()
+func (? *@"".Reader) @"".offset() (? @"".Offset)
 type @"".StructField struct { @"".Name string; @"".Type @"".Type; @"".ByteOffset int64; @"".ByteSize int64; @"".BitOffset int64; @"".BitSize int64 }
 type @"".StructType struct { ? @"".CommonType; @"".StructName string; @"".Kind string; @"".Field []*@"".StructField; @"".Incomplete bool }
 func (? *@"".StructType) @"".Defn() (? string)
@@ -141,6 +148,7 @@ const @"".TagClassType @"".Tag = 0x2
 const @"".TagCommonDwarfBlock @"".Tag = 0x1a
 const @"".TagCommonInclusion @"".Tag = 0x1b
 const @"".TagCompileUnit @"".Tag = 0x11
+const @"".TagCondition @"".Tag = 0x3f
 const @"".TagConstType @"".Tag = 0x26
 const @"".TagConstant @"".Tag = 0x27
 const @"".TagDwarfProcedure @"".Tag = 0x36
@@ -170,16 +178,20 @@ const @"".TagPointerType @"".Tag = 0xf
 const @"".TagPtrToMemberType @"".Tag = 0x1f
 const @"".TagReferenceType @"".Tag = 0x10
 const @"".TagRestrictType @"".Tag = 0x37
+const @"".TagRvalueReferenceType @"".Tag = 0x42
 const @"".TagSetType @"".Tag = 0x20
+const @"".TagSharedType @"".Tag = 0x40
 const @"".TagStringType @"".Tag = 0x12
 const @"".TagStructType @"".Tag = 0x13
 const @"".TagSubprogram @"".Tag = 0x2e
 const @"".TagSubrangeType @"".Tag = 0x21
 const @"".TagSubroutineType @"".Tag = 0x15
+const @"".TagTemplateAlias @"".Tag = 0x43
 const @"".TagTemplateTypeParameter @"".Tag = 0x2f
 const @"".TagTemplateValueParameter @"".Tag = 0x30
 const @"".TagThrownType @"".Tag = 0x31
 const @"".TagTryDwarfBlock @"".Tag = 0x32
+const @"".TagTypeUnit @"".Tag = 0x41
 const @"".TagTypedef @"".Tag = 0x16
 const @"".TagUnionType @"".Tag = 0x17
 const @"".TagUnspecifiedParameters @"".Tag = 0x18
@@ -216,6 +228,13 @@ func (? *@"".buf) @"".uint8() (? uint8)
 func (? *@"".buf) @"".varint() (@"".c uint64, @"".bits uint)
 type @"".dataFormat interface { @"".addrsize() (? int); @"".dwarf64() (@"".dwarf64 bool, @"".isKnown bool); @"".version() (? int) }
 type @"".format uint32
+type @"".typeReader interface { @"".Next() (? *@"".Entry, ? error); @"".Seek(? @"".Offset) (); @"".clone() (? @"".typeReader); @"".offset() (? @"".Offset) }
+type @"".typeUnit struct { ? @"".unit; @"".toff @"".Offset; @"".name string; @"".cache @"".Type }
+type @"".typeUnitReader struct { @"".d *@"".Data; @"".tu *@"".typeUnit; @"".b @"".buf; @"".err error }
+func (? *@"".typeUnitReader) @"".Next() (? *@"".Entry, ? error)
+func (? *@"".typeUnitReader) @"".Seek(@"".off @"".Offset) ()
+func (? *@"".typeUnitReader) @"".clone() (? @"".typeReader)
+func (? *@"".typeUnitReader) @"".offset() (? @"".Offset)
 type @"".unit struct { @"".base @"".Offset; @"".off @"".Offset; @"".data []byte; @"".atable @"".abbrevTable; @"".asize int; @"".vers int; @"".is64 bool }
 func (? *@"".unit) @"".addrsize() (? int)
 func (? *@"".unit) @"".dwarf64() (? bool, ? bool)
@@ -229,1371 +248,49 @@ func (? *@"".unknownFormat) @"".dwarf64() (? bool, ? bool)
 func (? *@"".unknownFormat) @"".version() (? int)
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
-0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrors0É6N0Ç_bufÇ1	buf = go$pkg.buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
-		this.go$val = this;
-		this.dwarf = dwarf_ !== undefined ? dwarf_ : (go$ptrType(Data)).nil;
-		this.order = order_ !== undefined ? order_ : null;
-		this.format = format_ !== undefined ? format_ : null;
-		this.name = name_ !== undefined ? name_ : "";
-		this.off = off_ !== undefined ? off_ : 0;
-		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
-		this.err = err_ !== undefined ? err_ : null;
-	});
-Çí		(go$ptrType(buf)).methods = [["addr", "debug/dwarf", [], [Go$Uint64], false, -1], ["bytes", "debug/dwarf", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1], ["entry", "debug/dwarf", [abbrevTable, Offset], [(go$ptrType(Entry))], false, -1], ["error", "debug/dwarf", [Go$String], [], false, -1], ["int", "debug/dwarf", [], [Go$Int64], false, -1], ["skip", "debug/dwarf", [Go$Int], [], false, -1], ["string", "debug/dwarf", [], [Go$String], false, -1], ["uint", "debug/dwarf", [], [Go$Uint64], false, -1], ["uint16", "debug/dwarf", [], [Go$Uint16], false, -1], ["uint32", "debug/dwarf", [], [Go$Uint32], false, -1], ["uint64", "debug/dwarf", [], [Go$Uint64], false, -1], ["uint8", "debug/dwarf", [], [Go$Uint8], false, -1], ["varint", "debug/dwarf", [], [Go$Uint64, Go$Uint], false, -1]];
-		buf.init([["dwarf", "dwarf", "debug/dwarf", (go$ptrType(Data)), ""], ["order", "order", "debug/dwarf", binary.ByteOrder, ""], ["format", "format", "debug/dwarf", dataFormat, ""], ["name", "name", "debug/dwarf", Go$String, ""], ["off", "off", "debug/dwarf", Offset, ""], ["data", "data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["err", "err", "debug/dwarf", go$error, ""]]);
-0buf0ÅÖdebug/dwarf:Datadebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:abbrevTabledebug/dwarf:dataFormatencoding/binary:ByteOrder0Çv
-dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.dataFormat", "dataFormat", "debug/dwarf", null);
-Å‡		dataFormat.init([["addrsize", "debug/dwarf", (go$funcType([], [Go$Int], false))], ["dwarf64", "debug/dwarf", (go$funcType([], [Go$Bool, Go$Bool], false))], ["version", "debug/dwarf", (go$funcType([], [Go$Int], false))]]);
-0
-dataFormat0 0Ç|unknownFormatÅü	unknownFormat = go$pkg.unknownFormat = go$newType(0, "Struct", "dwarf.unknownFormat", "unknownFormat", "debug/dwarf", function() {
-		this.go$val = this;
-	});
-Ç¥		unknownFormat.methods = [["addrsize", "debug/dwarf", [], [Go$Int], false, -1], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false, -1], ["version", "debug/dwarf", [], [Go$Int], false, -1]];
-		(go$ptrType(unknownFormat)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false, -1], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false, -1], ["version", "debug/dwarf", [], [Go$Int], false, -1]];
-		unknownFormat.init([]);
-0unknownFormat0 0ÇìDecodeErrorÇ=	DecodeError = go$pkg.DecodeError = go$newType(0, "Struct", "dwarf.DecodeError", "DecodeError", "debug/dwarf", function(Name_, Offset_, Err_) {
-		this.go$val = this;
-		this.Name = Name_ !== undefined ? Name_ : "";
-		this.Offset = Offset_ !== undefined ? Offset_ : 0;
-		this.Err = Err_ !== undefined ? Err_ : "";
-	});
-Ç		DecodeError.methods = [["Error", "", [], [Go$String], false, -1]];
-		(go$ptrType(DecodeError)).methods = [["Error", "", [], [Go$String], false, -1]];
-		DecodeError.init([["Name", "Name", "", Go$String, ""], ["Offset", "Offset", "", Offset, ""], ["Err", "Err", "", Go$String, ""]]);
-0DecodeError0debug/dwarf:Offset0ÇWAttrZ	Attr = go$pkg.Attr = go$newType(4, "Uint32", "dwarf.Attr", "Attr", "debug/dwarf", null);
-ÅË		Attr.methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
-		(go$ptrType(Attr)).methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
-0Attr0 0zformatb	format = go$pkg.format = go$newType(4, "Uint32", "dwarf.format", "format", "debug/dwarf", null);
- 0format0 0ÇOTagV	Tag = go$pkg.Tag = go$newType(4, "Uint32", "dwarf.Tag", "Tag", "debug/dwarf", null);
-ÅÊ		Tag.methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
-		(go$ptrType(Tag)).methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
-0Tag0 0Ç>abbrevÇP	abbrev = go$pkg.abbrev = go$newType(0, "Struct", "dwarf.abbrev", "abbrev", "debug/dwarf", function(tag_, children_, field_) {
-		this.go$val = this;
-		this.tag = tag_ !== undefined ? tag_ : 0;
-		this.children = children_ !== undefined ? children_ : false;
-		this.field = field_ !== undefined ? field_ : (go$sliceType(afield)).nil;
-	});
-ÅÆ		abbrev.init([["tag", "tag", "debug/dwarf", Tag, ""], ["children", "children", "debug/dwarf", Go$Bool, ""], ["field", "field", "debug/dwarf", (go$sliceType(afield)), ""]]);
-0abbrev0%debug/dwarf:Tagdebug/dwarf:afield0ÇèafieldÅÈ	afield = go$pkg.afield = go$newType(0, "Struct", "dwarf.afield", "afield", "debug/dwarf", function(attr_, fmt_) {
-		this.go$val = this;
-		this.attr = attr_ !== undefined ? attr_ : 0;
-		this.fmt = fmt_ !== undefined ? fmt_ : 0;
-	});
-g		afield.init([["attr", "attr", "debug/dwarf", Attr, ""], ["fmt", "fmt", "debug/dwarf", format, ""]]);
-0afield0&debug/dwarf:Attrdebug/dwarf:format0Å–abbrevTables	abbrevTable = go$pkg.abbrevTable = go$newType(0, "Map", "dwarf.abbrevTable", "abbrevTable", "debug/dwarf", null);
-'		abbrevTable.init(Go$Uint32, abbrev);
-0abbrevTable0debug/dwarf:abbrev0ÇıEntryÇâ	Entry = go$pkg.Entry = go$newType(0, "Struct", "dwarf.Entry", "Entry", "debug/dwarf", function(Offset_, Tag_, Children_, Field_) {
-		this.go$val = this;
-		this.Offset = Offset_ !== undefined ? Offset_ : 0;
-		this.Tag = Tag_ !== undefined ? Tag_ : 0;
-		this.Children = Children_ !== undefined ? Children_ : false;
-		this.Field = Field_ !== undefined ? Field_ : (go$sliceType(Field)).nil;
-	});
-Ç		(go$ptrType(Entry)).methods = [["Val", "", [Attr], [go$emptyInterface], false, -1]];
-		Entry.init([["Offset", "Offset", "", Offset, ""], ["Tag", "Tag", "", Tag, ""], ["Children", "Children", "", Go$Bool, ""], ["Field", "Field", "", (go$sliceType(Field)), ""]]);
-0Entry0Jdebug/dwarf:Attrdebug/dwarf:Fielddebug/dwarf:Offsetdebug/dwarf:Tag0ÇlFieldÅË	Field = go$pkg.Field = go$newType(0, "Struct", "dwarf.Field", "Field", "debug/dwarf", function(Attr_, Val_) {
-		this.go$val = this;
-		this.Attr = Attr_ !== undefined ? Attr_ : 0;
-		this.Val = Val_ !== undefined ? Val_ : null;
-	});
-[		Field.init([["Attr", "Attr", "", Attr, ""], ["Val", "Val", "", go$emptyInterface, ""]]);
-0Field0debug/dwarf:Attr0zOffsetb	Offset = go$pkg.Offset = go$newType(4, "Uint32", "dwarf.Offset", "Offset", "debug/dwarf", null);
- 0Offset0 0ÇîReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "dwarf.Reader", "Reader", "debug/dwarf", function(b_, d_, err_, unit_, lastChildren_, lastSibling_) {
-		this.go$val = this;
-		this.b = b_ !== undefined ? b_ : new buf.Ptr();
-		this.d = d_ !== undefined ? d_ : (go$ptrType(Data)).nil;
-		this.err = err_ !== undefined ? err_ : null;
-		this.unit = unit_ !== undefined ? unit_ : 0;
-		this.lastChildren = lastChildren_ !== undefined ? lastChildren_ : false;
-		this.lastSibling = lastSibling_ !== undefined ? lastSibling_ : 0;
-	});
-Ç!		(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Entry)), go$error], false, -1], ["Seek", "", [Offset], [], false, -1], ["SkipChildren", "", [], [], false, -1], ["maybeNextUnit", "debug/dwarf", [], [], false, -1]];
-		Reader.init([["b", "b", "debug/dwarf", buf, ""], ["d", "d", "debug/dwarf", (go$ptrType(Data)), ""], ["err", "err", "debug/dwarf", go$error, ""], ["unit", "unit", "debug/dwarf", Go$Int, ""], ["lastChildren", "lastChildren", "debug/dwarf", Go$Bool, ""], ["lastSibling", "lastSibling", "debug/dwarf", Offset, ""]]);
-0Reader0Jdebug/dwarf:Datadebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:buf0Ç	“DataÇ°	Data = go$pkg.Data = go$newType(0, "Struct", "dwarf.Data", "Data", "debug/dwarf", function(abbrev_, aranges_, frame_, info_, line_, pubnames_, ranges_, str_, abbrevCache_, addrsize_, order_, typeCache_, unit_) {
-		this.go$val = this;
-		this.abbrev = abbrev_ !== undefined ? abbrev_ : (go$sliceType(Go$Uint8)).nil;
-		this.aranges = aranges_ !== undefined ? aranges_ : (go$sliceType(Go$Uint8)).nil;
-		this.frame = frame_ !== undefined ? frame_ : (go$sliceType(Go$Uint8)).nil;
-		this.info = info_ !== undefined ? info_ : (go$sliceType(Go$Uint8)).nil;
-		this.line = line_ !== undefined ? line_ : (go$sliceType(Go$Uint8)).nil;
-		this.pubnames = pubnames_ !== undefined ? pubnames_ : (go$sliceType(Go$Uint8)).nil;
-		this.ranges = ranges_ !== undefined ? ranges_ : (go$sliceType(Go$Uint8)).nil;
-		this.str = str_ !== undefined ? str_ : (go$sliceType(Go$Uint8)).nil;
-		this.abbrevCache = abbrevCache_ !== undefined ? abbrevCache_ : false;
-		this.addrsize = addrsize_ !== undefined ? addrsize_ : 0;
-		this.order = order_ !== undefined ? order_ : null;
-		this.typeCache = typeCache_ !== undefined ? typeCache_ : false;
-		this.unit = unit_ !== undefined ? unit_ : (go$sliceType(unit)).nil;
-	});
-Çò		(go$ptrType(Data)).methods = [["Reader", "", [], [(go$ptrType(Reader))], false, -1], ["Type", "", [Offset], [Type, go$error], false, -1], ["parseAbbrev", "debug/dwarf", [Go$Uint32], [abbrevTable, go$error], false, -1], ["parseUnits", "debug/dwarf", [], [(go$sliceType(unit)), go$error], false, -1]];
-		Data.init([["abbrev", "abbrev", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["aranges", "aranges", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["frame", "frame", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["info", "info", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["line", "line", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["pubnames", "pubnames", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["ranges", "ranges", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["str", "str", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["abbrevCache", "abbrevCache", "debug/dwarf", (go$mapType(Go$Uint32, abbrevTable)), ""], ["addrsize", "addrsize", "debug/dwarf", Go$Int, ""], ["order", "order", "debug/dwarf", binary.ByteOrder, ""], ["typeCache", "typeCache", "debug/dwarf", (go$mapType(Offset, Type)), ""], ["unit", "unit", "debug/dwarf", (go$sliceType(unit)), ""]]);
-0Data0ÅÄdebug/dwarf:Offsetdebug/dwarf:Readerdebug/dwarf:Typedebug/dwarf:abbrevTabledebug/dwarf:unitencoding/binary:ByteOrder0ÇJType]	Type = go$pkg.Type = go$newType(0, "Interface", "dwarf.Type", "Type", "debug/dwarf", null);
-Å¿		Type.init([["Common", "", (go$funcType([], [(go$ptrType(CommonType))], false))], ["Size", "", (go$funcType([], [Go$Int64], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
-0Type0debug/dwarf:CommonType0Ç3
-CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.CommonType", "CommonType", "debug/dwarf", function(ByteSize_, Name_) {
-		this.go$val = this;
-		this.ByteSize = ByteSize_ !== undefined ? ByteSize_ : new Go$Int64(0, 0);
-		this.Name = Name_ !== undefined ? Name_ : "";
-	});
-ÅÒ		(go$ptrType(CommonType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, -1], ["Size", "", [], [Go$Int64], false, -1]];
-		CommonType.init([["ByteSize", "ByteSize", "", Go$Int64, ""], ["Name", "Name", "", Go$String, ""]]);
-0
-CommonType0 0ÇW	BasicTypeÇú	BasicType = go$pkg.BasicType = go$newType(0, "Struct", "dwarf.BasicType", "BasicType", "debug/dwarf", function(CommonType_, BitSize_, BitOffset_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.BitSize = BitSize_ !== undefined ? BitSize_ : new Go$Int64(0, 0);
-		this.BitOffset = BitOffset_ !== undefined ? BitOffset_ : new Go$Int64(0, 0);
-	});
-ÇÅ		(go$ptrType(BasicType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, -1], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		BasicType.init([["CommonType", "", "", CommonType, ""], ["BitSize", "BitSize", "", Go$Int64, ""], ["BitOffset", "BitOffset", "", Go$Int64, ""]]);
-0	BasicType0debug/dwarf:CommonType0ÇVCharTypeÅÂ	CharType = go$pkg.CharType = go$newType(0, "Struct", "dwarf.CharType", "CharType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç#		(go$ptrType(CharType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		CharType.init([["BasicType", "", "", BasicType, ""]]);
-0
-CharType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0Ç^	UcharTypeÅÈ	UcharType = go$pkg.UcharType = go$newType(0, "Struct", "dwarf.UcharType", "UcharType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç%		(go$ptrType(UcharType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		UcharType.init([["BasicType", "", "", BasicType, ""]]);
-0	UcharType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇNIntTypeÅ·	IntType = go$pkg.IntType = go$newType(0, "Struct", "dwarf.IntType", "IntType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç!		(go$ptrType(IntType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		IntType.init([["BasicType", "", "", BasicType, ""]]);
-0	IntType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇVUintTypeÅÂ	UintType = go$pkg.UintType = go$newType(0, "Struct", "dwarf.UintType", "UintType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç#		(go$ptrType(UintType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		UintType.init([["BasicType", "", "", BasicType, ""]]);
-0
-UintType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0Ç^	FloatTypeÅÈ	FloatType = go$pkg.FloatType = go$newType(0, "Struct", "dwarf.FloatType", "FloatType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç%		(go$ptrType(FloatType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		FloatType.init([["BasicType", "", "", BasicType, ""]]);
-0	FloatType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇnComplexTypeÅÒ	ComplexType = go$pkg.ComplexType = go$newType(0, "Struct", "dwarf.ComplexType", "ComplexType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç)		(go$ptrType(ComplexType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		ComplexType.init([["BasicType", "", "", BasicType, ""]]);
-0ComplexType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇVBoolTypeÅÂ	BoolType = go$pkg.BoolType = go$newType(0, "Struct", "dwarf.BoolType", "BoolType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç#		(go$ptrType(BoolType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		BoolType.init([["BasicType", "", "", BasicType, ""]]);
-0
-BoolType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇVAddrTypeÅÂ	AddrType = go$pkg.AddrType = go$newType(0, "Struct", "dwarf.AddrType", "AddrType", "debug/dwarf", function(BasicType_) {
-		this.go$val = this;
-		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
-	});
-Ç#		(go$ptrType(AddrType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false, 0], ["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, 0]];
-		AddrType.init([["BasicType", "", "", BasicType, ""]]);
-0
-AddrType0/debug/dwarf:BasicTypedebug/dwarf:CommonType0ÇÿQualTypeÇZ	QualType = go$pkg.QualType = go$newType(0, "Struct", "dwarf.QualType", "QualType", "debug/dwarf", function(CommonType_, Qual_, Type_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.Qual = Qual_ !== undefined ? Qual_ : "";
-		this.Type = Type_ !== undefined ? Type_ : null;
-	});
-Ç4		(go$ptrType(QualType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, -1], ["String", "", [], [Go$String], false, -1]];
-		QualType.init([["CommonType", "", "", CommonType, ""], ["Qual", "Qual", "", Go$String, ""], ["Type", "Type", "", Type, ""]]);
-0
-QualType0*debug/dwarf:CommonTypedebug/dwarf:Type0Çñ	ArrayTypeÇ›	ArrayType = go$pkg.ArrayType = go$newType(0, "Struct", "dwarf.ArrayType", "ArrayType", "debug/dwarf", function(CommonType_, Type_, StrideBitSize_, Count_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.Type = Type_ !== undefined ? Type_ : null;
-		this.StrideBitSize = StrideBitSize_ !== undefined ? StrideBitSize_ : new Go$Int64(0, 0);
-		this.Count = Count_ !== undefined ? Count_ : new Go$Int64(0, 0);
-	});
-Çm		(go$ptrType(ArrayType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, -1], ["String", "", [], [Go$String], false, -1]];
-		ArrayType.init([["CommonType", "", "", CommonType, ""], ["Type", "Type", "", Type, ""], ["StrideBitSize", "StrideBitSize", "", Go$Int64, ""], ["Count", "Count", "", Go$Int64, ""]]);
-0	ArrayType0*debug/dwarf:CommonTypedebug/dwarf:Type0ÇVoidTypeÅÍ	VoidType = go$pkg.VoidType = go$newType(0, "Struct", "dwarf.VoidType", "VoidType", "debug/dwarf", function(CommonType_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-	});
-ÅÓ		(go$ptrType(VoidType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		VoidType.init([["CommonType", "", "", CommonType, ""]]);
-0
-VoidType0debug/dwarf:CommonType0ÇsPtrTypeÇ	PtrType = go$pkg.PtrType = go$newType(0, "Struct", "dwarf.PtrType", "PtrType", "debug/dwarf", function(CommonType_, Type_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.Type = Type_ !== undefined ? Type_ : null;
-	});
-Ç		(go$ptrType(PtrType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		PtrType.init([["CommonType", "", "", CommonType, ""], ["Type", "Type", "", Type, ""]]);
-0	PtrType0*debug/dwarf:CommonTypedebug/dwarf:Type0Çm
-StructTypeÇ0	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.StructType", "StructType", "debug/dwarf", function(CommonType_, StructName_, Kind_, Field_, Incomplete_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.StructName = StructName_ !== undefined ? StructName_ : "";
-		this.Kind = Kind_ !== undefined ? Kind_ : "";
-		this.Field = Field_ !== undefined ? Field_ : (go$sliceType((go$ptrType(StructField)))).nil;
-		this.Incomplete = Incomplete_ !== undefined ? Incomplete_ : false;
-	});
-ÇË		(go$ptrType(StructType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Defn", "", [], [Go$String], false, -1], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		StructType.init([["CommonType", "", "", CommonType, ""], ["StructName", "StructName", "", Go$String, ""], ["Kind", "Kind", "", Go$String, ""], ["Field", "Field", "", (go$sliceType((go$ptrType(StructField)))), ""], ["Incomplete", "Incomplete", "", Go$Bool, ""]]);
-0
-StructType01debug/dwarf:CommonTypedebug/dwarf:StructField0Ç∞StructFieldÇi	StructField = go$pkg.StructField = go$newType(0, "Struct", "dwarf.StructField", "StructField", "debug/dwarf", function(Name_, Type_, ByteOffset_, ByteSize_, BitOffset_, BitSize_) {
-		this.go$val = this;
-		this.Name = Name_ !== undefined ? Name_ : "";
-		this.Type = Type_ !== undefined ? Type_ : null;
-		this.ByteOffset = ByteOffset_ !== undefined ? ByteOffset_ : new Go$Int64(0, 0);
-		this.ByteSize = ByteSize_ !== undefined ? ByteSize_ : new Go$Int64(0, 0);
-		this.BitOffset = BitOffset_ !== undefined ? BitOffset_ : new Go$Int64(0, 0);
-		this.BitSize = BitSize_ !== undefined ? BitSize_ : new Go$Int64(0, 0);
-	});
-Ç		StructField.init([["Name", "Name", "", Go$String, ""], ["Type", "Type", "", Type, ""], ["ByteOffset", "ByteOffset", "", Go$Int64, ""], ["ByteSize", "ByteSize", "", Go$Int64, ""], ["BitOffset", "BitOffset", "", Go$Int64, ""], ["BitSize", "BitSize", "", Go$Int64, ""]]);
-0StructField0debug/dwarf:Type0Ç8EnumTypeÇç	EnumType = go$pkg.EnumType = go$newType(0, "Struct", "dwarf.EnumType", "EnumType", "debug/dwarf", function(CommonType_, EnumName_, Val_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.EnumName = EnumName_ !== undefined ? EnumName_ : "";
-		this.Val = Val_ !== undefined ? Val_ : (go$sliceType((go$ptrType(EnumValue)))).nil;
-	});
-Ç\		(go$ptrType(EnumType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		EnumType.init([["CommonType", "", "", CommonType, ""], ["EnumName", "EnumName", "", Go$String, ""], ["Val", "Val", "", (go$sliceType((go$ptrType(EnumValue)))), ""]]);
-0
-EnumType0/debug/dwarf:CommonTypedebug/dwarf:EnumValue0ÇÇ	EnumValueÇ	EnumValue = go$pkg.EnumValue = go$newType(0, "Struct", "dwarf.EnumValue", "EnumValue", "debug/dwarf", function(Name_, Val_) {
-		this.go$val = this;
-		this.Name = Name_ !== undefined ? Name_ : "";
-		this.Val = Val_ !== undefined ? Val_ : new Go$Int64(0, 0);
-	});
-[		EnumValue.init([["Name", "Name", "", Go$String, ""], ["Val", "Val", "", Go$Int64, ""]]);
-0	EnumValue0 0Ç:FuncTypeÇú	FuncType = go$pkg.FuncType = go$newType(0, "Struct", "dwarf.FuncType", "FuncType", "debug/dwarf", function(CommonType_, ReturnType_, ParamType_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.ReturnType = ReturnType_ !== undefined ? ReturnType_ : null;
-		this.ParamType = ParamType_ !== undefined ? ParamType_ : (go$sliceType(Type)).nil;
-	});
-ÇT		(go$ptrType(FuncType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		FuncType.init([["CommonType", "", "", CommonType, ""], ["ReturnType", "ReturnType", "", Type, ""], ["ParamType", "ParamType", "", (go$sliceType(Type)), ""]]);
-0
-FuncType0*debug/dwarf:CommonTypedebug/dwarf:Type0Ç6DotDotDotTypeÅ˛	DotDotDotType = go$pkg.DotDotDotType = go$newType(0, "Struct", "dwarf.DotDotDotType", "DotDotDotType", "debug/dwarf", function(CommonType_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-	});
-Å¯		(go$ptrType(DotDotDotType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, 0], ["String", "", [], [Go$String], false, -1]];
-		DotDotDotType.init([["CommonType", "", "", CommonType, ""]]);
-0DotDotDotType0debug/dwarf:CommonType0ÇîTypedefTypeÇ/	TypedefType = go$pkg.TypedefType = go$newType(0, "Struct", "dwarf.TypedefType", "TypedefType", "debug/dwarf", function(CommonType_, Type_) {
-		this.go$val = this;
-		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
-		this.Type = Type_ !== undefined ? Type_ : null;
-	});
-Ç		(go$ptrType(TypedefType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false, 0], ["Size", "", [], [Go$Int64], false, -1], ["String", "", [], [Go$String], false, -1]];
-		TypedefType.init([["CommonType", "", "", CommonType, ""], ["Type", "Type", "", Type, ""]]);
-0TypedefType0*debug/dwarf:CommonTypedebug/dwarf:Type0ÇîunitÇ	unit = go$pkg.unit = go$newType(0, "Struct", "dwarf.unit", "unit", "debug/dwarf", function(base_, off_, data_, atable_, asize_, vers_, is64_) {
-		this.go$val = this;
-		this.base = base_ !== undefined ? base_ : 0;
-		this.off = off_ !== undefined ? off_ : 0;
-		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
-		this.atable = atable_ !== undefined ? atable_ : false;
-		this.asize = asize_ !== undefined ? asize_ : 0;
-		this.vers = vers_ !== undefined ? vers_ : 0;
-		this.is64 = is64_ !== undefined ? is64_ : false;
-	});
-Ç1		(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false, -1], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false, -1], ["version", "debug/dwarf", [], [Go$Int], false, -1]];
-		unit.init([["base", "base", "debug/dwarf", Offset, ""], ["off", "off", "debug/dwarf", Offset, ""], ["data", "data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "atable", "debug/dwarf", abbrevTable, ""], ["asize", "asize", "debug/dwarf", Go$Int, ""], ["vers", "vers", "debug/dwarf", Go$Int, ""], ["is64", "is64", "debug/dwarf", Go$Bool, ""]]);
-0unit0-debug/dwarf:Offsetdebug/dwarf:abbrevTable0Ç Åÿ	unknownFormat.Ptr.prototype.version = function() {
-		var _struct, u;
-		u = (_struct = this, new unknownFormat.Ptr());
-		return 0;
-	};
-	unknownFormat.prototype.version = function() { return this.go$val.version(); };
- 0unknownFormatversion0debug/dwarf:unknownFormat0Ç# ÅÂ	unknownFormat.Ptr.prototype.dwarf64 = function() {
-		var _struct, u;
-		u = (_struct = this, new unknownFormat.Ptr());
-		return [false, false];
-	};
-	unknownFormat.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
- 0unknownFormatdwarf640debug/dwarf:unknownFormat0Ç Å€	unknownFormat.Ptr.prototype.addrsize = function() {
-		var _struct, u;
-		u = (_struct = this, new unknownFormat.Ptr());
-		return 0;
-	};
-	unknownFormat.prototype.addrsize = function() { return this.go$val.addrsize(); };
- 0unknownFormataddrsize0debug/dwarf:unknownFormat0Å¶makeBuf{	makeBuf = function(d, format$1, name, off, data) {
-		return new buf.Ptr(d, d.order, format$1, name, off, data, null);
-	};
- 0	makeBuf0debug/dwarf:buf0Ç
- ÇŒ	buf.Ptr.prototype.uint8 = function() {
-		var b, _slice, _index, val;
-		b = this;
-		if (b.data.length < 1) {
-			b.error("underflow");
-			return 0;
-		}
-		val = (_slice = b.data, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-		b.data = go$subslice(b.data, 1);
-		b.off = b.off + 1 >>> 0;
-		return val;
-	};
-	buf.prototype.uint8 = function() { return this.go$val.uint8(); };
- 0bufuint80$debug/dwarf:bufdebug/dwarf:error0Ç§ Çh	buf.Ptr.prototype.bytes = function(n) {
-		var b, data;
-		b = this;
-		if (b.data.length < n) {
-			b.error("underflow");
-			return (go$sliceType(Go$Uint8)).nil;
-		}
-		data = go$subslice(b.data, 0, n);
-		b.data = go$subslice(b.data, n);
-		b.off = b.off + ((n >>> 0)) >>> 0;
-		return data;
-	};
-	buf.prototype.bytes = function(n) { return this.go$val.bytes(n); };
- 0bufbytes0$debug/dwarf:bufdebug/dwarf:error0ÅÃ Åí	buf.Ptr.prototype.skip = function(n) {
-		var b;
-		b = this;
-		b.bytes(n);
-	};
-	buf.prototype.skip = function(n) { return this.go$val.skip(n); };
- 0bufskip0$debug/dwarf:bufdebug/dwarf:bytes0Çí ÇU	buf.Ptr.prototype.string = function() {
-		var b, i, _slice, _index, s;
-		b = this;
-		i = 0;
-		while (i < b.data.length) {
-			if ((_slice = b.data, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
-				s = go$bytesToString(go$subslice(b.data, 0, i));
-				b.data = go$subslice(b.data, (i + 1 >> 0));
-				b.off = b.off + (((i + 1 >> 0) >>> 0)) >>> 0;
-				return s;
-			}
-			i = i + 1 >> 0;
-		}
-		b.error("underflow");
-		return "";
-	};
-	buf.prototype.string = function() { return this.go$val.string(); };
- 0bufstring0$debug/dwarf:bufdebug/dwarf:error0Ç1 Åı	buf.Ptr.prototype.uint16 = function() {
-		var b, a;
-		b = this;
-		a = b.bytes(2);
-		if (a === (go$sliceType(Go$Uint8)).nil) {
-			return 0;
-		}
-		return b.order.Uint16(a);
-	};
-	buf.prototype.uint16 = function() { return this.go$val.uint16(); };
- 0bufuint160$debug/dwarf:bufdebug/dwarf:bytes0Ç1 Åı	buf.Ptr.prototype.uint32 = function() {
-		var b, a;
-		b = this;
-		a = b.bytes(4);
-		if (a === (go$sliceType(Go$Uint8)).nil) {
-			return 0;
-		}
-		return b.order.Uint32(a);
-	};
-	buf.prototype.uint32 = function() { return this.go$val.uint32(); };
- 0bufuint320$debug/dwarf:bufdebug/dwarf:bytes0ÇD Ç	buf.Ptr.prototype.uint64 = function() {
-		var b, a;
-		b = this;
-		a = b.bytes(8);
-		if (a === (go$sliceType(Go$Uint8)).nil) {
-			return new Go$Uint64(0, 0);
-		}
-		return b.order.Uint64(a);
-	};
-	buf.prototype.uint64 = function() { return this.go$val.uint64(); };
- 0bufuint640$debug/dwarf:bufdebug/dwarf:bytes0Ç“ Ç®	buf.Ptr.prototype.varint = function() {
-		var c, bits, b, i, _slice, _index, byte$1, x, _tuple, _tuple$1;
-		c = new Go$Uint64(0, 0);
-		bits = 0;
-		b = this;
-		i = 0;
-		while (i < b.data.length) {
-			byte$1 = (_slice = b.data, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			c = (x = go$shiftLeft64(new Go$Uint64(0, ((byte$1 & 127) >>> 0)), bits), new Go$Uint64(c.high | x.high, (c.low | x.low) >>> 0));
-			bits = bits + 7 >>> 0;
-			if (((byte$1 & 128) >>> 0) === 0) {
-				b.off = b.off + (((i + 1 >> 0) >>> 0)) >>> 0;
-				b.data = go$subslice(b.data, (i + 1 >> 0));
-				_tuple = [c, bits], c = _tuple[0], bits = _tuple[1];
-				return [c, bits];
-			}
-			i = i + 1 >> 0;
-		}
-		_tuple$1 = [new Go$Uint64(0, 0), 0], c = _tuple$1[0], bits = _tuple$1[1];
-		return [c, bits];
-	};
-	buf.prototype.varint = function() { return this.go$val.varint(); };
- 0bufvarint0debug/dwarf:buf0Å˘ Åæ	buf.Ptr.prototype.uint = function() {
-		var b, _tuple, x;
-		b = this;
-		_tuple = b.varint(), x = _tuple[0];
-		return x;
-	};
-	buf.prototype.uint = function() { return this.go$val.uint(); };
- 0bufuint0%debug/dwarf:bufdebug/dwarf:varint0Ç{ Ç@	buf.Ptr.prototype.int$ = function() {
-		var b, _tuple, ux, bits, x, x$1, x$2, x$3;
-		b = this;
-		_tuple = b.varint(), ux = _tuple[0], bits = _tuple[1];
-		x = new Go$Int64(ux.high, ux.low);
-		if (!((x$1 = (x$2 = go$shiftLeft64(new Go$Int64(0, 1), ((bits - 1 >>> 0))), new Go$Int64(x.high & x$2.high, (x.low & x$2.low) >>> 0)), (x$1.high === 0 && x$1.low === 0)))) {
-			x = (x$3 = go$shiftLeft64(new Go$Int64(-1, 4294967295), bits), new Go$Int64(x.high | x$3.high, (x.low | x$3.low) >>> 0));
-		}
-		return x;
-	};
-	buf.prototype.int$ = function() { return this.go$val.int$(); };
- 0
-bufint0%debug/dwarf:bufdebug/dwarf:varint0Ç} Ç‹	buf.Ptr.prototype.addr = function() {
-		var b, _ref;
-		b = this;
-		_ref = b.format.addrsize();
-		if (_ref === 1) {
-			return new Go$Uint64(0, b.uint8());
-		} else if (_ref === 2) {
-			return new Go$Uint64(0, b.uint16());
-		} else if (_ref === 4) {
-			return new Go$Uint64(0, b.uint32());
-		} else if (_ref === 8) {
-			return b.uint64();
-		}
-		b.error("unknown address size");
-		return new Go$Uint64(0, 0);
-	};
-	buf.prototype.addr = function() { return this.go$val.addr(); };
- 0bufaddr0Åâdebug/dwarf:addrsizedebug/dwarf:bufdebug/dwarf:errordebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint80Çy Ç7	buf.Ptr.prototype.error = function(s) {
-		var b, x;
-		b = this;
-		if (go$interfaceIsEqual(b.err, null)) {
-			b.data = (go$sliceType(Go$Uint8)).nil;
-			b.err = (x = new DecodeError.Ptr(b.name, b.off, s), new x.constructor.Struct(x));
-		}
-	};
-	buf.prototype.error = function(s) { return this.go$val.error(s); };
- 0buferror0*debug/dwarf:DecodeErrordebug/dwarf:buf0ÇØ Çj	DecodeError.Ptr.prototype.Error = function() {
-		var _struct, e;
-		e = (_struct = this, new DecodeError.Ptr(_struct.Name, _struct.Offset, _struct.Err));
-		return "decoding dwarf section " + e.Name + " at offset 0x" + strconv.FormatInt(new Go$Int64(0, e.Offset), 16) + ": " + e.Err;
-	};
-	DecodeError.prototype.Error = function() { return this.go$val.Error(); };
- 0DecodeError0,debug/dwarf:DecodeErrorstrconv:FormatInt0Çj Ç!	Attr.prototype.String = function() {
-		var a, s;
-		a = this.go$val;
-		if ((a >> 0) < 91) {
-			s = attrNames[a];
-			if (!(s === "")) {
-				return s;
-			}
-		}
-		return strconv.Itoa((a >> 0));
-	};
-	go$ptrType(Attr).prototype.String = function() { return new Attr(this.go$get()).String(); };
- 0Attr07debug/dwarf:Attrdebug/dwarf:attrNamesstrconv:Itoa0Ç≠ Ç_	Attr.prototype.GoString = function() {
-		var a, s;
-		a = this.go$val;
-		if ((a >> 0) < 91) {
-			s = attrNames[a];
-			if (!(s === "")) {
-				return "dwarf.Attr" + s;
-			}
-		}
-		return "dwarf.Attr(" + strconv.FormatInt(new Go$Int64(0, a), 10) + ")";
-	};
-	go$ptrType(Attr).prototype.GoString = function() { return new Attr(this.go$get()).GoString(); };
- 0Attr0<debug/dwarf:Attrdebug/dwarf:attrNamesstrconv:FormatInt0Çc Ç	Tag.prototype.String = function() {
-		var t, s;
-		t = this.go$val;
-		if ((t >> 0) < 63) {
-			s = tagNames[t];
-			if (!(s === "")) {
-				return s;
-			}
-		}
-		return strconv.Itoa((t >> 0));
-	};
-	go$ptrType(Tag).prototype.String = function() { return new Tag(this.go$get()).String(); };
- 0Tag05debug/dwarf:Tagdebug/dwarf:tagNamesstrconv:Itoa0Ç§ ÇY	Tag.prototype.GoString = function() {
-		var t, s;
-		t = this.go$val;
-		if ((t >> 0) < 63) {
-			s = tagNames[t];
-			if (!(s === "")) {
-				return "dwarf.Tag" + s;
-			}
-		}
-		return "dwarf.Tag(" + strconv.FormatInt(new Go$Int64(0, t), 10) + ")";
-	};
-	go$ptrType(Tag).prototype.GoString = function() { return new Tag(this.go$get()).GoString(); };
- 0Tag0:debug/dwarf:Tagdebug/dwarf:tagNamesstrconv:FormatInt0Ç
-í Ç	“	Data.Ptr.prototype.parseAbbrev = function(off) {
-		var d, _tuple, _entry, m, ok, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
-		d = this;
-		_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1];
-		if (ok) {
-			return [m, null];
-		}
-		data = d.abbrev;
-		if (off > (data.length >>> 0)) {
-			data = (go$sliceType(Go$Uint8)).nil;
-		} else {
-			data = go$subslice(data, off);
-		}
-		b = (_struct = makeBuf(d, (x = new unknownFormat.Ptr(), new x.constructor.Struct(x)), "abbrev", 0, data), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-		m$1 = new Go$Map();
-		while (true) {
-			id = (b.uint().low >>> 0);
-			if (id === 0) {
-				break;
-			}
-			n = 0;
-			b1 = (_struct$1 = b, new buf.Ptr(_struct$1.dwarf, _struct$1.order, _struct$1.format, _struct$1.name, _struct$1.off, _struct$1.data, _struct$1.err));
-			b1.uint();
-			b1.uint8();
-			while (true) {
-				tag = b1.uint();
-				fmt = b1.uint();
-				if ((tag.high === 0 && tag.low === 0) && (fmt.high === 0 && fmt.low === 0)) {
-					break;
-				}
-				n = n + 1 >> 0;
-			}
-			if (!(go$interfaceIsEqual(b1.err, null))) {
-				return [false, b1.err];
-			}
-			a = new abbrev.Ptr();
-			a.tag = (b.uint().low >>> 0);
-			a.children = !((b.uint8() === 0));
-			a.field = (go$sliceType(afield)).make(n, 0, function() { return new afield.Ptr(); });
-			_ref = a.field;
-			_i = 0;
-			while (_i < _ref.length) {
-				i = _i;
-				(_slice = a.field, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).attr = (b.uint().low >>> 0);
-				(_slice$1 = a.field, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).fmt = (b.uint().low >>> 0);
-				_i++;
-			}
-			b.uint();
-			b.uint();
-			_key = id, (m$1 || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct$2 = a, new abbrev.Ptr(_struct$2.tag, _struct$2.children, _struct$2.field)) };
-		}
-		if (!(go$interfaceIsEqual(b.err, null))) {
-			return [false, b.err];
-		}
-		_key$1 = off, (d.abbrevCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: m$1 };
-		return [m$1, null];
-	};
-	Data.prototype.parseAbbrev = function(off) { return this.go$val.parseAbbrev(off); };
- 0DataparseAbbrev0Å†debug/dwarf:Datadebug/dwarf:abbrevdebug/dwarf:afielddebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:uintdebug/dwarf:uint8debug/dwarf:unknownFormat0Ç? Ç	Entry.Ptr.prototype.Val = function(a) {
-		var e, _ref, _i, _slice, _index, _struct, f;
-		e = this;
-		_ref = e.Field;
-		_i = 0;
-		while (_i < _ref.length) {
-			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Field.Ptr(_struct.Attr, _struct.Val));
-			if (f.Attr === a) {
-				return f.Val;
-			}
-			_i++;
-		}
-		return null;
-	};
-	Entry.prototype.Val = function(a) { return this.go$val.Val(a); };
- 0Entry0&debug/dwarf:Entrydebug/dwarf:Field0ÇY Ç£	buf.Ptr.prototype.entry = function(atab, ubase) {
-		var b, off, id, _tuple, _entry, _struct, a, ok, e, _ref, _i, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, fmt, val, _ref$1, x, x$1, vers, _tuple$1, is64, known, off$1, x$2, _struct$1, b1, _tuple$2, is64$1, known$1, x$3, _slice$3, _index$3;
-		b = this;
-		off = b.off;
-		id = (b.uint().low >>> 0);
-		if (id === 0) {
-			return new Entry.Ptr(0, 0, false, (go$sliceType(Field)).nil);
-		}
-		_tuple = (_entry = atab[id], _entry !== undefined ? [_entry.v, true] : [new abbrev.Ptr(), false]), a = (_struct = _tuple[0], new abbrev.Ptr(_struct.tag, _struct.children, _struct.field)), ok = _tuple[1];
-		if (!ok) {
-			b.error("unknown abbreviation table index");
-			return (go$ptrType(Entry)).nil;
-		}
-		e = new Entry.Ptr(off, a.tag, a.children, (go$sliceType(Field)).make(a.field.length, 0, function() { return new Field.Ptr(); }));
-		_ref = e.Field;
-		_i = 0;
-		while (_i < _ref.length) {
-			i = _i;
-			(_slice$1 = e.Field, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Attr = (_slice = a.field, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).attr;
-			fmt = (_slice$2 = a.field, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).fmt;
-			if (fmt === 22) {
-				fmt = (b.uint().low >>> 0);
-			}
-			val = null;
-			_ref$1 = fmt;
-			if (_ref$1 === 1) {
-				val = b.addr();
-			} else if (_ref$1 === 10) {
-				val = b.bytes((b.uint8() >> 0));
-			} else if (_ref$1 === 3) {
-				val = b.bytes((b.uint16() >> 0));
-			} else if (_ref$1 === 4) {
-				val = b.bytes((b.uint32() >> 0));
-			} else if (_ref$1 === 9) {
-				val = b.bytes((b.uint().low >> 0));
-			} else if (_ref$1 === 11) {
-				val = new Go$Int64(0, b.uint8());
-			} else if (_ref$1 === 5) {
-				val = new Go$Int64(0, b.uint16());
-			} else if (_ref$1 === 6) {
-				val = new Go$Int64(0, b.uint32());
-			} else if (_ref$1 === 7) {
-				val = (x = b.uint64(), new Go$Int64(x.high, x.low));
-			} else if (_ref$1 === 13) {
-				val = b.int$();
-			} else if (_ref$1 === 15) {
-				val = (x$1 = b.uint(), new Go$Int64(x$1.high, x$1.low));
-			} else if (_ref$1 === 12) {
-				val = new Go$Bool((b.uint8() === 1));
-			} else if (_ref$1 === 25) {
-				val = new Go$Bool(true);
-			} else if (_ref$1 === 16) {
-				vers = b.format.version();
-				if (vers === 0) {
-					b.error("unknown version for DW_FORM_ref_addr");
-				} else if (vers === 2) {
-					val = new Offset((b.addr().low >>> 0));
-				} else {
-					_tuple$1 = b.format.dwarf64(), is64 = _tuple$1[0], known = _tuple$1[1];
-					if (!known) {
-						b.error("unknown size for DW_FORM_ref_addr");
-					} else if (is64) {
-						val = new Offset((b.uint64().low >>> 0));
-					} else {
-						val = new Offset((b.uint32() >>> 0));
-					}
-				}
-			} else if (_ref$1 === 17) {
-				val = new Offset(((b.uint8() >>> 0) + ubase >>> 0));
-			} else if (_ref$1 === 18) {
-				val = new Offset(((b.uint16() >>> 0) + ubase >>> 0));
-			} else if (_ref$1 === 19) {
-				val = new Offset(((b.uint32() >>> 0) + ubase >>> 0));
-			} else if (_ref$1 === 20) {
-				val = new Offset(((b.uint64().low >>> 0) + ubase >>> 0));
-			} else if (_ref$1 === 21) {
-				val = new Offset(((b.uint().low >>> 0) + ubase >>> 0));
-			} else if (_ref$1 === 8) {
-				val = new Go$String(b.string());
-			} else if (_ref$1 === 14) {
-				off$1 = b.uint32();
-				if (!(go$interfaceIsEqual(b.err, null))) {
-					return (go$ptrType(Entry)).nil;
-				}
-				b1 = (_struct$1 = makeBuf(b.dwarf, (x$2 = new unknownFormat.Ptr(), new x$2.constructor.Struct(x$2)), "str", 0, b.dwarf.str), new buf.Ptr(_struct$1.dwarf, _struct$1.order, _struct$1.format, _struct$1.name, _struct$1.off, _struct$1.data, _struct$1.err));
-				b1.skip((off$1 >> 0));
-				val = new Go$String(b1.string());
-				if (!(go$interfaceIsEqual(b1.err, null))) {
-					b.err = b1.err;
-					return (go$ptrType(Entry)).nil;
-				}
-			} else if (_ref$1 === 23) {
-				_tuple$2 = b.format.dwarf64(), is64$1 = _tuple$2[0], known$1 = _tuple$2[1];
-				if (!known$1) {
-					b.error("unknown size for DW_FORM_sec_offset");
-				} else if (is64$1) {
-					val = (x$3 = b.uint64(), new Go$Int64(x$3.high, x$3.low));
-				} else {
-					val = new Go$Int64(0, b.uint32());
-				}
-			} else if (_ref$1 === 24) {
-				val = b.bytes((b.uint().low >> 0));
-			} else if (_ref$1 === 32) {
-				val = b.uint64();
-			} else {
-				b.error("unknown entry attr format 0x" + strconv.FormatInt(new Go$Int64(0, fmt), 16));
-			}
-			(_slice$3 = e.Field, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Val = val;
-			_i++;
-		}
-		if (!(go$interfaceIsEqual(b.err, null))) {
-			return (go$ptrType(Entry)).nil;
-		}
-		return e;
-	};
-	buf.prototype.entry = function(atab, ubase) { return this.go$val.entry(atab, ubase); };
- 0bufentry0Çúdebug/dwarf:Entrydebug/dwarf:Fielddebug/dwarf:Offsetdebug/dwarf:abbrevdebug/dwarf:addrdebug/dwarf:bufdebug/dwarf:bytesdebug/dwarf:dwarf64debug/dwarf:errordebug/dwarf:intdebug/dwarf:makeBufdebug/dwarf:skipdebug/dwarf:stringdebug/dwarf:uintdebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8debug/dwarf:unknownFormatdebug/dwarf:versionstrconv:FormatInt0Ç( Å‡	Data.Ptr.prototype.Reader = function() {
-		var d, r;
-		d = this;
-		r = new Reader.Ptr(new buf.Ptr(), d, null, 0, false, 0);
-		r.Seek(0);
-		return r;
-	};
-	Data.prototype.Reader = function() { return this.go$val.Reader(); };
- 0Data07debug/dwarf:Datadebug/dwarf:Readerdebug/dwarf:buf0Çﬂ Çs	Reader.Ptr.prototype.Seek = function(off) {
-		var r, d, _slice, _index, u, _struct, i, u$1, _ref, _i, _slice$1, _index$1, _struct$1;
-		r = this;
-		d = r.d;
-		r.err = null;
-		r.lastChildren = false;
-		if (off === 0) {
-			if (d.unit.length === 0) {
-				return;
-			}
-			u = (_slice = d.unit, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			r.unit = 0;
-			r.b = (_struct = makeBuf(r.d, u, "info", u.off, u.data), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-			return;
-		}
-		i = 0;
-		u$1 = (go$ptrType(unit)).nil;
-		_ref = d.unit;
-		_i = 0;
-		while (_i < _ref.length) {
-			i = _i;
-			u$1 = (_slice$1 = d.unit, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (u$1.off <= off && off < (u$1.off + (u$1.data.length >>> 0) >>> 0)) {
-				r.unit = i;
-				r.b = (_struct$1 = makeBuf(r.d, u$1, "info", off, go$subslice(u$1.data, (off - u$1.off >>> 0))), new buf.Ptr(_struct$1.dwarf, _struct$1.order, _struct$1.format, _struct$1.name, _struct$1.off, _struct$1.data, _struct$1.err));
-				return;
-			}
-			_i++;
-		}
-		r.err = errors.New("offset out of range");
-	};
-	Reader.prototype.Seek = function(off) { return this.go$val.Seek(off); };
- 0Reader0Xdebug/dwarf:Readerdebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:unit
-errors:New0Çﬂ ÇÇ	Reader.Ptr.prototype.maybeNextUnit = function() {
-		var r, _slice, _index, u, _struct;
-		r = this;
-		while ((r.b.data.length === 0) && (r.unit + 1 >> 0) < r.d.unit.length) {
-			r.unit = r.unit + 1 >> 0;
-			u = (_slice = r.d.unit, _index = r.unit, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			r.b = (_struct = makeBuf(r.d, u, "info", u.off, u.data), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-		}
-	};
-	Reader.prototype.maybeNextUnit = function() { return this.go$val.maybeNextUnit(); };
- 0ReadermaybeNextUnit0:debug/dwarf:Readerdebug/dwarf:bufdebug/dwarf:makeBuf0ÇL Çœ	Reader.Ptr.prototype.Next = function() {
-		var r, _slice, _index, u, e, _tuple, x;
-		r = this;
-		if (!(go$interfaceIsEqual(r.err, null))) {
-			return [(go$ptrType(Entry)).nil, r.err];
-		}
-		r.maybeNextUnit();
-		if (r.b.data.length === 0) {
-			return [(go$ptrType(Entry)).nil, null];
-		}
-		u = (_slice = r.d.unit, _index = r.unit, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-		e = r.b.entry(u.atable, u.base);
-		if (!(go$interfaceIsEqual(r.b.err, null))) {
-			r.err = r.b.err;
-			return [(go$ptrType(Entry)).nil, r.err];
-		}
-		if (!(e === (go$ptrType(Entry)).nil)) {
-			r.lastChildren = e.Children;
-			if (r.lastChildren) {
-				_tuple = (x = e.Val(1), (x !== null && x.constructor === Offset ? [x.go$val, true] : [0, false])), r.lastSibling = _tuple[0];
-			}
-		} else {
-			r.lastChildren = false;
-		}
-		return [e, null];
-	};
-	Reader.prototype.Next = function() { return this.go$val.Next(); };
- 0Reader0idebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:Readerdebug/dwarf:entrydebug/dwarf:maybeNextUnit0Çm Ç2	Reader.Ptr.prototype.SkipChildren = function() {
-		var r, _tuple, e, err;
-		r = this;
-		if (!(go$interfaceIsEqual(r.err, null)) || !r.lastChildren) {
-			return;
-		}
-		if (r.lastSibling >= r.b.off) {
-			r.Seek(r.lastSibling);
-			return;
-		}
-		while (true) {
-			_tuple = r.Next(), e = _tuple[0], err = _tuple[1];
-			if (!(go$interfaceIsEqual(err, null)) || e === (go$ptrType(Entry)).nil || (e.Tag === 0)) {
-				break;
-			}
-			if (e.Children) {
-				r.SkipChildren();
-			}
-		}
-	};
-	Reader.prototype.SkipChildren = function() { return this.go$val.SkipChildren(); };
- 0Reader0'debug/dwarf:Entrydebug/dwarf:Reader0ÇÿNewÇ5	New = go$pkg.New = function(abbrev$1, aranges, frame, info, line, pubnames, ranges, str) {
-		var d, x, _slice, _index, _slice$1, _index$1, _tuple, x$1, y, x$2, x$3, x$4, x$5, _tuple$1, u, err;
-		d = new Data.Ptr(abbrev$1, aranges, frame, info, line, pubnames, ranges, str, new Go$Map(), 0, null, new Go$Map(), (go$sliceType(unit)).nil);
-		if (d.info.length < 6) {
-			return [(go$ptrType(Data)).nil, (x = new DecodeError.Ptr("info", (d.info.length >>> 0), "too short"), new x.constructor.Struct(x))];
-		}
-		_tuple = [(_slice = d.info, _index = 4, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = d.info, _index$1 = 5, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], x$1 = _tuple[0], y = _tuple[1];
-		if ((x$1 === 0) && (y === 0)) {
-			return [(go$ptrType(Data)).nil, (x$2 = new DecodeError.Ptr("info", 4, "unsupported version 0"), new x$2.constructor.Struct(x$2))];
-		} else if (x$1 === 0) {
-			d.order = (x$3 = binary.BigEndian, new x$3.constructor.Struct(x$3));
-		} else if (y === 0) {
-			d.order = (x$4 = binary.LittleEndian, new x$4.constructor.Struct(x$4));
-		} else {
-			return [(go$ptrType(Data)).nil, (x$5 = new DecodeError.Ptr("info", 4, "cannot determine byte order"), new x$5.constructor.Struct(x$5))];
-		}
-		_tuple$1 = d.parseUnits(), u = _tuple$1[0], err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$ptrType(Data)).nil, err];
-		}
-		d.unit = u;
-		return [d, null];
-	};
- 0New0Åédebug/dwarf:Datadebug/dwarf:DecodeErrordebug/dwarf:parseUnitsdebug/dwarf:unitencoding/binary:BigEndianencoding/binary:LittleEndian0Å– Å°	CommonType.Ptr.prototype.Common = function() {
-		var c;
-		c = this;
-		return c;
-	};
-	CommonType.prototype.Common = function() { return this.go$val.Common(); };
- 0
-CommonType0debug/dwarf:CommonType0Å” Å§	CommonType.Ptr.prototype.Size = function() {
-		var c;
-		c = this;
-		return c.ByteSize;
-	};
-	CommonType.prototype.Size = function() { return this.go$val.Size(); };
- 0
-CommonType0debug/dwarf:CommonType0Å… Åú	BasicType.Ptr.prototype.Basic = function() {
-		var b;
-		b = this;
-		return b;
-	};
-	BasicType.prototype.Basic = function() { return this.go$val.Basic(); };
- 0	BasicType0debug/dwarf:BasicType0Ç ÅÁ	BasicType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		if (!(t.CommonType.Name === "")) {
-			return t.CommonType.Name;
-		}
-		return "?";
-	};
-	BasicType.prototype.String = function() { return this.go$val.String(); };
- 0	BasicType0debug/dwarf:BasicType0ÅÂ Å∫	QualType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return t.Qual + " " + t.Type.String();
-	};
-	QualType.prototype.String = function() { return this.go$val.String(); };
- 0
-QualType0debug/dwarf:QualType0ÅŒ Å£	QualType.Ptr.prototype.Size = function() {
-		var t;
-		t = this;
-		return t.Type.Size();
-	};
-	QualType.prototype.Size = function() { return this.go$val.Size(); };
- 0
-QualType0debug/dwarf:QualType0Ç Å⁄	ArrayType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return "[" + strconv.FormatInt(t.Count, 10) + "]" + t.Type.String();
-	};
-	ArrayType.prototype.String = function() { return this.go$val.String(); };
- 0	ArrayType0*debug/dwarf:ArrayTypestrconv:FormatInt0ÅÂ Å∏	ArrayType.Ptr.prototype.Size = function() {
-		var t;
-		t = this;
-		return go$mul64(t.Count, t.Type.Size());
-	};
-	ArrayType.prototype.Size = function() { return this.go$val.Size(); };
- 0	ArrayType0debug/dwarf:ArrayType0ÅÕ Å¢	VoidType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return "void";
-	};
-	VoidType.prototype.String = function() { return this.go$val.String(); };
- 0
-VoidType0debug/dwarf:VoidType0Åÿ ÅØ	PtrType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return "*" + t.Type.String();
-	};
-	PtrType.prototype.String = function() { return this.go$val.String(); };
- 0	PtrType0debug/dwarf:PtrType0Ç" ÅÛ	StructType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		if (!(t.StructName === "")) {
-			return t.Kind + " " + t.StructName;
-		}
-		return t.Defn();
-	};
-	StructType.prototype.String = function() { return this.go$val.String(); };
- 0
-StructType0debug/dwarf:StructType0Çˆ Ç≥	StructType.Ptr.prototype.Defn = function() {
-		var t, s, _ref, _i, _slice, _index, f, i, x;
-		t = this;
-		s = t.Kind;
-		if (!(t.StructName === "")) {
-			s = s + (" " + t.StructName);
-		}
-		if (t.Incomplete) {
-			s = s + " /*incomplete*/";
-			return s;
-		}
-		s = s + " {";
-		_ref = t.Field;
-		_i = 0;
-		while (_i < _ref.length) {
-			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			if (i > 0) {
-				s = s + "; ";
-			}
-			s = s + (f.Name + " " + f.Type.String());
-			s = s + ("@" + strconv.FormatInt(f.ByteOffset, 10));
-			if ((x = f.BitSize, (x.high > 0 || (x.high === 0 && x.low > 0)))) {
-				s = s + (" : " + strconv.FormatInt(f.BitSize, 10));
-				s = s + ("@" + strconv.FormatInt(f.BitOffset, 10));
-			}
-			_i++;
-		}
-		s = s + "}";
-		return s;
-	};
-	StructType.prototype.Defn = function() { return this.go$val.Defn(); };
- 0
-StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.prototype.String = function() {
-		var t, s, _ref, _i, _slice, _index, v, i;
-		t = this;
-		s = "enum";
-		if (!(t.EnumName === "")) {
-			s = s + (" " + t.EnumName);
-		}
-		s = s + " {";
-		_ref = t.Val;
-		_i = 0;
-		while (_i < _ref.length) {
-			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			if (i > 0) {
-				s = s + "; ";
-			}
-			s = s + (v.Name + "=" + strconv.FormatInt(v.Val, 10));
-			_i++;
-		}
-		s = s + "}";
-		return s;
-	};
-	EnumType.prototype.String = function() { return this.go$val.String(); };
- 0
-EnumType0)debug/dwarf:EnumTypestrconv:FormatInt0Ç© Ç}	FuncType.Ptr.prototype.String = function() {
-		var t, s, _ref, _i, _slice, _index, t$1, i;
-		t = this;
-		s = "func(";
-		_ref = t.ParamType;
-		_i = 0;
-		while (_i < _ref.length) {
-			t$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			if (i > 0) {
-				s = s + ", ";
-			}
-			s = s + (t$1.String());
-			_i++;
-		}
-		s = s + ")";
-		if (!(go$interfaceIsEqual(t.ReturnType, null))) {
-			s = s + (" " + t.ReturnType.String());
-		}
-		return s;
-	};
-	FuncType.prototype.String = function() { return this.go$val.String(); };
- 0
-FuncType0debug/dwarf:FuncType0Å‡ Å´	DotDotDotType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return "...";
-	};
-	DotDotDotType.prototype.String = function() { return this.go$val.String(); };
- 0DotDotDotType0debug/dwarf:DotDotDotType0Å‰ Å≥	TypedefType.Ptr.prototype.String = function() {
-		var t;
-		t = this;
-		return t.CommonType.Name;
-	};
-	TypedefType.prototype.String = function() { return this.go$val.String(); };
- 0TypedefType0debug/dwarf:TypedefType0Å⁄ Å©	TypedefType.Ptr.prototype.Size = function() {
-		var t;
-		t = this;
-		return t.Type.Size();
-	};
-	TypedefType.prototype.Size = function() { return this.go$val.Size(); };
- 0TypedefType0debug/dwarf:TypedefType0ÇF[ ÇCÉ	Data.Ptr.prototype.Type = function(off) {
-		var go$this = this, d, _tuple, _entry, t, ok, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, _tuple$9, x$11, loc, ok$3, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
-		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
-		d = go$this;
-		_tuple = (_entry = d.typeCache[off], _entry !== undefined ? [_entry.v, true] : [null, false]), t = _tuple[0], ok = _tuple[1];
-		if (ok) {
-			return [t, null];
-		}
-		r = d.Reader();
-		r.Seek(off);
-		_tuple$1 = r.Next(), e = _tuple$1[0], err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [null, err];
-		}
-		if (e === (go$ptrType(Entry)).nil || !((e.Offset === off))) {
-			return [null, (x = new DecodeError.Ptr("info", off, "no type at offset"), new x.constructor.Struct(x))];
-		}
-		typ = null;
-		nextDepth = 0;
-		next = (function() {
-			var _tuple$2, kid, err1, x$1;
-			if (!e.Children) {
-				return (go$ptrType(Entry)).nil;
-			}
-			while (true) {
-				_tuple$2 = r.Next(), kid = _tuple$2[0], err1 = _tuple$2[1];
-				if (!(go$interfaceIsEqual(err1, null))) {
-					err = err1;
-					return (go$ptrType(Entry)).nil;
-				}
-				if (kid === (go$ptrType(Entry)).nil) {
-					err = (x$1 = new DecodeError.Ptr("info", r.b.off, "unexpected end of DWARF entries"), new x$1.constructor.Struct(x$1));
-					return (go$ptrType(Entry)).nil;
-				}
-				if (kid.Tag === 0) {
-					if (nextDepth > 0) {
-						nextDepth = nextDepth - 1 >> 0;
-						continue;
-					}
-					return (go$ptrType(Entry)).nil;
-				}
-				if (kid.Children) {
-					nextDepth = nextDepth + 1 >> 0;
-				}
-				if (nextDepth > 0) {
-					continue;
-				}
-				return kid;
-			}
-		});
-		typeOf = (function(e$1) {
-			var _tuple$2, x$1, toff, ok$1, t$1, _tuple$3;
-			_tuple$2 = (x$1 = e$1.Val(73), (x$1 !== null && x$1.constructor === Offset ? [x$1.go$val, true] : [0, false])), toff = _tuple$2[0], ok$1 = _tuple$2[1];
-			if (!ok$1) {
-				return new VoidType.Ptr();
-			}
-			t$1 = null;
-			_tuple$3 = d.Type(toff), t$1 = _tuple$3[0], err = _tuple$3[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return null;
-			}
-			return t$1;
-		});
-		_ref = e.Tag;
-		/* switch (0) { default: if (_ref === 1) { */ if (_ref === 1) {} else if (_ref === 36) { go$s = 2; continue; } else if (_ref === 2 || _ref === 19 || _ref === 23) { go$s = 3; continue; } else if (_ref === 38 || _ref === 53 || _ref === 55) { go$s = 4; continue; } else if (_ref === 4) { go$s = 5; continue; } else if (_ref === 15) { go$s = 6; continue; } else if (_ref === 21) { go$s = 7; continue; } else if (_ref === 22) { go$s = 8; continue; } else { go$s = 9; continue; }
-			t$1 = new ArrayType.Ptr();
-			typ = t$1;
-			_key = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t$1 };
-			t$1.Type = typeOf(e);
-			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 10; continue; }
-				/* goto Error */ go$s = 1; continue;
-			/* } */ case 10:
-			_tuple$2 = (x$1 = e.Val(46), (x$1 !== null && x$1.constructor === Go$Int64 ? [x$1.go$val, true] : [new Go$Int64(0, 0), false])), t$1.StrideBitSize = _tuple$2[0];
-			ndim = 0;
-			kid = next();
-			/* while (!(kid === (go$ptrType(Entry)).nil)) { */ case 11: if(!(!(kid === (go$ptrType(Entry)).nil))) { go$s = 12; continue; }
-				_ref$1 = kid.Tag;
-				/* if (_ref$1 === 33) { */ if (_ref$1 === 33) {} else if (_ref$1 === 4) { go$s = 13; continue; } else { go$s = 14; continue; }
-					_tuple$3 = (x$2 = kid.Val(47), (x$2 !== null && x$2.constructor === Go$Int64 ? [x$2.go$val, true] : [new Go$Int64(0, 0), false])), max = _tuple$3[0], ok$1 = _tuple$3[1];
-					if (!ok$1) {
-						max = new Go$Int64(-1, 4294967294);
-					}
-					if (ndim === 0) {
-						t$1.Count = new Go$Int64(max.high + 0, max.low + 1);
-					} else {
-						t$1.Type = new ArrayType.Ptr(new CommonType.Ptr(), t$1.Type, new Go$Int64(0, 0), new Go$Int64(max.high + 0, max.low + 1));
-					}
-					ndim = ndim + 1 >> 0;
-				/* } else if (_ref$1 === 4) { */ go$s = 14; continue; case 13: 
-					err = (x$3 = new DecodeError.Ptr("info", kid.Offset, "cannot handle enumeration type as array bound"), new x$3.constructor.Struct(x$3));
-					/* goto Error */ go$s = 1; continue;
-				/* } */ case 14:
-				kid = next();
-			/* } */ go$s = 11; continue; case 12:
-			if (ndim === 0) {
-				t$1.Count = new Go$Int64(-1, 4294967295);
-			}
-		/* } else if (_ref === 36) { */ go$s = 9; continue; case 2: 
-			_tuple$4 = (x$4 = e.Val(3), (x$4 !== null && x$4.constructor === Go$String ? [x$4.go$val, true] : ["", false])), name = _tuple$4[0];
-			_tuple$5 = (x$5 = e.Val(62), (x$5 !== null && x$5.constructor === Go$Int64 ? [x$5.go$val, true] : [new Go$Int64(0, 0), false])), enc = _tuple$5[0], ok$2 = _tuple$5[1];
-			/* if (!ok$2) { */ if (!ok$2) {} else { go$s = 15; continue; }
-				err = (x$6 = new DecodeError.Ptr("info", e.Offset, "missing encoding attribute for " + name), new x$6.constructor.Struct(x$6));
-				/* goto Error */ go$s = 1; continue;
-			/* } */ case 15:
-			_ref$2 = enc;
-			/* if ((_ref$2.high === 0 && _ref$2.low === 1)) { */ if ((_ref$2.high === 0 && _ref$2.low === 1)) {} else if ((_ref$2.high === 0 && _ref$2.low === 2)) { go$s = 16; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 3)) { go$s = 17; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 4)) { go$s = 18; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 5)) { go$s = 19; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 7)) { go$s = 20; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 6)) { go$s = 21; continue; } else if ((_ref$2.high === 0 && _ref$2.low === 8)) { go$s = 22; continue; } else { go$s = 23; continue; }
-				typ = new AddrType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 2)) { */ go$s = 24; continue; case 16: 
-				typ = new BoolType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 3)) { */ go$s = 24; continue; case 17: 
-				typ = new ComplexType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 4)) { */ go$s = 24; continue; case 18: 
-				typ = new FloatType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 5)) { */ go$s = 24; continue; case 19: 
-				typ = new IntType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 7)) { */ go$s = 24; continue; case 20: 
-				typ = new UintType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 6)) { */ go$s = 24; continue; case 21: 
-				typ = new CharType.Ptr();
-			/* } else if ((_ref$2.high === 0 && _ref$2.low === 8)) { */ go$s = 24; continue; case 22: 
-				typ = new UcharType.Ptr();
-			/* } else { */ go$s = 24; continue; case 23: 
-				err = (x$7 = new DecodeError.Ptr("info", e.Offset, "unrecognized encoding attribute value"), new x$7.constructor.Struct(x$7));
-				/* goto Error */ go$s = 1; continue;
-			/* } */ case 24:
-			_key$1 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: typ };
-			t$2 = (typ !== null && (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])).implementedBy.indexOf(typ.constructor) !== -1 ? typ : go$typeAssertionFailed(typ, (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])))).Basic();
-			t$2.CommonType.Name = name;
-			_tuple$6 = (x$8 = e.Val(13), (x$8 !== null && x$8.constructor === Go$Int64 ? [x$8.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitSize = _tuple$6[0];
-			_tuple$7 = (x$9 = e.Val(12), (x$9 !== null && x$9.constructor === Go$Int64 ? [x$9.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitOffset = _tuple$7[0];
-		/* } else if (_ref === 2 || _ref === 19 || _ref === 23) { */ go$s = 9; continue; case 3: 
-			t$3 = new StructType.Ptr();
-			typ = t$3;
-			_key$2 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: t$3 };
-			_ref$3 = e.Tag;
-			if (_ref$3 === 2) {
-				t$3.Kind = "class";
-			} else if (_ref$3 === 19) {
-				t$3.Kind = "struct";
-			} else if (_ref$3 === 23) {
-				t$3.Kind = "union";
-			}
-			_tuple$8 = (x$10 = e.Val(3), (x$10 !== null && x$10.constructor === Go$String ? [x$10.go$val, true] : ["", false])), t$3.StructName = _tuple$8[0];
-			t$3.Incomplete = !(go$interfaceIsEqual(e.Val(60), null));
-			t$3.Field = (go$sliceType((go$ptrType(StructField)))).make(0, 8, function() { return (go$ptrType(StructField)).nil; });
-			lastFieldType = null;
-			lastFieldBitOffset = new Go$Int64(0, 0);
-			kid$1 = next();
-			/* while (!(kid$1 === (go$ptrType(Entry)).nil)) { */ case 25: if(!(!(kid$1 === (go$ptrType(Entry)).nil))) { go$s = 26; continue; }
-				/* if (kid$1.Tag === 13) { */ if (kid$1.Tag === 13) {} else { go$s = 27; continue; }
-					f = new StructField.Ptr();
-					f.Type = typeOf(kid$1);
-					/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 28; continue; }
-						/* goto Error */ go$s = 1; continue;
-					/* } */ case 28:
-					_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1];
-					/* if (ok$3) { */ if (ok$3) {} else { go$s = 29; continue; }
-						b = (_struct = makeBuf(d, (x$12 = new unknownFormat.Ptr(), new x$12.constructor.Struct(x$12)), "location", 0, loc), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-						/* if (!((b.uint8() === 35))) { */ if (!((b.uint8() === 35))) {} else { go$s = 30; continue; }
-							err = (x$13 = new DecodeError.Ptr("info", kid$1.Offset, "unexpected opcode"), new x$13.constructor.Struct(x$13));
-							/* goto Error */ go$s = 1; continue;
-						/* } */ case 30:
-						f.ByteOffset = (x$14 = b.uint(), new Go$Int64(x$14.high, x$14.low));
-						/* if (!(go$interfaceIsEqual(b.err, null))) { */ if (!(go$interfaceIsEqual(b.err, null))) {} else { go$s = 31; continue; }
-							err = b.err;
-							/* goto Error */ go$s = 1; continue;
-						/* } */ case 31:
-					/* } */ case 29:
-					haveBitOffset = false;
-					_tuple$10 = (x$15 = kid$1.Val(3), (x$15 !== null && x$15.constructor === Go$String ? [x$15.go$val, true] : ["", false])), f.Name = _tuple$10[0];
-					_tuple$11 = (x$16 = kid$1.Val(11), (x$16 !== null && x$16.constructor === Go$Int64 ? [x$16.go$val, true] : [new Go$Int64(0, 0), false])), f.ByteSize = _tuple$11[0];
-					_tuple$12 = (x$17 = kid$1.Val(12), (x$17 !== null && x$17.constructor === Go$Int64 ? [x$17.go$val, true] : [new Go$Int64(0, 0), false])), f.BitOffset = _tuple$12[0], haveBitOffset = _tuple$12[1];
-					_tuple$13 = (x$18 = kid$1.Val(13), (x$18 !== null && x$18.constructor === Go$Int64 ? [x$18.go$val, true] : [new Go$Int64(0, 0), false])), f.BitSize = _tuple$13[0];
-					t$3.Field = go$append(t$3.Field, f);
-					bito = f.BitOffset;
-					if (!haveBitOffset) {
-						bito = go$mul64(f.ByteOffset, new Go$Int64(0, 8));
-					}
-					if ((bito.high === lastFieldBitOffset.high && bito.low === lastFieldBitOffset.low) && !(t$3.Kind === "union")) {
-						zeroArray(lastFieldType);
-					}
-					lastFieldType = f.Type;
-					lastFieldBitOffset = bito;
-				/* } */ case 27:
-				kid$1 = next();
-			/* } */ go$s = 25; continue; case 26:
-			if (!(t$3.Kind === "union")) {
-				_tuple$14 = (x$19 = e.Val(11), (x$19 !== null && x$19.constructor === Go$Int64 ? [x$19.go$val, true] : [new Go$Int64(0, 0), false])), b$1 = _tuple$14[0], ok$4 = _tuple$14[1];
-				if (ok$4 && (x$20 = go$mul64(b$1, new Go$Int64(0, 8)), (x$20.high === lastFieldBitOffset.high && x$20.low === lastFieldBitOffset.low))) {
-					zeroArray(lastFieldType);
-				}
-			}
-		/* } else if (_ref === 38 || _ref === 53 || _ref === 55) { */ go$s = 9; continue; case 4: 
-			t$4 = new QualType.Ptr();
-			typ = t$4;
-			_key$3 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: t$4 };
-			t$4.Type = typeOf(e);
-			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 32; continue; }
-				/* goto Error */ go$s = 1; continue;
-			/* } */ case 32:
-			_ref$4 = e.Tag;
-			if (_ref$4 === 38) {
-				t$4.Qual = "const";
-			} else if (_ref$4 === 55) {
-				t$4.Qual = "restrict";
-			} else if (_ref$4 === 53) {
-				t$4.Qual = "volatile";
-			}
-		/* } else if (_ref === 4) { */ go$s = 9; continue; case 5: 
-			t$5 = new EnumType.Ptr();
-			typ = t$5;
-			_key$4 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: t$5 };
-			_tuple$15 = (x$21 = e.Val(3), (x$21 !== null && x$21.constructor === Go$String ? [x$21.go$val, true] : ["", false])), t$5.EnumName = _tuple$15[0];
-			t$5.Val = (go$sliceType((go$ptrType(EnumValue)))).make(0, 8, function() { return (go$ptrType(EnumValue)).nil; });
-			kid$2 = next();
-			while (!(kid$2 === (go$ptrType(Entry)).nil)) {
-				if (kid$2.Tag === 40) {
-					f$1 = new EnumValue.Ptr();
-					_tuple$16 = (x$22 = kid$2.Val(3), (x$22 !== null && x$22.constructor === Go$String ? [x$22.go$val, true] : ["", false])), f$1.Name = _tuple$16[0];
-					_tuple$17 = (x$23 = kid$2.Val(28), (x$23 !== null && x$23.constructor === Go$Int64 ? [x$23.go$val, true] : [new Go$Int64(0, 0), false])), f$1.Val = _tuple$17[0];
-					n = t$5.Val.length;
-					if (n >= t$5.Val.capacity) {
-						val = (go$sliceType((go$ptrType(EnumValue)))).make(n, (x$24 = 2, (((n >>> 16 << 16) * x$24 >> 0) + (n << 16 >>> 16) * x$24) >> 0), function() { return (go$ptrType(EnumValue)).nil; });
-						go$copySlice(val, t$5.Val);
-						t$5.Val = val;
-					}
-					t$5.Val = go$subslice(t$5.Val, 0, (n + 1 >> 0));
-					_slice = t$5.Val, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f$1) : go$throwRuntimeError("index out of range");
-				}
-				kid$2 = next();
-			}
-		/* } else if (_ref === 15) { */ go$s = 9; continue; case 6: 
-			t$6 = new PtrType.Ptr();
-			typ = t$6;
-			_key$5 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$5] = { k: _key$5, v: t$6 };
-			if (go$interfaceIsEqual(e.Val(73), null)) {
-				t$6.Type = new VoidType.Ptr(new CommonType.Ptr());
-				/* break; */ go$s = 9; continue;
-			}
-			t$6.Type = typeOf(e);
-		/* } else if (_ref === 21) { */ go$s = 9; continue; case 7: 
-			t$7 = new FuncType.Ptr();
-			typ = t$7;
-			_key$6 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: t$7 };
-			t$7.ReturnType = typeOf(e);
-			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 33; continue; }
-				/* goto Error */ go$s = 1; continue;
-			/* } */ case 33:
-			t$7.ParamType = (go$sliceType(Type)).make(0, 8, function() { return null; });
-			kid$3 = next();
-			/* while (!(kid$3 === (go$ptrType(Entry)).nil)) { */ case 34: if(!(!(kid$3 === (go$ptrType(Entry)).nil))) { go$s = 35; continue; }
-				tkid = null;
-				_ref$5 = kid$3.Tag;
-				/* if (_ref$5 === 5) { */ if (_ref$5 === 5) {} else if (_ref$5 === 24) { go$s = 36; continue; } else { go$s = 37; continue; }
-					tkid = typeOf(kid$3);
-					/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 39; continue; }
-						/* goto Error */ go$s = 1; continue;
-					/* } */ case 39:
-				/* } else if (_ref$5 === 24) { */ go$s = 38; continue; case 36: 
-					tkid = new DotDotDotType.Ptr(new CommonType.Ptr());
-				/* } else { */ go$s = 38; continue; case 37: 
-					kid$3 = next();
-					/* continue; */ go$s = 34; continue;
-				/* } */ case 38:
-				t$7.ParamType = go$append(t$7.ParamType, tkid);
-				kid$3 = next();
-			/* } */ go$s = 34; continue; case 35:
-		/* } else if (_ref === 22) { */ go$s = 9; continue; case 8: 
-			t$8 = new TypedefType.Ptr();
-			typ = t$8;
-			_key$7 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$7] = { k: _key$7, v: t$8 };
-			_tuple$18 = (x$25 = e.Val(3), (x$25 !== null && x$25.constructor === Go$String ? [x$25.go$val, true] : ["", false])), t$8.CommonType.Name = _tuple$18[0];
-			t$8.Type = typeOf(e);
-		/* } } */ case 9:
-		/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 40; continue; }
-			/* goto Error */ go$s = 1; continue;
-		/* } */ case 40:
-		_tuple$19 = (x$26 = e.Val(11), (x$26 !== null && x$26.constructor === Go$Int64 ? [x$26.go$val, true] : [new Go$Int64(0, 0), false])), b$2 = _tuple$19[0], ok$5 = _tuple$19[1];
-		if (!ok$5) {
-			b$2 = new Go$Int64(-1, 4294967295);
-		}
-		typ.Common().ByteSize = b$2;
-		return [typ, null];
-		/* Error: */ case 1:
-		delete d.typeCache[off];
-		return [null, err];
-		/* */ } break; } }; return go$f();
-	};
-	Data.prototype.Type = function(off) { return this.go$val.Type(off); };
- 0Data0Çƒdebug/dwarf:AddrTypedebug/dwarf:ArrayTypedebug/dwarf:BasicTypedebug/dwarf:BoolTypedebug/dwarf:CharTypedebug/dwarf:CommonTypedebug/dwarf:ComplexTypedebug/dwarf:Datadebug/dwarf:DecodeErrordebug/dwarf:DotDotDotTypedebug/dwarf:Entrydebug/dwarf:EnumTypedebug/dwarf:EnumValuedebug/dwarf:FloatTypedebug/dwarf:FuncTypedebug/dwarf:IntTypedebug/dwarf:Offsetdebug/dwarf:PtrTypedebug/dwarf:QualTypedebug/dwarf:StructFielddebug/dwarf:StructTypedebug/dwarf:Typedebug/dwarf:TypedefTypedebug/dwarf:UcharTypedebug/dwarf:UintTypedebug/dwarf:VoidTypedebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:uintdebug/dwarf:uint8debug/dwarf:unknownFormatdebug/dwarf:zeroArray0Çr	zeroArrayÇ;	zeroArray = function(t) {
-		var _tuple, at, ok;
-		while (true) {
-			_tuple = (t !== null && t.constructor === (go$ptrType(ArrayType)) ? [t.go$val, true] : [(go$ptrType(ArrayType)).nil, false]), at = _tuple[0], ok = _tuple[1];
-			if (!ok) {
-				break;
-			}
-			at.Count = new Go$Int64(0, 0);
-			t = at.Type;
-		}
-	};
- 0	zeroArray0debug/dwarf:ArrayType0Å… Åù	unit.Ptr.prototype.version = function() {
-		var u;
-		u = this;
-		return u.vers;
-	};
-	unit.prototype.version = function() { return this.go$val.version(); };
- 0unitversion0debug/dwarf:unit0Å— Å•	unit.Ptr.prototype.dwarf64 = function() {
-		var u;
-		u = this;
-		return [u.is64, true];
-	};
-	unit.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
- 0unitdwarf640debug/dwarf:unit0ÅŒ Å°	unit.Ptr.prototype.addrsize = function() {
-		var u;
-		u = this;
-		return u.asize;
-	};
-	unit.prototype.addrsize = function() { return this.go$val.addrsize(); };
- 0unitaddrsize0debug/dwarf:unit0Ç
- Ç€	Data.Ptr.prototype.parseUnits = function() {
-		var d, nunit, x, _struct, b, len, len64, x$1, x$2, _struct$1, units, _ref, _i, i, _slice, _index, u, n, vers, _tuple, atable, err;
-		d = this;
-		nunit = 0;
-		b = (_struct = makeBuf(d, (x = new unknownFormat.Ptr(), new x.constructor.Struct(x)), "info", 0, d.info), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-		while (b.data.length > 0) {
-			len = b.uint32();
-			if (len === 4294967295) {
-				len64 = b.uint64();
-				if (!((x$1 = new Go$Uint64(0, (len64.low >>> 0)), (len64.high === x$1.high && len64.low === x$1.low)))) {
-					b.error("unit length overflow");
-					break;
-				}
-				len = (len64.low >>> 0);
-			}
-			b.skip((len >> 0));
-			nunit = nunit + 1 >> 0;
-		}
-		if (!(go$interfaceIsEqual(b.err, null))) {
-			return [(go$sliceType(unit)).nil, b.err];
-		}
-		b = (_struct$1 = makeBuf(d, (x$2 = new unknownFormat.Ptr(), new x$2.constructor.Struct(x$2)), "info", 0, d.info), new buf.Ptr(_struct$1.dwarf, _struct$1.order, _struct$1.format, _struct$1.name, _struct$1.off, _struct$1.data, _struct$1.err));
-		units = (go$sliceType(unit)).make(nunit, 0, function() { return new unit.Ptr(); });
-		_ref = units;
-		_i = 0;
-		while (_i < _ref.length) {
-			i = _i;
-			u = (_slice = units, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			u.base = b.off;
-			n = b.uint32();
-			if (n === 4294967295) {
-				u.is64 = true;
-				n = (b.uint64().low >>> 0);
-			}
-			vers = b.uint16();
-			if (!((vers === 2)) && !((vers === 3))) {
-				b.error("unsupported DWARF version " + strconv.Itoa((vers >> 0)));
-				break;
-			}
-			u.vers = (vers >> 0);
-			_tuple = d.parseAbbrev(b.uint32()), atable = _tuple[0], err = _tuple[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				if (go$interfaceIsEqual(b.err, null)) {
-					b.err = err;
-				}
-				break;
-			}
-			u.atable = atable;
-			u.asize = (b.uint8() >> 0);
-			u.off = b.off;
-			u.data = b.bytes(((n - 7 >>> 0) >> 0));
-			_i++;
-		}
-		if (!(go$interfaceIsEqual(b.err, null))) {
-			return [(go$sliceType(unit)).nil, b.err];
-		}
-		return [units, null];
-	};
-	Data.prototype.parseUnits = function() { return this.go$val.parseUnits(); };
- 0Data
-parseUnits0Çdebug/dwarf:Datadebug/dwarf:bufdebug/dwarf:bytesdebug/dwarf:errordebug/dwarf:makeBufdebug/dwarf:parseAbbrevdebug/dwarf:skipdebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8debug/dwarf:unitdebug/dwarf:unknownFormatstrconv:Itoa0	attrNames  0	attrNames0 0tagNames  0
-tagNames0 0ÇL  Ç		attrNames = go$toNativeArray("String", ["", "Sibling", "Location", "Name", "", "", "", "", "", "Ordering", "", "ByteSize", "BitOffset", "BitSize", "", "", "StmtList", "Lowpc", "Highpc", "Language", "", "Discr", "DiscrValue", "Visibility", "Import", "StringLength", "CommonRef", "CompDir", "ConstValue", "ContainingType", "DefaultValue", "", "Inline", "IsOptional", "LowerBound", "", "", "Producer", "", "Prototyped", "", "", "ReturnAddr", "", "StartScope", "", "StrideSize", "UpperBound", "", "AbstractOrigin", "Accessibility", "AddrClass", "Artificial", "BaseTypes", "Calling", "Count", "DataMemberLoc", "DeclColumn", "DeclFile", "DeclLine", "Declaration", "DiscrList", "Encoding", "External", "FrameBase", "Friend", "IdentifierCase", "MacroInfo", "NamelistItem", "Priority", "Segment", "Specification", "StaticLink", "Type", "UseLocation", "VarParam", "Virtuality", "VtableElemLoc", "Allocated", "Associated", "DataLocation", "Stride", "Entrypc", "UseUTF8", "Extension", "Ranges", "Trampoline", "CallColumn", "CallFile", "CallLine", "Description"]);
-0	attrNames0debug/dwarf:attrNames0Ç›  Ç±		tagNames = go$toNativeArray("String", ["", "ArrayType", "ClassType", "EntryPoint", "EnumerationType", "FormalParameter", "", "", "ImportedDeclaration", "", "Label", "LexDwarfBlock", "", "Member", "", "PointerType", "ReferenceType", "CompileUnit", "StringType", "StructType", "", "SubroutineType", "Typedef", "UnionType", "UnspecifiedParameters", "Variant", "CommonDwarfBlock", "CommonInclusion", "Inheritance", "InlinedSubroutine", "Module", "PtrToMemberType", "SetType", "SubrangeType", "WithStmt", "AccessDeclaration", "BaseType", "CatchDwarfBlock", "ConstType", "Constant", "Enumerator", "FileType", "Friend", "Namelist", "NamelistItem", "PackedType", "Subprogram", "TemplateTypeParameter", "TemplateValueParameter", "ThrownType", "TryDwarfBlock", "VariantPart", "Variable", "VolatileType", "DwarfProcedure", "RestrictType", "InterfaceType", "Namespace", "ImportedModule", "UnspecifiedType", "PartialUnit", "ImportedUnit", "MutableType"]);
-0
-tagNames0debug/dwarf:tagNames0
-   0 0 0
-   0 0 0 
+0Å®github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binaryunicodebytessyscalltimeosfmt0;0encoding/binaryA0strconvB0errorsC0fmtD0É{0ÇÑ 0EÇ∫E=$pkg.buf=$newType(0,"Struct","dwarf.buf","buf","debug/dwarf",function(dwarf_,order_,format_,name_,off_,data_,err_){this.$val=this;this.dwarf=dwarf_!==undefined?dwarf_:($ptrType(V)).nil;this.order=order_!==undefined?order_:null;this.format=format_!==undefined?format_:null;this.name=name_!==undefined?name_:"";this.off=off_!==undefined?off_:0;this.data=data_!==undefined?data_:($sliceType($Uint8)).nil;this.err=err_!==undefined?err_:null;});Ç)($ptrType(E)).methods=[["addr","addr","debug/dwarf",[],[$Uint64],false,-1],["bytes","bytes","debug/dwarf",[$Int],[($sliceType($Uint8))],false,-1],["entry","entry","debug/dwarf",[Q,T],[($ptrType(R))],false,-1],["error","error","debug/dwarf",[$String],[],false,-1],["int$","int","debug/dwarf",[],[$Int64],false,-1],["skip","skip","debug/dwarf",[$Int],[],false,-1],["string","string","debug/dwarf",[],[$String],false,-1],["uint","uint","debug/dwarf",[],[$Uint64],false,-1],["uint16","uint16","debug/dwarf",[],[$Uint16],false,-1],["uint32","uint32","debug/dwarf",[],[$Uint32],false,-1],["uint64","uint64","debug/dwarf",[],[$Uint64],false,-1],["uint8","uint8","debug/dwarf",[],[$Uint8],false,-1],["varint","varint","debug/dwarf",[],[$Uint64,$Uint],false,-1]];E.init([["dwarf","dwarf","debug/dwarf",($ptrType(V)),""],["order","order","debug/dwarf",A.ByteOrder,""],["format","format","debug/dwarf",F,""],["name","name","debug/dwarf",$String,""],["off","off","debug/dwarf",T,""],["data","data","debug/dwarf",($sliceType($Uint8)),""],["err","err","debug/dwarf",$error,""]]);0buf0ÅÖdebug/dwarf:Datadebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:abbrevTabledebug/dwarf:dataFormatencoding/binary:ByteOrder 0Ç+ 0F]F=$pkg.dataFormat=$newType(8,"Interface","dwarf.dataFormat","dataFormat","debug/dwarf",null);ÅØF.init([["addrsize","addrsize","debug/dwarf",[],[$Int],false],["dwarf64","dwarf64","debug/dwarf",[],[$Bool,$Bool],false],["version","version","debug/dwarf",[],[$Int],false]]);0
+dataFormat0  0Ç( 0GzG=$pkg.unknownFormat=$newType(0,"Struct","dwarf.unknownFormat","unknownFormat","debug/dwarf",function(){this.$val=this;});ÇãG.methods=[["addrsize","addrsize","debug/dwarf",[],[$Int],false,-1],["dwarf64","dwarf64","debug/dwarf",[],[$Bool,$Bool],false,-1],["version","version","debug/dwarf",[],[$Int],false,-1]];($ptrType(G)).methods=[["addrsize","addrsize","debug/dwarf",[],[$Int],false,-1],["dwarf64","dwarf64","debug/dwarf",[],[$Bool,$Bool],false,-1],["version","version","debug/dwarf",[],[$Int],false,-1]];G.init([]);0unknownFormat0  0Ç 0IÅ˜I=$pkg.DecodeError=$newType(0,"Struct","dwarf.DecodeError","DecodeError","debug/dwarf",function(Name_,Offset_,Err_){this.$val=this;this.Name=Name_!==undefined?Name_:"";this.Offset=Offset_!==undefined?Offset_:0;this.Err=Err_!==undefined?Err_:"";});Å⁄I.methods=[["Error","Error","",[],[$String],false,-1]];($ptrType(I)).methods=[["Error","Error","",[],[$String],false,-1]];I.init([["Name","Name","",$String,""],["Offset","Offset","",T,""],["Err","Err","",$String,""]]);0DecodeError0debug/dwarf:Offset 0ÇA 0JHJ=$pkg.Attr=$newType(4,"Uint32","dwarf.Attr","Attr","debug/dwarf",null);Å‡J.methods=[["GoString","GoString","",[],[$String],false,-1],["String","String","",[],[$String],false,-1]];($ptrType(J)).methods=[["GoString","GoString","",[],[$String],false,-1],["String","String","",[],[$String],false,-1]];0Attr0  0h 0LNL=$pkg.format=$newType(4,"Uint32","dwarf.format","format","debug/dwarf",null); 0format0  0Ç= 0MEM=$pkg.Tag=$newType(4,"Uint32","dwarf.Tag","Tag","debug/dwarf",null);Å‡M.methods=[["GoString","GoString","",[],[$String],false,-1],["String","String","",[],[$String],false,-1]];($ptrType(M)).methods=[["GoString","GoString","",[],[$String],false,-1],["String","String","",[],[$String],false,-1]];0Tag0  0Ç◊ 0OÇO=$pkg.abbrev=$newType(0,"Struct","dwarf.abbrev","abbrev","debug/dwarf",function(tag_,children_,field_){this.$val=this;this.tag=tag_!==undefined?tag_:0;this.children=children_!==undefined?children_:false;this.field=field_!==undefined?field_:($sliceType(P)).nil;});ÅçO.init([["tag","tag","debug/dwarf",M,""],["children","children","debug/dwarf",$Bool,""],["field","field","debug/dwarf",($sliceType(P)),""]]);0abbrev0%debug/dwarf:Tagdebug/dwarf:afield 0ÇC 0PÅ¥P=$pkg.afield=$newType(0,"Struct","dwarf.afield","afield","debug/dwarf",function(attr_,fmt_){this.$val=this;this.attr=attr_!==undefined?attr_:0;this.fmt=fmt_!==undefined?fmt_:0;});NP.init([["attr","attr","debug/dwarf",J,""],["fmt","fmt","debug/dwarf",L,""]]);0afield0&debug/dwarf:Attrdebug/dwarf:format 0Åü 0QZQ=$pkg.abbrevTable=$newType(4,"Map","dwarf.abbrevTable","abbrevTable","debug/dwarf",null);Q.init($Uint32,O);0abbrevTable0debug/dwarf:abbrev 0Çm 0RÇ7R=$pkg.Entry=$newType(0,"Struct","dwarf.Entry","Entry","debug/dwarf",function(Offset_,Tag_,Children_,Field_){this.$val=this;this.Offset=Offset_!==undefined?Offset_:0;this.Tag=Tag_!==undefined?Tag_:0;this.Children=Children_!==undefined?Children_:false;this.Field=Field_!==undefined?Field_:($sliceType(S)).nil;});Å–($ptrType(R)).methods=[["Val","Val","",[J],[$emptyInterface],false,-1]];R.init([["Offset","Offset","",T,""],["Tag","Tag","",M,""],["Children","Children","",$Bool,""],["Field","Field","",($sliceType(S)),""]]);0Entry0Jdebug/dwarf:Attrdebug/dwarf:Fielddebug/dwarf:Offsetdebug/dwarf:Tag 0Ç& 0SÅ¥S=$pkg.Field=$newType(0,"Struct","dwarf.Field","Field","debug/dwarf",function(Attr_,Val_){this.$val=this;this.Attr=Attr_!==undefined?Attr_:0;this.Val=Val_!==undefined?Val_:null;});FS.init([["Attr","Attr","",J,""],["Val","Val","",$emptyInterface,""]]);0Field0debug/dwarf:Attr 0h 0TNT=$pkg.Offset=$newType(4,"Uint32","dwarf.Offset","Offset","debug/dwarf",null); 0Offset0  0Çj 0UÇ°U=$pkg.Reader=$newType(0,"Struct","dwarf.Reader","Reader","debug/dwarf",function(b_,d_,err_,unit_,lastChildren_,lastSibling_){this.$val=this;this.b=b_!==undefined?b_:new E.Ptr();this.d=d_!==undefined?d_:($ptrType(V)).nil;this.err=err_!==undefined?err_:null;this.unit=unit_!==undefined?unit_:0;this.lastChildren=lastChildren_!==undefined?lastChildren_:false;this.lastSibling=lastSibling_!==undefined?lastSibling_:0;});ÇI($ptrType(U)).methods=[["Next","Next","",[],[($ptrType(R)),$error],false,-1],["Seek","Seek","",[T],[],false,-1],["SkipChildren","SkipChildren","",[],[],false,-1],["clone","clone","debug/dwarf",[],[AT],false,-1],["maybeNextUnit","maybeNextUnit","debug/dwarf",[],[],false,-1],["offset","offset","debug/dwarf",[],[T],false,-1]];U.init([["b","b","debug/dwarf",E,""],["d","d","debug/dwarf",($ptrType(V)),""],["err","err","debug/dwarf",$error,""],["unit","unit","debug/dwarf",$Int,""],["lastChildren","lastChildren","debug/dwarf",$Bool,""],["lastSibling","lastSibling","debug/dwarf",T,""]]);0Reader0bdebug/dwarf:Datadebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:bufdebug/dwarf:typeReader 0Ç	Ë 0VÇ V=$pkg.Data=$newType(0,"Struct","dwarf.Data","Data","debug/dwarf",function(abbrev_,aranges_,frame_,info_,line_,pubnames_,ranges_,str_,abbrevCache_,order_,typeCache_,typeSigs_,unit_){this.$val=this;this.abbrev=abbrev_!==undefined?abbrev_:($sliceType($Uint8)).nil;this.aranges=aranges_!==undefined?aranges_:($sliceType($Uint8)).nil;this.frame=frame_!==undefined?frame_:($sliceType($Uint8)).nil;this.info=info_!==undefined?info_:($sliceType($Uint8)).nil;this.line=line_!==undefined?line_:($sliceType($Uint8)).nil;this.pubnames=pubnames_!==undefined?pubnames_:($sliceType($Uint8)).nil;this.ranges=ranges_!==undefined?ranges_:($sliceType($Uint8)).nil;this.str=str_!==undefined?str_:($sliceType($Uint8)).nil;this.abbrevCache=abbrevCache_!==undefined?abbrevCache_:false;this.order=order_!==undefined?order_:null;this.typeCache=typeCache_!==undefined?typeCache_:false;this.typeSigs=typeSigs_!==undefined?typeSigs_:false;this.unit=unit_!==undefined?unit_:($sliceType(AX)).nil;});ÇS($ptrType(V)).methods=[["AddTypes","AddTypes","",[$String,($sliceType($Uint8))],[$error],false,-1],["Reader","Reader","",[],[($ptrType(U))],false,-1],["Type","Type","",[T],[X,$error],false,-1],["parseAbbrev","parseAbbrev","debug/dwarf",[$Uint32],[Q,$error],false,-1],["parseTypes","parseTypes","debug/dwarf",[$String,($sliceType($Uint8))],[$error],false,-1],["parseUnits","parseUnits","debug/dwarf",[],[($sliceType(AX)),$error],false,-1],["readType","readType","debug/dwarf",[$String,AT,T,($mapType(T,X))],[X,$error],false,-1],["sigToType","sigToType","debug/dwarf",[$Uint64],[X,$error],false,-1]];V.init([["abbrev","abbrev","debug/dwarf",($sliceType($Uint8)),""],["aranges","aranges","debug/dwarf",($sliceType($Uint8)),""],["frame","frame","debug/dwarf",($sliceType($Uint8)),""],["info","info","debug/dwarf",($sliceType($Uint8)),""],["line","line","debug/dwarf",($sliceType($Uint8)),""],["pubnames","pubnames","debug/dwarf",($sliceType($Uint8)),""],["ranges","ranges","debug/dwarf",($sliceType($Uint8)),""],["str","str","debug/dwarf",($sliceType($Uint8)),""],["abbrevCache","abbrevCache","debug/dwarf",($mapType($Uint32,Q)),""],["order","order","debug/dwarf",A.ByteOrder,""],["typeCache","typeCache","debug/dwarf",($mapType(T,X)),""],["typeSigs","typeSigs","debug/dwarf",($mapType($Uint64,($ptrType(AV)))),""],["unit","unit","debug/dwarf",($sliceType(AX)),""]]);0Data0ÅÆdebug/dwarf:Offsetdebug/dwarf:Readerdebug/dwarf:Typedebug/dwarf:abbrevTabledebug/dwarf:typeReaderdebug/dwarf:typeUnitdebug/dwarf:unitencoding/binary:ByteOrder 0Ç 0XKX=$pkg.Type=$newType(8,"Interface","dwarf.Type","Type","debug/dwarf",null);ÅâX.init([["Common","Common","",[],[($ptrType(Y))],false],["Size","Size","",[],[$Int64],false],["String","String","",[],[$String],false]]);0Type0debug/dwarf:CommonType 0Ç√ 0YÅ„Y=$pkg.CommonType=$newType(0,"Struct","dwarf.CommonType","CommonType","debug/dwarf",function(ByteSize_,Name_){this.$val=this;this.ByteSize=ByteSize_!==undefined?ByteSize_:new $Int64(0,0);this.Name=Name_!==undefined?Name_:"";});Å¿($ptrType(Y)).methods=[["Common","Common","",[],[($ptrType(Y))],false,-1],["Size","Size","",[],[$Int64],false,-1]];Y.init([["ByteSize","ByteSize","",$Int64,""],["Name","Name","",$String,""]]);0
+CommonType0  0Çø 0ZÇIZ=$pkg.BasicType=$newType(0,"Struct","dwarf.BasicType","BasicType","debug/dwarf",function(CommonType_,BitSize_,BitOffset_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.BitSize=BitSize_!==undefined?BitSize_:new $Int64(0,0);this.BitOffset=BitOffset_!==undefined?BitOffset_:new $Int64(0,0);});Ç=($ptrType(Z)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,-1],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];Z.init([["CommonType","","",Y,""],["BitSize","BitSize","",$Int64,""],["BitOffset","BitOffset","",$Int64,""]]);0	BasicType0debug/dwarf:CommonType 0ÇÛ 0AAÅ≥AA=$pkg.CharType=$newType(0,"Struct","dwarf.CharType","CharType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AA)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AA.init([["BasicType","","",Z,""]]);0
+CharType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0Ç˜ 0ABÅ∂AB=$pkg.UcharType=$newType(0,"Struct","dwarf.UcharType","UcharType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AB)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AB.init([["BasicType","","",Z,""]]);0	UcharType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0ÇÔ 0ACÅ∞AC=$pkg.IntType=$newType(0,"Struct","dwarf.IntType","IntType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AC)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AC.init([["BasicType","","",Z,""]]);0	IntType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0ÇÛ 0ADÅ≥AD=$pkg.UintType=$newType(0,"Struct","dwarf.UintType","UintType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AD)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AD.init([["BasicType","","",Z,""]]);0
+UintType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0Ç˜ 0AEÅ∂AE=$pkg.FloatType=$newType(0,"Struct","dwarf.FloatType","FloatType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AE)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AE.init([["BasicType","","",Z,""]]);0	FloatType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0Çˇ 0AFÅºAF=$pkg.ComplexType=$newType(0,"Struct","dwarf.ComplexType","ComplexType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AF)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AF.init([["BasicType","","",Z,""]]);0ComplexType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0ÇÛ 0AGÅ≥AG=$pkg.BoolType=$newType(0,"Struct","dwarf.BoolType","BoolType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AG)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AG.init([["BasicType","","",Z,""]]);0
+BoolType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0ÇÛ 0AHÅ≥AH=$pkg.AddrType=$newType(0,"Struct","dwarf.AddrType","AddrType","debug/dwarf",function(BasicType_){this.$val=this;this.BasicType=BasicType_!==undefined?BasicType_:new Z.Ptr();});ÅÚ($ptrType(AH)).methods=[["Basic","Basic","",[],[($ptrType(Z))],false,0],["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,0]];AH.init([["BasicType","","",Z,""]]);0
+AddrType0/debug/dwarf:BasicTypedebug/dwarf:CommonType 0ÇT 0AIÇAI=$pkg.QualType=$newType(0,"Struct","dwarf.QualType","QualType","debug/dwarf",function(CommonType_,Qual_,Type_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.Qual=Qual_!==undefined?Qual_:"";this.Type=Type_!==undefined?Type_:null;});Å˚($ptrType(AI)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,-1],["String","String","",[],[$String],false,-1]];AI.init([["CommonType","","",Y,""],["Qual","Qual","",$String,""],["Type","Type","",X,""]]);0
+QualType0*debug/dwarf:CommonTypedebug/dwarf:Type 0Çˆ 0AJÇAJ=$pkg.ArrayType=$newType(0,"Struct","dwarf.ArrayType","ArrayType","debug/dwarf",function(CommonType_,Type_,StrideBitSize_,Count_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.Type=Type_!==undefined?Type_:null;this.StrideBitSize=StrideBitSize_!==undefined?StrideBitSize_:new $Int64(0,0);this.Count=Count_!==undefined?Count_:new $Int64(0,0);});Ç+($ptrType(AJ)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,-1],["String","String","",[],[$String],false,-1]];AJ.init([["CommonType","","",Y,""],["Type","Type","",X,""],["StrideBitSize","StrideBitSize","",$Int64,""],["Count","Count","",$Int64,""]]);0	ArrayType0*debug/dwarf:CommonTypedebug/dwarf:Type 0Ç≤ 0AKÅ∑AK=$pkg.VoidType=$newType(0,"Struct","dwarf.VoidType","VoidType","debug/dwarf",function(CommonType_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();});Åƒ($ptrType(AK)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AK.init([["CommonType","","",Y,""]]);0
+VoidType0debug/dwarf:CommonType 0Ç 0ALÅ·AL=$pkg.PtrType=$newType(0,"Struct","dwarf.PtrType","PtrType","debug/dwarf",function(CommonType_,Type_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.Type=Type_!==undefined?Type_:null;});Å‹($ptrType(AL)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AL.init([["CommonType","","",Y,""],["Type","Type","",X,""]]);0	PtrType0*debug/dwarf:CommonTypedebug/dwarf:Type 0Ç§ 0AMÇæAM=$pkg.StructType=$newType(0,"Struct","dwarf.StructType","StructType","debug/dwarf",function(CommonType_,StructName_,Kind_,Field_,Incomplete_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.StructName=StructName_!==undefined?StructName_:"";this.Kind=Kind_!==undefined?Kind_:"";this.Field=Field_!==undefined?Field_:($sliceType(($ptrType(AN)))).nil;this.Incomplete=Incomplete_!==undefined?Incomplete_:false;});Çí($ptrType(AM)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Defn","Defn","",[],[$String],false,-1],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AM.init([["CommonType","","",Y,""],["StructName","StructName","",$String,""],["Kind","Kind","",$String,""],["Field","Field","",($sliceType(($ptrType(AN)))),""],["Incomplete","Incomplete","",$Bool,""]]);0
+StructType01debug/dwarf:CommonTypedebug/dwarf:StructField 0Ç 0ANÇÙAN=$pkg.StructField=$newType(0,"Struct","dwarf.StructField","StructField","debug/dwarf",function(Name_,Type_,ByteOffset_,ByteSize_,BitOffset_,BitSize_){this.$val=this;this.Name=Name_!==undefined?Name_:"";this.Type=Type_!==undefined?Type_:null;this.ByteOffset=ByteOffset_!==undefined?ByteOffset_:new $Int64(0,0);this.ByteSize=ByteSize_!==undefined?ByteSize_:new $Int64(0,0);this.BitOffset=BitOffset_!==undefined?BitOffset_:new $Int64(0,0);this.BitSize=BitSize_!==undefined?BitSize_:new $Int64(0,0);});ÅŸAN.init([["Name","Name","",$String,""],["Type","Type","",X,""],["ByteOffset","ByteOffset","",$Int64,""],["ByteSize","ByteSize","",$Int64,""],["BitOffset","BitOffset","",$Int64,""],["BitSize","BitSize","",$Int64,""]]);0StructField0debug/dwarf:Type 0Ç¢ 0AOÇ7AO=$pkg.EnumType=$newType(0,"Struct","dwarf.EnumType","EnumType","debug/dwarf",function(CommonType_,EnumName_,Val_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.EnumName=EnumName_!==undefined?EnumName_:"";this.Val=Val_!==undefined?Val_:($sliceType(($ptrType(AP)))).nil;});Ç($ptrType(AO)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AO.init([["CommonType","","",Y,""],["EnumName","EnumName","",$String,""],["Val","Val","",($sliceType(($ptrType(AP)))),""]]);0
+EnumType0/debug/dwarf:CommonTypedebug/dwarf:EnumValue 0Ç0 0APÅÕAP=$pkg.EnumValue=$newType(0,"Struct","dwarf.EnumValue","EnumValue","debug/dwarf",function(Name_,Val_){this.$val=this;this.Name=Name_!==undefined?Name_:"";this.Val=Val_!==undefined?Val_:new $Int64(0,0);});DAP.init([["Name","Name","",$String,""],["Val","Val","",$Int64,""]]);0	EnumValue0  0ÇØ 0AQÇLAQ=$pkg.FuncType=$newType(0,"Struct","dwarf.FuncType","FuncType","debug/dwarf",function(CommonType_,ReturnType_,ParamType_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.ReturnType=ReturnType_!==undefined?ReturnType_:null;this.ParamType=ParamType_!==undefined?ParamType_:($sliceType(X)).nil;});Ç($ptrType(AQ)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AQ.init([["CommonType","","",Y,""],["ReturnType","ReturnType","",X,""],["ParamType","ParamType","",($sliceType(X)),""]]);0
+FuncType0*debug/dwarf:CommonTypedebug/dwarf:Type 0Ç∆ 0ARÅ∆AR=$pkg.DotDotDotType=$newType(0,"Struct","dwarf.DotDotDotType","DotDotDotType","debug/dwarf",function(CommonType_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();});Åƒ($ptrType(AR)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,0],["String","String","",[],[$String],false,-1]];AR.init([["CommonType","","",Y,""]]);0DotDotDotType0debug/dwarf:CommonType 0Ç 0ASÅÌAS=$pkg.TypedefType=$newType(0,"Struct","dwarf.TypedefType","TypedefType","debug/dwarf",function(CommonType_,Type_){this.$val=this;this.CommonType=CommonType_!==undefined?CommonType_:new Y.Ptr();this.Type=Type_!==undefined?Type_:null;});Å›($ptrType(AS)).methods=[["Common","Common","",[],[($ptrType(Y))],false,0],["Size","Size","",[],[$Int64],false,-1],["String","String","",[],[$String],false,-1]];AS.init([["CommonType","","",Y,""],["Type","Type","",X,""]]);0TypedefType0*debug/dwarf:CommonTypedebug/dwarf:Type 0Ç` 0AT^AT=$pkg.typeReader=$newType(8,"Interface","dwarf.typeReader","typeReader","debug/dwarf",null);ÅªAT.init([["Next","Next","",[],[($ptrType(R)),$error],false],["Seek","Seek","",[T],[],false],["clone","clone","debug/dwarf",[],[AT],false],["offset","offset","debug/dwarf",[],[T],false]]);0
+typeReader0'debug/dwarf:Entrydebug/dwarf:Offset 0Çﬂ 0AVÇ&AV=$pkg.typeUnit=$newType(0,"Struct","dwarf.typeUnit","typeUnit","debug/dwarf",function(unit_,toff_,name_,cache_){this.$val=this;this.unit=unit_!==undefined?unit_:new AX.Ptr();this.toff=toff_!==undefined?toff_:0;this.name=name_!==undefined?name_:"";this.cache=cache_!==undefined?cache_:null;});Ç`($ptrType(AV)).methods=[["addrsize","addrsize","debug/dwarf",[],[$Int],false,0],["dwarf64","dwarf64","debug/dwarf",[],[$Bool,$Bool],false,0],["version","version","debug/dwarf",[],[$Int],false,0]];AV.init([["unit","","debug/dwarf",AX,""],["toff","toff","debug/dwarf",T,""],["name","name","debug/dwarf",$String,""],["cache","cache","debug/dwarf",X,""]]);0
+typeUnit08debug/dwarf:Offsetdebug/dwarf:Typedebug/dwarf:unit 0ÇF 0AWÇ/AW=$pkg.typeUnitReader=$newType(0,"Struct","dwarf.typeUnitReader","typeUnitReader","debug/dwarf",function(d_,tu_,b_,err_){this.$val=this;this.d=d_!==undefined?d_:($ptrType(V)).nil;this.tu=tu_!==undefined?tu_:($ptrType(AV)).nil;this.b=b_!==undefined?b_:new E.Ptr();this.err=err_!==undefined?err_:null;});Çx($ptrType(AW)).methods=[["Next","Next","",[],[($ptrType(R)),$error],false,-1],["Seek","Seek","",[T],[],false,-1],["clone","clone","debug/dwarf",[],[AT],false,-1],["offset","offset","debug/dwarf",[],[T],false,-1]];AW.init([["d","d","debug/dwarf",($ptrType(V)),""],["tu","tu","debug/dwarf",($ptrType(AV)),""],["b","b","debug/dwarf",E,""],["err","err","debug/dwarf",$error,""]]);0typeUnitReader0xdebug/dwarf:Datadebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:bufdebug/dwarf:typeReaderdebug/dwarf:typeUnit 0Çﬁ 0AXÇ¨AX=$pkg.unit=$newType(0,"Struct","dwarf.unit","unit","debug/dwarf",function(base_,off_,data_,atable_,asize_,vers_,is64_){this.$val=this;this.base=base_!==undefined?base_:0;this.off=off_!==undefined?off_:0;this.data=data_!==undefined?data_:($sliceType($Uint8)).nil;this.atable=atable_!==undefined?atable_:false;this.asize=asize_!==undefined?asize_:0;this.vers=vers_!==undefined?vers_:0;this.is64=is64_!==undefined?is64_:false;});ÇË($ptrType(AX)).methods=[["addrsize","addrsize","debug/dwarf",[],[$Int],false,-1],["dwarf64","dwarf64","debug/dwarf",[],[$Bool,$Bool],false,-1],["version","version","debug/dwarf",[],[$Int],false,-1]];AX.init([["base","base","debug/dwarf",T,""],["off","off","debug/dwarf",T,""],["data","data","debug/dwarf",($sliceType($Uint8)),""],["atable","atable","debug/dwarf",Q,""],["asize","asize","debug/dwarf",$Int,""],["vers","vers","debug/dwarf",$Int,""],["is64","is64","debug/dwarf",$Bool,""]]);0unit0-debug/dwarf:Offsetdebug/dwarf:abbrevTable 0 0K  0	attrNames0  0 0N  0
+tagNames0  0Ç. 0  Ç˚    K=($arrayType($String,91)).zero();$copy(K,$toNativeArray("String",["","Sibling","Location","Name","","","","","","Ordering","","ByteSize","BitOffset","BitSize","","","StmtList","Lowpc","Highpc","Language","","Discr","DiscrValue","Visibility","Import","StringLength","CommonRef","CompDir","ConstValue","ContainingType","DefaultValue","","Inline","IsOptional","LowerBound","","","Producer","","Prototyped","","","ReturnAddr","","StartScope","","StrideSize","UpperBound","","AbstractOrigin","Accessibility","AddrClass","Artificial","BaseTypes","Calling","Count","DataMemberLoc","DeclColumn","DeclFile","DeclLine","Declaration","DiscrList","Encoding","External","FrameBase","Friend","IdentifierCase","MacroInfo","NamelistItem","Priority","Segment","Specification","StaticLink","Type","UseLocation","VarParam","Virtuality","VtableElemLoc","Allocated","Associated","DataLocation","Stride","Entrypc","UseUTF8","Extension","Ranges","Trampoline","CallColumn","CallFile","CallLine","Description"]),($arrayType($String,91)));0	attrNames0debug/dwarf:attrNames 0Ç& 0  Çı    N=($arrayType($String,68)).zero();$copy(N,$toNativeArray("String",["","ArrayType","ClassType","EntryPoint","EnumerationType","FormalParameter","","","ImportedDeclaration","","Label","LexDwarfBlock","","Member","","PointerType","ReferenceType","CompileUnit","StringType","StructType","","SubroutineType","Typedef","UnionType","UnspecifiedParameters","Variant","CommonDwarfBlock","CommonInclusion","Inheritance","InlinedSubroutine","Module","PtrToMemberType","SetType","SubrangeType","WithStmt","AccessDeclaration","BaseType","CatchDwarfBlock","ConstType","Constant","Enumerator","FileType","Friend","Namelist","NamelistItem","PackedType","Subprogram","TemplateTypeParameter","TemplateValueParameter","ThrownType","TryDwarfBlock","VariantPart","Variable","VolatileType","DwarfProcedure","RestrictType","InterfaceType","Namespace","ImportedModule","UnspecifiedType","PartialUnit","ImportedUnit","MutableType","Condition","SharedType","TypeUnit","RvalueReferenceType","TemplateAlias"]),($arrayType($String,68)));0
+tagNames0debug/dwarf:tagNames 0Ç#(debug/dwarf.unknownFormat).version0 ÅùG.Ptr.prototype.version=function(){var a;  `a=new G.Ptr();$copy(a,this,G);  Çreturn 0;    };G.prototype.version=function(){return this.$val.version();}; 0unknownFormatversion0debug/dwarf:unknownFormat 0Ç#(debug/dwarf.unknownFormat).dwarf640 Å®G.Ptr.prototype.dwarf64=function(){var a;  îa=new G.Ptr();$copy(a,this,G);  øreturn[false,false];    };G.prototype.dwarf64=function(){return this.$val.dwarf64();}; 0unknownFormatdwarf640debug/dwarf:unknownFormat 0Ç$(debug/dwarf.unknownFormat).addrsize0 Å†G.Ptr.prototype.addrsize=function(){var a;  ‹a=new G.Ptr();$copy(a,this,G);  ˇreturn 0;    };G.prototype.addrsize=function(){return this.$val.addrsize();}; 0unknownFormataddrsize0debug/dwarf:unknownFormat 0Åädebug/dwarf.makeBuf0HKH=function(a,b,c,d,e){  areturn new E.Ptr(a,a.order,b,c,d,e,null);    }; 0	makeBuf0debug/dwarf:buf 0Çœ(*debug/dwarf.buf).uint80 ÇvE.Ptr.prototype.uint8=function(){var a,b,c;  üa=this;  ∏    if(a.data.$length<1){  œa.error("underflow");  Êreturn 0;    }  Ûc=(b=a.data,((0<0||0>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+0]));  a.data=$subslice(a.data,1);    a.off=a.off+(1)>>>0;  #return c;    };E.prototype.uint8=function(){return this.$val.uint8();}; 0bufuint80$debug/dwarf:bufdebug/dwarf:error 0Çù(*debug/dwarf.buf).bytes0 ÇDE.Ptr.prototype.bytes=function(a){var b,c;  7b=this;  V    if(b.data.$length<a){  mb.error("underflow");  Ñreturn($sliceType($Uint8)).nil;    }  ìc=$subslice(b.data,0,a);  ®b.data=$subslice(b.data,a);  Ωb.off=b.off+((a>>>0))>>>0;  —return c;    };E.prototype.bytes=function(a){return this.$val.bytes(a);}; 0bufbytes0$debug/dwarf:bufdebug/dwarf:error 0Åÿ(*debug/dwarf.buf).skip0 ÅÇE.Ptr.prototype.skip=function(a){var b;  Êb=this;  ¸b.bytes(a);    };E.prototype.skip=function(a){return this.$val.skip(a);}; 0bufskip0$debug/dwarf:bufdebug/dwarf:bytes 0Ç?(*debug/dwarf.buf).string0 Ç‰E.Ptr.prototype.string=function(){var a,b,c,d;  a=this;  +  /b=0;while(b<a.data.$length){  P    if((c=a.data,((b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]))===0){  gd=$bytesToString($subslice(a.data,0,b));  Éa.data=$subslice(a.data,(b+1>>0));  úa.off=a.off+(((b+1>>0)>>>0))>>>0;  ∂return d;    }      H  Hb=b+(1)>>0;}  «a.error("underflow");  ›return"";    };E.prototype.string=function(){return this.$val.string();}; 0bufstring0$debug/dwarf:bufdebug/dwarf:error 0Ç@(*debug/dwarf.buf).uint160 ÅÊE.Ptr.prototype.uint16=function(){var a,b;  a=this;  b=a.bytes(2);      if(b===($sliceType($Uint8)).nil){  ,return 0;    }  9return a.order.Uint16(b);    };E.prototype.uint16=function(){return this.$val.uint16();}; 0bufuint160$debug/dwarf:bufdebug/dwarf:bytes 0Ç@(*debug/dwarf.buf).uint320 ÅÊE.Ptr.prototype.uint32=function(){var a,b;  [a=this;  vb=a.bytes(4);  á    if(b===($sliceType($Uint8)).nil){  óreturn 0;    }  §return a.order.Uint32(b);    };E.prototype.uint32=function(){return this.$val.uint32();}; 0bufuint320$debug/dwarf:bufdebug/dwarf:bytes 0ÇO(*debug/dwarf.buf).uint640 ÅıE.Ptr.prototype.uint64=function(){var a,b;  ∆a=this;  ·b=a.bytes(8);  Ú    if(b===($sliceType($Uint8)).nil){  return new $Uint64(0,0);    }  return a.order.Uint64(b);    };E.prototype.uint64=function(){return this.$val.uint64();}; 0bufuint640$debug/dwarf:bufdebug/dwarf:bytes 0Çÿ(*debug/dwarf.buf).varint0 ÇêE.Ptr.prototype.varint=function(){var a,b,c,d,e,f,g,h,i,j,k;a=new $Uint64(0,0);b=0;  ïc=this;  ø  √d=0;while(d<c.data.$length){  ‰f=(e=c.data,((d<0||d>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+d]));  ¯a=(g=$shiftLeft64(new $Uint64(0,((f&127)>>>0)),b),new $Uint64(a.$high|g.$high,(a.$low|g.$low)>>>0));  	b=b+(7)>>>0;  	%    if(((f&128)>>>0)===0){  	<c.off=c.off+(((d+1>>0)>>>0))>>>0;  	Vc.data=$subslice(c.data,(d+1>>0));  	o    h=a;i=b;a=h;b=i;return[a,b];    }      ‹  ‹d=d+(1)>>0;}  	Ü    j=new $Uint64(0,0);k=0;a=j;b=k;return[a,b];    };E.prototype.varint=function(){return this.$val.varint();}; 0bufvarint0debug/dwarf:buf 0ÅÒ(*debug/dwarf.buf).uint0 ÅöE.Ptr.prototype.uint=function(){var a,b,c;  	Ωa=this;  	÷b=a.varint();c=b[0];  	Íreturn c;    };E.prototype.uint=function(){return this.$val.uint();}; 0bufuint0%debug/dwarf:bufdebug/dwarf:varint 0Ç(*debug/dwarf.buf).int0 Ç≈E.Ptr.prototype.int$=function(){var a,b,c,d,e,f,g,h;  
+%a=this;  
+<b=a.varint();c=b[0];d=b[1];  
+Te=new $Int64(c.$high,c.$low);  
+d    if(!((f=(g=$shiftLeft64(new $Int64(0,1),((d-1>>>0))),new $Int64(e.$high&g.$high,(e.$low&g.$low)>>>0)),(f.$high===0&&f.$low===0)))){  
+Äe=(h=$shiftLeft64(new $Int64(-1,4294967295),d),new $Int64(e.$high|h.$high,(e.$low|h.$low)>>>0));    }  
+îreturn e;    };E.prototype.int$=function(){return this.$val.int$();}; 0
+bufint0%debug/dwarf:bufdebug/dwarf:varint 0Çv(*debug/dwarf.buf).addr0 ÇπE.Ptr.prototype.addr=function(){var a,b;  
+Ωa=this;  
+÷b=a.format.addrsize();  
+Ùif(b===1){  
+˛return new $Uint64(0,a.uint8());      }else if(b===2){  "return new $Uint64(0,a.uint16());      =}else if(b===4){  Greturn new $Uint64(0,a.uint32());      b}else if(b===8){  lreturn a.uint64();    }  äa.error("unknown address size");  ´return new $Uint64(0,0);    };E.prototype.addr=function(){return this.$val.addr();}; 0bufaddr0Åâdebug/dwarf:addrsizedebug/dwarf:bufdebug/dwarf:errordebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8 0Çr(*debug/dwarf.buf).error0 ÇE.Ptr.prototype.error=function(a){var b,c;  Ωb=this;  ÿ    if($interfaceIsEqual(b.err,null)){  Ïb.data=($sliceType($Uint8)).nil;  ˚b.err=(c=new I.Ptr(b.name,b.off,a),new c.constructor.Struct(c));    }    };E.prototype.error=function(a){return this.$val.error(a);}; 0buferror0*debug/dwarf:DecodeErrordebug/dwarf:buf 0Ç_(debug/dwarf.DecodeError).Error0 Å˜I.Ptr.prototype.Error=function(){var a;  wa=new I.Ptr();$copy(a,this,I);  òreturn"decoding dwarf section "+a.Name+" at offset 0x"+B.FormatInt(new $Int64(0,a.Offset),16)+": "+a.Err;    };I.prototype.Error=function(){return this.$val.Error();}; 0DecodeError0,debug/dwarf:DecodeErrorstrconv:FormatInt 0Çb(debug/dwarf.Attr).String0 Å¸J.prototype.String=function(){var a,b;   Ûa=this.$val;  !    if((a>>0)<91){  !-b=K[a];  !A    if(!(b==="")){  !Qreturn b;    }    }  !breturn B.Itoa((a>>0));    };$ptrType(J).prototype.String=function(){return new J(this.$get()).String();}; 0Attr07debug/dwarf:Attrdebug/dwarf:attrNamesstrconv:Itoa 0Çû(debug/dwarf.Attr).GoString0 Ç0J.prototype.GoString=function(){var a,b;  !áa=this.$val;  !§    if((a>>0)<91){  !√b=K[a];  !◊    if(!(b==="")){  !Áreturn"dwarf.Attr"+b;    }    }  "return"dwarf.Attr("+B.FormatInt(new $Int64(0,a),10)+")";    };$ptrType(J).prototype.GoString=function(){return new J(this.$get()).GoString();}; 0Attr0<debug/dwarf:Attrdebug/dwarf:attrNamesstrconv:FormatInt 0Ç^(debug/dwarf.Tag).String0 Å¸M.prototype.String=function(){var a,b;  :za=this.$val;  :î    if((a>>0)<68){  :≤b=N[a];  :≈    if(!(b==="")){  :’return b;    }    }  :Êreturn B.Itoa((a>>0));    };$ptrType(M).prototype.String=function(){return new M(this.$get()).String();}; 0Tag05debug/dwarf:Tagdebug/dwarf:tagNamesstrconv:Itoa 0Çò(debug/dwarf.Tag).GoString0 Ç.M.prototype.GoString=function(){var a,b;  ;a=this.$val;  ;'    if((a>>0)<68){  ;Eb=N[a];  ;X    if(!(b==="")){  ;hreturn"dwarf.Tag"+b;    }    }  ;áreturn"dwarf.Tag("+B.FormatInt(new $Int64(0,a),10)+")";    };$ptrType(M).prototype.GoString=function(){return new M(this.$get()).GoString();}; 0Tag0:debug/dwarf:Tagdebug/dwarf:tagNamesstrconv:FormatInt 0Çì(*debug/dwarf.Data).parseAbbrev0 ÇØV.Ptr.prototype.parseAbbrev=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;  Iub=this;  IÆ  I±c=(d=b.abbrevCache[a],d!==undefined?[d.v,true]:[false,false]);e=c[0];f=c[1];    if(f){  I’return[e,null];    }  IËg=b.abbrev;  I˙    if(a>(g.$length>>>0)){  Jg=($sliceType($Uint8)).nil;    }else{  J0g=$subslice(g,a);    }  JFi=new E.Ptr();$copy(i,H(b,(h=new G.Ptr(),new h.constructor.Struct(h)),"abbrev",0,g),E);  JÊj=new $Map();  J˛while(true){  K$k=(i.uint().$low>>>0);  K=    if(k===0){  KMbreak;    }  Kl=0;  Kàm=new E.Ptr();$copy(m,i,E);  K™m.uint();  K∂m.uint8();  K√while(true){  KÃn=m.uint();  K‡o=m.uint();  KÙ    if((n.$high===0&&n.$low===0)&&(o.$high===0&&o.$low===0)){  Lbreak;    }  L   L l=l+(1)>>0;    }  L*    if(!($interfaceIsEqual(m.err,null))){  L@return[false,m.err];    }  Lò  Lúp=new O.Ptr();$copy(p,new O.Ptr(),O);  Lßp.tag=(i.uint().$low>>>0);  Løp.children=!((i.uint8()===0));  L›p.field=($sliceType(P)).make(l,0,function(){return new P.Ptr();});  L˚q=p.field;r=0;while(r<q.$length){s=r;  M(t=p.field,((s<0||s>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+s])).attr=(i.uint().$low>>>0);  M;(u=p.field,((s<0||s>=u.$length)?$throwRuntimeError("index out of range"):u.$array[u.$offset+s])).fmt=(i.uint().$low>>>0);    r++;}  Mci.uint();  Mni.uint();  Mzv=k;(j||$throwRuntimeError("assignment to entry in nil map"))[v]={k:v,v:p};    }  Mà    if(!($interfaceIsEqual(i.err,null))){  Múreturn[false,i.err];    }  M≤w=a;(b.abbrevCache||$throwRuntimeError("assignment to entry in nil map"))[w]={k:w,v:j};  M return[j,null];    };V.prototype.parseAbbrev=function(a){return this.$val.parseAbbrev(a);}; 0DataparseAbbrev0Å†debug/dwarf:Datadebug/dwarf:abbrevdebug/dwarf:afielddebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:uintdebug/dwarf:uint8debug/dwarf:unknownFormat 0Ç´(*debug/dwarf.Entry).Val0 ÇUR.Ptr.prototype.Val=function(a){var b,c,d,e;  PVb=this;  P{c=b.Field;d=0;while(d<c.$length){e=new S.Ptr();$copy(e,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]),S);  Pô    if(e.Attr===a){  P≠return e.Val;    }    d++;}  P¬return null;    };R.prototype.Val=function(a){return this.$val.Val(a);}; 0Entry0&debug/dwarf:Entrydebug/dwarf:Field 0Ça(*debug/dwarf.buf).entry0 ÇéE.Ptr.prototype.entry=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag;  Qßc=this;  Qﬂd=c.off;  QÌe=(c.uint().$low>>>0);  R    if(e===0){  Rreturn new R.Ptr(0,0,false,($sliceType(S)).nil);    }  R(f=(g=a[e],g!==undefined?[g.v,true]:[new O.Ptr(),false]);h=new O.Ptr();$copy(h,f[0],O);i=f[1];  R;    if(!i){  RFc.error("unknown abbreviation table index");  Rtreturn($ptrType(R)).nil;    }  RÉj=new R.Ptr(d,h.tag,h.children,($sliceType(S)).make(h.field.$length,0,function(){return new S.Ptr();}));  R˘k=j.Field;l=0;while(l<k.$length){m=l;  S(o=j.Field,((m<0||m>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+m])).Attr=(n=h.field,((m<0||m>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+m])).attr;  S8q=(p=h.field,((m<0||m>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+m])).fmt;  SP    if(q===22){  Slq=(c.uint().$low>>>0);    }  Sâ  Sçr=null;  Süs=q;  Tif(s===1){  T(r=c.addr();      TE}else if(s===10){  T^r=c.bytes((c.uint8()>>0));      T~}else if(s===3){  Tór=c.bytes((c.uint16()>>0));      T∏}else if(s===4){  T—r=c.bytes((c.uint32()>>0));      TÚ}else if(s===9){  U
+r=c.bytes((c.uint().$low>>0));      U8}else if(s===11){  UKr=new $Int64(0,c.uint8());      Ud}else if(s===5){  Uwr=new $Int64(0,c.uint16());      Uë}else if(s===6){  U§r=new $Int64(0,c.uint32());      Uæ}else if(s===7){  U—r=(t=c.uint64(),new $Int64(t.$high,t.$low));      UÎ}else if(s===13){  U˛r=c.int$();      V}else if(s===15){  V(r=(u=c.uint(),new $Int64(u.$high,u.$low));      VK}else if(s===12){  V]r=new $Bool((c.uint8()===1));      Vâ}else if(s===25){  W#r=new $Bool(true);      WO}else if(s===16){  Wdv=c.format.version();  WÇ    if(v===0){  Wïc.error("unknown version for DW_FORM_ref_addr");        }else if(v===2){  W‚r=new T((c.addr().$low>>>0));    }else{  X	w=c.format.dwarf64();x=w[0];y=w[1];  X/    if(!y){  X@c.error("unknown size for DW_FORM_ref_addr");        }else if(x){  Xár=new T((c.uint64().$low>>>0));    }else{  X≤r=new T((c.uint32()>>>0));    }    }      Xÿ}else if(s===17){  XÍr=new T(((c.uint8()>>>0)+b>>>0));      Y}else if(s===18){  Yr=new T(((c.uint16()>>>0)+b>>>0));      YA}else if(s===19){  YSr=new T(((c.uint32()>>>0)+b>>>0));      Yv}else if(s===20){  Yàr=new T(((c.uint64().$low>>>0)+b>>>0));      Y´}else if(s===21){  Y¡r=new T(((c.uint().$low>>>0)+b>>>0));      YÔ}else if(s===8){  Zr=new $String(c.string());      Z}else if(s===14){  Z(z=c.uint32();  ZW    if(!($interfaceIsEqual(c.err,null))){  Zmreturn($ptrType(R)).nil;    }  ZÄab=new E.Ptr();$copy(ab,H(c.dwarf,(aa=new G.Ptr(),new aa.constructor.Struct(aa)),"str",0,c.dwarf.str),E);  Z¬ab.skip((z>>0));  Z◊r=new $String(ab.string());  ZÏ    if(!($interfaceIsEqual(ab.err,null))){  [c.err=ab.err;  [return($ptrType(R)).nil;    }      [€}else if(s===23||s===7968||s===7969){  \ac=c.format.dwarf64();ad=ac[0];ae=ac[1];  \6    if(!ae){  \Fc.error("unknown size for form 0x"+B.FormatInt(new $Int64(0,q),16));        }else if(ad){  \¶r=(af=c.uint64(),new $Int64(af.$high,af.$low));    }else{  \Œr=new $Int64(0,c.uint32());    }      ]}else if(s===24){  ]%r=c.bytes((c.uint().$low>>0));      ]i}else if(s===32){  ]õr=c.uint64();    }else{  S∫c.error("unknown entry attr format 0x"+B.FormatInt(new $Int64(0,q),16));    }  ]≤(ag=j.Field,((m<0||m>=ag.$length)?$throwRuntimeError("index out of range"):ag.$array[ag.$offset+m])).Val=r;    l++;}  ]À    if(!($interfaceIsEqual(c.err,null))){  ]ﬂreturn($ptrType(R)).nil;    }  ]Óreturn j;    };E.prototype.entry=function(a,b){return this.$val.entry(a,b);}; 0bufentry0Çúdebug/dwarf:Entrydebug/dwarf:Fielddebug/dwarf:Offsetdebug/dwarf:abbrevdebug/dwarf:addrdebug/dwarf:bufdebug/dwarf:bytesdebug/dwarf:dwarf64debug/dwarf:errordebug/dwarf:intdebug/dwarf:makeBufdebug/dwarf:skipdebug/dwarf:stringdebug/dwarf:uintdebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8debug/dwarf:unknownFormatdebug/dwarf:versionstrconv:FormatInt 0Ç*(*debug/dwarf.Data).Reader0 Å√V.Ptr.prototype.Reader=function(){var a,b;  `ºa=this;  `Ÿb=new U.Ptr(new E.Ptr(),a,null,0,false,0);  `Ìb.Seek(0);  `¯return b;    };V.prototype.Reader=function(){return this.$val.Reader();}; 0Data07debug/dwarf:Datadebug/dwarf:Readerdebug/dwarf:buf 0ÇÕ(*debug/dwarf.Reader).Seek0 ÇBU.Ptr.prototype.Seek=function(a){var b,c,d,e,f,g,h,i,j;  aÖb=this;  a§c=b.d;  aÆb.err=null;  aªb.lastChildren=false;  a”    if(a===0){  a„    if(c.unit.$length===0){  a¸return;    }  b	e=(d=c.unit,((0<0||0>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+0]));  bb.unit=0;  b($copy(b.b,H(b.d,e,"info",e.off,e.data),E);  bWreturn;    }  bñ  böf=0;  b°  b•g=($ptrType(AX)).nil;  bÆh=c.unit;i=0;while(i<h.$length){f=i;  b«g=(j=c.unit,((f<0||f>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+f]));  bÿ    if(g.off<=a&&a<(g.off+(g.data.$length>>>0)>>>0)){  cb.unit=f;  c$copy(b.b,H(b.d,g,"info",a,$subslice(g.data,(a-g.off>>>0))),E);  cXreturn;    }    i++;}  cgb.err=C.New("offset out of range");    };U.prototype.Seek=function(a){return this.$val.Seek(a);}; 0Reader0Xdebug/dwarf:Readerdebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:unit
+errors:New 0Ç#(*debug/dwarf.Reader).maybeNextUnit0 ÇôU.Ptr.prototype.maybeNextUnit=function(){var a,b,c,d;  cﬁa=this;  c¸while((a.b.data.$length===0)&&(a.unit+1>>0)<a.d.unit.$length){  d3  d3a.unit=a.unit+(1)>>0;  d>d=(b=a.d.unit,c=a.unit,((c<0||c>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+c]));  dW$copy(a.b,H(a.d,d,"info",d.off,d.data),E);    }    };U.prototype.maybeNextUnit=function(){return this.$val.maybeNextUnit();}; 0ReadermaybeNextUnit0:debug/dwarf:Readerdebug/dwarf:bufdebug/dwarf:makeBuf 0Ç›(*debug/dwarf.Reader).Next0 ÇAU.Ptr.prototype.Next=function(){var a,b,c,d,e,f,g;  eÑa=this;  e©    if(!($interfaceIsEqual(a.err,null))){  eΩreturn[($ptrType(R)).nil,a.err];    }  e”a.maybeNextUnit();  eÊ    if(a.b.data.$length===0){  f return[($ptrType(R)).nil,null];    }  fd=(b=a.d.unit,c=a.unit,((c<0||c>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+c]));  f,e=a.b.entry(d.atable,d.base);  fN    if(!($interfaceIsEqual(a.b.err,null))){  fda.err=a.b.err;  fvreturn[($ptrType(R)).nil,a.err];    }  få    if(!(e===($ptrType(R)).nil)){  fúa.lastChildren=e.Children;  f∫    if(a.lastChildren){  f—f=(g=e.Val(1),(g!==null&&g.constructor===T?[g.$val,true]:[0,false]));a.lastSibling=f[0];    }    }else{  ga.lastChildren=false;    }  g+return[e,null];    };U.prototype.Next=function(){return this.$val.Next();}; 0Reader0idebug/dwarf:Entrydebug/dwarf:Offsetdebug/dwarf:Readerdebug/dwarf:entrydebug/dwarf:maybeNextUnit 0Ç]"(*debug/dwarf.Reader).SkipChildren0 Ç˚U.Ptr.prototype.SkipChildren=function(){var a,b,c,d;  ha=this;  h    if(!($interfaceIsEqual(a.err,null))||!a.lastChildren){  hEreturn;    }  hÓ    if(a.lastSibling>=a.b.off){  ia.Seek(a.lastSibling);  i&return;    }  i2while(true){  i:b=a.Next();c=b[0];d=b[1];  iO    if(!($interfaceIsEqual(d,null))||c===($ptrType(R)).nil||(c.Tag===0)){  i|break;    }  ià    if(c.Children){  iõa.SkipChildren();    }    }    };U.prototype.SkipChildren=function(){return this.$val.SkipChildren();}; 0Reader0'debug/dwarf:Entrydebug/dwarf:Reader 0ÅŸ(*debug/dwarf.Reader).clone0 ÅãU.Ptr.prototype.clone=function(){var a;  ja=this;  j2return a.d.Reader();    };U.prototype.clone=function(){return this.$val.clone();}; 0Readerclone0debug/dwarf:Reader 0ÅŸ(*debug/dwarf.Reader).offset0 ÅâU.Ptr.prototype.offset=function(){var a;  j™a=this;  j»return a.b.off;    };U.prototype.offset=function(){return this.$val.offset();}; 0Readeroffset0debug/dwarf:Reader 0Çdebug/dwarf.New0WÇ`W=$pkg.New=function(a,b,c,d,e,f,g,h){var i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;  pAi=new V.Ptr(a,b,c,d,e,f,g,h,new $Map(),null,new $Map(),new $Map(),($sliceType(AX)).nil);  qÚ    if(i.info.$length<6){  r	return[($ptrType(V)).nil,(j=new I.Ptr("info",(i.info.$length>>>0),"too short"),new j.constructor.Struct(j))];    }  rOk=(l=i.info,((4<0||4>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+4]));m=(n=i.info,((5<0||5>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+5]));o=k;p=m;  rm  rwif((o===0)&&(p===0)){  rêreturn[($ptrType(V)).nil,(q=new I.Ptr("info",4,"unsupported version 0"),new q.constructor.Struct(q))];      rÕ}else if(o===0){  r‹i.order=(r=A.BigEndian,new r.constructor.Struct(r));      r¯}else if(p===0){  si.order=(s=A.LittleEndian,new s.constructor.Struct(s));    }else{  s1return[($ptrType(V)).nil,(t=new I.Ptr("info",4,"cannot determine byte order"),new t.constructor.Struct(t))];    }  sxu=i.parseUnits();v=u[0];w=u[1];  sí    if(!($interfaceIsEqual(w,null))){  s§return[($ptrType(V)).nil,w];    }  s∏i.unit=v;  sƒreturn[i,null];    }; 0New0Åédebug/dwarf:Datadebug/dwarf:DecodeErrordebug/dwarf:parseUnitsdebug/dwarf:unitencoding/binary:BigEndianencoding/binary:LittleEndian 0Å˛(*debug/dwarf.Data).AddTypes0 Å¢V.Ptr.prototype.AddTypes=function(a,b){var c;  tÓc=this;  u$return c.parseTypes(a,b);    };V.prototype.AddTypes=function(a,b){return this.$val.AddTypes(a,b);}; 0Data0*debug/dwarf:Datadebug/dwarf:parseTypes 0Å◊ (*debug/dwarf.CommonType).Common0 ÅÉY.Ptr.prototype.Common=function(){var a;  xáa=this;  x≠return a;    };Y.prototype.Common=function(){return this.$val.Common();}; 0
+CommonType0debug/dwarf:CommonType 0Åÿ(*debug/dwarf.CommonType).Size0 ÅÜY.Ptr.prototype.Size=function(){var a;  xøa=this;  x›return a.ByteSize;    };Y.prototype.Size=function(){return this.$val.Size();}; 0
+CommonType0debug/dwarf:CommonType 0Å–(*debug/dwarf.BasicType).Basic0 ÅÄZ.Ptr.prototype.Basic=function(){var a;  yàa=this;  y´return a;    };Z.prototype.Basic=function(){return this.$val.Basic();}; 0	BasicType0debug/dwarf:BasicType 0Ç!(*debug/dwarf.BasicType).String0 Å–Z.Ptr.prototype.String=function(){var a;  yΩa=this;  yﬁ    if(!(a.CommonType.Name==="")){  yÚreturn a.CommonType.Name;    }  zreturn"?";    };Z.prototype.String=function(){return this.$val.String();}; 0	BasicType0debug/dwarf:BasicType 0ÅÏ(*debug/dwarf.QualType).String0 ÅûAI.Ptr.prototype.String=function(){var a;  }Ña=this;  }£return a.Qual+" "+a.Type.String();    };AI.prototype.String=function(){return this.$val.String();}; 0
+QualType0debug/dwarf:QualType 0Å◊(*debug/dwarf.QualType).Size0 ÅãAI.Ptr.prototype.Size=function(){var a;  }“a=this;  }Óreturn a.Type.Size();    };AI.prototype.Size=function(){return this.$val.Size();}; 0
+QualType0debug/dwarf:QualType 0Ç(*debug/dwarf.ArrayType).String0 Å≤AJ.Ptr.prototype.String=function(){var a;  a=this;  &return"["+B.FormatInt(a.Count,10)+"]"+a.Type.String();    };AJ.prototype.String=function(){return this.$val.String();}; 0	ArrayType0*debug/dwarf:ArrayTypestrconv:FormatInt 0ÅÍ(*debug/dwarf.ArrayType).Size0 ÅõAJ.Ptr.prototype.Size=function(){var a;  sa=this;  êreturn $mul64(a.Count,a.Type.Size());    };AJ.prototype.Size=function(){return this.$val.Size();}; 0	ArrayType0debug/dwarf:ArrayType 0Å◊(*debug/dwarf.VoidType).String0 ÅâAK.Ptr.prototype.String=function(){var a;  Äa=this;  Ä'return"void";    };AK.prototype.String=function(){return this.$val.String();}; 0
+VoidType0debug/dwarf:VoidType 0Å·(*debug/dwarf.PtrType).String0 ÅñAL.Ptr.prototype.String=function(){var a;  Äña=this;  Ä¥return"*"+a.Type.String();    };AL.prototype.String=function(){return this.$val.String();}; 0	PtrType0debug/dwarf:PtrType 0Ç- (*debug/dwarf.StructType).String0 ÅŸAM.Ptr.prototype.String=function(){var a;  Éa=this;  É.    if(!(a.StructName==="")){  ÉHreturn a.Kind+" "+a.StructName;    }  Éoreturn a.Defn();    };AM.prototype.String=function(){return this.$val.String();}; 0
+StructType0debug/dwarf:StructType 0ÇQ(*debug/dwarf.StructType).Defn0 ÇÎAM.Ptr.prototype.Defn=function(){var a,b,c,d,e,f,g;  Éàa=this;  É®b=a.Kind;  Éµ    if(!(a.StructName==="")){  Éœb=b+(" "+a.StructName);    }  ÉÎ    if(a.Incomplete){  Éˇb=b+(" /*incomplete*/");  Ñreturn b;    }  Ñ%b=b+(" {");  Ñ0c=a.Field;d=0;while(d<c.$length){e=d;f=((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]);  ÑN    if(e>0){  Ñ\b=b+("; ");    }  Ñlb=b+(f.Name+" "+f.Type.String());  Ñíb=b+("@"+B.FormatInt(f.ByteOffset,10));  Ñ√    if((g=f.BitSize,(g.$high>0||(g.$high===0&&g.$low>0)))){  ÑŸb=b+(" : "+B.FormatInt(f.BitSize,10));  Ö
+b=b+("@"+B.FormatInt(f.BitOffset,10));    }    d++;}  Ö@b=b+("}");  ÖJreturn b;    };AM.prototype.Defn=function(){return this.$val.Defn();}; 0
+StructType0+debug/dwarf:StructTypestrconv:FormatInt 0Ç<(*debug/dwarf.EnumType).String0 Ç⁄AO.Ptr.prototype.String=function(){var a,b,c,d,e,f;  Üùa=this;  ÜΩb="enum";  Ü     if(!(a.EnumName==="")){  Ü‚b=b+(" "+a.EnumName);    }  Ü¸b=b+(" {");  ác=a.Val;d=0;while(d<c.$length){e=d;f=((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]);  á#    if(e>0){  á1b=b+("; ");    }  áAb=b+(f.Name+"="+B.FormatInt(f.Val,10));    d++;}  ávb=b+("}");  áÄreturn b;    };AO.prototype.String=function(){return this.$val.String();}; 0
+EnumType0)debug/dwarf:EnumTypestrconv:FormatInt 0Ç*(*debug/dwarf.FuncType).String0 Ç€AQ.Ptr.prototype.String=function(){var a,b,c,d,e,f;  àa=this;  à&b="func(";  à4c=a.ParamType;d=0;while(d<c.$length){e=d;f=((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]);  àV    if(e>0){  àdb=b+(", ");    }  àtb=b+(f.String());    d++;}  ààb=b+(")");  àí    if(!($interfaceIsEqual(a.ReturnType,null))){  à≠b=b+(" "+a.ReturnType.String());    }  à“return b;    };AQ.prototype.String=function(){return this.$val.String();}; 0
+FuncType0debug/dwarf:FuncType 0ÅÂ#(*debug/dwarf.DotDotDotType).String0 ÅàAR.Ptr.prototype.String=function(){var a;  âRa=this;  âvreturn"...";    };AR.prototype.String=function(){return this.$val.String();}; 0DotDotDotType0debug/dwarf:DotDotDotType 0ÅÏ!(*debug/dwarf.TypedefType).String0 ÅïAS.Ptr.prototype.String=function(){var a;  âÍa=this;  äreturn a.CommonType.Name;    };AS.prototype.String=function(){return this.$val.String();}; 0TypedefType0debug/dwarf:TypedefType 0Å‡(*debug/dwarf.TypedefType).Size0 ÅãAS.Ptr.prototype.Size=function(){var a;  ä#a=this;  äBreturn a.Type.Size();    };AS.prototype.Size=function(){return this.$val.Size();}; 0TypedefType0debug/dwarf:TypedefType 0Ç (*debug/dwarf.Data).Type0 Å™V.Ptr.prototype.Type=function(a){var b;  ã[b=this;  ãÜreturn b.readType("info",b.Reader(),a,b.typeCache);    };V.prototype.Type=function(a){return this.$val.Type(a);}; 0Data0(debug/dwarf:Datadebug/dwarf:readType 0Ç/e(*debug/dwarf.Data).readType0 Ç,$V.Ptr.prototype.readType=function(a,b,c,d){var $this=this,$args=arguments,$s=0,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au,av,aw,ax,ay,az,ba,bb,bc,bd,be,bf,bg,bh,bi,bj,bk,bl,bm,bn,bo,bp,bq,br,bs,bt,bu,bv,bw,bx,by,bz,ca,cb,cc,cd,ce,cf,cg,ch,ci,cj,ck,cl,cm,cn,co,cp,cq,cr,cs,ct,cu,cv,cw,cx,cy,cz,da,db,dc,dd;while(true){switch($s){case 0:  åe=$this;  å  åÇf=(g=d[c],g!==undefined?[g.v,true]:[null,false]);h=f[0];i=f[1];    if(i){  å¢return[h,null];    }  å¥b.Seek(c);  å¡j=b.Next();k=j[0];l=j[1];  å’    if(!($interfaceIsEqual(l,null))){  åÁreturn[null,l];    }  å˚    if(k===($ptrType(R)).nil||!((k.Offset===c))){  çreturn[null,(m=new I.Ptr(a,c,"no type at offset"),new m.constructor.Struct(m))];    }  ç‰  çËn=null;  çÛo=0;  é2p=(function(){var p,q,r,s;  éL    if(!k.Children){  é`return($ptrType(R)).nil;    }  èNwhile(true){  èWp=b.Next();q=p[0];r=p[1];  èp    if(!($interfaceIsEqual(r,null))){  èÖl=r;  èîreturn($ptrType(R)).nil;    }  èß    if(q===($ptrType(R)).nil){  èªl=(s=new I.Ptr(a,b.offset(),"unexpected end of DWARF entries"),new s.constructor.Struct(s));  êreturn($ptrType(R)).nil;    }  ê    if(q.Tag===0){  ê/    if(o>0){  êG  êGo=o-(1)>>0;  êXcontinue;    }  êkreturn($ptrType(R)).nil;    }  ê~    if(q.Children){  êî  êîo=o+(1)>>0;    }  ê®    if(o>0){  êøcontinue;    }  ê–return q;    }    });  ëVq=(function(q){var r,s,t,u,v,w,x;  ëxr=q.Val(73);  ëí  ëñs=null;  ëüu=r;v=u!==null?u.constructor:null;  ëæif(v===T){t=u.$val;  ëŒ  ë—w=e.readType(a,b.clone(),t,d);s=w[0];l=w[1];    if(!($interfaceIsEqual(l,null))){  íreturn null;    }      í+}else if(v===$Uint64){t=u.$val;  í;  í>x=e.sigToType(t);s=x[0];l=x[1];    if(!($interfaceIsEqual(l,null))){  íkreturn null;    }    }else{t=u;  íµreturn new AK.Ptr();    }  í–return s;    });  íﬁr=k.Tag;  íÓif(r===1){}else if(r===36){$s=2;continue;}else if(r===2||r===19||r===23){$s=3;continue;}else if(r===38||r===53||r===55){$s=4;continue;}else if(r===4){$s=5;continue;}else if(r===15){$s=6;continue;}else if(r===21){$s=7;continue;}else if(r===22){$s=8;continue;}else{$s=9;continue;}  îHs=new AJ.Ptr();  î^n=s;  îht=c;(d||$throwRuntimeError("assignment to entry in nil map"))[t]={k:t,v:s};  î}  îÄs.Type=q(k);    if(!($interfaceIsEqual(l,null))){}else{$s=10;continue;}  î§$s=1;continue;    case 10:  îµu=(v=k.Val(46),(v!==null&&v.constructor===$Int64?[v.$val,true]:[new $Int64(0,0),false]));s.StrideBitSize=u[0];  ïw=0;  ï  ïx=p();case 11:if(!(!(x===($ptrType(R)).nil))){$s=12;continue;}  ï°y=x.Tag;  ïµif(y===33){}else if(y===4){$s=13;continue;}else{$s=14;continue;}  ïœz=(aa=x.Val(47),(aa!==null&&aa.constructor===$Int64?[aa.$val,true]:[new $Int64(0,0),false]));ab=z[0];ac=z[1];  ï˛    if(!ac){  ñab=new $Int64(-1,4294967294);    }  ñ:    if(w===0){  ñNs.Count=new $Int64(ab.$high+0,ab.$low+1);    }else{  ñ≈s.Type=new AJ.Ptr(new Y.Ptr(),s.Type,new $Int64(0,0),new $Int64(ab.$high+0,ab.$low+1));    }  ó  ów=w+(1)>>0;      ó$s=14;continue;case 13:  ó(l=(ad=new I.Ptr(a,x.Offset,"cannot handle enumeration type as array bound"),new ad.constructor.Struct(ad));  óÅ$s=1;continue;    case 14:      ï2x=p();$s=11;continue;case 12:  óó    if(w===0){  óÃs.Count=new $Int64(-1,4294967295);    }      óﬂ$s=9;continue;case 2:  ôéae=(af=k.Val(3),(af!==null&&af.constructor===$String?[af.$val,true]:["",false]));ag=ae[0];  ô¥ah=(ai=k.Val(62),(ai!==null&&ai.constructor===$Int64?[ai.$val,true]:[new $Int64(0,0),false]));aj=ah[0];ak=ah[1];  ô›    if(!ak){}else{$s=15;continue;}  ôÈl=(al=new I.Ptr(ag,k.Offset,"missing encoding attribute for "+ag),new al.constructor.Struct(al));  ö8$s=1;continue;    case 15:  öIam=aj;  ö¿if((am.$high===0&&am.$low===1)){}else if((am.$high===0&&am.$low===2)){$s=16;continue;}else if((am.$high===0&&am.$low===3)){$s=17;continue;}else if((am.$high===0&&am.$low===4)){$s=18;continue;}else if((am.$high===0&&am.$low===5)){$s=19;continue;}else if((am.$high===0&&am.$low===7)){$s=20;continue;}else if((am.$high===0&&am.$low===6)){$s=21;continue;}else if((am.$high===0&&am.$low===8)){$s=22;continue;}else{$s=23;continue;}  ö‘n=new AH.Ptr();      öÍ$s=24;continue;case 16:  ö˛n=new AG.Ptr();      õ$s=24;continue;case 17:  õ-n=new AF.Ptr();      õF$s=24;continue;case 18:  õXn=new AE.Ptr();      õo$s=24;continue;case 19:  õÇn=new AC.Ptr();      õó$s=24;continue;case 20:  õ¨n=new AD.Ptr();      õ¬$s=24;continue;case 21:  õŸn=new AA.Ptr();      õÔ$s=24;continue;case 22:  ún=new AB.Ptr();    $s=24;continue;case 23:  ödl=(an=new I.Ptr(ag,k.Offset,"unrecognized encoding attribute value"),new an.constructor.Struct(an));  ö≤$s=1;continue;    case 24:  ú#ao=c;(d||$throwRuntimeError("assignment to entry in nil map"))[ao]={k:ao,v:n};  ú:ap=(n!==null&&($interfaceType([["Basic","Basic","",[],[($ptrType(Z))],false]])).implementedBy.indexOf(n.constructor)!==-1?n:$typeAssertionFailed(n,($interfaceType([["Basic","Basic","",[],[($ptrType(Z))],false]])))).Basic();  úuap.CommonType.Name=ag;  úÖaq=(ar=k.Val(13),(ar!==null&&ar.constructor===$Int64?[ar.$val,true]:[new $Int64(0,0),false]));ap.BitSize=aq[0];  ú±as=(at=k.Val(12),(at!==null&&at.constructor===$Int64?[at.$val,true]:[new $Int64(0,0),false]));ap.BitOffset=as[0];      ú·$s=9;continue;case 3:  üèau=new AM.Ptr();  ü¶n=au;  ü∞av=c;(d||$throwRuntimeError("assignment to entry in nil map"))[av]={k:av,v:au};  ü≈aw=k.Tag;  ü÷if(aw===2){  üÏau.Kind="class";      üˇ}else if(aw===19){  †au.Kind="struct";      †*}else if(aw===23){  †@au.Kind="union";    }  †Wax=(ay=k.Val(3),(ay!==null&&ay.constructor===$String?[ay.$val,true]:["",false]));au.StructName=ax[0];  †Ñau.Incomplete=!($interfaceIsEqual(k.Val(60),null));  †≥au.Field=($sliceType(($ptrType(AN)))).make(0,8,function(){return($ptrType(AN)).nil;});  †⁄  †ﬁaz=null;  †Û  †˜ba=new $Int64(0,0);  °  °bb=p();case 25:if(!(!(bb===($ptrType(R)).nil))){$s=26;continue;}  °C    if(bb.Tag===13){}else{$s=27;continue;}  °abc=new AN.Ptr();  °{  °~bc.Type=q(bb);    if(!($interfaceIsEqual(l,null))){}else{$s=28;continue;}  °¶$s=1;continue;    case 28:  °ªbe=bb.Val(56);bf=be!==null?be.constructor:null;  °Òif(bf===($sliceType($Uint8))){}else if(bf===$Int64){$s=29;continue;}else{$s=30;continue;}bd=be.$val;  ¢Xbh=new E.Ptr();$copy(bh,H(e,(bg=new G.Ptr(),new bg.constructor.Struct(bg)),"location",0,bd),E);  ¢í    if(!((bh.uint8()===35))){}else{$s=31;continue;}  ¢∑l=(bi=new I.Ptr(a,bb.Offset,"unexpected opcode"),new bi.constructor.Struct(bi));  ¢ˆ$s=1;continue;    case 31:  £bc.ByteOffset=(bj=bh.uint(),new $Int64(bj.$high,bj.$low));  £1    if(!($interfaceIsEqual(bh.err,null))){}else{$s=32;continue;}  £Il=bh.err;  £[$s=1;continue;    case 32:      £q$s=30;continue;case 29:bd=be.$val;  £Çbc.ByteOffset=bd;    case 30:  £†bk=false;  £ªbl=(bm=bb.Val(3),(bm!==null&&bm.constructor===$String?[bm.$val,true]:["",false]));bc.Name=bl[0];  £Êbn=(bo=bb.Val(11),(bo!==null&&bo.constructor===$Int64?[bo.$val,true]:[new $Int64(0,0),false]));bc.ByteSize=bn[0];  §bp=(bq=bb.Val(12),(bq!==null&&bq.constructor===$Int64?[bq.$val,true]:[new $Int64(0,0),false]));bc.BitOffset=bp[0];bk=bp[1];  §Xbr=(bs=bb.Val(13),(bs!==null&&bs.constructor===$Int64?[bs.$val,true]:[new $Int64(0,0),false]));bc.BitSize=br[0];  §àau.Field=$append(au.Field,bc);  §™bt=bc.BitOffset;  §¬    if(!bk){  §€bt=$mul64(bc.ByteOffset,new $Int64(0,8));    }  §˝    if((bt.$high===ba.$high&&bt.$low===ba.$low)&&!(au.Kind==="union")){  •πAU(az);    }  •‹az=bc.Type;  •˜ba=bt;    case 27:      °1bb=p();$s=25;continue;case 26:  ¶    if(!(au.Kind==="union")){  ¶6bu=(bv=k.Val(11),(bv!==null&&bv.constructor===$Int64?[bv.$val,true]:[new $Int64(0,0),false]));bw=bu[0];bx=bu[1];  ¶^    if(bx&&(by=$mul64(bw,new $Int64(0,8)),(by.$high===ba.$high&&by.$low===ba.$low))){  ¶¡AU(az);    }    }      ¶Â$s=9;continue;case 4:  ßhbz=new AI.Ptr();  ß}n=bz;  ßáca=c;(d||$throwRuntimeError("assignment to entry in nil map"))[ca]={k:ca,v:bz};  ßú  ßübz.Type=q(k);    if(!($interfaceIsEqual(l,null))){}else{$s=33;continue;}  ß√$s=1;continue;    case 33:  ß‘cb=k.Tag;  ßÂif(cb===38){  ß˚bz.Qual="const";      ®}else if(cb===55){  ®'bz.Qual="restrict";      ®=}else if(cb===53){  ®Vbz.Qual="volatile";    }      ®p$s=9;continue;case 5:  ©åcc=new AO.Ptr();  ©°n=cc;  ©´cd=c;(d||$throwRuntimeError("assignment to entry in nil map"))[cd]={k:cd,v:cc};  ©¿ce=(cf=k.Val(3),(cf!==null&&cf.constructor===$String?[cf.$val,true]:["",false]));cc.EnumName=ce[0];  ©Îcc.Val=($sliceType(($ptrType(AP)))).make(0,8,function(){return($ptrType(AP)).nil;});  ™  ™cg=p();while(!(cg===($ptrType(R)).nil)){  ™?    if(cg.Tag===40){  ™ach=new AP.Ptr();  ™yci=(cj=cg.Val(3),(cj!==null&&cj.constructor===$String?[cj.$val,true]:["",false]));ch.Name=ci[0];  ™§ck=(cl=cg.Val(28),(cl!==null&&cl.constructor===$Int64?[cl.$val,true]:[new $Int64(0,0),false]));ch.Val=ck[0];  ™”cm=cc.Val.$length;  ™Á    if(cm>=cc.Val.$capacity){  ´cn=($sliceType(($ptrType(AP)))).make(cm,((((cm>>>16<<16)*2>>0)+(cm<<16>>>16)*2)>>0),function(){return($ptrType(AP)).nil;});  ´($copySlice(cn,cc.Val);  ´>cc.Val=cn;    }  ´Tcc.Val=$subslice(cc.Val,0,(cm+1>>0));  ´o(co=cc.Val,(cm<0||cm>=co.$length)?$throwRuntimeError("index out of range"):co.$array[co.$offset+cm]=ch);    }      ™-cg=p();}      ´á$s=9;continue;case 6:  ¨=cp=new AL.Ptr();  ¨Qn=cp;  ¨[cq=c;(d||$throwRuntimeError("assignment to entry in nil map"))[cq]={k:cq,v:cp};  ¨p    if($interfaceIsEqual(k.Val(73),null)){  ¨ècp.Type=new AK.Ptr(new Y.Ptr());  ¨ß$s=9;continue;    }  ¨≥cp.Type=q(k);      ¨»$s=9;continue;case 7:  Æ4cr=new AQ.Ptr();  ÆIn=cr;  ÆScs=c;(d||$throwRuntimeError("assignment to entry in nil map"))[cs]={k:cs,v:cr};  Æh  Ækcr.ReturnType=q(k);    if(!($interfaceIsEqual(l,null))){}else{$s=34;continue;}  Æï$s=1;continue;    case 34:  Æ¶cr.ParamType=($sliceType(X)).make(0,8,function(){return null;});  Æ…  ÆÕct=p();case 35:if(!(!(ct===($ptrType(R)).nil))){$s=36;continue;}  Æ˙  Æ˛cu=null;  Øcv=ct.Tag;  Ø8if(cv===5){}else if(cv===24){$s=37;continue;}else{$s=38;continue;}  ØU  ØXcu=q(ct);    if(!($interfaceIsEqual(l,null))){}else{$s=40;continue;}  Ø~$s=1;continue;    case 40:      Øí$s=39;continue;case 37:  Øµcu=new AR.Ptr(new Y.Ptr());    $s=39;continue;case 38:  Ø,  ÆËct=p();$s=35;continue;    case 39:  Ø’cr.ParamType=$append(cr.ParamType,cu);      ÆËct=p();$s=35;continue;case 36:      ∞$s=9;continue;case 8:  ∞écw=new AS.Ptr();  ∞¶n=cw;  ∞∞cx=c;(d||$throwRuntimeError("assignment to entry in nil map"))[cx]={k:cx,v:cw};  ∞≈cy=(cz=k.Val(3),(cz!==null&&cz.constructor===$String?[cz.$val,true]:["",false]));cw.CommonType.Name=cy[0];  ∞Ïcw.Type=q(k);    case 9:  ±    if(!($interfaceIsEqual(l,null))){}else{$s=41;continue;}  ±$s=1;continue;    case 41:  ±&  ±*da=(db=k.Val(11),(db!==null&&db.constructor===$Int64?[db.$val,true]:[new $Int64(0,0),false]));dc=da[0];dd=da[1];  ±Q    if(!dd){  ±]dc=new $Int64(-1,4294967295);    }  ±jn.Common().ByteSize=dc;      ±àreturn[n,null];  ±ô  ≤1case 1:delete d[c];  ≤Ireturn[null,l];    $s=-1;case-1:}return;}};V.prototype.readType=function(a,b,c,d){return this.$val.readType(a,b,c,d);}; 0DatareadType0Çdebug/dwarf:AddrTypedebug/dwarf:ArrayTypedebug/dwarf:BasicTypedebug/dwarf:BoolTypedebug/dwarf:CharTypedebug/dwarf:CommonTypedebug/dwarf:ComplexTypedebug/dwarf:Datadebug/dwarf:DecodeErrordebug/dwarf:DotDotDotTypedebug/dwarf:Entrydebug/dwarf:EnumTypedebug/dwarf:EnumValuedebug/dwarf:FloatTypedebug/dwarf:FuncTypedebug/dwarf:IntTypedebug/dwarf:Offsetdebug/dwarf:PtrTypedebug/dwarf:QualTypedebug/dwarf:StructFielddebug/dwarf:StructTypedebug/dwarf:Typedebug/dwarf:TypedefTypedebug/dwarf:UcharTypedebug/dwarf:UintTypedebug/dwarf:VoidTypedebug/dwarf:bufdebug/dwarf:clonedebug/dwarf:makeBufdebug/dwarf:offsetdebug/dwarf:sigToTypedebug/dwarf:uintdebug/dwarf:uint8debug/dwarf:unknownFormatdebug/dwarf:zeroArray 0Ç8debug/dwarf.zeroArray0AUÅÌAU=function(a){var b,c,d;  ≤vwhile(true){  ≤~b=(a!==null&&a.constructor===($ptrType(AJ))?[a.$val,true]:[($ptrType(AJ)).nil,false]);c=b[0];d=b[1];  ≤ô    if(!d){  ≤•break;    }  ≤±c.Count=new $Int64(0,0);  ≤¿a=c.Type;    }    }; 0	zeroArray0debug/dwarf:ArrayType 0ÇÎ(*debug/dwarf.Data).parseTypes0 ÇëV.Ptr.prototype.parseTypes=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y;  µ¥c=this;  µÏe=new E.Ptr();$copy(e,H(c,(d=new G.Ptr(),new d.constructor.Struct(d)),a,0,b),E);  ∂while(e.data.$length>0){  ∂6f=e.off;  ∂Fg=false;  ∂Yh=e.uint32();  ∂k    if(h===4294967295){  ∂Éi=e.uint64();  ∂ò    if(!((j=new $Uint64(0,(i.$low>>>0)),(i.$high===j.$high&&i.$low===j.$low)))){  ∂ºe.error("type unit length overflow");  ∂Âreturn e.err;    }  ∂˙h=(i.$low>>>0);  ∑g=true;    }  ∑"k=e.off;  ∑4l=e.uint16();  ∑I    if(!((l===4))){  ∑[e.error("unsupported DWARF version "+B.Itoa((l>>0)));  ∑ûreturn e.err;    }  ∑±  ∑µm=0;  ∑¡    if(!g){  ∑“m=e.uint32();    }else{  ∑n=e.uint64();  ∏    if(!((o=new $Uint64(0,(n.$low>>>0)),(n.$high===o.$high&&n.$low===o.$low)))){  ∏,e.error("type unit abbrev offset overflow");  ∏\return e.err;    }  ∏qm=(n.$low>>>0);    }  ∏âp=c.parseAbbrev(m);q=p[0];r=p[1];  ∏¨    if(!($interfaceIsEqual(r,null))){  ∏øreturn r;    }  ∏–s=e.uint8();  ∏Ât=e.uint64();  ∏˙  ∏˛u=0;  π    if(!g){  πu=e.uint32();    }else{  π=v=e.uint64();  πS    if(!((w=new $Uint64(0,(v.$low>>>0)),(v.$high===w.$high&&v.$low===w.$low)))){  πye.error("type unit type offset overflow");  πßreturn e.err;    }  πºu=(v.$low>>>0);    }  π◊x=e.off;  πÁy=t;(c.typeSigs||$throwRuntimeError("assignment to entry in nil map"))[y.$key()]={k:y,v:new AV.Ptr(new AX.Ptr(f,x,e.bytes((((h>>>0)-((e.off-k>>>0))>>>0)>>0)),q,(s>>0),(l>>0),g),(u>>>0),a,null)};  ∫˘    if(!($interfaceIsEqual(e.err,null))){  ªreturn e.err;    }    }  ª#return null;    };V.prototype.parseTypes=function(a,b){return this.$val.parseTypes(a,b);}; 0Data
+parseTypes0Çdebug/dwarf:Datadebug/dwarf:bufdebug/dwarf:bytesdebug/dwarf:errordebug/dwarf:makeBufdebug/dwarf:parseAbbrevdebug/dwarf:typeUnitdebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8debug/dwarf:unitdebug/dwarf:unknownFormatstrconv:Itoa 0ÇÑ(*debug/dwarf.Data).sigToType0 Ç∏V.Ptr.prototype.sigToType=function(a){var b,c,d,e,f,g,h,i;  ª`b=this;  ªêd=(c=b.typeSigs[a.$key()],c!==undefined?c.v:($ptrType(AV)).nil);  ªß    if(d===($ptrType(AV)).nil){  ª∏return[null,D.Errorf("no type unit with signature %v",new($sliceType($emptyInterface))([a]))];    }  ª˙    if(!($interfaceIsEqual(d.cache,null))){  ºreturn[d.cache,null];    }  º+e=new E.Ptr();$copy(e,H(b,d,d.name,d.unit.off,d.unit.data),E);  ºZf=new AW.Ptr(b,d,e,null);  ºÑg=b.readType(d.name,f,d.toff,new $Map());h=g[0];i=g[1];  ºŒ    if(!($interfaceIsEqual(i,null))){  º‡return[null,i];    }  ºıd.cache=h;  Ωreturn[h,null];    };V.prototype.sigToType=function(a){return this.$val.sigToType(a);}; 0Data	sigToType0Åådebug/dwarf:Datadebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:readTypedebug/dwarf:typeUnitdebug/dwarf:typeUnitReader
+fmt:Errorf 0Çp"(*debug/dwarf.typeUnitReader).Seek0 ÇÀAW.Ptr.prototype.Seek=function(a){var b,c;  Ω…b=this;  ΩÚb.err=null;  æc=a-b.tu.unit.off>>>0;  æ    if(c<0||c>=(b.tu.unit.data.$length>>>0)){  æOb.err=D.Errorf("%s: offset %d out of range; max %d",new($sliceType($emptyInterface))([new $String(b.tu.name),new T(c),new $Int(b.tu.unit.data.$length)]));  æ±return;    }  æº$copy(b.b,H(b.d,b.tu,b.tu.name,a,$subslice(b.tu.unit.data,c)),E);    };AW.prototype.Seek=function(a){return this.$val.Seek(a);}; 0typeUnitReader0bdebug/dwarf:Offsetdebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:typeUnitReader
+fmt:Errorf 0ÇZ"(*debug/dwarf.typeUnitReader).Next0 Ç’AW.Ptr.prototype.Next=function(){var a,b;  ø;a=this;  øj    if(!($interfaceIsEqual(a.err,null))){  øÄreturn[($ptrType(R)).nil,a.err];    }  øò    if(a.tu.unit.data.$length===0){  øµreturn[($ptrType(R)).nil,null];    }  ø…b=a.b.entry(a.tu.unit.atable,a.tu.unit.base);  ø˜    if(!($interfaceIsEqual(a.b.err,null))){  ¿a.err=a.b.err;  ¿%return[($ptrType(R)).nil,a.err];    }  ¿=return[b,null];    };AW.prototype.Next=function(){return this.$val.Next();}; 0typeUnitReader0Bdebug/dwarf:Entrydebug/dwarf:entrydebug/dwarf:typeUnitReader 0ÇÅ#(*debug/dwarf.typeUnitReader).clone0 ÅÕAW.Ptr.prototype.clone=function(){var a;  ¿Öa=this;  ¿∞return new AW.Ptr(a.d,a.tu,H(a.d,a.tu,a.tu.name,a.tu.unit.off,a.tu.unit.data),null);    };AW.prototype.clone=function(){return this.$val.clone();}; 0typeUnitReaderclone0jdebug/dwarf:Datadebug/dwarf:bufdebug/dwarf:makeBufdebug/dwarf:typeUnitdebug/dwarf:typeUnitReader 0ÅÛ$(*debug/dwarf.typeUnitReader).offset0 ÅãAW.Ptr.prototype.offset=function(){var a;  ¡Ya=this;  ¡Åreturn a.b.off;    };AW.prototype.offset=function(){return this.$val.offset();}; 0typeUnitReaderoffset0debug/dwarf:typeUnitReader 0ÅŸ(*debug/dwarf.unit).version0 ÅçAX.Ptr.prototype.version=function(){var a;  ƒa=this;  ƒ!return a.vers;    };AX.prototype.version=function(){return this.$val.version();}; 0unitversion0debug/dwarf:unit 0Åﬂ(*debug/dwarf.unit).dwarf640 ÅìAX.Ptr.prototype.dwarf64=function(){var a;  ƒ8a=this;  ƒ[return[a.is64,true];    };AX.prototype.dwarf64=function(){return this.$val.dwarf64();}; 0unitdwarf640debug/dwarf:unit 0Åﬂ(*debug/dwarf.unit).addrsize0 ÅëAX.Ptr.prototype.addrsize=function(){var a;  ƒxa=this;  ƒìreturn a.asize;    };AX.prototype.addrsize=function(){return this.$val.addrsize();}; 0unitaddrsize0debug/dwarf:unit 0Ç°(*debug/dwarf.Data).parseUnits0 ÇKV.Ptr.prototype.parseUnits=function(){var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r;  ƒ´a=this;  ƒÂb=0;  ƒÒd=new E.Ptr();$copy(d,H(a,(c=new G.Ptr(),new c.constructor.Struct(c)),"info",0,a.info),E);  ≈&while(d.data.$length>0){  ≈>e=d.uint32();  ≈R    if(e===4294967295){  ≈lf=d.uint64();  ≈É    if(!((g=new $Uint64(0,(f.$low>>>0)),(f.$high===g.$high&&f.$low===g.$low)))){  ≈´d.error("unit length overflow");  ≈œbreak;    }  ≈›e=(f.$low>>>0);    }  ≈˜d.skip((e>>0));  ∆
+  ∆
+b=b+(1)>>0;    }  ∆    if(!($interfaceIsEqual(d.err,null))){  ∆*return[($sliceType(AX)).nil,d.err];    }  ∆i$copy(d,H(a,(h=new G.Ptr(),new h.constructor.Struct(h)),"info",0,a.info),E);  ∆ùi=($sliceType(AX)).make(b,0,function(){return new AX.Ptr();});  ∆ªj=i;k=0;while(k<j.$length){l=k;  ∆‘m=((l<0||l>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+l]);  ∆Âm.base=d.off;  ∆ˆn=d.uint32();  «    if(n===4294967295){  « m.is64=true;  «1n=(d.uint64().$low>>>0);    }  «No=d.uint16();  «c    if(!((o===2))&&!((o===3))&&!((o===4))){  «èd.error("unsupported DWARF version "+B.Itoa((o>>0)));  «“break;    }  «ﬁm.vers=(o>>0);  «Ûp=a.parseAbbrev(d.uint32());q=p[0];r=p[1];  »    if(!($interfaceIsEqual(r,null))){  »1    if($interfaceIsEqual(d.err,null)){  »Gd.err=r;    }  »[break;    }  »gm.atable=q;  »{m.asize=(d.uint8()>>0);  »ñm.off=d.off;  »¶m.data=d.bytes(((n-7>>>0)>>0));    k++;}  »—    if(!($interfaceIsEqual(d.err,null))){  »Âreturn[($sliceType(AX)).nil,d.err];    }  »˚return[i,null];    };V.prototype.parseUnits=function(){return this.$val.parseUnits();}; 0Data
+parseUnits0Çdebug/dwarf:Datadebug/dwarf:bufdebug/dwarf:bytesdebug/dwarf:errordebug/dwarf:makeBufdebug/dwarf:parseAbbrevdebug/dwarf:skipdebug/dwarf:uint16debug/dwarf:uint32debug/dwarf:uint64debug/dwarf:uint8debug/dwarf:unitdebug/dwarf:unknownFormatstrconv:Itoa 0 Ç*ˆ{"Base":51472,"Files":[{"Name":"/usr/local/go/src/pkg/debug/dwarf/buf.go","Base":1,"Size":3341,"Lines":[0,56,110,160,161,217,218,232,233,242,261,272,274,275,305,323,337,362,381,396,411,426,440,442,443,512,538,566,613,628,629,654,694,695,750,766,768,769,828,856,857,896,906,908,909,957,978,980,981,1021,1031,1033,1034,1119,1173,1175,1176,1206,1228,1251,1262,1265,1283,1304,1313,1325,1327,1328,1364,1386,1409,1422,1425,1446,1467,1487,1500,1502,1503,1544,1545,1577,1613,1635,1663,1688,1714,1726,1730,1733,1755,1766,1768,1769,1801,1818,1833,1844,1847,1873,1875,1876,1908,1925,1940,1951,1954,1980,1982,1983,2015,2032,2047,2058,2061,2087,2089,2090,2149,2190,2237,2273,2293,2326,2338,2360,2386,2411,2429,2433,2436,2449,2451,2452,2486,2516,2536,2546,2548,2549,2590,2618,2642,2658,2685,2703,2706,2716,2718,2719,2742,2772,2802,2811,2838,2847,2875,2884,2912,2921,2949,2952,2985,2995,2997,2998,3030,3049,3064,3104,3107,3109,3110,3136,3151,3166,3181,3183,3184,3222,3339],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/const.go","Base":3343,"Size":14574,"Lines":[0,56,110,160,161,174,175,189,190,207,208,275,292,293,301,333,365,397,429,461,493,525,557,589,621,653,685,717,749,781,813,845,877,909,941,973,1005,1037,1069,1101,1133,1165,1197,1229,1261,1293,1325,1357,1389,1421,1453,1485,1517,1549,1581,1613,1645,1677,1709,1741,1773,1805,1837,1869,1901,1933,1965,1997,2029,2061,2093,2125,2157,2189,2221,2253,2285,2317,2349,2381,2413,2445,2477,2509,2541,2573,2605,2607,2608,2637,2669,2702,2731,2764,2797,2831,2863,2896,2926,2957,2990,3020,3055,3090,3121,3158,3192,3224,3259,3298,3335,3366,3401,3436,3469,3504,3539,3574,3609,3644,3683,3721,3755,3790,3824,3856,3886,3924,3959,3992,4025,4061,4095,4128,4161,4195,4226,4265,4299,4336,4369,4401,4439,4474,4503,4539,4572,4607,4645,4679,4714,4751,4782,4814,4846,4880,4911,4946,4981,5014,5047,5083,5085,5086,5118,5148,5168,5183,5195,5199,5202,5231,5233,5234,5268,5298,5318,5333,5360,5364,5367,5429,5431,5432,5477,5496,5497,5505,5523,5554,5585,5616,5647,5678,5709,5740,5771,5802,5833,5864,5895,5926,5957,5988,6019,6050,6081,6112,6143,6174,6212,6243,6274,6305,6336,6385,6442,6474,6506,6508,6509,6564,6580,6581,6589,6627,6665,6703,6741,6779,6817,6855,6893,6931,6969,7007,7045,7083,7121,7159,7197,7235,7273,7311,7349,7387,7425,7463,7501,7539,7577,7615,7653,7691,7729,7767,7805,7843,7881,7919,7957,7995,8033,8071,8109,8147,8185,8223,8261,8299,8337,8375,8413,8444,8475,8506,8537,8568,8599,8630,8661,8721,8752,8783,8821,8856,8891,8926,8928,8929,8957,8998,9039,9081,9128,9175,9226,9263,9308,9346,9389,9434,9477,9519,9561,9607,9646,9687,9740,9779,9827,9874,9917,9966,10004,10051,10090,10134,10174,10223,10263,10310,10351,10391,10433,10473,10511,10551,10595,10637,10679,10732,10786,10828,10873,10916,10956,11000,11046,11090,11135,11176,11222,11269,11312,11356,11399,11440,11482,11522,11573,11618,11620,11621,11652,11681,11700,11715,11727,11731,11734,11763,11765,11766,11799,11828,11847,11862,11888,11892,11895,11956,11958,11959,11993,12046,12082,12135,12196,12204,12248,12269,12315,12351,12398,12434,12480,12516,12562,12598,12644,12680,12701,12722,12743,12795,12816,12837,12858,12879,12900,12921,12942,12963,12984,13005,13026,13047,13068,13116,13137,13158,13179,13200,13256,13312,13333,13354,13375,13396,13417,13438,13459,13500,13515,13556,13607,13650,13700,13748,13806,13861,13918,13975,13996,14029,14051,14100,14149,14205,14249,14251,14252,14330,14338,14364,14390,14416,14442,14468,14494,14520,14546,14572],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/entry.go","Base":17918,"Size":9435,"Lines":[0,56,110,160,161,202,261,320,384,462,463,477,478,487,497,508,510,511,569,590,604,619,638,640,641,662,673,686,688,689,742,777,778,848,881,943,981,997,1000,1001,1019,1049,1062,1072,1092,1095,1148,1149,1201,1255,1279,1286,1316,1341,1356,1365,1369,1370,1407,1416,1450,1462,1475,1483,1503,1523,1552,1562,1567,1574,1578,1599,1621,1625,1626,1688,1703,1727,1757,1787,1814,1850,1887,1891,1902,1913,1914,1926,1929,1948,1968,1971,1995,2010,2012,2013,2065,2085,2135,2175,2233,2251,2253,2254,2311,2331,2342,2360,2362,2363,2429,2470,2473,2533,2599,2639,2642,2684,2713,2732,2748,2752,2755,2767,2769,2770,2842,2864,2883,2884,2933,2979,3040,3054,3078,3092,3110,3113,3132,3142,3188,3201,3204,3218,3235,3254,3278,3319,3322,3348,3384,3408,3435,3461,3465,3487,3502,3513,3592,3593,3606,3623,3641,3642,3653,3677,3710,3734,3768,3792,3826,3849,3881,3882,3896,3914,3940,3958,3985,4003,4030,4048,4075,4093,4117,4135,4160,4161,4171,4188,4212,4233,4257,4329,4386,4400,4401,4431,4451,4481,4499,4551,4576,4603,4615,4653,4669,4719,4740,4770,4783,4813,4819,4824,4841,4876,4893,4929,4946,4982,4999,5035,5056,5090,5091,5103,5122,5142,5159,5206,5227,5242,5247,5313,5334,5355,5377,5396,5411,5416,5417,5464,5529,5595,5648,5685,5700,5776,5796,5824,5836,5864,5869,5870,5883,5904,5924,5956,5957,5972,5993,6013,6042,6062,6066,6089,6092,6111,6124,6127,6137,6139,6140,6215,6291,6360,6439,6485,6506,6524,6544,6564,6582,6647,6720,6722,6723,6764,6840,6874,6894,6905,6915,6917,6918,6990,7041,7077,7087,7100,7124,7139,7163,7173,7177,7195,7208,7255,7264,7267,7268,7319,7330,7343,7367,7384,7439,7453,7511,7521,7525,7528,7571,7573,7574,7642,7677,7731,7742,7767,7814,7817,7819,7820,7880,7943,8018,8064,8106,8125,8145,8148,8167,8192,8210,8213,8237,8271,8292,8310,8330,8333,8348,8378,8400,8450,8454,8464,8489,8492,8507,8509,8510,8571,8635,8701,8735,8773,8782,8785,8786,8833,8881,8923,8943,8974,8998,9007,9010,9011,9018,9039,9083,9092,9096,9114,9134,9138,9141,9143,9144,9215,9229,9267,9288,9290,9291,9357,9382,9417,9433],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/open.go","Base":27354,"Size":2669,"Lines":[0,56,110,160,161,237,298,341,355,356,381,382,433,511,530,543,560,577,594,611,628,645,662,679,680,696,732,762,791,825,845,847,848,920,996,1071,1100,1103,1177,1258,1290,1382,1395,1418,1442,1464,1485,1506,1531,1554,1574,1619,1657,1700,1703,1704,1752,1815,1837,1905,1908,1938,1948,1972,2034,2048,2077,2091,2123,2133,2201,2204,2205,2231,2248,2266,2269,2281,2296,2298,2299,2367,2436,2506,2574,2633,2667],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/type.go","Base":30024,"Size":15753,"Lines":[0,56,110,160,161,199,260,306,307,321,322,339,340,400,458,480,502,519,533,535,536,591,654,681,706,763,822,824,825,880,881,937,938,953,954,1009,1033,1045,1062,1079,1081,1082,1134,1135,1173,1192,1208,1211,1223,1225,1226,1276,1299,1310,1312,1313,1367,1391,1402,1404,1405,1453,1475,1486,1488,1489,1540,1563,1574,1576,1577,1626,1650,1661,1663,1664,1723,1749,1760,1762,1763,1804,1827,1838,1840,1841,1891,1914,1925,1927,1928,1942,1943,2040,2063,2075,2088,2099,2101,2102,2179,2180,2237,2238,2290,2314,2326,2346,2414,2484,2486,2487,2525,2594,2596,2597,2665,2666,2708,2731,2743,2745,2746,2799,2800,2840,2862,2874,2885,2887,2888,2955,2956,3019,3044,3056,3075,3128,3155,3233,3235,3236,3311,3337,3356,3373,3391,3409,3470,3515,3517,3518,3557,3582,3619,3622,3639,3641,3642,3679,3692,3717,3743,3746,3765,3790,3801,3804,3815,3844,3857,3870,3874,3912,3961,3982,4031,4080,4084,4087,4097,4107,4109,4110,4156,4222,4246,4269,4281,4298,4321,4323,4324,4379,4403,4416,4428,4430,4431,4468,4481,4504,4528,4531,4542,4569,4582,4595,4599,4650,4653,4663,4673,4675,4676,4718,4741,4753,4770,4789,4791,4792,4829,4843,4876,4889,4902,4906,4924,4927,4937,4963,4998,5001,5011,5013,5014,5081,5109,5121,5123,5124,5181,5182,5224,5250,5262,5273,5275,5276,5332,5333,5393,5394,5460,5478,5506,5520,5544,5564,5581,5583,5584,5645,5693,5750,5752,5753,5821,5836,5942,5976,5992,5995,6008,6028,6045,6063,6066,6100,6158,6161,6162,6189,6239,6299,6313,6314,6330,6331,6377,6402,6421,6435,6439,6473,6531,6593,6628,6660,6668,6693,6713,6728,6743,6748,6767,6842,6857,6862,6883,6906,6923,6937,6943,6958,6963,6984,7000,7005,7027,7040,7045,7059,7063,7066,7067,7119,7181,7214,7240,7253,7284,7299,7373,7388,7393,7408,7455,7470,7475,7486,7530,7554,7558,7569,7572,7573,7589,7609,7657,7674,7707,7770,7810,7825,7890,7934,7956,7966,7987,8025,8039,8043,8096,8097,8125,8137,8185,8233,8278,8298,8323,8370,8383,8424,8430,8449,8472,8485,8517,8568,8623,8629,8640,8668,8757,8772,8777,8781,8798,8833,8849,8853,8854,8873,8908,8925,9017,9086,9138,9191,9284,9322,9363,9374,9453,9467,9471,9486,9497,9575,9589,9590,9609,9632,9651,9674,9698,9724,9741,9765,9783,9805,9825,9848,9870,9893,9917,9941,9945,9968,9992,10014,10027,10043,10087,10135,10136,10185,10241,10258,10305,10345,10409,10424,10463,10505,10547,10581,10641,10684,10761,10821,10844,10854,10875,10892,10913,10933,10955,10976,10997,11017,11021,11066,11113,11152,11177,11208,11256,11285,11311,11353,11369,11375,11429,11446,11493,11531,11589,11625,11688,11705,11712,11748,11771,11789,11806,11813,11829,11853,11859,11860,11887,11930,11980,12044,12092,12125,12126,12150,12174,12203,12209,12266,12320,12396,12426,12432,12459,12489,12494,12498,12523,12563,12603,12661,12690,12695,12699,12700,12754,12790,12807,12830,12851,12861,12882,12920,12934,12938,12955,12976,12996,13020,13043,13067,13090,13094,13095,13121,13160,13177,13209,13270,13285,13305,13338,13378,13399,13409,13430,13473,13508,13556,13589,13613,13656,13703,13723,13748,13787,13809,13826,13832,13859,13876,13881,13885,13886,13908,13944,13961,14023,14067,14087,14097,14118,14148,14172,14181,14185,14206,14207,14232,14272,14289,14332,14379,14440,14455,14496,14530,14570,14591,14601,14622,14666,14680,14684,14719,14767,14784,14804,14816,14829,14857,14897,14913,14919,14953,14981,14986,15029,15033,15034,15052,15082,15099,15130,15172,15196,15206,15227,15266,15287,15290,15291,15308,15321,15324,15325,15328,15367,15378,15388,15392,15420,15423,15440,15441,15448,15503,15558,15592,15616,15633,15635,15636,15661,15668,15695,15706,15715,15719,15734,15748,15751],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/typeunit.go","Base":45778,"Size":3778,"Lines":[0,56,110,160,161,175,176,185,192,203,205,206,277,345,410,411,479,519,542,548,603,649,696,698,699,732,793,843,866,882,901,919,942,963,998,1039,1056,1061,1080,1098,1102,1120,1141,1158,1225,1241,1245,1261,1277,1296,1307,1329,1366,1414,1431,1436,1457,1461,1496,1514,1528,1532,1553,1573,1574,1592,1608,1629,1640,1662,1699,1745,1762,1767,1790,1794,1795,1811,1842,1857,1875,1893,1949,1969,1993,2016,2037,2043,2066,2081,2085,2105,2121,2125,2128,2140,2142,2143,2184,2237,2260,2276,2340,2343,2365,2388,2391,2392,2439,2481,2555,2572,2590,2593,2594,2608,2623,2625,2626,2679,2708,2719,2734,2743,2754,2756,2757,2801,2847,2862,2888,2939,3037,3046,3049,3119,3121,3122,3171,3223,3244,3266,3269,3297,3315,3318,3364,3387,3409,3431,3434,3449,3451,3452,3501,3549,3574,3587,3601,3669,3672,3674,3675,3713,3758,3776],"Infos":null},{"Name":"/usr/local/go/src/pkg/debug/dwarf/unit.go","Base":49557,"Size":1914,"Lines":[0,56,110,160,161,175,176,193,194,261,323,324,343,409,473,488,508,520,532,577,579,580,619,620,651,666,668,669,709,730,732,733,765,781,783,784,830,847,859,912,935,955,980,1003,1042,1078,1088,1093,1116,1120,1139,1149,1152,1171,1191,1194,1195,1235,1287,1317,1341,1358,1375,1393,1416,1433,1459,1463,1484,1527,1594,1603,1607,1628,1671,1689,1710,1726,1731,1740,1744,1764,1791,1807,1848,1851,1870,1890,1893,1912],"Infos":null}]}
+ ˇ

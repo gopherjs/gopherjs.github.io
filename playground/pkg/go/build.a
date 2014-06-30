@@ -1,4 +1,4 @@
-0É?˝go/buildÇ<#package build
+0Éîgo/buildÇ<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -209,1275 +209,27 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Ç@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0Ç@0bytesbytes0errorserrors0
-fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
-loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0É=0ÇtContextÇ$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
-		this.go$val = this;
-		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
-		this.GOOS = GOOS_ !== undefined ? GOOS_ : "";
-		this.GOROOT = GOROOT_ !== undefined ? GOROOT_ : "";
-		this.GOPATH = GOPATH_ !== undefined ? GOPATH_ : "";
-		this.CgoEnabled = CgoEnabled_ !== undefined ? CgoEnabled_ : false;
-		this.UseAllFiles = UseAllFiles_ !== undefined ? UseAllFiles_ : false;
-		this.Compiler = Compiler_ !== undefined ? Compiler_ : "";
-		this.BuildTags = BuildTags_ !== undefined ? BuildTags_ : (go$sliceType(Go$String)).nil;
-		this.ReleaseTags = ReleaseTags_ !== undefined ? ReleaseTags_ : (go$sliceType(Go$String)).nil;
-		this.InstallSuffix = InstallSuffix_ !== undefined ? InstallSuffix_ : "";
-		this.JoinPath = JoinPath_ !== undefined ? JoinPath_ : go$throwNilPointerError;
-		this.SplitPathList = SplitPathList_ !== undefined ? SplitPathList_ : go$throwNilPointerError;
-		this.IsAbsPath = IsAbsPath_ !== undefined ? IsAbsPath_ : go$throwNilPointerError;
-		this.IsDir = IsDir_ !== undefined ? IsDir_ : go$throwNilPointerError;
-		this.HasSubdir = HasSubdir_ !== undefined ? HasSubdir_ : go$throwNilPointerError;
-		this.ReadDir = ReadDir_ !== undefined ? ReadDir_ : go$throwNilPointerError;
-		this.OpenFile = OpenFile_ !== undefined ? OpenFile_ : go$throwNilPointerError;
-	});
-Ç
-⁄		(go$ptrType(Context)).methods = [["Import", "", [Go$String, Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["ImportDir", "", [Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["MatchFile", "", [Go$String, Go$String], [Go$Bool, go$error], false, -1], ["SrcDirs", "", [], [(go$sliceType(Go$String))], false, -1], ["goodOSArchFile", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["gopath", "go/build", [], [(go$sliceType(Go$String))], false, -1], ["hasSubdir", "go/build", [Go$String, Go$String], [Go$String, Go$Bool], false, -1], ["isAbsPath", "go/build", [Go$String], [Go$Bool], false, -1], ["isDir", "go/build", [Go$String], [Go$Bool], false, -1], ["isFile", "go/build", [Go$String], [Go$Bool], false, -1], ["joinPath", "go/build", [(go$sliceType(Go$String))], [Go$String], true, -1], ["match", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["matchFile", "go/build", [Go$String, Go$String, Go$Bool, (go$mapType(Go$String, Go$Bool))], [Go$Bool, (go$sliceType(Go$Uint8)), Go$String, go$error], false, -1], ["openFile", "go/build", [Go$String], [io.ReadCloser, go$error], false, -1], ["readDir", "go/build", [Go$String], [(go$sliceType(os.FileInfo)), go$error], false, -1], ["saveCgo", "go/build", [Go$String, (go$ptrType(Package)), (go$ptrType(ast.CommentGroup))], [go$error], false, -1], ["shouldBuild", "go/build", [(go$sliceType(Go$Uint8)), (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["splitPathList", "go/build", [Go$String], [(go$sliceType(Go$String))], false, -1]];
-		Context.init([["GOARCH", "GOARCH", "", Go$String, ""], ["GOOS", "GOOS", "", Go$String, ""], ["GOROOT", "GOROOT", "", Go$String, ""], ["GOPATH", "GOPATH", "", Go$String, ""], ["CgoEnabled", "CgoEnabled", "", Go$Bool, ""], ["UseAllFiles", "UseAllFiles", "", Go$Bool, ""], ["Compiler", "Compiler", "", Go$String, ""], ["BuildTags", "BuildTags", "", (go$sliceType(Go$String)), ""], ["ReleaseTags", "ReleaseTags", "", (go$sliceType(Go$String)), ""], ["InstallSuffix", "InstallSuffix", "", Go$String, ""], ["JoinPath", "JoinPath", "", (go$funcType([(go$sliceType(Go$String))], [Go$String], true)), ""], ["SplitPathList", "SplitPathList", "", (go$funcType([Go$String], [(go$sliceType(Go$String))], false)), ""], ["IsAbsPath", "IsAbsPath", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["IsDir", "IsDir", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["HasSubdir", "HasSubdir", "", (go$funcType([Go$String, Go$String], [Go$String, Go$Bool], false)), ""], ["ReadDir", "ReadDir", "", (go$funcType([Go$String], [(go$sliceType(os.FileInfo)), go$error], false)), ""], ["OpenFile", "OpenFile", "", (go$funcType([Go$String], [io.ReadCloser, go$error], false)), ""]]);
-0	Context0Xgo/ast:CommentGroupgo/build:ImportModego/build:Packageio:ReadCloseros:FileInfo0Åç
-ImportModem	ImportMode = go$pkg.ImportMode = go$newType(4, "Uint", "build.ImportMode", "ImportMode", "go/build", null);
- 0
-ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct", "build.Package", "Package", "go/build", function(Dir_, Name_, Doc_, ImportPath_, Root_, SrcRoot_, PkgRoot_, BinDir_, Goroot_, PkgObj_, AllTags_, ConflictDir_, GoFiles_, CgoFiles_, IgnoredGoFiles_, CFiles_, CXXFiles_, HFiles_, SFiles_, SwigFiles_, SwigCXXFiles_, SysoFiles_, CgoCFLAGS_, CgoCPPFLAGS_, CgoCXXFLAGS_, CgoLDFLAGS_, CgoPkgConfig_, Imports_, ImportPos_, TestGoFiles_, TestImports_, TestImportPos_, XTestGoFiles_, XTestImports_, XTestImportPos_) {
-		this.go$val = this;
-		this.Dir = Dir_ !== undefined ? Dir_ : "";
-		this.Name = Name_ !== undefined ? Name_ : "";
-		this.Doc = Doc_ !== undefined ? Doc_ : "";
-		this.ImportPath = ImportPath_ !== undefined ? ImportPath_ : "";
-		this.Root = Root_ !== undefined ? Root_ : "";
-		this.SrcRoot = SrcRoot_ !== undefined ? SrcRoot_ : "";
-		this.PkgRoot = PkgRoot_ !== undefined ? PkgRoot_ : "";
-		this.BinDir = BinDir_ !== undefined ? BinDir_ : "";
-		this.Goroot = Goroot_ !== undefined ? Goroot_ : false;
-		this.PkgObj = PkgObj_ !== undefined ? PkgObj_ : "";
-		this.AllTags = AllTags_ !== undefined ? AllTags_ : (go$sliceType(Go$String)).nil;
-		this.ConflictDir = ConflictDir_ !== undefined ? ConflictDir_ : "";
-		this.GoFiles = GoFiles_ !== undefined ? GoFiles_ : (go$sliceType(Go$String)).nil;
-		this.CgoFiles = CgoFiles_ !== undefined ? CgoFiles_ : (go$sliceType(Go$String)).nil;
-		this.IgnoredGoFiles = IgnoredGoFiles_ !== undefined ? IgnoredGoFiles_ : (go$sliceType(Go$String)).nil;
-		this.CFiles = CFiles_ !== undefined ? CFiles_ : (go$sliceType(Go$String)).nil;
-		this.CXXFiles = CXXFiles_ !== undefined ? CXXFiles_ : (go$sliceType(Go$String)).nil;
-		this.HFiles = HFiles_ !== undefined ? HFiles_ : (go$sliceType(Go$String)).nil;
-		this.SFiles = SFiles_ !== undefined ? SFiles_ : (go$sliceType(Go$String)).nil;
-		this.SwigFiles = SwigFiles_ !== undefined ? SwigFiles_ : (go$sliceType(Go$String)).nil;
-		this.SwigCXXFiles = SwigCXXFiles_ !== undefined ? SwigCXXFiles_ : (go$sliceType(Go$String)).nil;
-		this.SysoFiles = SysoFiles_ !== undefined ? SysoFiles_ : (go$sliceType(Go$String)).nil;
-		this.CgoCFLAGS = CgoCFLAGS_ !== undefined ? CgoCFLAGS_ : (go$sliceType(Go$String)).nil;
-		this.CgoCPPFLAGS = CgoCPPFLAGS_ !== undefined ? CgoCPPFLAGS_ : (go$sliceType(Go$String)).nil;
-		this.CgoCXXFLAGS = CgoCXXFLAGS_ !== undefined ? CgoCXXFLAGS_ : (go$sliceType(Go$String)).nil;
-		this.CgoLDFLAGS = CgoLDFLAGS_ !== undefined ? CgoLDFLAGS_ : (go$sliceType(Go$String)).nil;
-		this.CgoPkgConfig = CgoPkgConfig_ !== undefined ? CgoPkgConfig_ : (go$sliceType(Go$String)).nil;
-		this.Imports = Imports_ !== undefined ? Imports_ : (go$sliceType(Go$String)).nil;
-		this.ImportPos = ImportPos_ !== undefined ? ImportPos_ : false;
-		this.TestGoFiles = TestGoFiles_ !== undefined ? TestGoFiles_ : (go$sliceType(Go$String)).nil;
-		this.TestImports = TestImports_ !== undefined ? TestImports_ : (go$sliceType(Go$String)).nil;
-		this.TestImportPos = TestImportPos_ !== undefined ? TestImportPos_ : false;
-		this.XTestGoFiles = XTestGoFiles_ !== undefined ? XTestGoFiles_ : (go$sliceType(Go$String)).nil;
-		this.XTestImports = XTestImports_ !== undefined ? XTestImports_ : (go$sliceType(Go$String)).nil;
-		this.XTestImportPos = XTestImportPos_ !== undefined ? XTestImportPos_ : false;
-	});
-Çå		(go$ptrType(Package)).methods = [["IsCommand", "", [], [Go$Bool], false, -1]];
-		Package.init([["Dir", "Dir", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["Doc", "Doc", "", Go$String, ""], ["ImportPath", "ImportPath", "", Go$String, ""], ["Root", "Root", "", Go$String, ""], ["SrcRoot", "SrcRoot", "", Go$String, ""], ["PkgRoot", "PkgRoot", "", Go$String, ""], ["BinDir", "BinDir", "", Go$String, ""], ["Goroot", "Goroot", "", Go$Bool, ""], ["PkgObj", "PkgObj", "", Go$String, ""], ["AllTags", "AllTags", "", (go$sliceType(Go$String)), ""], ["ConflictDir", "ConflictDir", "", Go$String, ""], ["GoFiles", "GoFiles", "", (go$sliceType(Go$String)), ""], ["CgoFiles", "CgoFiles", "", (go$sliceType(Go$String)), ""], ["IgnoredGoFiles", "IgnoredGoFiles", "", (go$sliceType(Go$String)), ""], ["CFiles", "CFiles", "", (go$sliceType(Go$String)), ""], ["CXXFiles", "CXXFiles", "", (go$sliceType(Go$String)), ""], ["HFiles", "HFiles", "", (go$sliceType(Go$String)), ""], ["SFiles", "SFiles", "", (go$sliceType(Go$String)), ""], ["SwigFiles", "SwigFiles", "", (go$sliceType(Go$String)), ""], ["SwigCXXFiles", "SwigCXXFiles", "", (go$sliceType(Go$String)), ""], ["SysoFiles", "SysoFiles", "", (go$sliceType(Go$String)), ""], ["CgoCFLAGS", "CgoCFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCPPFLAGS", "CgoCPPFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCXXFLAGS", "CgoCXXFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoLDFLAGS", "CgoLDFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoPkgConfig", "CgoPkgConfig", "", (go$sliceType(Go$String)), ""], ["Imports", "Imports", "", (go$sliceType(Go$String)), ""], ["ImportPos", "ImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["TestGoFiles", "TestGoFiles", "", (go$sliceType(Go$String)), ""], ["TestImports", "TestImports", "", (go$sliceType(Go$String)), ""], ["TestImportPos", "TestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["XTestGoFiles", "XTestGoFiles", "", (go$sliceType(Go$String)), ""], ["XTestImports", "XTestImports", "", (go$sliceType(Go$String)), ""], ["XTestImportPos", "XTestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""]]);
-0	Package0go/token:Position0Çe	NoGoErrorÅΩ	NoGoError = go$pkg.NoGoError = go$newType(0, "Struct", "build.NoGoError", "NoGoError", "go/build", function(Dir_) {
-		this.go$val = this;
-		this.Dir = Dir_ !== undefined ? Dir_ : "";
-	});
-Åà		(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false, -1]];
-		NoGoError.init([["Dir", "Dir", "", Go$String, ""]]);
-0	NoGoError0 0Ç4importReaderÇ	importReader = go$pkg.importReader = go$newType(0, "Struct", "build.importReader", "importReader", "go/build", function(b_, buf_, peek_, err_, eof_, nerr_) {
-		this.go$val = this;
-		this.b = b_ !== undefined ? b_ : (go$ptrType(bufio.Reader)).nil;
-		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
-		this.peek = peek_ !== undefined ? peek_ : 0;
-		this.err = err_ !== undefined ? err_ : null;
-		this.eof = eof_ !== undefined ? eof_ : false;
-		this.nerr = nerr_ !== undefined ? nerr_ : 0;
-	});
-Ç˝		(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["readByte", "go/build", [], [Go$Uint8], false, -1], ["readIdent", "go/build", [], [], false, -1], ["readImport", "go/build", [], [], false, -1], ["readKeyword", "go/build", [Go$String], [], false, -1], ["readString", "go/build", [], [], false, -1], ["syntaxError", "go/build", [], [], false, -1]];
-		importReader.init([["b", "b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "peek", "go/build", Go$Uint8, ""], ["err", "err", "go/build", go$error, ""], ["eof", "eof", "go/build", Go$Bool, ""], ["nerr", "nerr", "go/build", Go$Int, ""]]);
-0importReader0bufio:Reader0Çc Ç	Context.Ptr.prototype.joinPath = function(elem) {
-		var ctxt, f;
-		ctxt = this;
-		f = ctxt.JoinPath;
-		if (!(f === go$throwNilPointerError)) {
-			return f(elem);
-		}
-		return filepath.Join(elem);
-	};
-	Context.prototype.joinPath = function(elem) { return this.go$val.joinPath(elem); };
- 0ContextjoinPath0&go/build:Contextpath/filepath:Join0Çw Ç(	Context.Ptr.prototype.splitPathList = function(s) {
-		var ctxt, f;
-		ctxt = this;
-		f = ctxt.SplitPathList;
-		if (!(f === go$throwNilPointerError)) {
-			return f(s);
-		}
-		return filepath.SplitList(s);
-	};
-	Context.prototype.splitPathList = function(s) { return this.go$val.splitPathList(s); };
- 0ContextsplitPathList0+go/build:Contextpath/filepath:SplitList0Çt Ç-	Context.Ptr.prototype.isAbsPath = function(path$1) {
-		var ctxt, f;
-		ctxt = this;
-		f = ctxt.IsAbsPath;
-		if (!(f === go$throwNilPointerError)) {
-			return f(path$1);
-		}
-		return filepath.IsAbs(path$1);
-	};
-	Context.prototype.isAbsPath = function(path$1) { return this.go$val.isAbsPath(path$1); };
- 0Context	isAbsPath0'go/build:Contextpath/filepath:IsAbs0Ç∏ ÇÅ	Context.Ptr.prototype.isDir = function(path$1) {
-		var ctxt, f, _tuple, fi, err;
-		ctxt = this;
-		f = ctxt.IsDir;
-		if (!(f === go$throwNilPointerError)) {
-			return f(path$1);
-		}
-		_tuple = os.Stat(path$1), fi = _tuple[0], err = _tuple[1];
-		return go$interfaceIsEqual(err, null) && fi.IsDir();
-	};
-	Context.prototype.isDir = function(path$1) { return this.go$val.isDir(path$1); };
- 0ContextisDir0go/build:Contextos:Stat0ÇY Ç˜	Context.Ptr.prototype.hasSubdir = function(root, dir) {
-		var rel, ok, ctxt, f, _tuple, _tuple$1, _tuple$2, rootSym, _tuple$3, dirSym, _tuple$4, _tuple$5, _tuple$6;
-		rel = "";
-		ok = false;
-		ctxt = this;
-		f = ctxt.HasSubdir;
-		if (!(f === go$throwNilPointerError)) {
-			_tuple = f(root, dir), rel = _tuple[0], ok = _tuple[1];
-			return [rel, ok];
-		}
-		_tuple$1 = hasSubdir(root, dir), rel = _tuple$1[0], ok = _tuple$1[1];
-		if (ok) {
-			return [rel, ok];
-		}
-		_tuple$2 = filepath.EvalSymlinks(root), rootSym = _tuple$2[0];
-		_tuple$3 = filepath.EvalSymlinks(dir), dirSym = _tuple$3[0];
-		_tuple$4 = hasSubdir(rootSym, dir), rel = _tuple$4[0], ok = _tuple$4[1];
-		if (ok) {
-			return [rel, ok];
-		}
-		_tuple$5 = hasSubdir(root, dirSym), rel = _tuple$5[0], ok = _tuple$5[1];
-		if (ok) {
-			return [rel, ok];
-		}
-		_tuple$6 = hasSubdir(rootSym, dirSym), rel = _tuple$6[0], ok = _tuple$6[1];
-		return [rel, ok];
-	};
-	Context.prototype.hasSubdir = function(root, dir) { return this.go$val.hasSubdir(root, dir); };
- 0Context	hasSubdir0Bgo/build:Contextgo/build:hasSubdirpath/filepath:EvalSymlinks0ÇG	hasSubdirÇ’	hasSubdir = function(root, dir) {
-		var rel, ok, _tuple, _tuple$1;
-		rel = "";
-		ok = false;
-		root = filepath.Clean(root);
-		if (!strings.HasSuffix(root, "/")) {
-			root = root + "/";
-		}
-		dir = filepath.Clean(dir);
-		if (!strings.HasPrefix(dir, root)) {
-			_tuple = ["", false], rel = _tuple[0], ok = _tuple[1];
-			return [rel, ok];
-		}
-		_tuple$1 = [filepath.ToSlash(dir.substring(root.length)), true], rel = _tuple$1[0], ok = _tuple$1[1];
-		return [rel, ok];
-	};
- 0	hasSubdir0Rpath/filepath:Cleanpath/filepath:ToSlashstrings:HasPrefixstrings:HasSuffix0Çh Ç%	Context.Ptr.prototype.readDir = function(path$1) {
-		var ctxt, f;
-		ctxt = this;
-		f = ctxt.ReadDir;
-		if (!(f === go$throwNilPointerError)) {
-			return f(path$1);
-		}
-		return ioutil.ReadDir(path$1);
-	};
-	Context.prototype.readDir = function(path$1) { return this.go$val.readDir(path$1); };
- 0ContextreadDir0%go/build:Contextio/ioutil:ReadDir0ÇÏ Ç≤	Context.Ptr.prototype.openFile = function(path$1) {
-		var ctxt, fn, _tuple, f, err;
-		ctxt = this;
-		fn = ctxt.OpenFile;
-		if (!(fn === go$throwNilPointerError)) {
-			return fn(path$1);
-		}
-		_tuple = os.Open(path$1), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [null, err];
-		}
-		return [f, null];
-	};
-	Context.prototype.openFile = function(path$1) { return this.go$val.openFile(path$1); };
- 0ContextopenFile0go/build:Contextos:Open0Çó ÇU	Context.Ptr.prototype.isFile = function(path$1) {
-		var ctxt, _tuple, f, err;
-		ctxt = this;
-		_tuple = ctxt.openFile(path$1), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return false;
-		}
-		f.Close();
-		return true;
-	};
-	Context.prototype.isFile = function(path$1) { return this.go$val.isFile(path$1); };
- 0ContextisFile0%go/build:Contextgo/build:openFile0ÇË Çé	Context.Ptr.prototype.gopath = function() {
-		var ctxt, all, _ref, _i, _slice, _index, p;
-		ctxt = this;
-		all = (go$sliceType(Go$String)).nil;
-		_ref = ctxt.splitPathList(ctxt.GOPATH);
-		_i = 0;
-		while (_i < _ref.length) {
-			p = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (p === "" || p === ctxt.GOROOT) {
-				_i++;
-				continue;
-			}
-			if (strings.HasPrefix(p, "~")) {
-				_i++;
-				continue;
-			}
-			all = go$append(all, p);
-			_i++;
-		}
-		return all;
-	};
-	Context.prototype.gopath = function() { return this.go$val.gopath(); };
- 0Contextgopath0=go/build:Contextgo/build:splitPathListstrings:HasPrefix0ÇÄ Ç%	Context.Ptr.prototype.SrcDirs = function() {
-		var ctxt, all, dir, _ref, _i, _slice, _index, p, dir$1;
-		ctxt = this;
-		all = (go$sliceType(Go$String)).nil;
-		if (!(ctxt.GOROOT === "")) {
-			dir = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
-			if (ctxt.isDir(dir)) {
-				all = go$append(all, dir);
-			}
-		}
-		_ref = ctxt.gopath();
-		_i = 0;
-		while (_i < _ref.length) {
-			p = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([p, "src"]));
-			if (ctxt.isDir(dir$1)) {
-				all = go$append(all, dir$1);
-			}
-			_i++;
-		}
-		return all;
-	};
-	Context.prototype.SrcDirs = function() { return this.go$val.SrcDirs(); };
- 0	Context0Fgo/build:Contextgo/build:gopathgo/build:isDirgo/build:joinPath0ÇìdefaultContextÇ	defaultContext = function() {
-		var c, _ref, _entry, _struct;
-		c = new Context.Ptr();
-		c.GOARCH = envOr("GOARCH", "js");
-		c.GOOS = envOr("GOOS", "darwin");
-		c.GOROOT = runtime.GOROOT();
-		c.GOPATH = envOr("GOPATH", "");
-		c.Compiler = "gc";
-		c.ReleaseTags = new (go$sliceType(Go$String))(["go1.1", "go1.2"]);
-		_ref = os.Getenv("CGO_ENABLED");
-		switch (0) { default: if (_ref === "1") {
-			c.CgoEnabled = true;
-		} else if (_ref === "0") {
-			c.CgoEnabled = false;
-		} else {
-			if ("js" === c.GOARCH && "darwin" === c.GOOS) {
-				c.CgoEnabled = (_entry = cgoEnabled[c.GOOS + "/" + c.GOARCH], _entry !== undefined ? _entry.v : false);
-				break;
-			}
-			c.CgoEnabled = false;
-		} }
-		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
-	};
- 0defaultContext0Rgo/build:Contextgo/build:cgoEnabledgo/build:envOr	os:Getenvruntime:GOROOT0ÅïenvOrt	envOr = function(name, def) {
-		var s;
-		s = os.Getenv(name);
-		if (s === "") {
-			return def;
-		}
-		return s;
-	};
- 0envOr0	os:Getenv0Å⁄ Å¥	Package.Ptr.prototype.IsCommand = function() {
-		var p;
-		p = this;
-		return p.Name === "main";
-	};
-	Package.prototype.IsCommand = function() { return this.go$val.IsCommand(); };
- 0	Package0go/build:Package0Ç Åﬂ	Context.Ptr.prototype.ImportDir = function(dir, mode) {
-		var ctxt;
-		ctxt = this;
-		return ctxt.Import(".", dir, mode);
-	};
-	Context.prototype.ImportDir = function(dir, mode) { return this.go$val.ImportDir(dir, mode); };
- 0	Context0go/build:Context0ÅÔ Å≈	NoGoError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "no buildable Go source files in " + e.Dir;
-	};
-	NoGoError.prototype.Error = function() { return this.go$val.Error(); };
- 0	NoGoError0go/build:NoGoError0Å∏nameExtÅä	nameExt = function(name) {
-		var i;
-		i = strings.LastIndex(name, ".");
-		if (i < 0) {
-			return "";
-		}
-		return name.substring(i);
-	};
- 0	nameExt0strings:LastIndex0ÇB‚ Ç@£	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, _tuple$1, sub, ok, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, _tuple$2, sub$1, ok$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
-		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
-		ctxt = go$this;
-		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
-		if (path$1 === "") {
-			return [p, fmt.Errorf("import %q: invalid import path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
-		}
-		pkga = "";
-		pkgerr = null;
-		_ref = ctxt.Compiler;
-		if (_ref === "gccgo") {
-			_tuple = path.Split(p.ImportPath), dir = _tuple[0], elem = _tuple[1];
-			pkga = "pkg/gccgo_" + ctxt.GOOS + "_" + ctxt.GOARCH + "/" + dir + "lib" + elem + ".a";
-		} else if (_ref === "gc") {
-			suffix = "";
-			if (!(ctxt.InstallSuffix === "")) {
-				suffix = "_" + ctxt.InstallSuffix;
-			}
-			pkga = "pkg/" + ctxt.GOOS + "_" + ctxt.GOARCH + suffix + "/" + p.ImportPath + ".a";
-		} else {
-			pkgerr = fmt.Errorf("import %q: unknown compiler %q", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(ctxt.Compiler)]));
-		}
-		binaryOnly = false;
-		/* if (IsLocalImport(path$1)) { */ if (IsLocalImport(path$1)) {} else { go$s = 2; continue; }
-			pkga = "";
-			if (srcDir === "") {
-				return [p, fmt.Errorf("import %q: import relative to unknown directory", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
-			}
-			if (!ctxt.isAbsPath(path$1)) {
-				p.Dir = ctxt.joinPath(new (go$sliceType(Go$String))([srcDir, path$1]));
-			}
-			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 4; continue; }
-				root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
-				_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1];
-				/* if (ok) { */ if (ok) {} else { go$s = 5; continue; }
-					p.Goroot = true;
-					p.ImportPath = sub;
-					p.Root = ctxt.GOROOT;
-					/* goto Found */ go$s = 1; continue;
-				/* } */ case 5:
-			/* } */ case 4:
-			all = ctxt.gopath();
-			_ref$1 = all;
-			_i = 0;
-			/* while (_i < _ref$1.length) { */ case 6: if(!(_i < _ref$1.length)) { go$s = 7; continue; }
-				root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				i = _i;
-				rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
-				_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1];
-				/* if (ok$1) { */ if (ok$1) {} else { go$s = 8; continue; }
-					/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 9; continue; }
-						dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1]));
-						/* if (ctxt.isDir(dir$1)) { */ if (ctxt.isDir(dir$1)) {} else { go$s = 10; continue; }
-							p.ConflictDir = dir$1;
-							/* goto Found */ go$s = 1; continue;
-						/* } */ case 10:
-					/* } */ case 9:
-					_ref$2 = go$subslice(all, 0, i);
-					_i$1 = 0;
-					/* while (_i$1 < _ref$2.length) { */ case 11: if(!(_i$1 < _ref$2.length)) { go$s = 12; continue; }
-						earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-						dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1]));
-						/* if (ctxt.isDir(dir$2)) { */ if (ctxt.isDir(dir$2)) {} else { go$s = 13; continue; }
-							p.ConflictDir = dir$2;
-							/* goto Found */ go$s = 1; continue;
-						/* } */ case 13:
-						_i$1++;
-					/* } */ go$s = 11; continue; case 12:
-					p.ImportPath = sub$1;
-					p.Root = root$1;
-					/* goto Found */ go$s = 1; continue;
-				/* } */ case 8:
-				_i++;
-			/* } */ go$s = 6; continue; case 7:
-		/* } else { */ go$s = 3; continue; case 2: 
-			if (strings.HasPrefix(path$1, "/")) {
-				return [p, fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
-			}
-			tried = new (go$structType([["goroot", "goroot", "go/build", Go$String, ""], ["gopath", "gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
-			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 14; continue; }
-				dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
-				isDir = ctxt.isDir(dir$3);
-				binaryOnly = !isDir && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, pkga])));
-				/* if (isDir || binaryOnly) { */ if (isDir || binaryOnly) {} else { go$s = 15; continue; }
-					p.Dir = dir$3;
-					p.Goroot = true;
-					p.Root = ctxt.GOROOT;
-					/* goto Found */ go$s = 1; continue;
-				/* } */ case 15:
-				tried.goroot = dir$3;
-			/* } */ case 14:
-			_ref$3 = ctxt.gopath();
-			_i$2 = 0;
-			/* while (_i$2 < _ref$3.length) { */ case 16: if(!(_i$2 < _ref$3.length)) { go$s = 17; continue; }
-				root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-				dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
-				isDir$1 = ctxt.isDir(dir$4);
-				binaryOnly = !isDir$1 && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([root$2, pkga])));
-				/* if (isDir$1 || binaryOnly) { */ if (isDir$1 || binaryOnly) {} else { go$s = 18; continue; }
-					p.Dir = dir$4;
-					p.Root = root$2;
-					/* goto Found */ go$s = 1; continue;
-				/* } */ case 18:
-				tried.gopath = go$append(tried.gopath, dir$4);
-				_i$2++;
-			/* } */ go$s = 16; continue; case 17:
-			paths = (go$sliceType(Go$String)).nil;
-			if (!(tried.goroot === "")) {
-				paths = go$append(paths, fmt.Sprintf("\t%s (from $GOROOT)", new (go$sliceType(go$emptyInterface))([new Go$String(tried.goroot)])));
-			} else {
-				paths = go$append(paths, "\t($GOROOT not set)");
-			}
-			i$1 = 0;
-			format = "\t%s (from $GOPATH)";
-			while (i$1 < tried.gopath.length) {
-				if (i$1 > 0) {
-					format = "\t%s";
-				}
-				paths = go$append(paths, fmt.Sprintf(format, new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tried.gopath, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))])));
-				i$1 = i$1 + 1 >> 0;
-			}
-			if (i$1 === 0) {
-				paths = go$append(paths, "\t($GOPATH not set)");
-			}
-			return [p, fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]))];
-		/* } */ case 3:
-		/* Found: */ case 1:
-		if (!(p.Root === "")) {
-			if (p.Goroot) {
-				p.SrcRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "src", "pkg"]));
-			} else {
-				p.SrcRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "src"]));
-			}
-			p.PkgRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "pkg"]));
-			p.BinDir = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "bin"]));
-			if (!(pkga === "")) {
-				p.PkgObj = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, pkga]));
-			}
-		}
-		if (!((((mode & 1) >>> 0) === 0))) {
-			return [p, pkgerr];
-		}
-		if (binaryOnly && !(((((mode & 2) >>> 0)) === 0))) {
-			return [p, pkgerr];
-		}
-		_tuple$3 = ctxt.readDir(p.Dir), dirs = _tuple$3[0], err = _tuple$3[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [p, err];
-		}
-		Sfiles = (go$sliceType(Go$String)).nil;
-		firstFile = "";
-		imported = new Go$Map();
-		testImported = new Go$Map();
-		xTestImported = new Go$Map();
-		allTags = new Go$Map();
-		fset = token.NewFileSet();
-		_ref$4 = dirs;
-		_i$3 = 0;
-		while (_i$3 < _ref$4.length) {
-			d = (_slice$4 = _ref$4, _index$4 = _i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
-			if (d.IsDir()) {
-				_i$3++;
-				continue;
-			}
-			name = d.Name();
-			ext = nameExt(name);
-			_tuple$4 = ctxt.matchFile(p.Dir, name, true, allTags), match = _tuple$4[0], data = _tuple$4[1], filename = _tuple$4[2], err$1 = _tuple$4[3];
-			if (!(go$interfaceIsEqual(err$1, null))) {
-				return [p, err$1];
-			}
-			if (!match) {
-				if (ext === ".go") {
-					p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
-				}
-				_i$3++;
-				continue;
-			}
-			_ref$5 = ext;
-			if (_ref$5 === ".c") {
-				p.CFiles = go$append(p.CFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".cc" || _ref$5 === ".cpp" || _ref$5 === ".cxx") {
-				p.CXXFiles = go$append(p.CXXFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".h" || _ref$5 === ".hh" || _ref$5 === ".hpp" || _ref$5 === ".hxx") {
-				p.HFiles = go$append(p.HFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".s") {
-				p.SFiles = go$append(p.SFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".S") {
-				Sfiles = go$append(Sfiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".swig") {
-				p.SwigFiles = go$append(p.SwigFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".swigcxx") {
-				p.SwigCXXFiles = go$append(p.SwigCXXFiles, name);
-				_i$3++;
-				continue;
-			} else if (_ref$5 === ".syso") {
-				p.SysoFiles = go$append(p.SysoFiles, name);
-				_i$3++;
-				continue;
-			}
-			_tuple$5 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$5[0], err$1 = _tuple$5[1];
-			if (!(go$interfaceIsEqual(err$1, null))) {
-				return [p, err$1];
-			}
-			pkg = pf.Name.Name;
-			if (pkg === "documentation") {
-				p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
-				_i$3++;
-				continue;
-			}
-			isTest = strings.HasSuffix(name, "_test.go");
-			isXTest = false;
-			if (isTest && strings.HasSuffix(pkg, "_test")) {
-				isXTest = true;
-				pkg = pkg.substring(0, (pkg.length - 5 >> 0));
-			}
-			if (p.Name === "") {
-				p.Name = pkg;
-				firstFile = name;
-			} else if (!(pkg === p.Name)) {
-				return [p, fmt.Errorf("found packages %s (%s) and %s (%s) in %s", new (go$sliceType(go$emptyInterface))([new Go$String(p.Name), new Go$String(firstFile), new Go$String(pkg), new Go$String(name), new Go$String(p.Dir)]))];
-			}
-			if (!(pf.Doc === (go$ptrType(ast.CommentGroup)).nil) && p.Doc === "") {
-				p.Doc = doc.Synopsis(pf.Doc.Text());
-			}
-			isCgo = false;
-			_ref$6 = pf.Decls;
-			_i$4 = 0;
-			while (_i$4 < _ref$6.length) {
-				decl = (_slice$5 = _ref$6, _index$5 = _i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-				_tuple$6 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$6[0], ok$2 = _tuple$6[1];
-				if (!ok$2) {
-					_i$4++;
-					continue;
-				}
-				_ref$7 = d$1.Specs;
-				_i$5 = 0;
-				while (_i$5 < _ref$7.length) {
-					dspec = (_slice$6 = _ref$7, _index$6 = _i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-					_tuple$7 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$7[0], ok$3 = _tuple$7[1];
-					if (!ok$3) {
-						_i$5++;
-						continue;
-					}
-					quoted = spec.Path.Value;
-					_tuple$8 = strconv.Unquote(quoted), path$2 = _tuple$8[0], err$2 = _tuple$8[1];
-					if (!(go$interfaceIsEqual(err$2, null))) {
-						log.Panicf("%s: parser returned invalid quoted string: <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(quoted)]));
-					}
-					if (isXTest) {
-						_key = path$2, (xTestImported || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$append((_entry = xTestImported[path$2], _entry !== undefined ? _entry.v : (go$sliceType(token.Position)).nil), (_struct = fset.Position(spec.Pos()), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column))) };
-					} else if (isTest) {
-						_key$1 = path$2, (testImported || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: go$append((_entry$1 = testImported[path$2], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(token.Position)).nil), (_struct$1 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column))) };
-					} else {
-						_key$2 = path$2, (imported || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: go$append((_entry$2 = imported[path$2], _entry$2 !== undefined ? _entry$2.v : (go$sliceType(token.Position)).nil), (_struct$2 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column))) };
-					}
-					if (path$2 === "C") {
-						if (isTest) {
-							return [p, fmt.Errorf("use of cgo in test %s not supported", new (go$sliceType(go$emptyInterface))([new Go$String(filename)]))];
-						}
-						cg = spec.Doc;
-						if (cg === (go$ptrType(ast.CommentGroup)).nil && (d$1.Specs.length === 1)) {
-							cg = d$1.Doc;
-						}
-						if (!(cg === (go$ptrType(ast.CommentGroup)).nil)) {
-							err$3 = ctxt.saveCgo(filename, p, cg);
-							if (!(go$interfaceIsEqual(err$3, null))) {
-								return [p, err$3];
-							}
-						}
-						isCgo = true;
-					}
-					_i$5++;
-				}
-				_i$4++;
-			}
-			if (isCgo) {
-				_key$3 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
-				if (ctxt.CgoEnabled) {
-					p.CgoFiles = go$append(p.CgoFiles, name);
-				} else {
-					p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
-				}
-			} else if (isXTest) {
-				p.XTestGoFiles = go$append(p.XTestGoFiles, name);
-			} else if (isTest) {
-				p.TestGoFiles = go$append(p.TestGoFiles, name);
-			} else {
-				p.GoFiles = go$append(p.GoFiles, name);
-			}
-			_i$3++;
-		}
-		if ((((p.GoFiles.length + p.CgoFiles.length >> 0) + p.TestGoFiles.length >> 0) + p.XTestGoFiles.length >> 0) === 0) {
-			return [p, new NoGoError.Ptr(p.Dir)];
-		}
-		_ref$8 = allTags;
-		_i$6 = 0;
-		_keys = go$keys(_ref$8);
-		while (_i$6 < _keys.length) {
-			_entry$3 = _ref$8[_keys[_i$6]];
-			tag = _entry$3.k;
-			p.AllTags = go$append(p.AllTags, tag);
-			_i$6++;
-		}
-		sort.Strings(p.AllTags);
-		_tuple$9 = cleanImports(imported), p.Imports = _tuple$9[0], p.ImportPos = _tuple$9[1];
-		_tuple$10 = cleanImports(testImported), p.TestImports = _tuple$10[0], p.TestImportPos = _tuple$10[1];
-		_tuple$11 = cleanImports(xTestImported), p.XTestImports = _tuple$11[0], p.XTestImportPos = _tuple$11[1];
-		if (p.CgoFiles.length > 0) {
-			p.SFiles = go$appendSlice(p.SFiles, Sfiles);
-			sort.Strings(p.SFiles);
-		}
-		return [p, pkgerr];
-		/* */ } break; } }; return go$f();
-	};
-	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
- 0	Context0Ç(
-fmt:Errorffmt:Sprintfgo/ast:CommentGroupgo/ast:GenDeclgo/ast:ImportSpecgo/build:Contextgo/build:IsLocalImportgo/build:NoGoErrorgo/build:Packagego/build:cleanImportsgo/build:gopathgo/build:hasSubdirgo/build:isAbsPathgo/build:isDirgo/build:isFilego/build:joinPathgo/build:matchFilego/build:nameExtgo/build:readDirgo/build:saveCgogo/doc:Synopsisgo/parser:ParseFilego/token:NewFileSetgo/token:Position
-log:Panicf
-path:Splitsort:Stringsstrconv:Unquotestrings:HasPrefixstrings:HasSuffixstrings:Join0Çñ Ç[	Context.Ptr.prototype.MatchFile = function(dir, name) {
-		var match, err, ctxt, _tuple;
-		match = false;
-		err = null;
-		ctxt = this;
-		_tuple = ctxt.matchFile(dir, name, false, false), match = _tuple[0], err = _tuple[3];
-		return [match, err];
-	};
-	Context.prototype.MatchFile = function(dir, name) { return this.go$val.MatchFile(dir, name); };
- 0	Context0&go/build:Contextgo/build:matchFile0Çò Çû	Context.Ptr.prototype.matchFile = function(dir, name, returnImports, allTags) {
-		var match, data, filename, err, ctxt, i, ext, _ref, _tuple, f, _tuple$1, _tuple$2;
-		match = false;
-		data = (go$sliceType(Go$Uint8)).nil;
-		filename = "";
-		err = null;
-		ctxt = this;
-		if (strings.HasPrefix(name, "_") || strings.HasPrefix(name, ".")) {
-			return [match, data, filename, err];
-		}
-		i = strings.LastIndex(name, ".");
-		if (i < 0) {
-			i = name.length;
-		}
-		ext = name.substring(i);
-		if (!ctxt.goodOSArchFile(name, allTags) && !ctxt.UseAllFiles) {
-			return [match, data, filename, err];
-		}
-		_ref = ext;
-		if (_ref === ".go" || _ref === ".c" || _ref === ".cc" || _ref === ".cxx" || _ref === ".cpp" || _ref === ".s" || _ref === ".h" || _ref === ".hh" || _ref === ".hpp" || _ref === ".hxx" || _ref === ".S" || _ref === ".swig" || _ref === ".swigcxx") {
-		} else if (_ref === ".syso") {
-			match = true;
-			return [match, data, filename, err];
-		} else {
-			return [match, data, filename, err];
-		}
-		filename = ctxt.joinPath(new (go$sliceType(Go$String))([dir, name]));
-		_tuple = ctxt.openFile(filename), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [match, data, filename, err];
-		}
-		if (strings.HasSuffix(filename, ".go")) {
-			_tuple$1 = readImports(f, false), data = _tuple$1[0], err = _tuple$1[1];
-		} else {
-			_tuple$2 = readComments(f), data = _tuple$2[0], err = _tuple$2[1];
-		}
-		f.Close();
-		if (!(go$interfaceIsEqual(err, null))) {
-			err = fmt.Errorf("read %s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(filename), err]));
-			return [match, data, filename, err];
-		}
-		if (!ctxt.shouldBuild(data, allTags) && !ctxt.UseAllFiles) {
-			return [match, data, filename, err];
-		}
-		match = true;
-		return [match, data, filename, err];
-	};
-	Context.prototype.matchFile = function(dir, name, returnImports, allTags) { return this.go$val.matchFile(dir, name, returnImports, allTags); };
- 0Context	matchFile0ÅŸ
-fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/build:openFilego/build:readCommentsgo/build:readImportsgo/build:shouldBuildstrings:HasPrefixstrings:HasSuffixstrings:LastIndex0Ç±cleanImportsÇ}	cleanImports = function(m) {
-		var all, _ref, _i, _keys, _entry, path$1;
-		all = (go$sliceType(Go$String)).make(0, go$keys(m).length, function() { return ""; });
-		_ref = m;
-		_i = 0;
-		_keys = go$keys(_ref);
-		while (_i < _keys.length) {
-			_entry = _ref[_keys[_i]];
-			path$1 = _entry.k;
-			all = go$append(all, path$1);
-			_i++;
-		}
-		sort.Strings(all);
-		return [all, m];
-	};
- 0cleanImports0sort:Strings0ÅüImportu	Import = go$pkg.Import = function(path$1, srcDir, mode) {
-		return go$pkg.Default.Import(path$1, srcDir, mode);
-	};
- 0Import0go/build:Default0Åò	ImportDirh	ImportDir = go$pkg.ImportDir = function(dir, mode) {
-		return go$pkg.Default.ImportDir(dir, mode);
-	};
- 0	ImportDir0go/build:Default0Ç	$ Çà	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
-		var ctxt, end, p, line, i, _tuple, allok, line$1, i$1, _tuple$1, _slice, _index, f, _slice$1, _index$1, ok, _ref, _i, _slice$2, _index$2, tok;
-		ctxt = this;
-		end = 0;
-		p = content;
-		while (p.length > 0) {
-			line = p;
-			i = bytes.IndexByte(line, 10);
-			if (i >= 0) {
-				_tuple = [go$subslice(line, 0, i), go$subslice(p, (i + 1 >> 0))], line = _tuple[0], p = _tuple[1];
-			} else {
-				p = go$subslice(p, p.length);
-			}
-			line = bytes.TrimSpace(line);
-			if (line.length === 0) {
-				end = content.length - p.length >> 0;
-				continue;
-			}
-			if (!bytes.HasPrefix(line, slashslash)) {
-				break;
-			}
-		}
-		content = go$subslice(content, 0, end);
-		p = content;
-		allok = true;
-		while (p.length > 0) {
-			line$1 = p;
-			i$1 = bytes.IndexByte(line$1, 10);
-			if (i$1 >= 0) {
-				_tuple$1 = [go$subslice(line$1, 0, i$1), go$subslice(p, (i$1 + 1 >> 0))], line$1 = _tuple$1[0], p = _tuple$1[1];
-			} else {
-				p = go$subslice(p, p.length);
-			}
-			line$1 = bytes.TrimSpace(line$1);
-			if (bytes.HasPrefix(line$1, slashslash)) {
-				line$1 = bytes.TrimSpace(go$subslice(line$1, slashslash.length));
-				if (line$1.length > 0 && ((_slice = line$1, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 43)) {
-					f = strings.Fields(go$bytesToString(line$1));
-					if ((_slice$1 = f, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === "+build") {
-						ok = false;
-						_ref = go$subslice(f, 1);
-						_i = 0;
-						while (_i < _ref.length) {
-							tok = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-							if (ctxt.match(tok, allTags)) {
-								ok = true;
-							}
-							_i++;
-						}
-						if (!ok) {
-							allok = false;
-						}
-					}
-				}
-			}
-		}
-		return allok;
-	};
-	Context.prototype.shouldBuild = function(content, allTags) { return this.go$val.shouldBuild(content, allTags); };
- 0ContextshouldBuild0zbytes:HasPrefixbytes:IndexBytebytes:TrimSpacego/build:Contextgo/build:matchgo/build:slashslashstrings:Fields0Çñ Ç‹	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
-		var ctxt, text, _ref, _i, _slice, _index, line, orig, i, _tuple, line$1, argstr, f, _slice$1, _index$1, _tuple$1, cond, verb, ok, _ref$1, _i$1, _slice$2, _index$2, c, _tuple$2, args, err, _ref$2, _i$2, _slice$3, _index$3, arg, _ref$3;
-		ctxt = this;
-		text = cg.Text();
-		_ref = strings.Split(text, "\n");
-		_i = 0;
-		while (_i < _ref.length) {
-			line = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			orig = line;
-			line = strings.TrimSpace(line);
-			if (line.length < 5 || !(line.substring(0, 4) === "#cgo") || (!((line.charCodeAt(4) === 32)) && !((line.charCodeAt(4) === 9)))) {
-				_i++;
-				continue;
-			}
-			line = strings.TrimSpace(line.substring(4));
-			i = strings.Index(line, ":");
-			if (i < 0) {
-				return fmt.Errorf("%s: invalid #cgo line: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(orig)]));
-			}
-			_tuple = [line.substring(0, i), line.substring((i + 1 >> 0))], line$1 = _tuple[0], argstr = _tuple[1];
-			f = strings.Fields(line$1);
-			if (f.length < 1) {
-				return fmt.Errorf("%s: invalid #cgo line: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(orig)]));
-			}
-			_tuple$1 = [go$subslice(f, 0, (f.length - 1 >> 0)), (_slice$1 = f, _index$1 = (f.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], cond = _tuple$1[0], verb = _tuple$1[1];
-			if (cond.length > 0) {
-				ok = false;
-				_ref$1 = cond;
-				_i$1 = 0;
-				while (_i$1 < _ref$1.length) {
-					c = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-					if (ctxt.match(c, false)) {
-						ok = true;
-						break;
-					}
-					_i$1++;
-				}
-				if (!ok) {
-					_i++;
-					continue;
-				}
-			}
-			_tuple$2 = splitQuoted(argstr), args = _tuple$2[0], err = _tuple$2[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return fmt.Errorf("%s: invalid #cgo line: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(orig)]));
-			}
-			_ref$2 = args;
-			_i$2 = 0;
-			while (_i$2 < _ref$2.length) {
-				arg = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-				if (!safeCgoName(arg)) {
-					return fmt.Errorf("%s: malformed #cgo argument: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(arg)]));
-				}
-				_i$2++;
-			}
-			_ref$3 = verb;
-			if (_ref$3 === "CFLAGS") {
-				di.CgoCFLAGS = go$appendSlice(di.CgoCFLAGS, args);
-			} else if (_ref$3 === "CPPFLAGS") {
-				di.CgoCPPFLAGS = go$appendSlice(di.CgoCPPFLAGS, args);
-			} else if (_ref$3 === "CXXFLAGS") {
-				di.CgoCXXFLAGS = go$appendSlice(di.CgoCXXFLAGS, args);
-			} else if (_ref$3 === "LDFLAGS") {
-				di.CgoLDFLAGS = go$appendSlice(di.CgoLDFLAGS, args);
-			} else if (_ref$3 === "pkg-config") {
-				di.CgoPkgConfig = go$appendSlice(di.CgoPkgConfig, args);
-			} else {
-				return fmt.Errorf("%s: invalid #cgo verb: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(orig)]));
-			}
-			_i++;
-		}
-		return null;
-	};
-	Context.prototype.saveCgo = function(filename, di, cg) { return this.go$val.saveCgo(filename, di, cg); };
- 0ContextsaveCgo0Åõ
-fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:splitQuotedstrings:Fieldsstrings:Indexstrings:Splitstrings:TrimSpace0ÇKsafeCgoNameÇ	safeCgoName = function(s) {
-		var i, c;
-		if (s === "") {
-			return false;
-		}
-		i = 0;
-		while (i < s.length) {
-			c = s.charCodeAt(i);
-			if (c < 128 && bytes.IndexByte(safeBytes, c) < 0) {
-				return false;
-			}
-			i = i + 1 >> 0;
-		}
-		return true;
-	};
- 0safeCgoName0%bytes:IndexBytego/build:safeBytes0ÇUsplitQuotedÇ	splitQuoted = function(s) {
-		var r, err, args, arg, escaped, quoted, quote, i, _ref, _i, _rune, rune, _slice, _index, _tuple;
-		r = (go$sliceType(Go$String)).nil;
-		err = null;
-		args = (go$sliceType(Go$String)).nil;
-		arg = (go$sliceType(Go$Int32)).make(s.length, 0, function() { return 0; });
-		escaped = false;
-		quoted = false;
-		quote = 0;
-		i = 0;
-		_ref = s;
-		_i = 0;
-		while (_i < _ref.length) {
-			_rune = go$decodeRune(_ref, _i);
-			rune = _rune[0];
-			if (escaped) {
-				escaped = false;
-			} else if (rune === 92) {
-				escaped = true;
-				_i += _rune[1];
-				continue;
-			} else if (!((quote === 0))) {
-				if (rune === quote) {
-					quote = 0;
-					_i += _rune[1];
-					continue;
-				}
-			} else if ((rune === 34) || (rune === 39)) {
-				quoted = true;
-				quote = rune;
-				_i += _rune[1];
-				continue;
-			} else if (unicode.IsSpace(rune)) {
-				if (quoted || i > 0) {
-					quoted = false;
-					args = go$append(args, go$runesToString(go$subslice(arg, 0, i)));
-					i = 0;
-				}
-				_i += _rune[1];
-				continue;
-			}
-			_slice = arg, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = rune) : go$throwRuntimeError("index out of range");
-			i = i + 1 >> 0;
-			_i += _rune[1];
-		}
-		if (quoted || i > 0) {
-			args = go$append(args, go$runesToString(go$subslice(arg, 0, i)));
-		}
-		if (!((quote === 0))) {
-			err = errors.New("unclosed quote");
-		} else if (escaped) {
-			err = errors.New("unfinished escaping");
-		}
-		_tuple = [args, err], r = _tuple[0], err = _tuple[1];
-		return [r, err];
-	};
- 0splitQuoted0
-errors:Newunicode:IsSpace0Çx Ç	Context.Ptr.prototype.match = function(name, allTags) {
-		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
-		ctxt = this;
-		if (name === "") {
-			if (!(allTags === false)) {
-				_key = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
-			}
-			return false;
-		}
-		i = strings.Index(name, ",");
-		if (i >= 0) {
-			ok1 = ctxt.match(name.substring(0, i), allTags);
-			ok2 = ctxt.match(name.substring((i + 1 >> 0)), allTags);
-			return ok1 && ok2;
-		}
-		if (strings.HasPrefix(name, "!!")) {
-			return false;
-		}
-		if (strings.HasPrefix(name, "!")) {
-			return name.length > 1 && !ctxt.match(name.substring(1), allTags);
-		}
-		if (!(allTags === false)) {
-			_key$1 = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
-		}
-		_ref = name;
-		_i = 0;
-		while (_i < _ref.length) {
-			_rune = go$decodeRune(_ref, _i);
-			c = _rune[0];
-			if (!unicode.IsLetter(c) && !unicode.IsDigit(c) && !((c === 95)) && !((c === 46))) {
-				return false;
-			}
-			_i += _rune[1];
-		}
-		if (ctxt.CgoEnabled && name === "cgo") {
-			return true;
-		}
-		if (name === ctxt.GOOS || name === ctxt.GOARCH || name === ctxt.Compiler) {
-			return true;
-		}
-		_ref$1 = ctxt.BuildTags;
-		_i$1 = 0;
-		while (_i$1 < _ref$1.length) {
-			tag = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (tag === name) {
-				return true;
-			}
-			_i$1++;
-		}
-		_ref$2 = ctxt.ReleaseTags;
-		_i$2 = 0;
-		while (_i$2 < _ref$2.length) {
-			tag$1 = (_slice$1 = _ref$2, _index$1 = _i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (tag$1 === name) {
-				return true;
-			}
-			_i$2++;
-		}
-		return false;
-	};
-	Context.prototype.match = function(name, allTags) { return this.go$val.match(name, allTags); };
- 0Contextmatch0Wgo/build:Contextstrings:HasPrefixstrings:Indexunicode:IsDigitunicode:IsLetter0ÇØ Ç4	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
-		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key, _slice$3, _index$3, _key$1, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$3, _slice$11, _index$11, _slice$12, _index$12;
-		ctxt = this;
-		dot = strings.Index(name, ".");
-		if (!((dot === -1))) {
-			name = name.substring(0, dot);
-		}
-		l = strings.Split(name, "_");
-		n = l.length;
-		if (n > 0 && (_slice = l, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "test") {
-			l = go$subslice(l, 0, (n - 1 >> 0));
-		}
-		n$1 = l.length;
-		if (n$1 >= 2 && (_entry = knownOS[(_slice$1 = l, _index$1 = (n$1 - 2 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _entry !== undefined ? _entry.v : false) && (_entry$1 = knownArch[(_slice$2 = l, _index$2 = (n$1 - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))], _entry$1 !== undefined ? _entry$1.v : false)) {
-			if (!(allTags === false)) {
-				_key = (_slice$3 = l, _index$3 = (n$1 - 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
-				_key$1 = (_slice$4 = l, _index$4 = (n$1 - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
-			}
-			return (_slice$5 = l, _index$5 = (n$1 - 2 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === ctxt.GOOS && (_slice$6 = l, _index$6 = (n$1 - 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) === ctxt.GOARCH;
-		}
-		if (n$1 >= 1 && (_entry$2 = knownOS[(_slice$7 = l, _index$7 = (n$1 - 1 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))], _entry$2 !== undefined ? _entry$2.v : false)) {
-			if (!(allTags === false)) {
-				_key$2 = (_slice$8 = l, _index$8 = (n$1 - 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
-			}
-			return (_slice$9 = l, _index$9 = (n$1 - 1 >> 0), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) === ctxt.GOOS;
-		}
-		if (n$1 >= 1 && (_entry$3 = knownArch[(_slice$10 = l, _index$10 = (n$1 - 1 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))], _entry$3 !== undefined ? _entry$3.v : false)) {
-			if (!(allTags === false)) {
-				_key$3 = (_slice$11 = l, _index$11 = (n$1 - 1 >> 0), (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
-			}
-			return (_slice$12 = l, _index$12 = (n$1 - 1 >> 0), (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")) === ctxt.GOARCH;
-		}
-		return true;
-	};
-	Context.prototype.goodOSArchFile = function(name, allTags) { return this.go$val.goodOSArchFile(name, allTags); };
- 0ContextgoodOSArchFile0Vgo/build:Contextgo/build:knownArchgo/build:knownOSstrings:Indexstrings:Split0ÅÏIsLocalImportÅ≤	IsLocalImport = go$pkg.IsLocalImport = function(path$1) {
-		return path$1 === "." || path$1 === ".." || strings.HasPrefix(path$1, "./") || strings.HasPrefix(path$1, "../");
-	};
- 0IsLocalImport0strings:HasPrefix0ÇXArchCharÇ.	ArchChar = go$pkg.ArchChar = function(goarch) {
-		var _ref;
-		_ref = goarch;
-		if (_ref === "386") {
-			return ["8", null];
-		} else if (_ref === "amd64") {
-			return ["6", null];
-		} else if (_ref === "arm") {
-			return ["5", null];
-		}
-		return ["", errors.New("unsupported GOARCH " + goarch)];
-	};
- 0
-ArchChar0
-errors:New0ÅúisIdentÅÅ	isIdent = function(c) {
-		return 65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57 || (c === 95) || c >= 128;
-	};
- 0	isIdent0 0Ç= ÅÏ	importReader.Ptr.prototype.syntaxError = function() {
-		var r;
-		r = this;
-		if (go$interfaceIsEqual(r.err, null)) {
-			r.err = errSyntax;
-		}
-	};
-	importReader.prototype.syntaxError = function() { return this.go$val.syntaxError(); };
- 0importReadersyntaxError0+go/build:errSyntaxgo/build:importReader0Ç} Ç)	importReader.Ptr.prototype.readByte = function() {
-		var r, _tuple, c, err;
-		r = this;
-		_tuple = r.b.ReadByte(), c = _tuple[0], err = _tuple[1];
-		if (go$interfaceIsEqual(err, null)) {
-			r.buf = go$append(r.buf, c);
-			if (c === 0) {
-				err = errNUL;
-			}
-		}
-		if (!(go$interfaceIsEqual(err, null))) {
-			if (go$interfaceIsEqual(err, io.EOF)) {
-				r.eof = true;
-			} else if (go$interfaceIsEqual(r.err, null)) {
-				r.err = err;
-			}
-			c = 0;
-		}
-		return c;
-	};
-	importReader.prototype.readByte = function() { return this.go$val.readByte(); };
- 0importReaderreadByte00go/build:errNULgo/build:importReaderio:EOF0ÇL ÇË	importReader.Ptr.prototype.peekByte = function(skipSpace) {
-		var r, c, _ref, c1, _tuple;
-		r = this;
-		if (!(go$interfaceIsEqual(r.err, null))) {
-			r.nerr = r.nerr + 1 >> 0;
-			if (r.nerr > 10000) {
-				throw go$panic(new Go$String("go/build: import reader looping"));
-			}
-			return 0;
-		}
-		c = r.peek;
-		if (c === 0) {
-			c = r.readByte();
-		}
-		while (go$interfaceIsEqual(r.err, null) && !r.eof) {
-			if (skipSpace) {
-				_ref = c;
-				if (_ref === 32 || _ref === 12 || _ref === 9 || _ref === 13 || _ref === 10 || _ref === 59) {
-					c = r.readByte();
-					continue;
-				} else if (_ref === 47) {
-					c = r.readByte();
-					if (c === 47) {
-						while (!((c === 10)) && go$interfaceIsEqual(r.err, null) && !r.eof) {
-							c = r.readByte();
-						}
-					} else if (c === 42) {
-						c1 = 0;
-						while ((!((c === 42)) || !((c1 === 47))) && go$interfaceIsEqual(r.err, null)) {
-							if (r.eof) {
-								r.syntaxError();
-							}
-							_tuple = [c1, r.readByte()], c = _tuple[0], c1 = _tuple[1];
-						}
-					} else {
-						r.syntaxError();
-					}
-					c = r.readByte();
-					continue;
-				}
-			}
-			break;
-		}
-		r.peek = c;
-		return r.peek;
-	};
-	importReader.prototype.peekByte = function(skipSpace) { return this.go$val.peekByte(skipSpace); };
- 0importReaderpeekByte0@go/build:importReadergo/build:readBytego/build:syntaxError0ÇA ÅÙ	importReader.Ptr.prototype.nextByte = function(skipSpace) {
-		var r, c;
-		r = this;
-		c = r.peekByte(skipSpace);
-		r.peek = 0;
-		return c;
-	};
-	importReader.prototype.nextByte = function(skipSpace) { return this.go$val.nextByte(skipSpace); };
- 0importReadernextByte0*go/build:importReadergo/build:peekByte0Ç# Çó	importReader.Ptr.prototype.readKeyword = function(kw) {
-		var r, i;
-		r = this;
-		r.peekByte(true);
-		i = 0;
-		while (i < kw.length) {
-			if (!((r.nextByte(false) === kw.charCodeAt(i)))) {
-				r.syntaxError();
-				return;
-			}
-			i = i + 1 >> 0;
-		}
-		if (isIdent(r.peekByte(false))) {
-			r.syntaxError();
-		}
-	};
-	importReader.prototype.readKeyword = function(kw) { return this.go$val.readKeyword(kw); };
- 0importReaderreadKeyword0ego/build:importReadergo/build:isIdentgo/build:nextBytego/build:peekBytego/build:syntaxError0Ç¶ Ç/	importReader.Ptr.prototype.readIdent = function() {
-		var r, c;
-		r = this;
-		c = r.peekByte(true);
-		if (!isIdent(c)) {
-			r.syntaxError();
-			return;
-		}
-		while (isIdent(r.peekByte(false))) {
-			r.peek = 0;
-		}
-	};
-	importReader.prototype.readIdent = function() { return this.go$val.readIdent(); };
- 0importReader	readIdent0Rgo/build:importReadergo/build:isIdentgo/build:peekBytego/build:syntaxError0Ç˙ Çî	importReader.Ptr.prototype.readString = function() {
-		var r, _ref, c;
-		r = this;
-		_ref = r.nextByte(true);
-		if (_ref === 96) {
-			while (go$interfaceIsEqual(r.err, null)) {
-				if (r.nextByte(false) === 96) {
-					break;
-				}
-				if (r.eof) {
-					r.syntaxError();
-				}
-			}
-		} else if (_ref === 34) {
-			while (go$interfaceIsEqual(r.err, null)) {
-				c = r.nextByte(false);
-				if (c === 34) {
-					break;
-				}
-				if (r.eof || (c === 10)) {
-					r.syntaxError();
-				}
-				if (c === 92) {
-					r.nextByte(false);
-				}
-			}
-		} else {
-			r.syntaxError();
-		}
-	};
-	importReader.prototype.readString = function() { return this.go$val.readString(); };
- 0importReader
-readString0@go/build:importReadergo/build:nextBytego/build:syntaxError0ÇØ Ç$	importReader.Ptr.prototype.readImport = function() {
-		var r, c;
-		r = this;
-		c = r.peekByte(true);
-		if (c === 46) {
-			r.peek = 0;
-		} else if (isIdent(c)) {
-			r.readIdent();
-		}
-		r.readString();
-	};
-	importReader.prototype.readImport = function() { return this.go$val.readImport(); };
- 0importReader
-readImport0ego/build:importReadergo/build:isIdentgo/build:peekBytego/build:readIdentgo/build:readString0ÇõreadCommentsÇ,	readComments = function(f) {
-		var r;
-		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
-		r.peekByte(true);
-		if (go$interfaceIsEqual(r.err, null) && !r.eof) {
-			r.buf = go$subslice(r.buf, 0, (r.buf.length - 1 >> 0));
-		}
-		return [r.buf, r.err];
-	};
- 0readComments0Ibufio:NewReaderbufio:Readergo/build:importReadergo/build:peekByte0ÇreadImportsÇ+	readImports = function(f, reportSyntaxError) {
-		var r;
-		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
-		r.readKeyword("package");
-		r.readIdent();
-		while (r.peekByte(true) === 105) {
-			r.readKeyword("import");
-			if (r.peekByte(true) === 40) {
-				r.nextByte(false);
-				while (!((r.peekByte(true) === 41)) && go$interfaceIsEqual(r.err, null)) {
-					r.readImport();
-				}
-				r.nextByte(false);
-			} else {
-				r.readImport();
-			}
-		}
-		if (go$interfaceIsEqual(r.err, null) && !r.eof) {
-			return [go$subslice(r.buf, 0, (r.buf.length - 1 >> 0)), null];
-		}
-		if (go$interfaceIsEqual(r.err, errSyntax) && !reportSyntaxError) {
-			r.err = null;
-			while (go$interfaceIsEqual(r.err, null) && !r.eof) {
-				r.readByte();
-			}
-		}
-		return [r.buf, r.err];
-	};
- 0readImports0Å¬bufio:NewReaderbufio:Readergo/build:errSyntaxgo/build:importReadergo/build:nextBytego/build:peekBytego/build:readBytego/build:readIdentgo/build:readImportgo/build:readKeyword0   0	Default0 0 
-cgoEnabled  0
-cgoEnabled0 0 
-slashslash  0
-slashslash0 0	safeBytes  0	safeBytes0 0knownOS  0	knownOS0 0	knownArch  0	knownArch0 0   0	ToolDir0 0	errSyntax  0	errSyntax0 0errNUL  0errNUL0 0Ç;  Ç		var _map, _key;
-		cgoEnabled = (_map = new Go$Map(), _key = "darwin/386", _map[_key] = { k: _key, v: true }, _key = "darwin/amd64", _map[_key] = { k: _key, v: true }, _key = "dragonfly/386", _map[_key] = { k: _key, v: true }, _key = "dragonfly/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/386", _map[_key] = { k: _key, v: true }, _key = "freebsd/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/arm", _map[_key] = { k: _key, v: true }, _key = "linux/386", _map[_key] = { k: _key, v: true }, _key = "linux/amd64", _map[_key] = { k: _key, v: true }, _key = "linux/arm", _map[_key] = { k: _key, v: true }, _key = "netbsd/386", _map[_key] = { k: _key, v: true }, _key = "netbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "netbsd/arm", _map[_key] = { k: _key, v: true }, _key = "openbsd/386", _map[_key] = { k: _key, v: true }, _key = "openbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "windows/386", _map[_key] = { k: _key, v: true }, _key = "windows/amd64", _map[_key] = { k: _key, v: true }, _map);
-0
-cgoEnabled0go/build:cgoEnabled0Ç”  Çä		var _struct;
-		go$pkg.Default = (_struct = defaultContext(), new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
-0 0=go/build:Contextgo/build:Defaultgo/build:defaultContext0p  E		slashslash = new (go$sliceType(Go$Uint8))(go$stringToBytes("//"));
-0
-slashslash0go/build:slashslash0Å≥  Åâ		safeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("+-.,/0123456789=ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz:$"));
-0	safeBytes0go/build:safeBytes06  		knownOS = new Go$Map();
-0 0go/build:knownOS0:  		knownArch = new Go$Map();
-0 0go/build:knownArch0Å´  k		go$pkg.ToolDir = filepath.Join(new (go$sliceType(Go$String))([runtime.GOROOT(), "pkg/tool/darwin_js"]));
-0 06go/build:ToolDirpath/filepath:Joinruntime:GOROOT0T  *		errSyntax = errors.New("syntax error");
-0 0 
-errors:Newgo/build:errSyntax0Y  2		errNUL = errors.New("unexpected NUL in input");
-0 0
-errors:Newgo/build:errNUL0
-   0 0 0Ç⁄  Çò		var _ref, _i, _slice, _index, v, _key$1, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$2;
-		_ref = strings.Fields("darwin dragonfly freebsd linux netbsd openbsd plan9 windows ");
-		_i = 0;
-		while (_i < _ref.length) {
-			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			_key$1 = v, (knownOS || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
-			_i++;
-		}
-		_ref$1 = strings.Fields("386 amd64 arm ");
-		_i$1 = 0;
-		while (_i$1 < _ref$1.length) {
-			v$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			_key$2 = v$1, (knownArch || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
-			_i$1++;
-		}
-0 06go/build:knownArchgo/build:knownOSstrings:Fields0 
+0ÇWgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
+go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserlog0Åˆ0
+bytesA0errorsB0fmtC0go/astD0go/docE0	go/parserF0go/tokenG0ioH0	io/ioutilI0logJ0osK0	pathL0path/filepathM0runtimeN0	sortO0strconvP0stringsQ0unicodeR0
+bufioS0Ç∫L0Ç;TÇ$T=$pkg.Context=$newType(0,"Struct","build.Context","Context","go/build",function(GOARCH_,GOOS_,GOROOT_,GOPATH_,CgoEnabled_,UseAllFiles_,Compiler_,BuildTags_,ReleaseTags_,InstallSuffix_,JoinPath_,SplitPathList_,IsAbsPath_,IsDir_,HasSubdir_,ReadDir_,OpenFile_){this.$val=this;this.GOARCH=GOARCH_!==undefined?GOARCH_:"";this.GOOS=GOOS_!==undefined?GOOS_:"";this.GOROOT=GOROOT_!==undefined?GOROOT_:"";this.GOPATH=GOPATH_!==undefined?GOPATH_:"";this.CgoEnabled=CgoEnabled_!==undefined?CgoEnabled_:false;this.UseAllFiles=UseAllFiles_!==undefined?UseAllFiles_:false;this.Compiler=Compiler_!==undefined?Compiler_:"";this.BuildTags=BuildTags_!==undefined?BuildTags_:($sliceType($String)).nil;this.ReleaseTags=ReleaseTags_!==undefined?ReleaseTags_:($sliceType($String)).nil;this.InstallSuffix=InstallSuffix_!==undefined?InstallSuffix_:"";this.JoinPath=JoinPath_!==undefined?JoinPath_:$throwNilPointerError;this.SplitPathList=SplitPathList_!==undefined?SplitPathList_:$throwNilPointerError;this.IsAbsPath=IsAbsPath_!==undefined?IsAbsPath_:$throwNilPointerError;this.IsDir=IsDir_!==undefined?IsDir_:$throwNilPointerError;this.HasSubdir=HasSubdir_!==undefined?HasSubdir_:$throwNilPointerError;this.ReadDir=ReadDir_!==undefined?ReadDir_:$throwNilPointerError;this.OpenFile=OpenFile_!==undefined?OpenFile_:$throwNilPointerError;});Ç	ß($ptrType(T)).methods=[["Import","Import","",[$String,$String,Y],[($ptrType(Z)),$error],false,-1],["ImportDir","ImportDir","",[$String,Y],[($ptrType(Z)),$error],false,-1],["MatchFile","MatchFile","",[$String,$String],[$Bool,$error],false,-1],["SrcDirs","SrcDirs","",[],[($sliceType($String))],false,-1],["goodOSArchFile","goodOSArchFile","go/build",[$String,($mapType($String,$Bool))],[$Bool],false,-1],["gopath","gopath","go/build",[],[($sliceType($String))],false,-1],["hasSubdir","hasSubdir","go/build",[$String,$String],[$String,$Bool],false,-1],["isAbsPath","isAbsPath","go/build",[$String],[$Bool],false,-1],["isDir","isDir","go/build",[$String],[$Bool],false,-1],["isFile","isFile","go/build",[$String],[$Bool],false,-1],["joinPath","joinPath","go/build",[($sliceType($String))],[$String],true,-1],["match","match","go/build",[$String,($mapType($String,$Bool))],[$Bool],false,-1],["matchFile","matchFile","go/build",[$String,$String,$Bool,($mapType($String,$Bool))],[$Bool,($sliceType($Uint8)),$String,$error],false,-1],["openFile","openFile","go/build",[$String],[H.ReadCloser,$error],false,-1],["readDir","readDir","go/build",[$String],[($sliceType(K.FileInfo)),$error],false,-1],["saveCgo","saveCgo","go/build",[$String,($ptrType(Z)),($ptrType(D.CommentGroup))],[$error],false,-1],["shouldBuild","shouldBuild","go/build",[($sliceType($Uint8)),($mapType($String,$Bool))],[$Bool],false,-1],["splitPathList","splitPathList","go/build",[$String],[($sliceType($String))],false,-1]];T.init([["GOARCH","GOARCH","",$String,""],["GOOS","GOOS","",$String,""],["GOROOT","GOROOT","",$String,""],["GOPATH","GOPATH","",$String,""],["CgoEnabled","CgoEnabled","",$Bool,""],["UseAllFiles","UseAllFiles","",$Bool,""],["Compiler","Compiler","",$String,""],["BuildTags","BuildTags","",($sliceType($String)),""],["ReleaseTags","ReleaseTags","",($sliceType($String)),""],["InstallSuffix","InstallSuffix","",$String,""],["JoinPath","JoinPath","",($funcType([($sliceType($String))],[$String],true)),""],["SplitPathList","SplitPathList","",($funcType([$String],[($sliceType($String))],false)),""],["IsAbsPath","IsAbsPath","",($funcType([$String],[$Bool],false)),""],["IsDir","IsDir","",($funcType([$String],[$Bool],false)),""],["HasSubdir","HasSubdir","",($funcType([$String,$String],[$String,$Bool],false)),""],["ReadDir","ReadDir","",($funcType([$String],[($sliceType(K.FileInfo)),$error],false)),""],["OpenFile","OpenFile","",($funcType([$String],[H.ReadCloser,$error],false)),""]]);0	Context0Xgo/ast:CommentGroupgo/build:ImportModego/build:Packageio:ReadCloseros:FileInfo0lYUY=$pkg.ImportMode=$newType(4,"Uint","build.ImportMode","ImportMode","go/build",null); 0
+ImportMode0 0Ç%ZÇ
+∏Z=$pkg.Package=$newType(0,"Struct","build.Package","Package","go/build",function(Dir_,Name_,Doc_,ImportPath_,Root_,SrcRoot_,PkgRoot_,BinDir_,Goroot_,PkgObj_,AllTags_,ConflictDir_,GoFiles_,CgoFiles_,IgnoredGoFiles_,CFiles_,CXXFiles_,HFiles_,SFiles_,SwigFiles_,SwigCXXFiles_,SysoFiles_,CgoCFLAGS_,CgoCPPFLAGS_,CgoCXXFLAGS_,CgoLDFLAGS_,CgoPkgConfig_,Imports_,ImportPos_,TestGoFiles_,TestImports_,TestImportPos_,XTestGoFiles_,XTestImports_,XTestImportPos_){this.$val=this;this.Dir=Dir_!==undefined?Dir_:"";this.Name=Name_!==undefined?Name_:"";this.Doc=Doc_!==undefined?Doc_:"";this.ImportPath=ImportPath_!==undefined?ImportPath_:"";this.Root=Root_!==undefined?Root_:"";this.SrcRoot=SrcRoot_!==undefined?SrcRoot_:"";this.PkgRoot=PkgRoot_!==undefined?PkgRoot_:"";this.BinDir=BinDir_!==undefined?BinDir_:"";this.Goroot=Goroot_!==undefined?Goroot_:false;this.PkgObj=PkgObj_!==undefined?PkgObj_:"";this.AllTags=AllTags_!==undefined?AllTags_:($sliceType($String)).nil;this.ConflictDir=ConflictDir_!==undefined?ConflictDir_:"";this.GoFiles=GoFiles_!==undefined?GoFiles_:($sliceType($String)).nil;this.CgoFiles=CgoFiles_!==undefined?CgoFiles_:($sliceType($String)).nil;this.IgnoredGoFiles=IgnoredGoFiles_!==undefined?IgnoredGoFiles_:($sliceType($String)).nil;this.CFiles=CFiles_!==undefined?CFiles_:($sliceType($String)).nil;this.CXXFiles=CXXFiles_!==undefined?CXXFiles_:($sliceType($String)).nil;this.HFiles=HFiles_!==undefined?HFiles_:($sliceType($String)).nil;this.SFiles=SFiles_!==undefined?SFiles_:($sliceType($String)).nil;this.SwigFiles=SwigFiles_!==undefined?SwigFiles_:($sliceType($String)).nil;this.SwigCXXFiles=SwigCXXFiles_!==undefined?SwigCXXFiles_:($sliceType($String)).nil;this.SysoFiles=SysoFiles_!==undefined?SysoFiles_:($sliceType($String)).nil;this.CgoCFLAGS=CgoCFLAGS_!==undefined?CgoCFLAGS_:($sliceType($String)).nil;this.CgoCPPFLAGS=CgoCPPFLAGS_!==undefined?CgoCPPFLAGS_:($sliceType($String)).nil;this.CgoCXXFLAGS=CgoCXXFLAGS_!==undefined?CgoCXXFLAGS_:($sliceType($String)).nil;this.CgoLDFLAGS=CgoLDFLAGS_!==undefined?CgoLDFLAGS_:($sliceType($String)).nil;this.CgoPkgConfig=CgoPkgConfig_!==undefined?CgoPkgConfig_:($sliceType($String)).nil;this.Imports=Imports_!==undefined?Imports_:($sliceType($String)).nil;this.ImportPos=ImportPos_!==undefined?ImportPos_:false;this.TestGoFiles=TestGoFiles_!==undefined?TestGoFiles_:($sliceType($String)).nil;this.TestImports=TestImports_!==undefined?TestImports_:($sliceType($String)).nil;this.TestImportPos=TestImportPos_!==undefined?TestImportPos_:false;this.XTestGoFiles=XTestGoFiles_!==undefined?XTestGoFiles_:($sliceType($String)).nil;this.XTestImports=XTestImports_!==undefined?XTestImports_:($sliceType($String)).nil;this.XTestImportPos=XTestImportPos_!==undefined?XTestImportPos_:false;});ÇB($ptrType(Z)).methods=[["IsCommand","IsCommand","",[],[$Bool],false,-1]];Z.init([["Dir","Dir","",$String,""],["Name","Name","",$String,""],["Doc","Doc","",$String,""],["ImportPath","ImportPath","",$String,""],["Root","Root","",$String,""],["SrcRoot","SrcRoot","",$String,""],["PkgRoot","PkgRoot","",$String,""],["BinDir","BinDir","",$String,""],["Goroot","Goroot","",$Bool,""],["PkgObj","PkgObj","",$String,""],["AllTags","AllTags","",($sliceType($String)),""],["ConflictDir","ConflictDir","",$String,""],["GoFiles","GoFiles","",($sliceType($String)),""],["CgoFiles","CgoFiles","",($sliceType($String)),""],["IgnoredGoFiles","IgnoredGoFiles","",($sliceType($String)),""],["CFiles","CFiles","",($sliceType($String)),""],["CXXFiles","CXXFiles","",($sliceType($String)),""],["HFiles","HFiles","",($sliceType($String)),""],["SFiles","SFiles","",($sliceType($String)),""],["SwigFiles","SwigFiles","",($sliceType($String)),""],["SwigCXXFiles","SwigCXXFiles","",($sliceType($String)),""],["SysoFiles","SysoFiles","",($sliceType($String)),""],["CgoCFLAGS","CgoCFLAGS","",($sliceType($String)),""],["CgoCPPFLAGS","CgoCPPFLAGS","",($sliceType($String)),""],["CgoCXXFLAGS","CgoCXXFLAGS","",($sliceType($String)),""],["CgoLDFLAGS","CgoLDFLAGS","",($sliceType($String)),""],["CgoPkgConfig","CgoPkgConfig","",($sliceType($String)),""],["Imports","Imports","",($sliceType($String)),""],["ImportPos","ImportPos","",($mapType($String,($sliceType(G.Position)))),""],["TestGoFiles","TestGoFiles","",($sliceType($String)),""],["TestImports","TestImports","",($sliceType($String)),""],["TestImportPos","TestImportPos","",($mapType($String,($sliceType(G.Position)))),""],["XTestGoFiles","XTestGoFiles","",($sliceType($String)),""],["XTestImports","XTestImports","",($sliceType($String)),""],["XTestImportPos","XTestImportPos","",($mapType($String,($sliceType(G.Position)))),""]]);0	Package0go/token:Position0ÇAAÅíAA=$pkg.NoGoError=$newType(0,"Struct","build.NoGoError","NoGoError","go/build",function(Dir_){this.$val=this;this.Dir=Dir_!==undefined?Dir_:"";});k($ptrType(AA)).methods=[["Error","Error","",[],[$String],false,-1]];AA.init([["Dir","Dir","",$String,""]]);0	NoGoError0 0ÇëANÇçAN=$pkg.importReader=$newType(0,"Struct","build.importReader","importReader","go/build",function(b_,buf_,peek_,err_,eof_,nerr_){this.$val=this;this.b=b_!==undefined?b_:($ptrType(S.Reader)).nil;this.buf=buf_!==undefined?buf_:($sliceType($Uint8)).nil;this.peek=peek_!==undefined?peek_:0;this.err=err_!==undefined?err_:null;this.eof=eof_!==undefined?eof_:false;this.nerr=nerr_!==undefined?nerr_:0;});Çÿ($ptrType(AN)).methods=[["nextByte","nextByte","go/build",[$Bool],[$Uint8],false,-1],["peekByte","peekByte","go/build",[$Bool],[$Uint8],false,-1],["readByte","readByte","go/build",[],[$Uint8],false,-1],["readIdent","readIdent","go/build",[],[],false,-1],["readImport","readImport","go/build",[],[],false,-1],["readKeyword","readKeyword","go/build",[$String],[],false,-1],["readString","readString","go/build",[],[],false,-1],["syntaxError","syntaxError","go/build",[],[],false,-1]];AN.init([["b","b","go/build",($ptrType(S.Reader)),""],["buf","buf","go/build",($sliceType($Uint8)),""],["peek","peek","go/build",$Uint8,""],["err","err","go/build",$error,""],["eof","eof","go/build",$Bool,""],["nerr","nerr","go/build",$Int,""]]);0importReader0bufio:Reader0Ç) ÅÂT.Ptr.prototype.joinPath=function(a){var b,c;  b=this;  5  8c=b.JoinPath;    if(!(c===$throwNilPointerError)){  Yreturn c(a);}  oreturn M.Join(a);    };T.prototype.joinPath=function(a){return this.$val.joinPath(a);}; 0ContextjoinPath0&go/build:Contextpath/filepath:Join0ÇL Å˛T.Ptr.prototype.splitPathList=function(a){var b,c;  Èb=this;    c=b.SplitPathList;    if(!(c===$throwNilPointerError)){  Ereturn c(a);}  Ureturn M.SplitList(a);    };T.prototype.splitPathList=function(a){return this.$val.splitPathList(a);}; 0ContextsplitPathList0+go/build:Contextpath/filepath:SplitList0Ç0 ÅÍT.Ptr.prototype.isAbsPath=function(a){var b,c;  √b=this;  Ò  Ùc=b.IsAbsPath;    if(!(c===$throwNilPointerError)){  return c(a);}  )return M.IsAbs(a);    };T.prototype.isAbsPath=function(a){return this.$val.isAbsPath(a);}; 0Context	isAbsPath0'go/build:Contextpath/filepath:IsAbs0ÇP ÇT.Ptr.prototype.isDir=function(a){var b,c,d,e,f;  ãb=this;  µ  ∏c=b.IsDir;    if(!(c===$throwNilPointerError)){  ÷return c(a);}  Èd=K.Stat(a);e=d[0];f=d[1];  return $interfaceIsEqual(f,null)&&e.IsDir();    };T.prototype.isDir=function(a){return this.$val.isDir(a);}; 0ContextisDir0go/build:Contextos:Stat0Ç° Ç?T.Ptr.prototype.hasSubdir=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o;c="";d=false;  ôe=this;  ›  ‡f=e.HasSubdir;    if(!(f===$throwNilPointerError)){      g=f(a,b);c=g[0];d=g[1];return[c,d];}  <  ?h=U(a,b);c=h[0];d=h[1];    if(d){  freturn[c,d];}  ﬁi=M.EvalSymlinks(a);j=i[0];  	k=M.EvalSymlinks(b);l=k[0];  3  6m=U(j,b);c=m[0];d=m[1];    if(d){  `return[c,d];}  k  nn=U(a,l);c=n[0];d=n[1];    if(d){  òreturn[c,d];}  £    o=U(j,l);c=o[0];d=o[1];return[c,d];    };T.prototype.hasSubdir=function(a,b){return this.$val.hasSubdir(a,b);}; 0Context	hasSubdir0Bgo/build:Contextgo/build:hasSubdirpath/filepath:EvalSymlinks0ÇãUÇ!U=function(a,b){var c,d,e,f,g,h;c="";d=false;    *a=M.Clean(a);  G    if(!Q.HasSuffix(a,"/")){  la=a+"/";}  |b=M.Clean(b);  ó    if(!Q.HasPrefix(b,a)){  º    e="";f=false;c=e;d=f;return[c,d];}  —    g=M.ToSlash(b.substring(a.length));h=true;c=g;d=h;return[c,d];    }; 0	hasSubdir0Rpath/filepath:Cleanpath/filepath:ToSlashstrings:HasPrefixstrings:HasSuffix0Ç& Å‰T.Ptr.prototype.readDir=function(a){var b,c;  Lb=this;  ä  çc=b.ReadDir;    if(!(c===$throwNilPointerError)){  ≠return c(a);}  ¿return I.ReadDir(a);    };T.prototype.readDir=function(a){return this.$val.readDir(a);}; 0ContextreadDir0%go/build:Contextio/ioutil:ReadDir0ÇÇ ÇHT.Ptr.prototype.openFile=function(a){var b,c,d,e,f;  #b=this;  b  ec=b.OpenFile;    if(!(c===$throwNilPointerError)){  àreturn c(a);}  ùd=K.Open(a);e=d[0];f=d[1];  ∂    if(!($interfaceIsEqual(f,null))){  »return[null,f];}  Ìreturn[e,null];    };T.prototype.openFile=function(a){return this.$val.openFile(a);}; 0ContextopenFile0go/build:Contextos:Open0Ç@ ÅˇT.Ptr.prototype.isFile=function(a){var b,c,d,e;  öb=this;  ≈c=b.openFile(a);d=c[0];e=c[1];  ‰    if(!($interfaceIsEqual(e,null))){  ˆreturn false;}  d.Close();  return true;    };T.prototype.isFile=function(a){return this.$val.isFile(a);}; 0ContextisFile0%go/build:Contextgo/build:openFile0Ç ÇøT.Ptr.prototype.gopath=function(){var a,b,c,d,e;  Za=this;  ~  Çb=($sliceType($String)).nil;  êc=a.splitPathList(a.GOPATH);d=0;while(d<c.length){e=((d<0||d>=c.length)?$throwRuntimeError("index out of range"):c.array[c.offset+d]);  ∆    if(e===""||e===a.GOROOT){  ¸d++;continue;}      if(Q.HasPrefix(e,"~")){  Ωd++;continue;}  Ãb=$append(b,e);d++;}  Âreturn b;    };T.prototype.gopath=function(){return this.$val.gopath();}; 0Contextgopath0=go/build:Contextgo/build:splitPathListstrings:HasPrefix0Çã Ç0T.Ptr.prototype.SrcDirs=function(){var a,b,c,d,e,f,g;  îa=this;  π  Ωb=($sliceType($String)).nil;  À    if(!(a.GOROOT==="")){  ‰c=a.joinPath(new($sliceType($String))([a.GOROOT,"src","pkg"]));      if(a.isDir(c)){  .b=$append(b,c);}}  Md=a.gopath();e=0;while(e<d.length){f=((e<0||e>=d.length)?$throwRuntimeError("index out of range"):d.array[d.offset+e]);  qg=a.joinPath(new($sliceType($String))([f,"src"]));  í    if(a.isDir(g)){  ™b=$append(b,g);}e++;}  …return b;    };T.prototype.SrcDirs=function(){return this.$val.SrcDirs();}; 0	Context0Fgo/build:Contextgo/build:gopathgo/build:isDirgo/build:joinPath0ÇºWÇMW=function(){var a,b,c;  !¥  !∏a=new T.Ptr();$copy(a,new T.Ptr(),T);  !ƒa.GOARCH=X("GOARCH","js");  !a.GOOS=X("GOOS","darwin");  "a.GOROOT=N.GOROOT();  "3a.GOPATH=X("GOPATH","");  "Sa.Compiler="gc";  $Ua.ReleaseTags=new($sliceType($String))(["go1.1","go1.2"]);  $Çb=K.Getenv("CGO_ENABLED");  $•switch(0){default:if(b==="1"){  $±a.CgoEnabled=true;  $∆}else if(b==="0"){  $“a.CgoEnabled=false;}else{  %G    if("js"===a.GOARCH&&"darwin"===a.GOOS){  %Ña.CgoEnabled=(c=V[a.GOOS+"/"+a.GOARCH],c!==undefined?c.v:false);  %∂break;}  %¬a.CgoEnabled=false;}}  %‹return a;    }; 0defaultContext0Rgo/build:Contextgo/build:cgoEnabledgo/build:envOr	os:Getenvruntime:GOROOT0XbX=function(a,b){var c;  &c=K.Getenv(a);  &%    if(c===""){  &4return b;}  &Creturn c;    }; 0envOr0	os:Getenv0Å¿ ÅöZ.Ptr.prototype.IsCommand=function(){var a;  1∫a=this;  1⁄return a.Name==="main";    };Z.prototype.IsCommand=function(){return this.$val.IsCommand();}; 0	Package0go/build:Package0ÅÀ Å•T.Ptr.prototype.ImportDir=function(a,b){var c;  2Uc=this;  2†return c.Import(".",a,b);    };T.prototype.ImportDir=function(a,b){return this.$val.ImportDir(a,b);}; 0	Context0go/build:Context0Å“ Å®AA.Ptr.prototype.Error=function(){var a;  3≠a=this;  3Õreturn"no buildable Go source files in "+a.Dir;    };AA.prototype.Error=function(){return this.$val.Error();}; 0	NoGoError0go/build:NoGoError0ÅöABrAB=function(a){var b;  4&b=Q.LastIndex(a,".");  4I    if(b<0){  4Vreturn"";}  4dreturn a.substring(b);    }; 0	nameExt0strings:LastIndex0Ç-ê Ç+QT.Ptr.prototype.Import=function(a,b,c){var $this=this,$args=arguments,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au,av,aw,ax,ay,az,ba,bb,bc,bd,be,bf,bg,bh,bi,bj,bk,bl,bm,bn,bo,bp,bq,br,bs,bt,bu,bv,bw,bx,by,bz,ca,cb,cc,cd,ce,cf,cg,ch,ci,cj,ck,cl,cm,cn,co,cp,cq,cr,cs,ct,cu,cv,cw,cx,cy;var $s=0,$f=function(){while(true){switch($s){case 0:  7Od=$this;  7ße=new Z.Ptr("","","",a,"","","","",false,"",($sliceType($String)).nil,"",($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,($sliceType($String)).nil,false,($sliceType($String)).nil,($sliceType($String)).nil,false,($sliceType($String)).nil,($sliceType($String)).nil,false);  7Œ    if(a===""){  7‡return[e,C.Errorf("import %q: invalid import path",new($sliceType($emptyInterface))([new $String(a)]))];}  8"  8&f="";  83  87g=null;  8Eh=d.Compiler;  8]if(h==="gccgo"){  8mi=L.Split(e.ImportPath);j=i[0];k=i[1];  8òf="pkg/gccgo_"+d.GOOS+"_"+d.GOARCH+"/"+j+"lib"+k+".a";  8Ô}else if(h==="gc"){  8¸l="";  9    if(!(d.InstallSuffix==="")){  9,l="_"+d.InstallSuffix;}  9Tf="pkg/"+d.GOOS+"_"+d.GOARCH+l+"/"+e.ImportPath+".a";}else{  9ÿg=C.Errorf("import %q: unknown compiler %q",new($sliceType($emptyInterface))([new $String(a),new $String(d.Compiler)]));}  :(m=false;  :=    if(AL(a)){}else{$s=2;continue;}  :Xf="";  :å    if(b===""){  :°return[e,C.Errorf("import %q: import relative to unknown directory",new($sliceType($emptyInterface))([new $String(a)]))];}  :ı    if(!d.isAbsPath(a)){  ;e.Dir=d.joinPath(new($sliceType($String))([b,a]));}  ;k    if(!(d.GOROOT==="")){}else{$s=4;continue;}  ;Ön=d.joinPath(new($sliceType($String))([d.GOROOT,"src","pkg"]));  ;π  ;ºo=d.hasSubdir(n,e.Dir);p=o[0];q=o[1];    if(q){}else{$s=5;continue;}  ;Ìe.Goroot=true;  <e.ImportPath=p;  <e.Root=d.GOROOT;  <1$s=1;continue;case 5:case 4:  <Gr=d.gopath();  <^s=r;t=0;case 6:if(!(t<s.length)){$s=7;continue;}u=t;v=((t<0||t>=s.length)?$throwRuntimeError("index out of range"):s.array[s.offset+t]);  <|w=d.joinPath(new($sliceType($String))([v,"src"]));  <•  <®x=d.hasSubdir(w,e.Dir);y=x[0];z=x[1];    if(z){}else{$s=8;continue;}  =W    if(!(d.GOROOT==="")){}else{$s=9;continue;}  =s  =vaa=d.joinPath(new($sliceType($String))([d.GOROOT,"src","pkg",y]));    if(d.isDir(aa)){}else{$s=10;continue;}  =ƒe.ConflictDir=aa;  =ﬁ$s=1;continue;case 10:case 9:  =˙ab=$subslice(r,0,u);ac=0;case 11:if(!(ac<ab.length)){$s=12;continue;}ad=((ac<0||ac>=ab.length)?$throwRuntimeError("index out of range"):ab.array[ab.offset+ac]);  >#  >&ae=d.joinPath(new($sliceType($String))([ad,"src",y]));    if(d.isDir(ae)){}else{$s=13;continue;}  >ke.ConflictDir=ae;  >Ö$s=1;continue;case 13:ac++;$s=11;continue;case 12:  >¯e.ImportPath=y;  ?e.Root=v;  ?!$s=1;continue;case 8:t++;$s=6;continue;case 7:$s=3;continue;case 2:  ?©    if(Q.HasPrefix(a,"/")){  ?Œreturn[e,C.Errorf("import %q: cannot import absolute path",new($sliceType($emptyInterface))([new $String(a)]))];}  @Z  @^af=new($structType([["goroot","goroot","go/build",$String,""],["gopath","gopath","go/build",($sliceType($String)),""]])).Ptr();$copy(af,new($structType([["goroot","goroot","go/build",$String,""],["gopath","gopath","go/build",($sliceType($String)),""]])).Ptr(),($structType([["goroot","goroot","go/build",$String,""],["gopath","gopath","go/build",($sliceType($String)),""]])));  @√    if(!(d.GOROOT==="")){}else{$s=14;continue;}  @›ag=d.joinPath(new($sliceType($String))([d.GOROOT,"src","pkg",a]));  Aah=d.isDir(ag);  A2m=!ah&&!((((c&2)>>>0)===0))&&!(f==="")&&d.isFile(d.joinPath(new($sliceType($String))([d.GOROOT,f])));  A°    if(ah||m){}else{$s=15;continue;}  Aæe.Dir=ag;  AŒe.Goroot=true;  A‚e.Root=d.GOROOT;  A˚$s=1;continue;case 15:  Baf.goroot=ag;case 14:  B'ai=d.gopath();aj=0;case 16:if(!(aj<ai.length)){$s=17;continue;}ak=((aj<0||aj>=ai.length)?$throwRuntimeError("index out of range"):ai.array[ai.offset+aj]);  BOal=d.joinPath(new($sliceType($String))([ak,"src",a]));  Bzam=d.isDir(al);  Bñm=!am&&!((((c&2)>>>0)===0))&&!(f==="")&&d.isFile(d.joinPath(new($sliceType($String))([ak,f])));  B˛    if(am||m){}else{$s=18;continue;}  Ce.Dir=al;  C+e.Root=ak;  C=$s=1;continue;case 18:  CPaf.gopath=$append(af.gopath,al);aj++;$s=16;continue;case 17:  Cõ  Cüan=($sliceType($String)).nil;  C∞    if(!(af.goroot==="")){  CÀan=$append(an,C.Sprintf("\t%s (from $GOROOT)",new($sliceType($emptyInterface))([new $String(af.goroot)])));}else{  D!an=$append(an,"\t($GOROOT not set)");}  DT  DXao=0;  D`  Ddap="\t%s (from $GOPATH)";  DÖwhile(ao<af.gopath.length){  D´    if(ao>0){  D∫ap="\t%s";}  D“an=$append(an,C.Sprintf(ap,new($sliceType($emptyInterface))([new $String((aq=af.gopath,((ao<0||ao>=aq.length)?$throwRuntimeError("index out of range"):aq.array[aq.offset+ao])))])));  D¢  D¢ao=ao+1>>0;}  E    if(ao===0){  E#an=$append(an,"\t($GOPATH not set)");}  EVreturn[e,C.Errorf("cannot find package %q in any of:\n%s",new($sliceType($emptyInterface))([new $String(a),new $String(Q.Join(an,"\n"))]))];case 3:  Eπ  E¡case 1:    if(!(e.Root==="")){  E’    if(e.Goroot){  EÊe.SrcRoot=d.joinPath(new($sliceType($String))([e.Root,"src","pkg"]));}else{  F$e.SrcRoot=d.joinPath(new($sliceType($String))([e.Root,"src"]));}  FSe.PkgRoot=d.joinPath(new($sliceType($String))([e.Root,"pkg"]));  F~e.BinDir=d.joinPath(new($sliceType($String))([e.Root,"bin"]));  F®    if(!(f==="")){  Fªe.PkgObj=d.joinPath(new($sliceType($String))([e.Root,f]));}}  FÎ    if(!((((c&1)>>>0)===0))){  Greturn[e,g];}  G    if(m&&!(((((c&2)>>>0))===0))){  GGreturn[e,g];}  G]ar=d.readDir(e.Dir);as=ar[0];at=ar[1];  G    if(!($interfaceIsEqual(at,null))){  Gëreturn[e,at];}  G§  G®au=($sliceType($String)).nil;  Gÿ  G‹av="";  GÓaw=new $Map();  Hax=new $Map();  HPay=new $Map();  HÑaz=new $Map();  H¶ba=G.NewFileSet();  H¬bb=as;bc=0;while(bc<bb.length){bd=((bc<0||bc>=bb.length)?$throwRuntimeError("index out of range"):bb.array[bb.offset+bc]);  H›    if(bd.IsDir()){  HÔbc++;continue;}  Hˇbe=bd.Name();  Ibf=AB(be);  I*bg=d.matchFile(e.Dir,be,true,az);bh=bg[0];bi=bg[1];bj=bg[2];bk=bg[3];  Iu    if(!($interfaceIsEqual(bk,null))){  Iàreturn[e,bk];}  Iú    if(!bh){  I´    if(bf===".go"){  I¡e.IgnoredGoFiles=$append(e.IgnoredGoFiles,be);}  I˚bc++;continue;}  JJbl=bf;  JYif(bl===".c"){  Jge.CFiles=$append(e.CFiles,be);  Jåbc++;continue;  Jó}else if(bl===".cc"||bl===".cpp"||bl===".cxx"){  J∂e.CXXFiles=$append(e.CXXFiles,be);  Jﬂbc++;continue;  JÍ}else if(bl===".h"||bl===".hh"||bl===".hpp"||bl===".hxx"){  Ke.HFiles=$append(e.HFiles,be);  K4bc++;continue;  K?}else if(bl===".s"){  KMe.SFiles=$append(e.SFiles,be);  Krbc++;continue;  K}}else if(bl===".S"){  Kãau=$append(au,be);  K¨bc++;continue;  K∑}else if(bl===".swig"){  K»e.SwigFiles=$append(e.SwigFiles,be);  KÛbc++;continue;  K˛}else if(bl===".swigcxx"){  Le.SwigCXXFiles=$append(e.SwigCXXFiles,be);  LCbc++;continue;  LN}else if(bl===".syso"){  LÚe.SysoFiles=$append(e.SysoFiles,be);  Mbc++;continue;}  M-bm=F.ParseFile(ba,bj,bi,6);bn=bm[0];bk=bm[1];  Mä    if(!($interfaceIsEqual(bk,null))){  Mùreturn[e,bk];}  M≤bo=bn.Name.Name;  M»    if(bo==="documentation"){  MÁe.IgnoredGoFiles=$append(e.IgnoredGoFiles,be);  Nbc++;continue;}  N,bp=Q.HasSuffix(be,"_test.go");  N\bq=false;  No    if(bp&&Q.HasSuffix(bo,"_test")){  N°bq=true;  N≥bo=bo.substring(0,(bo.length-5>>0));}  N‹    if(e.Name===""){  NÒe.Name=bo;  Oav=be;    }else if(!(bo===e.Name)){  O1return[e,C.Errorf("found packages %s (%s) and %s (%s) in %s",new($sliceType($emptyInterface))([new $String(e.Name),new $String(av),new $String(bo),new $String(be),new $String(e.Dir)]))];}  Où    if(!(bn.Doc===($ptrType(D.CommentGroup)).nil)&&e.Doc===""){  O¬e.Doc=E.Synopsis(bn.Doc.Text());}  Pbr=false;  P-bs=bn.Decls;bt=0;while(bt<bs.length){bu=((bt<0||bt>=bs.length)?$throwRuntimeError("index out of range"):bs.array[bs.offset+bt]);  PPbv=(bu!==null&&bu.constructor===($ptrType(D.GenDecl))?[bu.$val,true]:[($ptrType(D.GenDecl)).nil,false]);bw=bv[0];bx=bv[1];  Pp    if(!bx){  P}bt++;continue;}  Péby=bw.Specs;bz=0;while(bz<by.length){ca=((bz<0||bz>=by.length)?$throwRuntimeError("index out of range"):by.array[by.offset+bz]);  P≤cb=(ca!==null&&ca.constructor===($ptrType(D.ImportSpec))?[ca.$val,true]:[($ptrType(D.ImportSpec)).nil,false]);cc=cb[0];cd=cb[1];  P⁄    if(!cd){  PËbz++;continue;}  P˚ce=cc.Path.Value;  Qcf=P.Unquote(ce);cg=cf[0];ch=cf[1];  QB    if(!($interfaceIsEqual(ch,null))){  QWJ.Panicf("%s: parser returned invalid quoted string: <%s>",new($sliceType($emptyInterface))([new $String(bj),new $String(ce)]));}  Q±    if(bq){  Q√cj=cg;(ay||$throwRuntimeError("assignment to entry in nil map"))[cj]={k:cj,v:$append((ci=ay[cg],ci!==undefined?ci.v:($sliceType(G.Position)).nil),ba.Position(cc.Pos()))};    }else if(bp){  R,cl=cg;(ax||$throwRuntimeError("assignment to entry in nil map"))[cl]={k:cl,v:$append((ck=ax[cg],ck!==undefined?ck.v:($sliceType(G.Position)).nil),ba.Position(cc.Pos()))};}else{  Râcn=cg;(aw||$throwRuntimeError("assignment to entry in nil map"))[cn]={k:cn,v:$append((cm=aw[cg],cm!==undefined?cm.v:($sliceType(G.Position)).nil),ba.Position(cc.Pos()))};}  R÷    if(cg==="C"){  RÏ    if(bp){  R˛return[e,C.Errorf("use of cgo in test %s not supported",new($sliceType($emptyInterface))([new $String(bj)]))];}  SPco=cc.Doc;  Sd    if(co===($ptrType(D.CommentGroup)).nil&&(bw.Specs.length===1)){  Séco=bw.Doc;}  S•    if(!(co===($ptrType(D.CommentGroup)).nil)){  S∫  SΩcp=d.saveCgo(bj,e,co);    if(!($interfaceIsEqual(cp,null))){  S˜return[e,cp];}}  Tbr=true;}bz++;}bt++;}  T7    if(br){  TEcq="cgo";(az||$throwRuntimeError("assignment to entry in nil map"))[cq]={k:cq,v:true};  T^    if(d.CgoEnabled){  Twe.CgoFiles=$append(e.CgoFiles,be);}else{  T≠e.IgnoredGoFiles=$append(e.IgnoredGoFiles,be);}    }else if(bq){  T˝e.XTestGoFiles=$append(e.XTestGoFiles,be);    }else if(bp){  UCe.TestGoFiles=$append(e.TestGoFiles,be);}else{  U}e.GoFiles=$append(e.GoFiles,be);}bc++;}  U©    if((((e.GoFiles.length+e.CgoFiles.length>>0)+e.TestGoFiles.length>>0)+e.XTestGoFiles.length>>0)===0){  U˚return[e,new AA.Ptr(e.Dir)];}  Vcr=az;cs=0;ct=$keys(cr);while(cs<ct.length){cu=cr[ct[cs]];cv=cu.k;  V9e.AllTags=$append(e.AllTags,cv);cs++;}  V`O.Strings(e.AllTags);  Vzcw=AC(aw);e.Imports=cw[0];e.ImportPos=cw[1];  V´cx=AC(ax);e.TestImports=cx[0];e.TestImportPos=cx[1];  VËcy=AC(ay);e.XTestImports=cy[0];e.XTestImportPos=cy[1];  W≠    if(e.CgoFiles.length>0){  W»e.SFiles=$appendSlice(e.SFiles,au);  WÒO.Strings(e.SFiles);}  Xreturn[e,g];    }break;}};return $f();};T.prototype.Import=function(a,b,c){return this.$val.Import(a,b,c);}; 0	Context0Ç(
+fmt:Errorffmt:Sprintfgo/ast:CommentGroupgo/ast:GenDeclgo/ast:ImportSpecgo/build:Contextgo/build:IsLocalImportgo/build:NoGoErrorgo/build:Packagego/build:cleanImportsgo/build:gopathgo/build:hasSubdirgo/build:isAbsPathgo/build:isDirgo/build:isFilego/build:joinPathgo/build:matchFilego/build:nameExtgo/build:readDirgo/build:saveCgogo/doc:Synopsisgo/parser:ParseFilego/token:NewFileSetgo/token:Position
+log:Panicf
+path:Splitsort:Stringsstrconv:Unquotestrings:HasPrefixstrings:HasSuffixstrings:Join0Ç ÅﬂT.Ptr.prototype.MatchFile=function(a,b){var c,d,e,f;c=false;d=null;  YTe=this;  Yöf=e.matchFile(a,b,false,false);c=f[0];d=f[3];  Y‘return[c,d];    };T.prototype.MatchFile=function(a,b){return this.$val.MatchFile(a,b);}; 0	Context0&go/build:Contextgo/build:matchFile0Çƒ Ç T.Ptr.prototype.matchFile=function(a,b,c,d){var e,f,g,h,i,j,k,l,m,n,o,p;e=false;f=($sliceType($Uint8)).nil;g="";h=null;  [ i=this;  \[    if(Q.HasPrefix(b,"_")||Q.HasPrefix(b,".")){  \°return[e,f,g,h];}  \≠j=Q.LastIndex(b,".");  \–    if(j<0){  \›j=b.length;}  \Ôk=b.substring(j);  ]    if(!i.goodOSArchFile(b,d)&&!i.UseAllFiles){  ]Areturn[e,f,g,h];}  ]Ml=k;  ][if(l===".go"||l===".c"||l===".cc"||l===".cxx"||l===".cpp"||l===".s"||l===".h"||l===".hh"||l===".hpp"||l===".hxx"||l===".S"||l===".swig"||l===".swigcxx"){  ]Ì}else if(l===".syso"){  ^e=true;  ^$return[e,f,g,h];}else{  ^Areturn[e,f,g,h];}  ^Mg=i.joinPath(new($sliceType($String))([a,b]));  ^rm=i.openFile(g);n=m[0];h=m[1];  ^ï    if(!($interfaceIsEqual(h,null))){  ^ßreturn[e,f,g,h];}  ^≥    if(Q.HasSuffix(g,".go")){  ^›o=AS(n,false);f=o[0];h=o[1];}else{  _p=AR(n);f=p[0];h=p[1];}  _+n.Close();  _6    if(!($interfaceIsEqual(h,null))){  _Hh=C.Errorf("read %s: %v",new($sliceType($emptyInterface))([new $String(g),h]));  _yreturn[e,f,g,h];}  _¿    if(!i.shouldBuild(f,d)&&!i.UseAllFiles){  _˝return[e,f,g,h];}  `	e=true;  `return[e,f,g,h];    };T.prototype.matchFile=function(a,b,c,d){return this.$val.matchFile(a,b,c,d);}; 0Context	matchFile0ÅŸ
+fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/build:openFilego/build:readCommentsgo/build:readImportsgo/build:shouldBuildstrings:HasPrefixstrings:HasSuffixstrings:LastIndex0ÇACÅÁAC=function(a){var b,c,d,e,f,g;  `}b=($sliceType($String)).make(0,$keys(a).length,function(){return"";});  `üc=a;d=0;e=$keys(c);while(d<e.length){f=c[e[d]];g=f.k;  `∑b=$append(b,g);d++;}  `”O.Strings(b);  `Êreturn[b,a];    }; 0cleanImports0sort:Strings0sADMAD=$pkg.Import=function(a,b,c){  aireturn $pkg.Default.Import(a,b,c);    }; 0Import0go/build:Default0xAEOAE=$pkg.ImportDir=function(a,b){  breturn $pkg.Default.ImportDir(a,b);    }; 0	ImportDir0go/build:Default0ÇØ ÇT.Ptr.prototype.shouldBuild=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;  dIc=this;  ed=0;  ee=a;  ewhile(e.length>0){  e-f=e;  e9  e<g=A.IndexByte(f,10);    if(g>=0){  ejh=$subslice(f,0,g);i=$subslice(e,(g+1>>0));f=h;e=i;}else{  eîe=$subslice(e,e.length);}  e©f=A.TrimSpace(f);  e»    if(f.length===0){  eÌd=a.length-e.length>>0;  fcontinue;}  f    if(!A.HasPrefix(f,AF)){  fZbreak;}}  fha=$subslice(a,0,d);  f≠e=a;  f∫j=true;  f…while(e.length>0){  f‹k=e;  fË  fÎl=A.IndexByte(k,10);    if(l>=0){  gm=$subslice(k,0,l);n=$subslice(e,(l+1>>0));k=m;e=n;}else{  gCe=$subslice(e,e.length);}  gXk=A.TrimSpace(k);  gw    if(A.HasPrefix(k,AF)){  g°k=A.TrimSpace($subslice(k,AF.length));  g”    if(k.length>0&&(((0<0||0>=k.length)?$throwRuntimeError("index out of range"):k.array[k.offset+0])===43)){  ho=Q.Fields($bytesToString(k));  hE    if(((0<0||0>=o.length)?$throwRuntimeError("index out of range"):o.array[o.offset+0])==="+build"){  h`p=false;  hqq=$subslice(o,1);r=0;while(r<q.length){s=((r<0||r>=q.length)?$throwRuntimeError("index out of range"):q.array[q.offset+r]);  hì    if(c.match(s,b)){  h∏p=true;}r++;}  h÷    if(!p){  hÂj=false;}}}}}  ireturn j;    };T.prototype.shouldBuild=function(a,b){return this.$val.shouldBuild(a,b);}; 0ContextshouldBuild0zbytes:HasPrefixbytes:IndexBytebytes:TrimSpacego/build:Contextgo/build:matchgo/build:slashslashstrings:Fields0Ç	« Ç	T.Ptr.prototype.saveCgo=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae;  jYd=this;  j≠e=c.Text();  j¿f=Q.Split(e,"\n");g=0;while(g<f.length){h=((g<0||g>=f.length)?$throwRuntimeError("index out of range"):f.array[f.offset+g]);  jÛi=h;  k?h=Q.TrimSpace(h);  k`    if(h.length<5||!(h.substring(0,4)==="#cgo")||(!((h.charCodeAt(4)===32))&&!((h.charCodeAt(4)===9)))){  k≥g++;continue;}  kÿh=Q.TrimSpace(h.substring(4));  k˝j=Q.Index(h,":");  l    if(j<0){  l+return C.Errorf("%s: invalid #cgo line: %s",new($sliceType($emptyInterface))([new $String(a),new $String(i)]));}  lpk=h.substring(0,j);l=h.substring((j+1>>0));m=k;n=l;  l∂o=Q.Fields(m);  l“    if(o.length<1){  lÂreturn C.Errorf("%s: invalid #cgo line: %s",new($sliceType($emptyInterface))([new $String(a),new $String(i)]));}  m+p=$subslice(o,0,(o.length-1>>0));q=(r=o.length-1>>0,((r<0||r>=o.length)?$throwRuntimeError("index out of range"):o.array[o.offset+r]));s=p;t=q;  mU    if(s.length>0){  mku=false;  mzv=s;w=0;while(w<v.length){x=((w<0||w>=v.length)?$throwRuntimeError("index out of range"):v.array[v.offset+w]);  mó    if(d.match(x,false)){  m¥u=true;  m√break;}w++;}  m◊    if(!u){  m‰g++;continue;}}  m˘y=AI(n);z=y[0];aa=y[1];  n    if(!($interfaceIsEqual(aa,null))){  n/return C.Errorf("%s: invalid #cgo line: %s",new($sliceType($emptyInterface))([new $String(a),new $String(i)]));}  ntab=z;ac=0;while(ac<ab.length){ad=((ac<0||ac>=ab.length)?$throwRuntimeError("index out of range"):ab.array[ab.offset+ac]);  ní    if(!AH(ad)){  n≠return C.Errorf("%s: malformed #cgo argument: %s",new($sliceType($emptyInterface))([new $String(a),new $String(ad)]));}ac++;}  n˝ae=t;  oif(ae==="CFLAGS"){  ob.CgoCFLAGS=$appendSlice(b.CgoCFLAGS,z);  oN}else if(ae==="CPPFLAGS"){  obb.CgoCPPFLAGS=$appendSlice(b.CgoCPPFLAGS,z);  oï}else if(ae==="CXXFLAGS"){  o©b.CgoCXXFLAGS=$appendSlice(b.CgoCXXFLAGS,z);  o‹}else if(ae==="LDFLAGS"){  oÔb.CgoLDFLAGS=$appendSlice(b.CgoLDFLAGS,z);  p }else if(ae==="pkg-config"){  p6b.CgoPkgConfig=$appendSlice(b.CgoPkgConfig,z);}else{  pwreturn C.Errorf("%s: invalid #cgo verb: %s",new($sliceType($emptyInterface))([new $String(a),new $String(i)]));}g++;}  pæreturn null;    };T.prototype.saveCgo=function(a,b,c){return this.$val.saveCgo(a,b,c);}; 0ContextsaveCgo0Åõ
+fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:splitQuotedstrings:Fieldsstrings:Indexstrings:Splitstrings:TrimSpace0ÇAHÅﬁAH=function(a){var b,c;  rG    if(a===""){  rVreturn false;}  rg  rkb=0;while(b<a.length){  rá  räc=a.charCodeAt(b);    if(c<128&&A.IndexByte(AG,c)<0){  r»return false;}  r  rb=b+1>>0;}  r›return true;    }; 0safeCgoName0%bytes:IndexBytego/build:safeBytes0Ç1AIÇ˘AI=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o;b=($sliceType($String)).nil;c=null;  u’  uŸd=($sliceType($String)).nil;  uËe=($sliceType($Int32)).make(a.length,0,function(){return 0;});  vf=false;  vg=false;  v(h=0;  v9i=0;  vAj=a;k=0;while(k<j.length){l=$decodeRune(j,k);m=l[0];  v\  vgif(f){  vxf=false;  vä}else if(m===92){  v†f=true;  v≤k+=l[1];continue;  vΩ}else if(!((h===0))){  v÷    if(m===h){  vÌh=0;  w k+=l[1];continue;}  w}else if((m===34)||(m===39)){  w5g=true;  wFh=m;  wVk+=l[1];continue;  wa}else if(R.IsSpace(m)){  wÄ    if(g||i>0){  wôg=false;  w¨d=$append(d,$runesToString($subslice(e,0,i)));  w’i=0;}  w„k+=l[1];continue;}  wÚ(i<0||i>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+i]=m;  x  xi=i+1>>0;k+=l[1];}  x
+    if(g||i>0){  x!d=$append(d,$runesToString($subslice(e,0,i)));}  xJ    if(!((h===0))){  x\c=B.New("unclosed quote");    }else if(f){  xñc=B.New("unfinished escaping");}  x¬    n=d;o=c;b=n;c=o;return[b,c];    }; 0splitQuoted0
+errors:Newunicode:IsSpace0Ç¢ Ç/T.Ptr.prototype.match=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r;  z-c=this;  zp    if(a===""){  zÇ    if(!(b===false)){  zôd=a;(b||$throwRuntimeError("assignment to entry in nil map"))[d]={k:d,v:true};}  z¥return false;}  z≈  z»e=Q.Index(a,",");    if(e>=0){  {f=c.match(a.substring(0,e),b);  {3g=c.match(a.substring((e+1>>0)),b);  {\return f&&g;}  {r    if(Q.HasPrefix(a,"!!")){  {¥return false;}  {≈    if(Q.HasPrefix(a,"!")){  {ıreturn a.length>1&&!c.match(a.substring(1),b);}  |1    if(!(b===false)){  |Gh=a;(b||$throwRuntimeError("assignment to entry in nil map"))[h]={k:h,v:true};}  |Ÿi=a;j=0;while(j<i.length){k=$decodeRune(i,j);l=k[0];  |Ù    if(!R.IsLetter(l)&&!R.IsDigit(l)&&!((l===95))&&!((l===46))){  }@return false;}j+=k[1];}  }g    if(c.CgoEnabled&&a==="cgo"){  }èreturn true;}  }ü    if(a===c.GOOS||a===c.GOARCH||a===c.Compiler){  }Ëreturn true;}  ~m=c.BuildTags;n=0;while(n<m.length){o=((n<0||n>=m.length)?$throwRuntimeError("index out of range"):m.array[m.offset+n]);  ~/    if(o===a){  ~Creturn true;}n++;}  ~Wp=c.ReleaseTags;q=0;while(q<p.length){r=((q<0||q>=p.length)?$throwRuntimeError("index out of range"):p.array[p.offset+q]);  ~Ä    if(r===a){  ~îreturn true;}q++;}  ~©return false;    };T.prototype.match=function(a,b){return this.$val.match(a,b);}; 0Contextmatch0Wgo/build:Contextstrings:HasPrefixstrings:Indexunicode:IsDigitunicode:IsLetter0Ç	t Ç˘T.Ptr.prototype.goodOSArchFile=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab;  Äc=this;  Ä[  Ä^d=Q.Index(a,".");    if(!((d===-1))){  Äça=a.substring(0,d);}  Ä£e=Q.Split(a,"_");  Ä¬  Ä≈f=e.length;    if(f>0&&(g=f-1>>0,((g<0||g>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+g]))==="test"){  Äe=$subslice(e,0,(f-1>>0));}  Å h=e.length;  Å    if(h>=2&&(j=AJ[(i=h-2>>0,((i<0||i>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+i]))],j!==undefined?j.v:false)&&(l=AK[(k=h-1>>0,((k<0||k>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+k]))],l!==undefined?l.v:false)){  ÅC    if(!(b===false)){  ÅZm=(n=h-2>>0,((n<0||n>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+n]));(b||$throwRuntimeError("assignment to entry in nil map"))[m]={k:m,v:true};  Åto=(p=h-1>>0,((p<0||p>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+p]));(b||$throwRuntimeError("assignment to entry in nil map"))[o]={k:o,v:true};}  Åëreturn(q=h-2>>0,((q<0||q>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+q]))===c.GOOS&&(r=h-1>>0,((r<0||r>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+r]))===c.GOARCH;}  Å…    if(h>=1&&(t=AJ[(s=h-1>>0,((s<0||s>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+s]))],t!==undefined?t.v:false)){  ÅÍ    if(!(b===false)){  Çu=(v=h-1>>0,((v<0||v>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+v]));(b||$throwRuntimeError("assignment to entry in nil map"))[u]={k:u,v:true};}  Çreturn(w=h-1>>0,((w<0||w>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+w]))===c.GOOS;}  Ç=    if(h>=1&&(y=AK[(x=h-1>>0,((x<0||x>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+x]))],y!==undefined?y.v:false)){  Ç`    if(!(b===false)){  Çwz=(aa=h-1>>0,((aa<0||aa>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+aa]));(b||$throwRuntimeError("assignment to entry in nil map"))[z]={k:z,v:true};}  Çîreturn(ab=h-1>>0,((ab<0||ab>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+ab]))===c.GOARCH;}  Çµreturn true;    };T.prototype.goodOSArchFile=function(a,b){return this.$val.goodOSArchFile(a,b);}; 0ContextgoodOSArchFile0Vgo/build:Contextgo/build:knownArchgo/build:knownOSstrings:Indexstrings:Split0Å†ALrAL=$pkg.IsLocalImport=function(a){  Ñÿreturn a==="."||a===".."||Q.HasPrefix(a,"./")||Q.HasPrefix(a,"../");    }; 0IsLocalImport0strings:HasPrefix0ÇAMÅÏAM=$pkg.ArchChar=function(a){var b;  ÖÁb=a;  Ö¯if(b==="386"){  Üreturn["8",null];  Ü}else if(b==="amd64"){  Ü'return["6",null];  Ü8}else if(b==="arm"){  ÜFreturn["5",null];}  ÜZreturn["",B.New("unsupported GOARCH "+a)];    }; 0
+ArchChar0
+errors:New0sAO^AO=function(a){  ö÷return 65<=a&&a<=90||97<=a&&a<=122||48<=a&&a<=57||(a===95)||a>=128;    }; 0	isIdent0 0Ç Å¡AN.Ptr.prototype.syntaxError=function(){var a;  úa=this;  ú)    if($interfaceIsEqual(a.err,null)){  ú=a.err=AP;}    };AN.prototype.syntaxError=function(){return this.$val.syntaxError();}; 0importReadersyntaxError0+go/build:errSyntaxgo/build:importReader0Ç Ç¬AN.Ptr.prototype.readByte=function(){var a,b,c,d;  úˆa=this;  ùb=a.b.ReadByte();c=b[0];d=b[1];  ù4    if($interfaceIsEqual(d,null)){  ùFa.buf=$append(a.buf,c);  ùa    if(c===0){  ùpd=AQ;}}  ùÖ    if(!($interfaceIsEqual(d,null))){  ùó    if($interfaceIsEqual(d,H.EOF)){  ù≠a.eof=true;    }else if($interfaceIsEqual(a.err,null)){  ùÿa.err=d;}  ùÍc=0;}  ùÙreturn c;    };AN.prototype.readByte=function(){return this.$val.readByte();}; 0importReaderreadByte00go/build:errNULgo/build:importReaderio:EOF0Ç7 Ç”AN.Ptr.prototype.peekByte=function(a){var b,c,d,e,f,g;  û¢b=this;  û‘    if(!($interfaceIsEqual(b.err,null))){  ûË  ûÎ  ûÎb.nerr=b.nerr+1>>0;    if(b.nerr>10000){  ü	throw $panic(new $String("go/build: import reader looping"));}  ü8return 0;}  üﬁc=b.peek;  üÎ    if(c===0){  ü˘c=b.readByte();}  †while($interfaceIsEqual(b.err,null)&&!b.eof){  †-    if(a){  †æd=c;  †Ãif(d===32||d===12||d===9||d===13||d===10||d===59){  †˜c=b.readByte();  °continue;  °}else if(d===47){  °'c=b.readByte();  °<    if(c===47){  °Owhile(!((c===10))&&$interfaceIsEqual(b.err,null)&&!b.eof){  °c=b.readByte();}    }else if(c===42){  °µ  °πe=0;  °∆while((!((c===42))||!((e===47)))&&$interfaceIsEqual(b.err,null)){  °˙    if(b.eof){  ¢b.syntaxError();}  ¢*f=e;g=b.readByte();c=f;e=g;}}else{  ¢\b.syntaxError();}  ¢vc=b.readByte();  ¢ãcontinue;}}  ¢übreak;}  ¢©b.peek=c;  ¢µreturn b.peek;    };AN.prototype.peekByte=function(a){return this.$val.peekByte(a);}; 0importReaderpeekByte0@go/build:importReadergo/build:readBytego/build:syntaxError0Ç  Å≥AN.Ptr.prototype.nextByte=function(a){var b,c;  £b=this;  £Bc=b.peekByte(a);  £^b.peek=0;  £jreturn c;    };AN.prototype.nextByte=function(a){return this.$val.nextByte(a);}; 0importReadernextByte0*go/build:importReadergo/build:peekByte0ÇÙ ÇhAN.Ptr.prototype.readKeyword=function(a){var b,c;  £˘b=this;  §$b.peekByte(true);  §6  §:c=0;while(c<a.length){  §W    if(!((b.nextByte(false)===a.charCodeAt(c)))){  §zb.syntaxError();  §çreturn;}  §O  §Oc=c+1>>0;}  §ú    if(AO(b.peekByte(false))){  §æb.syntaxError();}    };AN.prototype.readKeyword=function(a){return this.$val.readKeyword(a);}; 0importReaderreadKeyword0ego/build:importReadergo/build:isIdentgo/build:nextBytego/build:peekBytego/build:syntaxError0Çy ÇAN.Ptr.prototype.readIdent=function(){var a,b;  •Qa=this;  •qb=a.peekByte(true);  •à    if(!AO(b)){  •õa.syntaxError();  •≠return;}  •∏while(AO(a.peekByte(false))){  •€a.peek=0;}    };AN.prototype.readIdent=function(){return this.$val.readIdent();}; 0importReader	readIdent0Rgo/build:importReadergo/build:isIdentgo/build:peekBytego/build:syntaxError0Çì Ç-AN.Ptr.prototype.readString=function(){var a,b,c;  ¶ua=this;  ¶ñb=a.nextByte(true);  ¶±if(b===96){  ¶Ωwhile($interfaceIsEqual(a.err,null)){  ¶”    if(a.nextByte(false)===96){  ¶ıbreak;}  ß    if(a.eof){  ßa.syntaxError();}}  ß,}else if(b===34){  ß8while($interfaceIsEqual(a.err,null)){  ßNc=a.nextByte(false);  ßh    if(c===34){  ßzbreak;}  ßà    if(a.eof||(c===10)){  ß§a.syntaxError();}  ßº    if(c===92){  ßœa.nextByte(false);}}}else{  ßˆa.syntaxError();}    };AN.prototype.readString=function(){return this.$val.readString();}; 0importReader
+readString0@go/build:importReadergo/build:nextBytego/build:syntaxError0Çá Å˝AN.Ptr.prototype.readImport=function(){var a,b;  ®|a=this;  ®ùb=a.peekByte(true);  ®¥    if(b===46){  ®ƒa.peek=0;    }else if(AO(b)){  ®Èa.readIdent();}  ®˚a.readString();    };AN.prototype.readImport=function(){return this.$val.readImport();}; 0importReader
+readImport0ego/build:importReadergo/build:isIdentgo/build:peekBytego/build:readIdentgo/build:readString0Ç`ARÅ¸AR=function(a){var b;  ©Øb=new AN.Ptr(S.NewReader(a),($sliceType($Uint8)).nil,0,null,false,0);  ©⁄b.peekByte(true);  ©Ï    if($interfaceIsEqual(b.err,null)&&!b.eof){  ™Qb.buf=$subslice(b.buf,0,(b.buf.length-1>>0));}  ™rreturn[b.buf,b.err];    }; 0readComments0Ibufio:NewReaderbufio:Readergo/build:importReadergo/build:peekByte0ÇãASÇ≠AS=function(a,b){var c;  ´cc=new AN.Ptr(S.NewReader(a),($sliceType($Uint8)).nil,0,null,false,0);  ´èc.readKeyword("package");  ´©c.readIdent();  ´∏while(c.peekByte(true)===105){  ´ÿc.readKeyword("import");  ´Ú    if(c.peekByte(true)===40){  ¨c.nextByte(false);  ¨'while(!((c.peekByte(true)===41))&&$interfaceIsEqual(c.err,null)){  ¨Yc.readImport();}  ¨pc.nextByte(false);}else{  ¨êc.readImport();}}  ≠W    if($interfaceIsEqual(c.err,null)&&!c.eof){  ≠ureturn[$subslice(c.buf,0,(c.buf.length-1>>0)),null];}  Æ#    if($interfaceIsEqual(c.err,AP)&&!b){  ÆSc.err=null;  Æawhile($interfaceIsEqual(c.err,null)&&!c.eof){  ÆÅc.readByte();}}  Æóreturn[c.buf,c.err];    }; 0readImports0Å¬bufio:NewReaderbufio:Readergo/build:errSyntaxgo/build:importReadergo/build:nextBytego/build:peekBytego/build:readBytego/build:readIdentgo/build:readImportgo/build:readKeyword0   0	Default0 0V  0
+cgoEnabled0 0AF  0
+slashslash0 0AG  0	safeBytes0 0AJ  0	knownOS0 0AK  0	knownArch0 0   0	ToolDir0 0AP  0	errSyntax0 0AQ  0errNUL0 0Çõ  Çnvar a,b;    V=(a=new $Map(),b="darwin/386",a[b]={k:b,v:true},b="darwin/amd64",a[b]={k:b,v:true},b="dragonfly/386",a[b]={k:b,v:true},b="dragonfly/amd64",a[b]={k:b,v:true},b="freebsd/386",a[b]={k:b,v:true},b="freebsd/amd64",a[b]={k:b,v:true},b="freebsd/arm",a[b]={k:b,v:true},b="linux/386",a[b]={k:b,v:true},b="linux/amd64",a[b]={k:b,v:true},b="linux/arm",a[b]={k:b,v:true},b="netbsd/386",a[b]={k:b,v:true},b="netbsd/amd64",a[b]={k:b,v:true},b="netbsd/arm",a[b]={k:b,v:true},b="openbsd/386",a[b]={k:b,v:true},b="openbsd/amd64",a[b]={k:b,v:true},b="windows/386",a[b]={k:b,v:true},b="windows/amd64",a[b]={k:b,v:true},a);    0
+cgoEnabled0go/build:cgoEnabled0ÅÑ  =    $pkg.Default=new T.Ptr();$copy($pkg.Default,W(),T);    0 0=go/build:Contextgo/build:Defaultgo/build:defaultContext0f  ;    AF=new($sliceType($Uint8))($stringToBytes("//"));    0
+slashslash0go/build:slashslash0Å™  ÅÄ    AG=new($sliceType($Uint8))($stringToBytes("+-.,/0123456789=ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz:$"));    0	safeBytes0go/build:safeBytes04      AJ=new $Map();    0 0go/build:knownOS06      AK=new $Map();    0 0go/build:knownArch0Åõ  [    $pkg.ToolDir=M.Join(new($sliceType($String))([N.GOROOT(),"pkg/tool/darwin_js"]));    0 06go/build:ToolDirpath/filepath:Joinruntime:GOROOT0M  #    AP=B.New("syntax error");    0 0 
+errors:Newgo/build:errSyntax0U  .    AQ=B.New("unexpected NUL in input");    0 0
+errors:Newgo/build:errNUL0ÇS  Çvar c,d,e,f,g,h,i,j;  Éc=Q.Fields("darwin dragonfly freebsd linux netbsd openbsd plan9 windows ");d=0;while(d<c.length){e=((d<0||d>=c.length)?$throwRuntimeError("index out of range"):c.array[c.offset+d]);  ÉMf=e;(AJ||$throwRuntimeError("assignment to entry in nil map"))[f]={k:f,v:true};d++;}  Écg=Q.Fields("386 amd64 arm ");h=0;while(h<g.length){i=((h<0||h>=g.length)?$throwRuntimeError("index out of range"):g.array[g.offset+h]);  Éîj=i;(AK||$throwRuntimeError("assignment to entry in nil map"))[j]={k:j,v:true};h++;}    0 06go/build:knownArchgo/build:knownOSstrings:Fields0 Ç#∂{"Base":45011,"Files":[{"Name":"/usr/local/go/src/pkg/go/build/build.go","Base":1,"Size":34449,"Lines":[0,56,110,160,161,175,176,185,194,204,211,221,231,244,256,262,275,282,288,304,321,332,340,351,362,373,375,376,435,457,500,547,578,609,656,728,798,799,856,926,992,1068,1154,1222,1284,1306,1328,1329,1410,1485,1562,1638,1712,1767,1789,1790,1859,1923,1991,2062,2117,2118,2188,2239,2277,2278,2351,2412,2454,2455,2511,2564,2598,2599,2653,2731,2761,2762,2817,2859,2920,2983,3047,3074,3130,3131,3191,3242,3293,3349,3350,3407,3452,3509,3511,3512,3580,3635,3670,3690,3693,3724,3726,3727,3810,3866,3906,3920,3923,3953,3955,3956,4028,4079,4115,4132,4135,4164,4166,4167,4228,4275,4307,4324,4327,4353,4386,4388,4389,4449,4498,4571,4607,4629,4632,4633,4666,4707,4716,4719,4720,4761,4797,4828,4871,4912,4913,4957,4966,4969,5013,5022,5025,5060,5062,5063,5120,5160,5189,5225,5239,5242,5269,5305,5324,5327,5375,5377,5378,5445,5512,5546,5563,5566,5595,5597,5598,5660,5728,5765,5783,5786,5787,5812,5829,5864,5867,5882,5884,5885,5951,6015,6035,6083,6114,6131,6146,6149,6160,6173,6175,6176,6227,6268,6286,6339,6374,6411,6455,6515,6575,6598,6648,6660,6664,6697,6759,6823,6868,6928,6986,7053,7116,7182,7241,7261,7325,7353,7365,7369,7392,7395,7407,7409,7410,7472,7543,7565,7607,7625,7649,7699,7722,7748,7752,7755,7790,7823,7846,7872,7876,7879,7891,7893,7894,7940,8010,8075,8114,8115,8149,8175,8201,8227,8253,8279,8305,8331,8357,8383,8409,8435,8461,8487,8513,8539,8565,8591,8593,8594,8626,8641,8642,8686,8724,8753,8785,8816,8817,8887,8957,9030,9103,9180,9184,9228,9284,9299,9343,9344,9379,9390,9412,9423,9446,9456,9483,9540,9600,9650,9659,9663,9686,9689,9690,9700,9702,9703,9741,9763,9777,9790,9793,9803,9805,9806,9867,9888,9889,9897,9963,10027,10064,10097,10098,10163,10213,10226,10228,10229,10289,10311,10373,10411,10459,10523,10589,10660,10732,10799,10849,10892,10974,11037,11038,11055,11148,11209,11277,11321,11381,11445,11489,11529,11572,11644,11645,11664,11712,11762,11812,11861,11913,11914,11941,12014,12085,12086,12107,12180,12252,12332,12410,12483,12564,12566,12567,12624,12673,12723,12760,12785,12787,12788,12854,12878,12958,12994,12996,12997,13062,13128,13183,13207,13219,13221,13222,13259,13310,13312,13313,13348,13383,13395,13407,13410,13427,13429,13430,13503,13572,13648,13724,13741,13744,13818,13864,13867,13907,13971,14034,14037,14105,14149,14152,14245,14261,14281,14284,14301,14364,14367,14368,14385,14403,14427,14442,14485,14573,14585,14600,14632,14669,14673,14758,14768,14805,14882,14885,14886,14907,14933,14985,15005,15086,15090,15119,15158,15162,15208,15233,15285,15336,15356,15379,15404,15419,15424,15428,15451,15480,15521,15575,15624,15679,15698,15725,15805,15831,15848,15855,15861,15901,15972,15998,16015,16022,16028,16029,16097,16115,16138,16156,16171,16176,16180,16238,16284,16294,16330,16402,16406,16407,16471,16492,16509,16528,16532,16533,16576,16601,16658,16686,16797,16825,16841,16861,16886,16901,16906,16928,16932,16971,17014,17042,17146,17174,17190,17208,17223,17228,17272,17276,17277,17304,17325,17351,17426,17437,17485,17489,17501,17538,17575,17589,17609,17614,17677,17681,17695,17743,17747,17844,17847,17848,17855,17874,17890,17941,17952,17996,18000,18043,18085,18103,18145,18149,18152,18153,18178,18197,18200,18244,18263,18266,18267,18301,18318,18334,18337,18338,18390,18412,18459,18510,18562,18596,18624,18650,18667,18679,18683,18684,18703,18726,18727,18802,18820,18837,18841,18855,18876,18930,18935,18947,18951,18952,19015,19030,19043,19080,19092,19122,19163,19175,19211,19248,19260,19273,19310,19322,19335,19368,19380,19396,19439,19451,19470,19519,19531,19547,19594,19641,19694,19737,19749,19753,19754,19847,19865,19882,19886,19887,19909,19939,19992,20004,20008,20009,20057,20076,20125,20143,20180,20184,20185,20205,20221,20241,20269,20374,20378,20414,20453,20457,20458,20505,20522,20556,20588,20600,20613,20618,20653,20693,20706,20720,20726,20756,20797,20817,20902,20908,20925,21007,21030,21110,21123,21195,21201,21222,21239,21315,21322,21342,21383,21400,21407,21427,21487,21508,21516,21523,21541,21547,21552,21556,21569,21594,21618,21660,21672,21726,21731,21753,21802,21823,21870,21881,21920,21924,21927,22008,22038,22041,22042,22070,22107,22110,22135,22136,22185,22246,22310,22311,22357,22398,22443,22469,22510,22535,22538,22539,22557,22559,22560,22641,22720,22742,22745,22818,22861,22936,22994,23002,23004,23005,23089,23145,23188,23263,23339,23386,23456,23491,23641,23677,23710,23719,23722,23723,23758,23770,23786,23789,23806,23807,23870,23879,23882,23883,23897,24001,24043,24058,24082,24097,24106,24116,24126,24135,24138,24139,24176,24211,24228,24237,24240,24241,24282,24318,24328,24358,24361,24372,24389,24438,24447,24450,24451,24510,24570,24579,24582,24583,24597,24605,24607,24608,24699,24733,24756,24782,24785,24804,24819,24821,24822,24865,24935,24978,24980,24981,25030,25094,25131,25133,25134,25164,25165,25225,25286,25345,25402,25469,25472,25535,25571,25574,25601,25604,25663,25666,25747,25812,25856,25866,25880,25898,25910,25958,25989,26000,26018,26022,26053,26089,26120,26132,26136,26198,26207,26211,26214,26239,26240,26283,26296,26311,26329,26341,26389,26420,26431,26449,26453,26484,26525,26575,26615,26650,26688,26714,26731,26764,26800,26817,26825,26832,26846,26866,26873,26879,26884,26888,26891,26892,26906,26908,26909,26989,27073,27119,27122,27165,27218,27307,27326,27376,27391,27392,27405,27447,27452,27485,27567,27579,27583,27584,27605,27642,27674,27687,27753,27757,27796,27797,27827,27855,27873,27939,27943,27944,27986,28007,28022,28050,28078,28093,28104,28110,28115,28127,28140,28145,28149,28150,28185,28203,28269,28273,28302,28328,28400,28405,28409,28410,28426,28443,28491,28510,28562,28581,28633,28651,28701,28722,28776,28787,28853,28857,28860,28872,28874,28875,28980,29090,29120,29218,29219,29253,29267,29282,29285,29316,29380,29396,29400,29403,29416,29418,29419,29502,29579,29667,29749,29830,29907,29961,29964,30002,30005,30036,30039,30062,30065,30107,30110,30163,30182,30211,30229,30246,30263,30271,30297,30308,30324,30343,30364,30382,30394,30418,30440,30459,30472,30477,30513,30530,30546,30558,30588,30612,30631,30672,30682,30687,30699,30703,30719,30725,30728,30750,30789,30792,30809,30846,30867,30909,30912,30930,30932,30933,30978,30981,30990,31001,31028,31057,31074,31092,31156,31225,31267,31270,31342,31359,31381,31405,31409,31424,31427,31471,31497,31536,31577,31597,31600,31665,31680,31683,31730,31787,31790,31791,31812,31835,31838,31839,31894,31959,31985,32060,32076,32080,32083,32084,32101,32140,32154,32157,32229,32243,32246,32247,32262,32300,32319,32334,32338,32341,32381,32400,32415,32419,32422,32423,32437,32439,32440,32512,32563,32599,32602,32624,32648,32680,32707,32736,32773,32776,32857,32906,32926,32929,32960,33005,33019,33022,33035,33088,33110,33136,33162,33166,33220,33223,33255,33277,33303,33307,33336,33339,33373,33395,33421,33425,33456,33459,33472,33474,33475,33511,33549,33550,33564,33610,33630,33633,33681,33703,33706,33708,33709,33761,33852,33853,33905,33967,34006,34045,34111,34113,34114,34183,34230,34277,34294,34307,34325,34340,34358,34371,34389,34392,34447],"Infos":null},{"Name":"/usr/local/go/src/pkg/go/build/doc.go","Base":34451,"Size":4837,"Lines":[0,56,110,160,161,217,220,231,234,305,380,449,525,580,625,648,651,725,728,802,841,844,899,954,1007,1029,1032,1095,1157,1227,1277,1280,1327,1387,1450,1511,1572,1630,1653,1656,1695,1698,1726,1729,1751,1763,1779,1838,1862,1922,1946,1958,2012,2024,2048,2068,2129,2132,2153,2156,2232,2315,2387,2442,2490,2493,2569,2624,2627,2700,2766,2840,2874,2877,2912,2915,2954,2957,3002,3005,3086,3152,3155,3181,3198,3201,3240,3243,3272,3275,3340,3343,3404,3463,3516,3555,3596,3637,3688,3691,3771,3813,3823,3836,3854,3909,3917,3928,4005,4084,4144,4147,4202,4205,4225,4228,4311,4314,4382,4385,4419,4422,4490,4559,4584,4587,4620,4623,4694,4770,4820,4823],"Infos":null},{"Name":"/usr/local/go/src/pkg/go/build/read.go","Base":39289,"Size":5428,"Lines":[0,56,110,160,161,175,176,185,194,204,210,212,213,240,260,273,284,296,307,317,319,320,348,450,452,453,459,499,550,552,553,648,687,706,726,729,731,732,813,887,928,954,971,998,1012,1028,1032,1035,1052,1073,1089,1116,1131,1135,1143,1146,1156,1158,1159,1247,1315,1370,1389,1421,1465,1469,1480,1483,1484,1520,1598,1636,1649,1662,1681,1684,1714,1731,1804,1858,1872,1914,1935,1948,1949,1962,1983,2001,2048,2071,2078,2103,2120,2171,2188,2211,2219,2250,2257,2270,2291,2297,2318,2331,2336,2340,2348,2351,2363,2378,2380,2381,2449,2504,2532,2544,2554,2556,2557,2612,2682,2730,2748,2780,2814,2833,2843,2847,2850,2883,2901,2904,2906,2907,2956,3026,3063,3086,3104,3122,3131,3134,3168,3181,3184,3186,3187,3247,3318,3356,3383,3394,3415,3448,3458,3463,3477,3497,3502,3506,3517,3538,3564,3581,3591,3596,3623,3643,3648,3666,3688,3693,3697,3707,3725,3728,3730,3731,3818,3837,3875,3898,3913,3926,3950,3966,3969,3985,3987,3988,4066,4100,4149,4192,4210,4239,4310,4341,4344,4365,4367,4368,4449,4513,4585,4628,4629,4655,4670,4701,4727,4758,4779,4828,4847,4852,4873,4884,4902,4906,4909,4910,4995,5085,5114,5149,5152,5153,5222,5289,5336,5350,5381,5397,5401,5404,5405,5426],"Infos":null},{"Name":"/usr/local/go/src/pkg/go/build/syslist.go","Base":44718,"Size":292,"Lines":[0,56,110,160,161,175,176,256],"Infos":null}]}
+ˇ

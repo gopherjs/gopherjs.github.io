@@ -1,5 +1,5 @@
-0ÇˇŒ
-crypto/rsaÇC£package rsa
+0ÇÁy
+crypto/rsaÇK∆package rsa
 import crypto "crypto"
 import subtle "crypto/subtle"
 import errors "errors"
@@ -33,59 +33,61 @@ func @"".SignPSS(@"".rand @"io".Reader, @"".priv *@"".PrivateKey, @"".hash @"cry
 func @"".VerifyPKCS1v15(@"".pub *@"".PublicKey, @"".hash @"crypto".Hash, @"".hashed []byte, @"".sig []byte) (@"".err error)
 func @"".VerifyPSS(@"".pub *@"".PublicKey, @"".hash @"crypto".Hash, @"".hashed []byte, @"".sig []byte, @"".opts *@"".PSSOptions) (? error)
 type @"math/big".Int struct { @"math/big".neg bool; @"math/big".abs @"math/big".nat }
-func (? *@"math/big".Int) @"math/big".Abs(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Add(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".And(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".AndNot(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Binomial(@"".n int64, @"".k int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Bit(@"".i int) (? uint)
+func (? *@"math/big".Int) @"math/big".Abs(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Add(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".And(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".AndNot(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Binomial(@"math/big".n int64, @"math/big".k int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Bit(@"math/big".i int) (? uint)
 func (? *@"math/big".Int) @"math/big".BitLen() (? int)
 func (? *@"math/big".Int) @"math/big".Bits() (? []@"math/big".Word)
 func (? *@"math/big".Int) @"math/big".Bytes() (? []byte)
-func (? *@"math/big".Int) @"math/big".Cmp(@"".y *@"math/big".Int) (@"".r int)
-func (? *@"math/big".Int) @"math/big".Div(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".DivMod(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Exp(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Cmp(@"math/big".y *@"math/big".Int) (@"math/big".r int)
+func (? *@"math/big".Int) @"math/big".Div(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".DivMod(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Exp(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".m *@"math/big".Int) (? *@"math/big".Int)
 import fmt "fmt"
-func (? *@"math/big".Int) @"math/big".Format(@"".s @"fmt".State, @"".ch rune) ()
-func (? *@"math/big".Int) @"math/big".GCD(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".GobDecode(@"".buf []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Format(@"math/big".s @"fmt".State, @"math/big".ch rune) ()
+func (? *@"math/big".Int) @"math/big".GCD(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".a *@"math/big".Int, @"math/big".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".GobDecode(@"math/big".buf []byte) (? error)
 func (? *@"math/big".Int) @"math/big".GobEncode() (? []byte, ? error)
 func (? *@"math/big".Int) @"math/big".Int64() (? int64)
-func (? *@"math/big".Int) @"math/big".Lsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Lsh(@"math/big".x *@"math/big".Int, @"math/big".n uint) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".MarshalJSON() (? []byte, ? error)
-func (? *@"math/big".Int) @"math/big".Mod(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".ModInverse(@"".g *@"math/big".Int, @"".p *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Mul(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".MulRange(@"".a int64, @"".b int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Neg(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Not(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Or(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"".n int) (? bool)
-func (? *@"math/big".Int) @"math/big".Quo(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".QuoRem(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MarshalText() (@"math/big".text []byte, @"math/big".err error)
+func (? *@"math/big".Int) @"math/big".Mod(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ModInverse(@"math/big".g *@"math/big".Int, @"math/big".p *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Mul(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MulRange(@"math/big".a int64, @"math/big".b int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Neg(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Not(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Or(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"math/big".n int) (? bool)
+func (? *@"math/big".Int) @"math/big".Quo(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".QuoRem(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int, @"math/big".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
 import rand "math/rand"
-func (? *@"math/big".Int) @"math/big".Rand(@"".rnd *@"math/rand".Rand, @"".n *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Rem(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Rsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
-func (? *@"math/big".Int) @"math/big".Set(@"".x *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBit(@"".x *@"math/big".Int, @"".i int, @"".b uint) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBits(@"".abs []@"math/big".Word) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetBytes(@"".buf []byte) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetInt64(@"".x int64) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".SetString(@"".s string, @"".base int) (? *@"math/big".Int, ? bool)
-func (? *@"math/big".Int) @"math/big".SetUint64(@"".x uint64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rand(@"math/big".rnd *@"math/rand".Rand, @"math/big".n *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rem(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rsh(@"math/big".x *@"math/big".Int, @"math/big".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Scan(@"math/big".s @"fmt".ScanState, @"math/big".ch rune) (? error)
+func (? *@"math/big".Int) @"math/big".Set(@"math/big".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBit(@"math/big".x *@"math/big".Int, @"math/big".i int, @"math/big".b uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBits(@"math/big".abs []@"math/big".Word) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBytes(@"math/big".buf []byte) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetInt64(@"math/big".x int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetString(@"math/big".s string, @"math/big".base int) (? *@"math/big".Int, ? bool)
+func (? *@"math/big".Int) @"math/big".SetUint64(@"math/big".x uint64) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Sign() (? int)
 func (? *@"math/big".Int) @"math/big".String() (? string)
-func (? *@"math/big".Int) @"math/big".Sub(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Sub(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Uint64() (? uint64)
-func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".x []byte) (? error)
-func (? *@"math/big".Int) @"math/big".Xor(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".binaryGCD(@"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
-func (? *@"math/big".Int) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? *@"math/big".Int, ? int, ? error)
-type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
-type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"math/big".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalText(@"math/big".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Xor(@"math/big".x *@"math/big".Int, @"math/big".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".binaryGCD(@"math/big".a *@"math/big".Int, @"math/big".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? *@"math/big".Int, ? int, ? error)
+type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"crypto".Hash uint
 func (? @"crypto".Hash) @"crypto".Available() (? bool)
 func (? @"crypto".Hash) @"crypto".New() (? @"hash".Hash)
@@ -94,934 +96,129 @@ func (? *@"crypto".Hash) @"crypto".Available() (? bool)
 func (? *@"crypto".Hash) @"crypto".New() (? @"hash".Hash)
 func (? *@"crypto".Hash) @"crypto".Size() (? int)
 type @"math/big".nat []@"math/big".Word
-func (? @"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".add(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".and(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".andNot(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".bit(@"math/big".i uint) (? uint)
 func (? @"math/big".nat) @"math/big".bitLen() (? int)
-func (? @"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? @"math/big".nat) @"math/big".bytes(@"math/big".buf []byte) (@"math/big".i int)
 func (? @"math/big".nat) @"math/big".clear() ()
-func (? @"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
-func (? @"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? @"math/big".nat) @"math/big".cmp(@"math/big".y @"math/big".nat) (@"math/big".r int)
+func (? @"math/big".nat) @"math/big".convertWords(@"math/big".s []byte, @"math/big".charset string, @"math/big".b @"math/big".Word, @"math/big".ndigits int, @"math/big".bb @"math/big".Word, @"math/big".table []@"math/big".divisor) ()
 func (? @"math/big".nat) @"math/big".decimalString() (? string)
-func (? @"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? @"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? @"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
-func (? @"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
-func (? @"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".div(@"math/big".z2 @"math/big".nat, @"math/big".u @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divLarge(@"math/big".u @"math/big".nat, @"math/big".uIn @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".expNN(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expNNWindowed(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expWW(@"math/big".x @"math/big".Word, @"math/big".y @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".make(@"math/big".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".modW(@"math/big".d @"math/big".Word) (@"math/big".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".mul(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulAddWW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word, @"math/big".r @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulRange(@"math/big".a uint64, @"math/big".b uint64) (? @"math/big".nat)
 func (? @"math/big".nat) @"math/big".norm() (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
-func (? @"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
-func (? @"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? @"math/big".nat) @"math/big".string(@"".charset string) (? string)
-func (? @"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".or(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".probablyPrime(@"math/big".reps int) (? bool)
+func (? @"math/big".nat) @"math/big".random(@"math/big".rand *@"math/rand".Rand, @"math/big".limit @"math/big".nat, @"math/big".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? @"math/big".nat, ? int, ? error)
+func (? @"math/big".nat) @"math/big".set(@"math/big".x @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBit(@"math/big".x @"math/big".nat, @"math/big".i uint, @"math/big".b uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBytes(@"math/big".buf []byte) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setUint64(@"math/big".x uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setWord(@"math/big".x @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shl(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shr(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".string(@"math/big".charset string) (? string)
+func (? @"math/big".nat) @"math/big".sub(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 func (? @"math/big".nat) @"math/big".trailingZeroBits() (? uint)
-func (? @"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".xor(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".add(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".and(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".andNot(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".bit(@"math/big".i uint) (? uint)
 func (? *@"math/big".nat) @"math/big".bitLen() (? int)
-func (? *@"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? *@"math/big".nat) @"math/big".bytes(@"math/big".buf []byte) (@"math/big".i int)
 func (? *@"math/big".nat) @"math/big".clear() ()
-func (? *@"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
-func (? *@"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? *@"math/big".nat) @"math/big".cmp(@"math/big".y @"math/big".nat) (@"math/big".r int)
+func (? *@"math/big".nat) @"math/big".convertWords(@"math/big".s []byte, @"math/big".charset string, @"math/big".b @"math/big".Word, @"math/big".ndigits int, @"math/big".bb @"math/big".Word, @"math/big".table []@"math/big".divisor) ()
 func (? *@"math/big".nat) @"math/big".decimalString() (? string)
-func (? *@"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
-func (? *@"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
-func (? *@"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".div(@"math/big".z2 @"math/big".nat, @"math/big".u @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divLarge(@"math/big".u @"math/big".nat, @"math/big".uIn @"math/big".nat, @"math/big".v @"math/big".nat) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word) (@"math/big".q @"math/big".nat, @"math/big".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".expNN(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expNNWindowed(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat, @"math/big".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expWW(@"math/big".x @"math/big".Word, @"math/big".y @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".make(@"math/big".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".modW(@"math/big".d @"math/big".Word) (@"math/big".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".mul(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulAddWW(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".Word, @"math/big".r @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulRange(@"math/big".a uint64, @"math/big".b uint64) (? @"math/big".nat)
 func (? *@"math/big".nat) @"math/big".norm() (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
-func (? *@"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
-func (? *@"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
-func (? *@"math/big".nat) @"math/big".string(@"".charset string) (? string)
-func (? *@"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".or(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".probablyPrime(@"math/big".reps int) (? bool)
+func (? *@"math/big".nat) @"math/big".random(@"math/big".rand *@"math/rand".Rand, @"math/big".limit @"math/big".nat, @"math/big".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".scan(@"math/big".r @"io".RuneScanner, @"math/big".base int) (? @"math/big".nat, ? int, ? error)
+func (? *@"math/big".nat) @"math/big".set(@"math/big".x @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBit(@"math/big".x @"math/big".nat, @"math/big".i uint, @"math/big".b uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBytes(@"math/big".buf []byte) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setUint64(@"math/big".x uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setWord(@"math/big".x @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shl(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shr(@"math/big".x @"math/big".nat, @"math/big".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".string(@"math/big".charset string) (? string)
+func (? *@"math/big".nat) @"math/big".sub(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 func (? *@"math/big".nat) @"math/big".trailingZeroBits() (? uint)
-func (? *@"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".xor(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 type @"math/big".Word uintptr
-type @"fmt".State interface { @"fmt".Flag(@"".c int) (? bool); @"fmt".Precision() (@"".prec int, @"".ok bool); @"fmt".Width() (@"".wid int, @"".ok bool); @"fmt".Write(@"".b []byte) (@"".ret int, @"".err error) }
+type @"fmt".State interface { @"fmt".Flag(@"fmt".c int) (? bool); @"fmt".Precision() (@"fmt".prec int, @"fmt".ok bool); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool); @"fmt".Write(@"fmt".b []byte) (@"fmt".ret int, @"fmt".err error) }
 type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
 func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
 func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
 func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
 func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
 func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
-func (? *@"math/rand".Rand) @"math/rand".Int31n(@"".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"math/rand".n int32) (? int32)
 func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
-func (? *@"math/rand".Rand) @"math/rand".Int63n(@"".n int64) (? int64)
-func (? *@"math/rand".Rand) @"math/rand".Intn(@"".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"math/rand".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"math/rand".n int) (? int)
 func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
-func (? *@"math/rand".Rand) @"math/rand".Perm(@"".n int) (? []int)
-func (? *@"math/rand".Rand) @"math/rand".Seed(@"".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"math/rand".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"math/rand".seed int64) ()
 func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
-type @"fmt".ScanState interface { @"fmt".Read(@"".buf []byte) (@"".n int, @"".err error); @"fmt".ReadRune() (@"".r rune, @"".size int, @"".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"".skipSpace bool, @"".f func (? rune) (? bool)) (@"".token []byte, @"".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"".wid int, @"".ok bool) }
-type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @"".err error); @"io".UnreadRune() (? error) }
+type @"fmt".ScanState interface { @"fmt".Read(@"fmt".buf []byte) (@"fmt".n int, @"fmt".err error); @"fmt".ReadRune() (@"fmt".r rune, @"fmt".size int, @"fmt".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"fmt".skipSpace bool, @"fmt".f func (? rune) (? bool)) (@"fmt".token []byte, @"fmt".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool) }
+type @"io".RuneScanner interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error); @"io".UnreadRune() (? error) }
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
-type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"math/rand".seed int64) () }
 $$
-0Å˝runtimeerrorssync/atomicsynciounicodeunicode/utf8byteshashmathstrconvcryptobufiocrypto/subtlecrypto/cipher
-crypto/aesreflectencoding/binarysyscalltimeosfmt	math/randstringsmath/bigcrypto/rand
-crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0ioio0math/bigbig0bytesbytes0hashhash0crypto/randrand0Ç∫á0Çü
-PSSOptionsÅ‹	PSSOptions = go$pkg.PSSOptions = go$newType(0, "Struct", "rsa.PSSOptions", "PSSOptions", "crypto/rsa", function(SaltLength_) {
-		this.go$val = this;
-		this.SaltLength = SaltLength_ !== undefined ? SaltLength_ : 0;
-	});
-Å°		(go$ptrType(PSSOptions)).methods = [["saltLength", "crypto/rsa", [], [Go$Int], false, -1]];
-		PSSOptions.init([["SaltLength", "SaltLength", "", Go$Int, ""]]);
-0
-PSSOptions0 0Ç~	PublicKeyÅˆ	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "rsa.PublicKey", "PublicKey", "crypto/rsa", function(N_, E_) {
-		this.go$val = this;
-		this.N = N_ !== undefined ? N_ : (go$ptrType(big.Int)).nil;
-		this.E = E_ !== undefined ? E_ : 0;
-	});
-[		PublicKey.init([["N", "N", "", (go$ptrType(big.Int)), ""], ["E", "E", "", Go$Int, ""]]);
-0	PublicKey0math/big:Int0Ç≈
-PrivateKeyÇ˛	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "rsa.PrivateKey", "PrivateKey", "crypto/rsa", function(PublicKey_, D_, Primes_, Precomputed_) {
-		this.go$val = this;
-		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
-		this.D = D_ !== undefined ? D_ : (go$ptrType(big.Int)).nil;
-		this.Primes = Primes_ !== undefined ? Primes_ : (go$sliceType((go$ptrType(big.Int)))).nil;
-		this.Precomputed = Precomputed_ !== undefined ? Precomputed_ : new PrecomputedValues.Ptr();
-	});
-Ça		(go$ptrType(PrivateKey)).methods = [["Precompute", "", [], [], false, -1], ["Validate", "", [], [go$error], false, -1]];
-		PrivateKey.init([["PublicKey", "", "", PublicKey, ""], ["D", "D", "", (go$ptrType(big.Int)), ""], ["Primes", "Primes", "", (go$sliceType((go$ptrType(big.Int)))), ""], ["Precomputed", "Precomputed", "", PrecomputedValues, ""]]);
-0
-PrivateKey0Bcrypto/rsa:PrecomputedValuescrypto/rsa:PublicKeymath/big:Int0Ç"PrecomputedValuesÇÈ	PrecomputedValues = go$pkg.PrecomputedValues = go$newType(0, "Struct", "rsa.PrecomputedValues", "PrecomputedValues", "crypto/rsa", function(Dp_, Dq_, Qinv_, CRTValues_) {
-		this.go$val = this;
-		this.Dp = Dp_ !== undefined ? Dp_ : (go$ptrType(big.Int)).nil;
-		this.Dq = Dq_ !== undefined ? Dq_ : (go$ptrType(big.Int)).nil;
-		this.Qinv = Qinv_ !== undefined ? Qinv_ : (go$ptrType(big.Int)).nil;
-		this.CRTValues = CRTValues_ !== undefined ? CRTValues_ : (go$sliceType(CRTValue)).nil;
-	});
-ÅÂ		PrecomputedValues.init([["Dp", "Dp", "", (go$ptrType(big.Int)), ""], ["Dq", "Dq", "", (go$ptrType(big.Int)), ""], ["Qinv", "Qinv", "", (go$ptrType(big.Int)), ""], ["CRTValues", "CRTValues", "", (go$sliceType(CRTValue)), ""]]);
-0PrecomputedValues0#crypto/rsa:CRTValuemath/big:Int0Ç1CRTValueÇd	CRTValue = go$pkg.CRTValue = go$newType(0, "Struct", "rsa.CRTValue", "CRTValue", "crypto/rsa", function(Exp_, Coeff_, R_) {
-		this.go$val = this;
-		this.Exp = Exp_ !== undefined ? Exp_ : (go$ptrType(big.Int)).nil;
-		this.Coeff = Coeff_ !== undefined ? Coeff_ : (go$ptrType(big.Int)).nil;
-		this.R = R_ !== undefined ? R_ : (go$ptrType(big.Int)).nil;
-	});
-Å†		CRTValue.init([["Exp", "Exp", "", (go$ptrType(big.Int)), ""], ["Coeff", "Coeff", "", (go$ptrType(big.Int)), ""], ["R", "R", "", (go$ptrType(big.Int)), ""]]);
-0
-CRTValue0math/big:Int0ÇæEncryptPKCS1v15Ç	EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
-		var out, err, err$1, _tuple, _q, k, em, _slice, _index, _tuple$1, ps, mm, _slice$1, _index$1, m, c;
-		out = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		err$1 = checkPub(pub);
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			_tuple = [(go$sliceType(Go$Uint8)).nil, err$1], out = _tuple[0], err = _tuple[1];
-			return [out, err];
-		}
-		k = (_q = ((pub.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (msg.length > (k - 11 >> 0)) {
-			err = go$pkg.ErrMessageTooLong;
-			return [out, err];
-		}
-		em = (go$sliceType(Go$Uint8)).make(k, 0, function() { return 0; });
-		_slice = em, _index = 1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 2) : go$throwRuntimeError("index out of range");
-		_tuple$1 = [go$subslice(em, 2, ((em.length - msg.length >> 0) - 1 >> 0)), go$subslice(em, (em.length - msg.length >> 0))], ps = _tuple$1[0], mm = _tuple$1[1];
-		err = nonZeroRandomBytes(ps, rand$1);
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [out, err];
-		}
-		_slice$1 = em, _index$1 = (em.length - msg.length >> 0) - 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
-		go$copySlice(mm, msg);
-		m = new big.Int.Ptr().SetBytes(em);
-		c = encrypt(new big.Int.Ptr(), pub, m);
-		copyWithLeftPad(em, c.Bytes());
-		out = em;
-		return [out, err];
-	};
- 0EncryptPKCS1v150Åêcrypto/rsa:ErrMessageTooLongcrypto/rsa:checkPubcrypto/rsa:copyWithLeftPadcrypto/rsa:encryptcrypto/rsa:nonZeroRandomBytesmath/big:Int0Ç‘DecryptPKCS1v15Ç]	DecryptPKCS1v15 = go$pkg.DecryptPKCS1v15 = function(rand$1, priv, ciphertext) {
-		var out, err, err$1, _tuple, _tuple$1, valid;
-		out = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		err$1 = checkPub(priv.PublicKey);
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			_tuple = [(go$sliceType(Go$Uint8)).nil, err$1], out = _tuple[0], err = _tuple[1];
-			return [out, err];
-		}
-		_tuple$1 = decryptPKCS1v15(rand$1, priv, ciphertext), valid = _tuple$1[0], out = _tuple$1[1], err = _tuple$1[2];
-		if (go$interfaceIsEqual(err, null) && (valid === 0)) {
-			err = go$pkg.ErrDecryption;
-		}
-		return [out, err];
-	};
- 0DecryptPKCS1v150Kcrypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptPKCS1v150Ç&DecryptPKCS1v15SessionKeyÇ\	DecryptPKCS1v15SessionKey = go$pkg.DecryptPKCS1v15SessionKey = function(rand$1, priv, ciphertext, key) {
-		var err, err$1, _q, k, _tuple, valid, msg;
-		err = null;
-		err$1 = checkPub(priv.PublicKey);
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			err = err$1;
-			return err;
-		}
-		k = (_q = ((priv.PublicKey.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if ((k - (((key.length + 3 >> 0) + 8 >> 0)) >> 0) < 0) {
-			err = go$pkg.ErrDecryption;
-			return err;
-		}
-		_tuple = decryptPKCS1v15(rand$1, priv, ciphertext), valid = _tuple[0], msg = _tuple[1], err = _tuple[2];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		valid = valid & (subtle.ConstantTimeEq((msg.length >> 0), (key.length >> 0)));
-		subtle.ConstantTimeCopy(valid, key, msg);
-		return err;
-	};
- 0DecryptPKCS1v15SessionKey0Åâcrypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptPKCS1v15crypto/subtle:ConstantTimeCopycrypto/subtle:ConstantTimeEq0ÇodecryptPKCS1v15Çä	decryptPKCS1v15 = function(rand$1, priv, ciphertext) {
-		var valid, msg, err, _q, k, c, _tuple, m, em, _slice, _index, firstByteIsZero, _slice$1, _index$1, secondByteIsTwo, _tuple$1, lookingForIndex, index, i, _slice$2, _index$2, equals0, validPS;
-		valid = 0;
-		msg = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		k = (_q = ((priv.PublicKey.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (k < 11) {
-			err = go$pkg.ErrDecryption;
-			return [valid, msg, err];
-		}
-		c = new big.Int.Ptr().SetBytes(ciphertext);
-		_tuple = decrypt(rand$1, priv, c), m = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [valid, msg, err];
-		}
-		em = leftPad(m.Bytes(), k);
-		firstByteIsZero = subtle.ConstantTimeByteEq((_slice = em, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 0);
-		secondByteIsTwo = subtle.ConstantTimeByteEq((_slice$1 = em, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), 2);
-		_tuple$1 = [0, 0], lookingForIndex = _tuple$1[0], index = _tuple$1[1];
-		lookingForIndex = 1;
-		i = 2;
-		while (i < em.length) {
-			equals0 = subtle.ConstantTimeByteEq((_slice$2 = em, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), 0);
-			index = subtle.ConstantTimeSelect(lookingForIndex & equals0, i, index);
-			lookingForIndex = subtle.ConstantTimeSelect(equals0, 0, lookingForIndex);
-			i = i + 1 >> 0;
-		}
-		validPS = subtle.ConstantTimeLessOrEq(10, index);
-		valid = ((firstByteIsZero & secondByteIsTwo) & (((~lookingForIndex >> 0) & 1))) & validPS;
-		msg = go$subslice(em, (index + 1 >> 0));
-		return [valid, msg, err];
-	};
- 0decryptPKCS1v150Å∏crypto/rsa:ErrDecryptioncrypto/rsa:decryptcrypto/rsa:leftPad crypto/subtle:ConstantTimeByteEq"crypto/subtle:ConstantTimeLessOrEq crypto/subtle:ConstantTimeSelectmath/big:Int0Ç{nonZeroRandomBytesÇ<	nonZeroRandomBytes = function(s, rand$1) {
-		var err, _tuple, i, _slice, _index, _tuple$1, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3;
-		err = null;
-		_tuple = io.ReadFull(rand$1, s), err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		i = 0;
-		while (i < s.length) {
-			while ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
-				_tuple$1 = io.ReadFull(rand$1, go$subslice(s, i, (i + 1 >> 0))), err = _tuple$1[1];
-				if (!(go$interfaceIsEqual(err, null))) {
-					return err;
-				}
-				_lhs = s, _index$1 = i, _slice$2 = _lhs, _index$3 = _index$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = ((_slice$1 = _lhs, _index$2 = _index$1, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")) ^ 66) << 24 >>> 24) : go$throwRuntimeError("index out of range");
-			}
-			i = i + 1 >> 0;
-		}
-		return err;
-	};
- 0nonZeroRandomBytes0io:ReadFull0ÇSignPKCS1v15Çs	SignPKCS1v15 = go$pkg.SignPKCS1v15 = function(rand$1, priv, hash$1, hashed) {
-		var s, err, _tuple, hashLen, prefix, tLen, _q, k, _tuple$1, em, _slice, _index, i, _slice$1, _index$1, m, _tuple$2, c;
-		s = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		_tuple = pkcs1v15HashInfo(hash$1, hashed.length), hashLen = _tuple[0], prefix = _tuple[1], err = _tuple[2];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [s, err];
-		}
-		tLen = prefix.length + hashLen >> 0;
-		k = (_q = ((priv.PublicKey.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (k < (tLen + 11 >> 0)) {
-			_tuple$1 = [(go$sliceType(Go$Uint8)).nil, go$pkg.ErrMessageTooLong], s = _tuple$1[0], err = _tuple$1[1];
-			return [s, err];
-		}
-		em = (go$sliceType(Go$Uint8)).make(k, 0, function() { return 0; });
-		_slice = em, _index = 1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 1) : go$throwRuntimeError("index out of range");
-		i = 2;
-		while (i < ((k - tLen >> 0) - 1 >> 0)) {
-			_slice$1 = em, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 255) : go$throwRuntimeError("index out of range");
-			i = i + 1 >> 0;
-		}
-		go$copySlice(go$subslice(em, k - tLen >> 0, (k - hashLen >> 0)), prefix);
-		go$copySlice(go$subslice(em, k - hashLen >> 0, k), hashed);
-		m = new big.Int.Ptr().SetBytes(em);
-		_tuple$2 = decrypt(rand$1, priv, m), c = _tuple$2[0], err = _tuple$2[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [s, err];
-		}
-		copyWithLeftPad(em, c.Bytes());
-		s = em;
-		return [s, err];
-	};
- 0SignPKCS1v150ycrypto/rsa:ErrMessageTooLongcrypto/rsa:copyWithLeftPadcrypto/rsa:decryptcrypto/rsa:pkcs1v15HashInfomath/big:Int0Ç∫VerifyPKCS1v15Ç€	VerifyPKCS1v15 = go$pkg.VerifyPKCS1v15 = function(pub, hash$1, hashed, sig) {
-		var err, _tuple, hashLen, prefix, tLen, _q, k, c, m, em, _slice, _index, ok, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3;
-		err = null;
-		_tuple = pkcs1v15HashInfo(hash$1, hashed.length), hashLen = _tuple[0], prefix = _tuple[1], err = _tuple[2];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		tLen = prefix.length + hashLen >> 0;
-		k = (_q = ((pub.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (k < (tLen + 11 >> 0)) {
-			err = go$pkg.ErrVerification;
-			return err;
-		}
-		c = new big.Int.Ptr().SetBytes(sig);
-		m = encrypt(new big.Int.Ptr(), pub, c);
-		em = leftPad(m.Bytes(), k);
-		ok = subtle.ConstantTimeByteEq((_slice = em, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 0);
-		ok = ok & (subtle.ConstantTimeByteEq((_slice$1 = em, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), 1));
-		ok = ok & (subtle.ConstantTimeCompare(go$subslice(em, k - hashLen >> 0, k), hashed));
-		ok = ok & (subtle.ConstantTimeCompare(go$subslice(em, k - tLen >> 0, (k - hashLen >> 0)), prefix));
-		ok = ok & (subtle.ConstantTimeByteEq((_slice$2 = em, _index$2 = ((k - tLen >> 0) - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), 0));
-		i = 2;
-		while (i < ((k - tLen >> 0) - 1 >> 0)) {
-			ok = ok & (subtle.ConstantTimeByteEq((_slice$3 = em, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), 255));
-			i = i + 1 >> 0;
-		}
-		if (!((ok === 1))) {
-			err = go$pkg.ErrVerification;
-			return err;
-		}
-		err = null;
-		return err;
-	};
- 0VerifyPKCS1v150Å¥crypto/rsa:ErrVerificationcrypto/rsa:encryptcrypto/rsa:leftPadcrypto/rsa:pkcs1v15HashInfo crypto/subtle:ConstantTimeByteEq!crypto/subtle:ConstantTimeComparemath/big:Int0Ç“pkcs1v15HashInfoÇr	pkcs1v15HashInfo = function(hash$1, inLen) {
-		var hashLen, prefix, err, _tuple, _tuple$1, _entry, ok, _tuple$2;
-		hashLen = 0;
-		prefix = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		hashLen = (new crypto.Hash(hash$1)).Size();
-		if (!((inLen === hashLen))) {
-			_tuple = [0, (go$sliceType(Go$Uint8)).nil, errors.New("crypto/rsa: input must be hashed message")], hashLen = _tuple[0], prefix = _tuple[1], err = _tuple[2];
-			return [hashLen, prefix, err];
-		}
-		_tuple$1 = (_entry = hashPrefixes[hash$1], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$Uint8)).nil, false]), prefix = _tuple$1[0], ok = _tuple$1[1];
-		if (!ok) {
-			_tuple$2 = [0, (go$sliceType(Go$Uint8)).nil, errors.New("crypto/rsa: unsupported hash function")], hashLen = _tuple$2[0], prefix = _tuple$2[1], err = _tuple$2[2];
-			return [hashLen, prefix, err];
-		}
-		return [hashLen, prefix, err];
-	};
- 0pkcs1v15HashInfo02crypto/rsa:hashPrefixescrypto:Hash
-errors:New0Ç–copyWithLeftPadÇ§	copyWithLeftPad = function(dest, src) {
-		var numPaddingBytes, i, _slice, _index;
-		numPaddingBytes = dest.length - src.length >> 0;
-		i = 0;
-		while (i < numPaddingBytes) {
-			_slice = dest, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
-			i = i + 1 >> 0;
-		}
-		go$copySlice(go$subslice(dest, numPaddingBytes), src);
-	};
- 0copyWithLeftPad0 0Ç	emsaPSSEncodeÇø	emsaPSSEncode = function(mHash, emBits, salt, hash$1) {
-		var hLen, sLen, _q, emLen, em, db, h, prefix, _slice, _index, _lhs, _index$1, _slice$1, _index$2, y, x, _slice$2, _index$3, _slice$3, _index$4;
-		hLen = hash$1.Size();
-		sLen = salt.length;
-		emLen = (_q = ((emBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (!((mHash.length === hLen))) {
-			return [(go$sliceType(Go$Uint8)).nil, errors.New("crypto/rsa: input must be hashed message")];
-		}
-		if (emLen < ((hLen + sLen >> 0) + 2 >> 0)) {
-			return [(go$sliceType(Go$Uint8)).nil, errors.New("crypto/rsa: encoding error")];
-		}
-		em = (go$sliceType(Go$Uint8)).make(emLen, 0, function() { return 0; });
-		db = go$subslice(em, 0, (((((emLen - sLen >> 0) - hLen >> 0) - 2 >> 0) + 1 >> 0) + sLen >> 0));
-		h = go$subslice(em, ((((emLen - sLen >> 0) - hLen >> 0) - 2 >> 0) + 1 >> 0) + sLen >> 0, (emLen - 1 >> 0));
-		prefix = go$makeNativeArray("Uint8", 8, function() { return 0; });
-		hash$1.Write(new (go$sliceType(Go$Uint8))(prefix));
-		hash$1.Write(mHash);
-		hash$1.Write(salt);
-		h = hash$1.Sum(go$subslice(h, 0, 0));
-		hash$1.Reset();
-		_slice = db, _index = ((emLen - sLen >> 0) - hLen >> 0) - 2 >> 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 1) : go$throwRuntimeError("index out of range");
-		go$copySlice(go$subslice(db, (((emLen - sLen >> 0) - hLen >> 0) - 1 >> 0)), salt);
-		mgf1XOR(db, hash$1, h);
-		_lhs = db, _index$1 = 0, _slice$2 = _lhs, _index$3 = _index$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = ((_slice$1 = _lhs, _index$2 = _index$1, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")) & ((((y = (((x = 8, (((x >>> 16 << 16) * emLen >> 0) + (x << 16 >>> 16) * emLen) >> 0) - emBits >> 0) >>> 0), y < 32 ? (255 >>> y) : 0) << 24 >>> 24)))) >>> 0) : go$throwRuntimeError("index out of range");
-		_slice$3 = em, _index$4 = emLen - 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = 188) : go$throwRuntimeError("index out of range");
-		return [em, null];
-	};
- 0emsaPSSEncode0 crypto/rsa:mgf1XOR
-errors:New0Ç`emsaPSSVerifyÇ˚	emsaPSSVerify = function(mHash, em, emBits, sLen, hash$1) {
-		var hLen, _q, emLen, _slice, _index, db, h, _slice$1, _index$1, y, x, _lhs, _index$2, _slice$2, _index$3, y$1, x$1, _slice$3, _index$4, _ref, _slice$4, _index$5, _ref$1, _i, _slice$5, _index$6, e, _slice$6, _index$7, salt, prefix, h0;
-		hLen = hash$1.Size();
-		if (!((hLen === mHash.length))) {
-			return go$pkg.ErrVerification;
-		}
-		emLen = (_q = ((emBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (emLen < ((hLen + sLen >> 0) + 2 >> 0)) {
-			return go$pkg.ErrVerification;
-		}
-		if (!(((_slice = em, _index = (em.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 188))) {
-			return go$pkg.ErrVerification;
-		}
-		db = go$subslice(em, 0, ((emLen - hLen >> 0) - 1 >> 0));
-		h = go$subslice(em, (emLen - hLen >> 0) - 1 >> 0, (em.length - 1 >> 0));
-		if (!(((((_slice$1 = em, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) & (((y = ((8 - (((x = 8, (((x >>> 16 << 16) * emLen >> 0) + (x << 16 >>> 16) * emLen) >> 0) - emBits >> 0)) >> 0) >>> 0), y < 32 ? (255 << y) : 0) << 24 >>> 24))) >>> 0) === 0))) {
-			return go$pkg.ErrVerification;
-		}
-		mgf1XOR(db, hash$1, h);
-		_lhs = db, _index$2 = 0, _slice$3 = _lhs, _index$4 = _index$2, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = ((_slice$2 = _lhs, _index$3 = _index$2, (_index$3 >= 0 && _index$3 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$3] : go$throwRuntimeError("index out of range")) & ((((y$1 = (((x$1 = 8, (((x$1 >>> 16 << 16) * emLen >> 0) + (x$1 << 16 >>> 16) * emLen) >> 0) - emBits >> 0) >>> 0), y$1 < 32 ? (255 >>> y$1) : 0) << 24 >>> 24)))) >>> 0) : go$throwRuntimeError("index out of range");
-		if (sLen === 0) {
-			sLen = emLen - ((hLen + 2 >> 0)) >> 0;
-			FindSaltLength:
-			while (sLen >= 0) {
-				_ref = (_slice$4 = db, _index$5 = (((emLen - hLen >> 0) - sLen >> 0) - 2 >> 0), (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range"));
-				if (_ref === 1) {
-					break FindSaltLength;
-				} else if (_ref === 0) {
-					sLen = sLen - 1 >> 0;
-					continue;
-				} else {
-					return go$pkg.ErrVerification;
-				}
-				sLen = sLen - 1 >> 0;
-			}
-			if (sLen < 0) {
-				return go$pkg.ErrVerification;
-			}
-		} else {
-			_ref$1 = go$subslice(db, 0, (((emLen - hLen >> 0) - sLen >> 0) - 2 >> 0));
-			_i = 0;
-			while (_i < _ref$1.length) {
-				e = (_slice$5 = _ref$1, _index$6 = _i, (_index$6 >= 0 && _index$6 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$6] : go$throwRuntimeError("index out of range"));
-				if (!((e === 0))) {
-					return go$pkg.ErrVerification;
-				}
-				_i++;
-			}
-			if (!(((_slice$6 = db, _index$7 = (((emLen - hLen >> 0) - sLen >> 0) - 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$7] : go$throwRuntimeError("index out of range")) === 1))) {
-				return go$pkg.ErrVerification;
-			}
-		}
-		salt = go$subslice(db, (db.length - sLen >> 0));
-		prefix = go$makeNativeArray("Uint8", 8, function() { return 0; });
-		hash$1.Write(new (go$sliceType(Go$Uint8))(prefix));
-		hash$1.Write(mHash);
-		hash$1.Write(salt);
-		h0 = hash$1.Sum((go$sliceType(Go$Uint8)).nil);
-		if (!bytes.Equal(h0, h)) {
-			return go$pkg.ErrVerification;
-		}
-		return null;
-	};
- 0emsaPSSVerify0=bytes:Equalcrypto/rsa:ErrVerificationcrypto/rsa:mgf1XOR0ÇŒsignPSSWithSaltÇ=	signPSSWithSalt = function(rand$1, priv, hash$1, hashed, salt) {
-		var s, err, nBits, _tuple, em, m, _tuple$1, c, _q;
-		s = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		nBits = priv.PublicKey.N.BitLen();
-		_tuple = emsaPSSEncode(hashed, nBits - 1 >> 0, salt, (new crypto.Hash(hash$1)).New()), em = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [s, err];
-		}
-		m = new big.Int.Ptr().SetBytes(em);
-		_tuple$1 = decrypt(rand$1, priv, m), c = _tuple$1[0], err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [s, err];
-		}
-		s = (go$sliceType(Go$Uint8)).make((_q = ((nBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return 0; });
-		copyWithLeftPad(s, c.Bytes());
-		return [s, err];
-	};
- 0signPSSWithSalt0ecrypto/rsa:copyWithLeftPadcrypto/rsa:decryptcrypto/rsa:emsaPSSEncodecrypto:Hashmath/big:Int0Ç< Ç	PSSOptions.Ptr.prototype.saltLength = function() {
-		var opts;
-		opts = this;
-		if (opts === (go$ptrType(PSSOptions)).nil) {
-			return 0;
-		}
-		return opts.SaltLength;
-	};
-	PSSOptions.prototype.saltLength = function() { return this.go$val.saltLength(); };
- 0
-PSSOptions
-saltLength0crypto/rsa:PSSOptions0Ç‚SignPSSÇy	SignPSS = go$pkg.SignPSS = function(rand$1, priv, hash$1, hashed, opts) {
-		var s, err, saltLength, _ref, _q, salt, _tuple, _tuple$1;
-		s = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		saltLength = opts.saltLength();
-		_ref = saltLength;
-		if (_ref === 0) {
-			saltLength = ((_q = ((priv.PublicKey.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) - 2 >> 0) - (new crypto.Hash(hash$1)).Size() >> 0;
-		} else if (_ref === -1) {
-			saltLength = (new crypto.Hash(hash$1)).Size();
-		}
-		salt = (go$sliceType(Go$Uint8)).make(saltLength, 0, function() { return 0; });
-		_tuple = io.ReadFull(rand$1, salt), err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [s, err];
-		}
-		_tuple$1 = signPSSWithSalt(rand$1, priv, hash$1, hashed, salt), s = _tuple$1[0], err = _tuple$1[1];
-		return [s, err];
-	};
- 0	SignPSS0Mcrypto/rsa:saltLengthcrypto/rsa:signPSSWithSaltcrypto:Hashio:ReadFull0Å‹	VerifyPSSÅê	VerifyPSS = go$pkg.VerifyPSS = function(pub, hash$1, hashed, sig, opts) {
-		return verifyPSS(pub, hash$1, hashed, sig, opts.saltLength());
-	};
- 0	VerifyPSS0-crypto/rsa:saltLengthcrypto/rsa:verifyPSS0ÇM	verifyPSSÇ´	verifyPSS = function(pub, hash$1, hashed, sig, saltLen) {
-		var nBits, _q, s, m, emBits, _q$1, emLen, em;
-		nBits = pub.N.BitLen();
-		if (!((sig.length === (_q = ((nBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))))) {
-			return go$pkg.ErrVerification;
-		}
-		s = new big.Int.Ptr().SetBytes(sig);
-		m = encrypt(new big.Int.Ptr(), pub, s);
-		emBits = nBits - 1 >> 0;
-		emLen = (_q$1 = ((emBits + 7 >> 0)) / 8, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (emLen < m.Bytes().length) {
-			return go$pkg.ErrVerification;
-		}
-		em = (go$sliceType(Go$Uint8)).make(emLen, 0, function() { return 0; });
-		copyWithLeftPad(em, m.Bytes());
-		if (saltLen === -1) {
-			saltLen = (new crypto.Hash(hash$1)).Size();
-		}
-		return emsaPSSVerify(hashed, em, emBits, saltLen, (new crypto.Hash(hash$1)).New());
-	};
- 0	verifyPSS0ÅÅcrypto/rsa:ErrVerificationcrypto/rsa:copyWithLeftPadcrypto/rsa:emsaPSSVerifycrypto/rsa:encryptcrypto:Hashmath/big:Int0ÇÖcheckPubÅ˜	checkPub = function(pub) {
-		if (pub.N === (go$ptrType(big.Int)).nil) {
-			return errPublicModulus;
-		}
-		if (pub.E < 2) {
-			return errPublicExponentSmall;
-		}
-		if (pub.E > 2147483647) {
-			return errPublicExponentLarge;
-		}
-		return null;
-	};
- 0
-checkPub0q!crypto/rsa:errPublicExponentLarge!crypto/rsa:errPublicExponentSmallcrypto/rsa:errPublicModulusmath/big:Int0Çã Ç	PrivateKey.Ptr.prototype.Validate = function() {
-		var priv, err, _ref, _i, _slice, _index, prime, modulus, _ref$1, _i$1, _slice$1, _index$1, prime$1, congruence, de, _ref$2, _i$2, _slice$2, _index$2, prime$2, pminus1;
-		priv = this;
-		err = checkPub(priv.PublicKey);
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		_ref = priv.Primes;
-		_i = 0;
-		while (_i < _ref.length) {
-			prime = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (!prime.ProbablyPrime(20)) {
-				return errors.New("crypto/rsa: prime factor is composite");
-			}
-			_i++;
-		}
-		modulus = new big.Int.Ptr().Set(bigOne);
-		_ref$1 = priv.Primes;
-		_i$1 = 0;
-		while (_i$1 < _ref$1.length) {
-			prime$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			modulus.Mul(modulus, prime$1);
-			_i$1++;
-		}
-		if (!((modulus.Cmp(priv.PublicKey.N) === 0))) {
-			return errors.New("crypto/rsa: invalid modulus");
-		}
-		congruence = new big.Int.Ptr();
-		de = new big.Int.Ptr().SetInt64(new Go$Int64(0, priv.PublicKey.E));
-		de.Mul(de, priv.D);
-		_ref$2 = priv.Primes;
-		_i$2 = 0;
-		while (_i$2 < _ref$2.length) {
-			prime$2 = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-			pminus1 = new big.Int.Ptr().Sub(prime$2, bigOne);
-			congruence.Mod(de, pminus1);
-			if (!((congruence.Cmp(bigOne) === 0))) {
-				return errors.New("crypto/rsa: invalid exponents");
-			}
-			_i$2++;
-		}
-		return null;
-	};
-	PrivateKey.prototype.Validate = function() { return this.go$val.Validate(); };
- 0
-PrivateKey0Ycrypto/rsa:PrivateKeycrypto/rsa:bigOnecrypto/rsa:checkPub
-errors:Newmath/big:Int0ÇWGenerateKeyÅ˚	GenerateKey = go$pkg.GenerateKey = function(random, bits) {
-		var priv, err, _tuple;
-		priv = (go$ptrType(PrivateKey)).nil;
-		err = null;
-		_tuple = GenerateMultiPrimeKey(random, 2, bits), priv = _tuple[0], err = _tuple[1];
-		return [priv, err];
-	};
- 0GenerateKey09 crypto/rsa:GenerateMultiPrimeKeycrypto/rsa:PrivateKey0ÇîGenerateMultiPrimeKeyÇÙ	GenerateMultiPrimeKey = go$pkg.GenerateMultiPrimeKey = function(random, nprimes, bits) {
-		var priv, err, _tuple, primes, todo, _q, i, _tuple$1, _q$1, _slice, _index, _tuple$2, _slice$1, _index$1, _ref, _i, _slice$2, _index$2, prime, i$1, j, _slice$3, _index$3, n, totient, pminus1, _ref$1, _i$1, _slice$4, _index$4, prime$1, g, y, e;
-		priv = (go$ptrType(PrivateKey)).nil;
-		err = null;
-		priv = new PrivateKey.Ptr();
-		priv.PublicKey.E = 65537;
-		if (nprimes < 2) {
-			_tuple = [(go$ptrType(PrivateKey)).nil, errors.New("crypto/rsa: GenerateMultiPrimeKey: nprimes must be >= 2")], priv = _tuple[0], err = _tuple[1];
-			return [priv, err];
-		}
-		primes = (go$sliceType((go$ptrType(big.Int)))).make(nprimes, 0, function() { return (go$ptrType(big.Int)).nil; });
-		NextSetOfPrimes:
-		while (true) {
-			todo = bits;
-			if (nprimes >= 7) {
-				todo = todo + ((_q = ((nprimes - 2 >> 0)) / 5, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))) >> 0;
-			}
-			i = 0;
-			while (i < nprimes) {
-				_tuple$1 = rand.Prime(random, (_q$1 = todo / ((nprimes - i >> 0)), (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"))), _slice = primes, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = _tuple$1[0]) : go$throwRuntimeError("index out of range"), err = _tuple$1[1];
-				if (!(go$interfaceIsEqual(err, null))) {
-					_tuple$2 = [(go$ptrType(PrivateKey)).nil, err], priv = _tuple$2[0], err = _tuple$2[1];
-					return [priv, err];
-				}
-				todo = todo - ((_slice$1 = primes, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).BitLen()) >> 0;
-				i = i + 1 >> 0;
-			}
-			_ref = primes;
-			_i = 0;
-			while (_i < _ref.length) {
-				prime = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-				i$1 = _i;
-				j = 0;
-				while (j < i$1) {
-					if (prime.Cmp((_slice$3 = primes, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) === 0) {
-						continue NextSetOfPrimes;
-					}
-					j = j + 1 >> 0;
-				}
-				_i++;
-			}
-			n = new big.Int.Ptr().Set(bigOne);
-			totient = new big.Int.Ptr().Set(bigOne);
-			pminus1 = new big.Int.Ptr();
-			_ref$1 = primes;
-			_i$1 = 0;
-			while (_i$1 < _ref$1.length) {
-				prime$1 = (_slice$4 = _ref$1, _index$4 = _i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
-				n.Mul(n, prime$1);
-				pminus1.Sub(prime$1, bigOne);
-				totient.Mul(totient, pminus1);
-				_i$1++;
-			}
-			if (!((n.BitLen() === bits))) {
-				continue NextSetOfPrimes;
-			}
-			g = new big.Int.Ptr();
-			priv.D = new big.Int.Ptr();
-			y = new big.Int.Ptr();
-			e = big.NewInt(new Go$Int64(0, priv.PublicKey.E));
-			g.GCD(priv.D, y, e, totient);
-			if (g.Cmp(bigOne) === 0) {
-				if (priv.D.Sign() < 0) {
-					priv.D.Add(priv.D, totient);
-				}
-				priv.Primes = primes;
-				priv.PublicKey.N = n;
-				break;
-			}
-		}
-		priv.Precompute();
-		return [priv, err];
-	};
- 0GenerateMultiPrimeKey0hcrypto/rand:Primecrypto/rsa:PrivateKeycrypto/rsa:bigOne
-errors:Newmath/big:Intmath/big:NewInt0Ç@
-incCounterÇ	incCounter = function(c) {
-		var _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3;
-		_lhs = c, _index = 3, _lhs[_index] = _lhs[_index] + 1 << 24 >>> 24;
-		if (!((c[3] === 0))) {
-			return;
-		}
-		_lhs$1 = c, _index$1 = 2, _lhs$1[_index$1] = _lhs$1[_index$1] + 1 << 24 >>> 24;
-		if (!((c[2] === 0))) {
-			return;
-		}
-		_lhs$2 = c, _index$2 = 1, _lhs$2[_index$2] = _lhs$2[_index$2] + 1 << 24 >>> 24;
-		if (!((c[1] === 0))) {
-			return;
-		}
-		_lhs$3 = c, _index$3 = 0, _lhs$3[_index$3] = _lhs$3[_index$3] + 1 << 24 >>> 24;
-	};
- 0
-incCounter0 0Ç mgf1XORÇó	mgf1XOR = function(out, hash$1, seed) {
-		var counter, digest, done, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3;
-		counter = go$makeNativeArray("Uint8", 4, function() { return 0; });
-		digest = (go$sliceType(Go$Uint8)).nil;
-		done = 0;
-		while (done < out.length) {
-			hash$1.Write(seed);
-			hash$1.Write(go$subslice(new (go$sliceType(Go$Uint8))(counter), 0, 4));
-			digest = hash$1.Sum(go$subslice(digest, 0, 0));
-			hash$1.Reset();
-			i = 0;
-			while (i < digest.length && done < out.length) {
-				_lhs = out, _index = done, _slice$2 = _lhs, _index$3 = _index, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = ((_slice = _lhs, _index$1 = _index, (_index$1 >= 0 && _index$1 < _slice.length) ? _slice.array[_slice.offset + _index$1] : go$throwRuntimeError("index out of range")) ^ ((_slice$1 = digest, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")))) << 24 >>> 24) : go$throwRuntimeError("index out of range");
-				done = done + 1 >> 0;
-				i = i + 1 >> 0;
-			}
-			incCounter(counter);
-		}
-	};
- 0	mgf1XOR0crypto/rsa:incCounter0Å•encryptz	encrypt = function(c, pub, m) {
-		var e;
-		e = big.NewInt(new Go$Int64(0, pub.E));
-		c.Exp(m, e, pub.N);
-		return c;
-	};
- 0	encrypt0math/big:NewInt0Ç◊EncryptOAEPÇ=	EncryptOAEP = go$pkg.EncryptOAEP = function(hash$1, random, pub, msg, label) {
-		var out, err, err$1, _tuple, _q, k, x, x$1, lHash, em, seed, db, _slice, _index, _tuple$1, m, c, t;
-		out = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		err$1 = checkPub(pub);
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			_tuple = [(go$sliceType(Go$Uint8)).nil, err$1], out = _tuple[0], err = _tuple[1];
-			return [out, err];
-		}
-		hash$1.Reset();
-		k = (_q = ((pub.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (msg.length > ((k - (x = 2, x$1 = hash$1.Size(), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) >> 0) - 2 >> 0)) {
-			err = go$pkg.ErrMessageTooLong;
-			return [out, err];
-		}
-		hash$1.Write(label);
-		lHash = hash$1.Sum((go$sliceType(Go$Uint8)).nil);
-		hash$1.Reset();
-		em = (go$sliceType(Go$Uint8)).make(k, 0, function() { return 0; });
-		seed = go$subslice(em, 1, (1 + hash$1.Size() >> 0));
-		db = go$subslice(em, (1 + hash$1.Size() >> 0));
-		go$copySlice(go$subslice(db, 0, hash$1.Size()), lHash);
-		_slice = db, _index = (db.length - msg.length >> 0) - 1 >> 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 1) : go$throwRuntimeError("index out of range");
-		go$copySlice(go$subslice(db, (db.length - msg.length >> 0)), msg);
-		_tuple$1 = io.ReadFull(random, seed), err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [out, err];
-		}
-		mgf1XOR(db, hash$1, seed);
-		mgf1XOR(seed, hash$1, db);
-		m = new big.Int.Ptr();
-		m.SetBytes(em);
-		c = encrypt(new big.Int.Ptr(), pub, m);
-		out = c.Bytes();
-		if (out.length < k) {
-			t = (go$sliceType(Go$Uint8)).make(k, 0, function() { return 0; });
-			go$copySlice(go$subslice(t, (k - out.length >> 0)), out);
-			out = t;
-		}
-		return [out, err];
-	};
- 0EncryptOAEP0vcrypto/rsa:ErrMessageTooLongcrypto/rsa:checkPubcrypto/rsa:encryptcrypto/rsa:mgf1XORio:ReadFullmath/big:Int0Ç«
-modInverseÇÑ	modInverse = function(a, n) {
-		var ia, ok, g, x, y, _tuple;
-		ia = (go$ptrType(big.Int)).nil;
-		ok = false;
-		g = new big.Int.Ptr();
-		x = new big.Int.Ptr();
-		y = new big.Int.Ptr();
-		g.GCD(x, y, a, n);
-		if (!((g.Cmp(bigOne) === 0))) {
-			return [ia, ok];
-		}
-		if (x.Cmp(bigOne) < 0) {
-			x.Add(x, n);
-		}
-		_tuple = [x, true], ia = _tuple[0], ok = _tuple[1];
-		return [ia, ok];
-	};
- 0
-modInverse0!crypto/rsa:bigOnemath/big:Int0Ç
-Ö Ç
- 	PrivateKey.Ptr.prototype.Precompute = function() {
-		var priv, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, r, i, _slice$6, _index$6, prime, _slice$7, _index$7, values;
-		priv = this;
-		if (!(priv.Precomputed.Dp === (go$ptrType(big.Int)).nil)) {
-			return;
-		}
-		priv.Precomputed.Dp = new big.Int.Ptr().Sub((_slice = priv.Primes, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), bigOne);
-		priv.Precomputed.Dp.Mod(priv.D, priv.Precomputed.Dp);
-		priv.Precomputed.Dq = new big.Int.Ptr().Sub((_slice$1 = priv.Primes, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), bigOne);
-		priv.Precomputed.Dq.Mod(priv.D, priv.Precomputed.Dq);
-		priv.Precomputed.Qinv = new big.Int.Ptr().ModInverse((_slice$2 = priv.Primes, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = priv.Primes, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")));
-		r = new big.Int.Ptr().Mul((_slice$4 = priv.Primes, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (_slice$5 = priv.Primes, _index$5 = 1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")));
-		priv.Precomputed.CRTValues = (go$sliceType(CRTValue)).make(priv.Primes.length - 2 >> 0, 0, function() { return new CRTValue.Ptr(); });
-		i = 2;
-		while (i < priv.Primes.length) {
-			prime = (_slice$6 = priv.Primes, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-			values = (_slice$7 = priv.Precomputed.CRTValues, _index$7 = (i - 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-			values.Exp = new big.Int.Ptr().Sub(prime, bigOne);
-			values.Exp.Mod(priv.D, values.Exp);
-			values.R = new big.Int.Ptr().Set(r);
-			values.Coeff = new big.Int.Ptr().ModInverse(r, prime);
-			r.Mul(r, prime);
-			i = i + 1 >> 0;
-		}
-	};
-	PrivateKey.prototype.Precompute = function() { return this.go$val.Precompute(); };
- 0
-PrivateKey0Mcrypto/rsa:CRTValuecrypto/rsa:PrivateKeycrypto/rsa:bigOnemath/big:Int0ÇdecryptÇ≈	decrypt = function(random, priv, c) {
-		var m, err, ir, r, _tuple, ok, _tuple$1, bigE, rpowe, cCopy, _slice, _index, _slice$1, _index$1, m2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref, _i, _slice$5, _index$5, _struct, values, i, _slice$6, _index$6, prime;
-		m = (go$ptrType(big.Int)).nil;
-		err = null;
-		if (c.Cmp(priv.PublicKey.N) > 0) {
-			err = go$pkg.ErrDecryption;
-			return [m, err];
-		}
-		ir = (go$ptrType(big.Int)).nil;
-		if (!(go$interfaceIsEqual(random, null))) {
-			r = (go$ptrType(big.Int)).nil;
-			while (true) {
-				_tuple = rand.Int(random, priv.PublicKey.N), r = _tuple[0], err = _tuple[1];
-				if (!(go$interfaceIsEqual(err, null))) {
-					return [m, err];
-				}
-				if (r.Cmp(bigZero) === 0) {
-					r = bigOne;
-				}
-				ok = false;
-				_tuple$1 = modInverse(r, priv.PublicKey.N), ir = _tuple$1[0], ok = _tuple$1[1];
-				if (ok) {
-					break;
-				}
-			}
-			bigE = big.NewInt(new Go$Int64(0, priv.PublicKey.E));
-			rpowe = new big.Int.Ptr().Exp(r, bigE, priv.PublicKey.N);
-			cCopy = new big.Int.Ptr().Set(c);
-			cCopy.Mul(cCopy, rpowe);
-			cCopy.Mod(cCopy, priv.PublicKey.N);
-			c = cCopy;
-		}
-		if (priv.Precomputed.Dp === (go$ptrType(big.Int)).nil) {
-			m = new big.Int.Ptr().Exp(c, priv.D, priv.PublicKey.N);
-		} else {
-			m = new big.Int.Ptr().Exp(c, priv.Precomputed.Dp, (_slice = priv.Primes, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
-			m2 = new big.Int.Ptr().Exp(c, priv.Precomputed.Dq, (_slice$1 = priv.Primes, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
-			m.Sub(m, m2);
-			if (m.Sign() < 0) {
-				m.Add(m, (_slice$2 = priv.Primes, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
-			}
-			m.Mul(m, priv.Precomputed.Qinv);
-			m.Mod(m, (_slice$3 = priv.Primes, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")));
-			m.Mul(m, (_slice$4 = priv.Primes, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")));
-			m.Add(m, m2);
-			_ref = priv.Precomputed.CRTValues;
-			_i = 0;
-			while (_i < _ref.length) {
-				values = (_struct = (_slice$5 = _ref, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), new CRTValue.Ptr(_struct.Exp, _struct.Coeff, _struct.R));
-				i = _i;
-				prime = (_slice$6 = priv.Primes, _index$6 = (2 + i >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-				m2.Exp(c, values.Exp, prime);
-				m2.Sub(m2, m);
-				m2.Mul(m2, values.Coeff);
-				m2.Mod(m2, prime);
-				if (m2.Sign() < 0) {
-					m2.Add(m2, prime);
-				}
-				m2.Mul(m2, values.R);
-				m.Add(m, m2);
-				_i++;
-			}
-		}
-		if (!(ir === (go$ptrType(big.Int)).nil)) {
-			m.Mul(m, ir);
-			m.Mod(m, priv.PublicKey.N);
-		}
-		return [m, err];
-	};
- 0	decrypt0Åùcrypto/rand:Intcrypto/rsa:CRTValuecrypto/rsa:ErrDecryptioncrypto/rsa:bigOnecrypto/rsa:bigZerocrypto/rsa:modInversemath/big:Intmath/big:NewInt0Ç˛DecryptOAEPÇ
-˘	DecryptOAEP = go$pkg.DecryptOAEP = function(hash$1, random, priv, ciphertext, label) {
-		var msg, err, err$1, _tuple, _q, k, x, x$1, c, _tuple$1, m, lHash, em, _slice, _index, firstByteIsZero, seed, db, lHash2, lHash2Good, _tuple$2, lookingForIndex, index, invalid, rest, i, _slice$1, _index$1, equals0, _slice$2, _index$2, equals1;
-		msg = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		err$1 = checkPub(priv.PublicKey);
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			_tuple = [(go$sliceType(Go$Uint8)).nil, err$1], msg = _tuple[0], err = _tuple[1];
-			return [msg, err];
-		}
-		k = (_q = ((priv.PublicKey.N.BitLen() + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-		if (ciphertext.length > k || k < ((x = hash$1.Size(), x$1 = 2, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + 2 >> 0)) {
-			err = go$pkg.ErrDecryption;
-			return [msg, err];
-		}
-		c = new big.Int.Ptr().SetBytes(ciphertext);
-		_tuple$1 = decrypt(random, priv, c), m = _tuple$1[0], err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [msg, err];
-		}
-		hash$1.Write(label);
-		lHash = hash$1.Sum((go$sliceType(Go$Uint8)).nil);
-		hash$1.Reset();
-		em = leftPad(m.Bytes(), k);
-		firstByteIsZero = subtle.ConstantTimeByteEq((_slice = em, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 0);
-		seed = go$subslice(em, 1, (hash$1.Size() + 1 >> 0));
-		db = go$subslice(em, (hash$1.Size() + 1 >> 0));
-		mgf1XOR(seed, hash$1, db);
-		mgf1XOR(db, hash$1, seed);
-		lHash2 = go$subslice(db, 0, hash$1.Size());
-		lHash2Good = subtle.ConstantTimeCompare(lHash, lHash2);
-		_tuple$2 = [0, 0, 0], lookingForIndex = _tuple$2[0], index = _tuple$2[1], invalid = _tuple$2[2];
-		lookingForIndex = 1;
-		rest = go$subslice(db, hash$1.Size());
-		i = 0;
-		while (i < rest.length) {
-			equals0 = subtle.ConstantTimeByteEq((_slice$1 = rest, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), 0);
-			equals1 = subtle.ConstantTimeByteEq((_slice$2 = rest, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), 1);
-			index = subtle.ConstantTimeSelect(lookingForIndex & equals1, i, index);
-			lookingForIndex = subtle.ConstantTimeSelect(equals1, 0, lookingForIndex);
-			invalid = subtle.ConstantTimeSelect(lookingForIndex & ~equals0, 1, invalid);
-			i = i + 1 >> 0;
-		}
-		if (!(((((firstByteIsZero & lHash2Good) & ~invalid) & ~lookingForIndex) === 1))) {
-			err = go$pkg.ErrDecryption;
-			return [msg, err];
-		}
-		msg = go$subslice(rest, (index + 1 >> 0));
-		return [msg, err];
-	};
- 0DecryptOAEP0Å‡crypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptcrypto/rsa:leftPadcrypto/rsa:mgf1XOR crypto/subtle:ConstantTimeByteEq!crypto/subtle:ConstantTimeCompare crypto/subtle:ConstantTimeSelectmath/big:Int0ÇFleftPadÇ*	leftPad = function(input, size) {
-		var out, n;
-		out = (go$sliceType(Go$Uint8)).nil;
-		n = input.length;
-		if (n > size) {
-			n = size;
-		}
-		out = (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; });
-		go$copySlice(go$subslice(out, (out.length - n >> 0)), input);
-		return out;
-	};
- 0	leftPad0 0$hashPrefixes  0hashPrefixes0 0bigZero  0	bigZero0 0bigOne  0bigOne0 0,errPublicModulus  0errPublicModulus0 08errPublicExponentSmall  0errPublicExponentSmall0 08errPublicExponentLarge  0errPublicExponentLarge0 0   0ErrMessageTooLong0 0   0ErrDecryption0 0   0ErrVerification0 0Çg  Ç4		var _map, _key;
-		hashPrefixes = (_map = new Go$Map(), _key = 2, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 12, 6, 8, 42, 134, 72, 134, 247, 13, 2, 5, 5, 0, 4, 16]) }, _key = 3, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 33, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20]) }, _key = 4, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 45, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 4, 5, 0, 4, 28]) }, _key = 5, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 49, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 1, 5, 0, 4, 32]) }, _key = 6, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 65, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 2, 5, 0, 4, 48]) }, _key = 7, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 81, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 3, 5, 0, 4, 64]) }, _key = 8, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([]) }, _key = 9, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 8, 6, 6, 40, 207, 6, 3, 0, 49, 4, 20]) }, _map);
-0hashPrefixes0crypto/rsa:hashPrefixes0[  ,		bigZero = big.NewInt(new Go$Int64(0, 0));
-0 0%crypto/rsa:bigZeromath/big:NewInt0Y  +		bigOne = big.NewInt(new Go$Int64(0, 1));
-0 0$crypto/rsa:bigOnemath/big:NewInt0z  G		errPublicModulus = errors.New("crypto/rsa: missing public modulus");
-0 0)crypto/rsa:errPublicModulus
-errors:New0Åâ  P		errPublicExponentSmall = errors.New("crypto/rsa: public exponent too small");
-0 0/!crypto/rsa:errPublicExponentSmall
-errors:New0Åâ  P		errPublicExponentLarge = errors.New("crypto/rsa: public exponent too large");
-0 0/!crypto/rsa:errPublicExponentLarge
-errors:New0Åï  a		go$pkg.ErrMessageTooLong = errors.New("crypto/rsa: message too long for RSA public key size");
-0 0*crypto/rsa:ErrMessageTooLong
-errors:New0u  E		go$pkg.ErrDecryption = errors.New("crypto/rsa: decryption error");
-0 0&crypto/rsa:ErrDecryption
-errors:New0{  I		go$pkg.ErrVerification = errors.New("crypto/rsa: verification error");
-0 0(crypto/rsa:ErrVerification
-errors:New0
-   0 0 0
-   0 0 0 
+0Çgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8byteshashmathstrconvcryptobufiocrypto/subtlecrypto/cipher
+crypto/aesreflectencoding/binarysyscalltimeosfmt	math/randstringsmath/bigcrypto/rand0o0cryptoA0crypto/subtleB0errorsC0ioD0math/bigE0
+bytesF0	hashG0crypto/randH0ÇÉ0ÇT 0VÅØV=$pkg.PSSOptions=$newType(0,"Struct","rsa.PSSOptions","PSSOptions","crypto/rsa",function(SaltLength_){this.$val=this;this.SaltLength=SaltLength_!==undefined?SaltLength_:0;});ÅÖ($ptrType(V)).methods=[["saltLength","saltLength","crypto/rsa",[],[$Int],false,-1]];V.init([["SaltLength","SaltLength","",$Int,""]]);0
+PSSOptions0  0Ç* 0ABÅªAB=$pkg.PublicKey=$newType(0,"Struct","rsa.PublicKey","PublicKey","crypto/rsa",function(N_,E_){this.$val=this;this.N=N_!==undefined?N_:($ptrType(E.Int)).nil;this.E=E_!==undefined?E_:0;});BAB.init([["N","N","",($ptrType(E.Int)),""],["E","E","",$Int,""]]);0	PublicKey0math/big:Int 0Ç 0AGÇéAG=$pkg.PrivateKey=$newType(0,"Struct","rsa.PrivateKey","PrivateKey","crypto/rsa",function(PublicKey_,D_,Primes_,Precomputed_){this.$val=this;this.PublicKey=PublicKey_!==undefined?PublicKey_:new AB.Ptr();this.D=D_!==undefined?D_:($ptrType(E.Int)).nil;this.Primes=Primes_!==undefined?Primes_:($sliceType(($ptrType(E.Int)))).nil;this.Precomputed=Precomputed_!==undefined?Precomputed_:new AH.Ptr();});Ç($ptrType(AG)).methods=[["Precompute","Precompute","",[],[],false,-1],["Validate","Validate","",[],[$error],false,-1]];AG.init([["PublicKey","","",AB,""],["D","D","",($ptrType(E.Int)),""],["Primes","Primes","",($sliceType(($ptrType(E.Int)))),""],["Precomputed","Precomputed","",AH,""]]);0
+PrivateKey0Bcrypto/rsa:PrecomputedValuescrypto/rsa:PublicKeymath/big:Int 0Çv 0AHÇ~AH=$pkg.PrecomputedValues=$newType(0,"Struct","rsa.PrecomputedValues","PrecomputedValues","crypto/rsa",function(Dp_,Dq_,Qinv_,CRTValues_){this.$val=this;this.Dp=Dp_!==undefined?Dp_:($ptrType(E.Int)).nil;this.Dq=Dq_!==undefined?Dq_:($ptrType(E.Int)).nil;this.Qinv=Qinv_!==undefined?Qinv_:($ptrType(E.Int)).nil;this.CRTValues=CRTValues_!==undefined?CRTValues_:($sliceType(AI)).nil;});Å¨AH.init([["Dp","Dp","",($ptrType(E.Int)),""],["Dq","Dq","",($ptrType(E.Int)),""],["Qinv","Qinv","",($ptrType(E.Int)),""],["CRTValues","CRTValues","",($sliceType(AI)),""]]);0PrecomputedValues0#crypto/rsa:CRTValuemath/big:Int 0Ç¿ 0AIÇAI=$pkg.CRTValue=$newType(0,"Struct","rsa.CRTValue","CRTValue","crypto/rsa",function(Exp_,Coeff_,R_){this.$val=this;this.Exp=Exp_!==undefined?Exp_:($ptrType(E.Int)).nil;this.Coeff=Coeff_!==undefined?Coeff_:($ptrType(E.Int)).nil;this.R=R_!==undefined?R_:($ptrType(E.Int)).nil;});}AI.init([["Exp","Exp","",($ptrType(E.Int)),""],["Coeff","Coeff","",($ptrType(E.Int)),""],["R","R","",($ptrType(E.Int)),""]]);0
+CRTValue0math/big:Int 0  0N  0hashPrefixes0  0 0Z  0	bigZero0  0 0AA  0bigOne0  0% 0AC  0errPublicModulus0  0+ 0AD  0errPublicExponentSmall0  0+ 0AE  0errPublicExponentLarge0  0" 0   0ErrMessageTooLong0  0 0   0ErrDecryption0  0  0   0ErrVerification0  0Çˆ 0ab Ç∏    N=(a=new $Map(),b=2,a[b]={k:b,v:new($sliceType($Uint8))([48,32,48,12,6,8,42,134,72,134,247,13,2,5,5,0,4,16])},b=3,a[b]={k:b,v:new($sliceType($Uint8))([48,33,48,9,6,5,43,14,3,2,26,5,0,4,20])},b=4,a[b]={k:b,v:new($sliceType($Uint8))([48,45,48,13,6,9,96,134,72,1,101,3,4,2,4,5,0,4,28])},b=5,a[b]={k:b,v:new($sliceType($Uint8))([48,49,48,13,6,9,96,134,72,1,101,3,4,2,1,5,0,4,32])},b=6,a[b]={k:b,v:new($sliceType($Uint8))([48,65,48,13,6,9,96,134,72,1,101,3,4,2,2,5,0,4,48])},b=7,a[b]={k:b,v:new($sliceType($Uint8))([48,81,48,13,6,9,96,134,72,1,101,3,4,2,3,5,0,4,64])},b=8,a[b]={k:b,v:new($sliceType($Uint8))([])},b=9,a[b]={k:b,v:new($sliceType($Uint8))([48,32,48,8,6,6,40,207,6,3,0,49,4,20])},a);0hashPrefixes0crypto/rsa:hashPrefixes 0U 0  !    Z=E.NewInt(new $Int64(0,0));0 0%crypto/rsa:bigZeromath/big:NewInt 0U 0  "    AA=E.NewInt(new $Int64(0,1));0 0$crypto/rsa:bigOnemath/big:NewInt 0l 0  4    AC=C.New("crypto/rsa: missing public modulus");0 0)crypto/rsa:errPublicModulus
+errors:New 0u 0  7    AD=C.New("crypto/rsa: public exponent too small");0 0/!crypto/rsa:errPublicExponentSmall
+errors:New 0u 0  7    AE=C.New("crypto/rsa: public exponent too large");0 0/!crypto/rsa:errPublicExponentLarge
+errors:New 0Åì 0  Z    $pkg.ErrMessageTooLong=C.New("crypto/rsa: message too long for RSA public key size");0 0*crypto/rsa:ErrMessageTooLong
+errors:New 0s 0  >    $pkg.ErrDecryption=C.New("crypto/rsa: decryption error");0 0&crypto/rsa:ErrDecryption
+errors:New 0y 0  B    $pkg.ErrVerification=C.New("crypto/rsa: verification error");0 0(crypto/rsa:ErrVerification
+errors:New 0Ç—crypto/rsa.EncryptPKCS1v150IÇI=$pkg.EncryptPKCS1v15=function(c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q,r,s,t;f=($sliceType($Uint8)).nil;g=null;  —  ‘h=AF(d);    if(!($interfaceIsEqual(h,null))){  ˘    i=($sliceType($Uint8)).nil;j=h;f=i;g=j;return[f,g];    }  l=(k=((d.N.BitLen()+7>>0))/8,(k===k&&k!==1/0&&k!==-1/0)?k>>0:$throwRuntimeError("integer divide by zero"));  ,    if(e.$length>(l-11>>0)){  Cg=$pkg.ErrMessageTooLong;  ]return[f,g];    }  ím=($sliceType($Uint8)).make(l,0,function(){return 0;});  ©(1<0||1>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+1]=2;  ¥n=$subslice(m,2,((m.$length-e.$length>>0)-1>>0));o=$subslice(m,(m.$length-e.$length>>0));p=n;q=o;  Ôg=M(p,c);      if(!($interfaceIsEqual(g,null))){  %return[f,g];    }  0(r=(m.$length-e.$length>>0)-1>>0,(r<0||r>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+r]=0);  L$copySlice(q,e);  \s=new E.Int.Ptr().SetBytes(m);  |t=AN(new E.Int.Ptr(),d,s);  °R(m,t.Bytes());  ¡f=m;  Àreturn[f,g];    }; 0EncryptPKCS1v150Åêcrypto/rsa:ErrMessageTooLongcrypto/rsa:checkPubcrypto/rsa:copyWithLeftPadcrypto/rsa:encryptcrypto/rsa:nonZeroRandomBytesmath/big:Int 0Ç¯crypto/rsa.DecryptPKCS1v150JÇnJ=$pkg.DecryptPKCS1v15=function(c,d,e){var f,g,h,i,j,k,l;f=($sliceType($Uint8)).nil;g=null;  „  Êh=AF(d.PublicKey);    if(!($interfaceIsEqual(h,null))){      i=($sliceType($Uint8)).nil;j=h;f=i;g=j;return[f,g];    }  +k=L(c,d,e);l=k[0];f=k[1];g=k[2];  g    if($interfaceIsEqual(g,null)&&(l===0)){  ág=$pkg.ErrDecryption;    }  †return[f,g];    }; 0DecryptPKCS1v150Kcrypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptPKCS1v15 0Ç4$crypto/rsa.DecryptPKCS1v15SessionKey0KÇWK=$pkg.DecryptPKCS1v15SessionKey=function(c,d,e,f){var g,h,i,j,k,l,m;g=null;  
+¢  
+•h=AF(d.PublicKey);    if(!($interfaceIsEqual(h,null))){  
+÷    g=h;return g;    }  
+Âj=(i=((d.PublicKey.N.BitLen()+7>>0))/8,(i===i&&i!==1/0&&i!==-1/0)?i>>0:$throwRuntimeError("integer divide by zero"));      if((j-(((f.$length+3>>0)+8>>0))>>0)<0){  !g=$pkg.ErrDecryption;  7return g;    }  Ck=L(c,d,e);l=k[0];m=k[1];g=k[2];      if(!($interfaceIsEqual(g,null))){  ëreturn g;    }  ùl=l&(B.ConstantTimeEq((m.$length>>0),(f.$length>>0)));  ﬂB.ConstantTimeCopy(l,f,m);  	return g;    }; 0DecryptPKCS1v15SessionKey0Åâcrypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptPKCS1v15crypto/subtle:ConstantTimeCopycrypto/subtle:ConstantTimeEq 0Ç2crypto/rsa.decryptPKCS1v150LÇ:L=function(c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;f=0;g=($sliceType($Uint8)).nil;h=null;  Éj=(i=((d.PublicKey.N.BitLen()+7>>0))/8,(i===i&&i!==1/0&&i!==-1/0)?i>>0:$throwRuntimeError("integer divide by zero"));  £    if(j<11){  ±h=$pkg.ErrDecryption;  «return[f,g,h];    }  ”k=new E.Int.Ptr().SetBytes(e);  ˚l=AQ(c,d,k);m=l[0];h=l[1];      if(!($interfaceIsEqual(h,null))){  /return[f,g,h];    }  ;n=AS(m.Bytes(),j);  Xo=B.ConstantTimeByteEq(((0<0||0>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+0]),0);  êp=B.ConstantTimeByteEq(((1<0||1>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+1]),2);  ∂  ∫q=0;r=0;s=q;t=r;  ÷s=1;  Ï  u=2;while(u<n.$length){  v=B.ConstantTimeByteEq(((u<0||u>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+u]),0);  >t=B.ConstantTimeSelect(s&v,u,t);  Ös=B.ConstantTimeSelect(v,0,s);        u=u+(1)>>0;}  *w=B.ConstantTimeLessOrEq(10,t);  _f=((o&p)&(((~s>>0)&1)))&w;  ≠g=$subslice(n,(t+1>>0));  ¡return[f,g,h];    }; 0decryptPKCS1v150Å∏crypto/rsa:ErrDecryptioncrypto/rsa:decryptcrypto/rsa:leftPad crypto/subtle:ConstantTimeByteEq"crypto/subtle:ConstantTimeLessOrEq crypto/subtle:ConstantTimeSelectmath/big:Int 0Ç crypto/rsa.nonZeroRandomBytes0MÇxM=function(c,d){var e,f,g,h,i,j;e=null;  Uf=D.ReadFull(d,c);e=f[1];  t    if(!($interfaceIsEqual(e,null))){  Üreturn e;    }  í  ñg=0;while(g<c.$length){  ≤while(((g<0||g>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+g])===0){  ≈h=D.ReadFull(d,$subslice(c,g,(g+1>>0)));e=h[1];  Ì    if(!($interfaceIsEqual(e,null))){  return e;    }  ei=c;j=g;(j<0||j>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+j]=(((j<0||j>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+j])^(66))<<24>>>24;    }      ™  ™g=g+(1)>>0;}  {return e;    }; 0nonZeroRandomBytes0io:ReadFull 0Ç’crypto/rsa.SignPKCS1v150OÇ#O=$pkg.SignPKCS1v15=function(c,d,e,f){var g,h,i,j,k,l,m,n,o,p,q,r,s,t,u;g=($sliceType($Uint8)).nil;h=null;  Si=Q(e,f.$length);j=i[0];k=i[1];h=i[2];  ê    if(!($interfaceIsEqual(h,null))){  ¢return[g,h];    }  Æl=k.$length+j>>0;  Õn=(m=((d.PublicKey.N.BitLen()+7>>0))/8,(m===m&&m!==1/0&&m!==-1/0)?m>>0:$throwRuntimeError("integer divide by zero"));  Ì    if(n<(l+11>>0)){       o=($sliceType($Uint8)).nil;p=$pkg.ErrMessageTooLong;g=o;h=p;return[g,h];    }  Lq=($sliceType($Uint8)).make(n,0,function(){return 0;});  c(1<0||1>=q.$length)?$throwRuntimeError("index out of range"):q.$array[q.$offset+1]=1;  n  rr=2;while(r<((n-l>>0)-1>>0)){  ê(r<0||r>=q.$length)?$throwRuntimeError("index out of range"):q.$array[q.$offset+r]=255;      à  àr=r+(1)>>0;}  °$copySlice($subslice(q,(n-l>>0),(n-j>>0)),k);  ≈$copySlice($subslice(q,(n-j>>0),n),f);  Âs=new E.Int.Ptr().SetBytes(q);  t=AQ(c,d,s);u=t[0];h=t[1];  '    if(!($interfaceIsEqual(h,null))){  9return[g,h];    }  ER(q,u.Bytes());  eg=q;  mreturn[g,h];    }; 0SignPKCS1v150ycrypto/rsa:ErrMessageTooLongcrypto/rsa:copyWithLeftPadcrypto/rsa:decryptcrypto/rsa:pkcs1v15HashInfomath/big:Int 0ÇÌcrypto/rsa.VerifyPKCS1v150PÇ˚P=$pkg.VerifyPKCS1v15=function(c,d,e,f){var g,h,i,j,k,l,m,n,o,p,q,r,s;g=null;  h=Q(d,e.$length);i=h[0];j=h[1];g=h[2];  \    if(!($interfaceIsEqual(g,null))){  nreturn g;    }  zk=j.$length+i>>0;  ôm=(l=((c.N.BitLen()+7>>0))/8,(l===l&&l!==1/0&&l!==-1/0)?l>>0:$throwRuntimeError("integer divide by zero"));  ∏    if(m<(k+11>>0)){  Àg=$pkg.ErrVerification;  „return g;    }  Ôn=new E.Int.Ptr().SetBytes(f);  o=AN(new E.Int.Ptr(),c,n);  4p=AS(o.Bytes(),m);  {q=B.ConstantTimeByteEq(((0<0||0>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+0]),0);  ¶q=q&(B.ConstantTimeByteEq(((1<0||1>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+1]),1));  —q=q&(B.ConstantTimeCompare($subslice(p,(m-i>>0),m),e));  q=q&(B.ConstantTimeCompare($subslice(p,(m-k>>0),(m-i>>0)),j));  Lq=q&(B.ConstantTimeByteEq((r=(m-k>>0)-1>>0,((r<0||r>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+r])),0));    És=2;while(s<((m-k>>0)-1>>0)){  °q=q&(B.ConstantTimeByteEq(((s<0||s>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+s]),255));      ô  ôs=s+(1)>>0;}  ”    if(!((q===1))){  ‚    g=$pkg.ErrVerification;return g;    }  ˛    g=null;return g;    }; 0VerifyPKCS1v150Å¥crypto/rsa:ErrVerificationcrypto/rsa:encryptcrypto/rsa:leftPadcrypto/rsa:pkcs1v15HashInfo crypto/subtle:ConstantTimeByteEq!crypto/subtle:ConstantTimeComparemath/big:Int 0Ç‡crypto/rsa.pkcs1v15HashInfo0QÇmQ=function(c,d){var e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;e=0;f=($sliceType($Uint8)).nil;g=null;   ≈    if(c===0){   ÷    h=d;i=($sliceType($Uint8)).nil;j=null;e=h;f=i;g=j;return[e,f,g];    }   Úe=(new A.Hash(c)).Size();  !	    if(!((d===e))){  !!    k=0;l=($sliceType($Uint8)).nil;m=C.New("crypto/rsa: input must be hashed message");e=k;f=l;g=m;return[e,f,g];    }  !kn=(o=N[c],o!==undefined?[o.v,true]:[($sliceType($Uint8)).nil,false]);f=n[0];p=n[1];  !ç    if(!p){  !ò    q=0;r=($sliceType($Uint8)).nil;s=C.New("crypto/rsa: unsupported hash function");e=q;f=r;g=s;return[e,f,g];    }  !ﬂreturn[e,f,g];    }; 0pkcs1v15HashInfo02crypto/rsa:hashPrefixescrypto:Hash
+errors:New 0Ç+crypto/rsa.copyWithLeftPad0RÅÌR=function(c,d){var e,f;  "ke=c.$length-d.$length>>0;  "î  "òf=0;while(f<e){  "Ω(f<0||f>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+f]=0;      "µ  "µf=f+(1)>>0;}  "Õ$copySlice($subslice(c,e),d);    }; 0copyWithLeftPad0  0ÇÎcrypto/rsa.emsaPSSEncode0SÇêS=function(c,d,e,f){var g,h,i,j,k,l,m,n,o,p,q,r,s;  $Ùg=f.Size();  %	h=e.$length;  %j=(i=((d+7>>0))/8,(i===i&&i!==1/0&&i!==-1/0)?i>>0:$throwRuntimeError("integer divide by zero"));  &!    if(!((c.$length===g))){  &;return[($sliceType($Uint8)).nil,C.New("crypto/rsa: input must be hashed message")];    }  &     if(j<((g+h>>0)+2>>0)){  &Âreturn[($sliceType($Uint8)).nil,C.New("crypto/rsa: encoding error")];    }  'k=($sliceType($Uint8)).make(j,0,function(){return 0;});  ':l=$subslice(k,0,(((((j-h>>0)-g>>0)-2>>0)+1>>0)+h>>0));  '_m=$subslice(k,(((((j-h>>0)-g>>0)-2>>0)+1>>0)+h>>0),(j-1>>0));  (Ì  (Òn=($arrayType($Uint8,8)).zero();$copy(n,($arrayType($Uint8,8)).zero(),($arrayType($Uint8,8)));  )f.Write(new($sliceType($Uint8))(n));  )f.Write(c);  ),f.Write(e);  )?m=f.Sum($subslice(m,0,0));  )Tf.Reset();  *B(o=((j-h>>0)-g>>0)-2>>0,(o<0||o>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+o]=1);  *`$copySlice($subslice(l,(((j-h>>0)-g>>0)-1>>0)),e);  *‡AM(l,f,m);  +\p=l;q=0;(q<0||q>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+q]=(((q<0||q>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+q])&((((r=((((((8>>>16<<16)*j>>0)+(8<<16>>>16)*j)>>0)-d>>0)>>>0),r<32?(255>>>r):0)<<24>>>24))))>>>0;  +Æ(s=j-1>>0,(s<0||s>=k.$length)?$throwRuntimeError("index out of range"):k.$array[k.$offset+s]=188);  +÷return[k,null];    }; 0emsaPSSEncode0 crypto/rsa:mgf1XOR
+errors:New 0Ç	ãcrypto/rsa.emsaPSSVerify0TÇ	T=function(c,d,e,f,g){var h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;  -h=g.Size();  -1    if(!((h===c.$length))){  -Kreturn $pkg.ErrVerification;    }  -´j=(i=((e+7>>0))/8,(i===i&&i!==1/0&&i!==-1/0)?i>>0:$throwRuntimeError("integer divide by zero"));  -∆    if(j<((h+f>>0)+2>>0)){  -·return $pkg.ErrVerification;    }  .p    if(!(((k=d.$length-1>>0,((k<0||k>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+k]))===188))){  .çreturn $pkg.ErrVerification;    }  /l=$subslice(d,0,((j-h>>0)-1>>0));  /1m=$subslice(d,((j-h>>0)-1>>0),(d.$length-1>>0));  /Ú    if(!((((((0<0||0>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+0])&(((n=((8-((((((8>>>16<<16)*j>>0)+(8<<16>>>16)*j)>>0)-e>>0))>>0)>>>0),n<32?(255<<n):0)<<24>>>24)))>>>0)===0))){  0%return $pkg.ErrVerification;    }  0õAM(l,g,m);  1o=l;p=0;(p<0||p>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+p]=(((p<0||p>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+p])&((((q=((((((8>>>16<<16)*j>>0)+(8<<16>>>16)*j)>>0)-e>>0)>>>0),q<32?(255>>>q):0)<<24>>>24))))>>>0;  1:    if(f===0){  1Z  1l  1pf=j-((h+2>>0))>>0;FindSaltLength:while(f>=0){  1¢r=(s=((j-h>>0)-f>>0)-2>>0,((s<0||s>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+s]));  1ƒif(r===1){  1–break FindSaltLength;      1Ë}else if(r===0){  1Ù  1ñ  1ñf=f-(1)>>0;continue;    }else{  2return $pkg.ErrVerification;    }      1ñ  1ñf=f-(1)>>0;}  2/    if(f<0){  2@return $pkg.ErrVerification;    }    }else{  3ot=$subslice(l,0,(((j-h>>0)-f>>0)-2>>0));u=0;while(u<t.$length){v=((u<0||u>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+u]);  3ù    if(!((v===0))){  3∞return $pkg.ErrVerification;    }    u++;}  3“    if(!(((w=((j-h>>0)-f>>0)-2>>0,((w<0||w>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+w]))===1))){  3¯return $pkg.ErrVerification;    }    }  4Ix=$subslice(l,(l.$length-f>>0));  5R  5Vy=($arrayType($Uint8,8)).zero();$copy(y,($arrayType($Uint8,8)).zero(),($arrayType($Uint8,8)));  5fg.Write(new($sliceType($Uint8))(y));  5}g.Write(c);  5êg.Write(x);  5£z=g.Sum(($sliceType($Uint8)).nil);  6    if(!F.Equal(z,m)){  6return $pkg.ErrVerification;    }  69return null;    }; 0emsaPSSVerify0=bytes:Equalcrypto/rsa:ErrVerificationcrypto/rsa:mgf1XOR 0Ç”crypto/rsa.signPSSWithSalt0UÇ/U=function(c,d,e,f,g){var h,i,j,k,l,m,n,o,p;h=($sliceType($Uint8)).nil;i=null;  7‹j=d.PublicKey.N.BitLen();  7ˆk=S(f,j-1>>0,g,(new A.Hash(e)).New());l=k[0];i=k[1];  83    if(!($interfaceIsEqual(i,null))){  8Ereturn[h,i];    }  8Pm=new E.Int.Ptr().SetBytes(l);  8pn=AQ(c,d,m);o=n[0];i=n[1];  8í    if(!($interfaceIsEqual(i,null))){  8§return[h,i];    }  8Øh=($sliceType($Uint8)).make((p=((j+7>>0))/8,(p===p&&p!==1/0&&p!==-1/0)?p>>0:$throwRuntimeError("integer divide by zero")),0,function(){return 0;});  8ŒR(h,o.Bytes());  8Ìreturn[h,i];    }; 0signPSSWithSalt0ecrypto/rsa:copyWithLeftPadcrypto/rsa:decryptcrypto/rsa:emsaPSSEncodecrypto:Hashmath/big:Int 0Ç4#(*crypto/rsa.PSSOptions).saltLength0 Å“V.Ptr.prototype.saltLength=function(){var c;  ;Tc=this;  ;z    if(c===($ptrType(V)).nil){  ;çreturn 0;    }  ;™return c.SaltLength;    };V.prototype.saltLength=function(){return this.$val.saltLength();}; 0
+PSSOptions
+saltLength0crypto/rsa:PSSOptions 0Ç≥crypto/rsa.SignPSS0WÇ7W=$pkg.SignPSS=function(c,d,e,f,g){var h,i,j,k,l,m,n,o;h=($sliceType($Uint8)).nil;i=null;  =4j=g.saltLength();  =Uk=j;  =jif(k===0){  =Ñj=((l=((d.PublicKey.N.BitLen()+7>>0))/8,(l===l&&l!==1/0&&l!==-1/0)?l>>0:$throwRuntimeError("integer divide by zero"))-2>>0)-(new A.Hash(e)).Size()>>0;      =∫}else if(k===-1){  =⁄j=(new A.Hash(e)).Size();    }  =¯m=($sliceType($Uint8)).make(j,0,function(){return 0;});  >  >n=D.ReadFull(c,m);i=n[1];    if(!($interfaceIsEqual(i,null))){  >Nreturn[h,i];    }  >Y    o=U(c,d,e,f,m);h=o[0];i=o[1];return[h,i];    }; 0	SignPSS0Mcrypto/rsa:saltLengthcrypto/rsa:signPSSWithSaltcrypto:Hashio:ReadFull 0Å∞crypto/rsa.VerifyPSS0XRX=$pkg.VerifyPSS=function(c,d,e,f,g){  @return Y(c,d,e,f,g.saltLength());    }; 0	VerifyPSS0-crypto/rsa:saltLengthcrypto/rsa:verifyPSS 0ÇRcrypto/rsa.verifyPSS0YÇùY=function(c,d,e,f,g){var h,i,j,k,l,m,n,o;  @˚h=c.N.BitLen();  A    if(!((f.$length===(i=((h+7>>0))/8,(i===i&&i!==1/0&&i!==-1/0)?i>>0:$throwRuntimeError("integer divide by zero"))))){  A3return $pkg.ErrVerification;    }  ANj=new E.Int.Ptr().SetBytes(f);  Aok=AN(new E.Int.Ptr(),c,j);  Aìl=h-1>>0;  A®n=(m=((l+7>>0))/8,(m===m&&m!==1/0&&m!==-1/0)?m>>0:$throwRuntimeError("integer divide by zero"));  A√    if(n<k.Bytes().$length){  A·return $pkg.ErrVerification;    }  A¸o=($sliceType($Uint8)).make(n,0,function(){return 0;});  BR(o,k.Bytes());  B7    if(g===-1){  Bag=(new A.Hash(d)).Size();    }  B{return T(e,o,l,g,(new A.Hash(d)).New());    }; 0	verifyPSS0ÅÅcrypto/rsa:ErrVerificationcrypto/rsa:copyWithLeftPadcrypto/rsa:emsaPSSVerifycrypto/rsa:encryptcrypto:Hashmath/big:Int 0Çccrypto/rsa.checkPub0AFÅ¡AF=function(c){  F⁄    if(c.N===($ptrType(E.Int)).nil){  FÓreturn AC;    }  G
+    if(c.E<2){  Greturn AD;    }  G=    if(c.E>2147483647){  GTreturn AE;    }  Gvreturn null;    }; 0
+checkPub0q!crypto/rsa:errPublicExponentLarge!crypto/rsa:errPublicExponentSmallcrypto/rsa:errPublicModulusmath/big:Int 0Ç!(*crypto/rsa.PrivateKey).Validate0 ÇAG.Ptr.prototype.Validate=function(){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q;  K¬c=this;  KË  KÎd=AF(c.PublicKey);    if(!($interfaceIsEqual(d,null))){  Lreturn d;    }  M:e=c.Primes;f=0;while(f<e.$length){g=((f<0||f>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+f]);  M`    if(!g.ProbablyPrime(20)){  MÅreturn C.New("crypto/rsa: prime factor is composite");    }    f++;}  M„h=new E.Int.Ptr().Set(AA);  Ni=c.Primes;j=0;while(j<i.$length){k=((j<0||j>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+j]);  N.h.Mul(h,k);    j++;}  NN    if(!((h.Cmp(c.PublicKey.N)===0))){  Nnreturn C.New("crypto/rsa: invalid modulus");    }  OÒl=new E.Int.Ptr();  Pm=new E.Int.Ptr().SetInt64(new $Int64(0,c.PublicKey.E));  P9m.Mul(m,c.D);  PMn=c.Primes;o=0;while(o<n.$length){p=((o<0||o>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+o]);  Psq=new E.Int.Ptr().Sub(p,AA);  P†l.Mod(m,q);  Pæ    if(!((l.Cmp(AA)===0))){  P‚return C.New("crypto/rsa: invalid exponents");    }    o++;}  Qreturn null;    };AG.prototype.Validate=function(){return this.$val.Validate();}; 0
+PrivateKey0Ycrypto/rsa:PrivateKeycrypto/rsa:bigOnecrypto/rsa:checkPub
+errors:Newmath/big:Int 0ÅÓcrypto/rsa.GenerateKey0AJAJ=$pkg.GenerateKey=function(c,d){var e,f,g;e=($ptrType(AG)).nil;f=null;  Q¸    g=AK(c,2,d);e=g[0];f=g[1];return[e,f];    }; 0GenerateKey09 crypto/rsa:GenerateMultiPrimeKeycrypto/rsa:PrivateKey 0Ç∆ crypto/rsa.GenerateMultiPrimeKey0AKÇAK=$pkg.GenerateMultiPrimeKey=function(c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae;f=($ptrType(AG)).nil;g=null;  Tﬂf=new AG.Ptr();  T˜f.PublicKey.E=65537;  U    if(d<2){  U    h=($ptrType(AG)).nil;i=C.New("crypto/rsa: GenerateMultiPrimeKey: nprimes must be >= 2");f=h;g=i;return[f,g];    }  Urj=($sliceType(($ptrType(E.Int)))).make(d,0,function(){return($ptrType(E.Int)).nil;});  Uó  U©NextSetOfPrimes:while(true){  U±k=e;  W∞    if(d>=7){  W≈k=k+((l=((d-2>>0))/5,(l===l&&l!==1/0&&l!==-1/0)?l>>0:$throwRuntimeError("integer divide by zero")))>>0;    }  WÂ  WÈm=0;while(m<d){  Xn=H.Prime(c,(o=k/((d-m>>0)),(o===o&&o!==1/0&&o!==-1/0)?o>>0:$throwRuntimeError("integer divide by zero")));(m<0||m>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+m]=n[0];g=n[1];  X@    if(!($interfaceIsEqual(g,null))){  XT    p=($ptrType(AG)).nil;q=g;f=p;g=q;return[f,g];    }  Xlk=k-(((m<0||m>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+m]).BitLen())>>0;      W˛  W˛m=m+(1)>>0;}  Xær=j;s=0;while(s<r.$length){t=s;u=((s<0||s>=r.$length)?$throwRuntimeError("index out of range"):r.$array[r.$offset+s]);  X‡  X‰v=0;while(v<t){  X˝    if(u.Cmp(((v<0||v>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+v]))===0){  Y!continue NextSetOfPrimes;    }      XÛ  XÛv=v+(1)>>0;}    s++;}  YLw=new E.Int.Ptr().Set(AA);  Ylx=new E.Int.Ptr().Set(AA);  Yíy=new E.Int.Ptr();  Y¨z=j;aa=0;while(aa<z.$length){ab=((aa<0||aa>=z.$length)?$throwRuntimeError("index out of range"):z.$array[z.$offset+aa]);  YŒw.Mul(w,ab);  Y·y.Sub(ab,AA);  Yˇx.Mul(x,y);    aa++;}  Z#    if(!((w.BitLen()===e))){  ZÎcontinue NextSetOfPrimes;    }  [ac=new E.Int.Ptr();  [f.D=new E.Int.Ptr();  [7ad=new E.Int.Ptr();  [Kae=E.NewInt(new $Int64(0,f.PublicKey.E));  [lac.GCD(f.D,ad,ae,x);  [å    if(ac.Cmp(AA)===0){  [ß    if(f.D.Sign()<0){  [¬f.D.Add(f.D,x);    }  [Êf.Primes=j;  [˛f.PublicKey.N=w;  \break;    }    }  \f.Precompute();  \/return[f,g];    }; 0GenerateMultiPrimeKey0hcrypto/rand:Primecrypto/rsa:PrivateKeycrypto/rsa:bigOne
+errors:Newmath/big:Intmath/big:NewInt 0Çécrypto/rsa.incCounter0ALÇXAL=function(c){var d,e,f,g,h,i,j,k;  \í  \ï  \ïd=c;e=3;d[e]=d[e]+(1)<<24>>>24;    if(!((c[3]===0))){  \´return;    }  \∂  \π  \πf=c;g=2;f[g]=f[g]+(1)<<24>>>24;    if(!((c[2]===0))){  \œreturn;    }  \⁄  \›  \›h=c;i=1;h[i]=h[i]+(1)<<24>>>24;    if(!((c[1]===0))){  \Ûreturn;    }  \˛  \˛j=c;k=0;j[k]=j[k]+(1)<<24>>>24;    }; 0
+incCounter0  0Çcrypto/rsa.mgf1XOR0AMÇ‘AM=function(c,d,e){var f,g,h,i,j,k;  ]≠  ]±f=($arrayType($Uint8,4)).zero();$copy(f,($arrayType($Uint8,4)).zero(),($arrayType($Uint8,4)));  ]¬  ]∆g=($sliceType($Uint8)).nil;  ]÷h=0;  ]·while(h<c.$length){  ]˘d.Write(e);  ^d.Write($subslice(new($sliceType($Uint8))(f),0,4));  ^'g=d.Sum($subslice(g,0,0));  ^Gd.Reset();  ^W  ^[i=0;while(i<g.$length&&h<c.$length){  ^êj=c;k=h;(k<0||k>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+k]=(((k<0||k>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+k])^(((i<0||i>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+i])))<<24>>>24;  ^™  ^™h=h+(1)>>0;      ^á  ^ái=i+(1)>>0;}  ^∑AL(f);    }    }; 0	mgf1XOR0crypto/rsa:incCounter 0Å§crypto/rsa.encrypt0ANeAN=function(c,d,e){var f;  _Îf=E.NewInt(new $Int64(0,d.E));  `
+c.Exp(e,f,d.N);  `return c;    }; 0	encrypt0math/big:NewInt 0Ç⁄crypto/rsa.EncryptOAEP0AOÇ,AO=$pkg.EncryptOAEP=function(c,d,e,f,g){var h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x;h=($sliceType($Uint8)).nil;i=null;  aH  aKj=AF(e);    if(!($interfaceIsEqual(j,null))){  ap    k=($sliceType($Uint8)).nil;l=j;h=k;i=l;return[h,i];    }  aÑc.Reset();  aín=(m=((e.N.BitLen()+7>>0))/8,(m===m&&m!==1/0&&m!==-1/0)?m>>0:$throwRuntimeError("integer divide by zero"));  a±    if(f.$length>((n-(o=c.Size(),(((2>>>16<<16)*o>>0)+(2<<16>>>16)*o)>>0)>>0)-2>>0)){  a’i=$pkg.ErrMessageTooLong;  aÔreturn[h,i];    }  a˚c.Write(g);  bp=c.Sum(($sliceType($Uint8)).nil);  b&c.Reset();  b5q=($sliceType($Uint8)).make(n,0,function(){return 0;});  bLr=$subslice(q,1,(1+c.Size()>>0));  bks=$subslice(q,(1+c.Size()>>0));  bÜ$copySlice($subslice(s,0,c.Size()),p);  b¶(t=(s.$length-f.$length>>0)-1>>0,(t<0||t>=s.$length)?$throwRuntimeError("index out of range"):s.$array[s.$offset+t]=1);  b¬$copySlice($subslice(s,(s.$length-f.$length>>0)),f);  bÂu=D.ReadFull(d,r);i=u[1];  c	    if(!($interfaceIsEqual(i,null))){  creturn[h,i];    }  c'AM(s,c,r);  c@AM(r,c,s);  cZv=new E.Int.Ptr();  cmv.SetBytes(q);  c}w=AN(new E.Int.Ptr(),e,v);  c°h=w.Bytes();  c≥    if(h.$length<n){  dx=($sliceType($Uint8)).make(n,0,function(){return 0;});  d$copySlice($subslice(x,(n-h.$length>>0)),h);  d;h=x;    }  dHreturn[h,i];    }; 0EncryptOAEP0vcrypto/rsa:ErrMessageTooLongcrypto/rsa:checkPubcrypto/rsa:encryptcrypto/rsa:mgf1XORio:ReadFullmath/big:Int 0Çãcrypto/rsa.modInverse0APÇ4AP=function(c,d){var e,f,g,h,i,j,k;e=($ptrType(E.Int)).nil;f=false;  fîg=new E.Int.Ptr();  fßh=new E.Int.Ptr();  f∫i=new E.Int.Ptr();  fÕg.GCD(h,i,c,d);  f‡    if(!((g.Cmp(AA)===0))){  g…return[e,f];    }  g’    if(h.Cmp(AA)<0){  hMh.Add(h,d);    }  h^    j=h;k=true;e=j;f=k;return[e,f];    }; 0
+modInverse0!crypto/rsa:bigOnemath/big:Int 0Ç#(*crypto/rsa.PrivateKey).Precompute0 ÇyAG.Ptr.prototype.Precompute=function(){var c,d,e,f,g,h,i,j,k,l,m,n,o,p;  h÷c=this;  h¯    if(!(c.Precomputed.Dp===($ptrType(E.Int)).nil)){  ireturn;    }  i&c.Precomputed.Dp=new E.Int.Ptr().Sub((d=c.Primes,((0<0||0>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+0])),AA);  ifc.Precomputed.Dp.Mod(c.D,c.Precomputed.Dp);  iùc.Precomputed.Dq=new E.Int.Ptr().Sub((e=c.Primes,((1<0||1>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+1])),AA);  i›c.Precomputed.Dq.Mod(c.D,c.Precomputed.Dq);  jc.Precomputed.Qinv=new E.Int.Ptr().ModInverse((f=c.Primes,((1<0||1>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+1])),(g=c.Primes,((0<0||0>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+0])));  jfj=new E.Int.Ptr().Mul((h=c.Primes,((0<0||0>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+0])),(i=c.Primes,((1<0||1>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+1])));  jùc.Precomputed.CRTValues=($sliceType(AI)).make((c.Primes.$length-2>>0),0,function(){return new AI.Ptr();});  j‡  j‰k=2;while(k<c.Primes.$length){  k
+m=(l=c.Primes,((k<0||k>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+k]));  k$p=(n=c.Precomputed.CRTValues,o=k-2>>0,((o<0||o>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+o]));  kRp.Exp=new E.Int.Ptr().Sub(m,AA);  kÅp.Exp.Mod(c.D,p.Exp);  kßp.R=new E.Int.Ptr().Set(j);  k»p.Coeff=new E.Int.Ptr().ModInverse(j,m);  k¸j.Mul(j,m);      k  kk=k+(1)>>0;}    };AG.prototype.Precompute=function(){return this.$val.Precompute();}; 0
+PrivateKey0Mcrypto/rsa:CRTValuecrypto/rsa:PrivateKeycrypto/rsa:bigOnemath/big:Int 0Ç	Ccrypto/rsa.decrypt0AQÇuAQ=function(c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab;f=($ptrType(E.Int)).nil;g=null;  m    if(e.Cmp(d.PublicKey.N)>0){  m6g=$pkg.ErrDecryption;  mLreturn[f,g];    }  mX  m\h=($ptrType(E.Int)).nil;  mi    if(!($interfaceIsEqual(c,null))){  nv  nzi=($ptrType(E.Int)).nil;  nàwhile(true){  nëj=H.Int(c,d.PublicKey.N);i=j[0];g=j[1];  n∂    if(!($interfaceIsEqual(g,null))){  n return[f,g];    }  nŸ    if(i.Cmp(Z)===0){  nˆi=AA;    }  o	  ok=false;  ol=AP(i,d.PublicKey.N);h=l[0];k=l[1];  o:    if(k){  oFbreak;    }    }  oWm=E.NewInt(new $Int64(0,d.PublicKey.E));  o{n=new E.Int.Ptr().Exp(i,m,d.PublicKey.N);  o®o=new E.Int.Ptr().Set(e);  o«o.Mul(o,n);  o·o.Mod(o,d.PublicKey.N);  o¸e=o;    }  p    if(d.Precomputed.Dp===($ptrType(E.Int)).nil){  p-f=new E.Int.Ptr().Exp(e,d.D,d.PublicKey.N);    }else{  põf=new E.Int.Ptr().Exp(e,d.Precomputed.Dp,(p=d.Primes,((0<0||0>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+0])));  p⁄r=new E.Int.Ptr().Exp(e,d.Precomputed.Dq,(q=d.Primes,((1<0||1>=q.$length)?$throwRuntimeError("index out of range"):q.$array[q.$offset+1])));  qf.Sub(f,r);  q*    if(f.Sign()<0){  q?f.Add(f,(s=d.Primes,((0<0||0>=s.$length)?$throwRuntimeError("index out of range"):s.$array[s.$offset+0])));    }  q^f.Mul(f,d.Precomputed.Qinv);  qÄf.Mod(f,(t=d.Primes,((0<0||0>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+0])));  qõf.Mul(f,(u=d.Primes,((1<0||1>=u.$length)?$throwRuntimeError("index out of range"):u.$array[u.$offset+1])));  q∂f.Add(f,r);  q∆v=d.Precomputed.CRTValues;w=0;while(w<v.$length){x=w;y=new AI.Ptr();$copy(y,((w<0||w>=v.$length)?$throwRuntimeError("index out of range"):v.$array[v.$offset+w]),AI);  q˝ab=(z=d.Primes,aa=2+x>>0,((aa<0||aa>=z.$length)?$throwRuntimeError("index out of range"):z.$array[z.$offset+aa]));  rr.Exp(e,y.Exp,ab);  r:r.Sub(r,f);  rKr.Mul(r,y.Coeff);  rgr.Mod(r,ab);  r|    if(r.Sign()<0){  rìr.Add(r,ab);    }  r≠r.Mul(r,y.R);  r≈f.Add(f,r);    w++;}    }  r€    if(!(h===($ptrType(E.Int)).nil)){  r˙f.Mul(f,h);  s	f.Mod(f,d.PublicKey.N);    }  sreturn[f,g];    }; 0	decrypt0Åùcrypto/rand:Intcrypto/rsa:CRTValuecrypto/rsa:ErrDecryptioncrypto/rsa:bigOnecrypto/rsa:bigZerocrypto/rsa:modInversemath/big:Intmath/big:NewInt 0Ç¬crypto/rsa.DecryptOAEP0ARÇ©AR=$pkg.DecryptOAEP=function(c,d,e,f,g){var h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai;h=($sliceType($Uint8)).nil;i=null;  t6  t9j=AF(e.PublicKey);    if(!($interfaceIsEqual(j,null))){  tj    k=($sliceType($Uint8)).nil;l=j;h=k;i=l;return[h,i];    }  t~n=(m=((e.PublicKey.N.BitLen()+7>>0))/8,(m===m&&m!==1/0&&m!==-1/0)?m>>0:$throwRuntimeError("integer divide by zero"));  tû    if(f.$length>n||n<((o=c.Size(),(((o>>>16<<16)*2>>0)+(o<<16>>>16)*2)>>0)+2>>0)){  t“i=$pkg.ErrDecryption;  tËreturn[h,i];    }  tÙp=new E.Int.Ptr().SetBytes(f);  uq=AQ(d,e,p);r=q[0];i=q[1];  uA    if(!($interfaceIsEqual(i,null))){  uSreturn[h,i];    }  u_c.Write(g);  urs=c.Sum(($sliceType($Uint8)).nil);  uäc.Reset();  v¡t=AS(r.Bytes(),n);  vﬂu=B.ConstantTimeByteEq(((0<0||0>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+0]),0);  wv=$subslice(t,1,(c.Size()+1>>0));  w7w=$subslice(t,(c.Size()+1>>0));  wRAM(v,c,w);  wkAM(w,c,v);  wÖx=$subslice(w,0,c.Size());  xØy=B.ConstantTimeCompare(s,x);  z  zz=0;aa=0;ab=0;ac=z;ad=aa;ae=ab;  z*ac=1;  z?af=$subslice(w,c.Size());  zZ  z^ag=0;while(ag<af.$length){  z}ah=B.ConstantTimeByteEq(((ag<0||ag>=af.$length)?$throwRuntimeError("index out of range"):af.$array[af.$offset+ag]),0);  z∞ai=B.ConstantTimeByteEq(((ag<0||ag>=af.$length)?$throwRuntimeError("index out of range"):af.$array[af.$offset+ag]),1);  z„ad=B.ConstantTimeSelect(ac&ai,ag,ad);  {*ac=B.ConstantTimeSelect(ai,0,ac);  {uae=B.ConstantTimeSelect(ac&~ah,1,ae);      zu  zuag=ag+(1)>>0;}  {ƒ    if(!(((((u&y)&~ae)&~ac)===1))){  |i=$pkg.ErrDecryption;  |return[h,i];    }  |'h=$subslice(af,(ad+1>>0));  |=return[h,i];    }; 0DecryptOAEP0Å‡crypto/rsa:ErrDecryptioncrypto/rsa:checkPubcrypto/rsa:decryptcrypto/rsa:leftPadcrypto/rsa:mgf1XOR crypto/subtle:ConstantTimeByteEq!crypto/subtle:ConstantTimeCompare crypto/subtle:ConstantTimeSelectmath/big:Int 0Çcrypto/rsa.leftPad0ASÅËAS=function(c,d){var e,f;e=($sliceType($Uint8)).nil;  |Ëf=c.$length;  |˘    if(f>d){  }	f=d;    }  }e=($sliceType($Uint8)).make(d,0,function(){return 0;});  }0$copySlice($subslice(e,(e.$length-f>>0)),c);  }Oreturn e;    }; 0	leftPad0  0 Ç˚{"Base":32089,"Files":[{"Name":"/usr/local/go/src/pkg/crypto/rsa/pkcs1v15.go","Base":1,"Size":8944,"Lines":[0,55,109,159,160,172,173,182,192,209,219,225,237,239,240,317,318,414,501,580,628,719,758,776,779,810,832,858,867,870,871,912,935,946,1005,1041,1058,1067,1070,1098,1113,1114,1146,1182,1183,1215,1225,1233,1235,1236,1327,1405,1505,1556,1574,1577,1637,1668,1690,1693,1694,1702,1704,1705,1808,1886,1957,2030,2110,2189,2262,2340,2419,2443,2513,2593,2610,2720,2771,2784,2787,2819,2846,2868,2877,2880,2881,2941,2958,2967,2970,2971,3037,3079,3087,3089,3090,3201,3233,3246,3268,3277,3280,3281,3321,3355,3372,3381,3384,3385,3414,3470,3526,3527,3598,3652,3716,3764,3796,3817,3818,3850,3899,3970,4045,4048,4049,4117,4136,4188,4189,4267,4287,4295,4297,4298,4371,4435,4466,4483,4492,4495,4496,4527,4545,4585,4604,4615,4620,4675,4705,4721,4725,4728,4729,4737,4739,4740,4774,4805,4849,4876,4883,4953,5031,5061,5104,5233,5344,5479,5614,5749,5884,5963,6068,6070,6071,6173,6251,6330,6372,6481,6542,6559,6568,6571,6572,6603,6635,6653,6685,6688,6689,6730,6753,6764,6797,6812,6815,6851,6882,6883,6915,6949,6966,6975,6978,6979,7011,7019,7027,7029,7030,7087,7161,7233,7310,7358,7453,7514,7531,7540,7543,7544,7575,7606,7624,7648,7657,7660,7661,7694,7730,7759,7800,7801,7844,7887,7946,8010,8060,8061,8094,8141,8144,8145,8159,8184,8187,8188,8200,8202,8203,8296,8366,8387,8403,8428,8431,8432,8455,8478,8550,8553,8587,8597,8666,8669,8677,8679,8680,8757,8768,8809,8850,8890,8904,8907,8942],"Infos":null},{"Name":"/usr/local/go/src/pkg/crypto/rsa/pss.go","Base":8946,"Size":8137,"Lines":[0,55,109,159,160,172,173,227,230,326,327,336,345,355,365,373,379,391,393,394,486,513,534,553,580,581,653,724,748,752,813,814,839,908,911,912,982,983,1009,1064,1067,1068,1095,1132,1177,1178,1251,1290,1294,1306,1367,1371,1438,1467,1471,1529,1530,1550,1551,1574,1593,1611,1612,1633,1647,1648,1722,1771,1775,1844,1870,1871,1901,1937,1938,1985,1989,2028,2029,2051,2052,2126,2152,2153,2194,2195,2235,2255,2256,2275,2291,2293,2294,2373,2445,2518,2536,2540,2601,2622,2647,2672,2675,2676,2744,2771,2797,2822,2825,2826,2895,2941,2969,2994,2997,2998,3070,3109,3134,3169,3170,3243,3313,3327,3377,3402,3405,3406,3453,3457,3496,3518,3519,3596,3613,3654,3655,3687,3704,3757,3791,3802,3827,3838,3851,3863,3890,3895,3899,3915,3941,3945,3955,4030,4105,4178,4219,4264,4282,4309,4314,4318,4355,4381,4385,4388,4389,4438,4465,4466,4479,4544,4611,4640,4644,4703,4723,4746,4765,4783,4784,4805,4806,4880,4906,4931,4934,4946,4948,4949,5038,5116,5196,5235,5353,5379,5440,5457,5466,5469,5501,5535,5552,5561,5564,5595,5626,5634,5636,5637,5645,5717,5787,5810,5881,5920,5950,5952,5953,6027,6052,6115,6188,6217,6233,6235,6236,6279,6297,6324,6327,6351,6353,6354,6422,6500,6577,6599,6721,6754,6775,6800,6855,6886,6913,6916,6917,6951,7002,7011,7014,7070,7072,7073,7112,7186,7258,7337,7359,7461,7522,7524,7525,7591,7688,7713,7743,7768,7771,7804,7840,7861,7888,7917,7942,7945,7972,8004,8045,8069,8072,8135],"Infos":null},{"Name":"/usr/local/go/src/pkg/crypto/rsa/rsa.go","Base":17084,"Size":15004,"Lines":[0,55,109,159,160,225,237,238,247,262,279,289,297,303,315,317,318,346,373,374,431,455,478,509,511,512,518,593,671,749,751,752,811,871,926,960,1015,1053,1072,1098,1101,1117,1149,1152,1174,1206,1209,1221,1223,1224,1262,1287,1325,1367,1431,1432,1498,1528,1559,1561,1562,1594,1639,1670,1671,1737,1806,1869,1904,1926,1928,1929,2000,2023,2059,2104,2170,2172,2173,2226,2304,2347,2398,2411,2414,2415,2486,2548,2618,2685,2722,2754,2816,2820,2823,2824,2854,2891,2928,2958,2961,2992,3043,3046,3047,3096,3169,3231,3310,3380,3408,3452,3472,3509,3554,3584,3619,3673,3677,3680,3692,3694,3695,3767,3826,3903,3950,3952,3953,4031,4109,4185,4264,4341,4350,4353,4424,4427,4468,4542,4642,4666,4682,4683,4701,4785,4788,4789,4826,4827,4844,4851,4866,4926,4960,5011,5036,5060,5128,5133,5197,5268,5333,5362,5382,5411,5415,5448,5505,5524,5544,5549,5579,5583,5584,5632,5665,5693,5728,5758,5764,5769,5773,5774,5806,5844,5870,5903,5922,5952,5985,5989,6015,6071,6132,6188,6216,6220,6221,6241,6265,6285,6318,6349,6350,6376,6402,6434,6439,6463,6477,6478,6487,6491,6494,6495,6514,6522,6524,6525,6583,6613,6637,6646,6649,6673,6682,6685,6709,6718,6721,6729,6731,6732,6811,6840,6896,6917,6936,6937,6948,6971,6990,7017,7049,7064,7065,7121,7147,7157,7161,7184,7187,7189,7190,7269,7314,7405,7406,7470,7501,7521,7531,7533,7534,7591,7667,7700,7819,7858,7876,7879,7893,7924,7959,7985,7994,7997,7998,8017,8041,8055,8056,8079,8110,8136,8137,8169,8197,8231,8232,8268,8285,8294,8297,8298,8323,8348,8349,8368,8384,8420,8437,8438,8457,8522,8545,8573,8583,8586,8587,8595,8597,8598,8658,8713,8776,8777,8840,8895,8962,8963,9043,9119,9175,9194,9213,9232,9251,9276,9342,9408,9471,9483,9492,9495,9496,9520,9585,9615,9629,9632,9633,9649,9651,9652,9730,9748,9787,9820,9829,9832,9833,9897,9951,9952,10016,10070,10071,10152,10153,10208,10275,10316,10342,10387,10388,10435,10472,10473,10506,10557,10558,10576,10579,10581,10582,10660,10709,10796,10848,10872,10894,10903,10906,10907,10924,10944,11007,11071,11135,11191,11192,11209,11210,11218,11255,11274,11285,11290,11318,11333,11338,11353,11387,11398,11408,11413,11417,11453,11498,11529,11555,11582,11594,11597,11598,11631,11673,11683,11741,11804,11869,11884,11904,11932,11936,11970,11997,12024,12039,12040,12094,12123,12155,12172,12200,12221,12243,12265,12270,12294,12310,12314,12317,12318,12334,12348,12363,12382,12385,12386,12394,12396,12397,12448,12537,12665,12716,12734,12737,12769,12796,12820,12842,12851,12854,12855,12895,12896,12932,12949,12958,12961,12962,12981,13005,13019,13020,13080,13153,13222,13290,13316,13345,13346,13402,13403,13434,13460,13461,13486,13511,13512,13541,13542,13615,13686,13754,13810,13867,13868,13939,13977,14040,14087,14148,14189,14210,14236,14237,14271,14322,14373,14444,14519,14595,14598,14599,14663,14685,14694,14697,14698,14720,14728,14730,14731,14810,14839,14891,14908,14923,14934,14937,14963,14994,15002],"Infos":null}]}
+ ˇ

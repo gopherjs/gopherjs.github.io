@@ -1,0 +1,579 @@
+0Énet/http/cgiÇø⁄package cgi
+import bufio "bufio"
+import tls "crypto/tls"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import ioutil "io/ioutil"
+import net "net"
+import http "net/http"
+import url "net/url"
+import os "os"
+import strconv "strconv"
+import strings "strings"
+import log "log"
+import exec "os/exec"
+import filepath "path/filepath"
+import regexp "regexp"
+import runtime "runtime"
+type @"".Handler struct { @"".Path string; @"".Root string; @"".Dir string; @"".Env []string; @"".InheritEnv []string; @"".Logger *@"log".Logger; @"".Args []string; @"".PathLocationHandler @"net/http".Handler }
+func (? *@"".Handler) @"".ServeHTTP(@"".rw @"net/http".ResponseWriter, @"".req *@"net/http".Request) ()
+func (? *@"".Handler) @"".handleInternalRedirect(@"".rw @"net/http".ResponseWriter, @"".req *@"net/http".Request, @"".path string) ()
+func (? *@"".Handler) @"".printf(@"".format string, @"".v ...interface {  }) ()
+func @"".Request() (? *@"net/http".Request, ? error)
+func @"".RequestFromMap(@"".params map[string]string) (? *@"net/http".Request, ? error)
+func @"".Serve(@"".handler @"net/http".Handler) (? error)
+type @"".response struct { @"".req *@"net/http".Request; @"".header @"net/http".Header; @"".bufw *@"bufio".Writer; @"".headerSent bool }
+func (? *@"".response) @"".Flush() ()
+func (? *@"".response) @"".Header() (? @"net/http".Header)
+func (? *@"".response) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".response) @"".WriteHeader(@"".code int) ()
+import sync "sync"
+type @"log".Logger struct { @"log".mu @"sync".Mutex; @"log".prefix string; @"log".flag int; @"log".out @"io".Writer; @"log".buf []byte }
+func (? *@"log".Logger) @"log".Fatal(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Fatalf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Fatalln(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Flags() (? int)
+func (? *@"log".Logger) @"log".Output(@"".calldepth int, @"".s string) (? error)
+func (? *@"log".Logger) @"log".Panic(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Panicf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Panicln(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Prefix() (? string)
+func (? *@"log".Logger) @"log".Print(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Printf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".Println(@"".v ...interface {  }) ()
+func (? *@"log".Logger) @"log".SetFlags(@"".flag int) ()
+func (? *@"log".Logger) @"log".SetPrefix(@"".prefix string) ()
+import time "time"
+func (? *@"log".Logger) @"log".formatHeader(@"".buf *[]byte, @"".t @"time".Time, @"".file string, @"".line int) ()
+type @"net/http".Handler interface { @"net/http".ServeHTTP(? @"net/http".ResponseWriter, ? *@"net/http".Request) () }
+type @"net/http".ResponseWriter interface { @"net/http".Header() (? @"net/http".Header); @"net/http".Write(? []byte) (? int, ? error); @"net/http".WriteHeader(? int) () }
+import multipart "mime/multipart"
+type @"net/http".Request struct { @"net/http".Method string; @"net/http".URL *@"net/url".URL; @"net/http".Proto string; @"net/http".ProtoMajor int; @"net/http".ProtoMinor int; @"net/http".Header @"net/http".Header; @"net/http".Body @"io".ReadCloser; @"net/http".ContentLength int64; @"net/http".TransferEncoding []string; @"net/http".Close bool; @"net/http".Host string; @"net/http".Form @"net/url".Values; @"net/http".PostForm @"net/url".Values; @"net/http".MultipartForm *@"mime/multipart".Form; @"net/http".Trailer @"net/http".Header; @"net/http".RemoteAddr string; @"net/http".RequestURI string; @"net/http".TLS *@"crypto/tls".ConnectionState }
+func (? *@"net/http".Request) @"net/http".AddCookie(@"".c *@"net/http".Cookie) ()
+func (? *@"net/http".Request) @"net/http".Cookie(@"".name string) (? *@"net/http".Cookie, ? error)
+func (? *@"net/http".Request) @"net/http".Cookies() (? []*@"net/http".Cookie)
+func (? *@"net/http".Request) @"net/http".FormFile(@"".key string) (? @"mime/multipart".File, ? *@"mime/multipart".FileHeader, ? error)
+func (? *@"net/http".Request) @"net/http".FormValue(@"".key string) (? string)
+func (? *@"net/http".Request) @"net/http".MultipartReader() (? *@"mime/multipart".Reader, ? error)
+func (? *@"net/http".Request) @"net/http".ParseForm() (? error)
+func (? *@"net/http".Request) @"net/http".ParseMultipartForm(@"".maxMemory int64) (? error)
+func (? *@"net/http".Request) @"net/http".PostFormValue(@"".key string) (? string)
+func (? *@"net/http".Request) @"net/http".ProtoAtLeast(@"".major int, @"".minor int) (? bool)
+func (? *@"net/http".Request) @"net/http".Referer() (? string)
+func (? *@"net/http".Request) @"net/http".SetBasicAuth(@"".username string, @"".password string) ()
+func (? *@"net/http".Request) @"net/http".UserAgent() (? string)
+func (? *@"net/http".Request) @"net/http".Write(@"".w @"io".Writer) (? error)
+func (? *@"net/http".Request) @"net/http".WriteProxy(@"".w @"io".Writer) (? error)
+func (? *@"net/http".Request) @"net/http".closeBody() ()
+func (? *@"net/http".Request) @"net/http".expectsContinue() (? bool)
+func (? *@"net/http".Request) @"net/http".multipartReader() (? *@"mime/multipart".Reader, ? error)
+func (? *@"net/http".Request) @"net/http".wantsClose() (? bool)
+func (? *@"net/http".Request) @"net/http".wantsHttp10KeepAlive() (? bool)
+func (? *@"net/http".Request) @"net/http".write(@"".w @"io".Writer, @"".usingProxy bool, @"".extraHeaders @"net/http".Header) (? error)
+type @"net/http".Header map[string][]string
+func (? @"net/http".Header) @"net/http".Add(@"".key string, @"".value string) ()
+func (? @"net/http".Header) @"net/http".Del(@"".key string) ()
+func (? @"net/http".Header) @"net/http".Get(@"".key string) (? string)
+func (? @"net/http".Header) @"net/http".Set(@"".key string, @"".value string) ()
+func (? @"net/http".Header) @"net/http".Write(@"".w @"io".Writer) (? error)
+func (? @"net/http".Header) @"net/http".WriteSubset(@"".w @"io".Writer, @"".exclude map[string]bool) (? error)
+func (? @"net/http".Header) @"net/http".clone() (? @"net/http".Header)
+func (? @"net/http".Header) @"net/http".get(@"".key string) (? string)
+func (? @"net/http".Header) @"net/http".sortedKeyValues(@"".exclude map[string]bool) (@"".kvs []@"net/http".keyValues, @"".hs *@"net/http".headerSorter)
+func (? *@"net/http".Header) @"net/http".Add(@"".key string, @"".value string) ()
+func (? *@"net/http".Header) @"net/http".Del(@"".key string) ()
+func (? *@"net/http".Header) @"net/http".Get(@"".key string) (? string)
+func (? *@"net/http".Header) @"net/http".Set(@"".key string, @"".value string) ()
+func (? *@"net/http".Header) @"net/http".Write(@"".w @"io".Writer) (? error)
+func (? *@"net/http".Header) @"net/http".WriteSubset(@"".w @"io".Writer, @"".exclude map[string]bool) (? error)
+func (? *@"net/http".Header) @"net/http".clone() (? @"net/http".Header)
+func (? *@"net/http".Header) @"net/http".get(@"".key string) (? string)
+func (? *@"net/http".Header) @"net/http".sortedKeyValues(@"".exclude map[string]bool) (@"".kvs []@"net/http".keyValues, @"".hs *@"net/http".headerSorter)
+type @"bufio".Writer struct { @"bufio".err error; @"bufio".buf []byte; @"bufio".n int; @"bufio".wr @"io".Writer }
+func (? *@"bufio".Writer) @"bufio".Available() (? int)
+func (? *@"bufio".Writer) @"bufio".Buffered() (? int)
+func (? *@"bufio".Writer) @"bufio".Flush() (? error)
+func (? *@"bufio".Writer) @"bufio".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"bufio".Writer) @"bufio".Reset(@"".w @"io".Writer) ()
+func (? *@"bufio".Writer) @"bufio".Write(@"".p []byte) (@"".nn int, @"".err error)
+func (? *@"bufio".Writer) @"bufio".WriteByte(@"".c byte) (? error)
+func (? *@"bufio".Writer) @"bufio".WriteRune(@"".r rune) (@"".size int, @"".err error)
+func (? *@"bufio".Writer) @"bufio".WriteString(@"".s string) (? int, ? error)
+func (? *@"bufio".Writer) @"bufio".flush() (? error)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"net/url".URL struct { @"net/url".Scheme string; @"net/url".Opaque string; @"net/url".User *@"net/url".Userinfo; @"net/url".Host string; @"net/url".Path string; @"net/url".RawQuery string; @"net/url".Fragment string }
+func (? *@"net/url".URL) @"net/url".IsAbs() (? bool)
+func (? *@"net/url".URL) @"net/url".Parse(@"".ref string) (? *@"net/url".URL, ? error)
+func (? *@"net/url".URL) @"net/url".Query() (? @"net/url".Values)
+func (? *@"net/url".URL) @"net/url".RequestURI() (? string)
+func (? *@"net/url".URL) @"net/url".ResolveReference(@"".ref *@"net/url".URL) (? *@"net/url".URL)
+func (? *@"net/url".URL) @"net/url".String() (? string)
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"net/url".Values map[string][]string
+func (? @"net/url".Values) @"net/url".Add(@"".key string, @"".value string) ()
+func (? @"net/url".Values) @"net/url".Del(@"".key string) ()
+func (? @"net/url".Values) @"net/url".Encode() (? string)
+func (? @"net/url".Values) @"net/url".Get(@"".key string) (? string)
+func (? @"net/url".Values) @"net/url".Set(@"".key string, @"".value string) ()
+func (? *@"net/url".Values) @"net/url".Add(@"".key string, @"".value string) ()
+func (? *@"net/url".Values) @"net/url".Del(@"".key string) ()
+func (? *@"net/url".Values) @"net/url".Encode() (? string)
+func (? *@"net/url".Values) @"net/url".Get(@"".key string) (? string)
+func (? *@"net/url".Values) @"net/url".Set(@"".key string, @"".value string) ()
+type @"mime/multipart".Form struct { @"mime/multipart".Value map[string][]string; @"mime/multipart".File map[string][]*@"mime/multipart".FileHeader }
+func (? *@"mime/multipart".Form) @"mime/multipart".RemoveAll() (? error)
+import x509 "crypto/x509"
+type @"crypto/tls".ConnectionState struct { @"crypto/tls".Version uint16; @"crypto/tls".HandshakeComplete bool; @"crypto/tls".DidResume bool; @"crypto/tls".CipherSuite uint16; @"crypto/tls".NegotiatedProtocol string; @"crypto/tls".NegotiatedProtocolIsMutual bool; @"crypto/tls".ServerName string; @"crypto/tls".PeerCertificates []*@"crypto/x509".Certificate; @"crypto/tls".VerifiedChains [][]*@"crypto/x509".Certificate }
+type @"net/http".Cookie struct { @"net/http".Name string; @"net/http".Value string; @"net/http".Path string; @"net/http".Domain string; @"net/http".Expires @"time".Time; @"net/http".RawExpires string; @"net/http".MaxAge int; @"net/http".Secure bool; @"net/http".HttpOnly bool; @"net/http".Raw string; @"net/http".Unparsed []string }
+func (? *@"net/http".Cookie) @"net/http".String() (? string)
+type @"mime/multipart".File interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"io".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error); @"io".Seek(@"".offset int64, @"".whence int) (? int64, ? error) }
+import textproto "net/textproto"
+type @"mime/multipart".FileHeader struct { @"mime/multipart".Filename string; @"mime/multipart".Header @"net/textproto".MIMEHeader; @"mime/multipart".content []byte; @"mime/multipart".tmpfile string }
+func (? *@"mime/multipart".FileHeader) @"mime/multipart".Open() (? @"mime/multipart".File, ? error)
+type @"mime/multipart".Reader struct { @"mime/multipart".bufReader *@"bufio".Reader; @"mime/multipart".currentPart *@"mime/multipart".Part; @"mime/multipart".partsRead int; @"mime/multipart".nl []byte; @"mime/multipart".nlDashBoundary []byte; @"mime/multipart".dashBoundaryDash []byte; @"mime/multipart".dashBoundary []byte }
+func (? *@"mime/multipart".Reader) @"mime/multipart".NextPart() (? *@"mime/multipart".Part, ? error)
+func (? *@"mime/multipart".Reader) @"mime/multipart".ReadForm(@"".maxMemory int64) (@"".f *@"mime/multipart".Form, @"".err error)
+func (? *@"mime/multipart".Reader) @"mime/multipart".isBoundaryDelimiterLine(@"".line []byte) (@"".ret bool)
+func (? *@"mime/multipart".Reader) @"mime/multipart".isFinalBoundary(@"".line []byte) (? bool)
+func (? *@"mime/multipart".Reader) @"mime/multipart".peekBufferIsEmptyPart(@"".peek []byte) (? bool)
+type @"net/http".keyValues struct { @"net/http".key string; @"net/http".values []string }
+type @"net/http".headerSorter struct { @"net/http".kvs []@"net/http".keyValues }
+func (? *@"net/http".headerSorter) @"net/http".Len() (? int)
+func (? *@"net/http".headerSorter) @"net/http".Less(@"".i int, @"".j int) (? bool)
+func (? *@"net/http".headerSorter) @"net/http".Swap(@"".i int, @"".j int) ()
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"net/url".Userinfo struct { @"net/url".username string; @"net/url".password string; @"net/url".passwordSet bool }
+func (? *@"net/url".Userinfo) @"net/url".Password() (? string, ? bool)
+func (? *@"net/url".Userinfo) @"net/url".String() (? string)
+func (? *@"net/url".Userinfo) @"net/url".Username() (? string)
+import big "math/big"
+import pkix "crypto/x509/pkix"
+import asn1 "encoding/asn1"
+type @"crypto/x509".Certificate struct { @"crypto/x509".Raw []byte; @"crypto/x509".RawTBSCertificate []byte; @"crypto/x509".RawSubjectPublicKeyInfo []byte; @"crypto/x509".RawSubject []byte; @"crypto/x509".RawIssuer []byte; @"crypto/x509".Signature []byte; @"crypto/x509".SignatureAlgorithm @"crypto/x509".SignatureAlgorithm; @"crypto/x509".PublicKeyAlgorithm @"crypto/x509".PublicKeyAlgorithm; @"crypto/x509".PublicKey interface {  }; @"crypto/x509".Version int; @"crypto/x509".SerialNumber *@"math/big".Int; @"crypto/x509".Issuer @"crypto/x509/pkix".Name; @"crypto/x509".Subject @"crypto/x509/pkix".Name; @"crypto/x509".NotBefore @"time".Time; @"crypto/x509".NotAfter @"time".Time; @"crypto/x509".KeyUsage @"crypto/x509".KeyUsage; @"crypto/x509".Extensions []@"crypto/x509/pkix".Extension; @"crypto/x509".ExtraExtensions []@"crypto/x509/pkix".Extension; @"crypto/x509".ExtKeyUsage []@"crypto/x509".ExtKeyUsage; @"crypto/x509".UnknownExtKeyUsage []@"encoding/asn1".ObjectIdentifier; @"crypto/x509".BasicConstraintsValid bool; @"crypto/x509".IsCA bool; @"crypto/x509".MaxPathLen int; @"crypto/x509".SubjectKeyId []byte; @"crypto/x509".AuthorityKeyId []byte; @"crypto/x509".OCSPServer []string; @"crypto/x509".IssuingCertificateURL []string; @"crypto/x509".DNSNames []string; @"crypto/x509".EmailAddresses []string; @"crypto/x509".IPAddresses []@"net".IP; @"crypto/x509".PermittedDNSDomainsCritical bool; @"crypto/x509".PermittedDNSDomains []string; @"crypto/x509".CRLDistributionPoints []string; @"crypto/x509".PolicyIdentifiers []@"encoding/asn1".ObjectIdentifier }
+func (? *@"crypto/x509".Certificate) @"crypto/x509".CheckCRLSignature(@"".crl *@"crypto/x509/pkix".CertificateList) (@"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".CheckSignature(@"".algo @"crypto/x509".SignatureAlgorithm, @"".signed []byte, @"".signature []byte) (@"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".CheckSignatureFrom(@"".parent *@"crypto/x509".Certificate) (@"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".CreateCRL(@"".rand @"io".Reader, @"".priv interface {  }, @"".revokedCerts []@"crypto/x509/pkix".RevokedCertificate, @"".now @"time".Time, @"".expiry @"time".Time) (@"".crlBytes []byte, @"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".Equal(@"".other *@"crypto/x509".Certificate) (? bool)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".Verify(@"".opts @"crypto/x509".VerifyOptions) (@"".chains [][]*@"crypto/x509".Certificate, @"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".VerifyHostname(@"".h string) (? error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".buildChains(@"".cache map[int][][]*@"crypto/x509".Certificate, @"".currentChain []*@"crypto/x509".Certificate, @"".opts *@"crypto/x509".VerifyOptions) (@"".chains [][]*@"crypto/x509".Certificate, @"".err error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".isValid(@"".certType int, @"".currentChain []*@"crypto/x509".Certificate, @"".opts *@"crypto/x509".VerifyOptions) (? error)
+func (? *@"crypto/x509".Certificate) @"crypto/x509".systemVerify(@"".opts *@"crypto/x509".VerifyOptions) (@"".chains [][]*@"crypto/x509".Certificate, @"".err error)
+type @"net/textproto".MIMEHeader map[string][]string
+func (? @"net/textproto".MIMEHeader) @"net/textproto".Add(@"".key string, @"".value string) ()
+func (? @"net/textproto".MIMEHeader) @"net/textproto".Del(@"".key string) ()
+func (? @"net/textproto".MIMEHeader) @"net/textproto".Get(@"".key string) (? string)
+func (? @"net/textproto".MIMEHeader) @"net/textproto".Set(@"".key string, @"".value string) ()
+func (? *@"net/textproto".MIMEHeader) @"net/textproto".Add(@"".key string, @"".value string) ()
+func (? *@"net/textproto".MIMEHeader) @"net/textproto".Del(@"".key string) ()
+func (? *@"net/textproto".MIMEHeader) @"net/textproto".Get(@"".key string) (? string)
+func (? *@"net/textproto".MIMEHeader) @"net/textproto".Set(@"".key string, @"".value string) ()
+type @"bufio".Reader struct { @"bufio".buf []byte; @"bufio".rd @"io".Reader; @"bufio".r int; @"bufio".w int; @"bufio".err error; @"bufio".lastByte int; @"bufio".lastRuneSize int }
+func (? *@"bufio".Reader) @"bufio".Buffered() (? int)
+func (? *@"bufio".Reader) @"bufio".Peek(@"".n int) (? []byte, ? error)
+func (? *@"bufio".Reader) @"bufio".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadByte() (@"".c byte, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadBytes(@"".delim byte) (@"".line []byte, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadLine() (@"".line []byte, @"".isPrefix bool, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadRune() (@"".r rune, @"".size int, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadSlice(@"".delim byte) (@"".line []byte, @"".err error)
+func (? *@"bufio".Reader) @"bufio".ReadString(@"".delim byte) (@"".line string, @"".err error)
+func (? *@"bufio".Reader) @"bufio".Reset(@"".r @"io".Reader) ()
+func (? *@"bufio".Reader) @"bufio".UnreadByte() (? error)
+func (? *@"bufio".Reader) @"bufio".UnreadRune() (? error)
+func (? *@"bufio".Reader) @"bufio".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func (? *@"bufio".Reader) @"bufio".fill() ()
+func (? *@"bufio".Reader) @"bufio".readErr() (? error)
+func (? *@"bufio".Reader) @"bufio".reset(@"".buf []byte, @"".r @"io".Reader) ()
+func (? *@"bufio".Reader) @"bufio".writeBuf(@"".w @"io".Writer) (? int64, ? error)
+import bytes "bytes"
+type @"mime/multipart".Part struct { @"mime/multipart".Header @"net/textproto".MIMEHeader; @"mime/multipart".buffer *@"bytes".Buffer; @"mime/multipart".mr *@"mime/multipart".Reader; @"mime/multipart".bytesRead int; @"mime/multipart".disposition string; @"mime/multipart".dispositionParams map[string]string; @"mime/multipart".r @"io".Reader }
+func (? *@"mime/multipart".Part) @"mime/multipart".Close() (? error)
+func (? *@"mime/multipart".Part) @"mime/multipart".FileName() (? string)
+func (? *@"mime/multipart".Part) @"mime/multipart".FormName() (? string)
+func (? *@"mime/multipart".Part) @"mime/multipart".Read(@"".d []byte) (@"".n int, @"".err error)
+func (? *@"mime/multipart".Part) @"mime/multipart".parseContentDisposition() ()
+func (? *@"mime/multipart".Part) @"mime/multipart".populateHeaders() (? error)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+type @"crypto/x509".SignatureAlgorithm int
+type @"crypto/x509".PublicKeyAlgorithm int
+type @"math/big".Int struct { @"math/big".neg bool; @"math/big".abs @"math/big".nat }
+func (? *@"math/big".Int) @"math/big".Abs(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Add(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".And(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".AndNot(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Binomial(@"".n int64, @"".k int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Bit(@"".i int) (? uint)
+func (? *@"math/big".Int) @"math/big".BitLen() (? int)
+func (? *@"math/big".Int) @"math/big".Bits() (? []@"math/big".Word)
+func (? *@"math/big".Int) @"math/big".Bytes() (? []byte)
+func (? *@"math/big".Int) @"math/big".Cmp(@"".y *@"math/big".Int) (@"".r int)
+func (? *@"math/big".Int) @"math/big".Div(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".DivMod(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Exp(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Format(@"".s @"fmt".State, @"".ch rune) ()
+func (? *@"math/big".Int) @"math/big".GCD(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".GobDecode(@"".buf []byte) (? error)
+func (? *@"math/big".Int) @"math/big".GobEncode() (? []byte, ? error)
+func (? *@"math/big".Int) @"math/big".Int64() (? int64)
+func (? *@"math/big".Int) @"math/big".Lsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MarshalJSON() (? []byte, ? error)
+func (? *@"math/big".Int) @"math/big".MarshalText() (@"".text []byte, @"".err error)
+func (? *@"math/big".Int) @"math/big".Mod(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ModInverse(@"".g *@"math/big".Int, @"".p *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Mul(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MulRange(@"".a int64, @"".b int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Neg(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Not(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Or(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"".n int) (? bool)
+func (? *@"math/big".Int) @"math/big".Quo(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".QuoRem(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+import rand "math/rand"
+func (? *@"math/big".Int) @"math/big".Rand(@"".rnd *@"math/rand".Rand, @"".n *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rem(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
+func (? *@"math/big".Int) @"math/big".Set(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBit(@"".x *@"math/big".Int, @"".i int, @"".b uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBits(@"".abs []@"math/big".Word) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBytes(@"".buf []byte) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetInt64(@"".x int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetString(@"".s string, @"".base int) (? *@"math/big".Int, ? bool)
+func (? *@"math/big".Int) @"math/big".SetUint64(@"".x uint64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Sign() (? int)
+func (? *@"math/big".Int) @"math/big".String() (? string)
+func (? *@"math/big".Int) @"math/big".Sub(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Uint64() (? uint64)
+func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalText(@"".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Xor(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".binaryGCD(@"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? *@"math/big".Int, ? int, ? error)
+type @"crypto/x509/pkix".Name struct { @"crypto/x509/pkix".Country []string; @"crypto/x509/pkix".Organization []string; @"crypto/x509/pkix".OrganizationalUnit []string; @"crypto/x509/pkix".Locality []string; @"crypto/x509/pkix".Province []string; @"crypto/x509/pkix".StreetAddress []string; @"crypto/x509/pkix".PostalCode []string; @"crypto/x509/pkix".SerialNumber string; @"crypto/x509/pkix".CommonName string; @"crypto/x509/pkix".Names []@"crypto/x509/pkix".AttributeTypeAndValue }
+func (? @"crypto/x509/pkix".Name) @"crypto/x509/pkix".ToRDNSequence() (@"".ret @"crypto/x509/pkix".RDNSequence)
+func (? *@"crypto/x509/pkix".Name) @"crypto/x509/pkix".FillFromRDNSequence(@"".rdns *@"crypto/x509/pkix".RDNSequence) ()
+func (? *@"crypto/x509/pkix".Name) @"crypto/x509/pkix".ToRDNSequence() (@"".ret @"crypto/x509/pkix".RDNSequence)
+type @"crypto/x509".KeyUsage int
+type @"crypto/x509/pkix".Extension struct { @"crypto/x509/pkix".Id @"encoding/asn1".ObjectIdentifier; @"crypto/x509/pkix".Critical bool "asn1:\"optional\""; @"crypto/x509/pkix".Value []byte }
+type @"crypto/x509".ExtKeyUsage int
+type @"encoding/asn1".ObjectIdentifier []int
+func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".String() (? string)
+func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".String() (? string)
+type @"net".IP []byte
+func (? @"net".IP) @"net".DefaultMask() (? @"net".IPMask)
+func (? @"net".IP) @"net".Equal(@"".x @"net".IP) (? bool)
+func (? @"net".IP) @"net".IsGlobalUnicast() (? bool)
+func (? @"net".IP) @"net".IsInterfaceLocalMulticast() (? bool)
+func (? @"net".IP) @"net".IsLinkLocalMulticast() (? bool)
+func (? @"net".IP) @"net".IsLinkLocalUnicast() (? bool)
+func (? @"net".IP) @"net".IsLoopback() (? bool)
+func (? @"net".IP) @"net".IsMulticast() (? bool)
+func (? @"net".IP) @"net".IsUnspecified() (? bool)
+func (? @"net".IP) @"net".MarshalText() (? []byte, ? error)
+func (? @"net".IP) @"net".Mask(@"".mask @"net".IPMask) (? @"net".IP)
+func (? @"net".IP) @"net".String() (? string)
+func (? @"net".IP) @"net".To16() (? @"net".IP)
+func (? @"net".IP) @"net".To4() (? @"net".IP)
+func (? *@"net".IP) @"net".DefaultMask() (? @"net".IPMask)
+func (? *@"net".IP) @"net".Equal(@"".x @"net".IP) (? bool)
+func (? *@"net".IP) @"net".IsGlobalUnicast() (? bool)
+func (? *@"net".IP) @"net".IsInterfaceLocalMulticast() (? bool)
+func (? *@"net".IP) @"net".IsLinkLocalMulticast() (? bool)
+func (? *@"net".IP) @"net".IsLinkLocalUnicast() (? bool)
+func (? *@"net".IP) @"net".IsLoopback() (? bool)
+func (? *@"net".IP) @"net".IsMulticast() (? bool)
+func (? *@"net".IP) @"net".IsUnspecified() (? bool)
+func (? *@"net".IP) @"net".MarshalText() (? []byte, ? error)
+func (? *@"net".IP) @"net".Mask(@"".mask @"net".IPMask) (? @"net".IP)
+func (? *@"net".IP) @"net".String() (? string)
+func (? *@"net".IP) @"net".To16() (? @"net".IP)
+func (? *@"net".IP) @"net".To4() (? @"net".IP)
+func (? *@"net".IP) @"net".UnmarshalText(@"".text []byte) (? error)
+type @"crypto/x509/pkix".CertificateList struct { @"crypto/x509/pkix".TBSCertList @"crypto/x509/pkix".TBSCertificateList; @"crypto/x509/pkix".SignatureAlgorithm @"crypto/x509/pkix".AlgorithmIdentifier; @"crypto/x509/pkix".SignatureValue @"encoding/asn1".BitString }
+func (? *@"crypto/x509/pkix".CertificateList) @"crypto/x509/pkix".HasExpired(@"".now @"time".Time) (? bool)
+type @"crypto/x509/pkix".RevokedCertificate struct { @"crypto/x509/pkix".SerialNumber *@"math/big".Int; @"crypto/x509/pkix".RevocationTime @"time".Time; @"crypto/x509/pkix".Extensions []@"crypto/x509/pkix".Extension "asn1:\"optional\"" }
+type @"crypto/x509".VerifyOptions struct { @"crypto/x509".DNSName string; @"crypto/x509".Intermediates *@"crypto/x509".CertPool; @"crypto/x509".Roots *@"crypto/x509".CertPool; @"crypto/x509".CurrentTime @"time".Time; @"crypto/x509".KeyUsages []@"crypto/x509".ExtKeyUsage }
+type @"bytes".Buffer struct { @"bytes".buf []byte; @"bytes".off int; @"bytes".runeBytes [4]byte; @"bytes".bootstrap [64]byte; @"bytes".lastRead @"bytes".readOp }
+func (? *@"bytes".Buffer) @"bytes".Bytes() (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Grow(@"".n int) ()
+func (? *@"bytes".Buffer) @"bytes".Len() (? int)
+func (? *@"bytes".Buffer) @"bytes".Next(@"".n int) (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadByte() (@"".c byte, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadBytes(@"".delim byte) (@"".line []byte, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadRune() (@"".r rune, @"".size int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadString(@"".delim byte) (@"".line string, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".Reset() ()
+func (? *@"bytes".Buffer) @"bytes".String() (? string)
+func (? *@"bytes".Buffer) @"bytes".Truncate(@"".n int) ()
+func (? *@"bytes".Buffer) @"bytes".UnreadByte() (? error)
+func (? *@"bytes".Buffer) @"bytes".UnreadRune() (? error)
+func (? *@"bytes".Buffer) @"bytes".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteByte(@"".c byte) (? error)
+func (? *@"bytes".Buffer) @"bytes".WriteRune(@"".r rune) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteString(@"".s string) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".grow(@"".n int) (? int)
+func (? *@"bytes".Buffer) @"bytes".readSlice(@"".delim byte) (@"".line []byte, @"".err error)
+type @"math/big".nat []@"math/big".Word
+func (? @"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".bitLen() (? int)
+func (? @"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? @"math/big".nat) @"math/big".clear() ()
+func (? @"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
+func (? @"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? @"math/big".nat) @"math/big".decimalString() (? string)
+func (? @"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".norm() (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
+func (? @"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
+func (? @"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".string(@"".charset string) (? string)
+func (? @"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".trailingZeroBits() (? uint)
+func (? @"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? *@"math/big".nat) @"math/big".bitLen() (? int)
+func (? *@"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? *@"math/big".nat) @"math/big".clear() ()
+func (? *@"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
+func (? *@"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? *@"math/big".nat) @"math/big".decimalString() (? string)
+func (? *@"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".norm() (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
+func (? *@"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
+func (? *@"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".string(@"".charset string) (? string)
+func (? *@"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".trailingZeroBits() (? uint)
+func (? *@"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+type @"math/big".Word uintptr
+type @"fmt".State interface { @"fmt".Flag(@"".c int) (? bool); @"fmt".Precision() (@"".prec int, @"".ok bool); @"fmt".Width() (@"".wid int, @"".ok bool); @"fmt".Write(@"".b []byte) (@"".ret int, @"".err error) }
+type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
+func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
+func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
+type @"fmt".ScanState interface { @"fmt".Read(@"".buf []byte) (@"".n int, @"".err error); @"fmt".ReadRune() (@"".r rune, @"".size int, @"".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"".skipSpace bool, @"".f func (? rune) (? bool)) (@"".token []byte, @"".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"".wid int, @"".ok bool) }
+type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @"".err error); @"io".UnreadRune() (? error) }
+type @"crypto/x509/pkix".AttributeTypeAndValue struct { @"crypto/x509/pkix".Type @"encoding/asn1".ObjectIdentifier; @"crypto/x509/pkix".Value interface {  } }
+type @"crypto/x509/pkix".RDNSequence []@"crypto/x509/pkix".RelativeDistinguishedNameSET
+type @"net".IPMask []byte
+func (? @"net".IPMask) @"net".Size() (@"".ones int, @"".bits int)
+func (? @"net".IPMask) @"net".String() (? string)
+func (? *@"net".IPMask) @"net".Size() (@"".ones int, @"".bits int)
+func (? *@"net".IPMask) @"net".String() (? string)
+type @"crypto/x509/pkix".TBSCertificateList struct { @"crypto/x509/pkix".Raw @"encoding/asn1".RawContent; @"crypto/x509/pkix".Version int "asn1:\"optional,default:2\""; @"crypto/x509/pkix".Signature @"crypto/x509/pkix".AlgorithmIdentifier; @"crypto/x509/pkix".Issuer @"crypto/x509/pkix".RDNSequence; @"crypto/x509/pkix".ThisUpdate @"time".Time; @"crypto/x509/pkix".NextUpdate @"time".Time; @"crypto/x509/pkix".RevokedCertificates []@"crypto/x509/pkix".RevokedCertificate "asn1:\"optional\""; @"crypto/x509/pkix".Extensions []@"crypto/x509/pkix".Extension "asn1:\"tag:0,optional,explicit\"" }
+type @"crypto/x509/pkix".AlgorithmIdentifier struct { @"crypto/x509/pkix".Algorithm @"encoding/asn1".ObjectIdentifier; @"crypto/x509/pkix".Parameters @"encoding/asn1".RawValue "asn1:\"optional\"" }
+type @"encoding/asn1".BitString struct { @"encoding/asn1".Bytes []byte; @"encoding/asn1".BitLength int }
+func (? @"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? @"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
+func (? *@"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? *@"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
+type @"crypto/x509".CertPool struct { @"crypto/x509".bySubjectKeyId map[string][]int; @"crypto/x509".byName map[string][]int; @"crypto/x509".certs []*@"crypto/x509".Certificate }
+func (? *@"crypto/x509".CertPool) @"crypto/x509".AddCert(@"".cert *@"crypto/x509".Certificate) ()
+func (? *@"crypto/x509".CertPool) @"crypto/x509".AppendCertsFromPEM(@"".pemCerts []byte) (@"".ok bool)
+func (? *@"crypto/x509".CertPool) @"crypto/x509".Subjects() (@"".res [][]byte)
+func (? *@"crypto/x509".CertPool) @"crypto/x509".findVerifiedParents(@"".cert *@"crypto/x509".Certificate) (@"".parents []int, @"".errCert *@"crypto/x509".Certificate, @"".err error)
+type @"bytes".readOp int
+type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
+type @"crypto/x509/pkix".RelativeDistinguishedNameSET []@"crypto/x509/pkix".AttributeTypeAndValue
+type @"encoding/asn1".RawContent []byte
+type @"encoding/asn1".RawValue struct { @"encoding/asn1".Class int; @"encoding/asn1".Tag int; @"encoding/asn1".IsCompound bool; @"encoding/asn1".Bytes []byte; @"encoding/asn1".FullBytes []byte }
+$$
+0Ç˝github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiocontainer/listhashmathstrconvcryptocrypto/subtlesyscalltimeosreflectfmtsortflagstringstext/tabwriterruntime/pproftestingcrypto/cipher
+crypto/aesencoding/binary
+crypto/des	math/randmath/bigcrypto/ellipticcrypto/ecdsacrypto/hmac
+crypto/md5crypto/rand
+crypto/rc4
+crypto/rsacrypto/sha1crypto/sha256
+crypto/dsacrypto/sha512encoding/asn1crypto/x509/pkixencoding/hexencoding/base64encoding/pemnetpath/filepathos/execcrypto/x509	io/ioutil
+crypto/tlslogcompress/flate
+hash/crc32compress/gzipmimenet/textprotomime/multipartnet/urlpathnet/httpregexp/syntaxregexp0Å‡0
+bufioA0
+crypto/tlsB0errorsC0fmtD0ioE0	io/ioutilF0netG0net/httpH0net/urlI0osJ0strconvK0stringsL0logM0os/execN0path/filepathO0regexpP0runtimeQ0ÇGJ0ÇiVÇdV=$pkg.response=$newType(0,"Struct","cgi.response","response","net/http/cgi",function(req_,header_,bufw_,headerSent_){this.$val=this;this.req=req_!==undefined?req_:($ptrType(H.Request)).nil;this.header=header_!==undefined?header_:false;this.bufw=bufw_!==undefined?bufw_:($ptrType(A.Writer)).nil;this.headerSent=headerSent_!==undefined?headerSent_:false;});Çª($ptrType(V)).methods=[["Flush","Flush","",[],[],false,-1],["Header","Header","",[],[H.Header],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteHeader","WriteHeader","",[$Int],[],false,-1]];V.init([["req","req","net/http/cgi",($ptrType(H.Request)),""],["header","header","net/http/cgi",H.Header,""],["bufw","bufw","net/http/cgi",($ptrType(A.Writer)),""],["headerSent","headerSent","net/http/cgi",$Bool,""]]);0
+response01bufio:Writernet/http:Headernet/http:Request0ÇmYÇoY=$pkg.Handler=$newType(0,"Struct","cgi.Handler","Handler","net/http/cgi",function(Path_,Root_,Dir_,Env_,InheritEnv_,Logger_,Args_,PathLocationHandler_){this.$val=this;this.Path=Path_!==undefined?Path_:"";this.Root=Root_!==undefined?Root_:"";this.Dir=Dir_!==undefined?Dir_:"";this.Env=Env_!==undefined?Env_:($sliceType($String)).nil;this.InheritEnv=InheritEnv_!==undefined?InheritEnv_:($sliceType($String)).nil;this.Logger=Logger_!==undefined?Logger_:($ptrType(M.Logger)).nil;this.Args=Args_!==undefined?Args_:($sliceType($String)).nil;this.PathLocationHandler=PathLocationHandler_!==undefined?PathLocationHandler_:null;});Çù($ptrType(Y)).methods=[["ServeHTTP","ServeHTTP","",[H.ResponseWriter,($ptrType(H.Request))],[],false,-1],["handleInternalRedirect","handleInternalRedirect","net/http/cgi",[H.ResponseWriter,($ptrType(H.Request)),$String],[],false,-1],["printf","printf","net/http/cgi",[$String,($sliceType($emptyInterface))],[],true,-1]];Y.init([["Path","Path","",$String,""],["Root","Root","",$String,""],["Dir","Dir","",$String,""],["Env","Env","",($sliceType($String)),""],["InheritEnv","InheritEnv","",($sliceType($String)),""],["Logger","Logger","",($ptrType(M.Logger)),""],["Args","Args","",($sliceType($String)),""],["PathLocationHandler","PathLocationHandler","",H.Handler,""]]);0	Handler0I
+log:Loggernet/http:Handlernet/http:Requestnet/http:ResponseWriter0W  0trailingPort0 0 X  0osDefaultInheritEnv0 0^AB AB=$throwNilPointerError;0testHookStartProcess0#!net/http/cgi:testHookStartProcess0a  (    W=P.MustCompile(":([0-9]+)$");    0 0/net/http/cgi:trailingPortregexp:MustCompile0Ç  ÇŒvar a,b;    X=(a=new $Map(),b="darwin",a[b]={k:b,v:new($sliceType($String))(["DYLD_LIBRARY_PATH"])},b="freebsd",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH"])},b="hpux",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH","SHLIB_PATH"])},b="irix",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH","LD_LIBRARYN32_PATH","LD_LIBRARY64_PATH"])},b="linux",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH"])},b="openbsd",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH"])},b="solaris",a[b]={k:b,v:new($sliceType($String))(["LD_LIBRARY_PATH","LD_LIBRARY_PATH_32","LD_LIBRARY_PATH_64"])},b="windows",a[b]={k:b,v:new($sliceType($String))(["SystemRoot","COMSPEC","PATHEXT","WINDIR"])},a);    0osDefaultInheritEnv0" net/http/cgi:osDefaultInheritEnv0Ç◊RÇBR=$pkg.Request=function(){var c,d,e,f;  Üc=T(S(J.Environ()));d=c[0];e=c[1];  ∂    if(!($interfaceIsEqual(e,null))){  »return[($ptrType(H.Request)).nil,e];}  ‹    if((f=d.ContentLength,(f.high>0||(f.high===0&&f.low>0)))){  ˜d.Body=F.NopCloser(E.LimitReader(J.Stdin,d.ContentLength));}  @return[d,null];    }; 0	Request0io/ioutil:NopCloserio:LimitReadernet/http/cgi:RequestFromMapnet/http/cgi:envMapnet/http:Request
+os:Environos:Stdin0ÇÖSÇaS=function(c){var d,e,f,g,h,i;  Äd=new $Map();  ûe=c;f=0;while(f<e.length){g=((f<0||f>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+f]);  π  ºh=L.Index(g,"=");    if(!((h===-1))){  Íi=g.substring(0,h);(d||$throwRuntimeError("assignment to entry in nil map"))[i]={k:i,v:g.substring((h+1>>0))};}f++;}  return d;    }; 0envMap0strings:Index0ÇETÇ
+DT=$pkg.RequestFromMap=function(c){var d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap;  ‘d=new H.Request.Ptr();  Ïd.Method=(e=c["REQUEST_METHOD"],e!==undefined?e.v:"");      if(d.Method===""){  'return[($ptrType(H.Request)).nil,C.New("cgi: no REQUEST_METHOD in environment")];}  ld.Proto=(f=c["SERVER_PROTOCOL"],f!==undefined?f.v:"");  ë  ïg=false;  ûh=H.ParseHTTPVersion(d.Proto);d.ProtoMajor=h[0];d.ProtoMinor=h[1];g=h[2];  ﬂ    if(!g){  Íreturn[($ptrType(H.Request)).nil,C.New("cgi: invalid SERVER_PROTOCOL version")];}  .d.Close=true;  >d.Trailer=(i=new $Map(),i);  Yd.Header=(k=new $Map(),k);  td.Host=(m=c["HTTP_HOST"],m!==undefined?m.v:"");  ì  ño=(n=c["CONTENT_LENGTH"],n!==undefined?n.v:"");    if(!(o==="")){  Àp=K.ParseInt(o,10,64);q=p[0];r=p[1];  ˚    if(!($interfaceIsEqual(r,null))){  return[($ptrType(H.Request)).nil,C.New("cgi: bad CONTENT_LENGTH in environment: "+o)];}  `d.ContentLength=q;}  |  t=(s=c["CONTENT_TYPE"],s!==undefined?s.v:"");    if(!(t==="")){  ™(new H.Header(d.Header)).Set("Content-Type",t);}  u=c;v=0;w=$keys(u);while(v<w.length){x=u[w[v]];y=x.k;z=x.v;  $    if(!L.HasPrefix(y,"HTTP_")||y==="HTTP_HOST"){  _v++;continue;}  n(new H.Header(d.Header)).Add(L.Replace(y.substring(5),"_","-",-1),z);v++;}  „ab=(aa=c["REQUEST_URI"],aa!==undefined?aa.v:"");  	    if(ab===""){  	Rab=(ac=c["SCRIPT_NAME"],ac!==undefined?ac.v:"")+(ad=c["PATH_INFO"],ad!==undefined?ad.v:"");  	âaf=(ae=c["QUERY_STRING"],ae!==undefined?ae.v:"");  	ß    if(!(af==="")){  	∑ab=ab+("?"+af);}}  
+J  
+Mah=(ag=c["HTTPS"],ag!==undefined?ag.v:"");    if(ah==="on"||ah==="ON"||ah==="1"){  
+äd.TLS=new B.ConnectionState.Ptr(0,true,false,0,"",false,"",($sliceType(($ptrType($packages["crypto/x509"].Certificate)))).nil,($sliceType(($sliceType(($ptrType($packages["crypto/x509"].Certificate)))))).nil);}  
+≈    if(!(d.Host==="")){  ai=d.Host+ab;  6    if(d.TLS===($ptrType(B.ConnectionState)).nil){  Kai="http://"+ai;}else{  uai="https://"+ai;}  òaj=I.Parse(ai);ak=aj[0];al=aj[1];  ∏    if(!($interfaceIsEqual(al,null))){  Àreturn[($ptrType(H.Request)).nil,C.New("cgi: failed to parse host and REQUEST_URI into a URL: "+ai)];}  +d.URL=ak;}  å    if(d.URL===($ptrType(I.URL)).nil){  †am=I.Parse(ab);an=am[0];ao=am[1];  ¿    if(!($interfaceIsEqual(ao,null))){  ”return[($ptrType(H.Request)).nil,C.New("cgi: failed to parse REQUEST_URI into a URL: "+ab)];}  *d.URL=an;}  Œd.RemoteAddr=G.JoinHostPort((ap=c["REMOTE_ADDR"],ap!==undefined?ap.v:""),"0");  return[d,null];    }; 0RequestFromMap0Å„crypto/tls:ConnectionStatecrypto/x509:Certificate
+errors:Newnet/http:Headernet/http:ParseHTTPVersionnet/http:Requestnet/url:Parsenet/url:URLnet:JoinHostPortstrconv:ParseIntstrings:HasPrefixstrings:Replace0Ç2UÇöU=$pkg.Serve=function(c){var d,e,f,g;  d=R();e=d[0];f=d[1];  4    if(!($interfaceIsEqual(f,null))){  Freturn f;}  U    if($interfaceIsEqual(c,null)){  kc=H.DefaultServeMux;}  ég=new V.Ptr(e,new $Map(),A.NewWriter(J.Stdout),false);  ıc.ServeHTTP(g,e);  g.Write(($sliceType($Uint8)).nil);  @  Cf=g.bufw.Flush();    if(!($interfaceIsEqual(f,null))){  ireturn f;}  xreturn null;    }; 0Serve0ÅÉbufio:NewWriterbufio:Writernet/http/cgi:Requestnet/http/cgi:responsenet/http:DefaultServeMuxnet/http:Request	os:Stdout0Å≤ ÅÜV.Ptr.prototype.Flush=function(){var c;  c=this;  c.bufw.Flush();    };V.prototype.Flush=function(){return this.$val.Flush();}; 0
+response0net/http/cgi:response0Å∂ ÅäV.Ptr.prototype.Header=function(){var c;  3c=this;  Xreturn c.header;    };V.prototype.Header=function(){return this.$val.Header();}; 0
+response0net/http/cgi:response0Ç ÅÒV.Ptr.prototype.Write=function(c){var d,e,f,g;d=0;e=null;  qf=this;  §    if(!f.headerSent){  πf.WriteHeader(200);}  ⁄    g=f.bufw.Write(c);d=g[0];e=g[1];return[d,e];    };V.prototype.Write=function(c){return this.$val.Write(c);}; 0
+response0net/http/cgi:response0ÇS ÇËV.Ptr.prototype.WriteHeader=function(c){var d,e,f,g;  ˙d=this;       if(d.headerSent){  vD.Fprintf(J.Stderr,"CGI attempted to write header twice on request for %s",new($sliceType($emptyInterface))([d.req.URL]));  ”return;}  ﬁd.headerSent=true;  ÛD.Fprintf(d.bufw,"Status: %d %s\r\n",new($sliceType($emptyInterface))([new $Int(c),new $String(H.StatusText(c))]));  Z  ]e=(f=d.header["Content-Type"],f!==undefined?[f.v,true]:[($sliceType($String)).nil,false]);g=e[1];    if(!g){  í(new H.Header(d.header)).Add("Content-Type","text/html; charset=utf-8");}  –(new H.Header(d.header)).Write(d.bufw);  Ëd.bufw.WriteString("\r\n");  d.bufw.Flush();    };V.prototype.WriteHeader=function(c){return this.$val.WriteHeader(c);}; 0
+response0Ufmt:Fprintfnet/http/cgi:responsenet/http:Headernet/http:StatusText	os:Stderr0Ç◊ZÇ°Z=function(c){var d,e,f,g,h,i,j,k,l;d=($sliceType($String)).nil;  Pe=c.length;  _  cf=0;while(f<e){  zg=((f<0||f>=c.length)?$throwRuntimeError("index out of range"):c.array[c.offset+f]);  ài=(h=L.SplitN(g,"=",2),((0<0||0>=h.length)?$throwRuntimeError("index out of range"):h.array[h.offset+0]));  ¨j=false;  Ω  ¡k=f+1>>0;while(k<e){  ›    if(i===(l=L.SplitN(((k<0||k>=c.length)?$throwRuntimeError("index out of range"):c.array[c.offset+k]),"=",2),((0<0||0>=l.length)?$throwRuntimeError("index out of range"):l.array[l.offset+0]))){  j=true;  break;}  ‘  ‘k=k+1>>0;}  /    if(!j){  >d=$append(d,g);}  r  rf=f+1>>0;}  [return d;    }; 0removeLeadingDuplicates0strings:SplitN0Çk ÇY.Ptr.prototype.ServeHTTP=function(c,d){var e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au,av,aw,ax,ay,az,ba,bb,bc,bd,be,bf,bg,bh,bi,bj,bk,bl,bm,bn,bo,bp,bq,br;var $deferred=[];try{  ke=this;  Øf=e.Root;  ø    if(f===""){  —f="/";}  ·    if(d.TransferEncoding.length>0&&(g=d.TransferEncoding,((0<0||0>=g.length)?$throwRuntimeError("index out of range"):g.array[g.offset+0]))==="chunked"){   .c.WriteHeader(400);   Vc.Write(new($sliceType($Uint8))($stringToBytes("Chunked request bodies are not supported by CGI.")));   ùreturn;}   ©h=d.URL.Path;   √    if(!(f==="/")&&L.HasPrefix(h,f)){   ˚h=h.substring(f.length);}  ! i="80";  !.  !1j=W.FindStringSubmatch(d.Host);    if(!((j.length===0))){  !}i=((1<0||1>=j.length)?$throwRuntimeError("index out of range"):j.array[j.offset+1]);}  !îk=new($sliceType($String))(["SERVER_SOFTWARE=go","SERVER_NAME="+d.Host,"SERVER_PROTOCOL=HTTP/1.1","HTTP_HOST="+d.Host,"GATEWAY_INTERFACE=CGI/1.1","REQUEST_METHOD="+d.Method,"QUERY_STRING="+d.URL.RawQuery,"REQUEST_URI="+d.URL.RequestURI(),"PATH_INFO="+h,"SCRIPT_NAME="+f,"SCRIPT_FILENAME="+e.Path,"REMOTE_ADDR="+d.RemoteAddr,"REMOTE_HOST="+d.RemoteAddr,"SERVER_PORT="+i]);  #Z    if(!(d.TLS===($ptrType(B.ConnectionState)).nil)){  #pk=$append(k,"HTTPS=on");}  #ìl=d.Header;m=0;n=$keys(l);while(m<n.length){o=l[n[m]];p=o.k;q=o.v;  #¥p=L.Map(AA,p);  #·r=", ";  #Û    if(p==="COOKIE"){  $	r="; ";}  $k=$append(k,"HTTP_"+p+"="+L.Join(q,r));m++;}  $]    if((s=d.ContentLength,(s.high>0||(s.high===0&&s.low>0)))){  $zk=$append(k,D.Sprintf("CONTENT_LENGTH=%d",new($sliceType($emptyInterface))([d.ContentLength])));}  $≈  $»t=(new H.Header(d.Header)).Get("Content-Type");    if(!(t==="")){  %k=$append(k,"CONTENT_TYPE="+t);}  %/    if(!(e.Env===($sliceType($String)).nil)){  %Ck=$appendSlice(k,e.Env);}  %du=J.Getenv("PATH");  %Ç    if(u===""){  %óu="/bin:/usr/bin:/usr/ucb:/usr/bsd:/usr/local/bin";}  %÷k=$append(k,"PATH="+u);  %˚v=e.InheritEnv;w=0;while(w<v.length){x=((w<0||w>=v.length)?$throwRuntimeError("index out of range"):v.array[v.offset+w]);  &  &!y=J.Getenv(x);    if(!(y==="")){  &Ak=$append(k,x+"="+y);}w++;}  &ez=(aa=X["darwin"],aa!==undefined?aa.v:($sliceType($String)).nil);ab=0;while(ab<z.length){ac=((ab<0||ab>=z.length)?$throwRuntimeError("index out of range"):z.array[z.offset+ab]);  &ù  &†ad=J.Getenv(ac);    if(!(ad==="")){  &¿k=$append(k,ac+"="+ad);}ab++;}  &‰k=Z(k);  '	  'ae="";af="";ag=ae;ah=af;  '    if(!(e.Dir==="")){  '2ah=e.Path;  'Bag=e.Dir;}else{  'Zai=O.Split(e.Path);ag=ai[0];ah=ai[1];}  'Å    if(ag===""){  'íag=".";}  '°aj=(function(aj){  '∆c.WriteHeader(500);  '˜e.printf("CGI error: %v",new($sliceType($emptyInterface))([aj]));    });  (ak=new N.Cmd.Ptr(ah,$appendSlice(new($sliceType($String))([e.Path]),e.Args),k,ag,null,null,J.Stderr,($sliceType(($ptrType(J.File)))).nil,($ptrType($packages["syscall"].SysProcAttr)).nil,($ptrType(J.Process)).nil,($ptrType(J.ProcessState)).nil,null,false,($sliceType(($ptrType(J.File)))).nil,($sliceType(E.Closer)).nil,($sliceType(E.Closer)).nil,($sliceType(($funcType([],[$error],false)))).nil,($chanType($error,false,false)).nil);  (Æ    if(!((al=d.ContentLength,(al.high===0&&al.low===0)))){  (Ãak.Stdin=d.Body;}  (Âam=ak.StdoutPipe();an=am[0];ao=am[1];  )
+    if(!($interfaceIsEqual(ao,null))){  )aj(ao);  )1return;}  )=ao=ak.Start();  )P    if(!($interfaceIsEqual(ao,null))){  )baj(ao);  )wreturn;}  )Ç  )Öap=AB;    if(!(ap===$throwNilPointerError)){  )≥ap(ak.Process);}  )…$deferred.push({recv:ak,method:"Wait",args:[]});  )€$deferred.push({recv:an,method:"Close",args:[]});  )ˆaq=A.NewReaderSize(an,1024);  *)ar=new $Map();  *Gas=0;  *Xat=0;  *jau=false;  *Åwhile(true){  *âav=aq.ReadLine();aw=av[0];ax=av[1];ay=av[2];  *∂    if(ax){  *«c.WriteHeader(500);  *˘e.printf("cgi: long header line from subprocess.",new($sliceType($emptyInterface))([]));  +/return;}  +<    if($interfaceIsEqual(ay,E.EOF)){  +Rbreak;}  +^    if(!($interfaceIsEqual(ay,null))){  +qc.WriteHeader(500);  +£e.printf("cgi: error reading headers: %v",new($sliceType($emptyInterface))([ay]));  +÷return;}  +„    if(aw.length===0){  +˙au=true;  ,break;}  ,  ,at=at+1>>0;  ,-az=L.SplitN($bytesToString(aw),":",2);  ,]    if(az.length<2){  ,te.printf("cgi: bogus header line: %s",new($sliceType($emptyInterface))([new $String($bytesToString(aw))]));  ,¨continue;}  ,ªba=((0<0||0>=az.length)?$throwRuntimeError("index out of range"):az.array[az.offset+0]);bb=((1<0||1>=az.length)?$throwRuntimeError("index out of range"):az.array[az.offset+1]);bc=ba;bd=bb;  ,ﬂbc=L.TrimSpace(bc);  -bd=L.TrimSpace(bd);  -#  -.if(bc==="Status"){  -J    if(bd.length<3){  -`e.printf("cgi: bogus status (short): %q",new($sliceType($emptyInterface))([new $String(bd)]));  -ìreturn;}  -¢be=K.Atoi(bd.substring(0,3));bf=be[0];bg=be[1];  -…    if(!($interfaceIsEqual(bg,null))){  -›e.printf("cgi: bogus status: %q",new($sliceType($emptyInterface))([new $String(bd)]));  .e.printf("cgi: line was %q",new($sliceType($emptyInterface))([aw]));  ./return;}  .>as=bf;}else{  .^(new H.Header(ar)).Add(bc,bd);}}  .    if((at===0)||!au){  .®c.WriteHeader(500);  .Ÿe.printf("cgi: no headers",new($sliceType($emptyInterface))([]));  .˜return;}  /  /bh=(new H.Header(ar)).Get("Location");    if(!(bh==="")){  /4    if(L.HasPrefix(bh,"/")&&!($interfaceIsEqual(e.PathLocationHandler,null))){  /xe.handleInternalRedirect(c,d,bh);  /¢return;}  /Ø    if(as===0){  /«as=302;}}  /Ó    if((as===0)&&(new H.Header(ar)).Get("Content-Type")===""){  0*c.WriteHeader(500);  0[e.printf("cgi: missing required Content-Type in headers",new($sliceType($emptyInterface))([]));  0óreturn;}  0£    if(as===0){  0∫as=200;}  1ubi=ar;bj=0;bk=$keys(bi);while(bj<bk.length){bl=bi[bk[bj]];bm=bl.k;bn=bl.v;  1îbo=bn;bp=0;while(bp<bo.length){bq=((bp<0||bp>=bo.length)?$throwRuntimeError("index out of range"):bo.array[bo.offset+bp]);  1Æ(new H.Header(c.Header())).Add(bm,bq);bp++;}bj++;}  1Õc.WriteHeader(as);  1Íbr=E.Copy(c,aq);ao=br[1];  2
+    if(!($interfaceIsEqual(ao,null))){  2e.printf("cgi: copy error: %v",new($sliceType($emptyInterface))([ao]));  3Öak.Process.Kill();}    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);}};Y.prototype.ServeHTTP=function(c,d){return this.$val.ServeHTTP(c,d);}; 0	Handler0Ç8bufio:NewReaderSizecrypto/tls:ConnectionStatefmt:Sprintf	io:Closerio:Copyio:EOFnet/http/cgi:Handler#net/http/cgi:handleInternalRedirect net/http/cgi:osDefaultInheritEnvnet/http/cgi:printf$net/http/cgi:removeLeadingDuplicates!net/http/cgi:testHookStartProcessnet/http/cgi:trailingPort#net/http/cgi:upperCaseAndUnderscorenet/http:Headeros/exec:Cmdos:File	os:Getenv
+os:Processos:ProcessState	os:Stderrpath/filepath:Splitstrconv:Atoistrings:HasPrefixstrings:Joinstrings:Mapstrings:SplitNstrings:TrimSpacesyscall:SysProcAttr0Ç1 ÅÁY.Ptr.prototype.printf=function(c,d){var e;  3§e=this;  3€    if(!(e.Logger===($ptrType(M.Logger)).nil)){  3Úe.Logger.Printf(c,d);}else{  4M.Printf(c,d);}    };Y.prototype.printf=function(c,d){return this.$val.printf(c,d);}; 0Handlerprintf0.
+log:Logger
+log:Printfnet/http/cgi:Handler0ÇD ÇúY.Ptr.prototype.handleInternalRedirect=function(c,d,e){var f,g,h,i,j;  4Af=this;  4üg=d.URL.Parse(e);h=g[0];i=g[1];  4¿    if(!($interfaceIsEqual(i,null))){  4“c.WriteHeader(500);  5f.printf("cgi: error resolving local URI path %q: %v",new($sliceType($emptyInterface))([new $String(e),i]));  5Greturn;}  7Lj=new H.Request.Ptr("GET",h,"HTTP/1.1",1,1,new $Map(),null,new $Int64(0,0),($sliceType($String)).nil,false,h.Host,false,false,($ptrType($packages["mime/multipart"].Form)).nil,false,d.RemoteAddr,"",d.TLS);  8;f.PathLocationHandler.ServeHTTP(c,j);    };Y.prototype.handleInternalRedirect=function(c,d,e){return this.$val.handleInternalRedirect(c,d,e);}; 0!HandlerhandleInternalRedirect0{crypto/tls:ConnectionStatemime/multipart:Formnet/http/cgi:Handlernet/http/cgi:printfnet/http:Requestnet/url:URL0ÅƒAAÅüAA=function(c){  8ñ  8†if(c>=97&&c<=122){  8Ωreturn c-32>>0;  8’}else if(c===45){  8Êreturn 95;  8Ú}else if(c===61){  9¶return 95;}  9Íreturn c;    }; 0upperCaseAndUnderscore0 0 ÇÏ{"Base":14911,"Files":[{"Name":"/usr/local/go/src/pkg/net/http/cgi/child.go","Base":1,"Size":5140,"Lines":[0,55,109,159,160,220,232,233,245,246,255,264,278,288,295,301,314,321,333,344,350,361,372,374,375,441,503,544,604,644,692,709,727,730,756,827,830,845,847,848,894,924,950,998,1026,1030,1033,1043,1045,1046,1108,1163,1234,1258,1295,1316,1382,1385,1386,1423,1436,1501,1511,1576,1579,1580,1596,1623,1649,1650,1680,1681,1736,1784,1802,1881,1885,1910,1913,1914,1959,1994,1997,1998,2053,2081,2139,2151,2155,2211,2214,2215,2272,2273,2306,2325,2383,2438,2468,2483,2504,2508,2511,2512,2565,2632,2695,2751,2754,2755,2774,2839,2867,2887,2918,2929,2961,2965,2997,3015,3108,3112,3126,3129,3190,3210,3229,3261,3279,3363,3367,3381,3384,3385,3447,3511,3532,3593,3594,3609,3611,3612,3679,3737,3801,3826,3867,3890,3907,3920,3923,3944,3977,3980,3998,4013,4042,4080,4083,4111,4158,4198,4211,4214,4226,4228,4229,4252,4278,4302,4328,4345,4347,4348,4377,4393,4395,4396,4438,4455,4457,4458,4514,4534,4565,4568,4592,4594,4595,4638,4657,4723,4816,4825,4828,4849,4920,4921,4952,5007,5066,5069,5070,5094,5122,5138],"Infos":null},{"Name":"/usr/local/go/src/pkg/net/http/cgi/host.go","Base":5142,"Size":9768,"Lines":[0,55,109,159,160,226,246,247,317,333,336,403,462,526,566,578,579,588,597,604,610,617,629,635,646,663,673,684,695,706,708,709,761,762,809,844,877,924,1000,1033,1066,1143,1203,1205,1206,1276,1298,1341,1401,1402,1460,1517,1572,1595,1607,1608,1694,1774,1849,1920,1921,1982,2040,2100,2156,2182,2186,2251,2305,2339,2341,2342,2411,2468,2487,2499,2549,2557,2617,2632,2658,2672,2708,2725,2756,2803,2820,2830,2835,2839,2853,2877,2881,2884,2892,2894,2895,2968,2984,3001,3014,3017,3018,3094,3134,3205,3214,3217,3218,3244,3299,3333,3336,3337,3351,3429,3449,3452,3453,3471,3495,3524,3554,3581,3612,3646,3684,3725,3752,3777,3808,3843,3878,3903,3906,3907,3928,3960,3963,3964,3996,4041,4059,4080,4098,4102,4162,4165,4166,4194,4267,4270,4329,4372,4375,4376,4395,4425,4428,4429,4459,4479,4540,4543,4579,4580,4614,4648,4678,4682,4685,4686,4741,4775,4805,4809,4812,4813,4849,4850,4872,4890,4906,4920,4930,4967,4970,4986,4998,5001,5002,5038,5087,5120,5123,5124,5143,5159,5206,5221,5236,5268,5271,5300,5323,5326,5363,5380,5401,5410,5413,5414,5433,5450,5471,5480,5483,5531,5551,5554,5572,5598,5599,5650,5680,5697,5715,5738,5745,5790,5806,5856,5910,5920,5924,5945,5954,5958,5976,6026,6077,6087,6091,6113,6136,6145,6149,6165,6213,6235,6291,6303,6307,6343,6380,6411,6422,6449,6470,6521,6532,6537,6576,6595,6638,6677,6688,6693,6714,6725,6753,6757,6760,6800,6849,6879,6888,6891,6892,6940,7007,7049,7059,7063,7086,7119,7123,7126,7127,7186,7235,7295,7304,7307,7308,7330,7359,7362,7363,7424,7484,7518,7548,7573,7598,7602,7605,7606,7634,7635,7667,7684,7723,7779,7834,7890,7943,8001,8045,8066,8069,8071,8072,8132,8154,8186,8196,8223,8226,8228,8229,8328,8361,8378,8427,8495,8504,8507,8571,8632,8694,8755,8817,8878,8931,8993,9013,9039,9060,9079,9105,9122,9139,9172,9196,9226,9249,9252,9297,9299,9300,9343,9353,9381,9406,9422,9435,9451,9507,9562,9614,9627,9630,9683,9693,9695,9696],"Infos":null}]}
+ˇ

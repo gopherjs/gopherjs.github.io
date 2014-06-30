@@ -1,9 +1,10 @@
-0Çûÿcrypto/x509/pkixÇ\Ôpackage pkix
+0ÇïJcrypto/x509/pkixÇ_tpackage pkix
 import asn1 "encoding/asn1"
 import big "math/big"
 import time "time"
 type @"".AlgorithmIdentifier struct { @"".Algorithm @"encoding/asn1".ObjectIdentifier; @"".Parameters @"encoding/asn1".RawValue "asn1:\"optional\"" }
 type @"".AttributeTypeAndValue struct { @"".Type @"encoding/asn1".ObjectIdentifier; @"".Value interface {  } }
+type @"".AttributeTypeAndValueSET struct { @"".Type @"encoding/asn1".ObjectIdentifier; @"".Value [][]@"".AttributeTypeAndValue "asn1:\"set\"" }
 type @"".CertificateList struct { @"".TBSCertList @"".TBSCertificateList; @"".SignatureAlgorithm @"".AlgorithmIdentifier; @"".SignatureValue @"encoding/asn1".BitString }
 func (? *@"".CertificateList) @"".HasExpired(@"".now @"time".Time) (? bool)
 type @"".Extension struct { @"".Id @"encoding/asn1".ObjectIdentifier; @"".Critical bool "asn1:\"optional\""; @"".Value []byte }
@@ -16,13 +17,15 @@ type @"".RelativeDistinguishedNameSET []@"".AttributeTypeAndValue
 type @"".RevokedCertificate struct { @"".SerialNumber *@"math/big".Int; @"".RevocationTime @"time".Time; @"".Extensions []@"".Extension "asn1:\"optional\"" }
 type @"".TBSCertificateList struct { @"".Raw @"encoding/asn1".RawContent; @"".Version int "asn1:\"optional,default:2\""; @"".Signature @"".AlgorithmIdentifier; @"".Issuer @"".RDNSequence; @"".ThisUpdate @"time".Time; @"".NextUpdate @"time".Time; @"".RevokedCertificates []@"".RevokedCertificate "asn1:\"optional\""; @"".Extensions []@"".Extension "asn1:\"tag:0,optional,explicit\"" }
 type @"encoding/asn1".ObjectIdentifier []int
-func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
-func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"encoding/asn1".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".String() (? string)
+func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"encoding/asn1".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".String() (? string)
 type @"encoding/asn1".RawValue struct { @"encoding/asn1".Class int; @"encoding/asn1".Tag int; @"encoding/asn1".IsCompound bool; @"encoding/asn1".Bytes []byte; @"encoding/asn1".FullBytes []byte }
 type @"encoding/asn1".BitString struct { @"encoding/asn1".Bytes []byte; @"encoding/asn1".BitLength int }
-func (? @"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? @"encoding/asn1".BitString) @"encoding/asn1".At(@"encoding/asn1".i int) (? int)
 func (? @"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
-func (? *@"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? *@"encoding/asn1".BitString) @"encoding/asn1".At(@"encoding/asn1".i int) (? int)
 func (? *@"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
 type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
 func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
@@ -125,6 +128,7 @@ func (? *@"math/big".Int) @"math/big".GobEncode() (? []byte, ? error)
 func (? *@"math/big".Int) @"math/big".Int64() (? int64)
 func (? *@"math/big".Int) @"math/big".Lsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".MarshalJSON() (? []byte, ? error)
+func (? *@"math/big".Int) @"math/big".MarshalText() (@"".text []byte, @"".err error)
 func (? *@"math/big".Int) @"math/big".Mod(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".ModInverse(@"".g *@"math/big".Int, @"".p *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Mul(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
@@ -151,7 +155,8 @@ func (? *@"math/big".Int) @"math/big".Sign() (? int)
 func (? *@"math/big".Int) @"math/big".String() (? string)
 func (? *@"math/big".Int) @"math/big".Sub(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".Uint64() (? uint64)
-func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".x []byte) (? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".text []byte) (? error)
+func (? *@"math/big".Int) @"math/big".UnmarshalText(@"".text []byte) (? error)
 func (? *@"math/big".Int) @"math/big".Xor(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
 func (? *@"math/big".Int) @"math/big".binaryGCD(@"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
 import io "io"
@@ -159,8 +164,10 @@ func (? *@"math/big".Int) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int
 type @"encoding/asn1".RawContent []byte
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
 func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
 type @"time".Duration int64
 func (? @"time".Duration) @"time".Hours() (? float64)
@@ -277,179 +284,12 @@ type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time"
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkix060encoding/asn1asn10math/bigbig0timetime0Ç@Ã0ÇãAlgorithmIdentifierÇ	AlgorithmIdentifier = go$pkg.AlgorithmIdentifier = go$newType(0, "Struct", "pkix.AlgorithmIdentifier", "AlgorithmIdentifier", "crypto/x509/pkix", function(Algorithm_, Parameters_) {
-		this.go$val = this;
-		this.Algorithm = Algorithm_ !== undefined ? Algorithm_ : asn1.ObjectIdentifier.nil;
-		this.Parameters = Parameters_ !== undefined ? Parameters_ : new asn1.RawValue.Ptr();
-	});
-Åü		AlgorithmIdentifier.init([["Algorithm", "Algorithm", "", asn1.ObjectIdentifier, ""], ["Parameters", "Parameters", "", asn1.RawValue, "asn1:\"optional\""]]);
-0AlgorithmIdentifier08encoding/asn1:ObjectIdentifierencoding/asn1:RawValue0Å¸RDNSequencey	RDNSequence = go$pkg.RDNSequence = go$newType(0, "Slice", "pkix.RDNSequence", "RDNSequence", "crypto/x509/pkix", null);
-2		RDNSequence.init(RelativeDistinguishedNameSET);
-0RDNSequence0/-crypto/x509/pkix:RelativeDistinguishedNameSET0ÇfRelativeDistinguishedNameSETÅΩ	RelativeDistinguishedNameSET = go$pkg.RelativeDistinguishedNameSET = go$newType(0, "Slice", "pkix.RelativeDistinguishedNameSET", "RelativeDistinguishedNameSET", "crypto/x509/pkix", null);
-<		RelativeDistinguishedNameSET.init(AttributeTypeAndValue);
-0RelativeDistinguishedNameSET0(&crypto/x509/pkix:AttributeTypeAndValue0Ç%AttributeTypeAndValueÇL	AttributeTypeAndValue = go$pkg.AttributeTypeAndValue = go$newType(0, "Struct", "pkix.AttributeTypeAndValue", "AttributeTypeAndValue", "crypto/x509/pkix", function(Type_, Value_) {
-		this.go$val = this;
-		this.Type = Type_ !== undefined ? Type_ : asn1.ObjectIdentifier.nil;
-		this.Value = Value_ !== undefined ? Value_ : null;
-	});
-ÅÄ		AttributeTypeAndValue.init([["Type", "Type", "", asn1.ObjectIdentifier, ""], ["Value", "Value", "", go$emptyInterface, ""]]);
-0AttributeTypeAndValue0 encoding/asn1:ObjectIdentifier0Çj	ExtensionÇv	Extension = go$pkg.Extension = go$newType(0, "Struct", "pkix.Extension", "Extension", "crypto/x509/pkix", function(Id_, Critical_, Value_) {
-		this.go$val = this;
-		this.Id = Id_ !== undefined ? Id_ : asn1.ObjectIdentifier.nil;
-		this.Critical = Critical_ !== undefined ? Critical_ : false;
-		this.Value = Value_ !== undefined ? Value_ : (go$sliceType(Go$Uint8)).nil;
-	});
-Å≥		Extension.init([["Id", "Id", "", asn1.ObjectIdentifier, ""], ["Critical", "Critical", "", Go$Bool, "asn1:\"optional\""], ["Value", "Value", "", (go$sliceType(Go$Uint8)), ""]]);
-0	Extension0 encoding/asn1:ObjectIdentifier0ÇSNameÇÉ	Name = go$pkg.Name = go$newType(0, "Struct", "pkix.Name", "Name", "crypto/x509/pkix", function(Country_, Organization_, OrganizationalUnit_, Locality_, Province_, StreetAddress_, PostalCode_, SerialNumber_, CommonName_, Names_) {
-		this.go$val = this;
-		this.Country = Country_ !== undefined ? Country_ : (go$sliceType(Go$String)).nil;
-		this.Organization = Organization_ !== undefined ? Organization_ : (go$sliceType(Go$String)).nil;
-		this.OrganizationalUnit = OrganizationalUnit_ !== undefined ? OrganizationalUnit_ : (go$sliceType(Go$String)).nil;
-		this.Locality = Locality_ !== undefined ? Locality_ : (go$sliceType(Go$String)).nil;
-		this.Province = Province_ !== undefined ? Province_ : (go$sliceType(Go$String)).nil;
-		this.StreetAddress = StreetAddress_ !== undefined ? StreetAddress_ : (go$sliceType(Go$String)).nil;
-		this.PostalCode = PostalCode_ !== undefined ? PostalCode_ : (go$sliceType(Go$String)).nil;
-		this.SerialNumber = SerialNumber_ !== undefined ? SerialNumber_ : "";
-		this.CommonName = CommonName_ !== undefined ? CommonName_ : "";
-		this.Names = Names_ !== undefined ? Names_ : (go$sliceType(AttributeTypeAndValue)).nil;
-	});
-Çr		Name.methods = [["ToRDNSequence", "", [], [RDNSequence], false, -1]];
-		(go$ptrType(Name)).methods = [["FillFromRDNSequence", "", [(go$ptrType(RDNSequence))], [], false, -1], ["ToRDNSequence", "", [], [RDNSequence], false, -1]];
-		Name.init([["Country", "Country", "", (go$sliceType(Go$String)), ""], ["Organization", "Organization", "", (go$sliceType(Go$String)), ""], ["OrganizationalUnit", "OrganizationalUnit", "", (go$sliceType(Go$String)), ""], ["Locality", "Locality", "", (go$sliceType(Go$String)), ""], ["Province", "Province", "", (go$sliceType(Go$String)), ""], ["StreetAddress", "StreetAddress", "", (go$sliceType(Go$String)), ""], ["PostalCode", "PostalCode", "", (go$sliceType(Go$String)), ""], ["SerialNumber", "SerialNumber", "", Go$String, ""], ["CommonName", "CommonName", "", Go$String, ""], ["Names", "Names", "", (go$sliceType(AttributeTypeAndValue)), ""]]);
-0Name0F&crypto/x509/pkix:AttributeTypeAndValuecrypto/x509/pkix:RDNSequence0ÇÙCertificateListÇ	CertificateList = go$pkg.CertificateList = go$newType(0, "Struct", "pkix.CertificateList", "CertificateList", "crypto/x509/pkix", function(TBSCertList_, SignatureAlgorithm_, SignatureValue_) {
-		this.go$val = this;
-		this.TBSCertList = TBSCertList_ !== undefined ? TBSCertList_ : new TBSCertificateList.Ptr();
-		this.SignatureAlgorithm = SignatureAlgorithm_ !== undefined ? SignatureAlgorithm_ : new AlgorithmIdentifier.Ptr();
-		this.SignatureValue = SignatureValue_ !== undefined ? SignatureValue_ : new asn1.BitString.Ptr();
-	});
-ÇB		(go$ptrType(CertificateList)).methods = [["HasExpired", "", [time.Time], [Go$Bool], false, -1]];
-		CertificateList.init([["TBSCertList", "TBSCertList", "", TBSCertificateList, ""], ["SignatureAlgorithm", "SignatureAlgorithm", "", AlgorithmIdentifier, ""], ["SignatureValue", "SignatureValue", "", asn1.BitString, ""]]);
-0CertificateList0o$crypto/x509/pkix:AlgorithmIdentifier#crypto/x509/pkix:TBSCertificateListencoding/asn1:BitString	time:Time0Ç™TBSCertificateListÇÆ	TBSCertificateList = go$pkg.TBSCertificateList = go$newType(0, "Struct", "pkix.TBSCertificateList", "TBSCertificateList", "crypto/x509/pkix", function(Raw_, Version_, Signature_, Issuer_, ThisUpdate_, NextUpdate_, RevokedCertificates_, Extensions_) {
-		this.go$val = this;
-		this.Raw = Raw_ !== undefined ? Raw_ : asn1.RawContent.nil;
-		this.Version = Version_ !== undefined ? Version_ : 0;
-		this.Signature = Signature_ !== undefined ? Signature_ : new AlgorithmIdentifier.Ptr();
-		this.Issuer = Issuer_ !== undefined ? Issuer_ : RDNSequence.nil;
-		this.ThisUpdate = ThisUpdate_ !== undefined ? ThisUpdate_ : new time.Time.Ptr();
-		this.NextUpdate = NextUpdate_ !== undefined ? NextUpdate_ : new time.Time.Ptr();
-		this.RevokedCertificates = RevokedCertificates_ !== undefined ? RevokedCertificates_ : (go$sliceType(RevokedCertificate)).nil;
-		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
-	});
-Ç		TBSCertificateList.init([["Raw", "Raw", "", asn1.RawContent, ""], ["Version", "Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "Signature", "", AlgorithmIdentifier, ""], ["Issuer", "Issuer", "", RDNSequence, ""], ["ThisUpdate", "ThisUpdate", "", time.Time, ""], ["NextUpdate", "NextUpdate", "", time.Time, ""], ["RevokedCertificates", "RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
-0TBSCertificateList0Å™$crypto/x509/pkix:AlgorithmIdentifiercrypto/x509/pkix:Extensioncrypto/x509/pkix:RDNSequence#crypto/x509/pkix:RevokedCertificateencoding/asn1:RawContent	time:Time0ÇNRevokedCertificateÇ˝	RevokedCertificate = go$pkg.RevokedCertificate = go$newType(0, "Struct", "pkix.RevokedCertificate", "RevokedCertificate", "crypto/x509/pkix", function(SerialNumber_, RevocationTime_, Extensions_) {
-		this.go$val = this;
-		this.SerialNumber = SerialNumber_ !== undefined ? SerialNumber_ : (go$ptrType(big.Int)).nil;
-		this.RevocationTime = RevocationTime_ !== undefined ? RevocationTime_ : new time.Time.Ptr();
-		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
-	});
-ÅÈ		RevokedCertificate.init([["SerialNumber", "SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "RevocationTime", "", time.Time, ""], ["Extensions", "Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
-0RevokedCertificate05crypto/x509/pkix:Extensionmath/big:Int	time:Time0Ç
-⁄ Ç
-â	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
-		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
-		n = this;
-		_ref = rdns.go$get();
-		_i = 0;
-		while (_i < _ref.length) {
-			rdn = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (rdn.length === 0) {
-				_i++;
-				continue;
-			}
-			atv = (_struct = (_slice$1 = rdn, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new AttributeTypeAndValue.Ptr(_struct.Type, _struct.Value));
-			n.Names = go$append(n.Names, (_struct$1 = atv, new AttributeTypeAndValue.Ptr(_struct$1.Type, _struct$1.Value)));
-			_tuple = (x = atv.Value, (x !== null && x.constructor === Go$String ? [x.go$val, true] : ["", false])), value = _tuple[0], ok = _tuple[1];
-			if (!ok) {
-				_i++;
-				continue;
-			}
-			t = atv.Type;
-			if ((t.length === 4) && ((_slice$2 = t, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 2) && ((_slice$3 = t, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 5) && ((_slice$4 = t, _index$4 = 2, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 4)) {
-				_ref$1 = (_slice$5 = t, _index$5 = 3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-				if (_ref$1 === 3) {
-					n.CommonName = value;
-				} else if (_ref$1 === 5) {
-					n.SerialNumber = value;
-				} else if (_ref$1 === 6) {
-					n.Country = go$append(n.Country, value);
-				} else if (_ref$1 === 7) {
-					n.Locality = go$append(n.Locality, value);
-				} else if (_ref$1 === 8) {
-					n.Province = go$append(n.Province, value);
-				} else if (_ref$1 === 9) {
-					n.StreetAddress = go$append(n.StreetAddress, value);
-				} else if (_ref$1 === 10) {
-					n.Organization = go$append(n.Organization, value);
-				} else if (_ref$1 === 11) {
-					n.OrganizationalUnit = go$append(n.OrganizationalUnit, value);
-				} else if (_ref$1 === 17) {
-					n.PostalCode = go$append(n.PostalCode, value);
-				}
-			}
-			_i++;
-		}
-	};
-	Name.prototype.FillFromRDNSequence = function(rdns) { return this.go$val.FillFromRDNSequence(rdns); };
- 0Name0?&crypto/x509/pkix:AttributeTypeAndValuecrypto/x509/pkix:Name0Çé
-appendRDNsÇ	appendRDNs = function(in$1, values, oid) {
-		var s, _ref, _i, _slice, _index, value, i, _slice$1, _index$1, _slice$2, _index$2;
-		if (values.length === 0) {
-			return in$1;
-		}
-		s = (go$sliceType(AttributeTypeAndValue)).make(values.length, 0, function() { return new AttributeTypeAndValue.Ptr(); });
-		_ref = values;
-		_i = 0;
-		while (_i < _ref.length) {
-			value = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			(_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Type = oid;
-			(_slice$2 = s, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Value = new Go$String(value);
-			_i++;
-		}
-		return go$append(in$1, go$subslice(new RelativeDistinguishedNameSET(s.array), s.offset, s.offset + s.length));
-	};
- 0
-appendRDNs0W&crypto/x509/pkix:AttributeTypeAndValue-crypto/x509/pkix:RelativeDistinguishedNameSET0Ç
-
- Ç\	Name.Ptr.prototype.ToRDNSequence = function() {
-		var ret, _struct, n;
-		ret = RDNSequence.nil;
-		n = (_struct = this, new Name.Ptr(_struct.Country, _struct.Organization, _struct.OrganizationalUnit, _struct.Locality, _struct.Province, _struct.StreetAddress, _struct.PostalCode, _struct.SerialNumber, _struct.CommonName, _struct.Names));
-		ret = appendRDNs(ret, n.Country, go$subslice(new asn1.ObjectIdentifier(oidCountry.array), oidCountry.offset, oidCountry.offset + oidCountry.length));
-		ret = appendRDNs(ret, n.Organization, go$subslice(new asn1.ObjectIdentifier(oidOrganization.array), oidOrganization.offset, oidOrganization.offset + oidOrganization.length));
-		ret = appendRDNs(ret, n.OrganizationalUnit, go$subslice(new asn1.ObjectIdentifier(oidOrganizationalUnit.array), oidOrganizationalUnit.offset, oidOrganizationalUnit.offset + oidOrganizationalUnit.length));
-		ret = appendRDNs(ret, n.Locality, go$subslice(new asn1.ObjectIdentifier(oidLocality.array), oidLocality.offset, oidLocality.offset + oidLocality.length));
-		ret = appendRDNs(ret, n.Province, go$subslice(new asn1.ObjectIdentifier(oidProvince.array), oidProvince.offset, oidProvince.offset + oidProvince.length));
-		ret = appendRDNs(ret, n.StreetAddress, go$subslice(new asn1.ObjectIdentifier(oidStreetAddress.array), oidStreetAddress.offset, oidStreetAddress.offset + oidStreetAddress.length));
-		ret = appendRDNs(ret, n.PostalCode, go$subslice(new asn1.ObjectIdentifier(oidPostalCode.array), oidPostalCode.offset, oidPostalCode.offset + oidPostalCode.length));
-		if (n.CommonName.length > 0) {
-			ret = appendRDNs(ret, new (go$sliceType(Go$String))([n.CommonName]), go$subslice(new asn1.ObjectIdentifier(oidCommonName.array), oidCommonName.offset, oidCommonName.offset + oidCommonName.length));
-		}
-		if (n.SerialNumber.length > 0) {
-			ret = appendRDNs(ret, new (go$sliceType(Go$String))([n.SerialNumber]), go$subslice(new asn1.ObjectIdentifier(oidSerialNumber.array), oidSerialNumber.offset, oidSerialNumber.offset + oidSerialNumber.length));
-		}
-		ret = ret;
-		return ret;
-	};
-	Name.prototype.ToRDNSequence = function() { return this.go$val.ToRDNSequence(); };
- 0Name0Çöcrypto/x509/pkix:Namecrypto/x509/pkix:RDNSequencecrypto/x509/pkix:appendRDNscrypto/x509/pkix:oidCommonNamecrypto/x509/pkix:oidCountrycrypto/x509/pkix:oidLocality crypto/x509/pkix:oidOrganization&crypto/x509/pkix:oidOrganizationalUnitcrypto/x509/pkix:oidPostalCodecrypto/x509/pkix:oidProvince crypto/x509/pkix:oidSerialNumber!crypto/x509/pkix:oidStreetAddressencoding/asn1:ObjectIdentifier0Çë ÇG	CertificateList.Ptr.prototype.HasExpired = function(now) {
-		var certList, _struct;
-		certList = this;
-		return now.After((_struct = certList.TBSCertList.NextUpdate, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
-	};
-	CertificateList.prototype.HasExpired = function(now) { return this.go$val.HasExpired(now); };
- 0CertificateList0- crypto/x509/pkix:CertificateList	time:Time0 
-oidCountry  0
-oidCountry0 0*oidOrganization  0oidOrganization0 06oidOrganizationalUnit  0oidOrganizationalUnit0 0&oidCommonName  0oidCommonName0 0*oidSerialNumber  0oidSerialNumber0 0"oidLocality  0oidLocality0 0"oidProvince  0oidProvince0 0,oidStreetAddress  0oidStreetAddress0 0&oidPostalCode  0oidPostalCode0 0l  9		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
-0
-oidCountry0crypto/x509/pkix:oidCountry0|  ?		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
-0oidOrganization0" crypto/x509/pkix:oidOrganization0Åé  E		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
-0oidOrganizationalUnit0(&crypto/x509/pkix:oidOrganizationalUnit0u  <		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
-0oidCommonName0 crypto/x509/pkix:oidCommonName0{  >		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
-0oidSerialNumber0" crypto/x509/pkix:oidSerialNumber0o  :		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
-0oidLocality0crypto/x509/pkix:oidLocality0o  :		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
-0oidProvince0crypto/x509/pkix:oidProvince0~  ?		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
-0oidStreetAddress0#!crypto/x509/pkix:oidStreetAddress0v  =		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
-0oidPostalCode0 crypto/x509/pkix:oidPostalCode0
-   0 0 0
-   0 0 0 
+0Å’github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn10.0encoding/asn1A0math/bigB0	timeC0Ç0ÿ0ÇDÇ7D=$pkg.AlgorithmIdentifier=$newType(0,"Struct","pkix.AlgorithmIdentifier","AlgorithmIdentifier","crypto/x509/pkix",function(Algorithm_,Parameters_){this.$val=this;this.Algorithm=Algorithm_!==undefined?Algorithm_:A.ObjectIdentifier.nil;this.Parameters=Parameters_!==undefined?Parameters_:new A.RawValue.Ptr();});{D.init([["Algorithm","Algorithm","",A.ObjectIdentifier,""],["Parameters","Parameters","",A.RawValue,"asn1:\"optional\""]]);0AlgorithmIdentifier08encoding/asn1:ObjectIdentifierencoding/asn1:RawValue0Å≤EaE=$pkg.RDNSequence=$newType(12,"Slice","pkix.RDNSequence","RDNSequence","crypto/x509/pkix",null);
+E.init(F);0RDNSequence0/-crypto/x509/pkix:RelativeDistinguishedNameSET0ÅFÅîF=$pkg.RelativeDistinguishedNameSET=$newType(12,"Slice","pkix.RelativeDistinguishedNameSET","RelativeDistinguishedNameSET","crypto/x509/pkix",null);
+F.init(G);0RelativeDistinguishedNameSET0(&crypto/x509/pkix:AttributeTypeAndValue0Ç§GÇG=$pkg.AttributeTypeAndValue=$newType(0,"Struct","pkix.AttributeTypeAndValue","AttributeTypeAndValue","crypto/x509/pkix",function(Type_,Value_){this.$val=this;this.Type=Type_!==undefined?Type_:A.ObjectIdentifier.nil;this.Value=Value_!==undefined?Value_:null;});[G.init([["Type","Type","",A.ObjectIdentifier,""],["Value","Value","",$emptyInterface,""]]);0AttributeTypeAndValue0 encoding/asn1:ObjectIdentifier0ÇHÇ+H=$pkg.AttributeTypeAndValueSET=$newType(0,"Struct","pkix.AttributeTypeAndValueSET","AttributeTypeAndValueSET","crypto/x509/pkix",function(Type_,Value_){this.$val=this;this.Type=Type_!==undefined?Type_:A.ObjectIdentifier.nil;this.Value=Value_!==undefined?Value_:($sliceType(($sliceType(G)))).nil;});uH.init([["Type","Type","",A.ObjectIdentifier,""],["Value","Value","",($sliceType(($sliceType(G)))),"asn1:\"set\""]]);0AttributeTypeAndValueSET0H&crypto/x509/pkix:AttributeTypeAndValueencoding/asn1:ObjectIdentifier0ÇıIÇ+I=$pkg.Extension=$newType(0,"Struct","pkix.Extension","Extension","crypto/x509/pkix",function(Id_,Critical_,Value_){this.$val=this;this.Id=Id_!==undefined?Id_:A.ObjectIdentifier.nil;this.Critical=Critical_!==undefined?Critical_:false;this.Value=Value_!==undefined?Value_:($sliceType($Uint8)).nil;});ÅëI.init([["Id","Id","",A.ObjectIdentifier,""],["Critical","Critical","",$Bool,"asn1:\"optional\""],["Value","Value","",($sliceType($Uint8)),""]]);0	Extension0 encoding/asn1:ObjectIdentifier0ÇJÇæJ=$pkg.Name=$newType(0,"Struct","pkix.Name","Name","crypto/x509/pkix",function(Country_,Organization_,OrganizationalUnit_,Locality_,Province_,StreetAddress_,PostalCode_,SerialNumber_,CommonName_,Names_){this.$val=this;this.Country=Country_!==undefined?Country_:($sliceType($String)).nil;this.Organization=Organization_!==undefined?Organization_:($sliceType($String)).nil;this.OrganizationalUnit=OrganizationalUnit_!==undefined?OrganizationalUnit_:($sliceType($String)).nil;this.Locality=Locality_!==undefined?Locality_:($sliceType($String)).nil;this.Province=Province_!==undefined?Province_:($sliceType($String)).nil;this.StreetAddress=StreetAddress_!==undefined?StreetAddress_:($sliceType($String)).nil;this.PostalCode=PostalCode_!==undefined?PostalCode_:($sliceType($String)).nil;this.SerialNumber=SerialNumber_!==undefined?SerialNumber_:"";this.CommonName=CommonName_!==undefined?CommonName_:"";this.Names=Names_!==undefined?Names_:($sliceType(G)).nil;});Ç˘J.methods=[["ToRDNSequence","ToRDNSequence","",[],[E],false,-1]];($ptrType(J)).methods=[["FillFromRDNSequence","FillFromRDNSequence","",[($ptrType(E))],[],false,-1],["ToRDNSequence","ToRDNSequence","",[],[E],false,-1]];J.init([["Country","Country","",($sliceType($String)),""],["Organization","Organization","",($sliceType($String)),""],["OrganizationalUnit","OrganizationalUnit","",($sliceType($String)),""],["Locality","Locality","",($sliceType($String)),""],["Province","Province","",($sliceType($String)),""],["StreetAddress","StreetAddress","",($sliceType($String)),""],["PostalCode","PostalCode","",($sliceType($String)),""],["SerialNumber","SerialNumber","",$String,""],["CommonName","CommonName","",$String,""],["Names","Names","",($sliceType(G)),""]]);0Name0F&crypto/x509/pkix:AttributeTypeAndValuecrypto/x509/pkix:RDNSequence0ÇUÇ•U=$pkg.CertificateList=$newType(0,"Struct","pkix.CertificateList","CertificateList","crypto/x509/pkix",function(TBSCertList_,SignatureAlgorithm_,SignatureValue_){this.$val=this;this.TBSCertList=TBSCertList_!==undefined?TBSCertList_:new V.Ptr();this.SignatureAlgorithm=SignatureAlgorithm_!==undefined?SignatureAlgorithm_:new D.Ptr();this.SignatureValue=SignatureValue_!==undefined?SignatureValue_:new A.BitString.Ptr();});ÅÎ($ptrType(U)).methods=[["HasExpired","HasExpired","",[C.Time],[$Bool],false,-1]];U.init([["TBSCertList","TBSCertList","",V,""],["SignatureAlgorithm","SignatureAlgorithm","",D,""],["SignatureValue","SignatureValue","",A.BitString,""]]);0CertificateList0o$crypto/x509/pkix:AlgorithmIdentifier#crypto/x509/pkix:TBSCertificateListencoding/asn1:BitString	time:Time0ÇOVÇ„V=$pkg.TBSCertificateList=$newType(0,"Struct","pkix.TBSCertificateList","TBSCertificateList","crypto/x509/pkix",function(Raw_,Version_,Signature_,Issuer_,ThisUpdate_,NextUpdate_,RevokedCertificates_,Extensions_){this.$val=this;this.Raw=Raw_!==undefined?Raw_:A.RawContent.nil;this.Version=Version_!==undefined?Version_:0;this.Signature=Signature_!==undefined?Signature_:new D.Ptr();this.Issuer=Issuer_!==undefined?Issuer_:E.nil;this.ThisUpdate=ThisUpdate_!==undefined?ThisUpdate_:new C.Time.Ptr();this.NextUpdate=NextUpdate_!==undefined?NextUpdate_:new C.Time.Ptr();this.RevokedCertificates=RevokedCertificates_!==undefined?RevokedCertificates_:($sliceType(W)).nil;this.Extensions=Extensions_!==undefined?Extensions_:($sliceType(I)).nil;});ÇûV.init([["Raw","Raw","",A.RawContent,""],["Version","Version","",$Int,"asn1:\"optional,default:2\""],["Signature","Signature","",D,""],["Issuer","Issuer","",E,""],["ThisUpdate","ThisUpdate","",C.Time,""],["NextUpdate","NextUpdate","",C.Time,""],["RevokedCertificates","RevokedCertificates","",($sliceType(W)),"asn1:\"optional\""],["Extensions","Extensions","",($sliceType(I)),"asn1:\"tag:0,optional,explicit\""]]);0TBSCertificateList0Å™$crypto/x509/pkix:AlgorithmIdentifiercrypto/x509/pkix:Extensioncrypto/x509/pkix:RDNSequence#crypto/x509/pkix:RevokedCertificateencoding/asn1:RawContent	time:Time0Ç¨WÇüW=$pkg.RevokedCertificate=$newType(0,"Struct","pkix.RevokedCertificate","RevokedCertificate","crypto/x509/pkix",function(SerialNumber_,RevocationTime_,Extensions_){this.$val=this;this.SerialNumber=SerialNumber_!==undefined?SerialNumber_:($ptrType(B.Int)).nil;this.RevocationTime=RevocationTime_!==undefined?RevocationTime_:new C.Time.Ptr();this.Extensions=Extensions_!==undefined?Extensions_:($sliceType(I)).nil;});Å∂W.init([["SerialNumber","SerialNumber","",($ptrType(B.Int)),""],["RevocationTime","RevocationTime","",C.Time,""],["Extensions","Extensions","",($sliceType(I)),"asn1:\"optional\""]]);0RevokedCertificate05crypto/x509/pkix:Extensionmath/big:Int	time:Time0K  0
+oidCountry0 0L  0oidOrganization0 0"M  0oidOrganizationalUnit0 0N  0oidCommonName0 0O  0oidSerialNumber0 0P  0oidLocality0 0Q  0oidProvince0 0R  0oidStreetAddress0 0S  0oidPostalCode0 0`  -    K=new($sliceType($Int))([2,5,4,6]);    0
+oidCountry0crypto/x509/pkix:oidCountry0k  .    L=new($sliceType($Int))([2,5,4,10]);    0oidOrganization0" crypto/x509/pkix:oidOrganization0w  .    M=new($sliceType($Int))([2,5,4,11]);    0oidOrganizationalUnit0(&crypto/x509/pkix:oidOrganizationalUnit0f  -    N=new($sliceType($Int))([2,5,4,3]);    0oidCommonName0 crypto/x509/pkix:oidCommonName0j  -    O=new($sliceType($Int))([2,5,4,5]);    0oidSerialNumber0" crypto/x509/pkix:oidSerialNumber0b  -    P=new($sliceType($Int))([2,5,4,7]);    0oidLocality0crypto/x509/pkix:oidLocality0b  -    Q=new($sliceType($Int))([2,5,4,8]);    0oidProvince0crypto/x509/pkix:oidProvince0l  -    R=new($sliceType($Int))([2,5,4,9]);    0oidStreetAddress0#!crypto/x509/pkix:oidStreetAddress0g  .    S=new($sliceType($Int))([2,5,4,17]);    0oidPostalCode0 crypto/x509/pkix:oidPostalCode0Çj ÇJ.Ptr.prototype.FillFromRDNSequence=function(a){var b,c,d,e,f,g,h,i,j,k,l;  ﬂb=this;  c=a.$get();d=0;while(d<c.length){e=((d<0||d>=c.length)?$throwRuntimeError("index out of range"):c.array[c.offset+d]);  0    if(e.length===0){  Fd++;continue;}  Uf=new G.Ptr();$copy(f,((0<0||0>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+0]),G);  eb.Names=$append(b.Names,f);  Üg=(h=f.Value,(h!==null&&h.constructor===$String?[h.$val,true]:["",false]));i=g[0];j=g[1];  ®    if(!j){  ¥d++;continue;}  ƒk=f.Type;  ‘    if((k.length===4)&&(((0<0||0>=k.length)?$throwRuntimeError("index out of range"):k.array[k.offset+0])===2)&&(((1<0||1>=k.length)?$throwRuntimeError("index out of range"):k.array[k.offset+1])===5)&&(((2<0||2>=k.length)?$throwRuntimeError("index out of range"):k.array[k.offset+2])===4)){  l=((3<0||3>=k.length)?$throwRuntimeError("index out of range"):k.array[k.offset+3]);   if(l===3){  ,b.CommonName=i;  D}else if(l===5){  Pb.SerialNumber=i;  j}else if(l===6){  vb.Country=$append(b.Country,i);  û}else if(l===7){  ™b.Locality=$append(b.Locality,i);  ‘}else if(l===8){  ‡b.Province=$append(b.Province,i);  	
+}else if(l===9){  	b.StreetAddress=$append(b.StreetAddress,i);  	J}else if(l===10){  	Wb.Organization=$append(b.Organization,i);  	â}else if(l===11){  	ñb.OrganizationalUnit=$append(b.OrganizationalUnit,i);  	‘}else if(l===17){  	·b.PostalCode=$append(b.PostalCode,i);}}d++;}    };J.prototype.FillFromRDNSequence=function(a){return this.$val.FillFromRDNSequence(a);}; 0Name0?&crypto/x509/pkix:AttributeTypeAndValuecrypto/x509/pkix:Name0ÇõTÇ+T=function(a,b,c){var d,e,f,g,h;      if(b.length===0){  )return a;}  8d=($sliceType(G)).make(b.length,0,function(){return new G.Ptr();});  ie=b;f=0;while(f<e.length){g=f;h=((f<0||f>=e.length)?$throwRuntimeError("index out of range"):e.array[e.offset+f]);  ä((g<0||g>=d.length)?$throwRuntimeError("index out of range"):d.array[d.offset+g]).Type=c;  ú((g<0||g>=d.length)?$throwRuntimeError("index out of range"):d.array[d.offset+g]).Value=new $String(h);f++;}  ¥return $append(a,$subslice(new F(d.array),d.offset,d.offset+d.length));    }; 0
+appendRDNs0W&crypto/x509/pkix:AttributeTypeAndValue-crypto/x509/pkix:RelativeDistinguishedNameSET0ÇS Ç•J.Ptr.prototype.ToRDNSequence=function(){var a,b;a=E.nil;  “b=new J.Ptr();$copy(b,this,J);  ˇa=T(a,b.Country,$subslice(new A.ObjectIdentifier(K.array),K.offset,K.offset+K.length));  -a=T(a,b.Organization,$subslice(new A.ObjectIdentifier(L.array),L.offset,L.offset+L.length));  ea=T(a,b.OrganizationalUnit,$subslice(new A.ObjectIdentifier(M.array),M.offset,M.offset+M.length));  ©a=T(a,b.Locality,$subslice(new A.ObjectIdentifier(P.array),P.offset,P.offset+P.length));  Ÿa=T(a,b.Province,$subslice(new A.ObjectIdentifier(Q.array),Q.offset,Q.offset+Q.length));  	a=T(a,b.StreetAddress,$subslice(new A.ObjectIdentifier(R.array),R.offset,R.offset+R.length));  Ca=T(a,b.PostalCode,$subslice(new A.ObjectIdentifier(S.array),S.offset,S.offset+S.length));  w    if(b.CommonName.length>0){  îa=T(a,new($sliceType($String))([b.CommonName]),$subslice(new A.ObjectIdentifier(N.array),N.offset,N.offset+N.length));}  ’    if(b.SerialNumber.length>0){  Ùa=T(a,new($sliceType($String))([b.SerialNumber]),$subslice(new A.ObjectIdentifier(O.array),O.offset,O.offset+O.length));}  :    a=a;return a;    };J.prototype.ToRDNSequence=function(){return this.$val.ToRDNSequence();}; 0Name0Çöcrypto/x509/pkix:Namecrypto/x509/pkix:RDNSequencecrypto/x509/pkix:appendRDNscrypto/x509/pkix:oidCommonNamecrypto/x509/pkix:oidCountrycrypto/x509/pkix:oidLocality crypto/x509/pkix:oidOrganization&crypto/x509/pkix:oidOrganizationalUnitcrypto/x509/pkix:oidPostalCodecrypto/x509/pkix:oidProvince crypto/x509/pkix:oidSerialNumber!crypto/x509/pkix:oidStreetAddressencoding/asn1:ObjectIdentifier0Ç
+ Å¡U.Ptr.prototype.HasExpired=function(a){var b;  »b=this;  return a.After($clone(b.TBSCertList.NextUpdate,C.Time));    };U.prototype.HasExpired=function(a){return this.$val.HasExpired(a);}; 0CertificateList0- crypto/x509/pkix:CertificateList	time:Time0 Ç”{"Base":5398,"Files":[{"Name":"/usr/local/go/src/pkg/crypto/x509/pkix/pkix.go","Base":1,"Size":5396,"Lines":[0,55,109,159,160,237,295,308,309,318,335,347,355,357,358,438,464,498,532,576,578,579,627,628,686,687,760,814,850,879,898,900,901,968,1029,1068,1097,1143,1145,1146,1216,1238,1262,1294,1327,1344,1346,1347,1425,1492,1511,1563,1615,1667,1717,1718,1749,1751,1752,1808,1837,1858,1870,1874,1890,1923,1957,1968,1980,1984,1985,2001,2059,2076,2087,2112,2123,2150,2161,2202,2213,2256,2267,2310,2321,2374,2386,2437,2449,2512,2524,2571,2576,2580,2583,2585,2586,2592,2635,2679,2723,2766,2809,2852,2895,2938,2982,2984,2985,3063,3138,3216,3253,3343,3366,3378,3381,3382,3431,3463,3481,3502,3505,3506,3528,3530,3531,3581,3627,3683,3751,3799,3847,3905,3957,3985,4048,4051,4081,4148,4151,4152,4164,4166,4167,4243,4313,4327,4357,4396,4436,4471,4473,4474,4545,4611,4662,4664,4665,4744,4766,4799,4836,4889,4930,4963,4994,5025,5085,5160,5162,5163,5242,5264,5297,5322,5348,5394],"Infos":null}]}
+ˇ

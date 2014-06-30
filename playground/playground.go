@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"github.com/gopherjs/go-angularjs"
+	"github.com/gopherjs/gopherjs/compiler"
 	"github.com/gopherjs/gopherjs/js"
-	"github.com/gopherjs/gopherjs/translator"
 	"go/ast"
 	"go/format"
 	"go/parser"
@@ -26,10 +26,16 @@ func main() {
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
-		t := translator.New()
-		packages := make(map[string]*translator.Archive)
-		fileSet := token.NewFileSet()
+		packages := make(map[string]*compiler.Archive)
 		var pkgsToLoad []string
+		importContext := compiler.NewImportContext(func(path string) (*compiler.Archive, error) {
+			if pkg, found := packages[path]; found {
+				return pkg, nil
+			}
+			pkgsToLoad = append(pkgsToLoad, path)
+			return &compiler.Archive{}, nil
+		})
+		fileSet := token.NewFileSet()
 		pkgsReceived := 0
 
 		setupEnvironment(scope)
@@ -43,7 +49,7 @@ func main() {
 			case '\r':
 				toInsert = "\n"
 				start := codeArea.Prop("selectionStart").Int()
-				code := scope.Get("code").String()
+				code := scope.Get("code").Str()
 				i := strings.LastIndex(code[:start], "\n") + 1
 				for i < start {
 					c := code[i]
@@ -57,7 +63,7 @@ func main() {
 			if toInsert != "" {
 				start := codeArea.Prop("selectionStart").Int()
 				end := codeArea.Prop("selectionEnd").Int()
-				code := scope.Get("code").String()
+				code := scope.Get("code").Str()
 				scope.Apply(func() {
 					scope.Set("code", code[:start]+toInsert+code[end:])
 				})
@@ -73,7 +79,7 @@ func main() {
 			scope.Set("output", output)
 			pkgsToLoad = nil
 
-			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").String()), 0)
+			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").Str()), 0)
 			if err != nil {
 				if list, ok := err.(scanner.ErrorList); ok {
 					for _, entry := range list {
@@ -86,17 +92,10 @@ func main() {
 				return
 			}
 
-			importPackage := func(path string) (*translator.Archive, error) {
-				if pkg, found := packages[path]; found {
-					return pkg, nil
-				}
-				pkgsToLoad = append(pkgsToLoad, path)
-				return &translator.Archive{}, nil
-			}
-			mainPkg, err := t.TranslatePackage("main", []*ast.File{file}, fileSet, importPackage)
+			mainPkg, err := compiler.Compile("main", []*ast.File{file}, fileSet, importContext, false)
 			packages["main"] = mainPkg
 			if err != nil && len(pkgsToLoad) == 0 {
-				if list, ok := err.(translator.ErrorList); ok {
+				if list, ok := err.(compiler.ErrorList); ok {
 					output := make([]Line, 0)
 					for _, entry := range list {
 						output = append(output, Line{"type": "err", "content": entry.Error()})
@@ -108,12 +107,13 @@ func main() {
 				return
 			}
 
-			var allPkgs []*translator.Archive
+			var allPkgs []*compiler.Archive
 			if len(pkgsToLoad) == 0 {
 				for _, depPath := range mainPkg.Dependencies {
-					dep, _ := importPackage(depPath)
+					dep, _ := importContext.Import(string(depPath))
 					allPkgs = append(allPkgs, dep)
 				}
+				allPkgs = append(allPkgs, mainPkg)
 			}
 
 			if len(pkgsToLoad) != 0 {
@@ -133,7 +133,7 @@ func main() {
 						}
 
 						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
-						packages[path], err = t.ReadArchive(path+".a", path, []byte(data))
+						packages[path], err = compiler.UnmarshalArchive(path+".a", path, []byte(data), importContext)
 						if err != nil {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
@@ -155,20 +155,20 @@ func main() {
 			}
 
 			mainPkgCode := bytes.NewBuffer(nil)
-			t.WritePkgCode(packages["main"], mainPkgCode)
+			compiler.WritePkgCode(packages["main"], false, &compiler.SourceMapFilter{Writer: mainPkgCode})
 			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
 			jsCode.WriteString("try{\n")
-			t.WriteProgramCode(allPkgs, "main", jsCode)
-			jsCode.WriteString("} catch (err) {\ngo$panicHandler(err.message);\n}\n")
+			compiler.WriteProgramCode(allPkgs, importContext, &compiler.SourceMapFilter{Writer: jsCode})
+			jsCode.WriteString("} catch (err) {\ngoPanicHandler(err.message);\n}\n")
 			js.Global.Call("eval", jsCode.String())
 		}
 		scope.Set("run", run)
 		run(true)
 
 		scope.Set("format", func() {
-			out, err := format.Source([]byte(scope.Get("code").String()))
+			out, err := format.Source([]byte(scope.Get("code").Str()))
 			if err != nil {
 				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
@@ -179,37 +179,26 @@ func main() {
 	})
 }
 
-func writeString(scope *angularjs.Scope, s string) {
-	lines := strings.Split(s, "\n")
-	if len(output) == 0 || output[len(output)-1]["type"] != "out" {
-		output = append(output, Line{"type": "out", "content": ""})
-	}
-	output[len(output)-1]["content"] += lines[0]
-	for i := 1; i < len(lines); i++ {
-		output = append(output, Line{"type": "out", "content": lines[i]})
-	}
-	scope.Set("output", output)
-	scope.EvalAsync(func() {
-		time.AfterFunc(0, func() {
-			box := angularjs.ElementById("output")
-			box.SetProp("scrollTop", box.Prop("scrollHeight"))
-		})
-	})
-}
-
 func setupEnvironment(scope *angularjs.Scope) {
-	js.Global.Set("go$syscall", func(trap int, a1, a2, a3 js.Object) (r1, r2 int, err error) {
-		switch trap {
-		case 4:
-			s := string(a2.Interface().([]byte))
-			writeString(scope, s)
-			return len(s), 0, nil
-		default:
-			panic("syscall not supported")
+	js.Global.Set("goPrintToConsole", js.InternalObject(func(b []byte) {
+		lines := strings.Split(string(b), "\n")
+		if len(output) == 0 || output[len(output)-1]["type"] != "out" {
+			output = append(output, Line{"type": "out", "content": ""})
 		}
-	})
-	js.Global.Set("go$panicHandler", func(msg string) {
+		output[len(output)-1]["content"] += lines[0]
+		for i := 1; i < len(lines); i++ {
+			output = append(output, Line{"type": "out", "content": lines[i]})
+		}
+		scope.Set("output", output)
+		scope.EvalAsync(func() {
+			time.AfterFunc(0, func() {
+				box := angularjs.ElementById("output")
+				box.SetProp("scrollTop", box.Prop("scrollHeight"))
+			})
+		})
+	}))
+	js.Global.Set("goPanicHandler", js.InternalObject(func(msg string) {
 		output = append(output, Line{"type": "err", "content": "panic: " + msg})
 		scope.Set("output", output)
-	})
+	}))
 }

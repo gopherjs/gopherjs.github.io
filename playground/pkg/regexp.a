@@ -1,11 +1,13 @@
-0ÉE=regexpÇ!ypackage regexp
+0É÷–regexpÇLwpackage regexp
+import testing "testing"
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
+import sort "sort"
+import unicode "unicode"
 import strconv "strconv"
 import strings "strings"
 import sync "sync"
-import unicode "unicode"
 import utf8 "unicode/utf8"
 func @"".Compile(@"".expr string) (? *@"".Regexp, ? error)
 func @"".CompilePOSIX(@"".expr string) (? *@"".Regexp, ? error)
@@ -15,7 +17,7 @@ func @"".MatchString(@"".pattern string, @"".s string) (@"".matched bool, @"".er
 func @"".MustCompile(@"".str string) (? *@"".Regexp)
 func @"".MustCompilePOSIX(@"".str string) (? *@"".Regexp)
 func @"".QuoteMeta(@"".s string) (? string)
-type @"".Regexp struct { @"".expr string; @"".prog *@"regexp/syntax".Prog; @"".prefix string; @"".prefixBytes []byte; @"".prefixComplete bool; @"".prefixRune rune; @"".cond @"regexp/syntax".EmptyOp; @"".numSubexp int; @"".subexpNames []string; @"".longest bool; @"".mu @"sync".Mutex; @"".machine []*@"".machine }
+type @"".Regexp struct { @"".expr string; @"".prog *@"regexp/syntax".Prog; @"".onepass *@"".onePassProg; @"".prefix string; @"".prefixBytes []byte; @"".prefixComplete bool; @"".prefixRune rune; @"".prefixEnd uint32; @"".cond @"regexp/syntax".EmptyOp; @"".numSubexp int; @"".subexpNames []string; @"".longest bool; @"".mu @"sync".Mutex; @"".machine []*@"".machine }
 func (? *@"".Regexp) @"".Expand(@"".dst []byte, @"".template []byte, @"".src []byte, @"".match []int) (? []byte)
 func (? *@"".Regexp) @"".ExpandString(@"".dst []byte, @"".template string, @"".src string, @"".match []int) (? []byte)
 func (? *@"".Regexp) @"".Find(@"".b []byte) (? []byte)
@@ -58,6 +60,7 @@ func (? *@"".Regexp) @"".get() (? *@"".machine)
 func (? *@"".Regexp) @"".pad(@"".a []int) (? []int)
 func (? *@"".Regexp) @"".put(@"".z *@"".machine) ()
 func (? *@"".Regexp) @"".replaceAll(@"".bsrc []byte, @"".src string, @"".nmatch int, @"".repl func (@"".dst []byte, @"".m []int) (? []byte)) (? []byte)
+func @"".TestOnePassCutoff(@"".t *@"testing".T) ()
 type @"".entry struct { @"".pc uint32; @"".t *@"".thread }
 type @"".input interface { @"".canCheckPrefix() (? bool); @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp); @"".hasPrefix(@"".re *@"".Regexp) (? bool); @"".index(@"".re *@"".Regexp, @"".pos int) (? int); @"".step(@"".pos int) (@"".r rune, @"".width int) }
 type @"".inputBytes struct { @"".str []byte }
@@ -78,7 +81,7 @@ func (? *@"".inputString) @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp)
 func (? *@"".inputString) @"".hasPrefix(@"".re *@"".Regexp) (? bool)
 func (? *@"".inputString) @"".index(@"".re *@"".Regexp, @"".pos int) (? int)
 func (? *@"".inputString) @"".step(@"".pos int) (? rune, ? int)
-type @"".machine struct { @"".re *@"".Regexp; @"".p *@"regexp/syntax".Prog; @"".q0 @"".queue; @"".q1 @"".queue; @"".pool []*@"".thread; @"".matched bool; @"".matchcap []int; @"".inputBytes @"".inputBytes; @"".inputString @"".inputString; @"".inputReader @"".inputReader }
+type @"".machine struct { @"".re *@"".Regexp; @"".p *@"regexp/syntax".Prog; @"".op *@"".onePassProg; @"".q0 @"".queue; @"".q1 @"".queue; @"".pool []*@"".thread; @"".matched bool; @"".matchcap []int; @"".inputBytes @"".inputBytes; @"".inputString @"".inputString; @"".inputReader @"".inputReader }
 func (? *@"".machine) @"".add(@"".q *@"".queue, @"".pc uint32, @"".pos int, @"".cap []int, @"".cond @"regexp/syntax".EmptyOp, @"".t *@"".thread) (? *@"".thread)
 func (? *@"".machine) @"".alloc(@"".i *@"regexp/syntax".Inst) (? *@"".thread)
 func (? *@"".machine) @"".clear(@"".q *@"".queue) ()
@@ -88,1315 +91,222 @@ func (? *@"".machine) @"".match(@"".i @"".input, @"".pos int) (? bool)
 func (? *@"".machine) @"".newInputBytes(@"".b []byte) (? @"".input)
 func (? *@"".machine) @"".newInputReader(@"".r @"io".RuneReader) (? @"".input)
 func (? *@"".machine) @"".newInputString(@"".s string) (? @"".input)
+func (? *@"".machine) @"".onepass(@"".i @"".input, @"".pos int) (? bool)
 func (? *@"".machine) @"".step(@"".runq *@"".queue, @"".nextq *@"".queue, @"".pos int, @"".nextPos int, @"".c rune, @"".nextCond @"regexp/syntax".EmptyOp) ()
+type @"".onePassInst struct { ? @"regexp/syntax".Inst; @"".Next []uint32 }
+type @"".onePassProg struct { @"".Inst []@"".onePassInst; @"".Start int; @"".NumCap int }
 type @"".queue struct { @"".sparse []uint32; @"".dense []@"".entry }
+type @"".queueOnePass struct { @"".sparse []uint32; @"".dense []uint32; @"".size uint32; @"".nextIndex uint32 }
+func (? *@"".queueOnePass) @"".clear() ()
+func (? *@"".queueOnePass) @"".contains(@"".u uint32) (? bool)
+func (? *@"".queueOnePass) @"".empty() (? bool)
+func (? *@"".queueOnePass) @"".insert(@"".u uint32) ()
+func (? *@"".queueOnePass) @"".insertNew(@"".u uint32) ()
+func (? *@"".queueOnePass) @"".next() (@"".n uint32)
+func (? *@"".queueOnePass) @"".reset() ()
+type @"".runeSlice []rune
+func (? @"".runeSlice) @"".Len() (? int)
+func (? @"".runeSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".runeSlice) @"".Sort() ()
+func (? @"".runeSlice) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".runeSlice) @"".Len() (? int)
+func (? *@"".runeSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".runeSlice) @"".Sort() ()
+func (? *@"".runeSlice) @"".Swap(@"".i int, @"".j int) ()
 type @"".thread struct { @"".inst *@"regexp/syntax".Inst; @"".cap []int }
 type @"io".RuneReader interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error) }
 type @"regexp/syntax".Prog struct { @"regexp/syntax".Inst []@"regexp/syntax".Inst; @"regexp/syntax".Start int; @"regexp/syntax".NumCap int }
 func (? *@"regexp/syntax".Prog) @"regexp/syntax".Prefix() (@"regexp/syntax".prefix string, @"regexp/syntax".complete bool)
 func (? *@"regexp/syntax".Prog) @"regexp/syntax".StartCond() (? @"regexp/syntax".EmptyOp)
 func (? *@"regexp/syntax".Prog) @"regexp/syntax".String() (? string)
-func (? *@"regexp/syntax".Prog) @"regexp/syntax".skipNop(@"regexp/syntax".pc uint32) (? *@"regexp/syntax".Inst)
+func (? *@"regexp/syntax".Prog) @"regexp/syntax".skipNop(@"regexp/syntax".pc uint32) (? *@"regexp/syntax".Inst, ? uint32)
 type @"regexp/syntax".EmptyOp uint8
 type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
 func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"testing".T struct { ? @"testing".common; @"testing".name string; @"testing".startParallel chan bool }
+func (? *@"testing".T) @"testing".Parallel() ()
+func (? *@"testing".T) @"testing".report() ()
 type @"regexp/syntax".Inst struct { @"regexp/syntax".Op @"regexp/syntax".InstOp; @"regexp/syntax".Out uint32; @"regexp/syntax".Arg uint32; @"regexp/syntax".Rune []rune }
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".MatchEmptyWidth(@"regexp/syntax".before rune, @"regexp/syntax".after rune) (? bool)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".MatchRune(@"regexp/syntax".r rune) (? bool)
+func (? *@"regexp/syntax".Inst) @"regexp/syntax".MatchRunePos(@"regexp/syntax".r rune) (? int)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".String() (? string)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".op() (? @"regexp/syntax".InstOp)
+import time "time"
+type @"testing".common struct { @"testing".mu @"sync".RWMutex; @"testing".output []byte; @"testing".failed bool; @"testing".skipped bool; @"testing".finished bool; @"testing".start @"time".Time; @"testing".duration @"time".Duration; @"testing".self interface {  }; @"testing".signal chan interface {  } }
+func (? *@"testing".common) @"testing".Error(@"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Errorf(@"testing".format string, @"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Fail() ()
+func (? *@"testing".common) @"testing".FailNow() ()
+func (? *@"testing".common) @"testing".Failed() (? bool)
+func (? *@"testing".common) @"testing".Fatal(@"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Fatalf(@"testing".format string, @"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Log(@"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Logf(@"testing".format string, @"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Skip(@"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".SkipNow() ()
+func (? *@"testing".common) @"testing".Skipf(@"testing".format string, @"testing".args ...interface {  }) ()
+func (? *@"testing".common) @"testing".Skipped() (? bool)
+func (? *@"testing".common) @"testing".log(@"testing".s string) ()
+func (? *@"testing".common) @"testing".private() ()
+func (? *@"testing".common) @"testing".skip() ()
 type @"regexp/syntax".InstOp uint8
+func (? @"regexp/syntax".InstOp) @"regexp/syntax".String() (? string)
+func (? *@"regexp/syntax".InstOp) @"regexp/syntax".String() (? string)
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0Åì0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80É"û0Ç‘queueÇ%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
-		this.go$val = this;
-		this.sparse = sparse_ !== undefined ? sparse_ : (go$sliceType(Go$Uint32)).nil;
-		this.dense = dense_ !== undefined ? dense_ : (go$sliceType(entry)).nil;
-	});
-Åà		queue.init([["sparse", "sparse", "regexp", (go$sliceType(Go$Uint32)), ""], ["dense", "dense", "regexp", (go$sliceType(entry)), ""]]);
-0queue0regexp:entry0ÇuentryÅË	entry = go$pkg.entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
-		this.go$val = this;
-		this.pc = pc_ !== undefined ? pc_ : 0;
-		this.t = t_ !== undefined ? t_ : (go$ptrType(thread)).nil;
-	});
-g		entry.init([["pc", "pc", "regexp", Go$Uint32, ""], ["t", "t", "regexp", (go$ptrType(thread)), ""]]);
-0entry0regexp:thread0ÇÀthreadÇ	thread = go$pkg.thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
-		this.go$val = this;
-		this.inst = inst_ !== undefined ? inst_ : (go$ptrType(syntax.Inst)).nil;
-		this.cap = cap_ !== undefined ? cap_ : (go$sliceType(Go$Int)).nil;
-	});
-ÅÇ		thread.init([["inst", "inst", "regexp", (go$ptrType(syntax.Inst)), ""], ["cap", "cap", "regexp", (go$sliceType(Go$Int)), ""]]);
-0thread0regexp/syntax:Inst0Ç	ımachineÇ≥	machine = go$pkg.machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
-		this.go$val = this;
-		this.re = re_ !== undefined ? re_ : (go$ptrType(Regexp)).nil;
-		this.p = p_ !== undefined ? p_ : (go$ptrType(syntax.Prog)).nil;
-		this.q0 = q0_ !== undefined ? q0_ : new queue.Ptr();
-		this.q1 = q1_ !== undefined ? q1_ : new queue.Ptr();
-		this.pool = pool_ !== undefined ? pool_ : (go$sliceType((go$ptrType(thread)))).nil;
-		this.matched = matched_ !== undefined ? matched_ : false;
-		this.matchcap = matchcap_ !== undefined ? matchcap_ : (go$sliceType(Go$Int)).nil;
-		this.inputBytes = inputBytes_ !== undefined ? inputBytes_ : new inputBytes.Ptr();
-		this.inputString = inputString_ !== undefined ? inputString_ : new inputString.Ptr();
-		this.inputReader = inputReader_ !== undefined ? inputReader_ : new inputReader.Ptr();
-	});
-Ç`		(go$ptrType(machine)).methods = [["add", "regexp", [(go$ptrType(queue)), Go$Uint32, Go$Int, (go$sliceType(Go$Int)), syntax.EmptyOp, (go$ptrType(thread))], [(go$ptrType(thread))], false, -1], ["alloc", "regexp", [(go$ptrType(syntax.Inst))], [(go$ptrType(thread))], false, -1], ["clear", "regexp", [(go$ptrType(queue))], [], false, -1], ["free", "regexp", [(go$ptrType(thread))], [], false, -1], ["init", "regexp", [Go$Int], [], false, -1], ["match", "regexp", [input, Go$Int], [Go$Bool], false, -1], ["newInputBytes", "regexp", [(go$sliceType(Go$Uint8))], [input], false, -1], ["newInputReader", "regexp", [io.RuneReader], [input], false, -1], ["newInputString", "regexp", [Go$String], [input], false, -1], ["step", "regexp", [(go$ptrType(queue)), (go$ptrType(queue)), Go$Int, Go$Int, Go$Int32, syntax.EmptyOp], [], false, -1]];
-		machine.init([["re", "re", "regexp", (go$ptrType(Regexp)), ""], ["p", "p", "regexp", (go$ptrType(syntax.Prog)), ""], ["q0", "q0", "regexp", queue, ""], ["q1", "q1", "regexp", queue, ""], ["pool", "pool", "regexp", (go$sliceType((go$ptrType(thread)))), ""], ["matched", "matched", "regexp", Go$Bool, ""], ["matchcap", "matchcap", "regexp", (go$sliceType(Go$Int)), ""], ["inputBytes", "inputBytes", "regexp", inputBytes, ""], ["inputString", "inputString", "regexp", inputString, ""], ["inputReader", "inputReader", "regexp", inputReader, ""]]);
-0	machine0Å√io:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Instregexp/syntax:Progregexp:Regexpregexp:inputregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:queueregexp:thread0Ç7RegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
-		this.go$val = this;
-		this.expr = expr_ !== undefined ? expr_ : "";
-		this.prog = prog_ !== undefined ? prog_ : (go$ptrType(syntax.Prog)).nil;
-		this.prefix = prefix_ !== undefined ? prefix_ : "";
-		this.prefixBytes = prefixBytes_ !== undefined ? prefixBytes_ : (go$sliceType(Go$Uint8)).nil;
-		this.prefixComplete = prefixComplete_ !== undefined ? prefixComplete_ : false;
-		this.prefixRune = prefixRune_ !== undefined ? prefixRune_ : 0;
-		this.cond = cond_ !== undefined ? cond_ : 0;
-		this.numSubexp = numSubexp_ !== undefined ? numSubexp_ : 0;
-		this.subexpNames = subexpNames_ !== undefined ? subexpNames_ : (go$sliceType(Go$String)).nil;
-		this.longest = longest_ !== undefined ? longest_ : false;
-		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
-		this.machine = machine_ !== undefined ? machine_ : (go$sliceType((go$ptrType(machine)))).nil;
-	});
-ÇÑ		(go$ptrType(Regexp)).methods = [["Expand", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["ExpandString", "", [(go$sliceType(Go$Uint8)), Go$String, Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["Find", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["FindAll", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindAllIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllString", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["FindAllStringIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllStringSubmatch", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$String))))], false, -1], ["FindAllStringSubmatchIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllSubmatch", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType((go$sliceType(Go$Uint8))))))], false, -1], ["FindAllSubmatchIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["FindReaderIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindReaderSubmatchIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindString", "", [Go$String], [Go$String], false, -1], ["FindStringIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindStringSubmatch", "", [Go$String], [(go$sliceType(Go$String))], false, -1], ["FindStringSubmatchIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindSubmatch", "", [(go$sliceType(Go$Uint8))], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindSubmatchIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["LiteralPrefix", "", [], [Go$String, Go$Bool], false, -1], ["Longest", "", [], [], false, -1], ["Match", "", [(go$sliceType(Go$Uint8))], [Go$Bool], false, -1], ["MatchReader", "", [io.RuneReader], [Go$Bool], false, -1], ["MatchString", "", [Go$String], [Go$Bool], false, -1], ["NumSubexp", "", [], [Go$Int], false, -1], ["ReplaceAll", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllFunc", "", [(go$sliceType(Go$Uint8)), (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteral", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteralString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllStringFunc", "", [Go$String, (go$funcType([Go$String], [Go$String], false))], [Go$String], false, -1], ["Split", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["String", "", [], [Go$String], false, -1], ["SubexpNames", "", [], [(go$sliceType(Go$String))], false, -1], ["allMatches", "regexp", [Go$String, (go$sliceType(Go$Uint8)), Go$Int, (go$funcType([(go$sliceType(Go$Int))], [], false))], [], false, -1], ["doExecute", "regexp", [io.RuneReader, (go$sliceType(Go$Uint8)), Go$String, Go$Int, Go$Int], [(go$sliceType(Go$Int))], false, -1], ["expand", "regexp", [(go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["get", "regexp", [], [(go$ptrType(machine))], false, -1], ["pad", "regexp", [(go$sliceType(Go$Int))], [(go$sliceType(Go$Int))], false, -1], ["put", "regexp", [(go$ptrType(machine))], [], false, -1], ["replaceAll", "regexp", [(go$sliceType(Go$Uint8)), Go$String, Go$Int, (go$funcType([(go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1]];
-		Regexp.init([["expr", "expr", "regexp", Go$String, ""], ["prog", "prog", "regexp", (go$ptrType(syntax.Prog)), ""], ["prefix", "prefix", "regexp", Go$String, ""], ["prefixBytes", "prefixBytes", "regexp", (go$sliceType(Go$Uint8)), ""], ["prefixComplete", "prefixComplete", "regexp", Go$Bool, ""], ["prefixRune", "prefixRune", "regexp", Go$Int32, ""], ["cond", "cond", "regexp", syntax.EmptyOp, ""], ["numSubexp", "numSubexp", "regexp", Go$Int, ""], ["subexpNames", "subexpNames", "regexp", (go$sliceType(Go$String)), ""], ["longest", "longest", "regexp", Go$Bool, ""], ["mu", "mu", "regexp", sync.Mutex, ""], ["machine", "machine", "regexp", (go$sliceType((go$ptrType(machine)))), ""]]);
-0Regexp0Vio:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Progregexp:machine
-sync:Mutex0Ç&input]	input = go$pkg.input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
-Çã		input.init([["canCheckPrefix", "regexp", (go$funcType([], [Go$Bool], false))], ["context", "regexp", (go$funcType([Go$Int], [syntax.EmptyOp], false))], ["hasPrefix", "regexp", (go$funcType([(go$ptrType(Regexp))], [Go$Bool], false))], ["index", "regexp", (go$funcType([(go$ptrType(Regexp)), Go$Int], [Go$Int], false))], ["step", "regexp", (go$funcType([Go$Int], [Go$Int32, Go$Int], false))]]);
-0input0&regexp/syntax:EmptyOpregexp:Regexp0Ç∫inputStringÅƒ	inputString = go$pkg.inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
-		this.go$val = this;
-		this.str = str_ !== undefined ? str_ : "";
-	});
-Ç´		(go$ptrType(inputString)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
-		inputString.init([["str", "str", "regexp", Go$String, ""]]);
-0inputString0&regexp/syntax:EmptyOpregexp:Regexp0Ç€
-inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.inputBytes", "inputBytes", "regexp", function(str_) {
-		this.go$val = this;
-		this.str = str_ !== undefined ? str_ : (go$sliceType(Go$Uint8)).nil;
-	});
-Ç∏		(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
-		inputBytes.init([["str", "str", "regexp", (go$sliceType(Go$Uint8)), ""]]);
-0
-inputBytes0&regexp/syntax:EmptyOpregexp:Regexp0ÇÖinputReaderÇ.	inputReader = go$pkg.inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
-		this.go$val = this;
-		this.r = r_ !== undefined ? r_ : null;
-		this.atEOT = atEOT_ !== undefined ? atEOT_ : false;
-		this.pos = pos_ !== undefined ? pos_ : 0;
-	});
-Ç¸		(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
-		inputReader.init([["r", "r", "regexp", io.RuneReader, ""], ["atEOT", "atEOT", "regexp", Go$Bool, ""], ["pos", "pos", "regexp", Go$Int, ""]]);
-0inputReader05io:RuneReaderregexp/syntax:EmptyOpregexp:Regexp0Ç	 Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
-		var m;
-		m = this;
-		m.inputBytes.str = b;
-		return m.inputBytes;
-	};
-	machine.prototype.newInputBytes = function(b) { return this.go$val.newInputBytes(b); };
- 0machinenewInputBytes0regexp:machine0Ç Å€	machine.Ptr.prototype.newInputString = function(s) {
-		var m;
-		m = this;
-		m.inputString.str = s;
-		return m.inputString;
-	};
-	machine.prototype.newInputString = function(s) { return this.go$val.newInputString(s); };
- 0machinenewInputString0regexp:machine0ÇF Ç	machine.Ptr.prototype.newInputReader = function(r) {
-		var m;
-		m = this;
-		m.inputReader.r = r;
-		m.inputReader.atEOT = false;
-		m.inputReader.pos = 0;
-		return m.inputReader;
-	};
-	machine.prototype.newInputReader = function(r) { return this.go$val.newInputReader(r); };
- 0machinenewInputReader0regexp:machine0ÇƒprogMachineÇ	progMachine = function(p) {
-		var m, n, ncap;
-		m = new machine.Ptr((go$ptrType(Regexp)).nil, p, new queue.Ptr(), new queue.Ptr(), (go$sliceType((go$ptrType(thread)))).nil, false, (go$sliceType(Go$Int)).nil, new inputBytes.Ptr(), new inputString.Ptr(), new inputReader.Ptr());
-		n = m.p.Inst.length;
-		m.q0 = new queue.Ptr((go$sliceType(Go$Uint32)).make(n, 0, function() { return 0; }), (go$sliceType(entry)).make(0, n, function() { return new entry.Ptr(); }));
-		m.q1 = new queue.Ptr((go$sliceType(Go$Uint32)).make(n, 0, function() { return 0; }), (go$sliceType(entry)).make(0, n, function() { return new entry.Ptr(); }));
-		ncap = p.NumCap;
-		if (ncap < 2) {
-			ncap = 2;
-		}
-		m.matchcap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
-		return m;
-	};
- 0progMachine0Åôregexp/syntax:Progregexp:Regexpregexp:entryregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:machineregexp:queueregexp:thread0Ç ÇÚ	machine.Ptr.prototype.init = function(ncap) {
-		var m, _ref, _i, _slice, _index, t;
-		m = this;
-		_ref = m.pool;
-		_i = 0;
-		while (_i < _ref.length) {
-			t = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			t.cap = go$subslice(t.cap, 0, ncap);
-			_i++;
-		}
-		m.matchcap = go$subslice(m.matchcap, 0, ncap);
-	};
-	machine.prototype.init = function(ncap) { return this.go$val.init(ncap); };
- 0machineinit0regexp:machine0Ç∞ Çu	machine.Ptr.prototype.alloc = function(i) {
-		var m, t, n, _slice, _index;
-		m = this;
-		t = (go$ptrType(thread)).nil;
-		n = m.pool.length;
-		if (n > 0) {
-			t = (_slice = m.pool, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			m.pool = go$subslice(m.pool, 0, (n - 1 >> 0));
-		} else {
-			t = new thread.Ptr();
-			t.cap = (go$sliceType(Go$Int)).make(m.matchcap.length, m.matchcap.capacity, function() { return 0; });
-		}
-		t.inst = i;
-		return t;
-	};
-	machine.prototype.alloc = function(i) { return this.go$val.alloc(i); };
- 0machinealloc0regexp:machineregexp:thread0Ç? Ç	machine.Ptr.prototype.free = function(t) {
-		var m;
-		m = this;
-		m.inputBytes.str = (go$sliceType(Go$Uint8)).nil;
-		m.inputString.str = "";
-		m.inputReader.r = null;
-		m.pool = go$append(m.pool, t);
-	};
-	machine.prototype.free = function(t) { return this.go$val.free(t); };
- 0machinefree0regexp:machine0Ç
-Ã Ç
-		machine.Ptr.prototype.match = function(i, pos) {
-		var m, startCond, _ref, _i, i$1, _slice, _index, _tuple, runq, nextq, _tuple$1, r, r1, _tuple$2, width, width1, _tuple$3, _tuple$4, flag, advance, _tuple$5, _tuple$6, _slice$1, _index$1, _tuple$7, _tuple$8, _tuple$9;
-		m = this;
-		startCond = m.re.cond;
-		if (startCond === 255) {
-			return false;
-		}
-		m.matched = false;
-		_ref = m.matchcap;
-		_i = 0;
-		while (_i < _ref.length) {
-			i$1 = _i;
-			_slice = m.matchcap, _index = i$1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = -1) : go$throwRuntimeError("index out of range");
-			_i++;
-		}
-		_tuple = [m.q0, m.q1], runq = _tuple[0], nextq = _tuple[1];
-		_tuple$1 = [-1, -1], r = _tuple$1[0], r1 = _tuple$1[1];
-		_tuple$2 = [0, 0], width = _tuple$2[0], width1 = _tuple$2[1];
-		_tuple$3 = i.step(pos), r = _tuple$3[0], width = _tuple$3[1];
-		if (!((r === -1))) {
-			_tuple$4 = i.step(pos + width >> 0), r1 = _tuple$4[0], width1 = _tuple$4[1];
-		}
-		flag = 0;
-		if (pos === 0) {
-			flag = syntax.EmptyOpContext(-1, r);
-		} else {
-			flag = i.context(pos);
-		}
-		while (true) {
-			if (runq.dense.length === 0) {
-				if (!((((startCond & 4) >>> 0) === 0)) && !((pos === 0))) {
-					break;
-				}
-				if (m.matched) {
-					break;
-				}
-				if (m.re.prefix.length > 0 && !((r1 === m.re.prefixRune)) && i.canCheckPrefix()) {
-					advance = i.index(m.re, pos);
-					if (advance < 0) {
-						break;
-					}
-					pos = pos + (advance) >> 0;
-					_tuple$5 = i.step(pos), r = _tuple$5[0], width = _tuple$5[1];
-					_tuple$6 = i.step(pos + width >> 0), r1 = _tuple$6[0], width1 = _tuple$6[1];
-				}
-			}
-			if (!m.matched) {
-				if (m.matchcap.length > 0) {
-					_slice$1 = m.matchcap, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = pos) : go$throwRuntimeError("index out of range");
-				}
-				m.add(runq, (m.p.Start >>> 0), pos, m.matchcap, flag, (go$ptrType(thread)).nil);
-			}
-			flag = syntax.EmptyOpContext(r, r1);
-			m.step(runq, nextq, pos, pos + width >> 0, r, flag);
-			if (width === 0) {
-				break;
-			}
-			if ((m.matchcap.length === 0) && m.matched) {
-				break;
-			}
-			pos = pos + (width) >> 0;
-			_tuple$7 = [r1, width1], r = _tuple$7[0], width = _tuple$7[1];
-			if (!((r === -1))) {
-				_tuple$8 = i.step(pos + width >> 0), r1 = _tuple$8[0], width1 = _tuple$8[1];
-			}
-			_tuple$9 = [nextq, runq], runq = _tuple$9[0], nextq = _tuple$9[1];
-		}
-		m.clear(nextq);
-		return m.matched;
-	};
-	machine.prototype.match = function(i, pos) { return this.go$val.match(i, pos); };
- 0machinematch0Å¶regexp/syntax:EmptyOpContext
-regexp:addregexp:canCheckPrefixregexp:clearregexp:contextregexp:indexregexp:machineregexp:stepregexp:stepregexp:thread0Çò ÇO	machine.Ptr.prototype.clear = function(q) {
-		var m, _ref, _i, _slice, _index, _struct, d;
-		m = this;
-		_ref = q.dense;
-		_i = 0;
-		while (_i < _ref.length) {
-			d = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
-			if (!(d.t === (go$ptrType(thread)).nil)) {
-				m.pool = go$append(m.pool, d.t);
-			}
-			_i++;
-		}
-		q.dense = go$subslice(q.dense, 0, 0);
-	};
-	machine.prototype.clear = function(q) { return this.go$val.clear(q); };
- 0machineclear0-regexp:entryregexp:machineregexp:thread0Ç Ç¥	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
-		var m, longest, j, _slice, _index, d, t, _slice$1, _index$1, _slice$2, _index$2, i, add, _ref, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _i, _slice$5, _index$5, _struct, d$1, _slice$6, _index$6;
-		m = this;
-		longest = m.re.longest;
-		j = 0;
-		while (j < runq.dense.length) {
-			d = (_slice = runq.dense, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			t = d.t;
-			if (t === (go$ptrType(thread)).nil) {
-				j = j + 1 >> 0;
-				continue;
-			}
-			if (longest && m.matched && t.cap.length > 0 && (_slice$1 = m.matchcap, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) < (_slice$2 = t.cap, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) {
-				m.pool = go$append(m.pool, t);
-				j = j + 1 >> 0;
-				continue;
-			}
-			i = t.inst;
-			add = false;
-			_ref = i.Op;
-			if (_ref === 4) {
-				if (t.cap.length > 0 && (!longest || !m.matched || (_slice$3 = m.matchcap, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) < pos)) {
-					_slice$4 = t.cap, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = pos) : go$throwRuntimeError("index out of range");
-					go$copySlice(m.matchcap, t.cap);
-				}
-				if (!longest) {
-					_ref$1 = go$subslice(runq.dense, (j + 1 >> 0));
-					_i = 0;
-					while (_i < _ref$1.length) {
-						d$1 = (_struct = (_slice$5 = _ref$1, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
-						if (!(d$1.t === (go$ptrType(thread)).nil)) {
-							m.pool = go$append(m.pool, d$1.t);
-						}
-						_i++;
-					}
-					runq.dense = go$subslice(runq.dense, 0, 0);
-				}
-				m.matched = true;
-			} else if (_ref === 7) {
-				add = i.MatchRune(c);
-			} else if (_ref === 8) {
-				add = c === (_slice$6 = i.Rune, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-			} else if (_ref === 9) {
-				add = true;
-			} else if (_ref === 10) {
-				add = !((c === 10));
-			} else {
-				throw go$panic(new Go$String("bad inst"));
-			}
-			if (add) {
-				t = m.add(nextq, i.Out, nextPos, t.cap, nextCond, t);
-			}
-			if (!(t === (go$ptrType(thread)).nil)) {
-				m.pool = go$append(m.pool, t);
-			}
-			j = j + 1 >> 0;
-		}
-		runq.dense = go$subslice(runq.dense, 0, 0);
-	};
-	machine.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) { return this.go$val.step(runq, nextq, pos, nextPos, c, nextCond); };
- 0machinestep09
-regexp:addregexp:entryregexp:machineregexp:thread0Ç˙ Ç≥	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
-		var m, _slice, _index, j, _slice$1, _index$1, j$1, _slice$2, _index$2, d, _slice$3, _index$3, _slice$4, _index$4, i, _ref, _slice$5, _index$5, opos, _slice$6, _index$6, _slice$7, _index$7;
-		m = this;
-		if (pc === 0) {
-			return t;
-		}
-		j = (_slice = q.sparse, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-		if (j < (q.dense.length >>> 0) && ((_slice$1 = q.dense, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).pc === pc)) {
-			return t;
-		}
-		j$1 = q.dense.length;
-		q.dense = go$subslice(q.dense, 0, (j$1 + 1 >> 0));
-		d = (_slice$2 = q.dense, _index$2 = j$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-		d.t = (go$ptrType(thread)).nil;
-		d.pc = pc;
-		_slice$3 = q.sparse, _index$3 = pc, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (j$1 >>> 0)) : go$throwRuntimeError("index out of range");
-		i = (_slice$4 = m.p.Inst, _index$4 = pc, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
-		_ref = i.Op;
-		if (_ref === 5) {
-		} else if (_ref === 0 || _ref === 1) {
-			t = m.add(q, i.Out, pos, cap, cond, t);
-			t = m.add(q, i.Arg, pos, cap, cond, t);
-		} else if (_ref === 3) {
-			if (((i.Arg << 24 >>> 24) & ~cond) === 0) {
-				t = m.add(q, i.Out, pos, cap, cond, t);
-			}
-		} else if (_ref === 6) {
-			t = m.add(q, i.Out, pos, cap, cond, t);
-		} else if (_ref === 2) {
-			if ((i.Arg >> 0) < cap.length) {
-				opos = (_slice$5 = cap, _index$5 = i.Arg, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-				_slice$6 = cap, _index$6 = i.Arg, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = pos) : go$throwRuntimeError("index out of range");
-				m.add(q, i.Out, pos, cap, cond, (go$ptrType(thread)).nil);
-				_slice$7 = cap, _index$7 = i.Arg, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = opos) : go$throwRuntimeError("index out of range");
-			} else {
-				t = m.add(q, i.Out, pos, cap, cond, t);
-			}
-		} else if (_ref === 4 || _ref === 7 || _ref === 8 || _ref === 9 || _ref === 10) {
-			if (t === (go$ptrType(thread)).nil) {
-				t = m.alloc(i);
-			} else {
-				t.inst = i;
-			}
-			if (cap.length > 0 && !(go$sliceIsEqual(t.cap, 0, cap, 0))) {
-				go$copySlice(t.cap, cap);
-			}
-			d.t = t;
-			t = (go$ptrType(thread)).nil;
-		} else {
-			throw go$panic(new Go$String("unhandled"));
-		}
-		return t;
-	};
-	machine.prototype.add = function(q, pc, pos, cap, cond, t) { return this.go$val.add(q, pc, pos, cap, cond, t); };
- 0machineadd0-regexp:allocregexp:machineregexp:thread0Çá Ç”	Regexp.Ptr.prototype.doExecute = function(r, b, s, pos, ncap) {
-		var re, m, i, cap;
-		re = this;
-		m = re.get();
-		i = null;
-		if (!(go$interfaceIsEqual(r, null))) {
-			i = m.newInputReader(r);
-		} else if (!(b === (go$sliceType(Go$Uint8)).nil)) {
-			i = m.newInputBytes(b);
-		} else {
-			i = m.newInputString(s);
-		}
-		m.init(ncap);
-		if (!m.match(i, pos)) {
-			re.put(m);
-			return (go$sliceType(Go$Int)).nil;
-		}
-		if (ncap === 0) {
-			re.put(m);
-			return empty;
-		}
-		cap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
-		go$copySlice(cap, m.matchcap);
-		re.put(m);
-		return cap;
-	};
-	Regexp.prototype.doExecute = function(r, b, s, pos, ncap) { return this.go$val.doExecute(r, b, s, pos, ncap); };
- 0Regexp	doExecute0Åîregexp:Regexpregexp:empty
-regexp:getregexp:initregexp:matchregexp:newInputBytesregexp:newInputReaderregexp:newInputString
-regexp:put0Å√ Å°	Regexp.Ptr.prototype.String = function() {
-		var re;
-		re = this;
-		return re.expr;
-	};
-	Regexp.prototype.String = function() { return this.go$val.String(); };
- 0Regexp0regexp:Regexp0CompileU	Compile = go$pkg.Compile = function(expr) {
-		return compile(expr, 212, false);
-	};
- 0	Compile0regexp:compile0ÅêCompilePOSIX\	CompilePOSIX = go$pkg.CompilePOSIX = function(expr) {
-		return compile(expr, 0, true);
-	};
- 0CompilePOSIX0regexp:compile0Å… Åß	Regexp.Ptr.prototype.Longest = function() {
-		var re;
-		re = this;
-		re.longest = true;
-	};
-	Regexp.prototype.Longest = function() { return this.go$val.Longest(); };
- 0Regexp0regexp:Regexp0ÇƒcompileÇ	compile = function(expr, mode, longest) {
-		var _tuple, re, err, maxCap, capNames, _tuple$1, prog, regexp, _tuple$2, _tuple$3;
-		_tuple = syntax.Parse(expr, mode), re = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$ptrType(Regexp)).nil, err];
-		}
-		maxCap = re.MaxCap();
-		capNames = re.CapNames();
-		re = re.Simplify();
-		_tuple$1 = syntax.Compile(re), prog = _tuple$1[0], err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$ptrType(Regexp)).nil, err];
-		}
-		regexp = new Regexp.Ptr(expr, prog, "", (go$sliceType(Go$Uint8)).nil, false, 0, prog.StartCond(), maxCap, capNames, longest, new sync.Mutex.Ptr(), (go$sliceType((go$ptrType(machine)))).nil);
-		_tuple$2 = prog.Prefix(), regexp.prefix = _tuple$2[0], regexp.prefixComplete = _tuple$2[1];
-		if (!(regexp.prefix === "")) {
-			regexp.prefixBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(regexp.prefix));
-			_tuple$3 = utf8.DecodeRuneInString(regexp.prefix), regexp.prefixRune = _tuple$3[0];
-		}
-		return [regexp, null];
-	};
- 0	compile0Ååregexp/syntax:Compileregexp/syntax:Parseregexp/syntax:Progregexp:Regexpregexp:machine
-sync:Mutexunicode/utf8:DecodeRuneInString0Çr Ç6	Regexp.Ptr.prototype.get = function() {
-		var re, n, _slice, _index, z, z$1;
-		re = this;
-		re.mu.Lock();
-		n = re.machine.length;
-		if (n > 0) {
-			z = (_slice = re.machine, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			re.machine = go$subslice(re.machine, 0, (n - 1 >> 0));
-			re.mu.Unlock();
-			return z;
-		}
-		re.mu.Unlock();
-		z$1 = progMachine(re.prog);
-		z$1.re = re;
-		return z$1;
-	};
-	Regexp.prototype.get = function() { return this.go$val.get(); };
- 0Regexpget0#regexp:Regexpregexp:progMachine0Å˚ Å‘	Regexp.Ptr.prototype.put = function(z) {
-		var re;
-		re = this;
-		re.mu.Lock();
-		re.machine = go$append(re.machine, z);
-		re.mu.Unlock();
-	};
-	Regexp.prototype.put = function(z) { return this.go$val.put(z); };
- 0Regexpput0regexp:Regexp0ÇtMustCompileÇ2	MustCompile = go$pkg.MustCompile = function(str) {
-		var _tuple, regexp, error;
-		_tuple = Compile(str), regexp = _tuple[0], error = _tuple[1];
-		if (!(go$interfaceIsEqual(error, null))) {
-			throw go$panic(new Go$String("regexp: Compile(" + quote(str) + "): " + error.Error()));
-		}
-		return regexp;
-	};
- 0MustCompile0regexp:Compileregexp:quote0ÇóMustCompilePOSIXÇF	MustCompilePOSIX = go$pkg.MustCompilePOSIX = function(str) {
-		var _tuple, regexp, error;
-		_tuple = CompilePOSIX(str), regexp = _tuple[0], error = _tuple[1];
-		if (!(go$interfaceIsEqual(error, null))) {
-			throw go$panic(new Go$String("regexp: CompilePOSIX(" + quote(str) + "): " + error.Error()));
-		}
-		return regexp;
-	};
- 0MustCompilePOSIX0#regexp:CompilePOSIXregexp:quote0ÅØquotet	quote = function(s) {
-		if (strconv.CanBackquote(s)) {
-			return "`" + s + "`";
-		}
-		return strconv.Quote(s);
-	};
- 0quote0%strconv:CanBackquotestrconv:Quote0Å— ÅØ	Regexp.Ptr.prototype.NumSubexp = function() {
-		var re;
-		re = this;
-		return re.numSubexp;
-	};
-	Regexp.prototype.NumSubexp = function() { return this.go$val.NumSubexp(); };
- 0Regexp0regexp:Regexp0ÅŸ Å∑	Regexp.Ptr.prototype.SubexpNames = function() {
-		var re;
-		re = this;
-		return re.subexpNames;
-	};
-	Regexp.prototype.SubexpNames = function() { return this.go$val.SubexpNames(); };
- 0Regexp0regexp:Regexp0Ç´ ÇW	inputString.Ptr.prototype.step = function(pos) {
-		var i, c;
-		i = this;
-		if (pos < i.str.length) {
-			c = i.str.charCodeAt(pos);
-			if (c < 128) {
-				return [(c >> 0), 1];
-			}
-			return utf8.DecodeRuneInString(i.str.substring(pos));
-		}
-		return [-1, 0];
-	};
-	inputString.prototype.step = function(pos) { return this.go$val.step(pos); };
- 0inputStringstep05regexp:inputStringunicode/utf8:DecodeRuneInString0Å˙ Åæ	inputString.Ptr.prototype.canCheckPrefix = function() {
-		var i;
-		i = this;
-		return true;
-	};
-	inputString.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
- 0inputStringcanCheckPrefix0regexp:inputString0Ç Å‘	inputString.Ptr.prototype.hasPrefix = function(re) {
-		var i;
-		i = this;
-		return strings.HasPrefix(i.str, re.prefix);
-	};
-	inputString.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
- 0inputString	hasPrefix0'regexp:inputStringstrings:HasPrefix0Ç$ Å‚	inputString.Ptr.prototype.index = function(re, pos) {
-		var i;
-		i = this;
-		return strings.Index(i.str.substring(pos), re.prefix);
-	};
-	inputString.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
- 0inputStringindex0#regexp:inputStringstrings:Index0ÇØ Ç	inputString.Ptr.prototype.context = function(pos) {
-		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
-		i = this;
-		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
-		if (pos > 0 && pos <= i.str.length) {
-			_tuple$1 = utf8.DecodeLastRuneInString(i.str.substring(0, pos)), r1 = _tuple$1[0];
-		}
-		if (pos < i.str.length) {
-			_tuple$2 = utf8.DecodeRuneInString(i.str.substring(pos)), r2 = _tuple$2[0];
-		}
-		return syntax.EmptyOpContext(r1, r2);
-	};
-	inputString.prototype.context = function(pos) { return this.go$val.context(pos); };
- 0inputStringcontext0xregexp/syntax:EmptyOpContextregexp:inputString#unicode/utf8:DecodeLastRuneInStringunicode/utf8:DecodeRuneInString0Ç0 ÇÊ	inputBytes.Ptr.prototype.step = function(pos) {
-		var i, _slice, _index, c;
-		i = this;
-		if (pos < i.str.length) {
-			c = (_slice = i.str, _index = pos, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (c < 128) {
-				return [(c >> 0), 1];
-			}
-			return utf8.DecodeRune(go$subslice(i.str, pos));
-		}
-		return [-1, 0];
-	};
-	inputBytes.prototype.step = function(pos) { return this.go$val.step(pos); };
- 0
-inputBytesstep0,regexp:inputBytesunicode/utf8:DecodeRune0Åˆ Åº	inputBytes.Ptr.prototype.canCheckPrefix = function() {
-		var i;
-		i = this;
-		return true;
-	};
-	inputBytes.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
- 0
-inputBytescanCheckPrefix0regexp:inputBytes0Ç Å’	inputBytes.Ptr.prototype.hasPrefix = function(re) {
-		var i;
-		i = this;
-		return bytes.HasPrefix(i.str, re.prefixBytes);
-	};
-	inputBytes.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
- 0
-inputBytes	hasPrefix0$bytes:HasPrefixregexp:inputBytes0Ç$ ÅÊ	inputBytes.Ptr.prototype.index = function(re, pos) {
-		var i;
-		i = this;
-		return bytes.Index(go$subslice(i.str, pos), re.prefixBytes);
-	};
-	inputBytes.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
- 0
-inputBytesindex0 bytes:Indexregexp:inputBytes0Çë Ç		inputBytes.Ptr.prototype.context = function(pos) {
-		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
-		i = this;
-		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
-		if (pos > 0 && pos <= i.str.length) {
-			_tuple$1 = utf8.DecodeLastRune(go$subslice(i.str, 0, pos)), r1 = _tuple$1[0];
-		}
-		if (pos < i.str.length) {
-			_tuple$2 = utf8.DecodeRune(go$subslice(i.str, pos)), r2 = _tuple$2[0];
-		}
-		return syntax.EmptyOpContext(r1, r2);
-	};
-	inputBytes.prototype.context = function(pos) { return this.go$val.context(pos); };
- 0
-inputBytescontext0gregexp/syntax:EmptyOpContextregexp:inputBytesunicode/utf8:DecodeLastRuneunicode/utf8:DecodeRune0ÇÎ Ç∏	inputReader.Ptr.prototype.step = function(pos) {
-		var i, _tuple, r, w, err;
-		i = this;
-		if (!i.atEOT && !((pos === i.pos))) {
-			return [-1, 0];
-		}
-		_tuple = i.r.ReadRune(), r = _tuple[0], w = _tuple[1], err = _tuple[2];
-		if (!(go$interfaceIsEqual(err, null))) {
-			i.atEOT = true;
-			return [-1, 0];
-		}
-		i.pos = i.pos + (w) >> 0;
-		return [r, w];
-	};
-	inputReader.prototype.step = function(pos) { return this.go$val.step(pos); };
- 0inputReaderstep0regexp:inputReader0Å˚ Åø	inputReader.Ptr.prototype.canCheckPrefix = function() {
-		var i;
-		i = this;
-		return false;
-	};
-	inputReader.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
- 0inputReadercanCheckPrefix0regexp:inputReader0ÅÌ Å∂	inputReader.Ptr.prototype.hasPrefix = function(re) {
-		var i;
-		i = this;
-		return false;
-	};
-	inputReader.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
- 0inputReader	hasPrefix0regexp:inputReader0ÅÈ Å∂	inputReader.Ptr.prototype.index = function(re, pos) {
-		var i;
-		i = this;
-		return -1;
-	};
-	inputReader.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
- 0inputReaderindex0regexp:inputReader0Å‰ ÅØ	inputReader.Ptr.prototype.context = function(pos) {
-		var i;
-		i = this;
-		return 0;
-	};
-	inputReader.prototype.context = function(pos) { return this.go$val.context(pos); };
- 0inputReadercontext0regexp:inputReader0Çv ÇS	Regexp.Ptr.prototype.LiteralPrefix = function() {
-		var prefix, complete, re, _tuple;
-		prefix = "";
-		complete = false;
-		re = this;
-		_tuple = [re.prefix, re.prefixComplete], prefix = _tuple[0], complete = _tuple[1];
-		return [prefix, complete];
-	};
-	Regexp.prototype.LiteralPrefix = function() { return this.go$val.LiteralPrefix(); };
- 0Regexp0regexp:Regexp0Ç: Ç	Regexp.Ptr.prototype.MatchReader = function(r) {
-		var re;
-		re = this;
-		return !(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, 0) === (go$sliceType(Go$Int)).nil);
-	};
-	Regexp.prototype.MatchReader = function(r) { return this.go$val.MatchReader(r); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç< Ç	Regexp.Ptr.prototype.MatchString = function(s) {
-		var re;
-		re = this;
-		return !(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 0) === (go$sliceType(Go$Int)).nil);
-	};
-	Regexp.prototype.MatchString = function(s) { return this.go$val.MatchString(s); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç Å€	Regexp.Ptr.prototype.Match = function(b) {
-		var re;
-		re = this;
-		return !(re.doExecute(null, b, "", 0, 0) === (go$sliceType(Go$Int)).nil);
-	};
-	Regexp.prototype.Match = function(b) { return this.go$val.Match(b); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç MatchReaderÇÃ	MatchReader = go$pkg.MatchReader = function(pattern, r) {
-		var matched, err, _tuple, re, _tuple$1, _tuple$2;
-		matched = false;
-		err = null;
-		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
-			return [matched, err];
-		}
-		_tuple$2 = [re.MatchReader(r), null], matched = _tuple$2[0], err = _tuple$2[1];
-		return [matched, err];
-	};
- 0MatchReader0regexp:Compile0Ç MatchStringÇÃ	MatchString = go$pkg.MatchString = function(pattern, s) {
-		var matched, err, _tuple, re, _tuple$1, _tuple$2;
-		matched = false;
-		err = null;
-		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
-			return [matched, err];
-		}
-		_tuple$2 = [re.MatchString(s), null], matched = _tuple$2[0], err = _tuple$2[1];
-		return [matched, err];
-	};
- 0MatchString0regexp:Compile0Ç‚MatchÇ∫	Match = go$pkg.Match = function(pattern, b) {
-		var matched, err, _tuple, re, _tuple$1, _tuple$2;
-		matched = false;
-		err = null;
-		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
-			return [matched, err];
-		}
-		_tuple$2 = [re.Match(b), null], matched = _tuple$2[0], err = _tuple$2[1];
-		return [matched, err];
-	};
- 0Match0regexp:Compile0Çç Ç9	Regexp.Ptr.prototype.ReplaceAllString = function(src, repl) {
-		var re, n, x, x$1, b;
-		re = this;
-		n = 2;
-		if (strings.Index(repl, "$") >= 0) {
-			n = (x = 2, x$1 = (re.numSubexp + 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
-		}
-		b = re.replaceAll((go$sliceType(Go$Uint8)).nil, src, n, (function(dst, match) {
-			return re.expand(dst, repl, (go$sliceType(Go$Uint8)).nil, src, match);
-		}));
-		return go$bytesToString(b);
-	};
-	Regexp.prototype.ReplaceAllString = function(src, repl) { return this.go$val.ReplaceAllString(src, repl); };
- 0Regexp0@regexp:Regexpregexp:expandregexp:replaceAllstrings:Index0Ç÷ Ç†	Regexp.Ptr.prototype.ReplaceAllLiteralString = function(src, repl) {
-		var re;
-		re = this;
-		return go$bytesToString(re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
-			return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(repl)));
-		})));
-	};
-	Regexp.prototype.ReplaceAllLiteralString = function(src, repl) { return this.go$val.ReplaceAllLiteralString(src, repl); };
- 0Regexp0"regexp:Regexpregexp:replaceAll0ÇY Ç#	Regexp.Ptr.prototype.ReplaceAllStringFunc = function(src, repl) {
-		var re, b;
-		re = this;
-		b = re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
-			var _slice, _index, _slice$1, _index$1;
-			return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(repl(src.substring((_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))))));
-		}));
-		return go$bytesToString(b);
-	};
-	Regexp.prototype.ReplaceAllStringFunc = function(src, repl) { return this.go$val.ReplaceAllStringFunc(src, repl); };
- 0Regexp0"regexp:Regexpregexp:replaceAll0Çû Ç#	Regexp.Ptr.prototype.replaceAll = function(bsrc, src, nmatch, repl) {
-		var re, lastMatchEnd, searchPos, buf, endPos, a, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, width, _tuple, _tuple$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
-		re = this;
-		lastMatchEnd = 0;
-		searchPos = 0;
-		buf = (go$sliceType(Go$Uint8)).nil;
-		endPos = 0;
-		if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-			endPos = bsrc.length;
-		} else {
-			endPos = src.length;
-		}
-		while (searchPos <= endPos) {
-			a = re.doExecute(null, bsrc, src, searchPos, nmatch);
-			if (a.length === 0) {
-				break;
-			}
-			if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-				buf = go$appendSlice(buf, go$subslice(bsrc, lastMatchEnd, (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))));
-			} else {
-				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring(lastMatchEnd, (_slice$1 = a, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))))));
-			}
-			if ((_slice$2 = a, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) > lastMatchEnd || ((_slice$3 = a, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 0)) {
-				buf = repl(buf, a);
-			}
-			lastMatchEnd = (_slice$4 = a, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
-			width = 0;
-			if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-				_tuple = utf8.DecodeRune(go$subslice(bsrc, searchPos)), width = _tuple[1];
-			} else {
-				_tuple$1 = utf8.DecodeRuneInString(src.substring(searchPos)), width = _tuple$1[1];
-			}
-			if ((searchPos + width >> 0) > (_slice$5 = a, _index$5 = 1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))) {
-				searchPos = searchPos + (width) >> 0;
-			} else if ((searchPos + 1 >> 0) > (_slice$6 = a, _index$6 = 1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))) {
-				searchPos = searchPos + 1 >> 0;
-			} else {
-				searchPos = (_slice$7 = a, _index$7 = 1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-			}
-		}
-		if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-			buf = go$appendSlice(buf, go$subslice(bsrc, lastMatchEnd));
-		} else {
-			buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring(lastMatchEnd))));
-		}
-		return buf;
-	};
-	Regexp.prototype.replaceAll = function(bsrc, src, nmatch, repl) { return this.go$val.replaceAll(bsrc, src, nmatch, repl); };
- 0Regexp
-replaceAll0[regexp:Regexpregexp:doExecuteunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString0Ç£ ÇM	Regexp.Ptr.prototype.ReplaceAll = function(src, repl) {
-		var re, n, x, x$1, srepl, b;
-		re = this;
-		n = 2;
-		if (bytes.IndexByte(repl, 36) >= 0) {
-			n = (x = 2, x$1 = (re.numSubexp + 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
-		}
-		srepl = "";
-		b = re.replaceAll(src, "", n, (function(dst, match) {
-			if (!((srepl.length === repl.length))) {
-				srepl = go$bytesToString(repl);
-			}
-			return re.expand(dst, srepl, src, "", match);
-		}));
-		return b;
-	};
-	Regexp.prototype.ReplaceAll = function(src, repl) { return this.go$val.ReplaceAll(src, repl); };
- 0Regexp0Bbytes:IndexByteregexp:Regexpregexp:expandregexp:replaceAll0Çh Ç2	Regexp.Ptr.prototype.ReplaceAllLiteral = function(src, repl) {
-		var re;
-		re = this;
-		return re.replaceAll(src, "", 2, (function(dst, match) {
-			return go$appendSlice(dst, repl);
-		}));
-	};
-	Regexp.prototype.ReplaceAllLiteral = function(src, repl) { return this.go$val.ReplaceAllLiteral(src, repl); };
- 0Regexp0"regexp:Regexpregexp:replaceAll0Ç‚ Ç¨	Regexp.Ptr.prototype.ReplaceAllFunc = function(src, repl) {
-		var re;
-		re = this;
-		return re.replaceAll(src, "", 2, (function(dst, match) {
-			var _slice, _index, _slice$1, _index$1;
-			return go$appendSlice(dst, repl(go$subslice(src, (_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))));
-		}));
-	};
-	Regexp.prototype.ReplaceAllFunc = function(src, repl) { return this.go$val.ReplaceAllFunc(src, repl); };
- 0Regexp0"regexp:Regexpregexp:replaceAll0ÅçspecialM	special = function(b) {
-		return bytes.IndexByte(specialBytes, b) >= 0;
-	};
- 0	special0&bytes:IndexByteregexp:specialBytes0ÇU	QuoteMetaÇ%	QuoteMeta = go$pkg.QuoteMeta = function(s) {
-		var x, x$1, b, j, i, _slice, _index, _slice$1, _index$1;
-		b = (go$sliceType(Go$Uint8)).make((x = 2, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), 0, function() { return 0; });
-		j = 0;
-		i = 0;
-		while (i < s.length) {
-			if (special(s.charCodeAt(i))) {
-				_slice = b, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 92) : go$throwRuntimeError("index out of range");
-				j = j + 1 >> 0;
-			}
-			_slice$1 = b, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.charCodeAt(i)) : go$throwRuntimeError("index out of range");
-			j = j + 1 >> 0;
-			i = i + 1 >> 0;
-		}
-		return go$bytesToString(go$subslice(b, 0, j));
-	};
- 0	QuoteMeta0regexp:special0Çø Çó	Regexp.Ptr.prototype.pad = function(a) {
-		var re, x, x$1, n;
-		re = this;
-		if (a === (go$sliceType(Go$Int)).nil) {
-			return (go$sliceType(Go$Int)).nil;
-		}
-		n = (x = (1 + re.numSubexp >> 0), x$1 = 2, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
-		while (a.length < n) {
-			a = go$append(a, -1);
-		}
-		return a;
-	};
-	Regexp.prototype.pad = function(a) { return this.go$val.pad(a); };
- 0Regexppad0regexp:Regexp0Ç  Çy	Regexp.Ptr.prototype.allMatches = function(s, b, n, deliver) {
-		var re, end, _tuple, pos, i, prevMatchEnd, matches, accept, _slice, _index, _slice$1, _index$1, width, _tuple$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3;
-		re = this;
-		end = 0;
-		if (b === (go$sliceType(Go$Uint8)).nil) {
-			end = s.length;
-		} else {
-			end = b.length;
-		}
-		_tuple = [0, 0, -1], pos = _tuple[0], i = _tuple[1], prevMatchEnd = _tuple[2];
-		while (i < n && pos <= end) {
-			matches = re.doExecute(null, b, s, pos, re.prog.NumCap);
-			if (matches.length === 0) {
-				break;
-			}
-			accept = true;
-			if ((_slice = matches, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === pos) {
-				if ((_slice$1 = matches, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === prevMatchEnd) {
-					accept = false;
-				}
-				width = 0;
-				if (b === (go$sliceType(Go$Uint8)).nil) {
-					_tuple$1 = utf8.DecodeRuneInString(s.substring(pos, end)), width = _tuple$1[1];
-				} else {
-					_tuple$2 = utf8.DecodeRune(go$subslice(b, pos, end)), width = _tuple$2[1];
-				}
-				if (width > 0) {
-					pos = pos + (width) >> 0;
-				} else {
-					pos = end + 1 >> 0;
-				}
-			} else {
-				pos = (_slice$2 = matches, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-			}
-			prevMatchEnd = (_slice$3 = matches, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-			if (accept) {
-				deliver(re.pad(matches));
-				i = i + 1 >> 0;
-			}
-		}
-	};
-	Regexp.prototype.allMatches = function(s, b, n, deliver) { return this.go$val.allMatches(s, b, n, deliver); };
- 0Regexp
-allMatches0gregexp:Regexpregexp:doExecute
-regexp:padunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString0Çº Çá	Regexp.Ptr.prototype.Find = function(b) {
-		var re, a, _slice, _index, _slice$1, _index$1;
-		re = this;
-		a = re.doExecute(null, b, "", 0, 2);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			return (go$sliceType(Go$Uint8)).nil;
-		}
-		return go$subslice(b, (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
-	};
-	Regexp.prototype.Find = function(b) { return this.go$val.Find(b); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç± Ç|	Regexp.Ptr.prototype.FindIndex = function(b) {
-		var loc, re, a;
-		loc = (go$sliceType(Go$Int)).nil;
-		re = this;
-		a = re.doExecute(null, b, "", 0, 2);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			loc = (go$sliceType(Go$Int)).nil;
-			return loc;
-		}
-		loc = go$subslice(a, 0, 2);
-		return loc;
-	};
-	Regexp.prototype.FindIndex = function(b) { return this.go$val.FindIndex(b); };
- 0Regexp0!regexp:Regexpregexp:doExecute0ÇÀ Çñ	Regexp.Ptr.prototype.FindString = function(s) {
-		var re, a, _slice, _index, _slice$1, _index$1;
-		re = this;
-		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 2);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			return "";
-		}
-		return s.substring((_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
-	};
-	Regexp.prototype.FindString = function(s) { return this.go$val.FindString(s); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç› Ç®	Regexp.Ptr.prototype.FindStringIndex = function(s) {
-		var loc, re, a;
-		loc = (go$sliceType(Go$Int)).nil;
-		re = this;
-		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 2);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			loc = (go$sliceType(Go$Int)).nil;
-			return loc;
-		}
-		loc = go$subslice(a, 0, 2);
-		return loc;
-	};
-	Regexp.prototype.FindStringIndex = function(s) { return this.go$val.FindStringIndex(s); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç€ Ç¶	Regexp.Ptr.prototype.FindReaderIndex = function(r) {
-		var loc, re, a;
-		loc = (go$sliceType(Go$Int)).nil;
-		re = this;
-		a = re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, 2);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			loc = (go$sliceType(Go$Int)).nil;
-			return loc;
-		}
-		loc = go$subslice(a, 0, 2);
-		return loc;
-	};
-	Regexp.prototype.FindReaderIndex = function(r) { return this.go$val.FindReaderIndex(r); };
- 0Regexp0!regexp:Regexpregexp:doExecute0ÇÆ Çy	Regexp.Ptr.prototype.FindSubmatch = function(b) {
-		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
-		re = this;
-		a = re.doExecute(null, b, "", 0, re.prog.NumCap);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			return (go$sliceType((go$sliceType(Go$Uint8)))).nil;
-		}
-		ret = (go$sliceType((go$sliceType(Go$Uint8)))).make(1 + re.numSubexp >> 0, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
-		_ref = ret;
-		_i = 0;
-		while (_i < _ref.length) {
-			i = _i;
-			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
-				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
-			}
-			_i++;
-		}
-		return ret;
-	};
-	Regexp.prototype.FindSubmatch = function(b) { return this.go$val.FindSubmatch(b); };
- 0Regexp0!regexp:Regexpregexp:doExecute0ÇQ Ç	Regexp.Ptr.prototype.Expand = function(dst, template, src, match) {
-		var re;
-		re = this;
-		return re.expand(dst, go$bytesToString(template), src, "", match);
-	};
-	Regexp.prototype.Expand = function(dst, template, src, match) { return this.go$val.Expand(dst, template, src, match); };
- 0Regexp0regexp:Regexpregexp:expand0Çk Ç9	Regexp.Ptr.prototype.ExpandString = function(dst, template, src, match) {
-		var re;
-		re = this;
-		return re.expand(dst, template, (go$sliceType(Go$Uint8)).nil, src, match);
-	};
-	Regexp.prototype.ExpandString = function(dst, template, src, match) { return this.go$val.ExpandString(dst, template, src, match); };
- 0Regexp0regexp:Regexpregexp:expand0Ç4 ÇÍ	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
-		var re, i, _tuple, name, num, rest, ok, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3, x$4, _slice$4, _index$4, x$5, _ref, _i, _slice$5, _index$5, namei, i$1, x$6, _slice$6, _index$6, x$7, _slice$7, _index$7, x$8, _slice$8, _index$8, x$9, _slice$9, _index$9, x$10, _slice$10, _index$10, x$11;
-		re = this;
-		while (template.length > 0) {
-			i = strings.Index(template, "$");
-			if (i < 0) {
-				break;
-			}
-			dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(template.substring(0, i))));
-			template = template.substring(i);
-			if (template.length > 1 && (template.charCodeAt(1) === 36)) {
-				dst = go$append(dst, 36);
-				template = template.substring(2);
-				continue;
-			}
-			_tuple = extract(template), name = _tuple[0], num = _tuple[1], rest = _tuple[2], ok = _tuple[3];
-			if (!ok) {
-				dst = go$append(dst, 36);
-				template = template.substring(1);
-				continue;
-			}
-			template = rest;
-			if (num >= 0) {
-				if (((x = 2, (((x >>> 16 << 16) * num >> 0) + (x << 16 >>> 16) * num) >> 0) + 1 >> 0) < match.length && (_slice = match, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * num >> 0) + (x$1 << 16 >>> 16) * num) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
-					if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-						dst = go$appendSlice(dst, go$subslice(bsrc, (_slice$1 = match, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * num >> 0) + (x$2 << 16 >>> 16) * num) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * num >> 0) + (x$3 << 16 >>> 16) * num) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))));
-					} else {
-						dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring((_slice$3 = match, _index$3 = (x$4 = 2, (((x$4 >>> 16 << 16) * num >> 0) + (x$4 << 16 >>> 16) * num) >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (_slice$4 = match, _index$4 = ((x$5 = 2, (((x$5 >>> 16 << 16) * num >> 0) + (x$5 << 16 >>> 16) * num) >> 0) + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))))));
-					}
-				}
-			} else {
-				_ref = re.subexpNames;
-				_i = 0;
-				while (_i < _ref.length) {
-					namei = (_slice$5 = _ref, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-					i$1 = _i;
-					if (name === namei && ((x$6 = 2, (((x$6 >>> 16 << 16) * i$1 >> 0) + (x$6 << 16 >>> 16) * i$1) >> 0) + 1 >> 0) < match.length && (_slice$6 = match, _index$6 = (x$7 = 2, (((x$7 >>> 16 << 16) * i$1 >> 0) + (x$7 << 16 >>> 16) * i$1) >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >= 0) {
-						if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
-							dst = go$appendSlice(dst, go$subslice(bsrc, (_slice$7 = match, _index$7 = (x$8 = 2, (((x$8 >>> 16 << 16) * i$1 >> 0) + (x$8 << 16 >>> 16) * i$1) >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (_slice$8 = match, _index$8 = ((x$9 = 2, (((x$9 >>> 16 << 16) * i$1 >> 0) + (x$9 << 16 >>> 16) * i$1) >> 0) + 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))));
-						} else {
-							dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring((_slice$9 = match, _index$9 = (x$10 = 2, (((x$10 >>> 16 << 16) * i$1 >> 0) + (x$10 << 16 >>> 16) * i$1) >> 0), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), (_slice$10 = match, _index$10 = ((x$11 = 2, (((x$11 >>> 16 << 16) * i$1 >> 0) + (x$11 << 16 >>> 16) * i$1) >> 0) + 1 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))))));
-						}
-						break;
-					}
-					_i++;
-				}
-			}
-		}
-		dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(template)));
-		return dst;
-	};
-	Regexp.prototype.expand = function(dst, template, bsrc, src, match) { return this.go$val.expand(dst, template, bsrc, src, match); };
- 0Regexpexpand0.regexp:Regexpregexp:extractstrings:Index0ÇáextractÇ'	extract = function(str) {
-		var name, num, rest, ok, brace, i, _tuple, rune, size, i$1, x;
-		name = "";
-		num = 0;
-		rest = "";
-		ok = false;
-		if (str.length < 2 || !((str.charCodeAt(0) === 36))) {
-			return [name, num, rest, ok];
-		}
-		brace = false;
-		if (str.charCodeAt(1) === 123) {
-			brace = true;
-			str = str.substring(2);
-		} else {
-			str = str.substring(1);
-		}
-		i = 0;
-		while (i < str.length) {
-			_tuple = utf8.DecodeRuneInString(str.substring(i)), rune = _tuple[0], size = _tuple[1];
-			if (!unicode.IsLetter(rune) && !unicode.IsDigit(rune) && !((rune === 95))) {
-				break;
-			}
-			i = i + (size) >> 0;
-		}
-		if (i === 0) {
-			return [name, num, rest, ok];
-		}
-		name = str.substring(0, i);
-		if (brace) {
-			if (i >= str.length || !((str.charCodeAt(i) === 125))) {
-				return [name, num, rest, ok];
-			}
-			i = i + 1 >> 0;
-		}
-		num = 0;
-		i$1 = 0;
-		while (i$1 < name.length) {
-			if (name.charCodeAt(i$1) < 48 || 57 < name.charCodeAt(i$1) || num >= 100000000) {
-				num = -1;
-				break;
-			}
-			num = ((x = 10, (((num >>> 16 << 16) * x >> 0) + (num << 16 >>> 16) * x) >> 0) + (name.charCodeAt(i$1) >> 0) >> 0) - 48 >> 0;
-			i$1 = i$1 + 1 >> 0;
-		}
-		if ((name.charCodeAt(0) === 48) && name.length > 1) {
-			num = -1;
-		}
-		rest = str.substring(i);
-		ok = true;
-		return [name, num, rest, ok];
-	};
- 0	extract0Dunicode/utf8:DecodeRuneInStringunicode:IsDigitunicode:IsLetter0Ç2 ÅÚ	Regexp.Ptr.prototype.FindSubmatchIndex = function(b) {
-		var re;
-		re = this;
-		return re.pad(re.doExecute(null, b, "", 0, re.prog.NumCap));
-	};
-	Regexp.prototype.FindSubmatchIndex = function(b) { return this.go$val.FindSubmatchIndex(b); };
- 0Regexp0-regexp:Regexpregexp:doExecute
-regexp:pad0Çü Çj	Regexp.Ptr.prototype.FindStringSubmatch = function(s) {
-		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
-		re = this;
-		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap);
-		if (a === (go$sliceType(Go$Int)).nil) {
-			return (go$sliceType(Go$String)).nil;
-		}
-		ret = (go$sliceType(Go$String)).make(1 + re.numSubexp >> 0, 0, function() { return ""; });
-		_ref = ret;
-		_i = 0;
-		while (_i < _ref.length) {
-			i = _i;
-			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
-				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
-			}
-			_i++;
-		}
-		return ret;
-	};
-	Regexp.prototype.FindStringSubmatch = function(s) { return this.go$val.FindStringSubmatch(s); };
- 0Regexp0!regexp:Regexpregexp:doExecute0Ç_ Ç	Regexp.Ptr.prototype.FindStringSubmatchIndex = function(s) {
-		var re;
-		re = this;
-		return re.pad(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap));
-	};
-	Regexp.prototype.FindStringSubmatchIndex = function(s) { return this.go$val.FindStringSubmatchIndex(s); };
- 0Regexp0-regexp:Regexpregexp:doExecute
-regexp:pad0Ç] Ç	Regexp.Ptr.prototype.FindReaderSubmatchIndex = function(r) {
-		var re;
-		re = this;
-		return re.pad(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, re.prog.NumCap));
-	};
-	Regexp.prototype.FindReaderSubmatchIndex = function(r) { return this.go$val.FindReaderSubmatchIndex(r); };
- 0Regexp0-regexp:Regexpregexp:doExecute
-regexp:pad0ÇΩ Çá	Regexp.Ptr.prototype.FindAll = function(b, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = b.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$Uint8)))).make(0, 10, function() { return (go$sliceType(Go$Uint8)).nil; });
-		re.allMatches("", b, n, (function(match) {
-			var _slice, _index, _slice$1, _index$1;
-			result = go$append(result, go$subslice(b, (_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))));
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$Uint8)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAll = function(b, n) { return this.go$val.FindAll(b, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Ç_ Ç)	Regexp.Ptr.prototype.FindAllIndex = function(b, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = b.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
-		re.allMatches("", b, n, (function(match) {
-			result = go$append(result, go$subslice(match, 0, 2));
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$Int)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllIndex = function(b, n) { return this.go$val.FindAllIndex(b, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0ÇÆ Çx	Regexp.Ptr.prototype.FindAllString = function(s, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = s.length + 1 >> 0;
-		}
-		result = (go$sliceType(Go$String)).make(0, 10, function() { return ""; });
-		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
-			var _slice, _index, _slice$1, _index$1;
-			result = go$append(result, s.substring((_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))));
-		}));
-		if (result.length === 0) {
-			return (go$sliceType(Go$String)).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllString = function(s, n) { return this.go$val.FindAllString(s, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Çã ÇU	Regexp.Ptr.prototype.FindAllStringIndex = function(s, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = s.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
-		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
-			result = go$append(result, go$subslice(match, 0, 2));
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$Int)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllStringIndex = function(s, n) { return this.go$val.FindAllStringIndex(s, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0ÇÈ Ç≥	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = b.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType((go$sliceType(Go$Uint8)))))).make(0, 10, function() { return (go$sliceType((go$sliceType(Go$Uint8)))).nil; });
-		re.allMatches("", b, n, (function(match) {
-			var _q, slice, _ref, _i, j, _slice, _index, x, _slice$1, _index$1, x$1, _slice$2, _index$2, x$2, _slice$3, _index$3;
-			slice = (go$sliceType((go$sliceType(Go$Uint8)))).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return (go$sliceType(Go$Uint8)).nil; });
-			_ref = slice;
-			_i = 0;
-			while (_i < _ref.length) {
-				j = _i;
-				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
-					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
-				}
-				_i++;
-			}
-			result = go$append(result, slice);
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType((go$sliceType(Go$Uint8)))))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllSubmatch = function(b, n) { return this.go$val.FindAllSubmatch(b, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Çd Ç.	Regexp.Ptr.prototype.FindAllSubmatchIndex = function(b, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = b.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
-		re.allMatches("", b, n, (function(match) {
-			result = go$append(result, match);
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$Int)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllSubmatchIndex = function(b, n) { return this.go$val.FindAllSubmatchIndex(b, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Çº ÇÜ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = s.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$String)))).make(0, 10, function() { return (go$sliceType(Go$String)).nil; });
-		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
-			var _q, slice, _ref, _i, j, _slice, _index, x, _slice$1, _index$1, x$1, _slice$2, _index$2, x$2, _slice$3, _index$3;
-			slice = (go$sliceType(Go$String)).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return ""; });
-			_ref = slice;
-			_i = 0;
-			while (_i < _ref.length) {
-				j = _i;
-				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
-					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
-				}
-				_i++;
-			}
-			result = go$append(result, slice);
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$String)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllStringSubmatch = function(s, n) { return this.go$val.FindAllStringSubmatch(s, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Çê ÇZ	Regexp.Ptr.prototype.FindAllStringSubmatchIndex = function(s, n) {
-		var re, result;
-		re = this;
-		if (n < 0) {
-			n = s.length + 1 >> 0;
-		}
-		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
-		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
-			result = go$append(result, match);
-		}));
-		if (result.length === 0) {
-			return (go$sliceType((go$sliceType(Go$Int)))).nil;
-		}
-		return result;
-	};
-	Regexp.prototype.FindAllStringSubmatchIndex = function(s, n) { return this.go$val.FindAllStringSubmatchIndex(s, n); };
- 0Regexp0"regexp:Regexpregexp:allMatches0Çy ÇV	Regexp.Ptr.prototype.Split = function(s, n) {
-		var re, matches, strings$1, beg, end, _ref, _i, _slice, _index, match, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
-		re = this;
-		if (n === 0) {
-			return (go$sliceType(Go$String)).nil;
-		}
-		if (re.expr.length > 0 && (s.length === 0)) {
-			return new (go$sliceType(Go$String))([""]);
-		}
-		matches = re.FindAllStringIndex(s, n);
-		strings$1 = (go$sliceType(Go$String)).make(0, matches.length, function() { return ""; });
-		beg = 0;
-		end = 0;
-		_ref = matches;
-		_i = 0;
-		while (_i < _ref.length) {
-			match = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (n > 0 && strings$1.length >= (n - 1 >> 0)) {
-				break;
-			}
-			end = (_slice$1 = match, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (!(((_slice$2 = match, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 0))) {
-				strings$1 = go$append(strings$1, s.substring(beg, end));
-			}
-			beg = (_slice$3 = match, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-			_i++;
-		}
-		if (!((end === s.length))) {
-			strings$1 = go$append(strings$1, s.substring(beg));
-		}
-		return strings$1;
-	};
-	Regexp.prototype.Split = function(s, n) { return this.go$val.Split(s, n); };
- 0Regexp0regexp:Regexp0empty  0empty0 0debug  0debug0 0$specialBytes  0specialBytes0 0_  G		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
-0 0regexp:empty00  		debug = false;
-0debug0regexp:debug0ÅÅ  T		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
-0specialBytes0regexp:specialBytes0
-   0 0 0
-   0 0 0 
+0ÅÍgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxsyscalltimeosreflectfmtflagbufiotext/tabwriterruntime/pproftesting0Åä0testingA0ioB0regexp/syntaxC0
+bytesD0	sortE0unicodeF0strconvG0stringsH0	syncI0unicode/utf8J0ÉX∆0Ç} 0LÅÁL=$pkg.queue=$newType(0,"Struct","regexp.queue","queue","regexp",function(sparse_,dense_){this.$val=this;this.sparse=sparse_!==undefined?sparse_:($sliceType($Uint32)).nil;this.dense=dense_!==undefined?dense_:($sliceType(M)).nil;});nL.init([["sparse","sparse","regexp",($sliceType($Uint32)),""],["dense","dense","regexp",($sliceType(M)),""]]);0queue0regexp:entry 0Ç$ 0MÅ≠M=$pkg.entry=$newType(0,"Struct","regexp.entry","entry","regexp",function(pc_,t_){this.$val=this;this.pc=pc_!==undefined?pc_:0;this.t=t_!==undefined?t_:($ptrType(N)).nil;});NM.init([["pc","pc","regexp",$Uint32,""],["t","t","regexp",($ptrType(N)),""]]);0entry0regexp:thread 0Ço 0NÅ⁄N=$pkg.thread=$newType(0,"Struct","regexp.thread","thread","regexp",function(inst_,cap_){this.$val=this;this.inst=inst_!==undefined?inst_:($ptrType(C.Inst)).nil;this.cap=cap_!==undefined?cap_:($sliceType($Int)).nil;});fN.init([["inst","inst","regexp",($ptrType(C.Inst)),""],["cap","cap","regexp",($sliceType($Int)),""]]);0thread0regexp/syntax:Inst 0Ç¯ 0OÇO=$pkg.machine=$newType(0,"Struct","regexp.machine","machine","regexp",function(re_,p_,op_,q0_,q1_,pool_,matched_,matchcap_,inputBytes_,inputString_,inputReader_){this.$val=this;this.re=re_!==undefined?re_:($ptrType(AM)).nil;this.p=p_!==undefined?p_:($ptrType(C.Prog)).nil;this.op=op_!==undefined?op_:($ptrType(R)).nil;this.q0=q0_!==undefined?q0_:new L.Ptr();this.q1=q1_!==undefined?q1_:new L.Ptr();this.pool=pool_!==undefined?pool_:($sliceType(($ptrType(N)))).nil;this.matched=matched_!==undefined?matched_:false;this.matchcap=matchcap_!==undefined?matchcap_:($sliceType($Int)).nil;this.inputBytes=inputBytes_!==undefined?inputBytes_:new AV.Ptr();this.inputString=inputString_!==undefined?inputString_:new AU.Ptr();this.inputReader=inputReader_!==undefined?inputReader_:new AW.Ptr();});ÇÓ($ptrType(O)).methods=[["add","add","regexp",[($ptrType(L)),$Uint32,$Int,($sliceType($Int)),C.EmptyOp,($ptrType(N))],[($ptrType(N))],false,-1],["alloc","alloc","regexp",[($ptrType(C.Inst))],[($ptrType(N))],false,-1],["clear","clear","regexp",[($ptrType(L))],[],false,-1],["free","free","regexp",[($ptrType(N))],[],false,-1],["init","init","regexp",[$Int],[],false,-1],["match","match","regexp",[AT,$Int],[$Bool],false,-1],["newInputBytes","newInputBytes","regexp",[($sliceType($Uint8))],[AT],false,-1],["newInputReader","newInputReader","regexp",[B.RuneReader],[AT],false,-1],["newInputString","newInputString","regexp",[$String],[AT],false,-1],["onepass","onepass","regexp",[AT,$Int],[$Bool],false,-1],["step","step","regexp",[($ptrType(L)),($ptrType(L)),$Int,$Int,$Int32,C.EmptyOp],[],false,-1]];O.init([["re","re","regexp",($ptrType(AM)),""],["p","p","regexp",($ptrType(C.Prog)),""],["op","op","regexp",($ptrType(R)),""],["q0","q0","regexp",L,""],["q1","q1","regexp",L,""],["pool","pool","regexp",($sliceType(($ptrType(N)))),""],["matched","matched","regexp",$Bool,""],["matchcap","matchcap","regexp",($sliceType($Int)),""],["inputBytes","inputBytes","regexp",AV,""],["inputString","inputString","regexp",AU,""],["inputReader","inputReader","regexp",AW,""]]);0	machine0Å◊io:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Instregexp/syntax:Progregexp:Regexpregexp:inputregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:onePassProgregexp:queueregexp:thread 0Ç¨ 0RÇR=$pkg.onePassProg=$newType(0,"Struct","regexp.onePassProg","onePassProg","regexp",function(Inst_,Start_,NumCap_){this.$val=this;this.Inst=Inst_!==undefined?Inst_:($sliceType(S)).nil;this.Start=Start_!==undefined?Start_:0;this.NumCap=NumCap_!==undefined?NumCap_:0;});lR.init([["Inst","Inst","",($sliceType(S)),""],["Start","Start","",$Int,""],["NumCap","NumCap","",$Int,""]]);0onePassProg0regexp:onePassInst 0Çµ 0SÅÍS=$pkg.onePassInst=$newType(0,"Struct","regexp.onePassInst","onePassInst","regexp",function(Inst_,Next_){this.$val=this;this.Inst=Inst_!==undefined?Inst_:new C.Inst.Ptr();this.Next=Next_!==undefined?Next_:($sliceType($Uint32)).nil;});Ç($ptrType(S)).methods=[["MatchEmptyWidth","MatchEmptyWidth","",[$Int32,$Int32],[$Bool],false,0],["MatchRune","MatchRune","",[$Int32],[$Bool],false,0],["MatchRunePos","MatchRunePos","",[$Int32],[$Int],false,0],["String","String","",[],[$String],false,0],["op","op","regexp/syntax",[],[C.InstOp],false,0]];S.init([["Inst","","",C.Inst,""],["Next","Next","",($sliceType($Uint32)),""]]);0onePassInst0*regexp/syntax:Instregexp/syntax:InstOp 0Ç∆ 0WÇjW=$pkg.queueOnePass=$newType(0,"Struct","regexp.queueOnePass","queueOnePass","regexp",function(sparse_,dense_,size_,nextIndex_){this.$val=this;this.sparse=sparse_!==undefined?sparse_:($sliceType($Uint32)).nil;this.dense=dense_!==undefined?dense_:($sliceType($Uint32)).nil;this.size=size_!==undefined?size_:0;this.nextIndex=nextIndex_!==undefined?nextIndex_:0;});Ç8($ptrType(W)).methods=[["clear","clear","regexp",[],[],false,-1],["contains","contains","regexp",[$Uint32],[$Bool],false,-1],["empty","empty","regexp",[],[$Bool],false,-1],["insert","insert","regexp",[$Uint32],[],false,-1],["insertNew","insertNew","regexp",[$Uint32],[],false,-1],["next","next","regexp",[],[$Uint32],false,-1],["reset","reset","regexp",[],[],false,-1]];W.init([["sparse","sparse","regexp",($sliceType($Uint32)),""],["dense","dense","regexp",($sliceType($Uint32)),""],["size","size","regexp",$Uint32,""],["nextIndex","nextIndex","regexp",$Uint32,""]]);0queueOnePass0  0ÇÏ 0ADTAD=$pkg.runeSlice=$newType(12,"Slice","regexp.runeSlice","runeSlice","regexp",null);ÇxAD.methods=[["Len","Len","",[],[$Int],false,-1],["Less","Less","",[$Int,$Int],[$Bool],false,-1],["Sort","Sort","",[],[],false,-1],["Swap","Swap","",[$Int,$Int],[],false,-1]];($ptrType(AD)).methods=[["Len","Len","",[],[$Int],false,-1],["Less","Less","",[$Int,$Int],[$Bool],false,-1],["Sort","Sort","",[],[],false,-1],["Swap","Swap","",[$Int,$Int],[],false,-1]];AD.init($Int32);0	runeSlice0  0Ç» 0AMÇ˝AM=$pkg.Regexp=$newType(0,"Struct","regexp.Regexp","Regexp","regexp",function(expr_,prog_,onepass_,prefix_,prefixBytes_,prefixComplete_,prefixRune_,prefixEnd_,cond_,numSubexp_,subexpNames_,longest_,mu_,machine_){this.$val=this;this.expr=expr_!==undefined?expr_:"";this.prog=prog_!==undefined?prog_:($ptrType(C.Prog)).nil;this.onepass=onepass_!==undefined?onepass_:($ptrType(R)).nil;this.prefix=prefix_!==undefined?prefix_:"";this.prefixBytes=prefixBytes_!==undefined?prefixBytes_:($sliceType($Uint8)).nil;this.prefixComplete=prefixComplete_!==undefined?prefixComplete_:false;this.prefixRune=prefixRune_!==undefined?prefixRune_:0;this.prefixEnd=prefixEnd_!==undefined?prefixEnd_:0;this.cond=cond_!==undefined?cond_:0;this.numSubexp=numSubexp_!==undefined?numSubexp_:0;this.subexpNames=subexpNames_!==undefined?subexpNames_:($sliceType($String)).nil;this.longest=longest_!==undefined?longest_:false;this.mu=mu_!==undefined?mu_:new I.Mutex.Ptr();this.machine=machine_!==undefined?machine_:($sliceType(($ptrType(O)))).nil;});ÇB($ptrType(AM)).methods=[["Expand","Expand","",[($sliceType($Uint8)),($sliceType($Uint8)),($sliceType($Uint8)),($sliceType($Int))],[($sliceType($Uint8))],false,-1],["ExpandString","ExpandString","",[($sliceType($Uint8)),$String,$String,($sliceType($Int))],[($sliceType($Uint8))],false,-1],["Find","Find","",[($sliceType($Uint8))],[($sliceType($Uint8))],false,-1],["FindAll","FindAll","",[($sliceType($Uint8)),$Int],[($sliceType(($sliceType($Uint8))))],false,-1],["FindAllIndex","FindAllIndex","",[($sliceType($Uint8)),$Int],[($sliceType(($sliceType($Int))))],false,-1],["FindAllString","FindAllString","",[$String,$Int],[($sliceType($String))],false,-1],["FindAllStringIndex","FindAllStringIndex","",[$String,$Int],[($sliceType(($sliceType($Int))))],false,-1],["FindAllStringSubmatch","FindAllStringSubmatch","",[$String,$Int],[($sliceType(($sliceType($String))))],false,-1],["FindAllStringSubmatchIndex","FindAllStringSubmatchIndex","",[$String,$Int],[($sliceType(($sliceType($Int))))],false,-1],["FindAllSubmatch","FindAllSubmatch","",[($sliceType($Uint8)),$Int],[($sliceType(($sliceType(($sliceType($Uint8))))))],false,-1],["FindAllSubmatchIndex","FindAllSubmatchIndex","",[($sliceType($Uint8)),$Int],[($sliceType(($sliceType($Int))))],false,-1],["FindIndex","FindIndex","",[($sliceType($Uint8))],[($sliceType($Int))],false,-1],["FindReaderIndex","FindReaderIndex","",[B.RuneReader],[($sliceType($Int))],false,-1],["FindReaderSubmatchIndex","FindReaderSubmatchIndex","",[B.RuneReader],[($sliceType($Int))],false,-1],["FindString","FindString","",[$String],[$String],false,-1],["FindStringIndex","FindStringIndex","",[$String],[($sliceType($Int))],false,-1],["FindStringSubmatch","FindStringSubmatch","",[$String],[($sliceType($String))],false,-1],["FindStringSubmatchIndex","FindStringSubmatchIndex","",[$String],[($sliceType($Int))],false,-1],["FindSubmatch","FindSubmatch","",[($sliceType($Uint8))],[($sliceType(($sliceType($Uint8))))],false,-1],["FindSubmatchIndex","FindSubmatchIndex","",[($sliceType($Uint8))],[($sliceType($Int))],false,-1],["LiteralPrefix","LiteralPrefix","",[],[$String,$Bool],false,-1],["Longest","Longest","",[],[],false,-1],["Match","Match","",[($sliceType($Uint8))],[$Bool],false,-1],["MatchReader","MatchReader","",[B.RuneReader],[$Bool],false,-1],["MatchString","MatchString","",[$String],[$Bool],false,-1],["NumSubexp","NumSubexp","",[],[$Int],false,-1],["ReplaceAll","ReplaceAll","",[($sliceType($Uint8)),($sliceType($Uint8))],[($sliceType($Uint8))],false,-1],["ReplaceAllFunc","ReplaceAllFunc","",[($sliceType($Uint8)),($funcType([($sliceType($Uint8))],[($sliceType($Uint8))],false))],[($sliceType($Uint8))],false,-1],["ReplaceAllLiteral","ReplaceAllLiteral","",[($sliceType($Uint8)),($sliceType($Uint8))],[($sliceType($Uint8))],false,-1],["ReplaceAllLiteralString","ReplaceAllLiteralString","",[$String,$String],[$String],false,-1],["ReplaceAllString","ReplaceAllString","",[$String,$String],[$String],false,-1],["ReplaceAllStringFunc","ReplaceAllStringFunc","",[$String,($funcType([$String],[$String],false))],[$String],false,-1],["Split","Split","",[$String,$Int],[($sliceType($String))],false,-1],["String","String","",[],[$String],false,-1],["SubexpNames","SubexpNames","",[],[($sliceType($String))],false,-1],["allMatches","allMatches","regexp",[$String,($sliceType($Uint8)),$Int,($funcType([($sliceType($Int))],[],false))],[],false,-1],["doExecute","doExecute","regexp",[B.RuneReader,($sliceType($Uint8)),$String,$Int,$Int],[($sliceType($Int))],false,-1],["expand","expand","regexp",[($sliceType($Uint8)),$String,($sliceType($Uint8)),$String,($sliceType($Int))],[($sliceType($Uint8))],false,-1],["get","get","regexp",[],[($ptrType(O))],false,-1],["pad","pad","regexp",[($sliceType($Int))],[($sliceType($Int))],false,-1],["put","put","regexp",[($ptrType(O))],[],false,-1],["replaceAll","replaceAll","regexp",[($sliceType($Uint8)),$String,$Int,($funcType([($sliceType($Uint8)),($sliceType($Int))],[($sliceType($Uint8))],false))],[($sliceType($Uint8))],false,-1]];AM.init([["expr","expr","regexp",$String,""],["prog","prog","regexp",($ptrType(C.Prog)),""],["onepass","onepass","regexp",($ptrType(R)),""],["prefix","prefix","regexp",$String,""],["prefixBytes","prefixBytes","regexp",($sliceType($Uint8)),""],["prefixComplete","prefixComplete","regexp",$Bool,""],["prefixRune","prefixRune","regexp",$Int32,""],["prefixEnd","prefixEnd","regexp",$Uint32,""],["cond","cond","regexp",C.EmptyOp,""],["numSubexp","numSubexp","regexp",$Int,""],["subexpNames","subexpNames","regexp",($sliceType($String)),""],["longest","longest","regexp",$Bool,""],["mu","mu","regexp",I.Mutex,""],["machine","machine","regexp",($sliceType(($ptrType(O)))),""]]);0Regexp0jio:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Progregexp:machineregexp:onePassProg
+sync:Mutex 0Ç¬ 0ATKAT=$pkg.input=$newType(8,"Interface","regexp.input","input","regexp",null);Ç5AT.init([["canCheckPrefix","canCheckPrefix","regexp",[],[$Bool],false],["context","context","regexp",[$Int],[C.EmptyOp],false],["hasPrefix","hasPrefix","regexp",[($ptrType(AM))],[$Bool],false],["index","index","regexp",[($ptrType(AM)),$Int],[$Int],false],["step","step","regexp",[$Int],[$Int32,$Int],false]]);0input0&regexp/syntax:EmptyOpregexp:Regexp 0Ç_ 0AUÅóAU=$pkg.inputString=$newType(0,"Struct","regexp.inputString","inputString","regexp",function(str_){this.$val=this;this.str=str_!==undefined?str_:"";});Ç($ptrType(AU)).methods=[["canCheckPrefix","canCheckPrefix","regexp",[],[$Bool],false,-1],["context","context","regexp",[$Int],[C.EmptyOp],false,-1],["hasPrefix","hasPrefix","regexp",[($ptrType(AM))],[$Bool],false,-1],["index","index","regexp",[($ptrType(AM)),$Int],[$Int],false,-1],["step","step","regexp",[$Int],[$Int32,$Int],false,-1]];AU.init([["str","str","regexp",$String,""]]);0inputString0&regexp/syntax:EmptyOpregexp:Regexp 0Ç~ 0AVÅ™AV=$pkg.inputBytes=$newType(0,"Struct","regexp.inputBytes","inputBytes","regexp",function(str_){this.$val=this;this.str=str_!==undefined?str_:($sliceType($Uint8)).nil;});Çå($ptrType(AV)).methods=[["canCheckPrefix","canCheckPrefix","regexp",[],[$Bool],false,-1],["context","context","regexp",[$Int],[C.EmptyOp],false,-1],["hasPrefix","hasPrefix","regexp",[($ptrType(AM))],[$Bool],false,-1],["index","index","regexp",[($ptrType(AM)),$Int],[$Int],false,-1],["step","step","regexp",[$Int],[$Int32,$Int],false,-1]];AV.init([["str","str","regexp",($sliceType($Uint8)),""]]);0
+inputBytes0&regexp/syntax:EmptyOpregexp:Regexp 0Ç 0AWÅÈAW=$pkg.inputReader=$newType(0,"Struct","regexp.inputReader","inputReader","regexp",function(r_,atEOT_,pos_){this.$val=this;this.r=r_!==undefined?r_:null;this.atEOT=atEOT_!==undefined?atEOT_:false;this.pos=pos_!==undefined?pos_:0;});Ç√($ptrType(AW)).methods=[["canCheckPrefix","canCheckPrefix","regexp",[],[$Bool],false,-1],["context","context","regexp",[$Int],[C.EmptyOp],false,-1],["hasPrefix","hasPrefix","regexp",[($ptrType(AM))],[$Bool],false,-1],["index","index","regexp",[($ptrType(AM)),$Int],[$Int],false,-1],["step","step","regexp",[$Int],[$Int32,$Int],false,-1]];AW.init([["r","r","regexp",B.RuneReader,""],["atEOT","atEOT","regexp",$Bool,""],["pos","pos","regexp",$Int,""]]);0inputReader05io:RuneReaderregexp/syntax:EmptyOpregexp:Regexp 0 0Q  0empty0  0 0Y  0noRune0  0 0Z  0noNext0  0! 0AE  0anyRuneNotNL0  0 0AF  0	anyRune0  0 0AJ  0
+notOnePass0  0 0AL  0debug0  0! 0BA  0specialBytes0  0W 0  :    Q=($sliceType($Int)).make(0,0,function(){return 0;});0 0regexp:empty 0I 0  #    Y=new($sliceType($Int32))([]);0noRune0regexp:noRune 0T 0  .    Z=new($sliceType($Uint32))([4294967295]);0noNext0regexp:noNext 0d 0  2    AE=new($sliceType($Int32))([0,9,11,1114111]);0anyRuneNotNL0regexp:anyRuneNotNL 0U 0  -    AF=new($sliceType($Int32))([0,1114111]);0	anyRune0regexp:anyRune 0\ 0      AJ=($ptrType(R)).nil;0
+notOnePass0'regexp:notOnePassregexp:onePassProg 02 0      AL=false;0debug0regexp:debug 0u 0  C    BA=new($sliceType($Uint8))($stringToBytes("\\.+*?()|[]{}^$"));0specialBytes0regexp:specialBytes 0Å¢regexp.TestOnePassCutoff0KeK=$pkg.TestOnePassCutoff=function(a){   ^a.common.Skip(new($sliceType($emptyInterface))([]));    }; 0TestOnePassCutoff0  0Ç(*regexp.machine).newInputBytes0 ÅæO.Ptr.prototype.newInputBytes=function(a){var b;  lb=this;  ôb.inputBytes.str=a;  Øreturn b.inputBytes;    };O.prototype.newInputBytes=function(a){return this.$val.newInputBytes(a);}; 0machinenewInputBytes0regexp:machine 0Ç (*regexp.machine).newInputString0 Å√O.Ptr.prototype.newInputString=function(a){var b;  Õb=this;  ˚b.inputString.str=a;  return b.inputString;    };O.prototype.newInputString=function(a){return this.$val.newInputString(a);}; 0machinenewInputString0regexp:machine 0ÇR (*regexp.machine).newInputReader0 Å˘O.Ptr.prototype.newInputReader=function(a){var b;  1b=this;  fb.inputReader.r=a;  {b.inputReader.atEOT=false;  òb.inputReader.pos=0;  Øreturn b.inputReader;    };O.prototype.newInputReader=function(a){return this.$val.newInputReader(a);}; 0machinenewInputReader0regexp:machine 0Ç]regexp.progMachine0PÇ|P=function(a,b){var c,d,e;  ?c=new O.Ptr(($ptrType(AM)).nil,a,b,new L.Ptr(),new L.Ptr(),($sliceType(($ptrType(N)))).nil,false,($sliceType($Int)).nil,new AV.Ptr(),new AU.Ptr(),new AW.Ptr());  \d=c.p.Inst.$length;  p$copy(c.q0,new L.Ptr(($sliceType($Uint32)).make(d,0,function(){return 0;}),($sliceType(M)).make(0,d,function(){return new M.Ptr();})),L);  ¶$copy(c.q1,new L.Ptr(($sliceType($Uint32)).make(d,0,function(){return 0;}),($sliceType(M)).make(0,d,function(){return new M.Ptr();})),L);  ‹e=a.NumCap;  Ó    if(e<2){  ˛e=2;    }  	c.matchcap=($sliceType($Int)).make(e,0,function(){return 0;});  	+return c;    }; 0progMachine0Å≠regexp/syntax:Progregexp:Regexpregexp:entryregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:machineregexp:onePassProgregexp:queueregexp:thread 0Çé(*regexp.machine).init0 ÇHO.Ptr.prototype.init=function(a){var b,c,d,e;  	=b=this;  	[c=b.pool;d=0;while(d<c.$length){e=((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]);  	xe.cap=$subslice(e.cap,0,a);    d++;}  	ëb.matchcap=$subslice(b.matchcap,0,a);    };O.prototype.init=function(a){return this.$val.init(a);}; 0machineinit0regexp:machine 0ÇU(*regexp.machine).alloc0 Ç˛O.Ptr.prototype.alloc=function(a){var b,c,d,e,f;  
+b=this;  
+H  
+Lc=($ptrType(N)).nil;  
+W  
+Zd=b.pool.$length;    if(d>0){  
+vc=(e=b.pool,f=d-1>>0,((f<0||f>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+f]));  
+àb.pool=$subslice(b.pool,0,(d-1>>0));    }else{  
+™c=new N.Ptr();  
+ºc.cap=($sliceType($Int)).make(b.matchcap.$length,b.matchcap.$capacity,function(){return 0;});    }  
+ˆc.inst=a;  return c;    };O.prototype.alloc=function(a){return this.$val.alloc(a);}; 0machinealloc0regexp:machineregexp:thread 0Ç8(*regexp.machine).free0 ÅÛO.Ptr.prototype.free=function(a){var b;  8b=this;  Wb.inputBytes.str=($sliceType($Uint8)).nil;  ob.inputString.str="";  áb.inputReader.r=null;  ûb.pool=$append(b.pool,a);    };O.prototype.free=function(a){return this.$val.free(a);}; 0machinefree0regexp:machine 0Çp(*regexp.machine).match0 ÇëO.Ptr.prototype.match=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af;  Zc=this;  Üd=c.re.cond;  û    if(d===255){  ”return false;    }  ‰c.matched=false;  ˜e=c.matchcap;f=0;while(f<e.$length){g=f;  (h=c.matchcap,(g<0||g>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+g]=-1);    f++;}  ,i=c.q0;j=c.q1;k=i;l=j;  Im=-1;n=-1;o=m;p=n;  hq=0;r=0;s=q;t=r;  u=a.step(b);o=u[0];s=u[1];  ó    if(!((o===-1))){  ≠v=a.step(b+s>>0);p=v[0];t=v[1];    }  “  ÷w=0;  Î    if(b===0){  ˚w=C.EmptyOpContext(-1,o);    }else{  +w=a.context(b);    }  Ewhile(true){  M    if(k.dense.$length===0){  j    if(!((((d&4)>>>0)===0))&&!((b===0))){  ”break;    }  ·    if(c.matched){  (break;    }  6    if(c.re.prefix.length>0&&!((p===c.re.prefixRune))&&a.canCheckPrefix()){  Ωx=a.index(c.re,b);  ﬂ    if(x<0){  ıbreak;    }  b=b+(x)>>0;  y=a.step(b);o=y[0];s=y[1];  3z=a.step(b+s>>0);p=z[0];t=z[1];    }    }  _    if(!c.matched){  r    if(c.matchcap.$length>0){  è(aa=c.matchcap,(0<0||0>=aa.$length)?$throwRuntimeError("index out of range"):aa.$array[aa.$offset+0]=b);    }  ´c.add(k,(c.p.Start>>>0),b,c.matchcap,w,($ptrType(N)).nil);    }  Ïw=C.EmptyOpContext(o,p);  c.step(k,l,b,b+s>>0,o,w);  A    if(s===0){  Tbreak;    }  `    if((c.matchcap.$length===0)&&c.matched){  „break;    }  Ôb=b+(s)>>0;  ˛ab=p;ac=t;o=ab;s=ac;      if(!((o===-1))){  -ad=a.step(b+s>>0);p=ad[0];t=ad[1];    }  Tae=l;af=k;k=ae;l=af;    }  rc.clear(l);  Çreturn c.matched;    };O.prototype.match=function(a,b){return this.$val.match(a,b);}; 0machinematch0Å¶regexp/syntax:EmptyOpContext
+regexp:addregexp:canCheckPrefixregexp:clearregexp:contextregexp:indexregexp:machineregexp:stepregexp:stepregexp:thread 0ÇÒ(*regexp.machine).clear0 ÇåO.Ptr.prototype.clear=function(a){var b,c,d,e;  Ãb=this;  Îc=a.dense;d=0;while(d<c.$length){e=new M.Ptr();$copy(e,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]),M);  	    if(!(e.t===($ptrType(N)).nil)){  .b.pool=$append(b.pool,e.t);    }    d++;}  Sa.dense=$subslice(a.dense,0,0);    };O.prototype.clear=function(a){return this.$val.clear(a);}; 0machineclear0-regexp:entryregexp:machineregexp:thread 0Ç(*regexp.machine).step0 ÇíO.Ptr.prototype.step=function(a,b,c,d,e,f){var g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;  òg=this;  Ûh=g.re.longest;    i=0;while(i<a.dense.$length){  5k=(j=a.dense,((i<0||i>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+i]));  Kl=k.t;  V    if(l===($ptrType(N)).nil){  g  -  -i=i+(1)>>0;continue;    }  v    if(h&&g.matched&&l.cap.$length>0&&(m=g.matchcap,((0<0||0>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+0]))<(n=l.cap,((0<0||0>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+0]))){  —g.pool=$append(g.pool,l);  Ô  -  -i=i+(1)>>0;continue;    }  ˛o=l.inst;  p=false;  q=o.Op;  Lif(q===4){  f    if(l.cap.$length>0&&(!h||!g.matched||(r=g.matchcap,((1<0||1>=r.$length)?$throwRuntimeError("index out of range"):r.$array[r.$offset+1]))<c)){  ±(s=l.cap,(1<0||1>=s.$length)?$throwRuntimeError("index out of range"):s.$array[s.$offset+1]=c);  ƒ$copySlice(g.matchcap,l.cap);    }  ‰    if(!h){  3t=$subslice(a.dense,(i+1>>0));u=0;while(u<t.$length){v=new M.Ptr();$copy(v,((u<0||u>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+u]),M);  ]    if(!(v.t===($ptrType(N)).nil)){  àg.pool=$append(g.pool,v.t);    }    u++;}  ∂a.dense=$subslice(a.dense,0,0);    }  ⁄g.matched=true;      Ó}else if(q===7){  p=o.MatchRune(e);      }else if(q===8){  8p=e===(w=o.Rune,((0<0||0>=w.$length)?$throwRuntimeError("index out of range"):w.$array[w.$offset+0]));      O}else if(q===9){  kp=true;      x}else if(q===10){  ôp=!((e===10));    }else{  7throw $panic(new $String("bad inst"));    }  Ø    if(p){  ªl=g.add(b,o.Out,d,l.cap,f,l);    }  ˆ    if(!(l===($ptrType(N)).nil)){  g.pool=$append(g.pool,l);    }      -  -i=i+(1)>>0;}  :a.dense=$subslice(a.dense,0,0);    };O.prototype.step=function(a,b,c,d,e,f){return this.$val.step(a,b,c,d,e,f);}; 0machinestep09
+regexp:addregexp:entryregexp:machineregexp:thread 0Ç(*regexp.machine).add0 ÇµO.Ptr.prototype.add=function(a,b,c,d,e,f){var g,h,i,j,k,l,m,n,o,p,q,r,s,t,u;  `g=this;  ƒ    if(b===0){  ”return f;    }  ‡  „i=(h=a.sparse,((b<0||b>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+b]));    if(i<(a.dense.$length>>>0)&&((j=a.dense,((i<0||i>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+i])).pc===b)){  *return f;    }  8k=a.dense.$length;  Ka.dense=$subslice(a.dense,0,(k+1>>0));  dm=(l=a.dense,((k<0||k>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+k]));  vm.t=($ptrType(N)).nil;  Åm.pc=b;  å(n=a.sparse,(b<0||b>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+b]=(k>>>0));  ßp=(o=g.p.Inst,((b<0||b>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+b]));  ªq=p.Op;  Èif(q===5){      }else if(q===0||q===1){  9f=g.add(a,p.Out,c,d,e,f);  bf=g.add(a,p.Arg,c,d,e,f);      ä}else if(q===3){  ®    if(((p.Arg<<24>>>24)&~e)===0){  —f=g.add(a,p.Out,c,d,e,f);    }      ˝}else if(q===6){  f=g.add(a,p.Out,c,d,e,f);      <}else if(q===2){  W    if((p.Arg>>0)<d.$length){  us=(r=p.Arg,((r<0||r>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+r]));  ã(t=p.Arg,(t<0||t>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+t]=c);  üg.add(a,p.Out,c,d,e,($ptrType(N)).nil);  «(u=p.Arg,(u<0||u>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+u]=s);    }else{  Áf=g.add(a,p.Out,c,d,e,f);    }      }else if(q===4||q===7||q===8||q===9||q===10){  |    if(f===($ptrType(N)).nil){  çf=g.alloc(p);    }else{  ™f.inst=p;    }  ª    if(d.$length>0&&!($sliceIsEqual(f.cap,0,d,0))){  Ë$copySlice(f.cap,d);    }  ˇm.t=f;  	f=($ptrType(N)).nil;    }else{  ’throw $panic(new $String("unhandled"));    }  return f;    };O.prototype.add=function(a,b,c,d,e,f){return this.$val.add(a,b,c,d,e,f);}; 0machineadd0-regexp:allocregexp:machineregexp:thread 0Ç≤(*regexp.machine).onepass0 Ç
+ŸO.Ptr.prototype.onepass=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah;  ¡c=this;  Ôd=c.re.cond;       if(d===255){   <return false;    }   Mc.matched=false;   `e=c.matchcap;f=0;while(f<e.$length){g=f;   ~(h=c.matchcap,(g<0||g>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+g]=-1);    f++;}   ïi=-1;j=-1;k=i;l=j;   ¥m=0;n=0;o=m;p=n;   Àq=a.step(b);k=q[0];o=q[1];   „    if(!((k===-1))){   ˘r=a.step(b+o>>0);l=r[0];p=r[1];    }  !  !"s=0;  !7    if(b===0){  !Gs=C.EmptyOpContext(-1,k);    }else{  !ws=a.context(b);    }  !ët=c.op.Start;  !£v=new S.Ptr();$copy(v,(u=c.op.Inst,((t<0||t>=u.$length)?$throwRuntimeError("index out of range"):u.$array[u.$offset+t])),S);  !Ò    if((b===0)&&(((v.Inst.Arg<<24>>>24)&~s)===0)&&c.re.prefix.length>0&&a.canCheckPrefix()){  "ê    if(a.hasPrefix(c.re)){  "™b=b+(c.re.prefix.length)>>0;  "≈w=a.step(b);k=w[0];o=w[1];  "ﬂx=a.step(b+o>>0);l=x[0];p=x[1];  #s=a.context(b);  #t=(c.re.prefixEnd>>0);    }else{  #Creturn c.matched;    }    }  #\while(true){  #d$copy(v,(y=c.op.Inst,((t<0||t>=y.$length)?$throwRuntimeError("index out of range"):y.$array[y.$offset+t])),S);  #{t=(v.Inst.Out>>0);  #êz=v.Inst.Op;  #√if(z===4){  #›c.matched=true;  #Ò    if(c.matchcap.$length>0){  $(aa=c.matchcap,(0<0||0>=aa.$length)?$throwRuntimeError("index out of range"):aa.$array[aa.$offset+0]=0);  $$(ab=c.matchcap,(1<0||1>=ab.$length)?$throwRuntimeError("index out of range"):ab.$array[ab.$offset+1]=b);    }  $@return c.matched;      $S}else if(z===7){  $l    if(!v.Inst.MatchRune(k)){  $àreturn c.matched;    }      $†}else if(z===8){  $∫    if(!((k===(ac=v.Inst.Rune,((0<0||0>=ac.$length)?$throwRuntimeError("index out of range"):ac.$array[ac.$offset+0]))))){  $’return c.matched;    }      $Ì}else if(z===9){      %}else if(z===10){  %7    if(k===10){  %Jreturn c.matched;    }      %•}else if(z===0||z===1){  %“t=(U(v,k)>>0);  %ıcontinue;      & }else if(z===5){  &return c.matched;      &,}else if(z===6){  &Dcontinue;      &O}else if(z===3){  &n    if(!((((v.Inst.Arg<<24>>>24)&~s)===0))){  &õreturn c.matched;    }  &¥continue;      &ø}else if(z===2){  &€    if((v.Inst.Arg>>0)<c.matchcap.$length){  '(ad=c.matchcap,ae=v.Inst.Arg,(ae<0||ae>=ad.$length)?$throwRuntimeError("index out of range"):ad.$array[ad.$offset+ae]=b);    }  ''continue;    }else{  #Øthrow $panic(new $String("bad inst"));    }  '6    if(o===0){  'Ibreak;    }  'Us=C.EmptyOpContext(k,l);  '{b=b+(o)>>0;  'äaf=l;ag=p;k=af;o=ag;  '¢    if(!((k===-1))){  'πah=a.step(b+o>>0);l=ah[0];p=ah[1];    }    }  '‚return c.matched;    };O.prototype.onepass=function(a,b){return this.$val.onepass(a,b);}; 0machineonepass0Åúregexp/syntax:EmptyOpContextregexp:canCheckPrefixregexp:contextregexp:hasPrefixregexp:machineregexp:onePassInstregexp:onePassNextregexp:step 0Ç(*regexp.Regexp).doExecute0 ÇAM.Ptr.prototype.doExecute=function(a,b,c,d,e){var f,g,h,i;  )f=this;  )^g=f.get();  )m  )qh=null;  )z    if(!($interfaceIsEqual(a,null))){  )äh=g.newInputReader(a);        }else if(!(b===($sliceType($Uint8)).nil)){  )∫h=g.newInputBytes(b);    }else{  )›h=g.newInputString(c);    }  )˘    if(!(g.op===AJ)){  *    if(!g.onepass(h,d)){  *.f.put(g);  *;return($sliceType($Int)).nil;    }    }else{  *Vg.init(e);  *e    if(!g.match(h,d)){  *~f.put(g);  *ãreturn($sliceType($Int)).nil;    }    }  *û    if(e===0){  *Øf.put(g);  *ªreturn Q;    }  *·i=($sliceType($Int)).make(g.matchcap.$length,0,function(){return 0;});  +$copySlice(i,g.matchcap);  +f.put(g);  +(return i;    };AM.prototype.doExecute=function(a,b,c,d,e){return this.$val.doExecute(a,b,c,d,e);}; 0Regexp	doExecute0Å∑regexp:Regexpregexp:empty
+regexp:getregexp:initregexp:matchregexp:newInputBytesregexp:newInputReaderregexp:newInputStringregexp:notOnePassregexp:onepass
+regexp:put 0Çregexp.onePassPrefix0TÇ»T=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x;b="";c=false;d=0;  0wg=(e=a.Inst,f=a.Start,((f<0||f>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+f]));  0é    if(!((g.Op===3))||(((((g.Arg<<24>>>24))&4)>>>0)===0)){  0È    h="";i=g.Op===4;j=(a.Start>>>0);b=h;c=i;d=j;return[b,c,d];    }  1"d=g.Out;  1.g=(k=a.Inst,((d<0||d>=k.$length)?$throwRuntimeError("index out of range"):k.$array[k.$offset+d]));  1?while(g.Op===6){  1^d=g.Out;  1kg=(l=a.Inst,((d<0||d>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+d]));    }  1≤    if(!((V(g)===7))||!((g.Rune.$length===1))){  1Á    m="";n=g.Op===4;o=(a.Start>>>0);b=m;c=n;d=o;return[b,c,d];    }  2E  2Ip=new D.Buffer.Ptr();$copy(p,new D.Buffer.Ptr(),D.Buffer);  2[while((V(g)===7)&&(g.Rune.$length===1)&&((((g.Arg<<16>>>16)&1)>>>0)===0)){  2Ωp.WriteRune((q=g.Rune,((0<0||0>=q.$length)?$throwRuntimeError("index out of range"):q.$array[q.$offset+0])));  2ÿr=g.Out;s=(t=a.Inst,u=g.Out,((u<0||u>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+u]));d=r;g=s;    }  2˙    v=p.String();w=(g.Op===3)&&!((((((g.Arg<<24>>>24))&4)>>>0)===0));x=d;b=v;c=w;d=x;return[b,c,d];    }; 0onePassPrefix0bytes:Buffer
+regexp:iop 0Ç;regexp.onePassNext0UÇU=function(a,b){var c,d;  5c=a.Inst.MatchRunePos(b);  5(    if(c>=0){  59return(d=a.Next,((c<0||c>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+c]));    }  5Q    if(a.Inst.Op===1){  5treturn a.Inst.Out;    }  5Öreturn 0;    }; 0onePassNext0  0Åé
+regexp.iop0VmV=function(a){var b,c;  5ªb=a.Op;  5«c=b;  5‘if(c===8||c===9||c===10){  6b=7;    }  63return b;    }; 0iop0  0ÅË(*regexp.queueOnePass).empty0 ÅíW.Ptr.prototype.empty=function(){var a;  6Ía=this;  7return a.nextIndex>=a.size;    };W.prototype.empty=function(){return this.$val.empty();}; 0queueOnePassempty0regexp:queueOnePass 0Ç|(*regexp.queueOnePass).next0 Ç'W.Ptr.prototype.next=function(){var a,b,c,d;a=0;  71b=this;  7Wa=(c=b.dense,d=b.nextIndex,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]));  7q  7qb.nextIndex=b.nextIndex+(1)>>>0;  7Äreturn a;    };W.prototype.next=function(){return this.$val.next();}; 0queueOnePassnext0regexp:queueOnePass 0ÅÈ(*regexp.queueOnePass).clear0 ÅìW.Ptr.prototype.clear=function(){var a;  7êa=this;  7¨a.size=0;  7∏a.nextIndex=0;    };W.prototype.clear=function(){return this.$val.clear();}; 0queueOnePassclear0regexp:queueOnePass 0Å€(*regexp.queueOnePass).reset0 ÅÖW.Ptr.prototype.reset=function(){var a;  7—a=this;  7Ìa.nextIndex=0;    };W.prototype.reset=function(){return this.$val.reset();}; 0queueOnePassreset0regexp:queueOnePass 0Çc(*regexp.queueOnePass).contains0 ÇW.Ptr.prototype.contains=function(a){var b,c,d,e,f;  8b=this;  82    if(a>=(b.sparse.$length>>>0)){  8Treturn false;    }  8ereturn(c=b.sparse,((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]))<b.size&&((d=b.dense,e=(f=b.sparse,((a<0||a>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+a])),((e<0||e>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+e]))===a);    };W.prototype.contains=function(a){return this.$val.contains(a);}; 0queueOnePasscontains0regexp:queueOnePass 0Ç*(*regexp.queueOnePass).insert0 ÅØW.Ptr.prototype.insert=function(a){var b;  8ßb=this;  8Ã    if(!b.contains(a)){  8‚b.insertNew(a);    }    };W.prototype.insert=function(a){return this.$val.insert(a);}; 0queueOnePassinsert08regexp:containsregexp:insertNewregexp:queueOnePass 0Ç (*regexp.queueOnePass).insertNew0 ÇºW.Ptr.prototype.insertNew=function(a){var b,c,d,e;  8˝b=this;  9%    if(a>=(b.sparse.$length>>>0)){  9Greturn;    }  9R(c=b.sparse,(a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]=b.size);  9h(d=b.dense,e=b.size,(e<0||e>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+e]=a);  9}  9}b.size=b.size+(1)>>>0;    };W.prototype.insertNew=function(a){return this.$val.insertNew(a);}; 0queueOnePass	insertNew0regexp:queueOnePass 0Ç regexp.newQueue0XÅøX=function(a){var b;b=($ptrType(W)).nil;  9∂    b=new W.Ptr(($sliceType($Uint32)).make(a,0,function(){return 0;}),($sliceType($Uint32)).make(a,0,function(){return 0;}),0,0);return b;    }; 0
+newQueue0regexp:queueOnePass 0Ç¸regexp.mergeRuneSets0AAÇ¶AA=function(a,b,c,d){var $deferred=[],e,f,g,h,i,j,k,l,m,n,o,p,q;try{  <le=a.$get().$length;  <àf=b.$get().$length;  <¶    if(!(((e&1)===0))||!(((f&1)===0))){  <”throw $panic(new $String("mergeRuneSets odd length []rune"));    }  =   =g=0;h=0;i=g;j=h;  =k=($sliceType($Int32)).make(0,0,function(){return 0;});  =2l=($sliceType($Uint32)).make(0,0,function(){return 0;});  =Mm=true;  =Y$deferred.push({fun:(function(){  =j    if(!m){  =vk=($sliceType($Int32)).nil;  =Ül=($sliceType($Uint32)).nil;    }    }),args:[]});  =ún=-1;  =¶o=(function(o,p,q){var r,s,t,u,v,w,x;  =Ë    if(n>0&&(r=p.$get(),s=o.$get(),((s<0||s>=r.$length)?$throwRuntimeError("index out of range"):r.$array[r.$offset+s]))<=((n<0||n>=k.$length)?$throwRuntimeError("index out of range"):k.$array[k.$offset+n])){  >return false;    }  >0k=$append(k,(t=p.$get(),u=o.$get(),((u<0||u>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+u])),(v=p.$get(),w=o.$get()+1>>0,((w<0||w>=v.$length)?$throwRuntimeError("index out of range"):v.$array[v.$offset+w])));  >xx=o;x.$set(x.$get()+(2)>>0);  >án=n+(2)>>0;  >ël=$append(l,q);  >´return true;    });  >ºwhile(i<e||j<f){  >‚  >Ìif(j>=f){  ?m=o(new($ptrType($Int))(function(){return i;},function($v){i=$v;}),a,c);      ?+}else if(i>=e){  ?Bm=o(new($ptrType($Int))(function(){return j;},function($v){j=$v;}),b,d);      ?j}else if((p=b.$get(),((j<0||j>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+j]))<(q=a.$get(),((i<0||i>=q.$length)?$throwRuntimeError("index out of range"):q.$array[q.$offset+i]))){  ?òm=o(new($ptrType($Int))(function(){return j;},function($v){j=$v;}),b,d);    }else{  ?Ãm=o(new($ptrType($Int))(function(){return i;},function($v){i=$v;}),a,c);    }  ?ˆ    if(!m){  @return[Y,Z];    }    }  @ return[k,l];    }catch($err){$pushErr($err);return[($sliceType($Int32)).nil,($sliceType($Uint32)).nil];}finally{$callDeferred($deferred);}}; 0mergeRuneSets0regexp:noNextregexp:noRune 0Çdregexp.cleanupOnePass0ABÇAB=function(a,b){var c,d,e,f,g,h,i,j;  @Ãc=b.Inst;d=0;while(d<c.$length){e=d;f=new C.Inst.Ptr();$copy(f,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]),C.Inst);  @¸g=f.Op;  Aif(g===0||g===1||g===7){      AT}else if(g===2||g===3||g===6||g===4||g===5){  A∫(h=a.Inst,((e<0||e>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+e])).Next=($sliceType($Uint32)).nil;      A’}else if(g===8||g===9||g===10){  B(i=a.Inst,((e<0||e>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+e])).Next=($sliceType($Uint32)).nil;  B8$copy((j=a.Inst,((e<0||e>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+e])),new S.Ptr(f,($sliceType($Uint32)).nil),S);    }    d++;}    }; 0cleanupOnePass0(regexp/syntax:Instregexp:onePassInst 0Ç	’regexp.onePassCopy0ACÇ	eAC=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag;  BÛb=new R.Ptr(($sliceType(S)).nil,a.Start,a.NumCap);  C7c=a.Inst;d=0;while(d<c.$length){e=new C.Inst.Ptr();$copy(e,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]),C.Inst);  CZb.Inst=$append(b.Inst,new S.Ptr(e,($sliceType($Uint32)).nil));    d++;}  Dâf=b.Inst;g=0;while(g<f.$length){h=[undefined];i=g;  D§j=(k=b.Inst,((i<0||i>=k.$length)?$throwRuntimeError("index out of range"):k.$array[k.$offset+i])).Inst.Op;  D‘if(j===0||j===1){  Em=new($ptrType($Uint32))(function(){return this.$target.Inst.Out;},function($v){this.$target.Inst.Out=$v;},(l=b.Inst,((i<0||i>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+i])));  E3h[0]=new($ptrType($Uint32))(function(){return this.$target.Inst.Arg;},function($v){this.$target.Inst.Arg=$v;},(n=b.Inst,((i<0||i>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+i])));  Eyq=new S.Ptr();$copy(q,(o=b.Inst,p=h[0].$get(),((p<0||p>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+p])),S);  Eò    if(!((q.Inst.Op===0)||(q.Inst.Op===1))){  EÊr=m;s=h[0];h[0]=r;m=s;  F$copy(q,(t=b.Inst,u=h[0].$get(),((u<0||u>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+u])),S);  F1    if(!((q.Inst.Op===0)||(q.Inst.Op===1))){  FÄg++;continue;    }    }  Fóx=new S.Ptr();$copy(x,(v=b.Inst,w=m.$get(),((w<0||w>=v.$length)?$throwRuntimeError("index out of range"):v.$array[v.$offset+w])),S);  F¯    if((x.Inst.Op===0)||(x.Inst.Op===1)){  G^g++;continue;    }  G≥aa=new($ptrType($Uint32))(function(){return this.$target.Inst.Out;},function($v){this.$target.Inst.Out=$v;},(y=b.Inst,z=h[0].$get(),((z<0||z>=y.$length)?$throwRuntimeError("index out of range"):y.$array[y.$offset+z])));  G◊ad=new($ptrType($Uint32))(function(){return this.$target.Inst.Arg;},function($v){this.$target.Inst.Arg=$v;},(ab=b.Inst,ac=h[0].$get(),((ac<0||ac>=ab.$length)?$throwRuntimeError("index out of range"):ab.$array[ab.$offset+ac])));  G˝ae=false;  H    if(q.Inst.Out===(i>>>0)){  H2ae=true;        }else if(q.Inst.Arg===(i>>>0)){  Hlae=true;  H}af=ad;ag=aa;aa=af;ad=ag;    }  H≠    if(ae){  Hºaa.$set(m.$get());    }  I$    if(m.$get()===aa.$get()){  IDh[0].$set(ad.$get());    }    }else{  D…g++;continue;    }    g++;}  Igreturn b;    }; 0onePassCopy0<regexp/syntax:Instregexp:onePassInstregexp:onePassProg 0Åœ(regexp.runeSlice).Len0 ÅåAD.prototype.Len=function(){var a;  I—a=this;  IÙreturn a.$length;    };$ptrType(AD).prototype.Len=function(){return this.$get().Len();}; 0	runeSlice0regexp:runeSlice 0Ç|(regexp.runeSlice).Less0 Ç7AD.prototype.Less=function(a,b){var c;  J
+c=this;  J-return((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a])<((b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]);    };$ptrType(AD).prototype.Less=function(a,b){return this.$get().Less(a,b);}; 0	runeSlice0regexp:runeSlice 0Ç((regexp.runeSlice).Swap0 Ç„AD.prototype.Swap=function(a,b){var c,d,e;  JHc=this;  Jkd=((b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]);e=((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]);(a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]=d;(b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]=e;    };$ptrType(AD).prototype.Swap=function(a,b){return this.$get().Swap(a,b);}; 0	runeSlice0regexp:runeSlice 0Å◊(regexp.runeSlice).Sort0 ÅàAD.prototype.Sort=function(){var a;  J≠a=this;  JƒE.Sort(a);    };$ptrType(AD).prototype.Sort=function(){return this.$get().Sort();}; 0	runeSlice0regexp:runeSlice	sort:Sort 0Ç"Âregexp.makeOnePass0AGÇ!√AG=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o;  M%    if(a.Inst.$length>=1000){  M@return AJ;    }  MW  M_b=X(a.Inst.$length);  MÜc=X(a.Inst.$length);  M≠d=$throwNilPointerError;  Mÿe=$throwNilPointerError;  N
+f=($sliceType(($sliceType($Int32)))).make(a.Inst.$length,0,function(){return($sliceType($Int32)).nil;});  N9d=(function(g,h){var i,j,k;  Nf    if(h.contains(g)){  N}return;    }  Näj=new S.Ptr();$copy(j,(i=a.Inst,((g<0||g>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+g])),S);  Nük=j.Inst.Op;  N≤if(k===0||k===1){  Nﬂh.insert(j.Inst.Out);  Nıd(j.Inst.Out,h);  Oh.insert(j.Inst.Arg);      O }else if(k===4||k===5){    }else{  OVh.insert(j.Inst.Out);    }    });  O„e=(function(g,h){var i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au,av,aw,ax,ay,az,ba,bb,bc,bd,be,bf;i=false;  Pi=true;  P(k=(j=a.Inst,((g<0||g>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+g]));  P>    if(c.contains(g)){  P^return i;    }  Pkc.insert(g);  PÉl=k.Inst.Op;  Pñswitch(0){default:if(l===0||l===1){  P√i=e(k.Inst.Out,h)&&e(k.Inst.Arg,h);  Qn=(m=h[k.Inst.Out],m!==undefined?m.v:false);  Q7p=(o=h[k.Inst.Arg],o!==undefined?o.v:false);  QR    if(n&&p){  Qpi=false;  Qbreak;    }  Q≥    if(p){  Q≈q=k.Inst.Arg;r=k.Inst.Out;k.Inst.Out=q;k.Inst.Arg=r;  QÒs=p;t=n;n=s;p=t;    }  R!    if(n){  R3u=g;(h||$throwRuntimeError("assignment to entry in nil map"))[u]={k:u,v:true};  RDk.Inst.Op=1;    }  R©v=AA(new($ptrType(($sliceType($Int32))))(function(){return(x=k.Inst.Out,((x<0||x>=this.$target.$length)?$throwRuntimeError("index out of range"):this.$target.$array[this.$target.$offset+x]));},function($v){(w=k.Inst.Out,(w<0||w>=this.$target.$length)?$throwRuntimeError("index out of range"):this.$target.$array[this.$target.$offset+w]=$v);},f),new($ptrType(($sliceType($Int32))))(function(){return(z=k.Inst.Arg,((z<0||z>=this.$target.$length)?$throwRuntimeError("index out of range"):this.$target.$array[this.$target.$offset+z]));},function($v){(y=k.Inst.Arg,(y<0||y>=this.$target.$length)?$throwRuntimeError("index out of range"):this.$target.$array[this.$target.$offset+y]=$v);},f),k.Inst.Out,k.Inst.Arg);(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=v[0];k.Next=v[1];  S#    if(k.Next.$length>0&&((aa=k.Next,((0<0||0>=aa.$length)?$throwRuntimeError("index out of range"):aa.$array[aa.$offset+0]))===4294967295)){  S^i=false;  Smbreak;    }      Sz}else if(l===2||l===6){  S¶i=e(k.Inst.Out,h);  S¡ac=g;(h||$throwRuntimeError("assignment to entry in nil map"))[ac]={k:ac,v:(ab=h[k.Inst.Out],ab!==undefined?ab.v:false)};  T(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=$appendSlice(new($sliceType($Int32))([]),(ad=k.Inst.Out,((ad<0||ad>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+ad])));  TOk.Next=new($sliceType($Uint32))([]);  Ti  Tmaf=(ae=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]).$length/2,(ae===ae&&ae!==1/0&&ae!==-1/0)?ae>>0:$throwRuntimeError("integer divide by zero"));while(af>=0){  Tük.Next=$append(k.Next,k.Inst.Out);      Tï  Tïaf=af-(1)>>0;}      TŒ}else if(l===3){  TÌi=e(k.Inst.Out,h);  Uah=g;(h||$throwRuntimeError("assignment to entry in nil map"))[ah]={k:ah,v:(ag=h[k.Inst.Out],ag!==undefined?ag.v:false)};  U(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=$appendSlice(new($sliceType($Int32))([]),(ai=k.Inst.Out,((ai<0||ai>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+ai])));  Uak.Next=new($sliceType($Uint32))([]);  U{  Uak=(aj=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]).$length/2,(aj===aj&&aj!==1/0&&aj!==-1/0)?aj>>0:$throwRuntimeError("integer divide by zero"));while(ak>=0){  U±k.Next=$append(k.Next,k.Inst.Out);      Uß  Ußak=ak-(1)>>0;}      U‡}else if(l===4||l===5){  Val=g;(h||$throwRuntimeError("assignment to entry in nil map"))[al]={k:al,v:k.Inst.Op===4};  V2break;      V:}else if(l===7){  VSi=e(k.Inst.Out,h);  Vnam=g;(h||$throwRuntimeError("assignment to entry in nil map"))[am]={k:am,v:false};  V    if(k.Next.$length>0){  Võbreak;    }  V©    if(k.Inst.Rune.$length===0){  V∆(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=new($sliceType($Int32))([]);  VÊk.Next=new($sliceType($Uint32))([k.Inst.Out]);  W	break;    }  Wan=($sliceType($Int32)).make(0,0,function(){return 0;});  W3    if((k.Inst.Rune.$length===1)&&!(((((k.Inst.Arg<<16>>>16)&1)>>>0)===0))){  Wap=(ao=k.Inst.Rune,((0<0||0>=ao.$length)?$throwRuntimeError("index out of range"):ao.$array[ao.$offset+0]));  Wñan=$append(an,ap,ap);  W∏  Wºaq=F.SimpleFold(ap);while(!((aq===ap))){  Xan=$append(an,aq,aq);      W‰aq=F.SimpleFold(aq);}  X/E.Sort($subslice(new AD(an.$array),an.$offset,an.$offset+an.$length));    }else{  X[an=$appendSlice(an,k.Inst.Rune);    }  Xá(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=an;  X£k.Next=new($sliceType($Uint32))([]);  XΩ  X¡as=(ar=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]).$length/2,(ar===ar&&ar!==1/0&&ar!==-1/0)?ar>>0:$throwRuntimeError("integer divide by zero"));while(as>=0){  XÛk.Next=$append(k.Next,k.Inst.Out);      XÈ  XÈas=as-(1)>>0;}  Y#k.Inst.Op=7;      Y?}else if(l===8){  YYi=e(k.Inst.Out,h);  Ytat=g;(h||$throwRuntimeError("assignment to entry in nil map"))[at]={k:at,v:false};  YÖ    if(k.Next.$length>0){  Y°break;    }  YØau=new($sliceType($Int32))([]);  Y„    if(!(((((k.Inst.Arg<<16>>>16)&1)>>>0)===0))){  Zaw=(av=k.Inst.Rune,((0<0||0>=av.$length)?$throwRuntimeError("index out of range"):av.$array[av.$offset+0]));  Z/au=$append(au,aw,aw);  ZQ  ZUax=F.SimpleFold(aw);while(!((ax===aw))){  Z†au=$append(au,ax,ax);      Z}ax=F.SimpleFold(ax);}  Z»E.Sort($subslice(new AD(au.$array),au.$offset,au.$offset+au.$length));    }else{  ZÙau=$append(au,(ay=k.Inst.Rune,((0<0||0>=ay.$length)?$throwRuntimeError("index out of range"):ay.$array[ay.$offset+0])),(az=k.Inst.Rune,((0<0||0>=az.$length)?$throwRuntimeError("index out of range"):az.$array[az.$offset+0])));    }  [.(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=au;  [Jk.Next=new($sliceType($Uint32))([]);  [d  [hbb=(ba=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]).$length/2,(ba===ba&&ba!==1/0&&ba!==-1/0)?ba>>0:$throwRuntimeError("integer divide by zero"));while(bb>=0){  [ök.Next=$append(k.Next,k.Inst.Out);      [ê  [êbb=bb-(1)>>0;}  [ k.Inst.Op=7;      [Ê}else if(l===9){  \i=e(k.Inst.Out,h);  \bc=g;(h||$throwRuntimeError("assignment to entry in nil map"))[bc]={k:bc,v:false};  \.    if(k.Next.$length>0){  \Jbreak;    }  \X(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=$appendSlice(new($sliceType($Int32))([]),AF);  \ãk.Next=new($sliceType($Uint32))([k.Inst.Out]);      \¨}else if(l===10){  \Õi=e(k.Inst.Out,h);  \Ëbd=g;(h||$throwRuntimeError("assignment to entry in nil map"))[bd]={k:bd,v:false};  \˘    if(k.Next.$length>0){  ]break;    }  ]#(g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]=$appendSlice(new($sliceType($Int32))([]),AE);  ][k.Next=new($sliceType($Uint32))([]);  ]u  ]ybf=(be=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]).$length/2,(be===be&&be!==1/0&&be!==-1/0)?be>>0:$throwRuntimeError("integer divide by zero"));while(bf>=0){  ]´k.Next=$append(k.Next,k.Inst.Out);      ]°  ]°bf=bf-(1)>>0;}    }}  ]ﬁreturn i;    });  ]Íb.clear();  ]˝b.insert((a.Start>>>0));  ^ g=new $Map();  ^Iwhile(!b.empty()){  ^dh=b.next();  ^}j=new S.Ptr();$copy(j,(i=a.Inst,((h<0||h>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+h])),S);  ^íc.clear();  ^ß    if(!e(h,g)){  ^≈a=AJ;  ^◊break;    }  ^„k=j.Inst.Op;  ^ˆif(k===0||k===1){  _#b.insert(j.Inst.Out);  _Ab.insert(j.Inst.Arg);      _^}else if(k===2||k===3||k===6){  _°b.insert(j.Inst.Out);      _æ}else if(k===4){      _◊}else if(k===5){      _Ô}else if(k===7||k===8||k===9||k===10){    }else{    }    }  `W    if(!(a===AJ)){  `nl=a.Inst;m=0;while(m<l.$length){n=m;  `å(o=a.Inst,((n<0||n>=o.$length)?$throwRuntimeError("index out of range"):o.$array[o.$offset+n])).Inst.Rune=((n<0||n>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+n]);    m++;}    }  `µreturn a;    }; 0makeOnePass0ÅÌregexp:anyRuneregexp:anyRuneNotNLregexp:clearregexp:containsregexp:emptyregexp:insertregexp:mergeRuneSetsregexp:newQueueregexp:nextregexp:notOnePassregexp:onePassInstregexp:runeSlice	sort:Sortunicode:SimpleFold 0Çdregexp.walk0AHÇ˘AH=function(a,b){var c,d;  aj  anc=$throwNilPointerError;  aÇd=X(a.Inst.$length);  a©c=(function(e){var f,g,h,i,j,k,l,m,n;  a≈    if(d.contains(e)){  a‰return;    }  aÒd.insert(e);  bg=new C.Inst.Ptr();$copy(g,(f=a.Inst,((e<0||e>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+e])),C.Inst);  b h=g.Op;  b3if(h===0||h===1){  b`i=b;j=0;while(j<i.$length){k=((j<0||j>=i.$length)?$throwRuntimeError("index out of range"):i.$array[i.$offset+j]);  b~k(e,g.Out);  bík(e,g.Arg);    j++;}  b™c(g.Out);  bΩc(g.Arg);    }else{  b€l=b;m=0;while(m<l.$length){n=((m<0||m>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+m]);  b˘n(e,g.Out);    m++;}  cc(g.Out);    }    });  c)c((a.Start>>>0));    }; 0walk0Eregexp/syntax:Instregexp:containsregexp:insertregexp:newQueue 0Åˇregexp.find0AIÅ⁄AI=function(a,b){var c,d,e,f;c=($sliceType($Uint32)).nil;  cﬁc=new($sliceType($Uint32))([]);  cıd=a.Inst;e=0;while(e<d.$length){f=e;  d    if(b(a,f)){  d'c=$append(c,(f>>>0));    }    e++;}  dUreturn c;    }; 0find0  0Çvregexp.compileOnePass0AKÇ¬AK=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o;b=($ptrType(R)).nil;  f    if(a.Start===0){  f5    b=AJ;return b;    }  fj    if(!(((c=a.Inst,d=a.Start,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d])).Op===3))||!((((((e=a.Inst,f=a.Start,((f<0||f>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+f])).Arg<<24>>>24)&4)>>>0)===4))){  g    b=AJ;return b;    }  gWg=a.Inst;h=0;while(h<g.$length){i=new C.Inst.Ptr();$copy(i,((h<0||h>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+h]),C.Inst);  gzl=(j=a.Inst,k=i.Out,((k<0||k>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+k])).Op;  gúm=i.Op;  g˜if(m===0||m===1){  h$    if((l===4)||((n=a.Inst,o=i.Arg,((o<0||o>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+o])).Op===4)){  hu    b=AJ;return b;    }      hé}else if(m===3){  h≠    if(l===4){  h–    if((((i.Arg<<24>>>24)&8)>>>0)===8){  ih++;continue;    }  i1    b=AJ;return b;    }    }else{  gª    if(l===4){  gﬁ    b=AJ;return b;    }    }    h++;}  i—b=AC(a);  j(b=AG(b);  j=    if(!(b===AJ)){  jTAB(b,a);    }  jp    b=b;return b;    }; 0compileOnePass0zregexp/syntax:Instregexp:cleanupOnePassregexp:makeOnePassregexp:notOnePassregexp:onePassCopyregexp:onePassProg 0Å»(*regexp.Regexp).String0 ÅäAM.Ptr.prototype.String=function(){var a;  zía=this;  z±return a.expr;    };AM.prototype.String=function(){return this.$val.String();}; 0Regexp0regexp:Regexp 0yregexp.Compile0AN?AN=$pkg.Compile=function(a){  }=return AP(a,212,false);    }; 0	Compile0regexp:compile 0ÅÖregexp.CompilePOSIX0AOAAO=$pkg.CompilePOSIX=function(a){  ÅÀreturn AP(a,0,true);    }; 0CompilePOSIX0regexp:compile 0ÅÕ(*regexp.Regexp).Longest0 ÅéAM.Ptr.prototype.Longest=function(){var a;  Éa=this;  Éa.longest=true;    };AM.prototype.Longest=function(){return this.$val.Longest();}; 0Regexp0regexp:Regexp 0ÇIregexp.compile0APÇ<AP=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n;  ÉÅd=C.Parse(a,b);e=d[0];f=d[1];  É¶    if(!($interfaceIsEqual(f,null))){  É∏return[($ptrType(AM)).nil,f];    }  ÉÃg=e.MaxCap();  É„h=e.CapNames();  Éˇe=e.Simplify();  Ñi=C.Compile(e);j=i[0];f=i[1];  Ñ4    if(!($interfaceIsEqual(f,null))){  ÑFreturn[($ptrType(AM)).nil,f];    }  ÑZk=new AM.Ptr(a,j,AK(j),"",($sliceType($Uint8)).nil,false,0,0,j.StartCond(),g,h,c,new I.Mutex.Ptr(),($sliceType(($ptrType(O)))).nil);  Ö)    if(k.onepass===AJ){  ÖMl=j.Prefix();k.prefix=l[0];k.prefixComplete=l[1];    }else{  Öém=T(j);k.prefix=m[0];k.prefixComplete=m[1];k.prefixEnd=m[2];    }  Öﬂ    if(!(k.prefix==="")){  ÜNk.prefixBytes=new($sliceType($Uint8))($stringToBytes(k.prefix));  Ü{n=J.DecodeRuneInString(k.prefix);k.prefixRune=n[0];    }  ÜΩreturn[k,null];    }; 0	compile0Å‡regexp/syntax:Compileregexp/syntax:Parseregexp/syntax:Progregexp:Regexpregexp:compileOnePassregexp:machineregexp:notOnePassregexp:onePassPrefixregexp:onePassProg
+sync:Mutexunicode/utf8:DecodeRuneInString 0Ç(*regexp.Regexp).get0 Ç≈AM.Ptr.prototype.get=function(){var a,b,c,d,e,f;  á]a=this;  á{a.mu.Lock();  áâ  áåb=a.machine.$length;    if(b>0){  á¨e=(c=a.machine,d=b-1>>0,((d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]));  á√a.machine=$subslice(a.machine,0,(b-1>>0));  á„a.mu.Unlock();  áÙreturn e;    }  àa.mu.Unlock();  àf=P(a.prog,a.onepass);  à8f.re=a;  àCreturn f;    };AM.prototype.get=function(){return this.$val.get();}; 0Regexpget0#regexp:Regexpregexp:progMachine 0Å˘(*regexp.Regexp).put0 ÅπAM.Ptr.prototype.put=function(a){var b;  âGb=this;  âfb.mu.Lock();  âtb.machine=$append(b.machine,a);  âòb.mu.Unlock();    };AM.prototype.put=function(a){return this.$val.put(a);}; 0Regexpput0regexp:Regexp 0Ç%regexp.MustCompile0AQÅ‘AQ=$pkg.MustCompile=function(a){var b,c,d;  äÇb=AN(a);c=b[0];d=b[1];  ä°    if(!($interfaceIsEqual(d,null))){  äµthrow $panic(new $String("regexp: Compile("+AS(a)+"): "+d.Error()));    }  ä¯return c;    }; 0MustCompile0regexp:Compileregexp:quote 0Ç>regexp.MustCompilePOSIX0ARÅﬁAR=$pkg.MustCompilePOSIX=function(a){var b,c,d;  ãb=AO(a);c=b[0];d=b[1];  å    if(!($interfaceIsEqual(d,null))){  å(throw $panic(new $String("regexp: CompilePOSIX("+AS(a)+"): "+d.Error()));    }  åpreturn c;    }; 0MustCompilePOSIX0#regexp:CompilePOSIXregexp:quote 0Å≥regexp.quote0AShAS=function(a){  å†    if(G.CanBackquote(a)){  åøreturn"`"+a+"`";    }  åÿreturn G.Quote(a);    }; 0quote0%strconv:CanBackquotestrconv:Quote 0ÅŸ(*regexp.Regexp).NumSubexp0 ÅòAM.Ptr.prototype.NumSubexp=function(){var a;  çIa=this;  çhreturn a.numSubexp;    };AM.prototype.NumSubexp=function(){return this.$val.NumSubexp();}; 0Regexp0regexp:Regexp 0Å„(*regexp.Regexp).SubexpNames0 Å†AM.Ptr.prototype.SubexpNames=function(){var a;  é’a=this;  é˚return a.subexpNames;    };AM.prototype.SubexpNames=function(){return this.$val.SubexpNames();}; 0Regexp0regexp:Regexp 0Çû(*regexp.inputString).step0 Ç+AU.Ptr.prototype.step=function(a){var b,c;  ê‡b=this;  ë    if(a<b.str.length){  ë%c=b.str.charCodeAt(a);  ë7    if(c<128){  ëQreturn[(c>>0),1];    }  ëireturn J.DecodeRuneInString(b.str.substring(a));    }  ëôreturn[-1,0];    };AU.prototype.step=function(a){return this.$val.step(a);}; 0inputStringstep05regexp:inputStringunicode/utf8:DecodeRuneInString 0Ç$(*regexp.inputString).canCheckPrefix0 Å†AU.Ptr.prototype.canCheckPrefix=function(){var a;  ë∂a=this;  ëﬂreturn true;    };AU.prototype.canCheckPrefix=function(){return this.$val.canCheckPrefix();}; 0inputStringcanCheckPrefix0regexp:inputString 0Ç(*regexp.inputString).hasPrefix0 Å´AU.Ptr.prototype.hasPrefix=function(a){var b;  ëÙb=this;  í"return H.HasPrefix(b.str,a.prefix);    };AU.prototype.hasPrefix=function(a){return this.$val.hasPrefix(a);}; 0inputString	hasPrefix0'regexp:inputStringstrings:HasPrefix 0Ç(*regexp.inputString).index0 ÅÆAU.Ptr.prototype.index=function(a,b){var c;  íVc=this;  íàreturn H.Index(c.str.substring(b),a.prefix);    };AU.prototype.index=function(a,b){return this.$val.index(a,b);}; 0inputStringindex0#regexp:inputStringstrings:Index 0Ç>(*regexp.inputString).context0 ÇÇAU.Ptr.prototype.context=function(a){var b,c,d,e,f,g,h;  íæb=this;  íÒc=-1;d=-1;e=c;f=d;  ì    if(a>0&&a<=b.str.length){  ì5g=J.DecodeLastRuneInString(b.str.substring(0,a));e=g[0];    }  ìj    if(a<b.str.length){  ìÇh=J.DecodeRuneInString(b.str.substring(a));f=h[0];    }  ì≥return C.EmptyOpContext(e,f);    };AU.prototype.context=function(a){return this.$val.context(a);}; 0inputStringcontext0xregexp/syntax:EmptyOpContextregexp:inputString#unicode/utf8:DecodeLastRuneInStringunicode/utf8:DecodeRuneInString 0ÇŸ(*regexp.inputBytes).step0 ÇqAV.Ptr.prototype.step=function(a){var b,c,d;  î+b=this;  îW    if(a<b.str.$length){  îod=(c=b.str,((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]));  îÅ    if(d<128){  îõreturn[(d>>0),1];    }  î≥return J.DecodeRune($subslice(b.str,a));    }  î€return[-1,0];    };AV.prototype.step=function(a){return this.$val.step(a);}; 0
+inputBytesstep0,regexp:inputBytesunicode/utf8:DecodeRune 0Ç#(*regexp.inputBytes).canCheckPrefix0 Å†AV.Ptr.prototype.canCheckPrefix=function(){var a;  î¯a=this;  ï return true;    };AV.prototype.canCheckPrefix=function(){return this.$val.canCheckPrefix();}; 0
+inputBytescanCheckPrefix0regexp:inputBytes 0Ç(*regexp.inputBytes).hasPrefix0 Å∞AV.Ptr.prototype.hasPrefix=function(a){var b;  ï5b=this;  ïbreturn D.HasPrefix(b.str,a.prefixBytes);    };AV.prototype.hasPrefix=function(a){return this.$val.hasPrefix(a);}; 0
+inputBytes	hasPrefix0$bytes:HasPrefixregexp:inputBytes 0Ç(*regexp.inputBytes).index0 Å≥AV.Ptr.prototype.index=function(a,b){var c;  ïôc=this;  ï return D.Index($subslice(c.str,b),a.prefixBytes);    };AV.prototype.index=function(a,b){return this.$val.index(a,b);}; 0
+inputBytesindex0 bytes:Indexregexp:inputBytes 0Ç(*regexp.inputBytes).context0 ÇtAV.Ptr.prototype.context=function(a){var b,c,d,e,f,g,h;  ñb=this;  ñ5c=-1;d=-1;e=c;f=d;  ñU    if(a>0&&a<=b.str.$length){  ñyg=J.DecodeLastRune($subslice(b.str,0,a));e=g[0];    }  ñ¶    if(a<b.str.$length){  ñæh=J.DecodeRune($subslice(b.str,a));f=h[0];    }  ñÁreturn C.EmptyOpContext(e,f);    };AV.prototype.context=function(a){return this.$val.context(a);}; 0
+inputBytescontext0gregexp/syntax:EmptyOpContextregexp:inputBytesunicode/utf8:DecodeLastRuneunicode/utf8:DecodeRune 0Ç∂(*regexp.inputReader).step0 ÇdAW.Ptr.prototype.step=function(a){var b,c,d,e,f;  óÅb=this;  óÆ    if(!b.atEOT&&!((a===b.pos))){  óŒreturn[-1,0];    }  óÁc=b.r.ReadRune();d=c[0];e=c[1];f=c[2];  ò    if(!($interfaceIsEqual(f,null))){  òb.atEOT=true;  ò'return[-1,0];    }  ò?b.pos=b.pos+(e)>>0;  òKreturn[d,e];    };AW.prototype.step=function(a){return this.$val.step(a);}; 0inputReaderstep0regexp:inputReader 0Ç$(*regexp.inputReader).canCheckPrefix0 Å°AW.Ptr.prototype.canCheckPrefix=function(){var a;  ò`a=this;  òâreturn false;    };AW.prototype.canCheckPrefix=function(){return this.$val.canCheckPrefix();}; 0inputReadercanCheckPrefix0regexp:inputReader 0Å(*regexp.inputReader).hasPrefix0 ÅïAW.Ptr.prototype.hasPrefix=function(a){var b;  òüb=this;  òÕreturn false;    };AW.prototype.hasPrefix=function(a){return this.$val.hasPrefix(a);}; 0inputReader	hasPrefix0regexp:inputReader 0Åﬁ(*regexp.inputReader).index0 ÅãAW.Ptr.prototype.index=function(a,b){var c;  ò„c=this;  ôreturn-1;    };AW.prototype.index=function(a,b){return this.$val.index(a,b);}; 0inputReaderindex0regexp:inputReader 0Å‚(*regexp.inputReader).context0 ÅãAW.Ptr.prototype.context=function(a){var b;  ô(b=this;  ô[return 0;    };AW.prototype.context=function(a){return this.$val.context(a);}; 0inputReadercontext0regexp:inputReader 0Ç"(*regexp.Regexp).LiteralPrefix0 Å›AM.Ptr.prototype.LiteralPrefix=function(){var a,b,c,d,e;a="";b=false;  ö1c=this;  öo    d=c.prefix;e=c.prefixComplete;a=d;b=e;return[a,b];    };AM.prototype.LiteralPrefix=function(){return this.$val.LiteralPrefix();}; 0Regexp0regexp:Regexp 0Ç4(*regexp.Regexp).MatchReader0 ÅﬂAM.Ptr.prototype.MatchReader=function(a){var b;  öÚb=this;  õ#return!(b.doExecute(a,($sliceType($Uint8)).nil,"",0,0)===($sliceType($Int)).nil);    };AM.prototype.MatchReader=function(a){return this.$val.MatchReader(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç6(*regexp.Regexp).MatchString0 Å·AM.Ptr.prototype.MatchString=function(a){var b;  õôb=this;  õ√return!(b.doExecute(null,($sliceType($Uint8)).nil,a,0,0)===($sliceType($Int)).nil);    };AM.prototype.MatchString=function(a){return this.$val.MatchString(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç(*regexp.Regexp).Match0 ÅπAM.Ptr.prototype.Match=function(a){var b;  ú8b=this;  ú\return!(b.doExecute(null,a,"",0,0)===($sliceType($Int)).nil);    };AM.prototype.Match=function(a){return this.$val.Match(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç=regexp.MatchReader0AXÅ˙AX=$pkg.MatchReader=function(a,b){var c,d,e,f,g,h,i,j;c=false;d=null;  ùíe=AN(a);f=e[0];d=e[1];  ùØ    if(!($interfaceIsEqual(d,null))){  ù¡    g=false;h=d;c=g;d=h;return[c,d];    }  ù◊    i=f.MatchReader(b);j=null;c=i;d=j;return[c,d];    }; 0MatchReader0regexp:Compile 0Ç=regexp.MatchString0AYÅ˙AY=$pkg.MatchString=function(a,b){var c,d,e,f,g,h,i,j;c=false;d=null;  û‡e=AN(a);f=e[0];d=e[1];  û˝    if(!($interfaceIsEqual(d,null))){  ü    g=false;h=d;c=g;d=h;return[c,d];    }  ü%    i=f.MatchString(b);j=null;c=i;d=j;return[c,d];    }; 0MatchString0regexp:Compile 0Ç%regexp.Match0AZÅÓAZ=$pkg.Match=function(a,b){var c,d,e,f,g,h,i,j;c=false;d=null;  †&e=AN(a);f=e[0];d=e[1];  †C    if(!($interfaceIsEqual(d,null))){  †U    g=false;h=d;c=g;d=h;return[c,d];    }  †k    i=f.Match(b);j=null;c=i;d=j;return[c,d];    }; 0Match0regexp:Compile 0Ç1!(*regexp.Regexp).ReplaceAllString0 Ç∑AM.Ptr.prototype.ReplaceAllString=function(a,b){var c,d,e,f;  °qc=this;  °™d=2;  °≤    if(H.Index(b,"$")>=0){  °◊d=(e=(c.numSubexp+1>>0),(((2>>>16<<16)*e>>0)+(2<<16>>>16)*e)>>0);    }  °ˆf=c.replaceAll(($sliceType($Uint8)).nil,a,d,(function(f,g){  ¢?return c.expand(f,b,($sliceType($Uint8)).nil,a,g);    }));  ¢qreturn $bytesToString(f);    };AM.prototype.ReplaceAllString=function(a,b){return this.$val.ReplaceAllString(a,b);}; 0Regexp0@regexp:Regexpregexp:expandregexp:replaceAllstrings:Index 0Çª((*regexp.Regexp).ReplaceAllLiteralString0 ÇXAM.Ptr.prototype.ReplaceAllLiteralString=function(a,b){var c;  £Jc=this;  £äreturn $bytesToString(c.replaceAll(($sliceType($Uint8)).nil,a,2,(function(d,e){  £‹return $appendSlice(d,new($sliceType($Uint8))($stringToBytes(b)));    })));    };AM.prototype.ReplaceAllLiteralString=function(a,b){return this.$val.ReplaceAllLiteralString(a,b);}; 0Regexp0"regexp:Regexpregexp:replaceAll 0Çr%(*regexp.Regexp).ReplaceAllStringFunc0 ÇAM.Ptr.prototype.ReplaceAllStringFunc=function(a,b){var c,d;  •c=this;  •\d=c.replaceAll(($sliceType($Uint8)).nil,a,2,(function(d,e){  ••return $appendSlice(d,new($sliceType($Uint8))($stringToBytes(b(a.substring(((0<0||0>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+0]),((1<0||1>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+1]))))));    }));  •ﬁreturn $bytesToString(d);    };AM.prototype.ReplaceAllStringFunc=function(a,b){return this.$val.ReplaceAllStringFunc(a,b);}; 0Regexp0"regexp:Regexpregexp:replaceAll 0Çπ(*regexp.Regexp).replaceAll0 ÇAM.Ptr.prototype.replaceAll=function(a,b,c,d){var e,f,g,h,i,j,k,l,m;  •¯e=this;  ¶ef=0;  ¶°g=0;  ¶ﬂ  ¶„h=($sliceType($Uint8)).nil;  ¶Ô  ¶Ûi=0;  ¶ˇ    if(!(a===($sliceType($Uint8)).nil)){  ßi=a.$length;    }else{  ß1i=b.length;    }  ßGwhile(g<=i){  ßcj=e.doExecute(null,a,b,g,c);  ßö    if(j.$length===0){  ßÆbreak;    }  ®    if(!(a===($sliceType($Uint8)).nil)){  ®h=$appendSlice(h,$subslice(a,f,((0<0||0>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+0])));    }else{  ®Th=$appendSlice(h,new($sliceType($Uint8))($stringToBytes(b.substring(f,((0<0||0>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+0])))));    }  ©r    if(((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1])>f||(((0<0||0>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+0])===0)){  ©õh=d(h,j);    }  ©¥f=((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1]);  ™  ™k=0;  ™     if(!(a===($sliceType($Uint8)).nil)){  ™4l=J.DecodeRune($subslice(a,g));k=l[1];    }else{  ™om=J.DecodeRuneInString(b.substring(g));k=m[1];    }  ™©    if((g+k>>0)>((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1])){  ™»g=g+(k)>>0;        }else if((g+1>>0)>((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1])){  ´y  ´yg=g+(1)>>0;    }else{  ´ìg=((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1]);    }    }  ´Â    if(!(a===($sliceType($Uint8)).nil)){  ´¯h=$appendSlice(h,$subslice(a,f));    }else{  ¨.h=$appendSlice(h,new($sliceType($Uint8))($stringToBytes(b.substring(f))));    }  ¨\return h;    };AM.prototype.replaceAll=function(a,b,c,d){return this.$val.replaceAll(a,b,c,d);}; 0Regexp
+replaceAll0[regexp:Regexpregexp:doExecuteunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString 0Ç5(*regexp.Regexp).ReplaceAll0 ÇøAM.Ptr.prototype.ReplaceAll=function(a,b){var c,d,e,f,g;  ≠Mc=this;  ≠Äd=2;  ≠à    if(D.IndexByte(b,36)>=0){  ≠Ød=(e=(c.numSubexp+1>>0),(((2>>>16<<16)*e>>0)+(2<<16>>>16)*e)>>0);    }  ≠Œf="";  ≠€g=c.replaceAll(a,"",d,(function(g,h){  Æ#    if(!((f.length===b.$length))){  ÆCf=$bytesToString(b);    }  Æ^return c.expand(g,f,a,"",h);    }));  Æêreturn g;    };AM.prototype.ReplaceAll=function(a,b){return this.$val.ReplaceAll(a,b);}; 0Regexp0Bbytes:IndexByteregexp:Regexpregexp:expandregexp:replaceAll 0ÇS"(*regexp.Regexp).ReplaceAllLiteral0 Å˜AM.Ptr.prototype.ReplaceAllLiteral=function(a,b){var c;  ØZc=this;  Øîreturn c.replaceAll(a,"",2,(function(d,e){  Øﬁreturn $appendSlice(d,b);    }));    };AM.prototype.ReplaceAllLiteral=function(a,b){return this.$val.ReplaceAllLiteral(a,b);}; 0Regexp0"regexp:Regexpregexp:replaceAll 0Ç (*regexp.Regexp).ReplaceAllFunc0 Ç¶AM.Ptr.prototype.ReplaceAllFunc=function(a,b){var c;  ±c=this;  ±Rreturn c.replaceAll(a,"",2,(function(d,e){  ±úreturn $appendSlice(d,b($subslice(a,((0<0||0>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+0]),((1<0||1>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+1]))));    }));    };AM.prototype.ReplaceAllFunc=function(a,b){return this.$val.ReplaceAllFunc(a,b);}; 0Regexp0"regexp:Regexpregexp:replaceAll 0Åáregexp.special0BB7BB=function(a){  ≤!return D.IndexByte(BA,a)>=0;    }; 0	special0&bytes:IndexByteregexp:specialBytes 0Çfregexp.QuoteMeta0BCÇ&BC=$pkg.QuoteMeta=function(a){var b,c,d,e;  ≥_c=($sliceType($Uint8)).make((b=a.length,(((2>>>16<<16)*b>>0)+(2<<16>>>16)*b)>>0),0,function(){return 0;});  ≥æd=0;  ≥∆  ≥ e=0;while(e<a.length){  ≥Ê    if(BB(a.charCodeAt(e))){  ≥¸(d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]=92;  ¥  ¥d=d+(1)>>0;    }  ¥(d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]=a.charCodeAt(e);  ¥#  ¥#d=d+(1)>>0;      ≥ﬁ  ≥ﬁe=e+(1)>>0;}  ¥+return $bytesToString($subslice(c,0,d));    }; 0	QuoteMeta0regexp:special 0Çé(*regexp.Regexp).pad0 ÇMAM.Ptr.prototype.pad=function(a){var b,c,d;  µÄb=this;  µ¢    if(a===($sliceType($Int)).nil){  µ¡return($sliceType($Int)).nil;    }  µ–d=(c=(1+b.numSubexp>>0),(((c>>>16<<16)*2>>0)+(c<<16>>>16)*2)>>0);  µÌwhile(a.$length<d){  ∂ a=$append(a,-1);    }  ∂return a;    };AM.prototype.pad=function(a){return this.$val.pad(a);}; 0Regexppad0regexp:Regexp 0Ç5(*regexp.Regexp).allMatches0 ÇéAM.Ptr.prototype.allMatches=function(a,b,c,d){var e,f,g,h,i,j,k,l,m,n,o,p,q;  ∂xe=this;  ∂¬  ∂∆f=0;  ∂œ    if(b===($sliceType($Uint8)).nil){  ∂ﬂf=a.length;    }else{  ∂¯f=b.$length;    }  ∑
+  ∑g=0;h=0;i=-1;j=g;k=h;l=i;while(k<c&&j<=f){  ∑Im=e.doExecute(null,b,a,j,e.prog.NumCap);  ∑É    if(m.$length===0){  ∑ùbreak;    }  ∑™n=true;  ∑ª    if(((1<0||1>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+1])===j){  ∑˜    if(((0<0||0>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+0])===l){  ∏sn=false;    }  ∏ä  ∏éo=0;  ∏≤    if(b===($sliceType($Uint8)).nil){  ∏ƒp=J.DecodeRuneInString(a.substring(j,f));o=p[1];    }else{  πq=J.DecodeRune($subslice(b,j,f));o=q[1];    }  π2    if(o>0){  πEj=j+(o)>>0;    }else{  πbj=f+1>>0;    }    }else{  πÉj=((1<0||1>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+1]);    }  πöl=((1<0||1>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+1]);  π∑    if(n){  π∆d(e.pad(m));  π‚  π‚k=k+(1)>>0;    }    }    };AM.prototype.allMatches=function(a,b,c,d){return this.$val.allMatches(a,b,c,d);}; 0Regexp
+allMatches0gregexp:Regexpregexp:doExecute
+regexp:padunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString 0Ç˝(*regexp.Regexp).Find0 ÇÆAM.Ptr.prototype.Find=function(a){var b,c;  ∫Çb=this;  ∫ßc=b.doExecute(null,a,"",0,2);  ∫Ã    if(c===($sliceType($Int)).nil){  ∫‹return($sliceType($Uint8)).nil;    }  ∫Îreturn $subslice(a,((0<0||0>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+0]),((1<0||1>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+1]));    };AM.prototype.Find=function(a){return this.$val.Find(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Çó(*regexp.Regexp).FindIndex0 ÇCAM.Ptr.prototype.FindIndex=function(a){var b,c,d;b=($sliceType($Int)).nil;  ªÊc=this;  ºd=c.doExecute(null,a,"",0,2);  º:    if(d===($sliceType($Int)).nil){  ºJ    b=($sliceType($Int)).nil;return b;    }  ºY    b=$subslice(d,0,2);return b;    };AM.prototype.FindIndex=function(a){return this.$val.FindIndex(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç(*regexp.Regexp).FindString0 Ç¿AM.Ptr.prototype.FindString=function(a){var b,c;  Ω“b=this;  Ω˝c=b.doExecute(null,($sliceType($Uint8)).nil,a,0,2);  æ#    if(c===($sliceType($Int)).nil){  æ3return"";    }  æAreturn a.substring(((0<0||0>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+0]),((1<0||1>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+1]));    };AM.prototype.FindString=function(a){return this.$val.FindString(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç≈ (*regexp.Regexp).FindStringIndex0 ÇkAM.Ptr.prototype.FindStringIndex=function(a){var b,c,d;b=($sliceType($Int)).nil;  øBc=this;  øwd=c.doExecute(null,($sliceType($Uint8)).nil,a,0,2);  øù    if(d===($sliceType($Int)).nil){  ø≠    b=($sliceType($Int)).nil;return b;    }  øº    b=$subslice(d,0,2);return b;    };AM.prototype.FindStringIndex=function(a){return this.$val.FindStringIndex(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç√ (*regexp.Regexp).FindReaderIndex0 ÇiAM.Ptr.prototype.FindReaderIndex=function(a){var b,c,d;b=($sliceType($Int)).nil;  ¡c=this;  ¡>d=c.doExecute(a,($sliceType($Uint8)).nil,"",0,2);  ¡c    if(d===($sliceType($Int)).nil){  ¡s    b=($sliceType($Int)).nil;return b;    }  ¡Ç    b=$subslice(d,0,2);return b;    };AM.prototype.FindReaderIndex=function(a){return this.$val.FindReaderIndex(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Çj(*regexp.Regexp).FindSubmatch0 ÇAM.Ptr.prototype.FindSubmatch=function(a){var b,c,d,e,f,g,h,i,j;  ¬±b=this;  ¬‡c=b.doExecute(null,a,"",0,b.prog.NumCap);  √    if(c===($sliceType($Int)).nil){  √"return($sliceType(($sliceType($Uint8)))).nil;    }  √1d=($sliceType(($sliceType($Uint8)))).make((1+b.numSubexp>>0),0,function(){return($sliceType($Uint8)).nil;});  √Xe=d;f=0;while(f<e.$length){g=f;  √o    if(((((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0)<c.$length&&(h=(((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0,((h<0||h>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+h]))>=0){  √ì(g<0||g>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+g]=$subslice(a,(i=(((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0,((i<0||i>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+i])),(j=((((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0)+1>>0,((j<0||j>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+j])));    }    f++;}  √∑return d;    };AM.prototype.FindSubmatch=function(a){return this.$val.FindSubmatch(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Ç
+(*regexp.Regexp).Expand0 ÅΩAM.Ptr.prototype.Expand=function(a,b,c,d){var e;  «ve=this;  «…return e.expand(a,$bytesToString(b),c,"",d);    };AM.prototype.Expand=function(a,b,c,d){return this.$val.Expand(a,b,c,d);}; 0Regexp0regexp:Regexpregexp:expand 0Ç((*regexp.Regexp).ExpandString0 Å’AM.Ptr.prototype.ExpandString=function(a,b,c,d){var e;  »∫e=this;  …return e.expand(a,b,($sliceType($Uint8)).nil,c,d);    };AM.prototype.ExpandString=function(a,b,c,d){return this.$val.ExpandString(a,b,c,d);}; 0Regexp0regexp:Regexpregexp:expand 0Ç(*regexp.Regexp).expand0 Ç
+¨AM.Ptr.prototype.expand=function(a,b,c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;  …Mf=this;  …≠while(b.length>0){  …«g=H.Index(b,"$");  …Î    if(g<0){  …˘break;    }   a=$appendSlice(a,new($sliceType($Uint8))($stringToBytes(b.substring(0,g))));   *b=b.substring(g);   D    if(b.length>1&&(b.charCodeAt(1)===36)){   âa=$append(a,36);   £b=b.substring(2);   æcontinue;    }   Õh=BD(b);i=h[0];j=h[1];k=h[2];l=h[3];   ¯    if(!l){  À*a=$append(a,36);  ÀDb=b.substring(1);  À_continue;    }  Ànb=k;  ÀÄ    if(j>=0){  Àë    if((((((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0)+1>>0)<e.$length&&(m=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((m<0||m>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+m]))>=0){  Àƒ    if(!(c===($sliceType($Uint8)).nil)){  À⁄a=$appendSlice(a,$subslice(c,(n=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((n<0||n>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+n])),(o=((((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0)+1>>0,((o<0||o>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+o]))));    }else{  Ã$a=$appendSlice(a,new($sliceType($Uint8))($stringToBytes(d.substring((p=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((p<0||p>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+p])),(q=((((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0)+1>>0,((q<0||q>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+q]))))));    }    }    }else{  Ãtr=f.subexpNames;s=0;while(s<r.$length){t=s;u=((s<0||s>=r.$length)?$throwRuntimeError("index out of range"):r.$array[r.$offset+s]);  Ãü    if(i===u&&(((((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0)+1>>0)<e.$length&&(v=(((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0,((v<0||v>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+v]))>=0){  Ã‡    if(!(c===($sliceType($Uint8)).nil)){  Ã˜a=$appendSlice(a,$subslice(c,(w=(((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0,((w<0||w>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+w])),(x=((((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0)+1>>0,((x<0||x>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+x]))));    }else{  Õ?a=$appendSlice(a,new($sliceType($Uint8))($stringToBytes(d.substring((y=(((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0,((y<0||y>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+y])),(z=((((2>>>16<<16)*t>>0)+(2<<16>>>16)*t)>>0)+1>>0,((z<0||z>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+z]))))));    }  Õ~break;    }    s++;}    }    }  Õóa=$appendSlice(a,new($sliceType($Uint8))($stringToBytes(b)));  Õ∑return a;    };AM.prototype.expand=function(a,b,c,d,e){return this.$val.expand(a,b,c,d,e);}; 0Regexpexpand0.regexp:Regexpregexp:extractstrings:Index 0Çgregexp.extract0BDÇ˜BD=function(a){var b,c,d,e,f,g,h,i,j,k;b="";c=0;d="";e=false;  Œ®    if(a.length<2||!((a.charCodeAt(0)===36))){  ŒÕreturn[b,c,d,e];    }  Œÿf=false;  ŒË    if(a.charCodeAt(1)===123){  Œ˝f=true;  œa=a.substring(2);    }else{  œ&a=a.substring(1);    }  œ8g=0;  œ@while(g<a.length){  œUh=J.DecodeRuneInString(a.substring(g));i=h[0];j=h[1];  œÜ    if(!F.IsLetter(i)&&!F.IsDigit(i)&&!((i===95))){  œœbreak;    }  œ€g=g+(j)>>0;    }  œÈ    if(g===0){  –return[b,c,d,e];    }  –b=a.substring(0,g);  –.    if(f){  –;    if(g>=a.length||!((a.charCodeAt(g)===125))){  –~return[b,c,d,e];    }  –ã  –ãg=g+(1)>>0;    }  –¶c=0;  –Ø  –≥k=0;while(k<b.length){  –“    if(b.charCodeAt(k)<48||57<b.charCodeAt(k)||c>=100000000){  —c=-1;  —break;    }  —c=(((((c>>>16<<16)*10>>0)+(c<<16>>>16)*10)>>0)+(b.charCodeAt(k)>>0)>>0)-48>>0;      –   – k=k+(1)>>0;}  —a    if((b.charCodeAt(0)===48)&&b.length>1){  —àc=-1;    }  —ñd=a.substring(g);  —¶e=true;  —±return[b,c,d,e];    }; 0	extract0Dunicode/utf8:DecodeRuneInStringunicode:IsDigitunicode:IsLetter 0Ç<"(*regexp.Regexp).FindSubmatchIndex0 Å’AM.Ptr.prototype.FindSubmatchIndex=function(a){var b;  “b=this;  ”!return b.pad(b.doExecute(null,a,"",0,b.prog.NumCap));    };AM.prototype.FindSubmatchIndex=function(a){return this.$val.FindSubmatchIndex(a);}; 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad 0Çh#(*regexp.Regexp).FindStringSubmatch0 ÇAM.Ptr.prototype.FindStringSubmatch=function(a){var b,c,d,e,f,g,h,i,j;  ‘Éb=this;  ‘∏c=b.doExecute(null,($sliceType($Uint8)).nil,a,0,b.prog.NumCap);  ‘Î    if(c===($sliceType($Int)).nil){  ‘˚return($sliceType($String)).nil;    }  ’
+d=($sliceType($String)).make((1+b.numSubexp>>0),0,function(){return"";});  ’1e=d;f=0;while(f<e.$length){g=f;  ’H    if(((((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0)<c.$length&&(h=(((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0,((h<0||h>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+h]))>=0){  ’l(g<0||g>=d.$length)?$throwRuntimeError("index out of range"):d.$array[d.$offset+g]=a.substring((i=(((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0,((i<0||i>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+i])),(j=((((2>>>16<<16)*g>>0)+(2<<16>>>16)*g)>>0)+1>>0,((j<0||j>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+j])));    }    f++;}  ’êreturn d;    };AM.prototype.FindStringSubmatch=function(a){return this.$val.FindStringSubmatch(a);}; 0Regexp0!regexp:Regexpregexp:doExecute 0Çj((*regexp.Regexp).FindStringSubmatchIndex0 Å˝AM.Ptr.prototype.FindStringSubmatchIndex=function(a){var b;  ÷Ÿb=this;  ◊return b.pad(b.doExecute(null,($sliceType($Uint8)).nil,a,0,b.prog.NumCap));    };AM.prototype.FindStringSubmatchIndex=function(a){return this.$val.FindStringSubmatchIndex(a);}; 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad 0Çh((*regexp.Regexp).FindReaderSubmatchIndex0 Å˚AM.Ptr.prototype.FindReaderSubmatchIndex=function(a){var b;  ÿ¶b=this;  ÿ‰return b.pad(b.doExecute(a,($sliceType($Uint8)).nil,"",0,b.prog.NumCap));    };AM.prototype.FindReaderSubmatchIndex=function(a){return this.$val.FindReaderSubmatchIndex(a);}; 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad 0Ç¡(*regexp.Regexp).FindAll0 ÇnAM.Ptr.prototype.FindAll=function(a,b){var c,d;  ⁄Sc=this;  ⁄Ñ    if(b<0){  ⁄ëb=a.$length+1>>0;    }  ⁄§d=($sliceType(($sliceType($Uint8)))).make(0,10,function(){return($sliceType($Uint8)).nil;});  ⁄Ãc.allMatches("",a,b,(function(e){  ⁄˙d=$append(d,$subslice(a,((0<0||0>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+0]),((1<0||1>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+1])));    }));  €-    if(d.$length===0){  €Ereturn($sliceType(($sliceType($Uint8)))).nil;    }  €Treturn d;    };AM.prototype.FindAll=function(a,b){return this.$val.FindAll(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Ç)(*regexp.Regexp).FindAllIndex0 Ç—AM.Ptr.prototype.FindAllIndex=function(a,b){var c,d;  ‹Mc=this;  ‹Ç    if(b<0){  ‹èb=a.$length+1>>0;    }  ‹¢d=($sliceType(($sliceType($Int)))).make(0,10,function(){return($sliceType($Int)).nil;});  ‹…c.allMatches("",a,b,(function(e){  ‹˜d=$append(d,$subslice(e,0,2));    }));  ›     if(d.$length===0){  ›8return($sliceType(($sliceType($Int)))).nil;    }  ›Greturn d;    };AM.prototype.FindAllIndex=function(a,b){return this.$val.FindAllIndex(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Çæ(*regexp.Regexp).FindAllString0 ÇeAM.Ptr.prototype.FindAllString=function(a,b){var c,d;  ﬁBc=this;  ﬁy    if(b<0){  ﬁÜb=a.length+1>>0;    }  ﬁôd=($sliceType($String)).make(0,10,function(){return"";});  ﬁ¡c.allMatches(a,($sliceType($Uint8)).nil,b,(function(e){  ﬁd=$append(d,a.substring(((0<0||0>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+0]),((1<0||1>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+1])));    }));  ﬂ#    if(d.$length===0){  ﬂ;return($sliceType($String)).nil;    }  ﬂJreturn d;    };AM.prototype.FindAllString=function(a,b){return this.$val.FindAllString(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0ÇV#(*regexp.Regexp).FindAllStringIndex0 Ç¯AM.Ptr.prototype.FindAllStringIndex=function(a,b){var c,d;  ‡Oc=this;  ‡ä    if(b<0){  ‡ób=a.length+1>>0;    }  ‡™d=($sliceType(($sliceType($Int)))).make(0,10,function(){return($sliceType($Int)).nil;});  ‡—c.allMatches(a,($sliceType($Uint8)).nil,b,(function(e){  · d=$append(d,$subslice(e,0,2));    }));  ·)    if(d.$length===0){  ·Areturn($sliceType(($sliceType($Int)))).nil;    }  ·Preturn d;    };AM.prototype.FindAllStringIndex=function(a,b){return this.$val.FindAllStringIndex(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0ÇY (*regexp.Regexp).FindAllSubmatch0 Ç˛AM.Ptr.prototype.FindAllSubmatch=function(a,b){var c,d;  ‚Oc=this;  ‚ä    if(b<0){  ‚ób=a.$length+1>>0;    }  ‚™d=($sliceType(($sliceType(($sliceType($Uint8)))))).make(0,10,function(){return($sliceType(($sliceType($Uint8)))).nil;});  ‚‘c.allMatches("",a,b,(function(e){var f,g,h,i,j,k,l,m;  „g=($sliceType(($sliceType($Uint8)))).make((f=e.$length/2,(f===f&&f!==1/0&&f!==-1/0)?f>>0:$throwRuntimeError("integer divide by zero")),0,function(){return($sliceType($Uint8)).nil;});  „*h=g;i=0;while(i<h.$length){j=i;  „D    if((k=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((k<0||k>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+k]))>=0){  „](j<0||j>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+j]=$subslice(a,(l=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((l<0||l>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+l])),(m=((((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0)+1>>0,((m<0||m>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+m])));    }    i++;}  „éd=$append(d,g);    }));  „≤    if(d.$length===0){  „ return($sliceType(($sliceType(($sliceType($Uint8)))))).nil;    }  „Ÿreturn d;    };AM.prototype.FindAllSubmatch=function(a,b){return this.$val.FindAllSubmatch(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Ç:%(*regexp.Regexp).FindAllSubmatchIndex0 Ç⁄AM.Ptr.prototype.FindAllSubmatchIndex=function(a,b){var c,d;  ‰‚c=this;  Â    if(b<0){  Â,b=a.$length+1>>0;    }  Â?d=($sliceType(($sliceType($Int)))).make(0,10,function(){return($sliceType($Int)).nil;});  Âfc.allMatches("",a,b,(function(e){  Âîd=$append(d,e);    }));  Â∏    if(d.$length===0){  Â–return($sliceType(($sliceType($Int)))).nil;    }  Âﬂreturn d;    };AM.prototype.FindAllSubmatchIndex=function(a,b){return this.$val.FindAllSubmatchIndex(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Ç<&(*regexp.Regexp).FindAllStringSubmatch0 Ç€AM.Ptr.prototype.FindAllStringSubmatch=function(a,b){var c,d;  ÊÍc=this;  Á+    if(b<0){  Á8b=a.length+1>>0;    }  ÁKd=($sliceType(($sliceType($String)))).make(0,10,function(){return($sliceType($String)).nil;});  Áuc.allMatches(a,($sliceType($Uint8)).nil,b,(function(e){var f,g,h,i,j,k,l,m;  Á§g=($sliceType($String)).make((f=e.$length/2,(f===f&&f!==1/0&&f!==-1/0)?f>>0:$throwRuntimeError("integer divide by zero")),0,function(){return"";});  ÁÃh=g;i=0;while(i<h.$length){j=i;  ÁÊ    if((k=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((k<0||k>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+k]))>=0){  Áˇ(j<0||j>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+j]=a.substring((l=(((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0,((l<0||l>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+l])),(m=((((2>>>16<<16)*j>>0)+(2<<16>>>16)*j)>>0)+1>>0,((m<0||m>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+m])));    }    i++;}  Ë0d=$append(d,g);    }));  ËT    if(d.$length===0){  Ëlreturn($sliceType(($sliceType($String)))).nil;    }  Ë{return d;    };AM.prototype.FindAllStringSubmatch=function(a,b){return this.$val.FindAllStringSubmatch(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Çg+(*regexp.Regexp).FindAllStringSubmatchIndex0 ÇAM.Ptr.prototype.FindAllStringSubmatchIndex=function(a,b){var c,d;  Èìc=this;  È÷    if(b<0){  È„b=a.length+1>>0;    }  Èˆd=($sliceType(($sliceType($Int)))).make(0,10,function(){return($sliceType($Int)).nil;});  Íc.allMatches(a,($sliceType($Uint8)).nil,b,(function(e){  ÍLd=$append(d,e);    }));  Íp    if(d.$length===0){  Íàreturn($sliceType(($sliceType($Int)))).nil;    }  Íóreturn d;    };AM.prototype.FindAllStringSubmatchIndex=function(a,b){return this.$val.FindAllStringSubmatchIndex(a,b);}; 0Regexp0"regexp:Regexpregexp:allMatches 0Ç:(*regexp.Regexp).Split0 Ç¸AM.Ptr.prototype.Split=function(a,b){var c,d,e,f,g,h,i,j;  Ìwc=this;  Ìß    if(b===0){  Ìµreturn($sliceType($String)).nil;    }  Ì≈    if(c.expr.length>0&&(a.length===0)){  ÌÏreturn new($sliceType($String))([""]);    }  Ód=c.FindAllStringIndex(a,b);  Ó-e=($sliceType($String)).make(0,d.$length,function(){return"";});  ÓZf=0;  Ódg=0;  Ónh=d;i=0;while(i<h.$length){j=((i<0||i>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+i]);  Óê    if(b>0&&e.$length>=(b-1>>0)){  Óµbreak;    }  Ó¬g=((0<0||0>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+0]);  Ó”    if(!((((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1])===0))){  ÓÈe=$append(e,a.substring(f,g));    }  Ôf=((1<0||1>=j.$length)?$throwRuntimeError("index out of range"):j.$array[j.$offset+1]);    i++;}  Ô)    if(!((g===a.length))){  Ô>e=$append(e,a.substring(f));    }  Ôfreturn e;    };AM.prototype.Split=function(a,b){return this.$val.Split(a,b);}; 0Regexp0regexp:Regexp 0TestOnePassCutoffÇ/È{"Base":61304,"Files":[{"Name":"/Users/richard/gopath/src/github.com/gopherjs/gopherjs/compiler/natives/regexp/regexp_test.go","Base":1,"Size":148,"Lines":[0,13,14,29,30,39,50,52,53,92,146],"Infos":null},{"Name":"/usr/local/go/src/pkg/regexp/exec.go","Base":150,"Size":10911,"Lines":[0,55,109,159,160,175,176,185,191,208,210,211,280,365,385,402,418,420,421,456,515,580,645,665,676,688,690,691,754,807,856,877,896,908,910,911,976,998,1045,1088,1154,1207,1259,1311,1371,1372,1411,1435,1460,1485,1487,1488,1538,1560,1582,1584,1585,1636,1659,1682,1684,1685,1743,1764,1793,1816,1839,1841,1842,1899,1960,1989,2009,2063,2117,2135,2150,2161,2164,2196,2206,2208,2209,2244,2272,2295,2298,2330,2332,2333,2393,2431,2481,2496,2526,2544,2568,2578,2596,2652,2655,2667,2677,2679,2680,2716,2752,2776,2800,2823,2851,2853,2854,2912,2953,3006,3055,3079,3131,3146,3149,3168,3197,3218,3221,3250,3281,3304,3328,3349,3384,3387,3412,3427,3465,3475,3499,3502,3509,3537,3594,3641,3651,3656,3674,3726,3736,3741,3817,3875,3909,3930,3941,3947,3966,3993,4030,4035,4039,4057,4085,4109,4114,4176,4180,4218,4265,4283,4292,4296,4337,4382,4426,4435,4439,4454,4478,4500,4536,4540,4568,4571,4587,4605,4607,4608,4656,4692,4721,4739,4757,4789,4793,4796,4819,4821,4822,4892,4939,4998,5051,5116,5212,5237,5277,5299,5310,5326,5338,5342,5416,5432,5462,5474,5478,5492,5507,5523,5534,5555,5556,5581,5655,5674,5702,5707,5724,5785,5826,5847,5868,5903,5910,5916,5948,5953,5973,5974,5998,6022,6047,6071,6098,6112,6144,6163,6167,6178,6234,6238,6254,6270,6300,6304,6307,6336,6338,6339,6413,6502,6579,6596,6701,6715,6726,6729,6802,6813,6816,6817,6836,6861,6879,6890,6901,6927,6928,6948,6963,6973,6994,7017,7030,7073,7114,7155,7184,7224,7266,7270,7292,7333,7359,7388,7410,7430,7470,7491,7502,7544,7548,7652,7668,7686,7697,7711,7715,7759,7779,7783,7793,7803,7806,7816,7818,7819,7879,7920,7973,8024,8048,8100,8115,8118,8137,8166,8187,8190,8221,8244,8268,8289,8324,8327,8352,8367,8405,8415,8439,8442,8460,8483,8538,8593,8640,8696,8721,8748,8774,8810,8835,8863,8874,8894,8898,8901,8908,8931,8952,8971,8982,9003,9028,9048,9076,9098,9122,9127,9147,9171,9198,9219,9224,9249,9275,9296,9301,9328,9342,9374,9392,9413,9418,9485,9529,9564,9576,9600,9620,9643,9655,9685,9729,9750,9755,9767,9794,9834,9865,9870,9882,9886,9904,9913,9917,9955,9970,9994,10016,10052,10056,10059,10077,10079,10080,10119,10159,10217,10244,10245,10308,10347,10439,10454,10467,10482,10508,10530,10555,10565,10591,10594,10619,10645,10658,10672,10676,10686,10701,10725,10738,10752,10756,10759,10775,10787,10823,10826,10863,10886,10897,10909],"Infos":null},{"Name":"/usr/local/go/src/pkg/regexp/onepass.go","Base":11062,"Size":16197,"Lines":[0,56,57,72,73,82,91,108,116,127,129,130,184,234,235,267,333,405,459,506,507,575,643,669,691,733,782,784,785,868,934,960,973,988,990,991,1058,1117,1186,1247,1265,1344,1367,1457,1512,1515,1527,1544,1574,1587,1605,1608,1659,1711,1766,1769,1770,1806,1828,1925,1952,1984,1987,2097,2099,2100,2192,2289,2383,2468,2518,2545,2561,2583,2586,2620,2635,2638,2648,2650,2651,2692,2704,2717,2786,2809,2812,2823,2825,2826,2884,2911,2937,2963,2987,2989,2990,3028,3058,3060,3061,3104,3130,3145,3153,3155,3156,3189,3201,3218,3220,3221,3254,3271,3273,3274,3323,3356,3371,3374,3432,3434,3435,3477,3498,3515,3518,3520,3521,3566,3599,3608,3611,3633,3654,3664,3666,3667,3711,3734,3766,3798,3801,3803,3804,3890,3974,4059,4124,4210,4249,4250,4256,4275,4307,4309,4310,4405,4433,4463,4507,4550,4553,4560,4573,4576,4603,4630,4642,4658,4669,4685,4699,4703,4708,4709,4719,4784,4836,4852,4856,4928,4943,4953,4979,4993,4996,4997,5034,5045,5068,5107,5129,5170,5215,5256,5267,5306,5310,5321,5346,5350,5353,5374,5376,5377,5461,5525,5572,5599,5660,5761,5789,5859,5887,5938,5942,5945,5947,5948,6025,6076,6096,6118,6141,6144,6178,6229,6232,6233,6308,6384,6420,6451,6482,6508,6533,6544,6556,6600,6618,6650,6680,6720,6751,6828,6872,6903,6981,6995,7001,7006,7041,7103,7181,7204,7217,7222,7257,7290,7326,7364,7382,7416,7433,7474,7491,7535,7540,7554,7580,7585,7586,7626,7659,7690,7716,7721,7725,7728,7738,7740,7741,7806,7828,7829,7886,7948,8015,8016,8049,8077,8091,8093,8094,8160,8201,8202,8284,8365,8445,8520,8548,8596,8686,8712,8732,8735,8736,8743,8782,8821,8864,8914,8959,8962,9006,9028,9038,9042,9063,9082,9126,9148,9170,9192,9234,9245,9267,9271,9274,9275,9355,9388,9444,9456,9478,9509,9519,9523,9547,9566,9610,9659,9699,9726,9753,9782,9797,9807,9812,9850,9867,9911,9955,9960,9977,9994,10028,10033,10034,10096,10144,10218,10276,10291,10301,10306,10349,10376,10399,10452,10518,10544,10597,10641,10646,10676,10703,10726,10792,10818,10871,10915,10920,10962,11001,11010,11034,11061,11078,11105,11115,11120,11148,11180,11215,11225,11230,11258,11333,11356,11390,11468,11503,11509,11541,11553,11593,11598,11626,11652,11705,11749,11754,11783,11808,11835,11852,11879,11889,11894,11915,11946,11998,12021,12055,12133,12168,12174,12206,12218,12272,12277,12305,12331,12384,12428,12433,12462,12489,12516,12533,12560,12570,12575,12626,12660,12692,12719,12736,12763,12773,12778,12834,12860,12913,12957,12962,12966,12975,12978,12979,12998,13033,13074,13100,13125,13146,13167,13196,13214,13223,13227,13246,13290,13320,13350,13416,13446,13471,13495,13582,13593,13597,13600,13622,13651,13687,13691,13694,13704,13706,13707,13775,13812,13875,13899,13938,13965,13995,14005,14009,14032,14056,14075,14119,14148,14168,14188,14193,14212,14231,14242,14271,14291,14296,14315,14319,14322,14349,14351,14352,14421,14503,14525,14526,14555,14574,14615,14619,14622,14630,14632,14633,14667,14668,14765,14849,14935,15021,15079,15101,15121,15124,15155,15212,15305,15325,15328,15392,15426,15460,15479,15490,15524,15546,15551,15595,15675,15697,15702,15732,15766,15843,15857,15863,15885,15890,15894,15897,15956,16026,16049,16050,16113,16133,16134,16156,16182,16185,16195],"Infos":null},{"Name":"/usr/local/go/src/pkg/regexp/regexp.go","Base":27260,"Size":34043,"Lines":[0,55,109,159,160,216,219,281,342,411,471,509,534,537,594,656,714,779,807,852,890,893,942,945,1024,1098,1101,1143,1146,1217,1290,1367,1445,1520,1543,1546,1623,1679,1682,1755,1825,1901,1972,2049,2115,2118,2196,2274,2349,2423,2494,2550,2553,2627,2649,2652,2709,2712,2784,2857,2929,2950,2953,3020,3023,3038,3039,3048,3057,3063,3080,3091,3102,3110,3121,3137,3139,3140,3158,3159,3225,3288,3309,3337,3392,3443,3499,3571,3625,3687,3742,3803,3887,3907,3932,3953,3954,3995,4015,4035,4037,4038,4112,4148,4164,4166,4167,4234,4293,4296,4359,4431,4504,4568,4635,4697,4755,4800,4842,4844,4845,4914,4980,5001,5004,5076,5148,5199,5265,5334,5348,5351,5426,5490,5559,5633,5707,5772,5848,5916,5966,6008,6010,6011,6079,6151,6223,6274,6304,6323,6325,6326,6404,6441,6458,6476,6479,6502,6529,6530,6550,6583,6600,6618,6621,6641,6662,6683,6720,6743,6768,6801,6825,6828,6863,6918,6928,7007,7010,7036,7085,7120,7165,7229,7232,7252,7254,7255,7304,7360,7387,7422,7436,7470,7493,7525,7542,7553,7556,7572,7611,7622,7632,7634,7635,7687,7753,7807,7877,7913,7927,7963,7979,7981,7982,8060,8142,8158,8197,8228,8247,8312,8315,8330,8332,8333,8421,8503,8519,8563,8599,8618,8688,8691,8706,8708,8709,8739,8769,8792,8795,8820,8822,8823,8903,8939,8960,8962,8963,9032,9103,9176,9243,9299,9342,9365,9367,9368,9394,9395,9471,9499,9522,9577,9654,9682,9714,9747,9749,9750,9781,9807,9819,9821,9822,9872,9895,9913,9938,9959,9963,10009,10012,10033,10035,10036,10082,10095,10097,10098,10149,10193,10195,10196,10251,10297,10299,10300,10356,10388,10423,10474,10477,10500,10547,10550,10588,10590,10591,10625,10650,10662,10664,10665,10714,10737,10755,10780,10801,10805,10843,10846,10867,10869,10870,10915,10928,10930,10931,10981,11028,11030,11031,11085,11134,11136,11137,11192,11224,11259,11302,11305,11328,11367,11370,11408,11410,11411,11446,11472,11493,11505,11516,11518,11519,11569,11600,11622,11623,11626,11655,11672,11689,11711,11714,11726,11739,11741,11742,11788,11802,11804,11805,11856,11870,11872,11873,11928,11939,11941,11942,11998,12008,12010,12011,12079,12148,12207,12274,12311,12313,12314,12385,12400,12454,12500,12502,12503,12567,12614,12661,12663,12664,12726,12767,12813,12815,12816,12892,12969,12999,13077,13106,13123,13143,13146,13177,13179,13180,13239,13291,13340,13411,13440,13457,13477,13480,13511,13513,13514,13567,13623,13672,13737,13766,13783,13803,13806,13831,13833,13834,13909,13987,14063,14125,14133,14169,14198,14201,14273,14320,14324,14342,14344,14345,14427,14511,14536,14605,14686,14716,14721,14723,14724,14798,14872,14950,14985,15071,15143,15197,15201,15219,15221,15222,15336,15396,15458,15474,15490,15508,15529,15539,15559,15562,15589,15644,15663,15691,15695,15696,15750,15769,15818,15829,15877,15881,15882,15946,16010,16071,16116,16156,16178,16182,16204,16205,16274,16290,16309,16357,16368,16423,16427,16457,16479,16512,16569,16634,16649,16660,16680,16684,16687,16688,16744,16762,16806,16816,16859,16862,16863,16875,16877,16878,16947,17023,17099,17155,17163,17201,17230,17233,17246,17317,17348,17372,17376,17423,17427,17437,17439,17440,17516,17599,17624,17687,17760,17790,17794,17796,17797,17865,17939,18018,18053,18133,18206,18260,18264,18266,18267,18311,18312,18340,18386,18388,18389,18469,18551,18624,18658,18687,18688,18753,18761,18792,18813,18828,18835,18839,18853,18859,18862,18885,18887,18888,18950,19008,19069,19130,19198,19237,19252,19267,19280,19283,19312,19330,19350,19353,19363,19365,19366,19446,19525,19538,19553,19568,19578,19593,19596,19597,19659,19717,19742,19751,19755,19756,19773,19798,19832,19867,19910,19955,19974,19979,19996,20019,20036,20087,20099,20142,20147,20165,20182,20194,20212,20217,20228,20248,20252,20280,20281,20295,20323,20330,20334,20337,20339,20340,20435,20480,20522,20559,20574,20587,20590,20611,20613,20614,20692,20770,20791,20836,20888,20925,20940,20953,20956,20971,20973,20974,21064,21139,21215,21287,21328,21376,21414,21429,21441,21444,21465,21467,21468,21540,21617,21651,21696,21754,21792,21807,21820,21823,21838,21840,21841,21913,21991,22059,22099,22144,22209,22246,22261,22274,22277,22292,22294,22295,22370,22442,22518,22530,22575,22627,22677,22692,22705,22708,22747,22769,22804,22835,22839,22842,22854,22856,22857,22926,22998,23071,23093,23096,23165,23233,23302,23369,23434,23507,23577,23580,23650,23729,23732,23796,23884,23941,23943,23944,24016,24087,24120,24214,24264,24266,24267,24368,24393,24429,24442,24451,24455,24492,24518,24565,24586,24612,24639,24651,24655,24698,24709,24747,24773,24800,24812,24816,24834,24850,24900,24921,24982,24995,25055,25061,25066,25077,25119,25183,25205,25263,25277,25334,25341,25352,25358,25363,25367,25370,25402,25414,25416,25417,25489,25571,25643,25679,25688,25691,25707,25727,25742,25758,25768,25784,25787,25795,25815,25864,25936,25945,25949,25961,25964,25977,26005,26014,26017,26033,26045,26083,26111,26121,26125,26131,26134,26135,26153,26162,26196,26248,26260,26269,26273,26309,26312,26340,26378,26389,26392,26393,26409,26420,26428,26430,26431,26508,26585,26662,26689,26734,26788,26848,26850,26851,26924,27001,27072,27092,27137,27195,27246,27261,27274,27277,27316,27338,27373,27404,27408,27411,27423,27425,27426,27493,27566,27642,27690,27735,27795,27856,27858,27859,27926,28002,28080,28153,28196,28263,28323,28325,28326,28408,28409,28487,28560,28580,28625,28679,28691,28708,28711,28751,28796,28844,28848,28871,28884,28887,28902,28904,28905,28982,29059,29086,29131,29189,29201,29218,29221,29260,29305,29343,29347,29370,29383,29386,29401,29403,29404,29483,29560,29587,29632,29692,29704,29721,29724,29764,29810,29858,29862,29885,29898,29901,29916,29918,29919,29995,30073,30112,30157,30221,30233,30250,30253,30292,30338,30376,30380,30403,30416,30419,30434,30436,30437,30513,30585,30624,30669,30733,30745,30762,30765,30807,30852,30892,30917,30941,30983,30988,30992,31025,31029,31052,31065,31068,31083,31085,31086,31164,31238,31283,31328,31394,31406,31423,31426,31465,31510,31543,31547,31570,31583,31586,31601,31603,31604,31676,31754,31803,31848,31918,31930,31947,31950,31992,32038,32078,32103,32127,32169,32174,32178,32211,32215,32238,32251,32254,32269,32271,32272,32326,32402,32472,32484,32529,32601,32613,32630,32633,32672,32718,32751,32755,32778,32791,32794,32809,32811,32812,32897,32949,32952,33025,33111,33183,33186,33198,33260,33302,33305,33365,33449,33498,33525,33577,33578,33591,33604,33607,33608,33646,33668,33671,33672,33712,33756,33757,33767,33777,33810,33846,33855,33859,33860,33877,33898,33939,33943,33960,33963,33964,33984,34021,34024,34025,34041],"Infos":null}]}
+ ˇ

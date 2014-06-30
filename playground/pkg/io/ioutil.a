@@ -1,11 +1,11 @@
-0Ç\	io/ioutilÇ.ipackage ioutil
+0Ç\h	io/ioutilÇ.‚package ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
 import sort "sort"
+import sync "sync"
 import filepath "path/filepath"
 import strconv "strconv"
-import sync "sync"
 import time "time"
 var @"".Discard @"io".Writer
 func @"".NopCloser(@"".r @"io".Reader) (? @"io".ReadCloser)
@@ -153,8 +153,10 @@ type @"os".file struct { @"os".fd int; @"os".name string; @"os".dirinfo *@"os".d
 func (? *@"os".file) @"os".close() (? error)
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
 func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
 type @"time".Duration int64
 func (? @"time".Duration) @"time".Hours() (? float64)
@@ -177,257 +179,14 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç,ç0ÇÒbyName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
-Çj		byName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
-		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
-		byName.init(os.FileInfo);
-0byName0os:FileInfo0ÇR	nopCloserÅÕ	nopCloser = go$pkg.nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
-		this.go$val = this;
-		this.Reader = Reader_ !== undefined ? Reader_ : null;
-	});
-ÇY		nopCloser.methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0]];
-		(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0]];
-		nopCloser.init([["Reader", "", "", io.Reader, ""]]);
-0	nopCloser0	io:Reader0ÇYdevNullb	devNull = go$pkg.devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
-Ç–		devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
-		(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
-0	devNull0	io:Reader0Åõ	blackHole}	blackHole = function() {
-			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
-		};
- 0	blackHole0 0^blackHolePut:	blackHolePut = function(p) {
-			blackHoles.push(p);
-		};
- 0blackHolePut0 0ÇreadAllÇÃ	readAll = function(r, capacity) {
-		var b, err, buf, _tuple, _tuple$1;
-		b = (go$sliceType(Go$Uint8)).nil;
-		err = null;
-		var go$deferred = [];
-		try {
-			buf = bytes.NewBuffer((go$sliceType(Go$Uint8)).make(0, go$flatten64(capacity), function() { return 0; }));
-			go$deferred.push({ fun: (function() {
-				var e, _tuple, panicErr, ok;
-				e = go$recover();
-				if (go$interfaceIsEqual(e, null)) {
-					return;
-				}
-				_tuple = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), panicErr = _tuple[0], ok = _tuple[1];
-				if (ok && go$interfaceIsEqual(panicErr, bytes.ErrTooLarge)) {
-					err = panicErr;
-				} else {
-					throw go$panic(e);
-				}
-			}), args: [] });
-			_tuple = buf.ReadFrom(r), err = _tuple[1];
-			_tuple$1 = [buf.Bytes(), err], b = _tuple$1[0], err = _tuple$1[1];
-			return [b, err];
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-			return [b, err];
-		}
-	};
- 0	readAll0$bytes:ErrTooLargebytes:NewBuffer0ÅÜReadAllY	ReadAll = go$pkg.ReadAll = function(r) {
-		return readAll(r, new Go$Int64(0, 512));
-	};
- 0	ReadAll0io/ioutil:readAll0ÇkReadFileÇ1	ReadFile = go$pkg.ReadFile = function(filename) {
-		var _tuple, f, err, n, _tuple$1, fi, err$1, size;
-		var go$deferred = [];
-		try {
-			_tuple = os.Open(filename), f = _tuple[0], err = _tuple[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [(go$sliceType(Go$Uint8)).nil, err];
-			}
-			go$deferred.push({ recv: f, method: "Close", args: [] });
-			n = new Go$Int64(0, 0);
-			_tuple$1 = f.Stat(), fi = _tuple$1[0], err$1 = _tuple$1[1];
-			if (go$interfaceIsEqual(err$1, null)) {
-				size = fi.Size();
-				if ((size.high < 0 || (size.high === 0 && size.low < 1000000000))) {
-					n = size;
-				}
-			}
-			return readAll(f, new Go$Int64(n.high + 0, n.low + 512));
-		} catch(go$err) {
-			go$pushErr(go$err);
-			return [(go$sliceType(Go$Uint8)).nil, null];
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
- 0
-ReadFile0io/ioutil:readAllos:Open0Ç0	WriteFileÇÒ	WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
-		var _tuple, f, err, _tuple$1, n, err1;
-		_tuple = os.OpenFile(filename, 1537, perm), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		_tuple$1 = f.Write(data), n = _tuple$1[0], err = _tuple$1[1];
-		if (go$interfaceIsEqual(err, null) && n < data.length) {
-			err = io.ErrShortWrite;
-		}
-		err1 = f.Close();
-		if (go$interfaceIsEqual(err, null)) {
-			err = err1;
-		}
-		return err;
-	};
- 0	WriteFile0io:ErrShortWriteos:OpenFile0Å∆ Å°	byName.prototype.Len = function() {
-		var f;
-		f = this;
-		return f.length;
-	};
-	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
- 0byName0io/ioutil:byName0Ç= Ç	byName.prototype.Less = function(i, j) {
-		var f, _slice, _index, _slice$1, _index$1;
-		f = this;
-		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
-	};
-	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
- 0byName0io/ioutil:byName0Ç» Ç¢	byName.prototype.Swap = function(i, j) {
-		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
-		f = this;
-		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
-	};
-	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
- 0byName0io/ioutil:byName0ÇiReadDirÇ	ReadDir = go$pkg.ReadDir = function(dirname) {
-		var _tuple, f, err, _tuple$1, list;
-		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$sliceType(os.FileInfo)).nil, err];
-		}
-		_tuple$1 = f.Readdir(-1), list = _tuple$1[0], err = _tuple$1[1];
-		f.Close();
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$sliceType(os.FileInfo)).nil, err];
-		}
-		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
-		return [list, null];
-	};
- 0	ReadDir03io/ioutil:byNameos:FileInfoos:Open	sort:Sort0Åµ Åä	nopCloser.Ptr.prototype.Close = function() {
-		return null;
-	};
-	nopCloser.prototype.Close = function() { return this.go$val.Close(); };
- 0	nopCloser0io/ioutil:nopCloser0Å∞	NopCloser}	NopCloser = go$pkg.NopCloser = function(r) {
-		var x;
-		return (x = new nopCloser.Ptr(r), new x.constructor.Struct(x));
-	};
- 0	NopCloser0io/ioutil:nopCloser0Å” Å¨	devNull.prototype.Write = function(p) {
-		return [p.length, null];
-	};
-	go$ptrType(devNull).prototype.Write = function(p) { return new devNull(this.go$get()).Write(p); };
- 0	devNull0io/ioutil:devNull0ÅÂ Åæ	devNull.prototype.WriteString = function(s) {
-		return [s.length, null];
-	};
-	go$ptrType(devNull).prototype.WriteString = function(s) { return new devNull(this.go$get()).WriteString(s); };
- 0	devNull0io/ioutil:devNull0Ç∆ Çi	devNull.prototype.ReadFrom = function(r) {
-		var n, err, buf, readSize, _tuple, x, _tuple$1;
-		n = new Go$Int64(0, 0);
-		err = null;
-		var go$deferred = [];
-		try {
-			buf = blackHole();
-			go$deferred.push({ fun: blackHolePut, args: [buf] });
-			readSize = 0;
-			while (true) {
-				_tuple = r.Read(buf), readSize = _tuple[0], err = _tuple[1];
-				n = (x = new Go$Int64(0, readSize), new Go$Int64(n.high + x.high, n.low + x.low));
-				if (!(go$interfaceIsEqual(err, null))) {
-					if (go$interfaceIsEqual(err, io.EOF)) {
-						_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
-						return [n, err];
-					}
-					return [n, err];
-				}
-			}
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-			return [n, err];
-		}
-	};
-	go$ptrType(devNull).prototype.ReadFrom = function(r) { return new devNull(this.go$get()).ReadFrom(r); };
- 0	devNull0Hio/ioutil:blackHoleio/ioutil:blackHolePutio/ioutil:devNullio:EOF0ÅﬂreseedÅ±	reseed = function() {
-		var x, x$1;
-		return ((x = time.Now().UnixNano(), x$1 = new Go$Int64(0, os.Getpid()), new Go$Int64(x.high + x$1.high, x.low + x$1.low)).low >>> 0);
-	};
- 0reseed0	os:Getpidtime:Now0ÇÚ
-nextSuffixÇé	nextSuffix = function() {
-		var r, x, _r;
-		randmu.Lock();
-		r = rand;
-		if (r === 0) {
-			r = reseed();
-		}
-		r = (x = 1664525, (((r >>> 16 << 16) * x >>> 0) + (r << 16 >>> 16) * x) >>> 0) + 1013904223 >>> 0;
-		rand = r;
-		randmu.Unlock();
-		return strconv.Itoa(((1000000000 + (_r = r % 1000000000, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0)).substring(1);
-	};
- 0
-nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa0ÇÊTempFileÇN	TempFile = go$pkg.TempFile = function(dir, prefix) {
-		var f, err, nconflict, i, name, _tuple;
-		f = (go$ptrType(os.File)).nil;
-		err = null;
-		if (dir === "") {
-			dir = os.TempDir();
-		}
-		nconflict = 0;
-		i = 0;
-		while (i < 10000) {
-			name = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
-			_tuple = os.OpenFile(name, 2562, 384), f = _tuple[0], err = _tuple[1];
-			if (os.IsExist(err)) {
-				nconflict = nconflict + 1 >> 0;
-				if (nconflict > 10) {
-					rand = reseed();
-				}
-				i = i + 1 >> 0;
-				continue;
-			}
-			break;
-		}
-		return [f, err];
-	};
- 0
-TempFile0zio/ioutil:nextSuffixio/ioutil:randio/ioutil:reseedos:File
-os:IsExistos:OpenFile
-os:TempDirpath/filepath:Join0Ç◊TempDirÇM	TempDir = go$pkg.TempDir = function(dir, prefix) {
-		var name, err, nconflict, i, try$1;
-		name = "";
-		err = null;
-		if (dir === "") {
-			dir = os.TempDir();
-		}
-		nconflict = 0;
-		i = 0;
-		while (i < 10000) {
-			try$1 = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
-			err = os.Mkdir(try$1, 448);
-			if (os.IsExist(err)) {
-				nconflict = nconflict + 1 >> 0;
-				if (nconflict > 10) {
-					rand = reseed();
-				}
-				i = i + 1 >> 0;
-				continue;
-			}
-			if (go$interfaceIsEqual(err, null)) {
-				name = try$1;
-			}
-			break;
-		}
-		return [name, err];
-	};
- 0	TempDir0nio/ioutil:nextSuffixio/ioutil:randio/ioutil:reseed
-os:IsExistos:Mkdir
-os:TempDirpath/filepath:Join0$blackHoleBuf  0blackHoleBuf0 0   0	Discard0 00rand 		rand = 0;
-0rand0io/ioutil:rand0Wrandmu !		randmu = new sync.Mutex.Ptr();
-0randmu0io/ioutil:randmu
-sync:Mutex0p  N		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
-0 0io/ioutil:blackHoleBuf0   0-0 0\  #		go$pkg.Discard = new devNull(0);
-0	Discard0&io/ioutil:Discardio/ioutil:devNull0% 
-			var blackHoles = [];
-		 0 0 0
-   0 0 0 
+0Åßgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv0a0
+bytesA0ioB0osC0	sortD0	syncE0path/filepathF0strconvG0	timeH0Ç%Í0Ç´ 0PMP=$pkg.byName=$newType(12,"Slice","ioutil.byName","byName","io/ioutil",null);Ç5P.methods=[["Len","Len","",[],[$Int],false,-1],["Less","Less","",[$Int,$Int],[$Bool],false,-1],["Swap","Swap","",[$Int,$Int],[],false,-1]];($ptrType(P)).methods=[["Len","Len","",[],[$Int],false,-1],["Less","Less","",[$Int,$Int],[$Bool],false,-1],["Swap","Swap","",[$Int,$Int],[],false,-1]];P.init(C.FileInfo);0byName0os:FileInfo 0ÇÎ 0RÅ°R=$pkg.nopCloser=$newType(0,"Struct","ioutil.nopCloser","nopCloser","io/ioutil",function(Reader_){this.$val=this;this.Reader=Reader_!==undefined?Reader_:null;});ÇR.methods=[["Close","Close","",[],[$error],false,-1],["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,0]];($ptrType(R)).methods=[["Close","Close","",[],[$error],false,-1],["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,0]];R.init([["Reader","","",B.Reader,""]]);0	nopCloser0	io:Reader 0Ç! 0TMT=$pkg.devNull=$newType(4,"Int","ioutil.devNull","devNull","io/ioutil",null);Ç¨T.methods=[["ReadFrom","ReadFrom","",[B.Reader],[$Int64,$error],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteString","WriteString","",[$String],[$Int,$error],false,-1]];($ptrType(T)).methods=[["ReadFrom","ReadFrom","",[B.Reader],[$Int64,$error],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteString","WriteString","",[$String],[$Int,$error],false,-1]];0	devNull0	io:Reader 0Q 0I )I=($sliceType(($sliceType($Uint8)))).nil;0pool0io/ioutil:pool 0! 0U  0blackHolePool0  0 0   0	Discard0  0, 0V V=0;0rand0io/ioutil:rand 0L 0W W=new E.Mutex.Ptr();0randmu0io/ioutil:randmu
+sync:Mutex 0 0      0_0  0ÇC 0  Ç    U=new E.Pool.Ptr();$copy(U,new E.Pool.Ptr(($sliceType($emptyInterface)).nil,(function(){var a;  ‚a=($sliceType($Uint8)).make(8192,0,function(){return 0;});  ¸return new($ptrType(($sliceType($Uint8))))(function(){return a;},function($v){a=$v;});    })),E.Pool);0 0$io/ioutil:blackHolePool	sync:Pool 0Y 0      $pkg.Discard=new T(0);0	Discard0&io/ioutil:Discardio/ioutil:devNull 0Çgio/ioutil.blackHole0JÇ%J=function(){var a,b;   M    if(I.$length===0){   creturn($sliceType($Uint8)).make(8192,0,function(){return 0;});    }   Åb=(a=I.$length-1>>0,((a<0||a>=I.$length)?$throwRuntimeError("index out of range"):I.$array[I.$offset+a]));   ôI=$subslice(I,0,(I.$length-1>>0));   ¥return b;    }; 0	blackHole0io/ioutil:pool 0oio/ioutil.blackHolePut0K)K=function(a){   ﬂI=$append(I,a);    }; 0blackHolePut0io/ioutil:pool 0Çio/ioutil.readAll0LÇûL=function(a,b){var c,d,$deferred=[],e,f,g,h;c=($sliceType($Uint8)).nil;d=null;try{  ‚e=A.NewBuffer(($sliceType($Uint8)).make(0,$flatten64(b),function(){return 0;}));  á$deferred.push({fun:(function(){var f,g,h,i;  òf=$recover();  ©    if($interfaceIsEqual(f,null)){  ∫return;    }  «   g=(f!==null&&$error.implementedBy.indexOf(f.constructor)!==-1?[f,true]:[null,false]);h=g[0];i=g[1];    if(i&&$interfaceIsEqual(h,A.ErrTooLarge)){  d=h;    }else{  +throw $panic(f);    }    }),args:[]});  >f=e.ReadFrom(a);d=f[1];  X    g=e.Bytes();h=d;c=g;d=h;return[c,d];    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);return[c,d];}}; 0	readAll0$bytes:ErrTooLargebytes:NewBuffer 0ÅÑio/ioutil.ReadAll0MEM=$pkg.ReadAll=function(a){  °return L(a,new $Int64(0,512));    }; 0	ReadAll0io/ioutil:readAll 0Çõio/ioutil.ReadFile0NÇON=$pkg.ReadFile=function(a){var $deferred=[],b,c,d,e,f,g,h,i;try{  „b=C.Open(a);c=b[0];d=b[1];       if(!($interfaceIsEqual(d,null))){  return[($sliceType($Uint8)).nil,d];    }  &$deferred.push({recv:c,method:"Close",args:[]});  –  ‘e=new $Int64(0,0);  ﬁ  ·f=c.Stat();g=f[0];h=f[1];    if($interfaceIsEqual(h,null)){  9  <i=g.Size();    if((i.$high<0||(i.$high===0&&i.$low<1000000000))){  _e=i;    }    }  	ˆreturn L(c,new $Int64(e.$high+0,e.$low+512));    }catch($err){$pushErr($err);return[($sliceType($Uint8)).nil,null];}finally{$callDeferred($deferred);}}; 0
+ReadFile0io/ioutil:readAllos:Open 0Ç∫io/ioutil.WriteFile0OÇiO=$pkg.WriteFile=function(a,b,c){var d,e,f,g,h,i;  d=C.OpenFile(a,1537,c);e=d[0];f=d[1];  d    if(!($interfaceIsEqual(f,null))){  vreturn f;    }  Ög=e.Write(b);h=g[0];f=g[1];  û    if($interfaceIsEqual(f,null)&&h<b.$length){  ¡f=B.ErrShortWrite;    }  ‹  ﬂi=e.Close();    if($interfaceIsEqual(f,null)){  f=i;    }  return f;    }; 0	WriteFile0io:ErrShortWriteos:OpenFile 0Å (io/ioutil.byName).Len0 ÅäP.prototype.Len=function(){var a;  da=this;  Ñreturn a.$length;    };$ptrType(P).prototype.Len=function(){return this.$get().Len();}; 0byName0io/ioutil:byName 0ÇÖ(io/ioutil.byName).Less0 ÇCP.prototype.Less=function(a,b){var c;  öc=this;  ∫return((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]).Name()<((b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]).Name();    };$ptrType(P).prototype.Less=function(a,b){return this.$get().Less(a,b);}; 0byName0io/ioutil:byName 0Ç#(io/ioutil.byName).Swap0 Ç·P.prototype.Swap=function(a,b){var c,d,e;  „c=this;  d=((b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]);e=((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]);(a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]=d;(b<0||b>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+b]=e;    };$ptrType(P).prototype.Swap=function(a,b){return this.$get().Swap(a,b);}; 0byName0io/ioutil:byName 0Çˆio/ioutil.ReadDir0QÇïQ=$pkg.ReadDir=function(a){var b,c,d,e,f;  ∏b=C.Open(a);c=b[0];d=b[1];  ‘    if(!($interfaceIsEqual(d,null))){  Êreturn[($sliceType(C.FileInfo)).nil,d];    }  ˙e=c.Readdir(-1);f=e[0];d=e[1];  c.Close();  !    if(!($interfaceIsEqual(d,null))){  3return[($sliceType(C.FileInfo)).nil,d];    }  GD.Sort($subslice(new P(f.$array),f.$offset,f.$offset+f.$length));  `return[f,null];    }; 0	ReadDir03io/ioutil:byNameos:FileInfoos:Open	sort:Sort 0Åª(io/ioutil.nopCloser).Close0 qR.Ptr.prototype.Close=function(){  ªreturn null;    };R.prototype.Close=function(){return this.$val.Close();}; 0	nopCloser0io/ioutil:nopCloser 0Åßio/ioutil.NopCloser0SbS=$pkg.NopCloser=function(a){var b;  Ureturn(b=new R.Ptr(a),new b.constructor.Struct(b));    }; 0	NopCloser0io/ioutil:nopCloser 0Å”(io/ioutil.devNull).Write0 ÅéT.prototype.Write=function(a){  Ereturn[a.$length,null];    };$ptrType(T).prototype.Write=function(a){return new T(this.$get()).Write(a);}; 0	devNull0io/ioutil:devNull 0ÅÍ(io/ioutil.devNull).WriteString0 ÅüT.prototype.WriteString=function(a){  êreturn[a.length,null];    };$ptrType(T).prototype.WriteString=function(a){return new T(this.$get()).WriteString(a);}; 0	devNull0io/ioutil:devNull 0Ç◊(io/ioutil.devNull).ReadFrom0 ÇmT.prototype.ReadFrom=function(a){var b,c,d,e,f,g,h,i,j;b=new $Int64(0,0);c=null;  Je=(d=U.Get(),(d!==null&&d.constructor===($ptrType(($sliceType($Uint8))))?d.$val:$typeAssertionFailed(d,($ptrType(($sliceType($Uint8)))))));  qf=0;  Äwhile(true){  àg=a.Read(e.$get());f=g[0];c=g[1];  ®b=(h=new $Int64(0,f),new $Int64(b.$high+h.$high,b.$low+h.$low));  ø    if(!($interfaceIsEqual(c,null))){  “U.Put(e);  Ì    if($interfaceIsEqual(c,B.EOF)){      i=b;j=null;b=i;c=j;return[b,c];    }  return[b,c];    }    }    };$ptrType(T).prototype.ReadFrom=function(a){return new T(this.$get()).ReadFrom(a);}; 0	devNull04io/ioutil:blackHolePoolio/ioutil:devNullio:EOF 0ÅŒio/ioutil.reseed0XÅéX=function(){var a,b;  åreturn((a=H.Now().UnixNano(),b=new $Int64(0,C.Getpid()),new $Int64(a.$high+b.$high,a.$low+b.$low)).$low>>>0);    }; 0reseed0	os:Getpidtime:Now 0Ç≤io/ioutil.nextSuffix0YÇ<Y=function(){var a,b;  ÂW.Lock();  Ùa=V;  ˇ    if(a===0){  a=X();    }  a=((((a>>>16<<16)*1664525>>>0)+(a<<16>>>16)*1664525)>>>0)+1013904223>>>0;  ^V=a;  hW.Unlock();  yreturn G.Itoa(((1000000000+(b=a%1000000000,b===b?b:$throwRuntimeError("integer divide by zero"))>>>0)>>0)).substring(1);    }; 0
+nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa 0ÇQio/ioutil.TempFile0ZÇßZ=$pkg.TempFile=function(a,b){var c,d,e,f,g,h;c=($ptrType(C.File)).nil;d=null;  Î    if(a===""){  ¸a=C.TempDir();    }  e=0;  $  (f=0;while(f<10000){  Cg=F.Join(new($sliceType($String))([a,b+Y()]));  uh=C.OpenFile(g,2562,384);c=h[0];d=h[1];  π    if(C.IsExist(d)){  —  ‘  ‘e=e+(1)>>0;    if(e>10){  ˆV=X();    }    ;  ;f=f+(1)>>0;continue;    }  break;    }  'return[c,d];    }; 0
+TempFile0zio/ioutil:nextSuffixio/ioutil:randio/ioutil:reseedos:File
+os:IsExistos:OpenFile
+os:TempDirpath/filepath:Join 0ÇOio/ioutil.TempDir0AAÇ≤AA=$pkg.TempDir=function(a,b){var c,d,e,f,g;c="";d=null;      if(a===""){  -a=C.TempDir();    }  Ee=0;  U  Yf=0;while(f<10000){  tg=F.Join(new($sliceType($String))([a,b+Y()]));  •d=C.Mkdir(g,448);  ¡    if(C.IsExist(d)){  Ÿ  ‹  ‹e=e+(1)>>0;    if(e>10){  ˛V=X();    }    l  lf=f+(1)>>0;continue;    }  %    if($interfaceIsEqual(d,null)){  8c=g;    }  Ibreak;    }  Sreturn[c,d];    }; 0	TempDir0nio/ioutil:nextSuffixio/ioutil:randio/ioutil:reseed
+os:IsExistos:Mkdir
+os:TempDirpath/filepath:Join 0 Çp{"Base":7261,"Files":[{"Name":"/Users/richard/gopath/src/github.com/gopherjs/gopherjs/compiler/natives/io/ioutil/ioutil.go","Base":1,"Size":247,"Lines":[0,13,14,29,30,48,49,75,96,124,127,151,178,188,190,191,221,245],"Infos":null},{"Name":"/usr/local/go/src/pkg/io/ioutil/ioutil.go","Base":249,"Size":4524,"Lines":[0,55,109,159,160,217,232,233,242,251,257,263,271,279,281,282,357,422,488,539,599,653,669,686,702,712,716,786,804,815,827,831,836,862,887,889,890,966,1042,1116,1147,1191,1225,1227,1228,1299,1373,1445,1464,1513,1542,1559,1577,1580,1597,1680,1750,1763,1764,1802,1854,1891,1903,1907,1910,1992,2075,2155,2237,2300,2336,2338,2339,2393,2468,2520,2591,2666,2683,2696,2699,2724,2758,2783,2786,2822,2835,2838,2850,2852,2853,2890,2916,2917,2971,3044,3108,3109,3169,3208,3262,3290,3307,3325,3328,3356,3367,3384,3402,3405,3430,3448,3450,3451,3475,3486,3488,3489,3535,3536,3605,3631,3675,3696,3698,3699,3716,3717,3783,3835,3868,3869,3915,3935,3937,3938,3990,4010,4012,4013,4044,4071,4097,4109,4113,4115,4116,4176,4215,4230,4237,4269,4292,4310,4337,4359,4377,4382,4392,4396,4399,4401,4402,4462,4489],"Infos":null},{"Name":"/usr/local/go/src/pkg/io/ioutil/tempfile.go","Base":4774,"Size":2486,"Lines":[0,56,110,160,161,176,177,186,192,209,220,228,236,238,239,263,329,397,423,439,461,462,485,544,546,547,574,589,600,613,628,631,695,705,722,765,767,768,830,895,947,1014,1055,1108,1171,1243,1288,1348,1364,1385,1388,1389,1405,1435,1485,1553,1576,1612,1632,1637,1649,1653,1661,1664,1672,1674,1675,1741,1806,1870,1929,1981,2055,2105,2165,2181,2202,2205,2206,2222,2252,2301,2329,2352,2388,2408,2413,2425,2429,2447,2461,2465,2473,2476,2484],"Infos":null}]}
+ ˇ

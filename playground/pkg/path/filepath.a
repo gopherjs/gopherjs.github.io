@@ -1,4 +1,4 @@
-0Çé†path/filepathÇ&package filepath
+0ÇÉÒpath/filepathÇ%5package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -29,13 +29,6 @@ func @"".ToSlash(@"".path string) (? string)
 func @"".VolumeName(@"".path string) (@"".v string)
 func @"".Walk(@"".root string, @"".walkFn @"".WalkFunc) (? error)
 type @"".WalkFunc func (@"".path string, @"".info @"os".FileInfo, @"".err error) (? error)
-type @"".byName []@"os".FileInfo
-func (? @"".byName) @"".Len() (? int)
-func (? @"".byName) @"".Less(@"".i int, @"".j int) (? bool)
-func (? @"".byName) @"".Swap(@"".i int, @"".j int) ()
-func (? *@"".byName) @"".Len() (? int)
-func (? *@"".byName) @"".Less(@"".i int, @"".j int) (? bool)
-func (? *@"".byName) @"".Swap(@"".i int, @"".j int) ()
 type @"".lazybuf struct { @"".path string; @"".buf []byte; @"".w int; @"".volAndPath string; @"".volLen int }
 func (? *@"".lazybuf) @"".append(@"".c byte) ()
 func (? *@"".lazybuf) @"".index(@"".i int) (? byte)
@@ -132,8 +125,10 @@ func (? *@"os".FileMode) @"os".Perm() (? @"os".FileMode)
 func (? *@"os".FileMode) @"os".String() (? string)
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
 func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
 type @"time".Duration int64
 func (? @"time".Duration) @"time".Hours() (? float64)
@@ -155,700 +150,29 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0ÇgÑ0Ç“lazybufÇ≈	lazybuf = go$pkg.lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
-		this.go$val = this;
-		this.path = path_ !== undefined ? path_ : "";
-		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
-		this.w = w_ !== undefined ? w_ : 0;
-		this.volAndPath = volAndPath_ !== undefined ? volAndPath_ : "";
-		this.volLen = volLen_ !== undefined ? volLen_ : 0;
-	});
-ÇÔ		(go$ptrType(lazybuf)).methods = [["append", "path/filepath", [Go$Uint8], [], false, -1], ["index", "path/filepath", [Go$Int], [Go$Uint8], false, -1], ["string", "path/filepath", [], [Go$String], false, -1]];
-		lazybuf.init([["path", "path", "path/filepath", Go$String, ""], ["buf", "buf", "path/filepath", (go$sliceType(Go$Uint8)), ""], ["w", "w", "path/filepath", Go$Int, ""], ["volAndPath", "volAndPath", "path/filepath", Go$String, ""], ["volLen", "volLen", "path/filepath", Go$Int, ""]]);
-0	lazybuf0 0ÅﬁWalkFuncm	WalkFunc = go$pkg.WalkFunc = go$newType(0, "Func", "filepath.WalkFunc", "WalkFunc", "path/filepath", null);
-H		WalkFunc.init([Go$String, os.FileInfo, go$error], [go$error], false);
-0
-WalkFunc0os:FileInfo0Ç˜byNamef	byName = go$pkg.byName = go$newType(0, "Slice", "filepath.byName", "byName", "path/filepath", null);
-Çj		byName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
-		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
-		byName.init(os.FileInfo);
-0byName0os:FileInfo0Ç„MatchÇâ	Match = go$pkg.Match = function(pattern, name) {
-		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
-		matched = false;
-		err = null;
-		Pattern:
-		while (pattern.length > 0) {
-			star = false;
-			chunk = "";
-			_tuple = scanChunk(pattern), star = _tuple[0], chunk = _tuple[1], pattern = _tuple[2];
-			if (star && chunk === "") {
-				_tuple$1 = [strings.Index(name, "/") < 0, null], matched = _tuple$1[0], err = _tuple$1[1];
-				return [matched, err];
-			}
-			_tuple$2 = matchChunk(chunk, name), t = _tuple$2[0], ok = _tuple$2[1], err$1 = _tuple$2[2];
-			if (ok && ((t.length === 0) || pattern.length > 0)) {
-				name = t;
-				continue;
-			}
-			if (!(go$interfaceIsEqual(err$1, null))) {
-				_tuple$3 = [false, err$1], matched = _tuple$3[0], err = _tuple$3[1];
-				return [matched, err];
-			}
-			if (star) {
-				i = 0;
-				while (i < name.length && !((name.charCodeAt(i) === 47))) {
-					_tuple$4 = matchChunk(chunk, name.substring((i + 1 >> 0))), t$1 = _tuple$4[0], ok$1 = _tuple$4[1], err$2 = _tuple$4[2];
-					if (ok$1) {
-						if ((pattern.length === 0) && t$1.length > 0) {
-							i = i + 1 >> 0;
-							continue;
-						}
-						name = t$1;
-						continue Pattern;
-					}
-					if (!(go$interfaceIsEqual(err$2, null))) {
-						_tuple$5 = [false, err$2], matched = _tuple$5[0], err = _tuple$5[1];
-						return [matched, err];
-					}
-					i = i + 1 >> 0;
-				}
-			}
-			_tuple$6 = [false, null], matched = _tuple$6[0], err = _tuple$6[1];
-			return [matched, err];
-		}
-		_tuple$7 = [name.length === 0, null], matched = _tuple$7[0], err = _tuple$7[1];
-		return [matched, err];
-	};
- 0Match0Bpath/filepath:matchChunkpath/filepath:scanChunkstrings:Index0Ç@	scanChunkÇ 	scanChunk = function(pattern) {
-		var star, chunk, rest, inrange, i, _ref, _tuple;
-		star = false;
-		chunk = "";
-		rest = "";
-		while (pattern.length > 0 && (pattern.charCodeAt(0) === 42)) {
-			pattern = pattern.substring(1);
-			star = true;
-		}
-		inrange = false;
-		i = 0;
-		i = 0;
-		Scan:
-		while (i < pattern.length) {
-			_ref = pattern.charCodeAt(i);
-			if (_ref === 92) {
-				if ((i + 1 >> 0) < pattern.length) {
-					i = i + 1 >> 0;
-				}
-			} else if (_ref === 91) {
-				inrange = true;
-			} else if (_ref === 93) {
-				inrange = false;
-			} else if (_ref === 42) {
-				if (!inrange) {
-					break Scan;
-				}
-			}
-			i = i + 1 >> 0;
-		}
-		_tuple = [star, pattern.substring(0, i), pattern.substring(i)], star = _tuple[0], chunk = _tuple[1], rest = _tuple[2];
-		return [star, chunk, rest];
-	};
- 0	scanChunk0 0Ç	s
-matchChunkÇ˝	matchChunk = function(chunk, s) {
-		var rest, ok, err, _ref, _tuple, r, n, negated, match, nrange, _tuple$1, lo, hi, _tuple$2, _tuple$3, _tuple$4, n$1, _tuple$5;
-		rest = "";
-		ok = false;
-		err = null;
-		while (chunk.length > 0) {
-			if (s.length === 0) {
-				return [rest, ok, err];
-			}
-			_ref = chunk.charCodeAt(0);
-			if (_ref === 91) {
-				_tuple = utf8.DecodeRuneInString(s), r = _tuple[0], n = _tuple[1];
-				s = s.substring(n);
-				chunk = chunk.substring(1);
-				if (chunk.length === 0) {
-					err = go$pkg.ErrBadPattern;
-					return [rest, ok, err];
-				}
-				negated = chunk.charCodeAt(0) === 94;
-				if (negated) {
-					chunk = chunk.substring(1);
-				}
-				match = false;
-				nrange = 0;
-				while (true) {
-					if (chunk.length > 0 && (chunk.charCodeAt(0) === 93) && nrange > 0) {
-						chunk = chunk.substring(1);
-						break;
-					}
-					_tuple$1 = [0, 0], lo = _tuple$1[0], hi = _tuple$1[1];
-					_tuple$2 = getEsc(chunk), lo = _tuple$2[0], chunk = _tuple$2[1], err = _tuple$2[2];
-					if (!(go$interfaceIsEqual(err, null))) {
-						return [rest, ok, err];
-					}
-					hi = lo;
-					if (chunk.charCodeAt(0) === 45) {
-						_tuple$3 = getEsc(chunk.substring(1)), hi = _tuple$3[0], chunk = _tuple$3[1], err = _tuple$3[2];
-						if (!(go$interfaceIsEqual(err, null))) {
-							return [rest, ok, err];
-						}
-					}
-					if (lo <= r && r <= hi) {
-						match = true;
-					}
-					nrange = nrange + 1 >> 0;
-				}
-				if (match === negated) {
-					return [rest, ok, err];
-				}
-			} else if (_ref === 63) {
-				if (s.charCodeAt(0) === 47) {
-					return [rest, ok, err];
-				}
-				_tuple$4 = utf8.DecodeRuneInString(s), n$1 = _tuple$4[1];
-				s = s.substring(n$1);
-				chunk = chunk.substring(1);
-			} else if (_ref === 92) {
-				chunk = chunk.substring(1);
-				if (chunk.length === 0) {
-					err = go$pkg.ErrBadPattern;
-					return [rest, ok, err];
-				}
-				if (!((chunk.charCodeAt(0) === s.charCodeAt(0)))) {
-					return [rest, ok, err];
-				}
-				s = s.substring(1);
-				chunk = chunk.substring(1);
-			} else {
-				if (!((chunk.charCodeAt(0) === s.charCodeAt(0)))) {
-					return [rest, ok, err];
-				}
-				s = s.substring(1);
-				chunk = chunk.substring(1);
-			}
-		}
-		_tuple$5 = [s, true, null], rest = _tuple$5[0], ok = _tuple$5[1], err = _tuple$5[2];
-		return [rest, ok, err];
-	};
- 0
-matchChunk0Tpath/filepath:ErrBadPatternpath/filepath:getEscunicode/utf8:DecodeRuneInString0ÇgetEscÇæ	getEsc = function(chunk) {
-		var r, nchunk, err, _tuple, n;
-		r = 0;
-		nchunk = "";
-		err = null;
-		if ((chunk.length === 0) || (chunk.charCodeAt(0) === 45) || (chunk.charCodeAt(0) === 93)) {
-			err = go$pkg.ErrBadPattern;
-			return [r, nchunk, err];
-		}
-		if ((chunk.charCodeAt(0) === 92) && true) {
-			chunk = chunk.substring(1);
-			if (chunk.length === 0) {
-				err = go$pkg.ErrBadPattern;
-				return [r, nchunk, err];
-			}
-		}
-		_tuple = utf8.DecodeRuneInString(chunk), r = _tuple[0], n = _tuple[1];
-		if ((r === 65533) && (n === 1)) {
-			err = go$pkg.ErrBadPattern;
-		}
-		nchunk = chunk.substring(n);
-		if (nchunk.length === 0) {
-			err = go$pkg.ErrBadPattern;
-		}
-		return [r, nchunk, err];
-	};
- 0getEsc0>path/filepath:ErrBadPatternunicode/utf8:DecodeRuneInString0ÇÜGlobÇ'	Glob = go$pkg.Glob = function(pattern) {
-		var matches, err, _tuple, _tuple$1, _tuple$2, _tuple$3, dir, file, _ref, _tuple$4, m, _tuple$5, _ref$1, _i, _slice, _index, d, _tuple$6;
-		matches = (go$sliceType(Go$String)).nil;
-		err = null;
-		if (!hasMeta(pattern)) {
-			_tuple = os.Stat(pattern), err = _tuple[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				_tuple$1 = [(go$sliceType(Go$String)).nil, null], matches = _tuple$1[0], err = _tuple$1[1];
-				return [matches, err];
-			}
-			_tuple$2 = [new (go$sliceType(Go$String))([pattern]), null], matches = _tuple$2[0], err = _tuple$2[1];
-			return [matches, err];
-		}
-		_tuple$3 = Split(pattern), dir = _tuple$3[0], file = _tuple$3[1];
-		_ref = dir;
-		if (_ref === "") {
-			dir = ".";
-		} else if (_ref === "/") {
-		} else {
-			dir = dir.substring(0, (dir.length - 1 >> 0));
-		}
-		if (!hasMeta(dir)) {
-			_tuple$4 = glob(dir, file, (go$sliceType(Go$String)).nil), matches = _tuple$4[0], err = _tuple$4[1];
-			return [matches, err];
-		}
-		m = (go$sliceType(Go$String)).nil;
-		_tuple$5 = Glob(dir), m = _tuple$5[0], err = _tuple$5[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [matches, err];
-		}
-		_ref$1 = m;
-		_i = 0;
-		while (_i < _ref$1.length) {
-			d = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			_tuple$6 = glob(d, file, matches), matches = _tuple$6[0], err = _tuple$6[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [matches, err];
-			}
-			_i++;
-		}
-		return [matches, err];
-	};
- 0Glob0Ios:Statpath/filepath:Splitpath/filepath:globpath/filepath:hasMeta0Ç globÇ¡	glob = function(dir, pattern, matches) {
-		var m, e, _tuple, fi, err, _tuple$1, d, _tuple$2, names, _ref, _i, _slice, _index, n, _tuple$3, matched, err$1, _tuple$4;
-		m = (go$sliceType(Go$String)).nil;
-		e = null;
-		var go$deferred = [];
-		try {
-			m = matches;
-			_tuple = os.Stat(dir), fi = _tuple[0], err = _tuple[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [m, e];
-			}
-			if (!fi.IsDir()) {
-				return [m, e];
-			}
-			_tuple$1 = os.Open(dir), d = _tuple$1[0], err = _tuple$1[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [m, e];
-			}
-			go$deferred.push({ recv: d, method: "Close", args: [] });
-			_tuple$2 = d.Readdirnames(-1), names = _tuple$2[0], err = _tuple$2[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [m, e];
-			}
-			sort.Strings(names);
-			_ref = names;
-			_i = 0;
-			while (_i < _ref.length) {
-				n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				_tuple$3 = Match(pattern, n), matched = _tuple$3[0], err$1 = _tuple$3[1];
-				if (!(go$interfaceIsEqual(err$1, null))) {
-					_tuple$4 = [m, err$1], m = _tuple$4[0], e = _tuple$4[1];
-					return [m, e];
-				}
-				if (matched) {
-					m = go$append(m, Join(new (go$sliceType(Go$String))([dir, n])));
-				}
-				_i++;
-			}
-			return [m, e];
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-			return [m, e];
-		}
-	};
- 0glob0Ios:Openos:Statpath/filepath:Joinpath/filepath:Matchsort:Strings0yhasMetaM	hasMeta = function(path) {
-		return strings.IndexAny(path, "*?[") >= 0;
-	};
- 0	hasMeta0strings:IndexAny0ÇÕ Çö	lazybuf.Ptr.prototype.index = function(i) {
-		var b, _slice, _index;
-		b = this;
-		if (!(b.buf === (go$sliceType(Go$Uint8)).nil)) {
-			return (_slice = b.buf, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-		}
-		return b.path.charCodeAt(i);
-	};
-	lazybuf.prototype.index = function(i) { return this.go$val.index(i); };
- 0lazybufindex0path/filepath:lazybuf0Çµ ÇÅ	lazybuf.Ptr.prototype.append = function(c) {
-		var b, _slice, _index;
-		b = this;
-		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
-			if (b.w < b.path.length && (b.path.charCodeAt(b.w) === c)) {
-				b.w = b.w + 1 >> 0;
-				return;
-			}
-			b.buf = (go$sliceType(Go$Uint8)).make(b.path.length, 0, function() { return 0; });
-			go$copyString(b.buf, b.path.substring(0, b.w));
-		}
-		_slice = b.buf, _index = b.w, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c) : go$throwRuntimeError("index out of range");
-		b.w = b.w + 1 >> 0;
-	};
-	lazybuf.prototype.append = function(c) { return this.go$val.append(c); };
- 0lazybufappend0path/filepath:lazybuf0Çê Ç\	lazybuf.Ptr.prototype.string = function() {
-		var b;
-		b = this;
-		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
-			return b.volAndPath.substring(0, (b.volLen + b.w >> 0));
-		}
-		return b.volAndPath.substring(0, b.volLen) + go$bytesToString(go$subslice(b.buf, 0, b.w));
-	};
-	lazybuf.prototype.string = function() { return this.go$val.string(); };
- 0lazybufstring0path/filepath:lazybuf0ÇvCleanÇª	Clean = go$pkg.Clean = function(path) {
-		var originalPath, volLen, rooted, n, out, _tuple, r, dotdot, _tuple$1;
-		originalPath = path;
-		volLen = volumeNameLen(path);
-		path = path.substring(volLen);
-		if (path === "") {
-			if (volLen > 1 && !((originalPath.charCodeAt(1) === 58))) {
-				return FromSlash(originalPath);
-			}
-			return originalPath + ".";
-		}
-		rooted = os.IsPathSeparator(path.charCodeAt(0));
-		n = path.length;
-		out = new lazybuf.Ptr(path, (go$sliceType(Go$Uint8)).nil, 0, originalPath, volLen);
-		_tuple = [0, 0], r = _tuple[0], dotdot = _tuple[1];
-		if (rooted) {
-			out.append(47);
-			_tuple$1 = [1, 1], r = _tuple$1[0], dotdot = _tuple$1[1];
-		}
-		while (r < n) {
-			if (os.IsPathSeparator(path.charCodeAt(r))) {
-				r = r + 1 >> 0;
-			} else if ((path.charCodeAt(r) === 46) && (((r + 1 >> 0) === n) || os.IsPathSeparator(path.charCodeAt((r + 1 >> 0))))) {
-				r = r + 1 >> 0;
-			} else if ((path.charCodeAt(r) === 46) && (path.charCodeAt((r + 1 >> 0)) === 46) && (((r + 2 >> 0) === n) || os.IsPathSeparator(path.charCodeAt((r + 2 >> 0))))) {
-				r = r + 2 >> 0;
-				if (out.w > dotdot) {
-					out.w = out.w - 1 >> 0;
-					while (out.w > dotdot && !os.IsPathSeparator(out.index(out.w))) {
-						out.w = out.w - 1 >> 0;
-					}
-				} else if (!rooted) {
-					if (out.w > 0) {
-						out.append(47);
-					}
-					out.append(46);
-					out.append(46);
-					dotdot = out.w;
-				}
-			} else {
-				if (rooted && !((out.w === 1)) || !rooted && !((out.w === 0))) {
-					out.append(47);
-				}
-				while (r < n && !os.IsPathSeparator(path.charCodeAt(r))) {
-					out.append(path.charCodeAt(r));
-					r = r + 1 >> 0;
-				}
-			}
-		}
-		if (out.w === 0) {
-			out.append(46);
-		}
-		return FromSlash(out.string());
-	};
- 0Clean0Å¢os:IsPathSeparatorpath/filepath:FromSlashpath/filepath:appendpath/filepath:indexpath/filepath:lazybufpath/filepath:stringpath/filepath:volumeNameLen0ÅôToSlashn	ToSlash = go$pkg.ToSlash = function(path) {
-		return path;
-		return strings.Replace(path, "/", "/", -1);
-	};
- 0	ToSlash0strings:Replace0Å°	FromSlashr	FromSlash = go$pkg.FromSlash = function(path) {
-		return path;
-		return strings.Replace(path, "/", "/", -1);
-	};
- 0	FromSlash0strings:Replace0ÅÜ	SplitListO	SplitList = go$pkg.SplitList = function(path) {
-		return splitList(path);
-	};
- 0	SplitList0path/filepath:splitList0Ç∆SplitÇÄ	Split = go$pkg.Split = function(path) {
-		var dir, file, vol, i, _tuple;
-		dir = "";
-		file = "";
-		vol = VolumeName(path);
-		i = path.length - 1 >> 0;
-		while (i >= vol.length && !os.IsPathSeparator(path.charCodeAt(i))) {
-			i = i - 1 >> 0;
-		}
-		_tuple = [path.substring(0, (i + 1 >> 0)), path.substring((i + 1 >> 0))], dir = _tuple[0], file = _tuple[1];
-		return [dir, file];
-	};
- 0Split0.os:IsPathSeparatorpath/filepath:VolumeName0Ç›JoinÇ§	Join = go$pkg.Join = function(elem) {
-		var _ref, _i, _slice, _index, e, i;
-		_ref = elem;
-		_i = 0;
-		while (_i < _ref.length) {
-			e = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			if (!(e === "")) {
-				return Clean(strings.Join(go$subslice(elem, i), "/"));
-			}
-			_i++;
-		}
-		return "";
-	};
- 0Join0#path/filepath:Cleanstrings:Join0ÇExtÅ˜	Ext = go$pkg.Ext = function(path) {
-		var i;
-		i = path.length - 1 >> 0;
-		while (i >= 0 && !os.IsPathSeparator(path.charCodeAt(i))) {
-			if (path.charCodeAt(i) === 46) {
-				return path.substring(i);
-			}
-			i = i - 1 >> 0;
-		}
-		return "";
-	};
- 0Ext0os:IsPathSeparator0ÅòEvalSymlinksX	EvalSymlinks = go$pkg.EvalSymlinks = function(path) {
-		return evalSymlinks(path);
-	};
- 0EvalSymlinks0path/filepath:evalSymlinks0ÇíAbsÇ6	Abs = go$pkg.Abs = function(path) {
-		var _tuple, wd, err;
-		if (IsAbs(path)) {
-			return [Clean(path), null];
-		}
-		_tuple = os.Getwd(), wd = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return ["", err];
-		}
-		return [Join(new (go$sliceType(Go$String))([wd, path])), null];
-	};
- 0Abs0Hos:Getwdpath/filepath:Cleanpath/filepath:IsAbspath/filepath:Join0Ç	ﬂRelÇ	Å	Rel = go$pkg.Rel = function(basepath, targpath) {
-		var baseVol, targVol, base, targ, baseSlashed, targSlashed, bl, tl, _tuple, b0, bi, t0, ti, seps, x, size, buf, n, i, _slice, _index, _slice$1, _index$1;
-		baseVol = VolumeName(basepath);
-		targVol = VolumeName(targpath);
-		base = Clean(basepath);
-		targ = Clean(targpath);
-		if (targ === base) {
-			return [".", null];
-		}
-		base = base.substring(baseVol.length);
-		targ = targ.substring(targVol.length);
-		if (base === ".") {
-			base = "";
-		}
-		baseSlashed = base.length > 0 && (base.charCodeAt(0) === 47);
-		targSlashed = targ.length > 0 && (targ.charCodeAt(0) === 47);
-		if (!(baseSlashed === targSlashed) || !(baseVol === targVol)) {
-			return ["", errors.New("Rel: can't make " + targ + " relative to " + base)];
-		}
-		bl = base.length;
-		tl = targ.length;
-		_tuple = [0, 0, 0, 0], b0 = _tuple[0], bi = _tuple[1], t0 = _tuple[2], ti = _tuple[3];
-		while (true) {
-			while (bi < bl && !((base.charCodeAt(bi) === 47))) {
-				bi = bi + 1 >> 0;
-			}
-			while (ti < tl && !((targ.charCodeAt(ti) === 47))) {
-				ti = ti + 1 >> 0;
-			}
-			if (!(targ.substring(t0, ti) === base.substring(b0, bi))) {
-				break;
-			}
-			if (bi < bl) {
-				bi = bi + 1 >> 0;
-			}
-			if (ti < tl) {
-				ti = ti + 1 >> 0;
-			}
-			b0 = bi;
-			t0 = ti;
-		}
-		if (base.substring(b0, bi) === "..") {
-			return ["", errors.New("Rel: can't make " + targ + " relative to " + base)];
-		}
-		if (!((b0 === bl))) {
-			seps = strings.Count(base.substring(b0, bl), "/");
-			size = 2 + (x = 3, (((seps >>> 16 << 16) * x >> 0) + (seps << 16 >>> 16) * x) >> 0) >> 0;
-			if (!((tl === t0))) {
-				size = size + (((1 + tl >> 0) - t0 >> 0)) >> 0;
-			}
-			buf = (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; });
-			n = go$copyString(buf, "..");
-			i = 0;
-			while (i < seps) {
-				_slice = buf, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 47) : go$throwRuntimeError("index out of range");
-				go$copyString(go$subslice(buf, (n + 1 >> 0)), "..");
-				n = n + 3 >> 0;
-				i = i + 1 >> 0;
-			}
-			if (!((t0 === tl))) {
-				_slice$1 = buf, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 47) : go$throwRuntimeError("index out of range");
-				go$copyString(go$subslice(buf, (n + 1 >> 0)), targ.substring(t0));
-			}
-			return [go$bytesToString(buf), null];
-		}
-		return [targ.substring(t0), null];
-	};
- 0Rel0J
-errors:Newpath/filepath:Cleanpath/filepath:VolumeNamestrings:Count0Ç!walkÇ…	walk = function(path, info, walkFn) {
-		var err, _tuple, list, _ref, _i, _slice, _index, fileInfo;
-		err = walkFn(path, info, null);
-		if (!(go$interfaceIsEqual(err, null))) {
-			if (info.IsDir() && go$interfaceIsEqual(err, go$pkg.SkipDir)) {
-				return null;
-			}
-			return err;
-		}
-		if (!info.IsDir()) {
-			return null;
-		}
-		_tuple = readDir(path), list = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return walkFn(path, info, err);
-		}
-		_ref = list;
-		_i = 0;
-		while (_i < _ref.length) {
-			fileInfo = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			err = walk(Join(new (go$sliceType(Go$String))([path, fileInfo.Name()])), fileInfo, walkFn);
-			if (!(go$interfaceIsEqual(err, null))) {
-				if (!fileInfo.IsDir() || !(go$interfaceIsEqual(err, go$pkg.SkipDir))) {
-					return err;
-				}
-			}
-			_i++;
-		}
-		return null;
-	};
- 0walk0Bpath/filepath:Joinpath/filepath:SkipDirpath/filepath:readDir0Ç2WalkÅˇ	Walk = go$pkg.Walk = function(root, walkFn) {
-		var _tuple, info, err;
-		_tuple = os.Lstat(root), info = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return walkFn(root, null, err);
-		}
-		return walk(root, info, walkFn);
-	};
- 0Walk0os:Lstatpath/filepath:walk0Ç\readDirÇ		readDir = function(dirname) {
-		var _tuple, f, err, _tuple$1, list;
-		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$sliceType(os.FileInfo)).nil, err];
-		}
-		_tuple$1 = f.Readdir(-1), list = _tuple$1[0], err = _tuple$1[1];
-		f.Close();
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [(go$sliceType(os.FileInfo)).nil, err];
-		}
-		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
-		return [list, null];
-	};
- 0	readDir07os:FileInfoos:Openpath/filepath:byName	sort:Sort0Å  Å°	byName.prototype.Len = function() {
-		var f;
-		f = this;
-		return f.length;
-	};
-	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
- 0byName0path/filepath:byName0ÇA Ç	byName.prototype.Less = function(i, j) {
-		var f, _slice, _index, _slice$1, _index$1;
-		f = this;
-		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
-	};
-	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
- 0byName0path/filepath:byName0ÇÃ Ç¢	byName.prototype.Swap = function(i, j) {
-		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
-		f = this;
-		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
-	};
-	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
- 0byName0path/filepath:byName0ÇJBaseÇ	Base = go$pkg.Base = function(path) {
-		var i;
-		if (path === "") {
-			return ".";
-		}
-		while (path.length > 0 && os.IsPathSeparator(path.charCodeAt((path.length - 1 >> 0)))) {
-			path = path.substring(0, (path.length - 1 >> 0));
-		}
-		path = path.substring(VolumeName(path).length);
-		i = path.length - 1 >> 0;
-		while (i >= 0 && !os.IsPathSeparator(path.charCodeAt(i))) {
-			i = i - 1 >> 0;
-		}
-		if (i >= 0) {
-			path = path.substring((i + 1 >> 0));
-		}
-		if (path === "") {
-			return "/";
-		}
-		return path;
-	};
- 0Base0.os:IsPathSeparatorpath/filepath:VolumeName0Ç!DirÇ 	Dir = go$pkg.Dir = function(path) {
-		var vol, i, dir, last;
-		vol = VolumeName(path);
-		i = path.length - 1 >> 0;
-		while (i >= vol.length && !os.IsPathSeparator(path.charCodeAt(i))) {
-			i = i - 1 >> 0;
-		}
-		dir = Clean(path.substring(vol.length, (i + 1 >> 0)));
-		last = dir.length - 1 >> 0;
-		if (last > 0 && os.IsPathSeparator(dir.charCodeAt(last))) {
-			dir = dir.substring(0, last);
-		}
-		if (dir === "") {
-			dir = ".";
-		}
-		return vol + dir;
-	};
- 0Dir0Cos:IsPathSeparatorpath/filepath:Cleanpath/filepath:VolumeName0Å¬
-VolumeNameÅÑ	VolumeName = go$pkg.VolumeName = function(path) {
-		var v;
-		v = "";
-		v = path.substring(0, volumeNameLen(path));
-		return v;
-	};
- 0
-VolumeName0path/filepath:volumeNameLen0}IsAbsT	IsAbs = go$pkg.IsAbs = function(path) {
-		return strings.HasPrefix(path, "/");
-	};
- 0IsAbs0strings:HasPrefix0XvolumeNameLen2	volumeNameLen = function(path) {
-		return 0;
-	};
- 0volumeNameLen0 0Åí	HasPrefixa	HasPrefix = go$pkg.HasPrefix = function(p, prefix) {
-		return strings.HasPrefix(p, prefix);
-	};
- 0	HasPrefix0strings:HasPrefix0Åπ	splitListÅã	splitList = function(path) {
-		if (path === "") {
-			return new (go$sliceType(Go$String))([]);
-		}
-		return strings.Split(path, ":");
-	};
- 0	splitList0strings:Split0ÇÜevalSymlinksÇÚ	evalSymlinks = function(path) {
-		var originalPath, b, n, i, p, _tuple, _tuple$1, _tuple$2, fi, err, _tuple$3, dest;
-		originalPath = path;
-		b = new bytes.Buffer.Ptr();
-		n = 0;
-		while (!(path === "")) {
-			if (n > 255) {
-				return ["", errors.New("EvalSymlinks: too many links in " + originalPath)];
-			}
-			i = strings.IndexRune(path, 47);
-			p = "";
-			if (i === -1) {
-				_tuple = [path, ""], p = _tuple[0], path = _tuple[1];
-			} else {
-				_tuple$1 = [path.substring(0, i), path.substring((i + 1 >> 0))], p = _tuple$1[0], path = _tuple$1[1];
-			}
-			if (p === "") {
-				if (b.Len() === 0) {
-					b.WriteRune(47);
-				}
-				n = n + 1 >> 0;
-				continue;
-			}
-			_tuple$2 = os.Lstat(b.String() + p), fi = _tuple$2[0], err = _tuple$2[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return ["", err];
-			}
-			if (((fi.Mode() & 134217728) >>> 0) === 0) {
-				b.WriteString(p);
-				if (!(path === "")) {
-					b.WriteRune(47);
-				}
-				n = n + 1 >> 0;
-				continue;
-			}
-			_tuple$3 = os.Readlink(b.String() + p), dest = _tuple$3[0], err = _tuple$3[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return ["", err];
-			}
-			if (IsAbs(dest)) {
-				b.Reset();
-			}
-			path = dest + "/" + path;
-			n = n + 1 >> 0;
-		}
-		return [Clean(b.String()), null];
-	};
- 0evalSymlinks0nbytes:Buffer
-errors:Newos:Lstatos:Readlinkpath/filepath:Cleanpath/filepath:IsAbsstrings:IndexRune0   0ErrBadPattern0 0   0	SkipDir0 0s  @		go$pkg.ErrBadPattern = errors.New("syntax error in pattern");
-0 0)
-errors:Newpath/filepath:ErrBadPattern0c  6		go$pkg.SkipDir = errors.New("skip this directory");
-0 0#
-errors:Newpath/filepath:SkipDir0
-   0 0 0
-   0 0 0 
+0Åâgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstrings0\0errorsA0osB0runtimeC0	sortD0stringsE0unicode/utf8F0
+bytesG0ÇK0Ç< 0OÇgO=$pkg.lazybuf=$newType(0,"Struct","filepath.lazybuf","lazybuf","path/filepath",function(path_,buf_,w_,volAndPath_,volLen_){this.$val=this;this.path=path_!==undefined?path_:"";this.buf=buf_!==undefined?buf_:($sliceType($Uint8)).nil;this.w=w_!==undefined?w_:0;this.volAndPath=volAndPath_!==undefined?volAndPath_:"";this.volLen=volLen_!==undefined?volLen_:0;});Ç∂($ptrType(O)).methods=[["append","append","path/filepath",[$Uint8],[],false,-1],["index","index","path/filepath",[$Int],[$Uint8],false,-1],["string","string","path/filepath",[],[$String],false,-1]];O.init([["path","path","path/filepath",$String,""],["buf","buf","path/filepath",($sliceType($Uint8)),""],["w","w","path/filepath",$Int,""],["volAndPath","volAndPath","path/filepath",$String,""],["volLen","volLen","path/filepath",$Int,""]]);0	lazybuf0  0Å≥ 0ZWZ=$pkg.WalkFunc=$newType(4,"Func","filepath.WalkFunc","WalkFunc","path/filepath",null);3Z.init([$String,B.FileInfo,$error],[$error],false);0
+WalkFunc0os:FileInfo 0 0   0ErrBadPattern0  0 0   0	SkipDir0  0 0AA  0lstat0  0q 0  9    $pkg.ErrBadPattern=A.New("syntax error in pattern");0 0)
+errors:Newpath/filepath:ErrBadPattern 0a 0  /    $pkg.SkipDir=A.New("skip this directory");0 0#
+errors:Newpath/filepath:SkipDir 0E 0      AA=B.Lstat;0lstat0os:Lstatpath/filepath:lstat 0ÇFpath/filepath.Match0HÇ÷H=$pkg.Match=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;c=false;d=null;    Pattern:while(a.length>0){  4  8e=false;  D  Hf="";  Wg=I(a);e=g[0];f=g[1];a=g[2];  É    if(e&&f===""){  ⁄    h=E.Index(b,"/")<0;i=null;c=h;d=i;return[c,d];    }  @j=J(f,b);k=j[0];l=j[1];m=j[2];      if(l&&((k.length===0)||a.length>0)){  3b=k;  ?continue;    }  N    if(!($interfaceIsEqual(m,null))){  a    n=false;o=m;c=n;d=o;return[c,d];    }  y    if(e){  ƒ  »p=0;while(p<b.length&&!((b.charCodeAt(p)===47))){  q=J(f,b.substring((p+1>>0)));r=q[0];s=q[1];t=q[2];  1    if(s){      if((a.length===0)&&r.length>0){  ™  ˜  ˜p=p+(1)>>0;continue;    }  øb=r;  Õcontinue Pattern;    }  Ë    if(!($interfaceIsEqual(t,null))){  ˝    u=false;v=t;c=u;d=v;return[c,d];    }      ˜  ˜p=p+(1)>>0;}    }  	     w=false;x=null;c=w;d=x;return[c,d];    }  	6    y=b.length===0;z=null;c=y;d=z;return[c,d];    }; 0Match0Bpath/filepath:matchChunkpath/filepath:scanChunkstrings:Index 0Çypath/filepath.scanChunk0IÇCI=function(a){var b,c,d,e,f,g,h,i,j;b=false;c="";d="";  
+ while(a.length>0&&(a.charCodeAt(0)===42)){  
+.a=a.substring(1);  
+Fb=true;    }  
+Ve=false;  
+h  
+lf=0;  
+r  
+y  
+}f=0;Scan:while(f<a.length){  
+ûg=a.charCodeAt(f);  
+¥if(g===92){  
+¬      if((f+1>>0)<a.length){  9  9f=f+(1)>>0;    }          J}else if(g===91){  We=true;      h}else if(g===93){  ue=false;      á}else if(g===42){  î    if(!e){  ¶break Scan;    }    }      
+ñ  
+ñf=f+(1)>>0;}  æ    h=b;i=a.substring(0,f);j=a.substring(f);b=h;c=i;d=j;return[b,c,d];    }; 0	scanChunk0  0Çÿpath/filepath.matchChunk0JÇLJ=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;c="";d=false;e=null;  Ûwhile(a.length>0){  
+    if(b.length===0){  return[c,d,e];    }  +f=a.charCodeAt(0);  ?if(f===91){  bg=F.DecodeRuneInString(b);h=g[0];i=g[1];  àb=b.substring(i);  ïa=a.substring(1);      if(a.length===0){  .e=$pkg.ErrBadPattern;  Freturn[c,d,e];    }  lj=a.charCodeAt(0)===94;  ä    if(j){  õa=a.substring(1);    }  Ãk=false;  ﬁl=0;  Ìwhile(true){  ˜    if(a.length>0&&(a.charCodeAt(0)===93)&&l>0){  1a=a.substring(1);  Hbreak;    }  X  \m=0;n=0;o=m;p=n;  l  oq=K(a);o=q[0];a=q[1];e=q[2];    if(!($interfaceIsEqual(e,null))){  °return[c,d,e];    }  ≤p=o;  æ    if(a.charCodeAt(0)===45){  ÿ  €r=K(a.substring(1));p=r[0];a=r[1];e=r[2];    if(!($interfaceIsEqual(e,null))){  return[c,d,e];    }    }  *    if(o<=h&&h<=p){  Gk=true;    }  ^  ^l=l+(1)>>0;    }  o    if(k===j){  âreturn[c,d,e];    }      ò}else if(f===63){  •    if(b.charCodeAt(0)===47){  ¿return[c,d,e];    }  œs=F.DecodeRuneInString(b);t=s[1];  ıb=b.substring(t);  a=a.substring(1);      }else if(f===92){  %  Ha=a.substring(1);  ^    if(a.length===0){  xe=$pkg.ErrBadPattern;  ëreturn[c,d,e];    }      ¶  ¡    if(!((a.charCodeAt(0)===b.charCodeAt(0)))){  €return[c,d,e];    }  Íb=b.substring(1);  ˜a=a.substring(1);    }else{  ¡    if(!((a.charCodeAt(0)===b.charCodeAt(0)))){  €return[c,d,e];    }  Íb=b.substring(1);  ˜a=a.substring(1);    }    }      u=b;v=true;w=null;c=u;d=v;e=w;return[c,d,e];    }; 0
+matchChunk0Tpath/filepath:ErrBadPatternpath/filepath:getEscunicode/utf8:DecodeRuneInString 0Çäpath/filepath.getEsc0KÇK=function(a){var b,c,d,e,f;b=0;c="";d=null;  ∑    if((a.length===0)||(a.charCodeAt(0)===45)||(a.charCodeAt(0)===93)){  Ùd=$pkg.ErrBadPattern;  
+return[b,c,d];    }      if((a.charCodeAt(0)===92)&&true){  Ja=a.substring(1);  ^    if(a.length===0){  vd=$pkg.ErrBadPattern;  çreturn[b,c,d];    }    }  úe=F.DecodeRuneInString(a);b=e[0];f=e[1];  ƒ    if((b===65533)&&(f===1)){  Èd=$pkg.ErrBadPattern;    }  c=a.substring(f);      if(c.length===0){  -d=$pkg.ErrBadPattern;    }  Ereturn[b,c,d];    }; 0getEsc0>path/filepath:ErrBadPatternunicode/utf8:DecodeRuneInString 0Ç0path/filepath.Glob0LÇ∫L=$pkg.Glob=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;b=($sliceType($String)).nil;c=null;  Ü    if(!N(a)){  ü  ¢d=B.Lstat(a);c=d[1];    if(!($interfaceIsEqual(c,null))){  Œ    e=($sliceType($String)).nil;f=null;b=e;c=f;return[b,c];    }  ‰    g=new($sliceType($String))([a]);h=null;b=g;c=h;return[b,c];    }  i=T(a);j=i[0];k=i[1];  $l=j;  2if(l===""){  =j=".";      H}else if(l==="/"){    }else{  yj=j.substring(0,(j.length-1>>0));    }  ∑    if(!N(j)){  Ã    m=M(j,k,($sliceType($String)).nil);b=m[0];c=m[1];return[b,c];    }  Ì  Òn=($sliceType($String)).nil;  ˝o=L(j);n=o[0];c=o[1];      if(!($interfaceIsEqual(c,null))){  #return[b,c];    }  .p=n;q=0;while(q<p.$length){r=((q<0||q>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+q]);  Fs=M(r,k,b);b=s[0];c=s[1];  n    if(!($interfaceIsEqual(c,null))){  Åreturn[b,c];    }    q++;}  êreturn[b,c];    }; 0Glob0Jos:Lstatpath/filepath:Splitpath/filepath:globpath/filepath:hasMeta 0Ç/path/filepath.glob0MÇ∫M=function(a,b,c){var d,e,$deferred=[],f,g,h,i,j,k,l,m,n,o,p,q,r,s,t;d=($sliceType($String)).nil;e=null;try{  ød=c;  Ãf=B.Stat(a);g=f[0];h=f[1];  Â    if(!($interfaceIsEqual(h,null))){  ˜return[d,e];    }      if(!g.IsDir()){  return[d,e];    }   i=B.Open(a);j=i[0];h=i[1];  8    if(!($interfaceIsEqual(h,null))){  Jreturn[d,e];    }  U$deferred.push({recv:j,method:"Close",args:[]});  gk=j.Readdirnames(-1);l=k[0];h=k[1];  â    if(!($interfaceIsEqual(h,null))){  õreturn[d,e];    }  ¶D.Strings(l);  ºm=l;n=0;while(n<m.$length){o=((n<0||n>=m.$length)?$throwRuntimeError("index out of range"):m.$array[m.$offset+n]);  ÿp=H(b,o);q=p[0];r=p[1];  ¸    if(!($interfaceIsEqual(r,null))){      s=d;t=r;d=s;e=t;return[d,e];    }  #    if(q){  3d=$append(d,U(new($sliceType($String))([a,o])));    }    n++;}  Wreturn[d,e];    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);return[d,e];}}; 0glob0Ios:Openos:Statpath/filepath:Joinpath/filepath:Matchsort:Strings 0zpath/filepath.hasMeta0N8N=function(a){  !return E.IndexAny(a,"*?[")>=0;    }; 0	hasMeta0strings:IndexAny 0Çê(*path/filepath.lazybuf).index0 Ç:O.Ptr.prototype.index=function(a){var b,c;  *b=this;  K    if(!(b.buf===($sliceType($Uint8)).nil)){  _return(c=b.buf,((a<0||a>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+a]));    }  sreturn b.path.charCodeAt(a);    };O.prototype.index=function(a){return this.$val.index(a);}; 0lazybufindex0path/filepath:lazybuf 0Çq(*path/filepath.lazybuf).append0 ÇO.Ptr.prototype.append=function(a){var b,c,d;  çb=this;  ´    if(b.buf===($sliceType($Uint8)).nil){  ø    if(b.w<b.path.length&&(b.path.charCodeAt(b.w)===a)){  Ì  Ìb.w=b.w+(1)>>0;  ˆreturn;    }  b.buf=($sliceType($Uint8)).make(b.path.length,0,function(){return 0;});  '$copyString(b.buf,b.path.substring(0,b.w));    }  E(c=b.buf,d=b.w,(d<0||d>=c.$length)?$throwRuntimeError("index out of range"):c.$array[c.$offset+d]=a);  U  Ub.w=b.w+(1)>>0;    };O.prototype.append=function(a){return this.$val.append(a);}; 0lazybufappend0path/filepath:lazybuf 0Çê(*path/filepath.lazybuf).string0 Ç8O.Ptr.prototype.string=function(){var a;  da=this;  É    if(a.buf===($sliceType($Uint8)).nil){  óreturn a.volAndPath.substring(0,(a.volLen+a.w>>0));    }  æreturn a.volAndPath.substring(0,a.volLen)+$bytesToString($subslice(a.buf,0,a.w));    };O.prototype.string=function(){return this.$val.string();}; 0lazybufstring0path/filepath:lazybuf 0Çˆpath/filepath.Clean0PÇ%P=$pkg.Clean=function(a){var b,c,d,e,f,g,h,i,j,k,l;  $b=a;  $+c=AI(a);  $Ja=a.substring(c);  $`    if(a===""){  $r    if(c>1&&!((b.charCodeAt(1)===58))){  $≥return R(b);    }  $ÿreturn b+".";    }  $ˆd=B.IsPathSeparator(a.charCodeAt(0));  &e=a.length;  &.f=new O.Ptr();$copy(f,new O.Ptr(a,($sliceType($Uint8)).nil,0,b,c),O);  &tg=0;h=0;i=g;j=h;  &á    if(d){  &ïf.append(47);  &≠k=1;l=1;i=k;j=l;    }  &√while(i<e){  &—  &‹if(B.IsPathSeparator(a.charCodeAt(i))){  '  'i=i+(1)>>0;      ' }else if((a.charCodeAt(i)===46)&&(((i+1>>0)===e)||B.IsPathSeparator(a.charCodeAt((i+1>>0))))){  'w  'wi=i+(1)>>0;      '}}else if((a.charCodeAt(i)===46)&&(a.charCodeAt((i+1>>0))===46)&&(((i+2>>0)===e)||B.IsPathSeparator(a.charCodeAt((i+2>>0))))){  (i=i+(2)>>0;  (  (if(f.w>j){  (G  (Gf.w=f.w-(1)>>0;  (Swhile(f.w>j&&!B.IsPathSeparator(f.index(f.w))){  (ñ  (ñf.w=f.w-(1)>>0;    }      (ß}else if(!d){  (¯    if(f.w>0){  )f.append(47);    }  ),f.append(46);  )@f.append(46);  )Tj=f.w;    }    }else{  )©    if(d&&!((f.w===1))||!d&&!((f.w===0))){  )‡f.append(47);    }  *while(i<e&&!B.IsPathSeparator(a.charCodeAt(i))){  *Hf.append(a.charCodeAt(i));      *>  *>i=i+(1)>>0;}    }    }  *â    if(f.w===0){  *õf.append(46);    }  *∞return R(f.string());    }; 0Clean0Å¢os:IsPathSeparatorpath/filepath:FromSlashpath/filepath:appendpath/filepath:indexpath/filepath:lazybufpath/filepath:stringpath/filepath:volumeNameLen 0Åüpath/filepath.ToSlash0Q^Q=$pkg.ToSlash=function(a){  +ú  +¥return a;      +ƒreturn E.Replace(a,"/","/",-1);    }; 0	ToSlash0strings:Replace 0Å•path/filepath.FromSlash0R`R=$pkg.FromSlash=function(a){  ,Œ  ,Êreturn a;      ,ˆreturn E.Replace(a,"/","/",-1);    }; 0	FromSlash0strings:Replace 0ÅÉpath/filepath.SplitList0S6S=$pkg.SplitList=function(a){  .8return AK(a);    }; 0	SplitList0path/filepath:splitList 0Ç`path/filepath.Split0TÇT=$pkg.Split=function(a){var b,c,d,e,f,g;b="";c="";  /ìd=AG(a);  /¨e=a.length-1>>0;  /¿while(e>=d.length&&!B.IsPathSeparator(a.charCodeAt(e))){  /ˆ  /ˆe=e-(1)>>0;    }  /˛    f=a.substring(0,(e+1>>0));g=a.substring((e+1>>0));b=f;c=g;return[b,c];    }; 0Split0.os:IsPathSeparatorpath/filepath:VolumeName 0ÇUpath/filepath.Join0UÇU=$pkg.Join=function(a){var b,c,d,e;  0Ïb=a;c=0;while(c<b.$length){d=c;e=((c<0||c>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+c]);  1    if(!(e==="")){  1return P(E.Join($subslice(a,d),"/"));    }    c++;}  1Wreturn"";    }; 0Join0#path/filepath:Cleanstrings:Join 0Çpath/filepath.Ext0VÅ‹V=$pkg.Ext=function(a){var b;  27  2;b=a.length-1>>0;while(b>=0&&!B.IsPathSeparator(a.charCodeAt(b))){  2    if(a.charCodeAt(b)===46){  2ñreturn a.substring(b);    }      2w  2wb=b-(1)>>0;}  2Æreturn"";    }; 0Ext0os:IsPathSeparator 0Åèpath/filepath.EvalSymlinks0W9W=$pkg.EvalSymlinks=function(a){  3Õreturn AL(a);    }; 0EvalSymlinks0path/filepath:evalSymlinks 0Çapath/filepath.Abs0XÅX=$pkg.Abs=function(a){var b,c,d;  5    if(AH(a)){  5return[P(a),null];    }  5:b=B.Getwd();c=b[0];d=b[1];  5Q    if(!($interfaceIsEqual(d,null))){  5creturn["",d];    }  5vreturn[U(new($sliceType($String))([c,a])),null];    }; 0Abs0Hos:Getwdpath/filepath:Cleanpath/filepath:IsAbspath/filepath:Join 0Çpath/filepath.Rel0YÇ¢Y=$pkg.Rel=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;  7µc=AG(a);  7÷d=AG(b);  7˜e=P(a);  8f=P(b);  8)    if(f===e){  8=return[".",null];    }  8Qe=e.substring(c.length);  8mf=f.substring(d.length);  8â    if(e==="."){  8úe="";    }  8Îg=e.length>0&&(e.charCodeAt(0)===47);  9!h=f.length>0&&(f.charCodeAt(0)===47);  9W    if(!(g===h)||!(c===d)){  9èreturn["",A.New("Rel: can't make "+f+" relative to "+e)];    }  :'i=e.length;  :8j=f.length;  :I  :Mk=0;l=0;m=0;n=0;o=k;p=l;q=m;r=n;  :awhile(true){  :iwhile(p<i&&!((e.charCodeAt(p)===47))){  :ì  :ìp=p+(1)>>0;    }  :ûwhile(r<j&&!((f.charCodeAt(r)===47))){  :»  :»r=r+(1)>>0;    }  :”    if(!(f.substring(q,r)===e.substring(o,p))){  :ˆbreak;    }  ;    if(p<i){  ;  ;p=p+(1)>>0;    }  ;    if(r<j){  ;-  ;-r=r+(1)>>0;    }  ;8o=p;  ;Bq=r;    }  ;N    if(e.substring(o,p)===".."){  ;ireturn["",A.New("Rel: can't make "+f+" relative to "+e)];    }  ;∑    if(!((o===i))){  ;˛s=E.Count(e.substring(o,i),"/");  <6t=2+((((s>>>16<<16)*3>>0)+(s<<16>>>16)*3)>>0)>>0;  <K    if(!((j===q))){  <\t=t+(((1+j>>0)-q>>0))>>0;    }  <vu=($sliceType($Uint8)).make(t,0,function(){return 0;});  <ív=$copyString(u,"..");  <©  <≠w=0;while(w<s){  <»(v<0||v>=u.$length)?$throwRuntimeError("index out of range"):u.$array[u.$offset+v]=47;  <ﬁ$copyString($subslice(u,(v+1>>0)),"..");  <˜v=v+(3)>>0;      <ø  <øw=w+(1)>>0;}  =    if(!((q===j))){  =(v<0||v>=u.$length)?$throwRuntimeError("index out of range"):u.$array[u.$offset+v]=47;  =+$copyString($subslice(u,(v+1>>0)),f.substring(q));    }  =Lreturn[$bytesToString(u),null];    }  =hreturn[f.substring(q),null];    }; 0Rel0J
+errors:Newpath/filepath:Cleanpath/filepath:VolumeNamestrings:Count 0Çpath/filepath.walk0ABÇÜAB=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n;  BÑd=c(a,b,null);  B§    if(!($interfaceIsEqual(d,null))){  B∂    if(b.IsDir()&&$interfaceIsEqual(d,$pkg.SkipDir)){  B›return null;    }  BÓreturn d;    }  B˛    if(!b.IsDir()){  Creturn null;    }  C#e=AD(a);f=e[0];d=e[1];  CE    if(!($interfaceIsEqual(d,null))){  CWreturn c(a,b,d);    }  C{g=f;h=0;while(h<g.$length){i=((h<0||h>=g.$length)?$throwRuntimeError("index out of range"):g.$array[g.$offset+h]);  Cöj=U(new($sliceType($String))([a,i]));  Cπk=AA(j);l=k[0];m=k[1];  C‹    if(!($interfaceIsEqual(m,null))){  CÔ  CÚn=c(j,l,m);    if(!($interfaceIsEqual(n,null))&&!($interfaceIsEqual(n,$pkg.SkipDir))){  D=return n;    }    }else{  D[m=AB(j,l,c);  DÖ    if(!($interfaceIsEqual(m,null))){  Dô    if(!l.IsDir()||!($interfaceIsEqual(m,$pkg.SkipDir))){  D«return m;    }    }    }    h++;}  DÂreturn null;    }; 0walk0\path/filepath:Joinpath/filepath:SkipDirpath/filepath:lstatpath/filepath:readDirNames 0Åıpath/filepath.Walk0ACÅ´AC=$pkg.Walk=function(a,b){var c,d,e;  Fßc=B.Lstat(a);d=c[0];e=c[1];  Fƒ    if(!($interfaceIsEqual(e,null))){  F÷return b(a,null,e);    }  F¯return AB(a,d,b);    }; 0Walk0os:Lstatpath/filepath:walk 0Ç®path/filepath.readDirNames0ADÇTAD=function(a){var b,c,d,e,f;  G∫b=B.Open(a);c=b[0];d=b[1];  G÷    if(!($interfaceIsEqual(d,null))){  GËreturn[($sliceType($String)).nil,d];    }  G¸e=c.Readdirnames(-1);f=e[0];d=e[1];  Hc.Close();  H)    if(!($interfaceIsEqual(d,null))){  H;return[($sliceType($String)).nil,d];    }  HOD.Strings(f);  Hdreturn[f,null];    }; 0readDirNames0os:Opensort:Strings 0Çpath/filepath.Base0AEÇ∫AE=$pkg.Base=function(a){var b;  Iå    if(a===""){  Iûreturn".";    }  I…while(a.length>0&&B.IsPathSeparator(a.charCodeAt((a.length-1>>0)))){  Ja=a.substring(0,(a.length-1>>0));    }  JDa=a.substring(AG(a).length);  JÉb=a.length-1>>0;  Jówhile(b>=0&&!B.IsPathSeparator(a.charCodeAt(b))){  J∆  J∆b=b-(1)>>0;    }  JŒ    if(b>=0){  J‹a=a.substring((b+1>>0));    }  K    if(a===""){  K+return"/";    }  KHreturn a;    }; 0Base0.os:IsPathSeparatorpath/filepath:VolumeName 0Ç€path/filepath.Dir0AFÇmAF=$pkg.Dir=function(a){var b,c,d,e;  LÚb=AG(a);  Mc=a.length-1>>0;  Mwhile(c>=b.length&&!B.IsPathSeparator(a.charCodeAt(c))){  MU  MUc=c-(1)>>0;    }  M]d=P(a.substring(b.length,(c+1>>0)));  MÅe=d.length-1>>0;  Mó    if(e>0&&B.IsPathSeparator(d.charCodeAt(e))){  M»d=d.substring(0,e);    }  M›    if(d===""){  MÓd=".";    }  M¸return b+d;    }; 0Dir0Cos:IsPathSeparatorpath/filepath:Cleanpath/filepath:VolumeName 0ÅØpath/filepath.VolumeName0AG[AG=$pkg.VolumeName=function(a){var b;b="";  N˜    b=a.substring(0,AI(a));return b;    }; 0
+VolumeName0path/filepath:volumeNameLen 0ÅÄpath/filepath.IsAbs0AH@AH=$pkg.IsAbs=function(a){  Pureturn E.HasPrefix(a,"/");    }; 0IsAbs0strings:HasPrefix 0apath/filepath.volumeNameLen0AI$AI=function(a){  Q%return 0;    }; 0volumeNameLen0  0Ååpath/filepath.HasPrefix0AJDAJ=$pkg.HasPrefix=function(a,b){  Q£return E.HasPrefix(a,b);    }; 0	HasPrefix0strings:HasPrefix 0Åπpath/filepath.splitList0AKuAK=function(a){  QÚ    if(a===""){  Rreturn new($sliceType($String))([]);    }  Rreturn E.Split(a,":");    }; 0	splitList0strings:Split 0Ç®path/filepath.evalSymlinks0ALÇ˝AL=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o;  Sw  Såb=a;  T  Tc=new G.Buffer.Ptr();$copy(c,new G.Buffer.Ptr(),G.Buffer);  T(  T,d=0;while(!(a==="")){  TH    if(d>255){  T\return["",A.New("EvalSymlinks: too many links in "+b)];    }  TÕe=E.IndexRune(a,47);  T˜  T˚f="";  U    if(e===-1){  Ug=a;h="";f=g;a=h;    }else{  U7i=a.substring(0,e);j=a.substring((e+1>>0));f=i;a=j;    }  U]    if(f===""){  Um    if(c.Len()===0){  U†c.WriteRune(47);    }  Uø  T@  T@d=d+(1)>>0;continue;    }  Uœk=B.Lstat(c.String()+f);l=k[0];m=k[1];  Uı    if(!($interfaceIsEqual(m,null))){  Vreturn["",m];    }  V    if(((l.Mode()&134217728)>>>0)===0){  VCc.WriteString(f);  VW    if(!(a==="")){  Vkc.WriteRune(47);    }  Vä  T@  T@d=d+(1)>>0;continue;    }  VÀn=B.Readlink(c.String()+f);o=n[0];m=n[1];  Vˆ    if(!($interfaceIsEqual(m,null))){  W	return["",m];    }  W    if(AH(o)){  W2c.Reset();    }  WBa=o+"/"+a;      T@  T@d=d+(1)>>0;}  Wmreturn[P(c.String()),null];    }; 0evalSymlinks0nbytes:Buffer
+errors:Newos:Lstatos:Readlinkpath/filepath:Cleanpath/filepath:IsAbsstrings:IndexRune 0 Ç¢{"Base":22414,"Files":[{"Name":"/usr/local/go/src/pkg/path/filepath/match.go","Base":1,"Size":6988,"Lines":[0,55,109,159,160,177,178,187,197,203,214,222,233,249,251,252,313,371,372,439,465,468,480,493,502,567,626,666,718,781,817,820,840,898,934,988,991,1061,1128,1145,1148,1213,1232,1235,1296,1305,1329,1345,1364,1408,1435,1494,1552,1556,1597,1637,1702,1772,1792,1839,1851,1863,1867,1885,1906,1910,1922,1963,1984,2044,2092,2104,2169,2211,2226,2233,2247,2269,2275,2295,2318,2324,2329,2333,2353,2356,2384,2386,2387,2461,2493,2558,2603,2627,2641,2644,2662,2673,2679,2715,2737,2750,2784,2839,2867,2876,2882,2887,2899,2917,2929,2948,2960,2977,2992,2997,3001,3004,3044,3046,3047,3110,3169,3244,3313,3335,3354,3364,3368,3388,3400,3422,3460,3473,3494,3555,3601,3625,3649,3660,3665,3688,3718,3734,3756,3761,3784,3802,3817,3826,3883,3906,3917,3923,3943,3995,4007,4013,4025,4050,4107,4120,4127,4133,4161,4179,4185,4198,4203,4228,4239,4244,4245,4257,4283,4294,4299,4337,4350,4371,4372,4385,4419,4441,4466,4491,4503,4509,4514,4529,4530,4541,4566,4577,4582,4595,4616,4620,4623,4644,4646,4647,4726,4789,4849,4871,4880,4883,4935,4955,4978,5001,5011,5015,5018,5058,5094,5116,5119,5139,5162,5184,5187,5195,5197,5198,5261,5329,5397,5447,5450,5508,5532,5578,5597,5601,5633,5636,5637,5666,5680,5690,5702,5727,5740,5750,5809,5812,5813,5833,5863,5866,5867,5883,5903,5920,5929,5932,5955,5995,6013,6023,6027,6030,6038,6040,6041,6106,6165,6225,6260,6333,6346,6371,6388,6397,6400,6418,6427,6430,6454,6471,6480,6483,6500,6501,6535,6552,6561,6564,6585,6586,6613,6649,6667,6684,6688,6703,6734,6738,6741,6749,6751,6752,6821,6845,6878,6943,6986],"Infos":null},{"Name":"/usr/local/go/src/pkg/path/filepath/path.go","Base":6990,"Size":13261,"Lines":[0,55,109,159,160,240,316,333,334,343,353,359,367,378,380,381,431,489,555,612,634,653,672,688,707,723,725,726,764,783,801,804,822,824,825,860,879,924,933,943,947,983,1011,1014,1030,1037,1039,1040,1076,1095,1132,1135,1189,1191,1192,1200,1234,1272,1274,1275,1334,1399,1455,1458,1519,1585,1656,1710,1764,1828,1861,1864,1941,1985,1988,2047,2074,2077,2133,2161,2213,2246,2268,2299,2321,2338,2382,2402,2436,2440,2468,2471,2510,2511,2527,2586,2640,2702,2767,2783,2853,2872,2885,2909,2928,2931,2932,2945,2956,2992,3017,3024,3094,3110,3117,3207,3250,3260,3272,3296,3317,3329,3395,3408,3414,3431,3494,3513,3540,3546,3566,3586,3605,3610,3621,3646,3672,3726,3752,3757,3776,3830,3854,3859,3863,3866,3867,3898,3915,3933,3936,3937,3969,3971,3972,4040,4105,4138,4173,4196,4210,4213,4271,4273,4274,4346,4415,4442,4479,4502,4516,4519,4577,4579,4580,4657,4715,4802,4841,4865,4867,4868,4932,4991,5055,5080,5143,5188,5213,5233,5286,5292,5295,5326,5328,5329,5398,5464,5498,5533,5559,5574,5633,5637,5640,5651,5653,5654,5707,5765,5822,5833,5864,5935,5957,5976,5980,5983,5994,5996,5997,6072,6082,6159,6221,6270,6297,6299,6300,6351,6417,6486,6548,6588,6606,6632,6635,6658,6675,6692,6695,6723,6725,6726,6803,6865,6942,7012,7064,7141,7216,7270,7303,7336,7361,7386,7405,7423,7426,7454,7482,7500,7512,7515,7580,7634,7688,7743,7819,7822,7896,7913,7930,7954,7961,8002,8010,8014,8055,8063,8067,8101,8110,8114,8129,8137,8141,8156,8164,8168,8178,8188,8191,8217,8293,8296,8311,8366,8422,8443,8459,8482,8486,8514,8537,8567,8589,8614,8624,8628,8644,8666,8696,8700,8726,8729,8752,8754,8755,8824,8896,8928,8976,8977,9051,9124,9195,9270,9339,9342,9420,9496,9572,9650,9724,9802,9820,9887,9888,9924,9925,9971,10037,10069,10086,10124,10138,10142,10155,10158,10159,10179,10192,10195,10196,10230,10247,10280,10283,10284,10314,10345,10380,10398,10475,10490,10495,10506,10548,10567,10612,10628,10634,10639,10643,10646,10658,10660,10661,10737,10816,10891,10962,11008,11048,11096,11125,11142,11174,11177,11210,11212,11213,11278,11317,11371,11399,11416,11434,11437,11471,11482,11499,11517,11520,11541,11560,11562,11563,11605,11681,11724,11805,11837,11854,11867,11870,11898,11960,11991,11994,12021,12058,12084,12104,12150,12156,12159,12172,12192,12195,12234,12251,12278,12281,12294,12296,12297,12378,12448,12472,12514,12594,12676,12707,12732,12752,12805,12811,12814,12850,12872,12920,12939,12942,12958,12970,12973,12991,12993,12994,13037,13090,13145,13182,13224,13259],"Infos":null},{"Name":"/usr/local/go/src/pkg/path/filepath/path_unix.go","Base":20252,"Size":818,"Lines":[0,55,109,159,160,229,230,247,248,265,266,313,344,381,383,384,455,482,520,530,532,533,606,646,683,685,686,725,742,762,765,816],"Infos":null},{"Name":"/usr/local/go/src/pkg/path/filepath/symlink.go","Base":21071,"Size":1342,"Lines":[0,55,109,159,160,179,180,197,198,207,216,226,232,243,245,246,295,316,338,394,452,472,503,522,598,602,603,636,678,693,708,730,741,775,779,780,795,816,845,872,877,889,893,894,932,950,968,972,1009,1029,1048,1075,1080,1092,1096,1097,1146,1189,1207,1225,1229,1248,1261,1265,1306,1309,1340],"Infos":null}]}
+ ˇ

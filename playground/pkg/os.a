@@ -1,4 +1,5 @@
-0É\vosÇH˜package os
+0É^‰osÇIúpackage os
+import js "github.com/gopherjs/gopherjs/js"
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -67,7 +68,7 @@ func @"".Getpagesize() (? int)
 func @"".Getpid() (? int)
 func @"".Getppid() (? int)
 func @"".Getuid() (? int)
-func @"".Getwd() (@"".pwd string, @"".err error)
+func @"".Getwd() (@"".dir string, @"".err error)
 func @"".Hostname() (@"".name string, @"".err error)
 var @"".Interrupt @"".Signal
 func @"".IsExist(@"".err error) (? bool)
@@ -143,7 +144,7 @@ func (? *@"".ProcessState) @"".userTime() (? @"time".Duration)
 func @"".Readlink(@"".name string) (? string, ? error)
 func @"".Remove(@"".name string) (? error)
 func @"".RemoveAll(@"".path string) (? error)
-func @"".Rename(@"".oldname string, @"".newname string) (? error)
+func @"".Rename(@"".oldpath string, @"".newpath string) (? error)
 const @"".SEEK_CUR int = 0x1
 const @"".SEEK_END int = 0x2
 const @"".SEEK_SET int = 0x0
@@ -283,8 +284,10 @@ func (? *@"time".Duration) @"time".Seconds() (? float64)
 func (? *@"time".Duration) @"time".String() (? string)
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
 func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
 type @"time".Month int
 func (? @"time".Month) @"time".String() (? string)
@@ -304,1646 +307,93 @@ func (? *@"syscall".Timeval) @"syscall".Unix() (@"syscall".sec int64, @"syscall"
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0;runtimeerrorssync/atomicsynciosyscalltimeos0w0ioio0syscallsyscall0timetime0errorserrors0runtimeruntime0sync/atomicatomic0syncsync0É∫0Ç
-	PathErrorÇ	PathError = go$pkg.PathError = go$newType(0, "Struct", "os.PathError", "PathError", "os", function(Op_, Path_, Err_) {
-		this.go$val = this;
-		this.Op = Op_ !== undefined ? Op_ : "";
-		this.Path = Path_ !== undefined ? Path_ : "";
-		this.Err = Err_ !== undefined ? Err_ : null;
-	});
-ÅÕ		(go$ptrType(PathError)).methods = [["Error", "", [], [Go$String], false, -1]];
-		PathError.init([["Op", "Op", "", Go$String, ""], ["Path", "Path", "", Go$String, ""], ["Err", "Err", "", go$error, ""]]);
-0	PathError0 0Ç‰SyscallErrorÇ	SyscallError = go$pkg.SyscallError = go$newType(0, "Struct", "os.SyscallError", "SyscallError", "os", function(Syscall_, Err_) {
-		this.go$val = this;
-		this.Syscall = Syscall_ !== undefined ? Syscall_ : "";
-		this.Err = Err_ !== undefined ? Err_ : null;
-	});
-Å∏		(go$ptrType(SyscallError)).methods = [["Error", "", [], [Go$String], false, -1]];
-		SyscallError.init([["Syscall", "Syscall", "", Go$String, ""], ["Err", "Err", "", go$error, ""]]);
-0SyscallError0 0Ç¸ProcessÇ'	Process = go$pkg.Process = go$newType(0, "Struct", "os.Process", "Process", "os", function(Pid_, handle_, isdone_) {
-		this.go$val = this;
-		this.Pid = Pid_ !== undefined ? Pid_ : 0;
-		this.handle = handle_ !== undefined ? handle_ : 0;
-		this.isdone = isdone_ !== undefined ? isdone_ : 0;
-	});
-Çõ		(go$ptrType(Process)).methods = [["Kill", "", [], [go$error], false, -1], ["Release", "", [], [go$error], false, -1], ["Signal", "", [Signal], [go$error], false, -1], ["Wait", "", [], [(go$ptrType(ProcessState)), go$error], false, -1], ["done", "os", [], [Go$Bool], false, -1], ["kill", "os", [], [go$error], false, -1], ["release", "os", [], [go$error], false, -1], ["setDone", "os", [], [], false, -1], ["signal", "os", [Signal], [go$error], false, -1], ["wait", "os", [], [(go$ptrType(ProcessState)), go$error], false, -1]];
-		Process.init([["Pid", "Pid", "", Go$Int, ""], ["handle", "handle", "os", Go$Uintptr, ""], ["isdone", "isdone", "os", Go$Uint32, ""]]);
-0	Process0os:ProcessState	os:Signal0Ç‘ProcAttrÇ≥	ProcAttr = go$pkg.ProcAttr = go$newType(0, "Struct", "os.ProcAttr", "ProcAttr", "os", function(Dir_, Env_, Files_, Sys_) {
-		this.go$val = this;
-		this.Dir = Dir_ !== undefined ? Dir_ : "";
-		this.Env = Env_ !== undefined ? Env_ : (go$sliceType(Go$String)).nil;
-		this.Files = Files_ !== undefined ? Files_ : (go$sliceType((go$ptrType(File)))).nil;
-		this.Sys = Sys_ !== undefined ? Sys_ : (go$ptrType(syscall.SysProcAttr)).nil;
-	});
-Å‰		ProcAttr.init([["Dir", "Dir", "", Go$String, ""], ["Env", "Env", "", (go$sliceType(Go$String)), ""], ["Files", "Files", "", (go$sliceType((go$ptrType(File)))), ""], ["Sys", "Sys", "", (go$ptrType(syscall.SysProcAttr)), ""]]);
-0
-ProcAttr0os:Filesyscall:SysProcAttr0ÅÁSignalY	Signal = go$pkg.Signal = go$newType(0, "Interface", "os.Signal", "Signal", "os", null);
-v		Signal.init([["Signal", "", (go$funcType([], [], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
-0Signal0 0Ç+ProcessStateÇZ	ProcessState = go$pkg.ProcessState = go$newType(0, "Struct", "os.ProcessState", "ProcessState", "os", function(pid_, status_, rusage_) {
-		this.go$val = this;
-		this.pid = pid_ !== undefined ? pid_ : 0;
-		this.status = status_ !== undefined ? status_ : 0;
-		this.rusage = rusage_ !== undefined ? rusage_ : (go$ptrType(syscall.Rusage)).nil;
-	});
-Çv		(go$ptrType(ProcessState)).methods = [["Exited", "", [], [Go$Bool], false, -1], ["Pid", "", [], [Go$Int], false, -1], ["String", "", [], [Go$String], false, -1], ["Success", "", [], [Go$Bool], false, -1], ["Sys", "", [], [go$emptyInterface], false, -1], ["SysUsage", "", [], [go$emptyInterface], false, -1], ["SystemTime", "", [], [time.Duration], false, -1], ["UserTime", "", [], [time.Duration], false, -1], ["exited", "os", [], [Go$Bool], false, -1], ["success", "os", [], [Go$Bool], false, -1], ["sys", "os", [], [go$emptyInterface], false, -1], ["sysUsage", "os", [], [go$emptyInterface], false, -1], ["systemTime", "os", [], [time.Duration], false, -1], ["userTime", "os", [], [time.Duration], false, -1]];
-		ProcessState.init([["pid", "pid", "os", Go$Int, ""], ["status", "status", "os", syscall.WaitStatus, ""], ["rusage", "rusage", "os", (go$ptrType(syscall.Rusage)), ""]]);
-0ProcessState03syscall:Rusagesyscall:WaitStatustime:Duration0ÇZ	LinkErrorÇK	LinkError = go$pkg.LinkError = go$newType(0, "Struct", "os.LinkError", "LinkError", "os", function(Op_, Old_, New_, Err_) {
-		this.go$val = this;
-		this.Op = Op_ !== undefined ? Op_ : "";
-		this.Old = Old_ !== undefined ? Old_ : "";
-		this.New = New_ !== undefined ? New_ : "";
-		this.Err = Err_ !== undefined ? Err_ : null;
-	});
-ÅÓ		(go$ptrType(LinkError)).methods = [["Error", "", [], [Go$String], false, -1]];
-		LinkError.init([["Op", "Op", "", Go$String, ""], ["Old", "Old", "", Go$String, ""], ["New", "New", "", Go$String, ""], ["Err", "Err", "", go$error, ""]]);
-0	LinkError0 0Ç‰FileÅ∏	File = go$pkg.File = go$newType(0, "Struct", "os.File", "File", "os", function(file_) {
-		this.go$val = this;
-		this.file = file_ !== undefined ? file_ : (go$ptrType(file)).nil;
-	});
-ÇÚ		File.methods = [["close", "os", [], [go$error], false, 0]];
-		(go$ptrType(File)).methods = [["Chdir", "", [], [go$error], false, -1], ["Chmod", "", [FileMode], [go$error], false, -1], ["Chown", "", [Go$Int, Go$Int], [go$error], false, -1], ["Close", "", [], [go$error], false, -1], ["Fd", "", [], [Go$Uintptr], false, -1], ["Name", "", [], [Go$String], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["Readdir", "", [Go$Int], [(go$sliceType(FileInfo)), go$error], false, -1], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false, -1], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false, -1], ["Stat", "", [], [FileInfo, go$error], false, -1], ["Sync", "", [], [go$error], false, -1], ["Truncate", "", [Go$Int64], [go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1], ["close", "os", [], [go$error], false, 0], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["readdir", "os", [Go$Int], [(go$sliceType(FileInfo)), go$error], false, -1], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false, -1], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false, -1], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1]];
-		File.init([["file", "", "os", (go$ptrType(file)), ""]]);
-0File0#os:FileInfoos:FileModeos:file0ÇîfileÇj	file = go$pkg.file = go$newType(0, "Struct", "os.file", "file", "os", function(fd_, name_, dirinfo_, nepipe_) {
-		this.go$val = this;
-		this.fd = fd_ !== undefined ? fd_ : 0;
-		this.name = name_ !== undefined ? name_ : "";
-		this.dirinfo = dirinfo_ !== undefined ? dirinfo_ : (go$ptrType(dirInfo)).nil;
-		this.nepipe = nepipe_ !== undefined ? nepipe_ : 0;
-	});
-Ç		(go$ptrType(file)).methods = [["close", "os", [], [go$error], false, -1]];
-		file.init([["fd", "fd", "os", Go$Int, ""], ["name", "name", "os", Go$String, ""], ["dirinfo", "dirinfo", "os", (go$ptrType(dirInfo)), ""], ["nepipe", "nepipe", "os", Go$Int32, ""]]);
-0file0
-os:dirInfo0Ç›dirInfoÇ2	dirInfo = go$pkg.dirInfo = go$newType(0, "Struct", "os.dirInfo", "dirInfo", "os", function(buf_, nbuf_, bufp_) {
-		this.go$val = this;
-		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
-		this.nbuf = nbuf_ !== undefined ? nbuf_ : 0;
-		this.bufp = bufp_ !== undefined ? bufp_ : 0;
-	});
-Åé		dirInfo.init([["buf", "buf", "os", (go$sliceType(Go$Uint8)), ""], ["nbuf", "nbuf", "os", Go$Int, ""], ["bufp", "bufp", "os", Go$Int, ""]]);
-0	dirInfo0 0ÇÔFileInfoa	FileInfo = go$pkg.FileInfo = go$newType(0, "Interface", "os.FileInfo", "FileInfo", "os", null);
-ÇX		FileInfo.init([["IsDir", "", (go$funcType([], [Go$Bool], false))], ["ModTime", "", (go$funcType([], [time.Time], false))], ["Mode", "", (go$funcType([], [FileMode], false))], ["Name", "", (go$funcType([], [Go$String], false))], ["Size", "", (go$funcType([], [Go$Int64], false))], ["Sys", "", (go$funcType([], [go$emptyInterface], false))]]);
-0
-FileInfo0os:FileMode	time:Time0ÇFileMode^	FileMode = go$pkg.FileMode = go$newType(4, "Uint32", "os.FileMode", "FileMode", "os", null);
-Çí		FileMode.methods = [["IsDir", "", [], [Go$Bool], false, -1], ["IsRegular", "", [], [Go$Bool], false, -1], ["Perm", "", [], [FileMode], false, -1], ["String", "", [], [Go$String], false, -1]];
-		(go$ptrType(FileMode)).methods = [["IsDir", "", [], [Go$Bool], false, -1], ["IsRegular", "", [], [Go$Bool], false, -1], ["Perm", "", [], [FileMode], false, -1], ["String", "", [], [Go$String], false, -1]];
-0
-FileMode0 0Ç˙fileStatÇ∫	fileStat = go$pkg.fileStat = go$newType(0, "Struct", "os.fileStat", "fileStat", "os", function(name_, size_, mode_, modTime_, sys_) {
-		this.go$val = this;
-		this.name = name_ !== undefined ? name_ : "";
-		this.size = size_ !== undefined ? size_ : new Go$Int64(0, 0);
-		this.mode = mode_ !== undefined ? mode_ : 0;
-		this.modTime = modTime_ !== undefined ? modTime_ : new time.Time.Ptr();
-		this.sys = sys_ !== undefined ? sys_ : null;
-	});
-Ç		(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false, -1], ["ModTime", "", [], [time.Time], false, -1], ["Mode", "", [], [FileMode], false, -1], ["Name", "", [], [Go$String], false, -1], ["Size", "", [], [Go$Int64], false, -1], ["Sys", "", [], [go$emptyInterface], false, -1]];
-		fileStat.init([["name", "name", "os", Go$String, ""], ["size", "size", "os", Go$Int64, ""], ["mode", "mode", "os", FileMode, ""], ["modTime", "modTime", "os", time.Time, ""], ["sys", "sys", "os", go$emptyInterface, ""]]);
-0
-fileStat0os:FileMode	time:Time0ÇÅ Ç	File.Ptr.prototype.readdirnames = function(n) {
-		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
-		names = (go$sliceType(Go$String)).nil;
-		err = null;
-		f = this;
-		if (f.file.dirinfo === (go$ptrType(dirInfo)).nil) {
-			f.file.dirinfo = new dirInfo.Ptr();
-			f.file.dirinfo.buf = (go$sliceType(Go$Uint8)).make(4096, 0, function() { return 0; });
-		}
-		d = f.file.dirinfo;
-		size = n;
-		if (size <= 0) {
-			size = 100;
-			n = -1;
-		}
-		names = (go$sliceType(Go$String)).make(0, size, function() { return ""; });
-		while (!((n === 0))) {
-			if (d.bufp >= d.nbuf) {
-				d.bufp = 0;
-				errno = null;
-				_tuple = syscall.ReadDirent(f.file.fd, d.buf), d.nbuf = _tuple[0], errno = _tuple[1];
-				if (!(go$interfaceIsEqual(errno, null))) {
-					_tuple$1 = [names, NewSyscallError("readdirent", errno)], names = _tuple$1[0], err = _tuple$1[1];
-					return [names, err];
-				}
-				if (d.nbuf <= 0) {
-					break;
-				}
-			}
-			_tuple$2 = [0, 0], nb = _tuple$2[0], nc = _tuple$2[1];
-			_tuple$3 = syscall.ParseDirent(go$subslice(d.buf, d.bufp, d.nbuf), n, names), nb = _tuple$3[0], nc = _tuple$3[1], names = _tuple$3[2];
-			d.bufp = d.bufp + (nb) >> 0;
-			n = n - (nc) >> 0;
-		}
-		if (n >= 0 && (names.length === 0)) {
-			_tuple$4 = [names, io.EOF], names = _tuple$4[0], err = _tuple$4[1];
-			return [names, err];
-		}
-		_tuple$5 = [names, null], names = _tuple$5[0], err = _tuple$5[1];
-		return [names, err];
-	};
-	File.prototype.readdirnames = function(n) { return this.go$val.readdirnames(n); };
- 0Filereaddirnames0Zio:EOFos:Fileos:NewSyscallError
-os:dirInfosyscall:ParseDirentsyscall:ReadDirent0ÇFindProcessÅÕ	FindProcess = go$pkg.FindProcess = function(pid) {
-		var p, err, _tuple;
-		p = (go$ptrType(Process)).nil;
-		err = null;
-		_tuple = findProcess(pid), p = _tuple[0], err = _tuple[1];
-		return [p, err];
-	};
- 0FindProcess0
-os:Processos:findProcess0Å•StartProcessp	StartProcess = go$pkg.StartProcess = function(name, argv, attr) {
-		return startProcess(name, argv, attr);
-	};
- 0StartProcess0os:startProcess0Å‘ Å®	Process.Ptr.prototype.Release = function() {
-		var p;
-		p = this;
-		return p.release();
-	};
-	Process.prototype.Release = function() { return this.go$val.Release(); };
- 0	Process0
-os:Process
-os:release0Å≈ Åú	Process.Ptr.prototype.Kill = function() {
-		var p;
-		p = this;
-		return p.kill();
-	};
-	Process.prototype.Kill = function() { return this.go$val.Kill(); };
- 0	Process0
-os:Processos:kill0Å≈ Åú	Process.Ptr.prototype.Wait = function() {
-		var p;
-		p = this;
-		return p.wait();
-	};
-	Process.prototype.Wait = function() { return this.go$val.Wait(); };
- 0	Process0
-os:Processos:wait0Å€ Å∞	Process.Ptr.prototype.Signal = function(sig) {
-		var p;
-		p = this;
-		return p.signal(sig);
-	};
-	Process.prototype.Signal = function(sig) { return this.go$val.Signal(sig); };
- 0	Process0
-os:Process	os:signal0ÅÌ Å∂	ProcessState.Ptr.prototype.UserTime = function() {
-		var p;
-		p = this;
-		return p.userTime();
-	};
-	ProcessState.prototype.UserTime = function() { return this.go$val.UserTime(); };
- 0ProcessState0os:ProcessStateos:userTime0Å˜ Åæ	ProcessState.Ptr.prototype.SystemTime = function() {
-		var p;
-		p = this;
-		return p.systemTime();
-	};
-	ProcessState.prototype.SystemTime = function() { return this.go$val.SystemTime(); };
- 0ProcessState0 os:ProcessStateos:systemTime0Å„ ÅÆ	ProcessState.Ptr.prototype.Exited = function() {
-		var p;
-		p = this;
-		return p.exited();
-	};
-	ProcessState.prototype.Exited = function() { return this.go$val.Exited(); };
- 0ProcessState0os:ProcessState	os:exited0ÅË Å≤	ProcessState.Ptr.prototype.Success = function() {
-		var p;
-		p = this;
-		return p.success();
-	};
-	ProcessState.prototype.Success = function() { return this.go$val.Success(); };
- 0ProcessState0os:ProcessState
-os:success0Å‘ Å¢	ProcessState.Ptr.prototype.Sys = function() {
-		var p;
-		p = this;
-		return p.sys();
-	};
-	ProcessState.prototype.Sys = function() { return this.go$val.Sys(); };
- 0ProcessState0os:ProcessStateos:sys0ÅÌ Å∂	ProcessState.Ptr.prototype.SysUsage = function() {
-		var p;
-		p = this;
-		return p.sysUsage();
-	};
-	ProcessState.prototype.SysUsage = function() { return this.go$val.SysUsage(); };
- 0ProcessState0os:ProcessStateos:sysUsage0Å›HostnameÅ≥	Hostname = go$pkg.Hostname = function() {
-		var name, err, _tuple;
-		name = "";
-		err = null;
-		_tuple = hostname(), name = _tuple[0], err = _tuple[1];
-		return [name, err];
-	};
- 0
-Hostname0os:hostname0Ç Ç–	File.Ptr.prototype.Readdir = function(n) {
-		var fi, err, f, _tuple, _tuple$1;
-		fi = (go$sliceType(FileInfo)).nil;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [(go$sliceType(FileInfo)).nil, go$pkg.ErrInvalid], fi = _tuple[0], err = _tuple[1];
-			return [fi, err];
-		}
-		_tuple$1 = f.readdir(n), fi = _tuple$1[0], err = _tuple$1[1];
-		return [fi, err];
-	};
-	File.prototype.Readdir = function(n) { return this.go$val.Readdir(n); };
- 0File01os:ErrInvalidos:Fileos:FileInfo
-os:readdir0Ç3 Ç¯	File.Ptr.prototype.Readdirnames = function(n) {
-		var names, err, f, _tuple, _tuple$1;
-		names = (go$sliceType(Go$String)).nil;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [(go$sliceType(Go$String)).nil, go$pkg.ErrInvalid], names = _tuple[0], err = _tuple[1];
-			return [names, err];
-		}
-		_tuple$1 = f.readdirnames(n), names = _tuple$1[0], err = _tuple$1[1];
-		return [names, err];
-	};
-	File.prototype.Readdirnames = function(n) { return this.go$val.Readdirnames(n); };
- 0File0)os:ErrInvalidos:Fileos:readdirnames0ÇExpandÇÚ	Expand = go$pkg.Expand = function(s, mapping) {
-		var x, x$1, buf, i, j, _tuple, name, w;
-		buf = (go$sliceType(Go$Uint8)).make(0, (x = 2, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), function() { return 0; });
-		i = 0;
-		j = 0;
-		while (j < s.length) {
-			if ((s.charCodeAt(j) === 36) && (j + 1 >> 0) < s.length) {
-				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s.substring(i, j))));
-				_tuple = getShellName(s.substring((j + 1 >> 0))), name = _tuple[0], w = _tuple[1];
-				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(mapping(name))));
-				j = j + (w) >> 0;
-				i = j + 1 >> 0;
-			}
-			j = j + 1 >> 0;
-		}
-		return go$bytesToString(buf) + s.substring(i);
-	};
- 0Expand0os:getShellName0ÅÇ	ExpandEnvN	ExpandEnv = go$pkg.ExpandEnv = function(s) {
-		return Expand(s, Getenv);
-	};
- 0	ExpandEnv0	os:Expand	os:Getenv0ÇâisShellSpecialVarÇY	isShellSpecialVar = function(c) {
-		var _ref;
-		_ref = c;
-		if (_ref === 42 || _ref === 35 || _ref === 36 || _ref === 64 || _ref === 33 || _ref === 63 || _ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55 || _ref === 56 || _ref === 57) {
-			return true;
-		}
-		return false;
-	};
- 0isShellSpecialVar0 0Åò
-isAlphaNumx	isAlphaNum = function(c) {
-		return (c === 95) || 48 <= c && c <= 57 || 97 <= c && c <= 122 || 65 <= c && c <= 90;
-	};
- 0
-isAlphaNum0 0ÇØgetShellNameÇd	getShellName = function(s) {
-		var i, i$1;
-		if (s.charCodeAt(0) === 123) {
-			if (s.length > 2 && isShellSpecialVar(s.charCodeAt(1)) && (s.charCodeAt(2) === 125)) {
-				return [s.substring(1, 2), 3];
-			}
-			i = 1;
-			while (i < s.length) {
-				if (s.charCodeAt(i) === 125) {
-					return [s.substring(1, i), i + 1 >> 0];
-				}
-				i = i + 1 >> 0;
-			}
-			return ["", 1];
-		} else if (isShellSpecialVar(s.charCodeAt(0))) {
-			return [s.substring(0, 1), 1];
-		}
-		i$1 = 0;
-		i$1 = 0;
-		while (i$1 < s.length && isAlphaNum(s.charCodeAt(i$1))) {
-			i$1 = i$1 + 1 >> 0;
-		}
-		return [s.substring(0, i$1), i$1];
-	};
- 0getShellName0%os:isAlphaNumos:isShellSpecialVar0Å¢Getenvz	Getenv = go$pkg.Getenv = function(key) {
-		var _tuple, v;
-		_tuple = syscall.Getenv(key), v = _tuple[0];
-		return v;
-	};
- 0Getenv0syscall:Getenv0Ç	SetenvÅÃ	Setenv = go$pkg.Setenv = function(key, value) {
-		var err;
-		err = syscall.Setenv(key, value);
-		if (!(go$interfaceIsEqual(err, null))) {
-			return NewSyscallError("setenv", err);
-		}
-		return null;
-	};
- 0Setenv0$os:NewSyscallErrorsyscall:Setenv0sClearenvE	Clearenv = go$pkg.Clearenv = function() {
-		syscall.Clearenv();
-	};
- 0
-Clearenv0syscall:Clearenv0tEnvironI	Environ = go$pkg.Environ = function() {
-		return syscall.Environ();
-	};
- 0	Environ0syscall:Environ0ÅÈ Å≈	PathError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return e.Op + " " + e.Path + ": " + e.Err.Error();
-	};
-	PathError.prototype.Error = function() { return this.go$val.Error(); };
- 0	PathError0os:PathError0ÅÎ Å¡	SyscallError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return e.Syscall + ": " + e.Err.Error();
-	};
-	SyscallError.prototype.Error = function() { return this.go$val.Error(); };
- 0SyscallError0os:SyscallError0ÅÚNewSyscallErrorÅ∂	NewSyscallError = go$pkg.NewSyscallError = function(syscall$1, err) {
-		if (go$interfaceIsEqual(err, null)) {
-			return null;
-		}
-		return new SyscallError.Ptr(syscall$1, err);
-	};
- 0NewSyscallError0os:SyscallError0mIsExistG	IsExist = go$pkg.IsExist = function(err) {
-		return isExist(err);
-	};
- 0	IsExist0
-os:isExist0
-IsNotExistP	IsNotExist = go$pkg.IsNotExist = function(err) {
-		return isNotExist(err);
-	};
- 0
-IsNotExist0os:isNotExist0ÅãIsPermissionV	IsPermission = go$pkg.IsPermission = function(err) {
-		return isPermission(err);
-	};
- 0IsPermission0os:isPermission0ÇisExistÇ…	isExist = function(err) {
-		var pe, _ref, _type;
-		_ref = err;
-		_type = _ref !== null ? _ref.constructor : null;
-		if (_type === null) {
-			pe = _ref;
-			return false;
-		} else if (_type === (go$ptrType(PathError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		} else if (_type === (go$ptrType(LinkError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		}
-		return go$interfaceIsEqual(err, new syscall.Errno(17)) || go$interfaceIsEqual(err, go$pkg.ErrExist);
-	};
- 0	isExist08os:ErrExistos:LinkErroros:PathErrorsyscall:Errno0Ç+
-isNotExistÇŒ	isNotExist = function(err) {
-		var pe, _ref, _type;
-		_ref = err;
-		_type = _ref !== null ? _ref.constructor : null;
-		if (_type === null) {
-			pe = _ref;
-			return false;
-		} else if (_type === (go$ptrType(PathError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		} else if (_type === (go$ptrType(LinkError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		}
-		return go$interfaceIsEqual(err, new syscall.Errno(2)) || go$interfaceIsEqual(err, go$pkg.ErrNotExist);
-	};
- 0
-isNotExist0;os:ErrNotExistos:LinkErroros:PathErrorsyscall:Errno0ÇhisPermissionÇ	isPermission = function(err) {
-		var pe, _ref, _type;
-		_ref = err;
-		_type = _ref !== null ? _ref.constructor : null;
-		if (_type === null) {
-			pe = _ref;
-			return false;
-		} else if (_type === (go$ptrType(PathError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		} else if (_type === (go$ptrType(LinkError))) {
-			pe = _ref.go$val;
-			err = pe.Err;
-		}
-		return go$interfaceIsEqual(err, new syscall.Errno(13)) || go$interfaceIsEqual(err, new syscall.Errno(1)) || go$interfaceIsEqual(err, go$pkg.ErrPermission);
-	};
- 0isPermission0=os:ErrPermissionos:LinkErroros:PathErrorsyscall:Errno0Ç0
-newProcessÅÌ	newProcess = function(pid, handle) {
-		var p;
-		p = new Process.Ptr(pid, handle, 0);
-		runtime.SetFinalizer(p, new (go$funcType([(go$ptrType(Process))], [go$error], false))((function(recv) { return recv.Release(); })));
-		return p;
-	};
- 0
-newProcess0"
-os:Processruntime:SetFinalizer0ÇN Ç	Process.Ptr.prototype.setDone = function() {
-		var p, v;
-		p = this;
-		atomic.StoreUint32(new (go$ptrType(Go$Uint32))(function() { return p.isdone; }, function(v) { p.isdone = v; }), 1);
-	};
-	Process.prototype.setDone = function() { return this.go$val.setDone(); };
- 0ProcesssetDone0%
-os:Processsync/atomic:StoreUint320ÇH Ç		Process.Ptr.prototype.done = function() {
-		var p, v;
-		p = this;
-		return atomic.LoadUint32(new (go$ptrType(Go$Uint32))(function() { return p.isdone; }, function(v) { p.isdone = v; })) > 0;
-	};
-	Process.prototype.done = function() { return this.go$val.done(); };
- 0Processdone0$
-os:Processsync/atomic:LoadUint320nGetpidF	Getpid = go$pkg.Getpid = function() {
-		return syscall.Getpid();
-	};
- 0Getpid0syscall:Getpid0tGetppidI	Getppid = go$pkg.Getppid = function() {
-		return syscall.Getppid();
-	};
- 0	Getppid0syscall:Getppid0ÇﬁstartProcessÇ/	startProcess = function(name, argv, attr) {
-		var p, err, _tuple, err$1, pe, _tuple$1, sysattr, _ref, _i, _slice, _index, f, _tuple$2, pid, h, e, _tuple$3, _tuple$4;
-		p = (go$ptrType(Process)).nil;
-		err = null;
-		if (!(attr === (go$ptrType(ProcAttr)).nil) && attr.Sys === (go$ptrType(syscall.SysProcAttr)).nil && !(attr.Dir === "")) {
-			_tuple = Stat(attr.Dir), err$1 = _tuple[1];
-			if (!(go$interfaceIsEqual(err$1, null))) {
-				pe = (err$1 !== null && err$1.constructor === (go$ptrType(PathError)) ? err$1.go$val : go$typeAssertionFailed(err$1, (go$ptrType(PathError))));
-				pe.Op = "chdir";
-				_tuple$1 = [(go$ptrType(Process)).nil, pe], p = _tuple$1[0], err = _tuple$1[1];
-				return [p, err];
-			}
-		}
-		sysattr = new syscall.ProcAttr.Ptr(attr.Dir, attr.Env, (go$sliceType(Go$Uintptr)).nil, attr.Sys);
-		if (sysattr.Env === (go$sliceType(Go$String)).nil) {
-			sysattr.Env = Environ();
-		}
-		_ref = attr.Files;
-		_i = 0;
-		while (_i < _ref.length) {
-			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			sysattr.Files = go$append(sysattr.Files, f.Fd());
-			_i++;
-		}
-		_tuple$2 = syscall.StartProcess(name, argv, sysattr), pid = _tuple$2[0], h = _tuple$2[1], e = _tuple$2[2];
-		if (!(go$interfaceIsEqual(e, null))) {
-			_tuple$3 = [(go$ptrType(Process)).nil, new PathError.Ptr("fork/exec", name, e)], p = _tuple$3[0], err = _tuple$3[1];
-			return [p, err];
-		}
-		_tuple$4 = [newProcess(pid, h), null], p = _tuple$4[0], err = _tuple$4[1];
-		return [p, err];
-	};
- 0startProcess0Åà
-os:Environos:PathErroros:ProcAttr
-os:Processos:Statos:newProcesssyscall:ProcAttrsyscall:StartProcesssyscall:SysProcAttr0Åÿ Å©	Process.Ptr.prototype.kill = function() {
-		var p;
-		p = this;
-		return p.Signal(go$pkg.Kill);
-	};
-	Process.prototype.kill = function() { return this.go$val.kill(); };
- 0Processkill0os:Kill
-os:Process0Å  Å†	ProcessState.Ptr.prototype.Pid = function() {
-		var p;
-		p = this;
-		return p.pid;
-	};
-	ProcessState.prototype.Pid = function() { return this.go$val.Pid(); };
- 0ProcessState0os:ProcessState0Ç Åœ	ProcessState.Ptr.prototype.exited = function() {
-		var p;
-		p = this;
-		return (new syscall.WaitStatus(p.status)).Exited();
-	};
-	ProcessState.prototype.exited = function() { return this.go$val.exited(); };
- 0ProcessStateexited0%os:ProcessStatesyscall:WaitStatus0Ç# Å‹	ProcessState.Ptr.prototype.success = function() {
-		var p;
-		p = this;
-		return (new syscall.WaitStatus(p.status)).ExitStatus() === 0;
-	};
-	ProcessState.prototype.success = function() { return this.go$val.success(); };
- 0ProcessStatesuccess0%os:ProcessStatesyscall:WaitStatus0Å˛ Åª	ProcessState.Ptr.prototype.sys = function() {
-		var p;
-		p = this;
-		return new syscall.WaitStatus(p.status);
-	};
-	ProcessState.prototype.sys = function() { return this.go$val.sys(); };
- 0ProcessStatesys0%os:ProcessStatesyscall:WaitStatus0ÅÊ Å≤	ProcessState.Ptr.prototype.sysUsage = function() {
-		var p;
-		p = this;
-		return p.rusage;
-	};
-	ProcessState.prototype.sysUsage = function() { return this.go$val.sysUsage(); };
- 0ProcessStatesysUsage0os:ProcessState0ÇditodÇN	itod = function(i) {
-		var u, b, bp;
-		if (i === 0) {
-			return "0";
-		}
-		u = new Go$Uint64(0, i);
-		if (i < 0) {
-			u = new Go$Uint64(-u.high, -u.low);
-		}
-		b = go$makeNativeArray("Uint8", 32, function() { return 0; });
-		bp = 32;
-		while ((u.high > 0 || (u.high === 0 && u.low > 0))) {
-			bp = bp - 1 >> 0;
-			b[bp] = (go$div64(u, new Go$Uint64(0, 10), true).low << 24 >>> 24) + 48 << 24 >>> 24;
-			u = go$div64(u, new Go$Uint64(0, 10), false);
-		}
-		if (i < 0) {
-			bp = bp - 1 >> 0;
-			b[bp] = 45;
-		}
-		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(b), bp));
-	};
- 0itod0 0Ç6 Çﬁ	ProcessState.Ptr.prototype.String = function() {
-		var p, x, status, res;
-		p = this;
-		if (p === (go$ptrType(ProcessState)).nil) {
-			return "<nil>";
-		}
-		status = (x = p.Sys(), (x !== null && x.constructor === syscall.WaitStatus ? x.go$val : go$typeAssertionFailed(x, syscall.WaitStatus)));
-		res = "";
-		if ((new syscall.WaitStatus(status)).Exited()) {
-			res = "exit status " + itod((new syscall.WaitStatus(status)).ExitStatus());
-		} else if ((new syscall.WaitStatus(status)).Signaled()) {
-			res = "signal: " + (new syscall.Signal((new syscall.WaitStatus(status)).Signal())).String();
-		} else if ((new syscall.WaitStatus(status)).Stopped()) {
-			res = "stop signal: " + (new syscall.Signal((new syscall.WaitStatus(status)).StopSignal())).String();
-			if (((new syscall.WaitStatus(status)).StopSignal() === 5) && !(((new syscall.WaitStatus(status)).TrapCause() === 0))) {
-				res = res + (" (trap " + itod((new syscall.WaitStatus(status)).TrapCause()) + ")");
-			}
-		} else if ((new syscall.WaitStatus(status)).Continued()) {
-			res = "continued";
-		}
-		if ((new syscall.WaitStatus(status)).CoreDump()) {
-			res = res + " (core dumped)";
-		}
-		return res;
-	};
-	ProcessState.prototype.String = function() { return this.go$val.String(); };
- 0ProcessState0>os:ProcessStateos:itodsyscall:Signalsyscall:WaitStatus0ÇÖ ÇÎ	Process.Ptr.prototype.wait = function() {
-		var ps, err, p, _tuple, status, rusage, _tuple$1, v, pid1, e, _tuple$2, _tuple$3;
-		ps = (go$ptrType(ProcessState)).nil;
-		err = null;
-		p = this;
-		if (p.Pid === -1) {
-			_tuple = [(go$ptrType(ProcessState)).nil, new syscall.Errno(22)], ps = _tuple[0], err = _tuple[1];
-			return [ps, err];
-		}
-		status = 0;
-		rusage = new syscall.Rusage.Ptr();
-		_tuple$1 = syscall.Wait4(p.Pid, new (go$ptrType(syscall.WaitStatus))(function() { return status; }, function(v) { status = v; }), 0, rusage), pid1 = _tuple$1[0], e = _tuple$1[1];
-		if (!(go$interfaceIsEqual(e, null))) {
-			_tuple$2 = [(go$ptrType(ProcessState)).nil, NewSyscallError("wait", e)], ps = _tuple$2[0], err = _tuple$2[1];
-			return [ps, err];
-		}
-		if (!((pid1 === 0))) {
-			p.setDone();
-		}
-		ps = new ProcessState.Ptr(pid1, status, rusage);
-		_tuple$3 = [ps, null], ps = _tuple$3[0], err = _tuple$3[1];
-		return [ps, err];
-	};
-	Process.prototype.wait = function() { return this.go$val.wait(); };
- 0Processwait0os:NewSyscallError
-os:Processos:ProcessState
-os:setDonesyscall:Errnosyscall:Rusagesyscall:Wait4syscall:WaitStatus0ÇÅ Ç%	Process.Ptr.prototype.signal = function(sig) {
-		var p, _tuple, s, ok, e;
-		p = this;
-		if (p.done()) {
-			return errors.New("os: process already finished");
-		}
-		_tuple = (sig !== null && sig.constructor === syscall.Signal ? [sig.go$val, true] : [0, false]), s = _tuple[0], ok = _tuple[1];
-		if (!ok) {
-			return errors.New("os: unsupported signal type");
-		}
-		e = syscall.Kill(p.Pid, s);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return e;
-		}
-		return null;
-	};
-	Process.prototype.signal = function(sig) { return this.go$val.signal(sig); };
- 0Processsignal0?
-errors:New
-os:Processos:donesyscall:Killsyscall:Signal0Ç Å–	Process.Ptr.prototype.release = function() {
-		var p;
-		p = this;
-		p.Pid = -1;
-		runtime.SetFinalizer(p, null);
-		return null;
-	};
-	Process.prototype.release = function() { return this.go$val.release(); };
- 0Processrelease0"
-os:Processruntime:SetFinalizer0Ç findProcessÅ¬	findProcess = function(pid) {
-		var p, err, _tuple;
-		p = (go$ptrType(Process)).nil;
-		err = null;
-		_tuple = [newProcess(pid, 0), null], p = _tuple[0], err = _tuple[1];
-		return [p, err];
-	};
- 0findProcess0
-os:Processos:newProcess0ÇQ Ç	ProcessState.Ptr.prototype.userTime = function() {
-		var p, x;
-		p = this;
-		return go$mul64((x = p.rusage.Utime.Nano(), new time.Duration(x.high, x.low)), new time.Duration(0, 1));
-	};
-	ProcessState.prototype.userTime = function() { return this.go$val.userTime(); };
- 0ProcessStateuserTime0 os:ProcessStatetime:Duration0ÇY Ç	ProcessState.Ptr.prototype.systemTime = function() {
-		var p, x;
-		p = this;
-		return go$mul64((x = p.rusage.Stime.Nano(), new time.Duration(x.high, x.low)), new time.Duration(0, 1));
-	};
-	ProcessState.prototype.systemTime = function() { return this.go$val.systemTime(); };
- 0ProcessState
-systemTime0 os:ProcessStatetime:Duration0Å≥ Åô	File.Ptr.prototype.Name = function() {
-		var f;
-		f = this;
-		return f.file.name;
-	};
-	File.prototype.Name = function() { return this.go$val.Name(); };
- 0File0	os:File0Åˆ Å“	LinkError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return e.Op + " " + e.Old + " " + e.New + ": " + e.Err.Error();
-	};
-	LinkError.prototype.Error = function() { return this.go$val.Error(); };
- 0	LinkError0os:LinkError0Ç9 Ç	File.Ptr.prototype.Read = function(b) {
-		var n, err, f, _tuple, _tuple$1, e, _tuple$2, _tuple$3;
-		n = 0;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		_tuple$1 = f.read(b), n = _tuple$1[0], e = _tuple$1[1];
-		if (n < 0) {
-			n = 0;
-		}
-		if ((n === 0) && b.length > 0 && go$interfaceIsEqual(e, null)) {
-			_tuple$2 = [0, io.EOF], n = _tuple$2[0], err = _tuple$2[1];
-			return [n, err];
-		}
-		if (!(go$interfaceIsEqual(e, null))) {
-			err = new PathError.Ptr("read", f.file.name, e);
-		}
-		_tuple$3 = [n, err], n = _tuple$3[0], err = _tuple$3[1];
-		return [n, err];
-	};
-	File.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0File07io:EOFos:ErrInvalidos:Fileos:PathErroros:read0Çù ÇS	File.Ptr.prototype.ReadAt = function(b, off) {
-		var n, err, f, _tuple, _tuple$1, m, e, _tuple$2, x;
-		n = 0;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		while (b.length > 0) {
-			_tuple$1 = f.pread(b, off), m = _tuple$1[0], e = _tuple$1[1];
-			if ((m === 0) && go$interfaceIsEqual(e, null)) {
-				_tuple$2 = [n, io.EOF], n = _tuple$2[0], err = _tuple$2[1];
-				return [n, err];
-			}
-			if (!(go$interfaceIsEqual(e, null))) {
-				err = new PathError.Ptr("read", f.file.name, e);
-				break;
-			}
-			n = n + (m) >> 0;
-			b = go$subslice(b, m);
-			off = (x = new Go$Int64(0, m), new Go$Int64(off.high + x.high, off.low + x.low));
-		}
-		return [n, err];
-	};
-	File.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
- 0File08io:EOFos:ErrInvalidos:Fileos:PathErroros:pread0Ç∂ Çe	File.Ptr.prototype.Write = function(b) {
-		var n, err, f, _tuple, _tuple$1, e, _tuple$2;
-		n = 0;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		_tuple$1 = f.write(b), n = _tuple$1[0], e = _tuple$1[1];
-		if (n < 0) {
-			n = 0;
-		}
-		epipecheck(f, e);
-		if (!(go$interfaceIsEqual(e, null))) {
-			err = new PathError.Ptr("write", f.file.name, e);
-		}
-		_tuple$2 = [n, err], n = _tuple$2[0], err = _tuple$2[1];
-		return [n, err];
-	};
-	File.prototype.Write = function(b) { return this.go$val.Write(b); };
- 0File0?os:ErrInvalidos:Fileos:PathErroros:epipecheckos:write0Ç Ç¿	File.Ptr.prototype.WriteAt = function(b, off) {
-		var n, err, f, _tuple, _tuple$1, m, e, x;
-		n = 0;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		while (b.length > 0) {
-			_tuple$1 = f.pwrite(b, off), m = _tuple$1[0], e = _tuple$1[1];
-			if (!(go$interfaceIsEqual(e, null))) {
-				err = new PathError.Ptr("write", f.file.name, e);
-				break;
-			}
-			n = n + (m) >> 0;
-			b = go$subslice(b, m);
-			off = (x = new Go$Int64(0, m), new Go$Int64(off.high + x.high, off.low + x.low));
-		}
-		return [n, err];
-	};
-	File.prototype.WriteAt = function(b, off) { return this.go$val.WriteAt(b, off); };
- 0File01os:ErrInvalidos:Fileos:PathError	os:pwrite0ÇÒ Çï	File.Ptr.prototype.Seek = function(offset, whence) {
-		var ret, err, f, _tuple, _tuple$1, r, e, _tuple$2, _tuple$3;
-		ret = new Go$Int64(0, 0);
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [new Go$Int64(0, 0), go$pkg.ErrInvalid], ret = _tuple[0], err = _tuple[1];
-			return [ret, err];
-		}
-		_tuple$1 = f.seek(offset, whence), r = _tuple$1[0], e = _tuple$1[1];
-		if (go$interfaceIsEqual(e, null) && !(f.file.dirinfo === (go$ptrType(dirInfo)).nil) && !((r.high === 0 && r.low === 0))) {
-			e = new syscall.Errno(21);
-		}
-		if (!(go$interfaceIsEqual(e, null))) {
-			_tuple$2 = [new Go$Int64(0, 0), new PathError.Ptr("seek", f.file.name, e)], ret = _tuple$2[0], err = _tuple$2[1];
-			return [ret, err];
-		}
-		_tuple$3 = [r, null], ret = _tuple$3[0], err = _tuple$3[1];
-		return [ret, err];
-	};
-	File.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
- 0File0Jos:ErrInvalidos:Fileos:PathError
-os:dirInfoos:seeksyscall:Errno0Ç Ç⁄	File.Ptr.prototype.WriteString = function(s) {
-		var ret, err, f, _tuple, _tuple$1;
-		ret = 0;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [0, go$pkg.ErrInvalid], ret = _tuple[0], err = _tuple[1];
-			return [ret, err];
-		}
-		_tuple$1 = f.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), ret = _tuple$1[0], err = _tuple$1[1];
-		return [ret, err];
-	};
-	File.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
- 0File0os:ErrInvalidos:File0ÇMkdirÅ’	Mkdir = go$pkg.Mkdir = function(name, perm) {
-		var e;
-		e = syscall.Mkdir(name, syscallMode(perm));
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("mkdir", name, e);
-		}
-		return null;
-	};
- 0Mkdir0-os:PathErroros:syscallModesyscall:Mkdir0ÅÌChdirÅπ	Chdir = go$pkg.Chdir = function(dir) {
-		var e;
-		e = syscall.Chdir(dir);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chdir", dir, e);
-		}
-		return null;
-	};
- 0Chdir0os:PathErrorsyscall:Chdir0Ç´ Çc	File.Ptr.prototype.Chdir = function() {
-		var f, e;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return go$pkg.ErrInvalid;
-		}
-		e = syscall.Fchdir(f.file.fd);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chdir", f.file.name, e);
-		}
-		return null;
-	};
-	File.prototype.Chdir = function() { return this.go$val.Chdir(); };
- 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchdir0Ç OpenÅ’	Open = go$pkg.Open = function(name) {
-		var file$1, err, _tuple;
-		file$1 = (go$ptrType(File)).nil;
-		err = null;
-		_tuple = OpenFile(name, 0, 0), file$1 = _tuple[0], err = _tuple[1];
-		return [file$1, err];
-	};
- 0Open0os:Fileos:OpenFile0ÇCreateÅﬁ	Create = go$pkg.Create = function(name) {
-		var file$1, err, _tuple;
-		file$1 = (go$ptrType(File)).nil;
-		err = null;
-		_tuple = OpenFile(name, 1538, 438), file$1 = _tuple[0], err = _tuple[1];
-		return [file$1, err];
-	};
- 0Create0os:Fileos:OpenFile0tsigpipeZ	sigpipe = function() {
-		throw go$panic("Native function not implemented: sigpipe");
-	};
- 0	sigpipe0 0ÇLinkÅ‹	Link = go$pkg.Link = function(oldname, newname) {
-		var e;
-		e = syscall.Link(oldname, newname);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new LinkError.Ptr("link", oldname, newname, e);
-		}
-		return null;
-	};
- 0Link0os:LinkErrorsyscall:Link0Ç"SymlinkÅË	Symlink = go$pkg.Symlink = function(oldname, newname) {
-		var e;
-		e = syscall.Symlink(oldname, newname);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new LinkError.Ptr("symlink", oldname, newname, e);
-		}
-		return null;
-	};
- 0	Symlink0os:LinkErrorsyscall:Symlink0ÇJReadlinkÇ	Readlink = go$pkg.Readlink = function(name) {
-		var len, b, _tuple, n, e, x;
-		len = 128;
-		while (true) {
-			b = (go$sliceType(Go$Uint8)).make(len, 0, function() { return 0; });
-			_tuple = syscall.Readlink(name, b), n = _tuple[0], e = _tuple[1];
-			if (!(go$interfaceIsEqual(e, null))) {
-				return ["", new PathError.Ptr("readlink", name, e)];
-			}
-			if (n < len) {
-				return [go$bytesToString(go$subslice(b, 0, n)), null];
-			}
-			len = (x = 2, (((len >>> 16 << 16) * x >> 0) + (len << 16 >>> 16) * x) >> 0);
-		}
-	};
- 0
-Readlink0 os:PathErrorsyscall:Readlink0ÇRenameÅ‰	Rename = go$pkg.Rename = function(oldname, newname) {
-		var e;
-		e = syscall.Rename(oldname, newname);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new LinkError.Ptr("rename", oldname, newname, e);
-		}
-		return null;
-	};
- 0Rename0os:LinkErrorsyscall:Rename0ÇzsyscallModeÇI	syscallMode = function(i) {
-		var o;
-		o = 0;
-		o = (o | (((new FileMode(i)).Perm() >>> 0))) >>> 0;
-		if (!((((i & 8388608) >>> 0) === 0))) {
-			o = (o | 2048) >>> 0;
-		}
-		if (!((((i & 4194304) >>> 0) === 0))) {
-			o = (o | 1024) >>> 0;
-		}
-		if (!((((i & 1048576) >>> 0) === 0))) {
-			o = (o | 512) >>> 0;
-		}
-		return o;
-	};
- 0syscallMode0os:FileMode0ÇChmodÅ’	Chmod = go$pkg.Chmod = function(name, mode) {
-		var e;
-		e = syscall.Chmod(name, syscallMode(mode));
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chmod", name, e);
-		}
-		return null;
-	};
- 0Chmod0-os:PathErroros:syscallModesyscall:Chmod0Ç⁄ ÇÇ	File.Ptr.prototype.Chmod = function(mode) {
-		var f, e;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return go$pkg.ErrInvalid;
-		}
-		e = syscall.Fchmod(f.file.fd, syscallMode(mode));
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chmod", f.file.name, e);
-		}
-		return null;
-	};
-	File.prototype.Chmod = function(mode) { return this.go$val.Chmod(mode); };
- 0File0Fos:ErrInvalidos:Fileos:PathErroros:syscallModesyscall:Fchmod0ÇChownÅ–	Chown = go$pkg.Chown = function(name, uid, gid) {
-		var e;
-		e = syscall.Chown(name, uid, gid);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chown", name, e);
-		}
-		return null;
-	};
- 0Chown0os:PathErrorsyscall:Chown0ÇLchownÅ‘	Lchown = go$pkg.Lchown = function(name, uid, gid) {
-		var e;
-		e = syscall.Lchown(name, uid, gid);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("lchown", name, e);
-		}
-		return null;
-	};
- 0Lchown0os:PathErrorsyscall:Lchown0ÇÕ ÇÖ	File.Ptr.prototype.Chown = function(uid, gid) {
-		var f, e;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return go$pkg.ErrInvalid;
-		}
-		e = syscall.Fchown(f.file.fd, uid, gid);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chown", f.file.name, e);
-		}
-		return null;
-	};
-	File.prototype.Chown = function(uid, gid) { return this.go$val.Chown(uid, gid); };
- 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchown0Çœ ÇÑ	File.Ptr.prototype.Truncate = function(size) {
-		var f, e;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return go$pkg.ErrInvalid;
-		}
-		e = syscall.Ftruncate(f.file.fd, size);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("truncate", f.file.name, e);
-		}
-		return null;
-	};
-	File.prototype.Truncate = function(size) { return this.go$val.Truncate(size); };
- 0File09os:ErrInvalidos:Fileos:PathErrorsyscall:Ftruncate0Ç› Çê	File.Ptr.prototype.Sync = function() {
-		var err, f, e;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			err = new syscall.Errno(22);
-			return err;
-		}
-		e = syscall.Fsync(f.file.fd);
-		if (!(go$interfaceIsEqual(e, null))) {
-			err = NewSyscallError("fsync", e);
-			return err;
-		}
-		err = null;
-		return err;
-	};
-	File.prototype.Sync = function() { return this.go$val.Sync(); };
- 0File0;os:Fileos:NewSyscallErrorsyscall:Errnosyscall:Fsync0ÇÚChtimesÇä	Chtimes = go$pkg.Chtimes = function(name, atime$1, mtime) {
-		var utimes, _struct, _struct$1, e;
-		utimes = go$makeNativeArray("Struct", 2, function() { return new syscall.Timespec.Ptr(); });
-		utimes[0] = (_struct = syscall.NsecToTimespec(atime$1.UnixNano()), new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec));
-		utimes[1] = (_struct$1 = syscall.NsecToTimespec(mtime.UnixNano()), new syscall.Timespec.Ptr(_struct$1.Sec, _struct$1.Nsec));
-		e = syscall.UtimesNano(name, go$subslice(new (go$sliceType(syscall.Timespec))(utimes), 0));
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("chtimes", name, e);
-		}
-		return null;
-	};
- 0	Chtimes0Los:PathErrorsyscall:NsecToTimespecsyscall:Timespecsyscall:UtimesNano0ÅÛ ÅŸ	File.Ptr.prototype.Fd = function() {
-		var f;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return 4294967295;
-		}
-		return (f.file.fd >>> 0);
-	};
-	File.prototype.Fd = function() { return this.go$val.Fd(); };
- 0File0	os:File0Ç≈NewFileÇk	NewFile = go$pkg.NewFile = function(fd, name) {
-		var fdi, f;
-		fdi = (fd >> 0);
-		if (fdi < 0) {
-			return (go$ptrType(File)).nil;
-		}
-		f = new File.Ptr(new file.Ptr(fdi, name, (go$ptrType(dirInfo)).nil, 0));
-		runtime.SetFinalizer(f.file, new (go$funcType([(go$ptrType(file))], [go$error], false))((function(recv) { return recv.close(); })));
-		return f;
-	};
- 0	NewFile0>os:Fileos:close
-os:dirInfoos:fileruntime:SetFinalizer0Ç
-epipecheckÇ∞	epipecheck = function(file$1, e) {
-		var v, v$1;
-		if (go$interfaceIsEqual(e, new syscall.Errno(32))) {
-			if (atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return file$1.file.nepipe; }, function(v) { file$1.file.nepipe = v; }), 1) >= 10) {
-				sigpipe();
-			}
-		} else {
-			atomic.StoreInt32(new (go$ptrType(Go$Int32))(function() { return file$1.file.nepipe; }, function(v$1) { file$1.file.nepipe = v$1; }), 0);
-		}
-	};
- 0
-epipecheck0I
-os:sigpipesync/atomic:AddInt32sync/atomic:StoreInt32syscall:Errno0ÇøOpenFileÇK	OpenFile = go$pkg.OpenFile = function(name, flag, perm) {
-		var file$1, err, _tuple, r, e, _tuple$1, _tuple$2;
-		file$1 = (go$ptrType(File)).nil;
-		err = null;
-		_tuple = syscall.Open(name, flag | 16777216, syscallMode(perm)), r = _tuple[0], e = _tuple[1];
-		if (!(go$interfaceIsEqual(e, null))) {
-			_tuple$1 = [(go$ptrType(File)).nil, new PathError.Ptr("open", name, e)], file$1 = _tuple$1[0], err = _tuple$1[1];
-			return [file$1, err];
-		}
-		syscall.CloseOnExec(r);
-		_tuple$2 = [NewFile((r >>> 0), name), null], file$1 = _tuple$2[0], err = _tuple$2[1];
-		return [file$1, err];
-	};
- 0
-OpenFile0Vos:File
-os:NewFileos:PathErroros:syscallModesyscall:CloseOnExecsyscall:Open0Ç ÅÊ	File.Ptr.prototype.Close = function() {
-		var f;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			return go$pkg.ErrInvalid;
-		}
-		return f.file.close();
-	};
-	File.prototype.Close = function() { return this.go$val.Close(); };
- 0File0"os:ErrInvalidos:Fileos:close0Ç3 Çœ	file.Ptr.prototype.close = function() {
-		var file$1, err, e;
-		file$1 = this;
-		if (file$1 === (go$ptrType(file)).nil || file$1.fd < 0) {
-			return new syscall.Errno(22);
-		}
-		err = null;
-		e = syscall.Close(file$1.fd);
-		if (!(go$interfaceIsEqual(e, null))) {
-			err = new PathError.Ptr("close", file$1.name, e);
-		}
-		file$1.fd = -1;
-		runtime.SetFinalizer(file$1, null);
-		return err;
-	};
-	file.prototype.close = function() { return this.go$val.close(); };
- 0fileclose0Kos:PathErroros:fileruntime:SetFinalizersyscall:Closesyscall:Errno0Ç& Ç∫	File.Ptr.prototype.Stat = function() {
-		var fi, err, f, _tuple, stat, _tuple$1, _tuple$2;
-		fi = null;
-		err = null;
-		f = this;
-		if (f === (go$ptrType(File)).nil) {
-			_tuple = [null, go$pkg.ErrInvalid], fi = _tuple[0], err = _tuple[1];
-			return [fi, err];
-		}
-		stat = new syscall.Stat_t.Ptr();
-		err = syscall.Fstat(f.file.fd, stat);
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = [null, new PathError.Ptr("stat", f.file.name, err)], fi = _tuple$1[0], err = _tuple$1[1];
-			return [fi, err];
-		}
-		_tuple$2 = [fileInfoFromStat(stat, f.file.name), null], fi = _tuple$2[0], err = _tuple$2[1];
-		return [fi, err];
-	};
-	File.prototype.Stat = function() { return this.go$val.Stat(); };
- 0File0Zos:ErrInvalidos:Fileos:PathErroros:fileInfoFromStatsyscall:Fstatsyscall:Stat-t0ÇStatÇΩ	Stat = go$pkg.Stat = function(name) {
-		var fi, err, stat, _tuple, _tuple$1;
-		fi = null;
-		err = null;
-		stat = new syscall.Stat_t.Ptr();
-		err = syscall.Stat(name, stat);
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple = [null, new PathError.Ptr("stat", name, err)], fi = _tuple[0], err = _tuple[1];
-			return [fi, err];
-		}
-		_tuple$1 = [fileInfoFromStat(stat, name), null], fi = _tuple$1[0], err = _tuple$1[1];
-		return [fi, err];
-	};
- 0Stat0Aos:PathErroros:fileInfoFromStatsyscall:Statsyscall:Stat-t0ÇLstatÇ¡	Lstat = go$pkg.Lstat = function(name) {
-		var fi, err, stat, _tuple, _tuple$1;
-		fi = null;
-		err = null;
-		stat = new syscall.Stat_t.Ptr();
-		err = syscall.Lstat(name, stat);
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple = [null, new PathError.Ptr("lstat", name, err)], fi = _tuple[0], err = _tuple[1];
-			return [fi, err];
-		}
-		_tuple$1 = [fileInfoFromStat(stat, name), null], fi = _tuple$1[0], err = _tuple$1[1];
-		return [fi, err];
-	};
- 0Lstat0Bos:PathErroros:fileInfoFromStatsyscall:Lstatsyscall:Stat-t0Ç+ Çÿ	File.Ptr.prototype.readdir = function(n) {
-		var fi, err, f, dirname, _tuple, names, _ref, _i, _slice, _index, filename, i, _tuple$1, fip, lerr, _slice$1, _index$1, _slice$2, _index$2, _tuple$2;
-		fi = (go$sliceType(FileInfo)).nil;
-		err = null;
-		f = this;
-		dirname = f.file.name;
-		if (dirname === "") {
-			dirname = ".";
-		}
-		dirname = dirname + "/";
-		_tuple = f.Readdirnames(n), names = _tuple[0], err = _tuple[1];
-		fi = (go$sliceType(FileInfo)).make(names.length, 0, function() { return null; });
-		_ref = names;
-		_i = 0;
-		while (_i < _ref.length) {
-			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			i = _i;
-			_tuple$1 = lstat(dirname + filename), fip = _tuple$1[0], lerr = _tuple$1[1];
-			if (!(go$interfaceIsEqual(lerr, null))) {
-				_slice$1 = fi, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new fileStat.Ptr(filename, new Go$Int64(0, 0), 0, new time.Time.Ptr(), null)) : go$throwRuntimeError("index out of range");
-				_i++;
-				continue;
-			}
-			_slice$2 = fi, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = fip) : go$throwRuntimeError("index out of range");
-			_i++;
-		}
-		_tuple$2 = [fi, err], fi = _tuple$2[0], err = _tuple$2[1];
-		return [fi, err];
-	};
-	File.prototype.readdir = function(n) { return this.go$val.readdir(n); };
- 0Filereaddir08os:Fileos:FileInfoos:fileStatos:lstat	time:Time0Ç6 Ç	File.Ptr.prototype.read = function(b) {
-		var n, err, f, _tuple;
-		n = 0;
-		err = null;
-		f = this;
-		_tuple = syscall.Read(f.file.fd, b), n = _tuple[0], err = _tuple[1];
-		return [n, err];
-	};
-	File.prototype.read = function(b) { return this.go$val.read(b); };
- 0Fileread0os:Filesyscall:Read0ÇP Ç	File.Ptr.prototype.pread = function(b, off) {
-		var n, err, f, _tuple;
-		n = 0;
-		err = null;
-		f = this;
-		_tuple = syscall.Pread(f.file.fd, b, off), n = _tuple[0], err = _tuple[1];
-		return [n, err];
-	};
-	File.prototype.pread = function(b, off) { return this.go$val.pread(b, off); };
- 0Filepread0os:Filesyscall:Pread0ÇM Ç	File.Ptr.prototype.write = function(b) {
-		var n, err, f, _tuple, m, err$1, _tuple$1;
-		n = 0;
-		err = null;
-		f = this;
-		while (true) {
-			_tuple = syscall.Write(f.file.fd, b), m = _tuple[0], err$1 = _tuple[1];
-			n = n + (m) >> 0;
-			if (0 < m && m < b.length || go$interfaceIsEqual(err$1, new syscall.Errno(4))) {
-				b = go$subslice(b, m);
-				continue;
-			}
-			_tuple$1 = [n, err$1], n = _tuple$1[0], err = _tuple$1[1];
-			return [n, err];
-		}
-	};
-	File.prototype.write = function(b) { return this.go$val.write(b); };
- 0Filewrite0'os:Filesyscall:Errnosyscall:Write0ÇV Ç#	File.Ptr.prototype.pwrite = function(b, off) {
-		var n, err, f, _tuple;
-		n = 0;
-		err = null;
-		f = this;
-		_tuple = syscall.Pwrite(f.file.fd, b, off), n = _tuple[0], err = _tuple[1];
-		return [n, err];
-	};
-	File.prototype.pwrite = function(b, off) { return this.go$val.pwrite(b, off); };
- 0Filepwrite0os:Filesyscall:Pwrite0ÇÉ ÇT	File.Ptr.prototype.seek = function(offset, whence) {
-		var ret, err, f, _tuple;
-		ret = new Go$Int64(0, 0);
-		err = null;
-		f = this;
-		_tuple = syscall.Seek(f.file.fd, offset, whence), ret = _tuple[0], err = _tuple[1];
-		return [ret, err];
-	};
-	File.prototype.seek = function(offset, whence) { return this.go$val.seek(offset, whence); };
- 0Fileseek0os:Filesyscall:Seek0ÇTruncateÅ‘	Truncate = go$pkg.Truncate = function(name, size) {
-		var e;
-		e = syscall.Truncate(name, size);
-		if (!(go$interfaceIsEqual(e, null))) {
-			return new PathError.Ptr("truncate", name, e);
-		}
-		return null;
-	};
- 0
-Truncate0 os:PathErrorsyscall:Truncate0Ç∏RemoveÇb	Remove = go$pkg.Remove = function(name) {
-		var e, e1;
-		e = syscall.Unlink(name);
-		if (go$interfaceIsEqual(e, null)) {
-			return null;
-		}
-		e1 = syscall.Rmdir(name);
-		if (go$interfaceIsEqual(e1, null)) {
-			return null;
-		}
-		if (!(go$interfaceIsEqual(e1, new syscall.Errno(20)))) {
-			e = e1;
-		}
-		return new PathError.Ptr("remove", name, e);
-	};
- 0Remove0<os:PathErrorsyscall:Errnosyscall:Rmdirsyscall:Unlink0ÇtbasenameÇV	basename = function(name) {
-		var i;
-		i = name.length - 1 >> 0;
-		while (i > 0 && (name.charCodeAt(i) === 47)) {
-			name = name.substring(0, i);
-			i = i - 1 >> 0;
-		}
-		i = i - 1 >> 0;
-		while (i >= 0) {
-			if (name.charCodeAt(i) === 47) {
-				name = name.substring((i + 1 >> 0));
-				break;
-			}
-			i = i - 1 >> 0;
-		}
-		return name;
-	};
- 0
-basename0 0ÅØTempDirÅâ	TempDir = go$pkg.TempDir = function() {
-		var dir;
-		dir = Getenv("TMPDIR");
-		if (dir === "") {
-			dir = "/tmp";
-		}
-		return dir;
-	};
- 0	TempDir0	os:Getenv0Ç§GetwdÇ	Getwd = go$pkg.Getwd = function() {
-		var go$this = this, pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
-		pwd = "";
-		err = null;
-		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
-		_tuple = syscall.Getwd(), s = _tuple[0], e = _tuple[1];
-		if (useSyscallwd(e)) {
-			_tuple$1 = [s, NewSyscallError("getwd", e)], pwd = _tuple$1[0], err = _tuple$1[1];
-			return [pwd, err];
-		}
-		_tuple$2 = Stat("."), dot = _tuple$2[0], err = _tuple$2[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$3 = ["", err], pwd = _tuple$3[0], err = _tuple$3[1];
-			return [pwd, err];
-		}
-		pwd = Getenv("PWD");
-		if (pwd.length > 0 && (pwd.charCodeAt(0) === 47)) {
-			_tuple$4 = Stat(pwd), d = _tuple$4[0], err$1 = _tuple$4[1];
-			if (go$interfaceIsEqual(err$1, null) && SameFile(dot, d)) {
-				_tuple$5 = [pwd, null], pwd = _tuple$5[0], err = _tuple$5[1];
-				return [pwd, err];
-			}
-		}
-		getwdCache.Mutex.Lock();
-		pwd = getwdCache.dir;
-		getwdCache.Mutex.Unlock();
-		if (pwd.length > 0) {
-			_tuple$6 = Stat(pwd), d$1 = _tuple$6[0], err$2 = _tuple$6[1];
-			if (go$interfaceIsEqual(err$2, null) && SameFile(dot, d$1)) {
-				_tuple$7 = [pwd, null], pwd = _tuple$7[0], err = _tuple$7[1];
-				return [pwd, err];
-			}
-		}
-		_tuple$8 = Stat("/"), root = _tuple$8[0], err = _tuple$8[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$9 = ["", err], pwd = _tuple$9[0], err = _tuple$9[1];
-			return [pwd, err];
-		}
-		if (SameFile(root, dot)) {
-			_tuple$10 = ["/", null], pwd = _tuple$10[0], err = _tuple$10[1];
-			return [pwd, err];
-		}
-		pwd = "";
-		parent = "..";
-		/* while (true) { */ case 2: if(!(true)) { go$s = 3; continue; }
-			if (parent.length >= 1024) {
-				_tuple$11 = ["", new syscall.Errno(63)], pwd = _tuple$11[0], err = _tuple$11[1];
-				return [pwd, err];
-			}
-			_tuple$12 = Open(parent), fd = _tuple$12[0], err$3 = _tuple$12[1];
-			if (!(go$interfaceIsEqual(err$3, null))) {
-				_tuple$13 = ["", err$3], pwd = _tuple$13[0], err = _tuple$13[1];
-				return [pwd, err];
-			}
-			/* while (true) { */ case 4: if(!(true)) { go$s = 5; continue; }
-				_tuple$14 = fd.Readdirnames(100), names = _tuple$14[0], err$4 = _tuple$14[1];
-				if (!(go$interfaceIsEqual(err$4, null))) {
-					fd.Close();
-					_tuple$15 = ["", err$4], pwd = _tuple$15[0], err = _tuple$15[1];
-					return [pwd, err];
-				}
-				_ref = names;
-				_i = 0;
-				/* while (_i < _ref.length) { */ case 6: if(!(_i < _ref.length)) { go$s = 7; continue; }
-					name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-					_tuple$16 = Lstat(parent + "/" + name), d$2 = _tuple$16[0];
-					/* if (SameFile(d$2, dot)) { */ if (SameFile(d$2, dot)) {} else { go$s = 8; continue; }
-						pwd = "/" + name + pwd;
-						/* goto Found */ go$s = 1; continue;
-					/* } */ case 8:
-					_i++;
-				/* } */ go$s = 6; continue; case 7:
-			/* } */ go$s = 4; continue; case 5:
-			/* Found: */ case 1:
-			_tuple$17 = fd.Stat(), pd = _tuple$17[0], err$3 = _tuple$17[1];
-			if (!(go$interfaceIsEqual(err$3, null))) {
-				_tuple$18 = ["", err$3], pwd = _tuple$18[0], err = _tuple$18[1];
-				return [pwd, err];
-			}
-			fd.Close();
-			if (SameFile(pd, root)) {
-				/* break; */ go$s = 3; continue;
-			}
-			dot = pd;
-			parent = "../" + parent;
-		/* } */ go$s = 2; continue; case 3:
-		getwdCache.Mutex.Lock();
-		getwdCache.dir = pwd;
-		getwdCache.Mutex.Unlock();
-		_tuple$19 = [pwd, null], pwd = _tuple$19[0], err = _tuple$19[1];
-		return [pwd, err];
-		/* */ } break; } }; return go$f();
-	};
- 0Getwd0ÅÜ	os:Getenvos:Lstatos:NewSyscallErroros:Openos:SameFileos:Statos:getwdCacheos:useSyscallwdsyscall:Errnosyscall:Getwd0Å¶useSyscallwdDarwing	useSyscallwdDarwin = function(err) {
-		return !(go$interfaceIsEqual(err, new syscall.Errno(45)));
-	};
- 0useSyscallwdDarwin0syscall:Errno0ÇMkdirAllÇ†	MkdirAll = go$pkg.MkdirAll = function(path, perm) {
-		var _tuple, dir, err, i, j, _tuple$1, dir$1, err1;
-		_tuple = Stat(path), dir = _tuple[0], err = _tuple[1];
-		if (go$interfaceIsEqual(err, null)) {
-			if (dir.IsDir()) {
-				return null;
-			}
-			return new PathError.Ptr("mkdir", path, new syscall.Errno(20));
-		}
-		i = path.length;
-		while (i > 0 && IsPathSeparator(path.charCodeAt((i - 1 >> 0)))) {
-			i = i - 1 >> 0;
-		}
-		j = i;
-		while (j > 0 && !IsPathSeparator(path.charCodeAt((j - 1 >> 0)))) {
-			j = j - 1 >> 0;
-		}
-		if (j > 1) {
-			err = MkdirAll(path.substring(0, (j - 1 >> 0)), perm);
-			if (!(go$interfaceIsEqual(err, null))) {
-				return err;
-			}
-		}
-		err = Mkdir(path, perm);
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = Lstat(path), dir$1 = _tuple$1[0], err1 = _tuple$1[1];
-			if (go$interfaceIsEqual(err1, null) && dir$1.IsDir()) {
-				return null;
-			}
-			return err;
-		}
-		return null;
-	};
- 0
-MkdirAll0Nos:IsPathSeparatoros:Lstatos:Mkdiros:PathErroros:Statsyscall:Errno0Çµ	RemoveAllÇC	RemoveAll = go$pkg.RemoveAll = function(path) {
-		var err, _tuple, dir, serr, _tuple$1, serr$1, ok, _tuple$2, fd, _tuple$3, names, err1, _ref, _i, _slice, _index, name, err1$1, err1$2;
-		err = Remove(path);
-		if (go$interfaceIsEqual(err, null)) {
-			return null;
-		}
-		_tuple = Lstat(path), dir = _tuple[0], serr = _tuple[1];
-		if (!(go$interfaceIsEqual(serr, null))) {
-			_tuple$1 = (serr !== null && serr.constructor === (go$ptrType(PathError)) ? [serr.go$val, true] : [(go$ptrType(PathError)).nil, false]), serr$1 = _tuple$1[0], ok = _tuple$1[1];
-			if (ok && (IsNotExist(serr$1.Err) || go$interfaceIsEqual(serr$1.Err, new syscall.Errno(20)))) {
-				return null;
-			}
-			return serr;
-		}
-		if (!dir.IsDir()) {
-			return err;
-		}
-		_tuple$2 = Open(path), fd = _tuple$2[0], err = _tuple$2[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return err;
-		}
-		err = null;
-		while (true) {
-			_tuple$3 = fd.Readdirnames(100), names = _tuple$3[0], err1 = _tuple$3[1];
-			_ref = names;
-			_i = 0;
-			while (_i < _ref.length) {
-				name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				err1$1 = RemoveAll(path + "/" + name);
-				if (go$interfaceIsEqual(err, null)) {
-					err = err1$1;
-				}
-				_i++;
-			}
-			if (go$interfaceIsEqual(err1, io.EOF)) {
-				break;
-			}
-			if (go$interfaceIsEqual(err, null)) {
-				err = err1;
-			}
-			if (names.length === 0) {
-				break;
-			}
-		}
-		fd.Close();
-		err1$2 = Remove(path);
-		if (go$interfaceIsEqual(err, null)) {
-			err = err1$2;
-		}
-		return err;
-	};
- 0	RemoveAll0Rio:EOFos:IsNotExistos:Lstatos:Openos:PathError	os:Removesyscall:Errno0{IsPathSeparatorQ	IsPathSeparator = go$pkg.IsPathSeparator = function(c) {
-		return 47 === c;
-	};
- 0IsPathSeparator0 0ÇâPipeÇ	Pipe = go$pkg.Pipe = function() {
-		var r, w, err, p, e, _tuple, _tuple$1;
-		r = (go$ptrType(File)).nil;
-		w = (go$ptrType(File)).nil;
-		err = null;
-		p = go$makeNativeArray("Int", 2, function() { return 0; });
-		syscall.ForkLock.RLock();
-		e = syscall.Pipe(go$subslice(new (go$sliceType(Go$Int))(p), 0));
-		if (!(go$interfaceIsEqual(e, null))) {
-			syscall.ForkLock.RUnlock();
-			_tuple = [(go$ptrType(File)).nil, (go$ptrType(File)).nil, NewSyscallError("pipe", e)], r = _tuple[0], w = _tuple[1], err = _tuple[2];
-			return [r, w, err];
-		}
-		syscall.CloseOnExec(p[0]);
-		syscall.CloseOnExec(p[1]);
-		syscall.ForkLock.RUnlock();
-		_tuple$1 = [NewFile((p[0] >>> 0), "|0"), NewFile((p[1] >>> 0), "|1"), null], r = _tuple$1[0], w = _tuple$1[1], err = _tuple$1[2];
-		return [r, w, err];
-	};
- 0Pipe0^os:File
-os:NewFileos:NewSyscallErrorsyscall:CloseOnExecsyscall:ForkLocksyscall:Pipe0nGetuidF	Getuid = go$pkg.Getuid = function() {
-		return syscall.Getuid();
-	};
- 0Getuid0syscall:Getuid0tGeteuidI	Geteuid = go$pkg.Geteuid = function() {
-		return syscall.Geteuid();
-	};
- 0	Geteuid0syscall:Geteuid0nGetgidF	Getgid = go$pkg.Getgid = function() {
-		return syscall.Getgid();
-	};
- 0Getgid0syscall:Getgid0tGetegidI	Getegid = go$pkg.Getegid = function() {
-		return syscall.Getegid();
-	};
- 0	Getegid0syscall:Getegid0Ç	GetgroupsÅª	Getgroups = go$pkg.Getgroups = function() {
-		var _tuple, gids, e;
-		_tuple = syscall.Getgroups(), gids = _tuple[0], e = _tuple[1];
-		return [gids, NewSyscallError("getgroups", e)];
-	};
- 0	Getgroups0'os:NewSyscallErrorsyscall:Getgroups0cExitA	Exit = go$pkg.Exit = function(code) {
-		syscall.Exit(code);
-	};
- 0Exit0syscall:Exit0Ç9sameFileÇ	sameFile = function(fs1, fs2) {
-		var x, stat1, x$1, stat2, x$2, x$3;
-		stat1 = (x = fs1.sys, (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(syscall.Stat_t)))));
-		stat2 = (x$1 = fs2.sys, (x$1 !== null && x$1.constructor === (go$ptrType(syscall.Stat_t)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(syscall.Stat_t)))));
-		return (stat1.Dev === stat2.Dev) && (x$2 = stat1.Ino, x$3 = stat2.Ino, (x$2.high === x$3.high && x$2.low === x$3.low));
-	};
- 0
-sameFile0syscall:Stat-t0ÇıfileInfoFromStatÇ}	fileInfoFromStat = function(st, name) {
-		var _struct, _struct$1, fs, _ref;
-		fs = new fileStat.Ptr(basename(name), st.Size, 0, (_struct$1 = timespecToTime((_struct = st.Mtimespec, new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec))), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), st);
-		fs.mode = (((st.Mode & 511) >>> 0) >>> 0);
-		_ref = (st.Mode & 61440) >>> 0;
-		if (_ref === 24576 || _ref === 57344) {
-			fs.mode = (fs.mode | 67108864) >>> 0;
-		} else if (_ref === 8192) {
-			fs.mode = (fs.mode | 69206016) >>> 0;
-		} else if (_ref === 16384) {
-			fs.mode = (fs.mode | 2147483648) >>> 0;
-		} else if (_ref === 4096) {
-			fs.mode = (fs.mode | 33554432) >>> 0;
-		} else if (_ref === 40960) {
-			fs.mode = (fs.mode | 134217728) >>> 0;
-		} else if (_ref === 32768) {
-		} else if (_ref === 49152) {
-			fs.mode = (fs.mode | 16777216) >>> 0;
-		}
-		if (!((((st.Mode & 1024) >>> 0) === 0))) {
-			fs.mode = (fs.mode | 4194304) >>> 0;
-		}
-		if (!((((st.Mode & 2048) >>> 0) === 0))) {
-			fs.mode = (fs.mode | 8388608) >>> 0;
-		}
-		if (!((((st.Mode & 512) >>> 0) === 0))) {
-			fs.mode = (fs.mode | 1048576) >>> 0;
-		}
-		return fs;
-	};
- 0fileInfoFromStat0Jos:basenameos:fileStatos:timespecToTimesyscall:Timespec	time:Time0ÅﬂtimespecToTimeÅ†	timespecToTime = function(ts) {
-		var _struct;
-		return (_struct = time.Unix(ts.Sec, ts.Nsec), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-	};
- 0timespecToTime0	time:Time	time:Unix0ÇŸatimeÇÅ	atime = function(fi) {
-		var x, _struct, _struct$1;
-		return (_struct$1 = timespecToTime((_struct = (x = fi.Sys(), (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(syscall.Stat_t))))).Atimespec, new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec))), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
-	};
- 0atime0@os:timespecToTimesyscall:Stat-tsyscall:Timespec	time:Time0Ç˝hostnameÇª	hostname = function() {
-		var name, err, _tuple, _tuple$1, _tuple$2;
-		name = "";
-		err = null;
-		_tuple = syscall.Sysctl("kern.hostname"), name = _tuple[0], err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			_tuple$1 = ["", NewSyscallError("sysctl kern.hostname", err)], name = _tuple$1[0], err = _tuple$1[1];
-			return [name, err];
-		}
-		_tuple$2 = [name, null], name = _tuple$2[0], err = _tuple$2[1];
-		return [name, err];
-	};
- 0
-hostname0$os:NewSyscallErrorsyscall:Sysctl0ÅåGetpagesizeU	Getpagesize = go$pkg.Getpagesize = function() {
-		return syscall.Getpagesize();
-	};
- 0Getpagesize0syscall:Getpagesize0Çä Çg	FileMode.prototype.String = function() {
-		var m, buf, w, _ref, _i, _rune, c, i, y, _ref$1, _i$1, _rune$1, c$1, i$1, y$1;
-		m = this.go$val;
-		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
-		w = 0;
-		_ref = "dalTLDpSugct";
-		_i = 0;
-		while (_i < _ref.length) {
-			_rune = go$decodeRune(_ref, _i);
-			c = _rune[0];
-			i = _i;
-			if (!((((m & (((y = ((31 - i >> 0) >>> 0), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0) === 0))) {
-				buf[w] = (c << 24 >>> 24);
-				w = w + 1 >> 0;
-			}
-			_i += _rune[1];
-		}
-		if (w === 0) {
-			buf[w] = 45;
-			w = w + 1 >> 0;
-		}
-		_ref$1 = "rwxrwxrwx";
-		_i$1 = 0;
-		while (_i$1 < _ref$1.length) {
-			_rune$1 = go$decodeRune(_ref$1, _i$1);
-			c$1 = _rune$1[0];
-			i$1 = _i$1;
-			if (!((((m & (((y$1 = ((8 - i$1 >> 0) >>> 0), y$1 < 32 ? (1 << y$1) : 0) >>> 0))) >>> 0) === 0))) {
-				buf[w] = (c$1 << 24 >>> 24);
-			} else {
-				buf[w] = 45;
-			}
-			w = w + 1 >> 0;
-			_i$1 += _rune$1[1];
-		}
-		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w));
-	};
-	go$ptrType(FileMode).prototype.String = function() { return new FileMode(this.go$get()).String(); };
- 0
-FileMode0os:FileMode0Å˝ Å€	FileMode.prototype.IsDir = function() {
-		var m;
-		m = this.go$val;
-		return !((((m & 2147483648) >>> 0) === 0));
-	};
-	go$ptrType(FileMode).prototype.IsDir = function() { return new FileMode(this.go$get()).IsDir(); };
- 0
-FileMode0os:FileMode0Ç Å‚	FileMode.prototype.IsRegular = function() {
-		var m;
-		m = this.go$val;
-		return ((m & 2399141888) >>> 0) === 0;
-	};
-	go$ptrType(FileMode).prototype.IsRegular = function() { return new FileMode(this.go$get()).IsRegular(); };
- 0
-FileMode0os:FileMode0ÅÊ Åƒ	FileMode.prototype.Perm = function() {
-		var m;
-		m = this.go$val;
-		return (m & 511) >>> 0;
-	};
-	go$ptrType(FileMode).prototype.Perm = function() { return new FileMode(this.go$get()).Perm(); };
- 0
-FileMode0os:FileMode0Å¡ Åü	fileStat.Ptr.prototype.Name = function() {
-		var fs;
-		fs = this;
-		return fs.name;
-	};
-	fileStat.prototype.Name = function() { return this.go$val.Name(); };
- 0
-fileStat0os:fileStat0ÅÎ Åº	fileStat.Ptr.prototype.IsDir = function() {
-		var fs;
-		fs = this;
-		return (new FileMode(fs.Mode())).IsDir();
-	};
-	fileStat.prototype.IsDir = function() { return this.go$val.IsDir(); };
- 0
-fileStat0os:FileModeos:fileStat0Ç5SameFileÇ˝	SameFile = go$pkg.SameFile = function(fi1, fi2) {
-		var _tuple, fs1, ok1, _tuple$1, fs2, ok2;
-		_tuple = (fi1 !== null && fi1.constructor === (go$ptrType(fileStat)) ? [fi1.go$val, true] : [(go$ptrType(fileStat)).nil, false]), fs1 = _tuple[0], ok1 = _tuple[1];
-		_tuple$1 = (fi2 !== null && fi2.constructor === (go$ptrType(fileStat)) ? [fi2.go$val, true] : [(go$ptrType(fileStat)).nil, false]), fs2 = _tuple$1[0], ok2 = _tuple$1[1];
-		if (!ok1 || !ok2) {
-			return false;
-		}
-		return sameFile(fs1, fs2);
-	};
- 0
-SameFile0os:fileStatos:sameFile0Å¡ Åü	fileStat.Ptr.prototype.Size = function() {
-		var fs;
-		fs = this;
-		return fs.size;
-	};
-	fileStat.prototype.Size = function() { return this.go$val.Size(); };
- 0
-fileStat0os:fileStat0Å¡ Åü	fileStat.Ptr.prototype.Mode = function() {
-		var fs;
-		fs = this;
-		return fs.mode;
-	};
-	fileStat.prototype.Mode = function() { return this.go$val.Mode(); };
- 0
-fileStat0os:fileStat0Ç( Å˚	fileStat.Ptr.prototype.ModTime = function() {
-		var fs, _struct;
-		fs = this;
-		return (_struct = fs.modTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-	};
-	fileStat.prototype.ModTime = function() { return this.go$val.ModTime(); };
- 0
-fileStat0os:fileStat	time:Time0ÅΩ Åõ	fileStat.Ptr.prototype.Sys = function() {
-		var fs;
-		fs = this;
-		return fs.sys;
-	};
-	fileStat.prototype.Sys = function() { return this.go$val.Sys(); };
- 0
-fileStat0os:fileStat0   0
-ErrInvalid0 0   0ErrPermission0 0   0
-ErrExist0 0   0ErrNotExist0 0   0	Interrupt0 0   0Kill0 0   0Stdin0 0   0Stdout0 0   0Stderr0 0lstat  0lstat0 0Å»
-getwdCache Åå		getwdCache = new (go$structType([["Mutex", "", "", sync.Mutex, ""], ["dir", "dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
-0
-getwdCache0os:getwdCache
-sync:Mutex0$useSyscallwd  0useSyscallwd0 0Åá  n		go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
-0Args0	os:Args0[  6		go$pkg.ErrInvalid = errors.New("invalid argument");
-0 0
-errors:Newos:ErrInvalid0b  :		go$pkg.ErrPermission = errors.New("permission denied");
-0 0
-errors:Newos:ErrPermission0Z  7		go$pkg.ErrExist = errors.New("file already exists");
-0 0
-errors:Newos:ErrExist0`  :		go$pkg.ErrNotExist = errors.New("file does not exist");
-0 0
-errors:Newos:ErrNotExist0_  ,		go$pkg.Interrupt = new syscall.Signal(2);
-0	Interrupt0os:Interruptsyscall:Signal0P  '		go$pkg.Kill = new syscall.Signal(9);
-0Kill0os:Killsyscall:Signal0n  ?		go$pkg.Stdin = NewFile((syscall.Stdin >>> 0), "/dev/stdin");
-0 0%
-os:NewFileos:Stdinsyscall:Stdin0s  B		go$pkg.Stdout = NewFile((syscall.Stdout >>> 0), "/dev/stdout");
-0 0'
-os:NewFile	os:Stdoutsyscall:Stdout0s  B		go$pkg.Stderr = NewFile((syscall.Stderr >>> 0), "/dev/stderr");
-0 0'
-os:NewFile	os:Stderrsyscall:Stderr06  		lstat = Lstat;
-0lstat0os:Lstatos:lstat0^  5		useSyscallwd = (function() {
-			return true;
-		});
-0useSyscallwd0os:useSyscallwd0Åº Åí
-			if (go$packages["syscall"].Syscall15 !== undefined) { // windows
-				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
-			}
-		 0 0syscall:Syscall15
-os:NewFile0W  %		useSyscallwd = useSyscallwdDarwin;
-0 0(os:useSyscallwdos:useSyscallwdDarwin0 
+0vgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltime0ÅÄ0$github.com/gopherjs/gopherjs/jsA0ioB0syscallC0	timeD0errorsE0runtimeF0sync/atomicG0	syncH0ÇÊÏ0Çó 0VÅÿV=$pkg.PathError=$newType(0,"Struct","os.PathError","PathError","os",function(Op_,Path_,Err_){this.$val=this;this.Op=Op_!==undefined?Op_:"";this.Path=Path_!==undefined?Path_:"";this.Err=Err_!==undefined?Err_:null;});Å†($ptrType(V)).methods=[["Error","Error","",[],[$String],false,-1]];V.init([["Op","Op","",$String,""],["Path","Path","",$String,""],["Err","Err","",$error,""]]);0	PathError0  0Çx 0WÅ W=$pkg.SyscallError=$newType(0,"Struct","os.SyscallError","SyscallError","os",function(Syscall_,Err_){this.$val=this;this.Syscall=Syscall_!==undefined?Syscall_:"";this.Err=Err_!==undefined?Err_:null;});Åå($ptrType(W)).methods=[["Error","Error","",[],[$String],false,-1]];W.init([["Syscall","Syscall","",$String,""],["Err","Err","",$error,""]]);0SyscallError0  0Çx 0AEÅÊAE=$pkg.Process=$newType(0,"Struct","os.Process","Process","os",function(Pid_,handle_,isdone_){this.$val=this;this.Pid=Pid_!==undefined?Pid_:0;this.handle=handle_!==undefined?handle_:0;this.isdone=isdone_!==undefined?isdone_:0;});ÇW($ptrType(AE)).methods=[["Kill","Kill","",[],[$error],false,-1],["Release","Release","",[],[$error],false,-1],["Signal","Signal","",[AH],[$error],false,-1],["Wait","Wait","",[],[($ptrType(AL)),$error],false,-1],["done","done","os",[],[$Bool],false,-1],["kill","kill","os",[],[$error],false,-1],["release","release","os",[],[$error],false,-1],["setDone","setDone","os",[],[],false,-1],["signal","signal","os",[AH],[$error],false,-1],["wait","wait","os",[],[($ptrType(AL)),$error],false,-1]];AE.init([["Pid","Pid","",$Int,""],["handle","handle","os",$Uintptr,""],["isdone","isdone","os",$Uint32,""]]);0	Process0os:ProcessState	os:Signal 0ÇE 0AGÇSAG=$pkg.ProcAttr=$newType(0,"Struct","os.ProcAttr","ProcAttr","os",function(Dir_,Env_,Files_,Sys_){this.$val=this;this.Dir=Dir_!==undefined?Dir_:"";this.Env=Env_!==undefined?Env_:($sliceType($String)).nil;this.Files=Files_!==undefined?Files_:($sliceType(($ptrType(BF)))).nil;this.Sys=Sys_!==undefined?Sys_:($ptrType(C.SysProcAttr)).nil;});Å¥AG.init([["Dir","Dir","",$String,""],["Env","Env","",($sliceType($String)),""],["Files","Files","",($sliceType(($ptrType(BF)))),""],["Sys","Sys","",($ptrType(C.SysProcAttr)),""]]);0
+ProcAttr0os:Filesyscall:SysProcAttr 0Åπ 0AHFAH=$pkg.Signal=$newType(8,"Interface","os.Signal","Signal","os",null);XAH.init([["Signal","Signal","",[],[],false],["String","String","",[],[$String],false]]);0Signal0  0Ç≤ 0ALÇAL=$pkg.ProcessState=$newType(0,"Struct","os.ProcessState","ProcessState","os",function(pid_,status_,rusage_){this.$val=this;this.pid=pid_!==undefined?pid_:0;this.status=status_!==undefined?status_:0;this.rusage=rusage_!==undefined?rusage_:($ptrType(C.Rusage)).nil;});ÇN($ptrType(AL)).methods=[["Exited","Exited","",[],[$Bool],false,-1],["Pid","Pid","",[],[$Int],false,-1],["String","String","",[],[$String],false,-1],["Success","Success","",[],[$Bool],false,-1],["Sys","Sys","",[],[$emptyInterface],false,-1],["SysUsage","SysUsage","",[],[$emptyInterface],false,-1],["SystemTime","SystemTime","",[],[D.Duration],false,-1],["UserTime","UserTime","",[],[D.Duration],false,-1],["exited","exited","os",[],[$Bool],false,-1],["success","success","os",[],[$Bool],false,-1],["sys","sys","os",[],[$emptyInterface],false,-1],["sysUsage","sysUsage","os",[],[$emptyInterface],false,-1],["systemTime","systemTime","os",[],[D.Duration],false,-1],["userTime","userTime","os",[],[D.Duration],false,-1]];AL.init([["pid","pid","os",$Int,""],["status","status","os",C.WaitStatus,""],["rusage","rusage","os",($ptrType(C.Rusage)),""]]);0ProcessState03syscall:Rusagesyscall:WaitStatustime:Duration 0Çÿ 0AOÅ¸AO=$pkg.LinkError=$newType(0,"Struct","os.LinkError","LinkError","os",function(Op_,Old_,New_,Err_){this.$val=this;this.Op=Op_!==undefined?Op_:"";this.Old=Old_!==undefined?Old_:"";this.New=New_!==undefined?New_:"";this.Err=Err_!==undefined?Err_:null;});Åº($ptrType(AO)).methods=[["Error","Error","",[],[$String],false,-1]];AO.init([["Op","Op","",$String,""],["Old","Old","",$String,""],["New","New","",$String,""],["Err","Err","",$error,""]]);0	LinkError0  0Ç( 0BFÅéBF=$pkg.File=$newType(0,"Struct","os.File","File","os",function(file_){this.$val=this;this.file=file_!==undefined?file_:($ptrType(BG)).nil;});Ç[BF.methods=[["close","close","os",[],[$error],false,0]];($ptrType(BF)).methods=[["Chdir","Chdir","",[],[$error],false,-1],["Chmod","Chmod","",[CP],[$error],false,-1],["Chown","Chown","",[$Int,$Int],[$error],false,-1],["Close","Close","",[],[$error],false,-1],["Fd","Fd","",[],[$Uintptr],false,-1],["Name","Name","",[],[$String],false,-1],["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,-1],["ReadAt","ReadAt","",[($sliceType($Uint8)),$Int64],[$Int,$error],false,-1],["Readdir","Readdir","",[$Int],[($sliceType(CO)),$error],false,-1],["Readdirnames","Readdirnames","",[$Int],[($sliceType($String)),$error],false,-1],["Seek","Seek","",[$Int64,$Int],[$Int64,$error],false,-1],["Stat","Stat","",[],[CO,$error],false,-1],["Sync","Sync","",[],[$error],false,-1],["Truncate","Truncate","",[$Int64],[$error],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteAt","WriteAt","",[($sliceType($Uint8)),$Int64],[$Int,$error],false,-1],["WriteString","WriteString","",[$String],[$Int,$error],false,-1],["close","close","os",[],[$error],false,0],["pread","pread","os",[($sliceType($Uint8)),$Int64],[$Int,$error],false,-1],["pwrite","pwrite","os",[($sliceType($Uint8)),$Int64],[$Int,$error],false,-1],["read","read","os",[($sliceType($Uint8))],[$Int,$error],false,-1],["readdir","readdir","os",[$Int],[($sliceType(CO)),$error],false,-1],["readdirnames","readdirnames","os",[$Int],[($sliceType($String)),$error],false,-1],["seek","seek","os",[$Int64,$Int],[$Int64,$error],false,-1],["write","write","os",[($sliceType($Uint8))],[$Int,$error],false,-1]];BF.init([["file","","os",($ptrType(BG)),""]]);0File0#os:FileInfoos:FileModeos:file 0Ç 0BGÇBG=$pkg.file=$newType(0,"Struct","os.file","file","os",function(fd_,name_,dirinfo_,nepipe_){this.$val=this;this.fd=fd_!==undefined?fd_:0;this.name=name_!==undefined?name_:"";this.dirinfo=dirinfo_!==undefined?dirinfo_:($ptrType(BI)).nil;this.nepipe=nepipe_!==undefined?nepipe_:0;});ÅŸ($ptrType(BG)).methods=[["close","close","os",[],[$error],false,-1]];BG.init([["fd","fd","os",$Int,""],["name","name","os",$String,""],["dirinfo","dirinfo","os",($ptrType(BI)),""],["nepipe","nepipe","os",$Int32,""]]);0file0
+os:dirInfo 0Çz 0BIÅÌBI=$pkg.dirInfo=$newType(0,"Struct","os.dirInfo","dirInfo","os",function(buf_,nbuf_,bufp_){this.$val=this;this.buf=buf_!==undefined?buf_:($sliceType($Uint8)).nil;this.nbuf=nbuf_!==undefined?nbuf_:0;this.bufp=bufp_!==undefined?bufp_:0;});pBI.init([["buf","buf","os",($sliceType($Uint8)),""],["nbuf","nbuf","os",$Int,""],["bufp","bufp","os",$Int,""]]);0	dirInfo0  0Çv 0COLCO=$pkg.FileInfo=$newType(8,"Interface","os.FileInfo","FileInfo","os",null);ÅÙCO.init([["IsDir","IsDir","",[],[$Bool],false],["ModTime","ModTime","",[],[D.Time],false],["Mode","Mode","",[],[CP],false],["Name","Name","",[],[$String],false],["Size","Size","",[],[$Int64],false],["Sys","Sys","",[],[$emptyInterface],false]]);0
+FileInfo0os:FileMode	time:Time 0Ç‰ 0CPICP=$pkg.FileMode=$newType(4,"Uint32","os.FileMode","FileMode","os",null);Ç|CP.methods=[["IsDir","IsDir","",[],[$Bool],false,-1],["IsRegular","IsRegular","",[],[$Bool],false,-1],["Perm","Perm","",[],[CP],false,-1],["String","String","",[],[$String],false,-1]];($ptrType(CP)).methods=[["IsDir","IsDir","",[],[$Bool],false,-1],["IsRegular","IsRegular","",[],[$Bool],false,-1],["Perm","Perm","",[],[CP],false,-1],["String","String","",[],[$String],false,-1]];0
+FileMode0  0ÇW 0CRÇZCR=$pkg.fileStat=$newType(0,"Struct","os.fileStat","fileStat","os",function(name_,size_,mode_,modTime_,sys_){this.$val=this;this.name=name_!==undefined?name_:"";this.size=size_!==undefined?size_:new $Int64(0,0);this.mode=mode_!==undefined?mode_:0;this.modTime=modTime_!==undefined?modTime_:new D.Time.Ptr();this.sys=sys_!==undefined?sys_:null;});Çƒ($ptrType(CR)).methods=[["IsDir","IsDir","",[],[$Bool],false,-1],["ModTime","ModTime","",[],[D.Time],false,-1],["Mode","Mode","",[],[CP],false,-1],["Name","Name","",[],[$String],false,-1],["Size","Size","",[],[$Int64],false,-1],["Sys","Sys","",[],[$emptyInterface],false,-1]];CR.init([["name","name","os",$String,""],["size","size","os",$Int64,""],["mode","mode","os",CP,""],["modTime","modTime","os",D.Time,""],["sys","sys","os",$emptyInterface,""]]);0
+fileStat0os:FileMode	time:Time 0 0   0
+ErrInvalid0  0 0   0ErrPermission0  0 0   0
+ErrExist0  0 0   0ErrNotExist0  0 0   0	Interrupt0  0 0   0Kill0  0 0   0Stdin0  0 0   0Stdout0  0 0   0Stderr0  0 0AT  0lstat0  0Åê 0BR VBR=new($structType([["Mutex","","",H.Mutex,""],["dir","dir","os",$String,""]])).Ptr();0
+getwdCache0os:getwdCache
+sync:Mutex 0! 0BS  0useSyscallwd0  0B 0  $$pkg.Args=($sliceType($String)).nil;0Args0	os:Args 0I 0CL 	CL=false;0supportsCloseOnExec0os:supportsCloseOnExec 0Y 0  /    $pkg.ErrInvalid=E.New("invalid argument");0 0
+errors:Newos:ErrInvalid 0` 0  3    $pkg.ErrPermission=E.New("permission denied");0 0
+errors:Newos:ErrPermission 0X 0  0    $pkg.ErrExist=E.New("file already exists");0 0
+errors:Newos:ErrExist 0^ 0  3    $pkg.ErrNotExist=E.New("file does not exist");0 0
+errors:Newos:ErrNotExist 0\ 0  $    $pkg.Interrupt=new C.Signal(2);0	Interrupt0os:Interruptsyscall:Signal 0M 0      $pkg.Kill=new C.Signal(9);0Kill0os:Killsyscall:Signal 0c 0  /    $pkg.Stdin=BH((C.Stdin>>>0),"/dev/stdin");0 0%
+os:NewFileos:Stdinsyscall:Stdin 0h 0  2    $pkg.Stdout=BH((C.Stdout>>>0),"/dev/stdout");0 0'
+os:NewFile	os:Stdoutsyscall:Stdout 0h 0  2    $pkg.Stderr=BH((C.Stderr>>>0),"/dev/stderr");0 0'
+os:NewFile	os:Stderrsyscall:Stderr 0[ 0  -    BS=(function(){  ú%return true;    });0useSyscallwd0os:useSyscallwd 05 0      AT=BM;0lstat0os:Lstatos:lstat 0Ços.init0IÇ„I=function(){var a,b,c;   Ya=$global.process;   ~    if(a===undefined){   õ$pkg.Args=new($sliceType($String))(["browser"]);   ∏return;    }   √b=a.argv;   ‡$pkg.Args=($sliceType($String)).make(($parseInt(b.length)-1>>0),0,function(){return"";});    c=0;while(c<($parseInt(b.length)-1>>0)){  1(c<0||c>=$pkg.Args.$length)?$throwRuntimeError("index out of range"):$pkg.Args.$array[$pkg.Args.$offset+c]=$internalize(b[(c+1>>0)],$String);      )  )c=c+(1)>>0;}    };	    I();0 0	os:Args 0Ç–(*os.File).readdirnames0 Ç:BF.Ptr.prototype.readdirnames=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;b=($sliceType($String)).nil;c=null;  ãd=this;  Ù    if(d.file.dirinfo===($ptrType(BI)).nil){  d.file.dirinfo=new BI.Ptr();  Vd.file.dirinfo.buf=($sliceType($Uint8)).make(4096,0,function(){return 0;});    }  Çe=d.file.dirinfo;  ìf=a;  û    if(f<=0){  Øf=100;  ºa=-1;    }  »b=($sliceType($String)).make(0,f,function(){return"";});  while(!((a===0))){  8    if(e.bufp>=e.nbuf){  Qe.bufp=0;  _  cg=null;  rh=C.ReadDirent(d.file.fd,e.buf);e.nbuf=h[0];g=h[1];  •    if(!($interfaceIsEqual(g,null))){  ª    i=b;j=X("readdirent",g);b=i;c=j;return[b,c];    }  ˆ    if(e.nbuf<=0){  break;    }    }  :  >k=0;l=0;m=k;n=l;  Ko=C.ParseDirent($subslice(e.buf,e.bufp,e.nbuf),a,b);m=o[0];n=o[1];b=o[2];  ëe.bufp=e.bufp+(m)>>0;  †a=a-(n)>>0;    }  ¨    if(a>=0&&(b.$length===0)){  Õ    p=b;q=B.EOF;b=p;c=q;return[b,c];    }  Ê    r=b;s=null;b=r;c=s;return[b,c];    };BF.prototype.readdirnames=function(a){return this.$val.readdirnames(a);}; 0Filereaddirnames0Zio:EOFos:Fileos:NewSyscallError
+os:dirInfosyscall:ParseDirentsyscall:ReadDirent 0Å¡os.FindProcess0JxJ=$pkg.FindProcess=function(a){var b,c,d;b=($ptrType(AE)).nil;c=null;  ê    d=AN(a);b=d[0];c=d[1];return[b,c];    }; 0FindProcess0
+os:Processos:findProcess 0ÅÅos.StartProcess0KAK=$pkg.StartProcess=function(a,b,c){  	return AK(a,b,c);    }; 0StartProcess0os:startProcess 0Åÿ(*os.Process).Release0 ÅíAE.Ptr.prototype.Release=function(){var a;  	ﬂa=this;  	˛return a.release();    };AE.prototype.Release=function(){return this.$val.Release();}; 0	Process0
+os:Process
+os:release 0Å∆(*os.Process).Kill0 ÅÜAE.Ptr.prototype.Kill=function(){var a;  
+Ja=this;  
+freturn a.kill();    };AE.prototype.Kill=function(){return this.$val.Kill();}; 0	Process0
+os:Processos:kill 0Å∆(*os.Process).Wait0 ÅÜAE.Ptr.prototype.Wait=function(){var a;  £a=this;  –return a.wait();    };AE.prototype.Wait=function(){return this.$val.Wait();}; 0	Process0
+os:Processos:wait 0Å÷(*os.Process).Signal0 ÅíAE.Ptr.prototype.Signal=function(a){var b;  Fb=this;  nreturn b.signal(a);    };AE.prototype.Signal=function(a){return this.$val.Signal(a);}; 0	Process0
+os:Process	os:signal 0ÅÌ(*os.ProcessState).UserTime0 ÅñAL.Ptr.prototype.UserTime=function(){var a;  ⁄a=this;  return a.userTime();    };AL.prototype.UserTime=function(){return this.$val.UserTime();}; 0ProcessState0os:ProcessStateos:userTime 0Å˘(*os.ProcessState).SystemTime0 ÅûAL.Ptr.prototype.SystemTime=function(){var a;  va=this;  •return a.systemTime();    };AL.prototype.SystemTime=function(){return this.$val.SystemTime();}; 0ProcessState0 os:ProcessStateos:systemTime 0Å·(*os.ProcessState).Exited0 ÅéAL.Ptr.prototype.Exited=function(){var a;  ˆa=this;  return a.exited();    };AL.prototype.Exited=function(){return this.$val.Exited();}; 0ProcessState0os:ProcessState	os:exited 0ÅÁ(*os.ProcessState).Success0 ÅíAL.Ptr.prototype.Success=function(){var a;  ña=this;  πreturn a.success();    };AL.prototype.Success=function(){return this.$val.Success();}; 0ProcessState0os:ProcessState
+os:success 0Åœ(*os.ProcessState).Sys0 ÅÇAL.Ptr.prototype.Sys=function(){var a;  ãa=this;  ±return a.sys();    };AL.prototype.Sys=function(){return this.$val.Sys();}; 0ProcessState0os:ProcessStateos:sys 0ÅÌ(*os.ProcessState).SysUsage0 ÅñAL.Ptr.prototype.SysUsage=function(){var a;  ıa=this;   return a.sysUsage();    };AL.prototype.SysUsage=function(){return this.$val.SysUsage();}; 0ProcessState0os:ProcessStateos:sysUsage 0Åóos.Hostname0LcL=$pkg.Hostname=function(){var a,b,c;a="";b=null;  ù    c=CK();a=c[0];b=c[1];return[a,b];    }; 0
+Hostname0os:hostname 0Ç§(*os.File).Readdir0 ÇJBF.Ptr.prototype.Readdir=function(a){var b,c,d,e,f,g;b=($sliceType(CO)).nil;c=null;  ‡d=this;      if(d===($ptrType(BF)).nil){  &    e=($sliceType(CO)).nil;f=$pkg.ErrInvalid;b=e;c=f;return[b,c];    }  A    g=d.readdir(a);b=g[0];c=g[1];return[b,c];    };BF.prototype.Readdir=function(a){return this.$val.Readdir(a);}; 0File01os:ErrInvalidos:Fileos:FileInfo
+os:readdir 0Çø(*os.File).Readdirnames0 ÇhBF.Ptr.prototype.Readdirnames=function(a){var b,c,d,e,f,g;b=($sliceType($String)).nil;c=null;  ‰d=this;       if(d===($ptrType(BF)).nil){  0    e=($sliceType($String)).nil;f=$pkg.ErrInvalid;b=e;c=f;return[b,c];    }  K    g=d.readdirnames(a);b=g[0];c=g[1];return[b,c];    };BF.prototype.Readdirnames=function(a){return this.$val.Readdirnames(a);}; 0File0)os:ErrInvalidos:Fileos:readdirnames 0Çk	os.Expand0MÇ5M=$pkg.Expand=function(a,b){var c,d,e,f,g,h,i;  d=($sliceType($Uint8)).make(0,(c=a.length,(((2>>>16<<16)*c>>0)+(2<<16>>>16)*c)>>0),function(){return 0;});  }e=0;  Ö  âf=0;while(f<a.length){  •    if((a.charCodeAt(f)===36)&&(f+1>>0)<a.length){  …d=$appendSlice(d,new($sliceType($Uint8))($stringToBytes(a.substring(e,f))));  Èg=Q(a.substring((f+1>>0)));h=g[0];i=g[1];  d=$appendSlice(d,new($sliceType($Uint8))($stringToBytes(b(h))));  4f=f+(i)>>0;  >e=f+1>>0;    }      ù  ùf=f+(1)>>0;}  Preturn $bytesToString(d)+a.substring(e);    }; 0Expand0os:getShellName 0vos.ExpandEnv0N7N=$pkg.ExpandEnv=function(a){  Mreturn M(a,R);    }; 0	ExpandEnv0	os:Expand	os:Getenv 0Ços.isShellSpecialVar0OÅ’O=function(a){var b;  ˜b=a;  if(b===42||b===35||b===36||b===64||b===33||b===63||b===48||b===49||b===50||b===51||b===52||b===53||b===54||b===55||b===56||b===57){  Zreturn true;    }  jreturn false;    }; 0isShellSpecialVar0  0os.isAlphaNum0PTP=function(a){  Ïreturn(a===95)||48<=a&&a<=57||97<=a&&a<=122||65<=a&&a<=90;    }; 0
+isAlphaNum0  0Çios.getShellName0QÇQ=function(a){var b,c;  U  _if(a.charCodeAt(0)===123){  s    if(a.length>2&&O(a.charCodeAt(1))&&(a.charCodeAt(2)===125)){  ∞return[a.substring(1,2),3];    }  ‚  Êb=1;while(b<a.length){       if(a.charCodeAt(b)===125){   return[a.substring(1,b),b+1>>0];    }      ˙  ˙b=b+(1)>>0;}   8return["",1];       i}else if(O(a.charCodeAt(0))){   âreturn[a.substring(0,1),1];    }   ∂   ∫c=0;   ¡   ≈c=0;while(c<a.length&&P(a.charCodeAt(c))){       Ï   Ïc=c+(1)>>0;}   ˆreturn[a.substring(0,c),c];    }; 0getShellName0%os:isAlphaNumos:isShellSpecialVar 0ÅÑ	os.Getenv0RQR=$pkg.Getenv=function(a){var b,c;  !ƒb=C.Getenv(a);c=b[0];  !·return c;    }; 0Getenv0syscall:Getenv 0Å‚	os.Setenv0SÅöS=$pkg.Setenv=function(a,b){var c;  "|c=C.Setenv(a,b);  "ü    if(!($interfaceIsEqual(c,null))){  "±return X("setenv",c);    }  "€return null;    }; 0Setenv0$os:NewSyscallErrorsyscall:Setenv 0mos.Clearenv0T4T=$pkg.Clearenv=function(){  #+C.Clearenv();    }; 0
+Clearenv0syscall:Clearenv 0o
+os.Environ0U9U=$pkg.Environ=function(){  #ªreturn C.Environ();    }; 0	Environ0syscall:Environ 0Åﬂ(*os.PathError).Error0 Å°V.Ptr.prototype.Error=function(){var a;  &5a=this;  &Treturn a.Op+" "+a.Path+": "+a.Err.Error();    };V.prototype.Error=function(){return this.$val.Error();}; 0	PathError0os:PathError 0Å‚(*os.SyscallError).Error0 ÅõW.Ptr.prototype.Error=function(){var a;  '
+a=this;  ',return a.Syscall+": "+a.Err.Error();    };W.prototype.Error=function(){return this.$val.Error();}; 0SyscallError0os:SyscallError 0ÅÕos.NewSyscallError0XÅÜX=$pkg.NewSyscallError=function(a,b){  (C    if($interfaceIsEqual(b,null)){  (Ureturn null;    }  (dreturn new W.Ptr(a,b);    }; 0NewSyscallError0os:SyscallError 0e
+os.IsExist0Y4Y=$pkg.IsExist=function(a){  )breturn AB(a);    }; 0	IsExist0
+os:isExist 0qos.IsNotExist0Z7Z=$pkg.IsNotExist=function(a){  *Zreturn AC(a);    }; 0
+IsNotExist0os:isNotExist 0{os.IsPermission0AA:AA=$pkg.IsPermission=function(a){  +Mreturn AD(a);    }; 0IsPermission0os:isPermission 0Ç£
+os.isExist0ABÇCAB=function(a){var b,c,d;  ,çc=a;d=c!==null?c.constructor:null;  ,®if(d===null){b=c;  ,¥return false;      ,¬}else if(d===($ptrType(V))){b=c.$val;  ,’a=b.Err;      ,„}else if(d===($ptrType(AO))){b=c.$val;  ,ˆa=b.Err;    }  -return $interfaceIsEqual(a,new C.Errno(17))||$interfaceIsEqual(a,$pkg.ErrExist);    }; 0	isExist08os:ErrExistos:LinkErroros:PathErrorsyscall:Errno 0ÇÆos.isNotExist0ACÇEAC=function(a){var b,c,d;  -]c=a;d=c!==null?c.constructor:null;  -xif(d===null){b=c;  -Ñreturn false;      -í}else if(d===($ptrType(V))){b=c.$val;  -•a=b.Err;      -≥}else if(d===($ptrType(AO))){b=c.$val;  -∆a=b.Err;    }  -◊return $interfaceIsEqual(a,new C.Errno(2))||$interfaceIsEqual(a,$pkg.ErrNotExist);    }; 0
+isNotExist0;os:ErrNotExistos:LinkErroros:PathErrorsyscall:Errno 0Ç‹os.isPermission0ADÇmAD=function(a){var b,c,d;  .2c=a;d=c!==null?c.constructor:null;  .Mif(d===null){b=c;  .Yreturn false;      .g}else if(d===($ptrType(V))){b=c.$val;  .za=b.Err;      .à}else if(d===($ptrType(AO))){b=c.$val;  .õa=b.Err;    }  .¨return $interfaceIsEqual(a,new C.Errno(13))||$interfaceIsEqual(a,new C.Errno(1))||$interfaceIsEqual(a,$pkg.ErrPermission);    }; 0isPermission0=os:ErrPermissionos:LinkErroros:PathErrorsyscall:Errno 0Ços.newProcess0AFÅ∂AF=function(a,b){var c;  0⁄c=new AE.Ptr(a,b,0);  1F.SetFinalizer(c,new($funcType([($ptrType(AE))],[$error],false))((function(recv){return recv.Release();})));  10return c;    }; 0
+newProcess0"
+os:Processruntime:SetFinalizer 0ÇT(*os.Process).setDone0 Å¯AE.Ptr.prototype.setDone=function(){var a;  1Ba=this;  1[G.StoreUint32(new($ptrType($Uint32))(function(){return this.$target.isdone;},function($v){this.$target.isdone=$v;},a),1);    };AE.prototype.setDone=function(){return this.$val.setDone();}; 0ProcesssetDone0%
+os:Processsync/atomic:StoreUint32 0ÇJ(*os.Process).done0 ÅıAE.Ptr.prototype.done=function(){var a;  1Öa=this;  1†return G.LoadUint32(new($ptrType($Uint32))(function(){return this.$target.isdone;},function($v){this.$target.isdone=$v;},a))>0;    };AE.prototype.done=function(){return this.$val.done();}; 0Processdone0$
+os:Processsync/atomic:LoadUint32 0l	os.Getpid0AI8AI=$pkg.Getpid=function(){  6Èreturn C.Getpid();    }; 0Getpid0syscall:Getpid 0q
+os.Getppid0AJ:AJ=$pkg.Getppid=function(){  7Sreturn C.Getppid();    }; 0	Getppid0syscall:Getppid 0Çäos.startProcess0AKÇœAK=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v;d=($ptrType(AE)).nil;e=null;  :x    if(!(c===($ptrType(AG)).nil)&&c.Sys===($ptrType(C.SysProcAttr)).nil&&!(c.Dir==="")){  :∞  :≥f=BL(c.Dir);g=f[1];    if(!($interfaceIsEqual(g,null))){  :›h=(g!==null&&g.constructor===($ptrType(V))?g.$val:$typeAssertionFailed(g,($ptrType(V))));  :˜h.Op="chdir";  ;
+    i=($ptrType(AE)).nil;j=h;d=i;e=j;return[d,e];    }    }  ;"k=new C.ProcAttr.Ptr(c.Dir,c.Env,($sliceType($Uintptr)).nil,c.Sys);  ;w    if(k.Env===($sliceType($String)).nil){  ;ëk.Env=U();    }  ;≠l=c.Files;m=0;while(m<l.$length){n=((m<0||m>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+m]);  ;Œk.Files=$append(k.Files,n.Fd());    m++;}  <o=C.StartProcess(a,b,k);p=o[0];q=o[1];r=o[2];  <9    if(!($interfaceIsEqual(r,null))){  <I    s=($ptrType(AE)).nil;t=new V.Ptr("fork/exec",a,r);d=s;e=t;return[d,e];    }  <z    u=AF(p,q);v=null;d=u;e=v;return[d,e];    }; 0startProcess0Åà
+os:Environos:PathErroros:ProcAttr
+os:Processos:Statos:newProcesssyscall:ProcAttrsyscall:StartProcesssyscall:SysProcAttr 0Å◊(*os.Process).kill0 ÅëAE.Ptr.prototype.kill=function(){var a;  <¢a=this;  <æreturn a.Signal($pkg.Kill);    };AE.prototype.kill=function(){return this.$val.kill();}; 0Processkill0os:Kill
+os:Process 0Å≈(*os.ProcessState).Pid0 ÅÄAL.Ptr.prototype.Pid=function(){var a;  =˝a=this;  >return a.pid;    };AL.prototype.Pid=function(){return this.$val.Pid();}; 0ProcessState0os:ProcessState 0Ç(*os.ProcessState).exited0 Å®AL.Ptr.prototype.exited=function(){var a;  >1a=this;  >Sreturn(new C.WaitStatus(a.status)).Exited();    };AL.prototype.exited=function(){return this.$val.exited();}; 0ProcessStateexited0%os:ProcessStatesyscall:WaitStatus 0Ç(*os.ProcessState).success0 Å≥AL.Ptr.prototype.success=function(){var a;  >ua=this;  >òreturn(new C.WaitStatus(a.status)).ExitStatus()===0;    };AL.prototype.success=function(){return this.$val.success();}; 0ProcessStatesuccess0%os:ProcessStatesyscall:WaitStatus 0ÅÛ(*os.ProcessState).sys0 ÅïAL.Ptr.prototype.sys=function(){var a;  >√a=this;  >Èreturn new C.WaitStatus(a.status);    };AL.prototype.sys=function(){return this.$val.sys();}; 0ProcessStatesys0%os:ProcessStatesyscall:WaitStatus 0ÅÊ(*os.ProcessState).sysUsage0 ÅíAL.Ptr.prototype.sysUsage=function(){var a;  ?a=this;  ?-return a.rusage;    };AL.prototype.sysUsage=function(){return this.$val.sysUsage();}; 0ProcessStatesysUsage0os:ProcessState 0Çqos.itod0AMÇOAM=function(a){var b,c,d;  ?{    if(a===0){  ?âreturn"0";    }  ?ôb=new $Uint64(0,a);  ?©    if(a<0){  ?∂b=new $Uint64(-b.$high,-b.$low);    }  ?È  ?Ìc=($arrayType($Uint8,32)).zero();$copy(c,($arrayType($Uint8,32)).zero(),($arrayType($Uint8,32)));  ?˘d=32;  @while((b.$high>0||(b.$high===0&&b.$low>0))){  @   @ d=d-(1)>>0;  @'c[d]=($div64(b,new $Uint64(0,10),true).$low<<24>>>24)+48<<24>>>24;      @b=$div64(b,(new $Uint64(0,10)),false);}  @E    if(a<0){  @R  @Rd=d-(1)>>0;  @Yc[d]=45;    }  @jreturn $bytesToString($subslice(new($sliceType($Uint8))(c),d));    }; 0itod0  0Çi(*os.ProcessState).String0 ÇÛAL.Ptr.prototype.String=function(){var a,b,c,d;  @âa=this;  @≠    if(a===($ptrType(AL)).nil){  @Ωreturn"<nil>";    }  @–c=(b=a.Sys(),(b!==null&&b.constructor===C.WaitStatus?b.$val:$typeAssertionFailed(b,C.WaitStatus)));  @¯d="";  A  Aif((new C.WaitStatus(c)).Exited()){  A%d="exit status "+AM((new C.WaitStatus(c)).ExitStatus());      AW}else if((new C.WaitStatus(c)).Signaled()){  Aqd="signal: "+(new C.Signal((new C.WaitStatus(c)).Signal())).String();      Aû}else if((new C.WaitStatus(c)).Stopped()){  A∑d="stop signal: "+(new C.Signal((new C.WaitStatus(c)).StopSignal())).String();  AÓ    if(((new C.WaitStatus(c)).StopSignal()===5)&&!(((new C.WaitStatus(c)).TrapCause()===0))){  B8d=d+(" (trap "+AM((new C.WaitStatus(c)).TrapCause())+")");    }      Bo}else if((new C.WaitStatus(c)).Continued()){  Bäd="continued";    }  B†    if((new C.WaitStatus(c)).CoreDump()){  Bπd=d+(" (core dumped)");    }  B’return d;    };AL.prototype.String=function(){return this.$val.String();}; 0ProcessState0>os:ProcessStateos:itodsyscall:Signalsyscall:WaitStatus 0Ça(*os.Process).wait0 Ç∞AE.Ptr.prototype.wait=function(){var a,b,c,d,e,f,g,h,i,j,k,l,m,n;a=($ptrType(AL)).nil;b=null;  Dc=this;  DC    if(c.Pid===-1){  DV    d=($ptrType(AL)).nil;e=new C.Errno(22);a=d;b=e;return[a,b];    }  Du  Dyf=0;  Dî  Dòg=new C.Rusage.Ptr();$copy(g,new C.Rusage.Ptr(),C.Rusage);  DØh=C.Wait4(c.Pid,new($ptrType(C.WaitStatus))(function(){return f;},function($v){f=$v;}),0,g);i=h[0];j=h[1];  DÂ    if(!($interfaceIsEqual(j,null))){  Dı    k=($ptrType(AL)).nil;l=X("wait",j);a=k;b=l;return[a,b];    }  E     if(!((i===0))){  E1c.setDone();    }  EAa=new AL.Ptr(i,f,g);  Eé    m=a;n=null;a=m;b=n;return[a,b];    };AE.prototype.wait=function(){return this.$val.wait();}; 0Processwait0os:NewSyscallError
+os:Processos:ProcessState
+os:setDonesyscall:Errnosyscall:Rusagesyscall:Wait4syscall:WaitStatus 0Çò(*os.Process).signal0 Ç#AE.Ptr.prototype.signal=function(a){var b,c,d,e,f;  E¶b=this;  EŒ    if(b.done()){  Eﬁreturn E.New("os: process already finished");    }  F    if(b.Pid===-1){  F'return E.New("os: process already released");    }  F]c=(a!==null&&a.constructor===C.Signal?[a.$val,true]:[0,false]);d=c[0];e=c[1];  F|    if(!e){  Fáreturn E.New("os: unsupported signal type");    }  Fº  Føf=C.Kill(b.Pid,d);    if(!($interfaceIsEqual(f,null))){  FÈreturn f;    }  Fˆreturn null;    };AE.prototype.signal=function(a){return this.$val.signal(a);}; 0Processsignal0?
+errors:New
+os:Processos:donesyscall:Killsyscall:Signal 0Ç(*os.Process).release0 ÅµAE.Ptr.prototype.release=function(){var a;  G
+a=this;  G<a.Pid=-1;  GlF.SetFinalizer(a,null);  Gäreturn null;    };AE.prototype.release=function(){return this.$val.release();}; 0Processrelease0"
+os:Processruntime:SetFinalizer 0Å∂os.findProcess0ANmAN=function(a){var b,c,d,e;b=($ptrType(AE)).nil;c=null;  G‡    d=AF(a,0);e=null;b=d;c=e;return[b,c];    }; 0findProcess0
+os:Processos:newProcess 0ÇC(*os.ProcessState).userTime0 Å‡AL.Ptr.prototype.userTime=function(){var a,b;  Ha=this;  H5return $mul64((b=a.rusage.Utime.Nano(),new D.Duration(b.$high,b.$low)),new D.Duration(0,1));    };AL.prototype.userTime=function(){return this.$val.userTime();}; 0ProcessStateuserTime0 os:ProcessStatetime:Duration 0ÇM(*os.ProcessState).systemTime0 ÅÊAL.Ptr.prototype.systemTime=function(){var a,b;  H|a=this;  H´return $mul64((b=a.rusage.Stime.Nano(),new D.Duration(b.$high,b.$low)),new D.Duration(0,1));    };AL.prototype.systemTime=function(){return this.$val.systemTime();}; 0ProcessState
+systemTime0 os:ProcessStatetime:Duration 0Å∑(*os.File).Name0 ÅâBF.Ptr.prototype.Name=function(){var a;  NÌa=this;  Oreturn a.file.name;    };BF.prototype.Name=function(){return this.$val.Name();}; 0File0	os:File 0ÅÍ(*os.LinkError).Error0 Å¨AO.Ptr.prototype.Error=function(){var a;  Tpa=this;  Têreturn a.Op+" "+a.Old+" "+a.New+": "+a.Err.Error();    };AO.prototype.Error=function(){return this.$val.Error();}; 0	LinkError0os:LinkError 0Ç{(*os.File).Read0 ÇBF.Ptr.prototype.Read=function(a){var b,c,d,e,f,g,h,i,j,k,l;b=0;c=null;  UÄd=this;  UÆ    if(d===($ptrType(BF)).nil){  Uæ    e=0;f=$pkg.ErrInvalid;b=e;c=f;return[b,c];    }  U◊g=d.read(a);b=g[0];h=g[1];  UÍ    if(b<0){  U˜b=0;    }  V    if((b===0)&&a.$length>0&&$interfaceIsEqual(h,null)){  V)    i=0;j=B.EOF;b=i;c=j;return[b,c];    }  V>    if(!($interfaceIsEqual(h,null))){  VNc=new V.Ptr("read",d.file.name,h);    }  Vv    k=b;l=c;b=k;c=l;return[b,c];    };BF.prototype.Read=function(a){return this.$val.Read(a);}; 0File07io:EOFos:ErrInvalidos:Fileos:PathErroros:read 0Çﬁ(*os.File).ReadAt0 Ç~BF.Ptr.prototype.ReadAt=function(a,b){var c,d,e,f,g,h,i,j,k,l,m;c=0;d=null;  Wve=this;  W±    if(e===($ptrType(BF)).nil){  W¡    f=0;g=$pkg.ErrInvalid;c=f;d=g;return[c,d];    }  W⁄while(a.$length>0){  WÌh=e.pread(a,b);i=h[0];j=h[1];  X    if((i===0)&&$interfaceIsEqual(j,null)){  X"    k=c;l=B.EOF;c=k;d=l;return[c,d];    }  X9    if(!($interfaceIsEqual(j,null))){  XJd=new V.Ptr("read",e.file.name,j);  Xqbreak;    }  X}c=c+(i)>>0;  XÜa=$subslice(a,i);  Xíb=(m=new $Int64(0,i),new $Int64(b.$high+m.$high,b.$low+m.$low));    }  X¶return[c,d];    };BF.prototype.ReadAt=function(a,b){return this.$val.ReadAt(a,b);}; 0File08io:EOFos:ErrInvalidos:Fileos:PathErroros:pread 0Çt(*os.File).Write0 Ç¸BF.Ptr.prototype.Write=function(a){var b,c,d,e,f,g,h,i,j;b=0;c=null;  YSd=this;  YÇ    if(d===($ptrType(BF)).nil){  Yí    e=0;f=$pkg.ErrInvalid;b=e;c=f;return[b,c];    }  Y´g=d.write(a);b=g[0];h=g[1];  Yø    if(b<0){  YÃb=0;    }  Y÷    if(!((b===a.$length))){  YÈc=B.ErrShortWrite;    }  ZBJ(d,h);  Z    if(!($interfaceIsEqual(h,null))){  Z(c=new V.Ptr("write",d.file.name,h);    }  ZQ    i=b;j=c;b=i;c=j;return[b,c];    };BF.prototype.Write=function(a){return this.$val.Write(a);}; 0File0Qio:ErrShortWriteos:ErrInvalidos:Fileos:PathErroros:epipecheckos:write 0Çx(*os.File).WriteAt0 ÇBF.Ptr.prototype.WriteAt=function(a,b){var c,d,e,f,g,h,i,j,k;c=0;d=null;  [%e=this;  [a    if(e===($ptrType(BF)).nil){  [q    f=0;g=$pkg.ErrInvalid;c=f;d=g;return[c,d];    }  [äwhile(a.$length>0){  [ùh=e.pwrite(a,b);i=h[0];j=h[1];  [∏    if(!($interfaceIsEqual(j,null))){  […d=new V.Ptr("write",e.file.name,j);  [Òbreak;    }  [˝c=c+(i)>>0;  \a=$subslice(a,i);  \b=(k=new $Int64(0,i),new $Int64(b.$high+k.$high,b.$low+k.$low));    }  \&return[c,d];    };BF.prototype.WriteAt=function(a,b){return this.$val.WriteAt(a,b);}; 0File01os:ErrInvalidos:Fileos:PathError	os:pwrite 0Çﬁ(*os.File).Seek0 ÇnBF.Ptr.prototype.Seek=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n;c=new $Int64(0,0);d=null;  ]Ke=this;  ]ç    if(e===($ptrType(BF)).nil){  ]ù    f=new $Int64(0,0);g=$pkg.ErrInvalid;c=f;d=g;return[c,d];    }  ]∂h=e.seek(a,b);i=h[0];j=h[1];  ]÷    if($interfaceIsEqual(j,null)&&!(e.file.dirinfo===($ptrType(BI)).nil)&&!((i.$high===0&&i.$low===0))){  ^j=new C.Errno(21);    }  ^    if(!($interfaceIsEqual(j,null))){  ^+    k=new $Int64(0,0);l=new V.Ptr("seek",e.file.name,j);c=k;d=l;return[c,d];    }  ^W    m=i;n=null;c=m;d=n;return[c,d];    };BF.prototype.Seek=function(a,b){return this.$val.Seek(a,b);}; 0File0Jos:ErrInvalidos:Fileos:PathError
+os:dirInfoos:seeksyscall:Errno 0Çú(*os.File).WriteString0 ÇWBF.Ptr.prototype.WriteString=function(a){var b,c,d,e,f,g;b=0;c=null;  ^—d=this;  _    if(d===($ptrType(BF)).nil){  _    e=0;f=$pkg.ErrInvalid;b=e;c=f;return[b,c];    }  _1    g=d.Write(new($sliceType($Uint8))($stringToBytes(a)));b=g[0];c=g[1];return[b,c];    };BF.prototype.WriteString=function(a){return this.$val.WriteString(a);}; 0File0os:ErrInvalidos:File 0Åˆos.Mkdir0APÅ¶AP=$pkg.Mkdir=function(a,b){var c;  `c=C.Mkdir(a,BA(b));  `1    if(!($interfaceIsEqual(c,null))){  `Areturn new V.Ptr("mkdir",a,c);    }  `ireturn null;    }; 0Mkdir0-os:PathErroros:syscallModesyscall:Mkdir 0Åﬁos.Chdir0AQÅûAQ=$pkg.Chdir=function(a){var b;  a  ab=C.Chdir(a);    if(!($interfaceIsEqual(b,null))){  a?return new V.Ptr("chdir",a,b);    }  afreturn null;    }; 0Chdir0os:PathErrorsyscall:Chdir 0Ç§(*os.File).Chdir0 ÇGBF.Ptr.prototype.Chdir=function(){var a,b;  ba=this;  b&    if(a===($ptrType(BF)).nil){  b6return $pkg.ErrInvalid;    }  bL  bOb=C.Fchdir(a.file.fd);    if(!($interfaceIsEqual(b,null))){  bwreturn new V.Ptr("chdir",a.file.name,b);    }  b°return null;    };BF.prototype.Chdir=function(){return this.$val.Chdir();}; 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchdir 0Å¨os.Open0ARvAR=$pkg.Open=function(a){var b,c,d;b=($ptrType(BF)).nil;c=null;  c¡    d=BK(a,0,0);b=d[0];c=d[1];return[b,c];    }; 0Open0os:Fileos:OpenFile 0Å∑	os.Create0AS}AS=$pkg.Create=function(a){var b,c,d;b=($ptrType(BF)).nil;c=null;  e-    d=BK(a,1538,438);b=d[0];c=d[1];return[b,c];    }; 0Create0os:Fileos:OpenFile 0g	os.Rename0AU8AU=$pkg.Rename=function(a,b){  freturn AZ(a,b);    }; 0Rename0	os:rename 0r
+os.sigpipe0AVLAV=function(){throw $panic("Native function not implemented: os.sigpipe");}; 0	sigpipe0  0Åﬂos.Link0AWÅ¢AW=$pkg.Link=function(a,b){var c;  hc=C.Link(a,b);  hB    if(!($interfaceIsEqual(c,null))){  hRreturn new AO.Ptr("link",a,b,c);    }  hÖreturn null;    }; 0Link0os:LinkErrorsyscall:Link 0ÅÒ
+os.Symlink0AXÅ´AX=$pkg.Symlink=function(a,b){var c;  i4c=C.Symlink(a,b);  i\    if(!($interfaceIsEqual(c,null))){  ilreturn new AO.Ptr("symlink",a,b,c);    }  i¢return null;    }; 0	Symlink0os:LinkErrorsyscall:Symlink 0Ç‹os.Readlink0AYÇíAY=$pkg.Readlink=function(a){var b,c,d,e,f,g;  jV  jZb=128;while(true){  juc=($sliceType($Uint8)).make(b,0,function(){return 0;});  jéd=C.Readlink(a,c);e=d[0];f=d[1];  j≤    if(!($interfaceIsEqual(f,null))){  j√return["",new V.Ptr("readlink",a,f)];    }  jÙ    if(e<b){  kreturn[$bytesToString($subslice(c,0,e)),null];    }      jhb=(g=2,(((b>>>16<<16)*g>>0)+(b<<16>>>16)*g)>>0);}    }; 0
+Readlink0 os:PathErrorsyscall:Readlink 0Åﬂ	os.rename0AZÅúAZ=function(a,b){var c;  kWc=C.Rename(a,b);  k~    if(!($interfaceIsEqual(c,null))){  kéreturn new AO.Ptr("rename",a,b,c);    }  k√return null;    }; 0rename0os:LinkErrorsyscall:Rename 0Çcos.syscallMode0BAÇ&BA=function(a){var b;b=0;  lPb=(b|(((new CP(a)).Perm()>>>0)))>>>0;  lg    if(!((((a&8388608)>>>0)===0))){  lÄb=(b|(2048))>>>0;    }  lô    if(!((((a&4194304)>>>0)===0))){  l≤b=(b|(1024))>>>0;    }  lÀ    if(!((((a&1048576)>>>0)===0))){  l‰b=(b|(512))>>>0;    }  m1return b;    }; 0syscallMode0os:FileMode 0Åˆos.Chmod0BBÅ¶BB=$pkg.Chmod=function(a,b){var c;  n%  n(c=C.Chmod(a,BA(b));    if(!($interfaceIsEqual(c,null))){  nbreturn new V.Ptr("chmod",a,c);    }  näreturn null;    }; 0Chmod0-os:PathErroros:syscallModesyscall:Chmod 0ÇΩ(*os.File).Chmod0 ÇPBF.Ptr.prototype.Chmod=function(a){var b,c;  ob=this;  o,    if(b===($ptrType(BF)).nil){  o<return $pkg.ErrInvalid;    }  oR  oUc=C.Fchmod(b.file.fd,BA(a));    if(!($interfaceIsEqual(c,null))){  oêreturn new V.Ptr("chmod",b.file.name,c);    }  o∫return null;    };BF.prototype.Chmod=function(a){return this.$val.Chmod(a);}; 0File0Fos:ErrInvalidos:Fileos:PathErroros:syscallModesyscall:Fchmod 0ÅÊos.Chown0BCÅ¶BC=$pkg.Chown=function(a,b,c){var d;  pø  p¬d=C.Chown(a,b,c);    if(!($interfaceIsEqual(d,null))){  pÛreturn new V.Ptr("chown",a,d);    }  qreturn null;    }; 0Chown0os:PathErrorsyscall:Chown 0ÅÏ	os.Lchown0BDÅ©BD=$pkg.Lchown=function(a,b,c){var d;  r   r#d=C.Lchown(a,b,c);    if(!($interfaceIsEqual(d,null))){  rUreturn new V.Ptr("lchown",a,d);    }  r~return null;    }; 0Lchown0os:PathErrorsyscall:Lchown 0Ç±(*os.File).Chown0 ÇTBF.Ptr.prototype.Chown=function(a,b){var c,d;  sc=this;  s,    if(c===($ptrType(BF)).nil){  s<return $pkg.ErrInvalid;    }  sR  sUd=C.Fchown(c.file.fd,a,b);    if(!($interfaceIsEqual(d,null))){  sáreturn new V.Ptr("chown",c.file.name,d);    }  s±return null;    };BF.prototype.Chown=function(a,b){return this.$val.Chown(a,b);}; 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchown 0Çæ(*os.File).Truncate0 Ç[BF.Ptr.prototype.Truncate=function(a){var b,c;  tMb=this;  tt    if(b===($ptrType(BF)).nil){  tÑreturn $pkg.ErrInvalid;    }  tö  tùc=C.Ftruncate(b.file.fd,a);    if(!($interfaceIsEqual(c,null))){  tŒreturn new V.Ptr("truncate",b.file.name,c);    }  t˚return null;    };BF.prototype.Truncate=function(a){return this.$val.Truncate(a);}; 0File09os:ErrInvalidos:Fileos:PathErrorsyscall:Ftruncate 0Ç¥(*os.File).Sync0 ÇSBF.Ptr.prototype.Sync=function(){var a,b,c;a=null;  uªb=this;  u⁄    if(b===($ptrType(BF)).nil){  uÍ    a=$pkg.ErrInvalid;return a;    }  v   vc=C.Fsync(b.file.fd);    if(!($interfaceIsEqual(c,null))){  v*    a=X("fsync",c);return a;    }  vQ    a=null;return a;    };BF.prototype.Sync=function(){return this.$val.Sync();}; 0File0;os:ErrInvalidos:Fileos:NewSyscallErrorsyscall:Fsync 0Ç7
+os.Chtimes0BEÇ√BE=$pkg.Chtimes=function(a,b,c){var d,e;  wª  wød=($arrayType(C.Timespec,2)).zero();$copy(d,($arrayType(C.Timespec,2)).zero(),($arrayType(C.Timespec,2)));  w€$copy(d[0],C.NsecToTimespec(b.UnixNano()),C.Timespec);  x$copy(d[1],C.NsecToTimespec(c.UnixNano()),C.Timespec);  xG  xJe=C.UtimesNano(a,$subslice(new($sliceType(C.Timespec))(d),0));    if(!($interfaceIsEqual(e,null))){  xÇreturn new V.Ptr("chtimes",a,e);    }  x¨return null;    }; 0	Chtimes0Los:PathErrorsyscall:NsecToTimespecsyscall:Timespecsyscall:UtimesNano 0ÅÙ(*os.File).Fd0 Å»BF.Ptr.prototype.Fd=function(){var a;  {Ëa=this;  |    if(a===($ptrType(BF)).nil){  |return 4294967295;    }  |*return(a.file.fd>>>0);    };BF.prototype.Fd=function(){return this.$val.Fd();}; 0File0	os:File 0Çë
+os.NewFile0BHÇ+BH=$pkg.NewFile=function(a,b){var c,d;  |∏c=(a>>0);  |»    if(c<0){  |◊return($ptrType(BF)).nil;    }  |Êd=new BF.Ptr(new BG.Ptr(c,b,($ptrType(BI)).nil,0));  }F.SetFinalizer(d.file,new($funcType([($ptrType(BG))],[$error],false))((function(recv){return recv.close();})));  };return d;    }; 0	NewFile0>os:Fileos:close
+os:dirInfoos:fileruntime:SetFinalizer 0Ç˙os.epipecheck0BJÇÉBJ=function(a,b){  ~[    if($interfaceIsEqual(b,new C.Errno(32))){  ~u    if(G.AddInt32(new($ptrType($Int32))(function(){return this.$target.file.nepipe;},function($v){this.$target.file.nepipe=$v;},a),1)>=10){  ~§AV();    }    }else{  ~æG.StoreInt32(new($ptrType($Int32))(function(){return this.$target.file.nepipe;},function($v){this.$target.file.nepipe=$v;},a),0);    }    }; 0
+epipecheck0I
+os:sigpipesync/atomic:AddInt32sync/atomic:StoreInt32syscall:Errno 0Ços.OpenFile0BKÇiBK=$pkg.OpenFile=function(a,b,c){var d,e,f,g,h,i,j,k,l;d=($ptrType(BF)).nil;e=null;  Åf=C.Open(a,b|16777216,BA(c));g=f[0];h=f[1];  ÅV    if(!($interfaceIsEqual(h,null))){  Åf    i=($ptrType(BF)).nil;j=new V.Ptr("open",a,h);d=i;e=j;return[d,e];    }  Ç     if(!CL){  ÇC.CloseOnExec(g);    }  Ç8    k=BH((g>>>0),a);l=null;d=k;e=l;return[d,e];    }; 0
+OpenFile0nos:File
+os:NewFileos:PathErroros:supportsCloseOnExecos:syscallModesyscall:CloseOnExecsyscall:Open 0Ç(*os.File).Close0 Å÷BF.Ptr.prototype.Close=function(){var a;  Ç¿a=this;  Ç⁄    if(a===($ptrType(BF)).nil){  ÇÍreturn $pkg.ErrInvalid;    }  É return a.file.close();    };BF.prototype.Close=function(){return this.$val.Close();}; 0File0"os:ErrInvalidos:Fileos:close 0ÇÒ(*os.file).close0 ÇxBG.Ptr.prototype.close=function(){var a,b,c;  Éa=this;  É<    if(a===($ptrType(BG)).nil||a.fd<0){  É^return new C.Errno(22);    }  Éx  É|b=null;  Éá  Éäc=C.Close(a.fd);    if(!($interfaceIsEqual(c,null))){  É¥b=new V.Ptr("close",a.name,c);    }  É‡a.fd=-1;  Ñ2F.SetFinalizer(a,null);  ÑSreturn b;    };BG.prototype.close=function(){return this.$val.close();}; 0fileclose0Kos:PathErroros:fileruntime:SetFinalizersyscall:Closesyscall:Errno 0ÇÑ(*os.File).Stat0 ÇBF.Ptr.prototype.Stat=function(){var a,b,c,d,e,f,g,h,i,j;a=null;b=null;  Ñ◊c=this;  Ö    if(c===($ptrType(BF)).nil){  Ö    d=null;e=$pkg.ErrInvalid;a=d;b=e;return[a,b];    }  Ö.  Ö2f=new C.Stat_t.Ptr();$copy(f,new C.Stat_t.Ptr(),C.Stat_t);  ÖGb=C.Fstat(c.file.fd,f);  Öi    if(!($interfaceIsEqual(b,null))){  Ö{    g=null;h=new V.Ptr("stat",c.file.name,b);a=g;b=h;return[a,b];    }  Ö´    i=CH(f,c.file.name);j=null;a=i;b=j;return[a,b];    };BF.prototype.Stat=function(){return this.$val.Stat();}; 0File0Zos:ErrInvalidos:Fileos:PathErroros:fileInfoFromStatsyscall:Fstatsyscall:Stat_t 0Çóos.Stat0BLÇ4BL=$pkg.Stat=function(a){var b,c,d,e,f,g,h;b=null;c=null;  Ü{  Üd=new C.Stat_t.Ptr();$copy(d,new C.Stat_t.Ptr(),C.Stat_t);  Üîc=C.Stat(a,d);  Üµ    if(!($interfaceIsEqual(c,null))){  Ü«    e=null;f=new V.Ptr("stat",a,c);b=e;c=f;return[b,c];    }  Üı    g=CH(d,a);h=null;b=g;c=h;return[b,c];    }; 0Stat0Aos:PathErroros:fileInfoFromStatsyscall:Statsyscall:Stat_t 0Çùos.Lstat0BMÇ7BM=$pkg.Lstat=function(a){var b,c,d,e,f,g,h;b=null;c=null;  àJ  àNd=new C.Stat_t.Ptr();$copy(d,new C.Stat_t.Ptr(),C.Stat_t);  àcc=C.Lstat(a,d);  àÖ    if(!($interfaceIsEqual(c,null))){  àó    e=null;f=new V.Ptr("lstat",a,c);b=e;c=f;return[b,c];    }  à∆    g=CH(d,a);h=null;b=g;c=h;return[b,c];    }; 0Lstat0Bos:PathErroros:fileInfoFromStatsyscall:Lstatsyscall:Stat_t 0Ç(*os.File).readdir0 Ç∫BF.Ptr.prototype.readdir=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q;b=($sliceType(CO)).nil;c=null;  à˘d=this;  â/e=d.file.name;  âB    if(e===""){  âWe=".";    }  âif=d.Readdirnames(a);g=f[0];c=f[1];  âäb=($sliceType(CO)).make(0,g.$length,function(){return null;});  â∞h=g;i=0;while(i<h.$length){j=((i<0||i>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+i]);  â”k=AT(e+"/"+j);l=k[0];m=k[1];  ä    if(Z(m)){  äui++;continue;    }  äÑ    if(!($interfaceIsEqual(m,null))){  äò    n=b;o=m;b=n;c=o;return[b,c];    }  äÆb=$append(b,l);    i++;}  ä«    p=b;q=c;b=p;c=q;return[b,c];    };BF.prototype.readdir=function(a){return this.$val.readdir(a);}; 0Filereaddir0/os:Fileos:FileInfoos:IsNotExistos:lstat 0ÇR(*os.File).read0 ÇBF.Ptr.prototype.read=function(a){var b,c,d,e;b=0;c=null;  åid=this;  åó    if(true&&a.$length>1073741824){  åªa=$subslice(a,0,1073741824);    }  åÕ    e=C.Read(d.file.fd,a);b=e[0];c=e[1];return[b,c];    };BF.prototype.read=function(a){return this.$val.read(a);}; 0Fileread0os:Filesyscall:Read 0Ça(*os.File).pread0 ÇBF.Ptr.prototype.pread=function(a,b){var c,d,e,f;c=0;d=null;  ç∞e=this;  çÍ    if(true&&a.$length>1073741824){  éa=$subslice(a,0,1073741824);    }  é     f=C.Pread(e.file.fd,a,b);c=f[0];d=f[1];return[c,d];    };BF.prototype.pread=function(a,b){return this.$val.pread(a,b);}; 0Filepread0os:Filesyscall:Pread 0Çô(*os.File).write0 ÇDBF.Ptr.prototype.write=function(a){var b,c,d,e,f,g,h,i,j;b=0;c=null;  é∂d=this;  éÂwhile(true){  éÌe=a;  é˘    if(true&&e.$length>1073741824){  è!e=$subslice(e,0,1073741824);    }  è;f=C.Write(d.file.fd,e);g=f[0];h=f[1];  èab=b+(g)>>0;  ê'    if(0<g&&g<e.$length||$interfaceIsEqual(h,new C.Errno(4))){  ê^a=$subslice(a,g);  êkcontinue;    }  ê{    if(true&&!((e.$length===a.$length))&&$interfaceIsEqual(h,null)){  ê≥a=$subslice(a,g);  ê¿continue;    }  ê–    i=b;j=h;b=i;c=j;return[b,c];    }    };BF.prototype.write=function(a){return this.$val.write(a);}; 0Filewrite0'os:Filesyscall:Errnosyscall:Write 0Çh(*os.File).pwrite0 ÇBF.Ptr.prototype.pwrite=function(a,b){var c,d,e,f;c=0;d=null;  ëqe=this;  ë¨    if(true&&a.$length>1073741824){  ë–a=$subslice(a,0,1073741824);    }  ë‚    f=C.Pwrite(e.file.fd,a,b);c=f[0];d=f[1];return[c,d];    };BF.prototype.pwrite=function(a,b){return this.$val.pwrite(a,b);}; 0Filepwrite0os:Filesyscall:Pwrite 0Ç(*os.File).seek0 Å’BF.Ptr.prototype.seek=function(a,b){var c,d,e,f;c=new $Int64(0,0);d=null;  ì$e=this;  ìf    f=C.Seek(e.file.fd,a,b);c=f[0];d=f[1];return[c,d];    };BF.prototype.seek=function(a,b){return this.$val.seek(a,b);}; 0Fileseek0os:Filesyscall:Seek 0ÅÙos.Truncate0BNÅ´BN=$pkg.Truncate=function(a,b){var c;  îx  î{c=C.Truncate(a,b);    if(!($interfaceIsEqual(c,null))){  î´return new V.Ptr("truncate",a,c);    }  î÷return null;    }; 0
+Truncate0 os:PathErrorsyscall:Truncate 0Çò	os.Remove0BOÇ6BO=$pkg.Remove=function(a){var b,c;  ñb=C.Unlink(a);  ñ.    if($interfaceIsEqual(b,null)){  ñ>return null;    }  ñMc=C.Rmdir(a);  ñh    if($interfaceIsEqual(c,null)){  ñyreturn null;    }  ò?    if(!($interfaceIsEqual(c,new C.Errno(20)))){  ò\b=c;    }  ògreturn new V.Ptr("remove",a,b);    }; 0Remove0<os:PathErrorsyscall:Errnosyscall:Rmdirsyscall:Unlink 0ÇVos.basename0BPÇ,BP=function(a){var b;  ôb=a.length-1>>0;  ô7while(b>0&&(a.charCodeAt(b)===47)){  ô^a=a.substring(0,b);      ôV  ôVb=b-(1)>>0;}  ôî  ôò  ôòb=b-(1)>>0;while(b>=0){  ô≠    if(a.charCodeAt(b)===47){  ôƒa=a.substring((b+1>>0));  ôŸbreak;    }      ô•  ô•b=b-(1)>>0;}  ôËreturn a;    }; 0
+basename0  0Å£
+os.TempDir0BQrBQ=$pkg.TempDir=function(){var a;  öUa=R("TMPDIR");  ön    if(a===""){  öa="/tmp";    }  öêreturn a;    }; 0	TempDir0	os:Getenv 0Ç	os.Getwd0BTÇ‘BT=$pkg.Getwd=function(){var $this=this,$args=arguments,a,b,$s=0,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au,av,aw,ax,ay;a="";b=null;while(true){switch($s){case 0:  ùc  ùÇc=C.Getwd();d=c[0];e=c[1];  ùú    if(BS(e)){  ù¥    f=d;g=X("getwd",e);a=f;b=g;return[a,b];    }      ûh=BL(".");i=h[0];b=h[1];  û3    if(!($interfaceIsEqual(b,null))){  ûE    j="";k=b;a=j;b=k;return[a,b];    }  ûßa=R("PWD");  ûº    if(a.length>0&&(a.charCodeAt(0)===47)){  û·l=BL(a);m=l[0];n=l[1];  û˜    if($interfaceIsEqual(n,null)&&CQ(i,m)){  ü    o=a;p=null;a=o;b=p;return[a,b];    }    }  üpBR.Mutex.Lock();  üÉa=BR.dir;  üôBR.Mutex.Unlock();  üÆ    if(a.length>0){  ü¬q=BL(a);r=q[0];s=q[1];  üÿ    if($interfaceIsEqual(s,null)&&CQ(i,r)){  üˇ    t=a;u=null;a=t;b=u;return[a,b];    }    }  †ev=BL("/");w=v[0];b=v[1];  †}    if(!($interfaceIsEqual(b,null))){  †Ø    x="";y=b;a=x;b=y;return[a,b];    }  †¬    if(CQ(w,i)){  †›    z="/";aa=null;a=z;b=aa;return[a,b];    }  °wa="";  °Å  °Öab="..";case 2:if(!(true)){$s=3;continue;}  °≥    if(ab.length>=1024){  °ﬂ    ac="";ad=new C.Errno(63);a=ac;b=ad;return[a,b];    }  ¢ae=AR(ab);af=ae[0];ag=ae[1];  ¢    if(!($interfaceIsEqual(ag,null))){  ¢2    ah="";ai=ag;a=ah;b=ai;return[a,b];    }  ¢Hcase 4:if(!(true)){$s=5;continue;}  ¢Qaj=af.Readdirnames(100);ak=aj[0];al=aj[1];  ¢w    if(!($interfaceIsEqual(al,null))){  ¢ãaf.Close();  ¢ö    am="";an=al;a=am;b=an;return[a,b];    }  ¢±ao=ak;ap=0;case 6:if(!(ap<ao.$length)){$s=7;continue;}aq=((ap<0||ap>=ao.$length)?$throwRuntimeError("index out of range"):ao.$array[ao.$offset+ap]);  ¢“ar=BM(ab+"/"+aq);as=ar[0];  ¢˘    if(CQ(as,i)){}else{$s=8;continue;}  £a="/"+aq+a;  £0$s=1;continue;    case 8:    ap++;$s=6;continue;case 7:    $s=4;continue;case 5:  £L  £Ucase 1:at=af.Stat();au=at[0];ag=at[1];  £l    if(!($interfaceIsEqual(ag,null))){  £    av="";aw=ag;a=av;b=aw;return[a,b];    }  £îaf.Close();  £°    if(CQ(au,w)){  £º$s=3;continue;    }  £‰i=au;      °óab="../"+ab;$s=2;continue;case 3:  §1BR.Mutex.Lock();  §DBR.dir=a;  §ZBR.Mutex.Unlock();  §p    ax=a;ay=null;a=ax;b=ay;return[a,b];    $s=-1;case-1:}return;}}; 0Getwd0ÅÜ	os:Getenvos:Lstatos:NewSyscallErroros:Openos:SameFileos:Statos:getwdCacheos:useSyscallwdsyscall:Errnosyscall:Getwd 0los.init0BU BU=function(){  •PBS=BV;    };
+    BU();0 0(os:useSyscallwdos:useSyscallwdDarwin 0Åîos.useSyscallwdDarwin0BVIBV=function(a){  •†return!($interfaceIsEqual(a,new C.Errno(45)));    }; 0useSyscallwdDarwin0syscall:Errno 0ÇCos.MkdirAll0BWÇÀBW=$pkg.MkdirAll=function(a,b){var c,d,e,f,g,h,i,j;  ®c=BL(a);d=c[0];e=c[1];  ®$    if($interfaceIsEqual(e,null)){  ®6    if(d.IsDir()){  ®Jreturn null;    }  ®[return new V.Ptr("mkdir",a,new C.Errno(20));    }  ®ƒf=a.length;  ®‘while(f>0&&BY(a.charCodeAt((f-1>>0)))){  ©!  ©!f=f-(1)>>0;    }  ©*g=f;  ©2while(g>0&&!BY(a.charCodeAt((g-1>>0)))){  ©~  ©~g=g-(1)>>0;    }  ©á    if(g>1){  ©ße=BW(a.substring(0,(g-1>>0)),b);  ©À    if(!($interfaceIsEqual(e,null))){  ©ﬁreturn e;    }    }  ™e=AP(a,b);  ™1    if(!($interfaceIsEqual(e,null))){  ™úh=BM(a);i=h[0];j=h[1];  ™∑    if($interfaceIsEqual(j,null)&&i.IsDir()){  ™⁄return null;    }  ™Îreturn e;    }  ™˙return null;    }; 0
+MkdirAll0Nos:IsPathSeparatoros:Lstatos:Mkdiros:PathErroros:Statsyscall:Errno 0Ç–os.RemoveAll0BXÇRBX=$pkg.RemoveAll=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r;  ¨#b=BO(a);  ¨8    if($interfaceIsEqual(b,null)){  ¨Jreturn null;    }  ¨ñc=BM(a);d=c[0];e=c[1];  ¨∞    if(!($interfaceIsEqual(e,null))){  ¨√  ¨∆f=(e!==null&&e.constructor===($ptrType(V))?[e.$val,true]:[($ptrType(V)).nil,false]);g=f[0];h=f[1];    if(h&&(Z(g.Err)||$interfaceIsEqual(g.Err,new C.Errno(20)))){  ≠&return null;    }  ≠7return e;    }  ≠G    if(!d.IsDir()){  ≠èreturn b;    }  ≠Æi=AR(a);j=i[0];b=i[1];  ≠≈    if(!($interfaceIsEqual(b,null))){  ≠◊return b;    }  Æb=null;  Æwhile(true){  Æ$k=j.Readdirnames(100);l=k[0];m=k[1];  ÆJn=l;o=0;while(o<n.$length){p=((o<0||o>=n.$length)?$throwRuntimeError("index out of range"):n.$array[n.$offset+o]);  Æjq=BX(a+"/"+p);  Æ§    if($interfaceIsEqual(b,null)){  Æ∏b=q;    }    o++;}  ÆŒ    if($interfaceIsEqual(m,B.EOF)){  ÆÂbreak;    }  Ø!    if($interfaceIsEqual(b,null)){  Ø4b=m;    }  ØE    if(l.$length===0){  Ø]break;    }    }  Ø∞j.Close();  Ø”r=BO(a);  ØÈ    if($interfaceIsEqual(b,null)){  Ø˚b=r;    }  ∞
+return b;    }; 0	RemoveAll0Rio:EOFos:IsNotExistos:Lstatos:Openos:PathError	os:Removesyscall:Errno 0tos.IsPathSeparator0BY>BY=$pkg.IsPathSeparator=function(a){  ±˜return 47===a;    }; 0IsPathSeparator0  0Ç„os.Pipe0BZÇcBZ=$pkg.Pipe=function(){var a,b,c,d,e,f,g,h,i,j,k;a=($ptrType(BF)).nil;b=($ptrType(BF)).nil;c=null;  ≥¿  ≥ƒd=($arrayType($Int,2)).zero();$copy(d,($arrayType($Int,2)).zero(),($arrayType($Int,2)));  ¥C.ForkLock.RLock();  ¥e=C.Pipe($subslice(new($sliceType($Int))(d),0));  ¥7    if(!($interfaceIsEqual(e,null))){  ¥GC.ForkLock.RUnlock();  ¥d    f=($ptrType(BF)).nil;g=($ptrType(BF)).nil;h=X("pipe",e);a=f;b=g;c=h;return[a,b,c];    }  ¥îC.CloseOnExec(d[0]);  ¥ØC.CloseOnExec(d[1]);  ¥ C.ForkLock.RUnlock();  ¥Á    i=BH((d[0]>>>0),"|0");j=BH((d[1]>>>0),"|1");k=null;a=i;b=j;c=k;return[a,b,c];    }; 0Pipe0^os:File
+os:NewFileos:NewSyscallErrorsyscall:CloseOnExecsyscall:ForkLocksyscall:Pipe 0l	os.Getuid0CA8CA=$pkg.Getuid=function(){  ∂•return C.Getuid();    }; 0Getuid0syscall:Getuid 0q
+os.Geteuid0CB:CB=$pkg.Geteuid=function(){  ∑return C.Geteuid();    }; 0	Geteuid0syscall:Geteuid 0l	os.Getgid0CC8CC=$pkg.Getgid=function(){  ∑{return C.Getgid();    }; 0Getgid0syscall:Getgid 0q
+os.Getegid0CD:CD=$pkg.Getegid=function(){  ∑Ïreturn C.Getegid();    }; 0	Getegid0syscall:Getegid 0Å¬os.Getgroups0CEqCE=$pkg.Getgroups=function(){var a,b,c;  ∏Äa=C.Getgroups();b=a[0];c=a[1];  ∏†return[b,X("getgroups",c)];    }; 0	Getgroups0'os:NewSyscallErrorsyscall:Getgroups 0]os.Exit0CF/CF=$pkg.Exit=function(a){  π∫C.Exit(a);    }; 0Exit0syscall:Exit 0Ç°os.sameFile0CGÇgCG=function(a,b){var c,d,e,f,g,h;  ∫≈d=(c=a.sys,(c!==null&&c.constructor===($ptrType(C.Stat_t))?c.$val:$typeAssertionFailed(c,($ptrType(C.Stat_t)))));  ∫Èf=(e=b.sys,(e!==null&&e.constructor===($ptrType(C.Stat_t))?e.$val:$typeAssertionFailed(e,($ptrType(C.Stat_t)))));  ªreturn(d.Dev===f.Dev)&&(g=d.Ino,h=f.Ino,(g.$high===h.$high&&g.$low===h.$low));    }; 0
+sameFile0syscall:Stat_t 0Ç‰os.fileInfoFromStat0CHÇ`CH=function(a,b){var c,d;  ªãc=new CR.Ptr(BP(b),a.Size,0,CI($clone(a.Mtimespec,C.Timespec)),a);  ºc.mode=(((a.Mode&511)>>>0)>>>0);  º2d=(a.Mode&61440)>>>0;  ºUif(d===24576||d===57344){  º~c.mode=(c.mode|(67108864))>>>0;      ºï}else if(d===8192){  º≠c.mode=(c.mode|(69206016))>>>0;      º’}else if(d===16384){  ºÌc.mode=(c.mode|(2147483648))>>>0;      Ω}else if(d===4096){  Ωc.mode=(c.mode|(33554432))>>>0;      Ω3}else if(d===40960){  ΩKc.mode=(c.mode|(134217728))>>>0;      Ωc}else if(d===32768){      Ωç}else if(d===49152){  Ω¶c.mode=(c.mode|(16777216))>>>0;    }  Ω¿    if(!((((a.Mode&1024)>>>0)===0))){  Ω‰c.mode=(c.mode|(4194304))>>>0;    }  Ω˛    if(!((((a.Mode&2048)>>>0)===0))){  æ"c.mode=(c.mode|(8388608))>>>0;    }  æ<    if(!((((a.Mode&512)>>>0)===0))){  æ`c.mode=(c.mode|(1048576))>>>0;    }  æzreturn c;    }; 0fileInfoFromStat0Jos:basenameos:fileStatos:timespecToTimesyscall:Timespec	time:Time 0vos.timespecToTime0CI7CI=function(a){  æΩreturn D.Unix(a.Sec,a.Nsec);    }; 0timespecToTime0	time:Unix 0Ços.atime0CJÅ∫CJ=function(a){var b;  ø%return CI($clone((b=a.Sys(),(b!==null&&b.constructor===($ptrType(C.Stat_t))?b.$val:$typeAssertionFailed(b,($ptrType(C.Stat_t))))).Atimespec,C.Timespec));    }; 0atime05os:timespecToTimesyscall:Stat_tsyscall:Timespec 0ÇJos.hostname0CKÅ˝CK=function(){var a,b,c,d,e,f,g;a="";b=null;  ¿÷c=C.Sysctl("kern.hostname");a=c[0];b=c[1];  ¡    if(!($interfaceIsEqual(b,null))){  ¡    d="";e=X("sysctl kern.hostname",b);a=d;b=e;return[a,b];    }  ¡Q    f=a;g=null;a=f;b=g;return[a,b];    }; 0
+hostname0$os:NewSyscallErrorsyscall:Sysctl 0Ç–os.init0CMÇÇCM=function(){var a,b,c,d,e,f,g;  ¬ˇa=C.Sysctl("kern.osrelease");b=a[0];c=a[1];  √/    if(!($interfaceIsEqual(c,null))){  √Areturn;    }  √L  √Pd=0;  √We=b;f=0;while(f<e.length){g=$decodeRune(e,f);d=f;  √o    if(!((b.charCodeAt(d)===46))){  √áf+=g[1];continue;    }    f+=g[1];}  ƒ    if(d>2||(d===2)&&b.charCodeAt(0)>=49&&b.charCodeAt(1)>=49){  ƒECL=true;    }    };
+    CM();0 0(os:supportsCloseOnExecsyscall:Sysctl 0ÅÖos.Getpagesize0CNBCN=$pkg.Getpagesize=function(){  ≈ãreturn C.Getpagesize();    }; 0Getpagesize0syscall:Getpagesize 0Ç¢(os.FileMode).String0 ÇfCP.prototype.String=function(){var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o;  Œja=this.$val;  Œâ  Œ•  Œ©b=($arrayType($Uint8,32)).zero();$copy(b,($arrayType($Uint8,32)).zero(),($arrayType($Uint8,32)));  Œ c=0;  Œ“d="dalTLDpSugct";e=0;while(e<d.length){f=$decodeRune(d,e);g=e;h=f[0];  ŒÏ    if(!((((a&(((i=((31-g>>0)>>>0),i<32?(1<<i):0)>>>0)))>>>0)===0))){  œb[c]=(h<<24>>>24);  œ!  œ!c=c+(1)>>0;    }    e+=f[1];}  œ-    if(c===0){  œ;b[c]=45;  œJ  œJc=c+(1)>>0;    }  œR  œkj="rwxrwxrwx";k=0;while(k<j.length){l=$decodeRune(j,k);m=k;n=l[0];  œÖ    if(!((((a&(((o=((8-m>>0)>>>0),o<32?(1<<o):0)>>>0)))>>>0)===0))){  œ•b[c]=(n<<24>>>24);    }else{  œƒb[c]=45;    }  œ◊  œ◊c=c+(1)>>0;    k+=l[1];}  œﬂreturn $bytesToString($subslice(new($sliceType($Uint8))(b),0,c));    };$ptrType(CP).prototype.String=function(){return new CP(this.$get()).String();}; 0
+FileMode0os:FileMode 0ÅÏ(os.FileMode).IsDir0 Å≤CP.prototype.IsDir=function(){var a;  –ja=this.$val;  –Üreturn!((((a&2147483648)>>>0)===0));    };$ptrType(CP).prototype.IsDir=function(){return new CP(this.$get()).IsDir();}; 0
+FileMode0os:FileMode 0Å˜(os.FileMode).IsRegular0 ÅπCP.prototype.IsRegular=function(){var a;  —a=this.$val;  —3return((a&2399141888)>>>0)===0;    };$ptrType(CP).prototype.IsRegular=function(){return new CP(this.$get()).IsRegular();}; 0
+FileMode0os:FileMode 0Å÷(os.FileMode).Perm0 ÅùCP.prototype.Perm=function(){var a;  —Ça=this.$val;  —°return(a&511)>>>0;    };$ptrType(CP).prototype.Perm=function(){return new CP(this.$get()).Perm();}; 0
+FileMode0os:FileMode 0Åæ(*os.fileStat).Name0 ÅÑCR.Ptr.prototype.Name=function(){var a;  —æa=this;  —‹return a.name;    };CR.prototype.Name=function(){return this.$val.Name();}; 0
+fileStat0os:fileStat 0Å‚(*os.fileStat).IsDir0 ÅöCR.Ptr.prototype.IsDir=function(){var a;  —Ûa=this;  “return(new CP(a.Mode())).IsDir();    };CR.prototype.IsDir=function(){return this.$val.IsDir();}; 0
+fileStat0os:FileModeos:fileStat 0Çços.SameFile0CQÇICQ=$pkg.SameFile=function(a,b){var c,d,e,f,g,h;  ”∑c=(a!==null&&a.constructor===($ptrType(CR))?[a.$val,true]:[($ptrType(CR)).nil,false]);d=c[0];e=c[1];  ”‘f=(b!==null&&b.constructor===($ptrType(CR))?[b.$val,true]:[($ptrType(CR)).nil,false]);g=f[0];h=f[1];  ”Ò    if(!e||!h){  ‘return false;    }  ‘return CG(d,g);    }; 0
+SameFile0os:fileStatos:sameFile 0Åæ(*os.fileStat).Size0 ÅÑCR.Ptr.prototype.Size=function(){var a;  ’Ãa=this;  ’return a.size;    };CR.prototype.Size=function(){return this.$val.Size();}; 0
+fileStat0os:fileStat 0Åæ(*os.fileStat).Mode0 ÅÑCR.Ptr.prototype.Mode=function(){var a;  ÷a=this;  ÷+return a.mode;    };CR.prototype.Mode=function(){return this.$val.Mode();}; 0
+fileStat0os:fileStat 0ÅÕ(*os.fileStat).ModTime0 ÅêCR.Ptr.prototype.ModTime=function(){var a;  ÷Ba=this;  ÷freturn a.modTime;    };CR.prototype.ModTime=function(){return this.$val.ModTime();}; 0
+fileStat0os:fileStat 0Åπ(*os.fileStat).Sys0 ÅÄCR.Ptr.prototype.Sys=function(){var a;  ÷Äa=this;  ÷§return a.sys;    };CR.prototype.Sys=function(){return this.$val.Sys();}; 0
+fileStat0os:fileStat 0 Ç-I{"Base":54965,"Files":[{"Name":"/Users/richard/gopath/src/github.com/gopherjs/gopherjs/compiler/natives/os/os.go","Base":1,"Size":343,"Lines":[0,13,14,25,26,35,70,72,73,87,124,152,181,190,193,222,262,302,338,341],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/dir_unix.go","Base":345,"Size":1185,"Lines":[0,55,109,159,160,229,230,241,242,251,257,268,270,271,279,297,299,300,365,410,433,460,507,549,552,568,569,580,596,609,618,621,622,683,697,733,757,771,790,841,862,917,922,942,959,964,968,969,991,1008,1078,1093,1103,1106,1138,1161,1164,1183],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/doc.go","Base":1531,"Size":4715,"Lines":[0,55,109,159,160,171,172,186,187,242,302,352,404,429,431,432,512,549,552,623,651,654,710,792,831,833,834,899,939,990,1026,1046,1048,1049,1097,1130,1147,1149,1150,1208,1268,1328,1386,1442,1492,1509,1511,1512,1553,1605,1650,1672,1674,1675,1753,1803,1824,1826,1827,1909,1961,1984,1986,1987,2037,2076,2095,2097,2098,2158,2197,2237,2257,2259,2260,2315,2373,2442,2485,2501,2503,2504,2574,2639,2705,2774,2804,2852,2873,2875,2876,2934,2977,2996,2998,2999,3071,3139,3217,3239,3242,3319,3385,3452,3455,3524,3588,3656,3718,3783,3807,3866,3881,3906,3909,3930,3932,3933,4006,4009,4077,4148,4215,4218,4289,4358,4426,4488,4559,4579,4644,4659,4684,4687,4713],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/env.go","Base":6247,"Size":2927,"Lines":[0,56,110,160,161,195,196,207,208,225,226,305,379,439,473,533,541,572,607,639,675,714,724,737,741,744,772,774,775,850,916,963,997,1023,1025,1026,1098,1128,1167,1179,1265,1279,1282,1296,1298,1299,1380,1412,1501,1503,1504,1579,1657,1729,1773,1783,1802,1862,1882,1886,1913,1945,1965,1990,1995,1999,2049,2080,2099,2102,2126,2137,2187,2190,2207,2209,2210,2286,2363,2396,2425,2435,2437,2438,2509,2541,2580,2615,2632,2672,2675,2687,2689,2690,2737,2755,2775,2777,2778,2845,2873,2899,2925],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/error.go","Base":9175,"Size":1937,"Lines":[0,55,109,159,160,171,172,181,191,193,194,249,255,303,352,403,454,456,457,535,559,572,585,597,599,600,689,690,752,779,795,810,812,813,895,896,956,1010,1075,1131,1148,1161,1164,1200,1202,1203,1280,1355,1387,1418,1439,1441,1442,1515,1585,1632,1666,1690,1692,1693,1768,1846,1873,1909,1935],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/error_unix.go","Base":11113,"Size":914,"Lines":[0,55,109,159,160,229,230,241,242,259,260,291,318,329,344,362,377,395,410,413,462,464,465,499,526,537,552,570,585,603,618,621,673,675,676,712,739,750,765,783,798,816,831,834,912],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/exec.go","Base":12028,"Size":2162,"Lines":[0,55,109,159,160,171,172,181,192,207,218,220,221,296,318,330,346,422,424,425,477,518,563,573,575,576,606,640,642,643,675,716,718,719,790,818,841,910,936,948,1014,1063,1117,1131,1201,1276,1347,1422,1477,1492,1493,1552,1609,1662,1685,1711,1713,1714,1765,1835,1868,1892,1909,1958,1960,1961,2009,2055,2056,2114],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/exec_posix.go","Base":14191,"Size":2931,"Lines":[0,55,109,159,160,237,238,249,250,259,270,272,273,339,404,429,435,470,506,508,509,597,654,716,776,831,875,901,920,938,942,945,946,977,994,1011,1028,1031,1056,1082,1085,1117,1165,1168,1169,1225,1240,1287,1290,1322,1324,1325,1358,1381,1383,1384,1457,1484,1532,1592,1616,1618,1619,1672,1707,1721,1723,1724,1763,1789,1791,1792,1832,1867,1869,1870,1913,1930,1932,1933,1981,1998,2000,2001,2033,2059,2072,2085,2088,2089,2105,2117,2126,2129,2130,2169,2185,2199,2223,2230,2257,2260,2261,2273,2280,2294,2297,2298,2321,2323,2324,2365,2380,2397,2400,2440,2451,2461,2484,2535,2560,2606,2630,2685,2758,2811,2815,2841,2861,2864,2888,2914,2917,2929],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/exec_unix.go","Base":17123,"Size":1544,"Lines":[0,55,109,159,160,229,230,241,242,251,261,272,283,291,293,294,351,369,398,401,432,459,513,528,569,572,588,602,605,626,642,660,679,682,698,700,701,746,761,813,816,834,886,889,920,930,981,984,1028,1039,1042,1054,1056,1057,1093,1112,1124,1160,1190,1202,1204,1205,1257,1276,1308,1310,1311,1361,1424,1426,1427,1479,1542],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/file.go","Base":18668,"Size":7493,"Lines":[0,55,109,159,160,236,310,391,462,537,608,667,670,746,829,832,900,903,958,977,996,1001,1004,1074,1077,1120,1123,1191,1262,1265,1294,1327,1346,1365,1370,1428,1431,1442,1443,1452,1458,1469,1471,1472,1531,1578,1579,1655,1712,1718,1774,1832,1890,1892,1893,1965,2006,2014,2075,2137,2199,2273,2343,2419,2481,2557,2559,2560,2583,2591,2652,2709,2755,2757,2758,2823,2868,2892,2904,2916,2928,2939,2941,2942,2979,3043,3045,3046,3094,3155,3214,3265,3280,3303,3306,3325,3337,3345,3348,3387,3406,3409,3424,3462,3465,3480,3482,3483,3555,3617,3675,3716,3780,3795,3818,3821,3839,3865,3891,3911,3915,3931,3970,3979,3983,3992,4004,4022,4025,4033,4035,4036,4078,4142,4193,4245,4260,4283,4286,4306,4318,4326,4329,4347,4372,4375,4376,4394,4395,4410,4449,4452,4467,4469,4470,4542,4606,4659,4724,4739,4762,4765,4783,4810,4826,4866,4875,4879,4888,4900,4918,4921,4929,4931,4932,5014,5090,5158,5209,5280,5295,5318,5321,5353,5398,5419,5422,5437,5479,5482,5497,5499,5500,5578,5599,5659,5674,5697,5700,5727,5729,5730,5808,5864,5911,5956,5971,6009,6012,6024,6026,6027,6098,6154,6185,6225,6262,6265,6277,6279,6280,6340,6370,6426,6457,6472,6492,6495,6537,6577,6580,6592,6594,6595,6664,6730,6763,6819,6868,6904,6906,6907,6977,7045,7114,7125,7181,7232,7286,7288,7289,7322,7340,7341,7413,7458,7491],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/file_posix.go","Base":26162,"Size":4743,"Lines":[0,55,109,159,160,237,238,249,250,259,270,278,280,281,330,331,391,447,490,527,542,591,594,606,608,609,667,723,769,809,824,876,879,891,893,894,958,1014,1059,1089,1114,1150,1166,1212,1216,1231,1261,1265,1268,1270,1271,1316,1355,1370,1421,1424,1436,1438,1439,1523,1565,1588,1612,1635,1638,1662,1685,1688,1712,1735,1738,1790,1798,1800,1801,1854,1931,1987,2034,2094,2132,2135,2147,2149,2150,2197,2253,2297,2312,2332,2335,2396,2436,2439,2451,2453,2454,2514,2598,2654,2700,2751,2789,2792,2804,2806,2807,2868,2950,3006,3053,3105,3144,3147,3159,3161,3162,3222,3278,3321,3336,3356,3359,3411,3451,3454,3466,3468,3469,3511,3549,3605,3649,3664,3684,3687,3738,3781,3784,3796,3798,3799,3867,3934,3971,4007,4022,4042,4045,4086,4123,4126,4138,4140,4141,4207,4267,4270,4337,4364,4420,4488,4520,4574,4628,4686,4726,4729,4741],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/file_unix.go","Base":30906,"Size":8675,"Lines":[0,55,109,159,160,229,230,241,242,251,262,277,288,290,291,335,354,361,363,364,409,473,533,572,591,604,620,673,731,733,734,808,838,853,876,879,901,903,904,975,1021,1037,1051,1064,1067,1107,1152,1162,1164,1165,1224,1246,1287,1350,1398,1400,1401,1440,1465,1511,1524,1528,1538,1575,1578,1580,1581,1647,1710,1738,1739,1806,1873,1945,1998,2054,2132,2203,2218,2260,2263,2264,2317,2373,2400,2425,2428,2429,2468,2470,2471,2528,2560,2591,2606,2626,2629,2652,2654,2655,2689,2722,2746,2749,2764,2808,2850,2853,2898,2899,2935,2968,2980,2982,2983,3039,3095,3144,3159,3184,3187,3212,3246,3263,3309,3312,3357,3359,3360,3414,3470,3520,3545,3578,3595,3639,3642,3685,3687,3688,3743,3800,3876,3932,3983,4008,4042,4059,4104,4107,4150,4152,4153,4212,4231,4251,4267,4270,4303,4341,4375,4422,4446,4493,4536,4548,4552,4571,4590,4594,4617,4620,4636,4638,4639,4697,4751,4805,4823,4831,4899,4921,4923,4924,4972,5033,5084,5119,5135,5138,5168,5170,5171,5242,5304,5360,5423,5458,5474,5477,5513,5515,5516,5558,5622,5674,5681,5693,5732,5755,5759,5797,5806,5807,5869,5929,5995,6049,6062,6074,6078,6079,6134,6147,6159,6163,6164,6180,6183,6185,6186,6257,6321,6385,6420,6436,6439,6476,6478,6479,6561,6637,6705,6756,6827,6870,6872,6873,6921,6998,7054,7101,7151,7192,7195,7207,7209,7210,7257,7313,7346,7390,7431,7475,7512,7539,7554,7567,7570,7597,7613,7626,7629,7630,7681,7730,7779,7828,7882,7933,7988,8037,8068,8096,8105,8108,8146,8148,8149,8232,8268,8288,8316,8354,8372,8375,8409,8433,8455,8476,8485,8489,8492,8493,8506,8508,8509,8578,8602,8627,8643,8658,8661,8673],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/getwd.go","Base":39582,"Size":2532,"Lines":[0,55,109,159,160,171,172,181,189,200,202,203,227,239,251,253,254,316,353,405,406,463,518,573,610,649,708,738,764,787,828,832,835,836,893,916,933,950,953,954,988,1032,1053,1089,1111,1149,1168,1172,1175,1176,1233,1252,1274,1295,1314,1336,1374,1393,1397,1400,1401,1453,1478,1502,1519,1551,1568,1571,1597,1615,1618,1619,1662,1712,1752,1762,1811,1854,1889,1893,1919,1937,1955,1959,1960,1968,2006,2025,2040,2059,2064,2096,2135,2161,2189,2205,2211,2216,2220,2221,2229,2252,2270,2288,2292,2305,2331,2340,2344,2372,2383,2386,2387,2450,2469,2491,2512,2513,2530],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/getwd_darwin.go","Base":42115,"Size":317,"Lines":[0,55,109,159,160,171,172,189,190,204,239,241,242,284,315],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/path.go","Base":42433,"Size":2646,"Lines":[0,55,109,159,160,171,172,181,187,198,200,201,245,299,328,373,411,468,488,538,586,610,627,646,660,664,716,719,720,770,786,862,868,871,872,880,955,961,964,965,977,996,1032,1050,1064,1068,1071,1072,1110,1135,1152,1190,1241,1268,1302,1316,1320,1333,1336,1348,1350,1351,1407,1467,1524,1551,1587,1633,1654,1671,1684,1687,1688,1748,1774,1792,1890,1904,1908,1922,1925,1944,1996,2009,2012,2013,2028,2051,2068,2081,2084,2085,2127,2138,2145,2183,2214,2272,2291,2306,2311,2315,2337,2346,2350,2398,2416,2430,2434,2457,2466,2470,2473,2474,2542,2554,2555,2577,2599,2616,2629,2632,2644],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/path_unix.go","Base":45080,"Size":507,"Lines":[0,55,109,159,160,229,230,241,242,250,305,365,367,368,441,478,505],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/pipe_bsd.go","Base":45588,"Size":796,"Lines":[0,55,109,159,160,223,224,235,236,253,254,337,383,427,441,442,494,520,546,561,590,636,639,666,693,721,722,794],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/proc.go","Base":46385,"Size":1182,"Lines":[0,55,109,159,160,176,177,188,189,206,207,280,298,299,352,398,399,463,511,512,566,612,613,678,726,727,812,846,878,924,926,927,998,1065,1127,1139],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/stat_darwin.go","Base":47568,"Size":1427,"Lines":[0,55,109,159,160,171,172,181,192,200,202,203,244,280,316,373,375,376,442,460,487,514,555,570,573,609,644,684,708,731,772,795,816,839,866,889,914,937,956,980,1004,1007,1042,1066,1069,1104,1128,1131,1166,1190,1193,1204,1206,1207,1260,1309,1311,1312,1328,1364,1425],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/sys_bsd.go","Base":48996,"Size":512,"Lines":[0,55,109,159,160,215,216,279,295,296,307,308,325,326,369,414,431,489,492,510],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/sys_darwin.go","Base":49509,"Size":768,"Lines":[0,55,109,159,160,171,172,189,190,255,274,303,304,318,381,409,457,474,483,486,497,520,543,555,559,562,621,674,734,763,766],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/types.go","Base":50278,"Size":4044,"Lines":[0,55,109,159,160,171,172,181,192,200,202,203,268,324,325,391,417,463,550,589,631,687,751,753,754,814,875,931,991,1044,1065,1066,1143,1223,1299,1374,1420,1428,1473,1517,1586,1652,1720,1805,1873,1939,2011,2084,2145,2206,2306,2367,2368,2433,2509,2510,2555,2557,2558,2594,2622,2659,2667,2692,2724,2744,2751,2755,2758,2771,2786,2792,2795,2820,2845,2876,2896,2907,2923,2927,2933,2936,2960,2962,2963,3013,3070,3103,3126,3128,3129,3186,3239,3276,3300,3302,3303,3350,3386,3407,3409,3410,3463,3526,3527,3591,3659,3727,3775,3844,3880,3920,3949,3978,3997,4012,4015,4042],"Infos":null},{"Name":"/usr/local/go/src/pkg/os/types_notwin.go","Base":54323,"Size":641,"Lines":[0,55,109,159,160,179,180,191,192,201,209,211,212,288,311,327,342,360,379,400,402,403,462,521,583],"Infos":null}]}
+ ˇ

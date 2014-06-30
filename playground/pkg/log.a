@@ -1,4 +1,4 @@
-0ÇU≤logÇ$Ïpackage log
+0ÇV÷logÇ%epackage log
 import fmt "fmt"
 import io "io"
 import os "os"
@@ -127,8 +127,10 @@ func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time
 func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
 func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
 type @"time".Duration int64
 func (? @"time".Duration) @"time".Hours() (? float64)
@@ -150,335 +152,39 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog0P0
-fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime0Ç/¯0Ç»LoggerÇØ	Logger = go$pkg.Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
-		this.go$val = this;
-		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
-		this.prefix = prefix_ !== undefined ? prefix_ : "";
-		this.flag = flag_ !== undefined ? flag_ : 0;
-		this.out = out_ !== undefined ? out_ : null;
-		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
-	});
-Ç€		(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Flags", "", [], [Go$Int], false, -1], ["Output", "", [Go$Int, Go$String], [go$error], false, -1], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Prefix", "", [], [Go$String], false, -1], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["SetFlags", "", [Go$Int], [], false, -1], ["SetPrefix", "", [Go$String], [], false, -1], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false, -1]];
-		Logger.init([["mu", "mu", "log", sync.Mutex, ""], ["prefix", "prefix", "log", Go$String, ""], ["flag", "flag", "log", Go$Int, ""], ["out", "out", "log", io.Writer, ""], ["buf", "buf", "log", (go$sliceType(Go$Uint8)), ""]]);
-0Logger0"	io:Writer
-sync:Mutex	time:Time0Å¡NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
-		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
-	};
- 0New0
-log:Logger
-sync:Mutex0Ç¨itoaÇñ	itoa = function(buf, i, wid) {
-		var u, b, bp, _r, _q;
-		u = (i >>> 0);
-		if ((u === 0) && wid <= 1) {
-			buf.go$set(go$append(buf.go$get(), 48));
-			return;
-		}
-		b = go$makeNativeArray("Uint8", 32, function() { return 0; });
-		bp = 32;
-		while (u > 0 || wid > 0) {
-			bp = bp - 1 >> 0;
-			wid = wid - 1 >> 0;
-			b[bp] = ((_r = u % 10, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) << 24 >>> 24) + 48 << 24 >>> 24;
-			u = (_q = u / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
-		}
-		buf.go$set(go$appendSlice(buf.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(b), bp)));
-	};
- 0itoa0 0Çê ÇX	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
-		var l, _tuple, year, month, day, _tuple$1, hour, min, sec, _q, short$1, i;
-		l = this;
-		buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(l.prefix))));
-		if (!(((l.flag & 7) === 0))) {
-			if (!(((l.flag & 1) === 0))) {
-				_tuple = t.Date(), year = _tuple[0], month = _tuple[1], day = _tuple[2];
-				itoa(buf, year, 4);
-				buf.go$set(go$append(buf.go$get(), 47));
-				itoa(buf, (month >> 0), 2);
-				buf.go$set(go$append(buf.go$get(), 47));
-				itoa(buf, day, 2);
-				buf.go$set(go$append(buf.go$get(), 32));
-			}
-			if (!(((l.flag & 6) === 0))) {
-				_tuple$1 = t.Clock(), hour = _tuple$1[0], min = _tuple$1[1], sec = _tuple$1[2];
-				itoa(buf, hour, 2);
-				buf.go$set(go$append(buf.go$get(), 58));
-				itoa(buf, min, 2);
-				buf.go$set(go$append(buf.go$get(), 58));
-				itoa(buf, sec, 2);
-				if (!(((l.flag & 4) === 0))) {
-					buf.go$set(go$append(buf.go$get(), 46));
-					itoa(buf, (_q = t.Nanosecond() / 1000, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 6);
-				}
-				buf.go$set(go$append(buf.go$get(), 32));
-			}
-		}
-		if (!(((l.flag & 24) === 0))) {
-			if (!(((l.flag & 16) === 0))) {
-				short$1 = file;
-				i = file.length - 1 >> 0;
-				while (i > 0) {
-					if (file.charCodeAt(i) === 47) {
-						short$1 = file.substring((i + 1 >> 0));
-						break;
-					}
-					i = i - 1 >> 0;
-				}
-				file = short$1;
-			}
-			buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(file))));
-			buf.go$set(go$append(buf.go$get(), 58));
-			itoa(buf, line, -1);
-			buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(": "))));
-		}
-	};
-	Logger.prototype.formatHeader = function(buf, t, file, line) { return this.go$val.formatHeader(buf, t, file, line); };
- 0LoggerformatHeader0
-log:Loggerlog:itoa0Çó Ç@	Logger.Ptr.prototype.Output = function(calldepth, s) {
-		var l, _struct, now, file, line, ok, _tuple, v, _struct$1, _tuple$1, err;
-		var go$deferred = [];
-		try {
-			l = this;
-			now = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-			file = "";
-			line = 0;
-			l.mu.Lock();
-			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
-			if (!(((l.flag & 24) === 0))) {
-				l.mu.Unlock();
-				ok = false;
-				_tuple = runtime.Caller(calldepth), file = _tuple[1], line = _tuple[2], ok = _tuple[3];
-				if (!ok) {
-					file = "???";
-					line = 0;
-				}
-				l.mu.Lock();
-			}
-			l.buf = go$subslice(l.buf, 0, 0);
-			l.formatHeader(new (go$ptrType((go$sliceType(Go$Uint8))))(function() { return l.buf; }, function(v) { l.buf = v; }), (_struct$1 = now, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), file, line);
-			l.buf = go$appendSlice(l.buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
-			if (s.length > 0 && !((s.charCodeAt((s.length - 1 >> 0)) === 10))) {
-				l.buf = go$append(l.buf, 10);
-			}
-			_tuple$1 = l.out.Write(l.buf), err = _tuple$1[1];
-			return err;
-		} catch(go$err) {
-			go$pushErr(go$err);
-			return null;
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
-	Logger.prototype.Output = function(calldepth, s) { return this.go$val.Output(calldepth, s); };
- 0Logger0C
-log:Loggerlog:formatHeaderruntime:Callertime:Now	time:Time0Å˚ Åœ	Logger.Ptr.prototype.Printf = function(format, v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprintf(format, v));
-	};
-	Logger.prototype.Printf = function(format, v) { return this.go$val.Printf(format, v); };
- 0Logger0fmt:Sprintf
-log:Logger0Å÷ Å´	Logger.Ptr.prototype.Print = function(v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprint(v));
-	};
-	Logger.prototype.Print = function(v) { return this.go$val.Print(v); };
- 0Logger0
-fmt:Sprint
-log:Logger0Å‡ Å≥	Logger.Ptr.prototype.Println = function(v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprintln(v));
-	};
-	Logger.prototype.Println = function(v) { return this.go$val.Println(v); };
- 0Logger0fmt:Sprintln
-log:Logger0ÅÌ Åπ	Logger.Ptr.prototype.Fatal = function(v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprint(v));
-		os.Exit(1);
-	};
-	Logger.prototype.Fatal = function(v) { return this.go$val.Fatal(v); };
- 0Logger0!
-fmt:Sprint
-log:Loggeros:Exit0Ç Å›	Logger.Ptr.prototype.Fatalf = function(format, v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprintf(format, v));
-		os.Exit(1);
-	};
-	Logger.prototype.Fatalf = function(format, v) { return this.go$val.Fatalf(format, v); };
- 0Logger0"fmt:Sprintf
-log:Loggeros:Exit0Å˜ Å¡	Logger.Ptr.prototype.Fatalln = function(v) {
-		var l;
-		l = this;
-		l.Output(2, fmt.Sprintln(v));
-		os.Exit(1);
-	};
-	Logger.prototype.Fatalln = function(v) { return this.go$val.Fatalln(v); };
- 0Logger0#fmt:Sprintln
-log:Loggeros:Exit0Ç Å€	Logger.Ptr.prototype.Panic = function(v) {
-		var l, s;
-		l = this;
-		s = fmt.Sprint(v);
-		l.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
-	Logger.prototype.Panic = function(v) { return this.go$val.Panic(v); };
- 0Logger0
-fmt:Sprint
-log:Logger0Ç+ Åˇ	Logger.Ptr.prototype.Panicf = function(format, v) {
-		var l, s;
-		l = this;
-		s = fmt.Sprintf(format, v);
-		l.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
-	Logger.prototype.Panicf = function(format, v) { return this.go$val.Panicf(format, v); };
- 0Logger0fmt:Sprintf
-log:Logger0Ç Å„	Logger.Ptr.prototype.Panicln = function(v) {
-		var l, s;
-		l = this;
-		s = fmt.Sprintln(v);
-		l.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
-	Logger.prototype.Panicln = function(v) { return this.go$val.Panicln(v); };
- 0Logger0fmt:Sprintln
-log:Logger0Çô Çy	Logger.Ptr.prototype.Flags = function() {
-		var l;
-		var go$deferred = [];
-		try {
-			l = this;
-			l.mu.Lock();
-			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
-			return l.flag;
-		} catch(go$err) {
-			go$pushErr(go$err);
-			return 0;
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
-	Logger.prototype.Flags = function() { return this.go$val.Flags(); };
- 0Logger0
-log:Logger0Ç° ÇÅ	Logger.Ptr.prototype.SetFlags = function(flag) {
-		var l;
-		var go$deferred = [];
-		try {
-			l = this;
-			l.mu.Lock();
-			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
-			l.flag = flag;
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
-	Logger.prototype.SetFlags = function(flag) { return this.go$val.SetFlags(flag); };
- 0Logger0
-log:Logger0Çü Ç	Logger.Ptr.prototype.Prefix = function() {
-		var l;
-		var go$deferred = [];
-		try {
-			l = this;
-			l.mu.Lock();
-			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
-			return l.prefix;
-		} catch(go$err) {
-			go$pushErr(go$err);
-			return "";
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
-	Logger.prototype.Prefix = function() { return this.go$val.Prefix(); };
- 0Logger0
-log:Logger0ÇÆ Çé	Logger.Ptr.prototype.SetPrefix = function(prefix) {
-		var l;
-		var go$deferred = [];
-		try {
-			l = this;
-			l.mu.Lock();
-			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
-			l.prefix = prefix;
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
-	Logger.prototype.SetPrefix = function(prefix) { return this.go$val.SetPrefix(prefix); };
- 0Logger0
-log:Logger0Ç>	SetOutputÇ	SetOutput = go$pkg.SetOutput = function(w) {
-		var go$deferred = [];
-		try {
-			std.mu.Lock();
-			go$deferred.push({ recv: std.mu, method: "Unlock", args: [] });
-			std.out = w;
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-		}
-	};
- 0	SetOutput0	log:std0^Flags?	Flags = go$pkg.Flags = function() {
-		return std.Flags();
-	};
- 0Flags0	log:std0nSetFlagsI	SetFlags = go$pkg.SetFlags = function(flag) {
-		std.SetFlags(flag);
-	};
- 0
-SetFlags0	log:std0cPrefixB	Prefix = go$pkg.Prefix = function() {
-		return std.Prefix();
-	};
- 0Prefix0	log:std0w	SetPrefixP	SetPrefix = go$pkg.SetPrefix = function(prefix) {
-		std.SetPrefix(prefix);
-	};
- 0	SetPrefix0	log:std0uPrintJ	Print = go$pkg.Print = function(v) {
-		std.Output(2, fmt.Sprint(v));
-	};
- 0Print0
-fmt:Sprintlog:std0ÅãPrintf]	Printf = go$pkg.Printf = function(format, v) {
-		std.Output(2, fmt.Sprintf(format, v));
-	};
- 0Printf0fmt:Sprintflog:std0ÅÅPrintlnP	Println = go$pkg.Println = function(v) {
-		std.Output(2, fmt.Sprintln(v));
-	};
- 0	Println0fmt:Sprintlnlog:std0ÅåFatalX	Fatal = go$pkg.Fatal = function(v) {
-		std.Output(2, fmt.Sprint(v));
-		os.Exit(1);
-	};
- 0Fatal0
-fmt:Sprintlog:stdos:Exit0Å¢Fatalfk	Fatalf = go$pkg.Fatalf = function(format, v) {
-		std.Output(2, fmt.Sprintf(format, v));
-		os.Exit(1);
-	};
- 0Fatalf0fmt:Sprintflog:stdos:Exit0ÅòFatalln^	Fatalln = go$pkg.Fatalln = function(v) {
-		std.Output(2, fmt.Sprintln(v));
-		os.Exit(1);
-	};
- 0	Fatalln0 fmt:Sprintlnlog:stdos:Exit0Å¨PanicÅÄ	Panic = go$pkg.Panic = function(v) {
-		var s;
-		s = fmt.Sprint(v);
-		std.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
- 0Panic0
-fmt:Sprintlog:std0Å¬PanicfÅì	Panicf = go$pkg.Panicf = function(format, v) {
-		var s;
-		s = fmt.Sprintf(format, v);
-		std.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
- 0Panicf0fmt:Sprintflog:std0Å∏PaniclnÅÜ	Panicln = go$pkg.Panicln = function(v) {
-		var s;
-		s = fmt.Sprintln(v);
-		std.Output(2, s);
-		throw go$panic(new Go$String(s));
-	};
- 0	Panicln0fmt:Sprintlnlog:std0std  0std0 0F  		std = New(os.Stderr, "", 3);
-0 0log:Newlog:std	os:Stderr0
-   0 0 0
-   0 0 0 
+0Åógithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciomathunicodeunicode/utf8bytessyscalltimeosstrconvreflectfmt0@0fmtA0ioB0osC0runtimeD0	syncE0	timeF0Ç)‡0Ç 0GÇOG=$pkg.Logger=$newType(0,"Struct","log.Logger","Logger","log",function(mu_,prefix_,flag_,out_,buf_){this.$val=this;this.mu=mu_!==undefined?mu_:new E.Mutex.Ptr();this.prefix=prefix_!==undefined?prefix_:"";this.flag=flag_!==undefined?flag_:0;this.out=out_!==undefined?out_:null;this.buf=buf_!==undefined?buf_:($sliceType($Uint8)).nil;});Çè($ptrType(G)).methods=[["Fatal","Fatal","",[($sliceType($emptyInterface))],[],true,-1],["Fatalf","Fatalf","",[$String,($sliceType($emptyInterface))],[],true,-1],["Fatalln","Fatalln","",[($sliceType($emptyInterface))],[],true,-1],["Flags","Flags","",[],[$Int],false,-1],["Output","Output","",[$Int,$String],[$error],false,-1],["Panic","Panic","",[($sliceType($emptyInterface))],[],true,-1],["Panicf","Panicf","",[$String,($sliceType($emptyInterface))],[],true,-1],["Panicln","Panicln","",[($sliceType($emptyInterface))],[],true,-1],["Prefix","Prefix","",[],[$String],false,-1],["Print","Print","",[($sliceType($emptyInterface))],[],true,-1],["Printf","Printf","",[$String,($sliceType($emptyInterface))],[],true,-1],["Println","Println","",[($sliceType($emptyInterface))],[],true,-1],["SetFlags","SetFlags","",[$Int],[],false,-1],["SetPrefix","SetPrefix","",[$String],[],false,-1],["formatHeader","formatHeader","log",[($ptrType(($sliceType($Uint8)))),F.Time,$String,$Int],[],false,-1]];G.init([["mu","mu","log",E.Mutex,""],["prefix","prefix","log",$String,""],["flag","flag","log",$Int,""],["out","out","log",B.Writer,""],["buf","buf","log",($sliceType($Uint8)),""]]);0Logger0"	io:Writer
+sync:Mutex	time:Time 0 0I  0std0  0D 0      I=H(C.Stderr,"",3);0 0log:Newlog:std	os:Stderr 0Å†log.New0HjH=$pkg.New=function(a,b,c){  	®return new G.Ptr(new E.Mutex.Ptr(),b,c,a,($sliceType($Uint8)).nil);    }; 0New0
+log:Logger
+sync:Mutex 0Çrlog.itoa0JÇPJ=function(a,b,c){var d,e,f,g,h;  
+≤  
+∂d=(b>>>0);  
+»    if((d===0)&&c<=1){  
+‚a.$set($append(a.$get(),48));  
+˝return;    }  0  4e=($arrayType($Uint8,32)).zero();$copy(e,($arrayType($Uint8,32)).zero(),($arrayType($Uint8,32)));  @f=32;  Nwhile(d>0||c>0){  r  rf=f-(1)>>0;  y  yc=c-(1)>>0;  Åe[f]=((g=d%10,g===g?g:$throwRuntimeError("integer divide by zero"))<<24>>>24)+48<<24>>>24;      fd=(h=d/(10),(h===h&&h!==1/0&&h!==-1/0)?h>>>0:$throwRuntimeError("integer divide by zero"));}  ûa.$set($appendSlice(a.$get(),$subslice(new($sliceType($Uint8))(e),f)));    }; 0itoa0  0Ç…(*log.Logger).formatHeader0 ÇrG.Ptr.prototype.formatHeader=function(a,b,c,d){var e,f,g,h,i,j,k,l,m,n,o,p;  ∆e=this;  a.$set($appendSlice(a.$get(),new($sliceType($Uint8))($stringToBytes(e.prefix))));  4    if(!(((e.flag&7)===0))){  c    if(!(((e.flag&1)===0))){  }f=b.Date();g=f[0];h=f[1];i=f[2];  ùJ(a,g,4);  ≥a.$set($append(a.$get(),47));  œJ(a,(h>>0),2);  Îa.$set($append(a.$get(),47));  J(a,i,2);  a.$set($append(a.$get(),32));    }  ;    if(!(((e.flag&6)===0))){  ej=b.Clock();k=j[0];l=j[1];m=j[2];  ÑJ(a,k,2);  öa.$set($append(a.$get(),58));  ∂J(a,l,2);  Àa.$set($append(a.$get(),58));  ÁJ(a,m,2);  ¸    if(!(((e.flag&4)===0))){  a.$set($append(a.$get(),46));  <J(a,(n=b.Nanosecond()/1000,(n===n&&n!==1/0&&n!==-1/0)?n>>0:$throwRuntimeError("integer divide by zero")),6);    }  ea.$set($append(a.$get(),32));    }    }  Ü    if(!(((e.flag&24)===0))){  ∞    if(!(((e.flag&16)===0))){  œo=c;  ‡  ‰p=c.length-1>>0;while(p>0){  	    if(c.charCodeAt(p)===47){  "o=c.substring((p+1>>0));  :break;    }      ˇ  ˇp=p-(1)>>0;}  Nc=o;    }  aa.$set($appendSlice(a.$get(),new($sliceType($Uint8))($stringToBytes(c))));  Äa.$set($append(a.$get(),58));  õJ(a,d,-1);  ±a.$set($appendSlice(a.$get(),new($sliceType($Uint8))($stringToBytes(": "))));    }    };G.prototype.formatHeader=function(a,b,c,d){return this.$val.formatHeader(a,b,c,d);}; 0LoggerformatHeader0
+log:Loggerlog:itoa 0Ç:(*log.Logger).Output0 Ç G.Ptr.prototype.Output=function(a,b){var $deferred=[],c,d,e,f,g,h,i,j;try{  Ic=this;  }d=new F.Time.Ptr();$copy(d,F.Now(),F.Time);  £  ße="";  ¥  ∏f=0;  ¬c.mu.Lock();  œ$deferred.push({recv:c.mu,method:"Unlock",args:[]});  ‰    if(!(((c.flag&24)===0))){  Lc.mu.Unlock();  \  `g=false;  jh=D.Caller(a);e=h[1];f=h[2];g=h[3];  ö    if(!g){  ¶e="???";  ∂f=0;    }  ≈c.mu.Lock();    }  ’c.buf=$subslice(c.buf,0,0);  Ëc.formatHeader(new($ptrType(($sliceType($Uint8))))(function(){return this.$target.buf;},function($v){this.$target.buf=$v;},c),$clone(d,F.Time),e,f);  c.buf=$appendSlice(c.buf,new($sliceType($Uint8))($stringToBytes(b)));  .    if(b.length>0&&!((b.charCodeAt((b.length-1>>0))===10))){  Wc.buf=$append(c.buf,10);    }  wi=c.out.Write(c.buf);j=i[1];  ïreturn j;    }catch($err){$pushErr($err);return null;}finally{$callDeferred($deferred);}};G.prototype.Output=function(a,b){return this.$val.Output(a,b);}; 0Logger0C
+log:Loggerlog:formatHeaderruntime:Callertime:Now	time:Time 0Å„(*log.Logger).Printf0 ÅûG.Ptr.prototype.Printf=function(a,b){var c;  c=this;  Fc.Output(2,A.Sprintf(a,b));    };G.prototype.Printf=function(a,b){return this.$val.Printf(a,b);}; 0Logger0fmt:Sprintf
+log:Logger 0Å’(*log.Logger).Print0 ÅíG.Ptr.prototype.Print=function(a){var b;  €b=this;   b.Output(2,A.Sprint(a));    };G.prototype.Print=function(a){return this.$val.Print(a);}; 0Logger0
+fmt:Sprint
+log:Logger 0Å·(*log.Logger).Println0 ÅöG.Ptr.prototype.Println=function(a){var b;  êb=this;  ∑b.Output(2,A.Sprintln(a));    };G.prototype.Println=function(a){return this.$val.Println(a);}; 0Logger0fmt:Sprintln
+log:Logger 0ÅÌ(*log.Logger).Fatal0 Å°G.Ptr.prototype.Fatal=function(a){var b;  &b=this;  Lb.Output(2,A.Sprint(a));  kC.Exit(1);    };G.prototype.Fatal=function(a){return this.$val.Fatal(a);}; 0Logger0!
+fmt:Sprint
+log:Loggeros:Exit 0Å˚(*log.Logger).Fatalf0 Å≠G.Ptr.prototype.Fatalf=function(a,b){var c;  «c=this;  ˝c.Output(2,A.Sprintf(a,b));  %C.Exit(1);    };G.prototype.Fatalf=function(a,b){return this.$val.Fatalf(a,b);}; 0Logger0"fmt:Sprintf
+log:Loggeros:Exit 0Å˘(*log.Logger).Fatalln0 Å©G.Ptr.prototype.Fatalln=function(a){var b;  Éb=this;  ´b.Output(2,A.Sprintln(a));  ÃC.Exit(1);    };G.prototype.Fatalln=function(a){return this.$val.Fatalln(a);}; 0Logger0#fmt:Sprintln
+log:Loggeros:Exit 0Ç(*log.Logger).Panic0 ÅøG.Ptr.prototype.Panic=function(a){var b,c;  #b=this;  Ic=A.Sprint(a);  `b.Output(2,c);  pthrow $panic(new $String(c));    };G.prototype.Panic=function(a){return this.$val.Panic(a);}; 0Logger0
+fmt:Sprint
+log:Logger 0Ç(*log.Logger).Panicf0 ÅÀG.Ptr.prototype.Panicf=function(a,b){var c,d;  «c=this;  ˝d=A.Sprintf(a,b);  c.Output(2,d);  -throw $panic(new $String(d));    };G.prototype.Panicf=function(a,b){return this.$val.Panicf(a,b);}; 0Logger0fmt:Sprintf
+log:Logger 0Ç(*log.Logger).Panicln0 Å«G.Ptr.prototype.Panicln=function(a){var b,c;  Üb=this;  Æc=A.Sprintln(a);  «b.Output(2,c);  ◊throw $panic(new $String(c));    };G.prototype.Panicln=function(a){return this.$val.Panicln(a);}; 0Logger0fmt:Sprintln
+log:Logger 0Ç`(*log.Logger).Flags0 Ç(G.Ptr.prototype.Flags=function(){var $deferred=[],a;try{  a=this;  5a.mu.Lock();  B$deferred.push({recv:a.mu,method:"Unlock",args:[]});  Wreturn a.flag;    }catch($err){$pushErr($err);return 0;}finally{$callDeferred($deferred);}};G.prototype.Flags=function(){return this.$val.Flags();}; 0Logger0
+log:Logger 0Ça(*log.Logger).SetFlags0 Ç&G.Ptr.prototype.SetFlags=function(a){var $deferred=[],b;try{  †b=this;  ¡b.mu.Lock();  Œ$deferred.push({recv:b.mu,method:"Unlock",args:[]});  „b.flag=a;    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);}};G.prototype.SetFlags=function(a){return this.$val.SetFlags(a);}; 0Logger0
+log:Logger 0Çf(*log.Logger).Prefix0 Ç-G.Ptr.prototype.Prefix=function(){var $deferred=[],a;try{  .a=this;  La.mu.Lock();  Y$deferred.push({recv:a.mu,method:"Unlock",args:[]});  nreturn a.prefix;    }catch($err){$pushErr($err);return"";}finally{$callDeferred($deferred);}};G.prototype.Prefix=function(){return this.$val.Prefix();}; 0Logger0
+log:Logger 0Çg(*log.Logger).SetPrefix0 Ç+G.Ptr.prototype.SetPrefix=function(a){var $deferred=[],b;try{  ªb=this;  ‚b.mu.Lock();  Ô$deferred.push({recv:b.mu,method:"Unlock",args:[]});  b.prefix=a;    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);}};G.prototype.SetPrefix=function(a){return this.$val.SetPrefix(a);}; 0Logger0
+log:Logger 0Çlog.SetOutput0KÅœK=$pkg.SetOutput=function(a){var $deferred=[];try{  zI.mu.Lock();  â$deferred.push({recv:I.mu,method:"Unlock",args:[]});  †I.out=a;    }catch($err){$pushErr($err);}finally{$callDeferred($deferred);}}; 0	SetOutput0	log:std 0`	log.Flags0L5L=$pkg.Flags=function(){  ˛return I.Flags();    }; 0Flags0	log:std 0glog.SetFlags0M6M=$pkg.SetFlags=function(a){  jI.SetFlags(a);    }; 0
+SetFlags0	log:std 0d
+log.Prefix0N7N=$pkg.Prefix=function(){  ’return I.Prefix();    }; 0Prefix0	log:std 0klog.SetPrefix0O8O=$pkg.SetPrefix=function(a){  JI.SetPrefix(a);    }; 0	SetPrefix0	log:std 0t	log.Print0P=P=$pkg.Print=function(a){  !I.Output(2,A.Sprint(a));    }; 0Print0
+fmt:Sprintlog:std 0}
+log.Printf0QCQ=$pkg.Printf=function(a,b){  ‚I.Output(2,A.Sprintf(a,b));    }; 0Printf0fmt:Sprintflog:std 0~log.Println0RAR=$pkg.Println=function(a){   †I.Output(2,A.Sprintln(a));    }; 0	Println0fmt:Sprintlnlog:std 0Åå	log.Fatal0SLS=$pkg.Fatal=function(a){  !)I.Output(2,A.Sprint(a));  !JC.Exit(1);    }; 0Fatal0
+fmt:Sprintlog:stdos:Exit 0Åï
+log.Fatalf0TRT=$pkg.Fatalf=function(a,b){  !ŒI.Output(2,A.Sprintf(a,b));  !¯C.Exit(1);    }; 0Fatalf0fmt:Sprintflog:stdos:Exit 0Åñlog.Fatalln0UPU=$pkg.Fatalln=function(a){  "pI.Output(2,A.Sprintln(a));  "ìC.Exit(1);    }; 0	Fatalln0 fmt:Sprintlnlog:stdos:Exit 0Å•	log.Panic0VnV=$pkg.Panic=function(a){var b;  #b=A.Sprint(a);  #I.Output(2,b);  #+throw $panic(new $String(b));    }; 0Panic0
+fmt:Sprintlog:std 0ÅÆ
+log.Panicf0WtW=$pkg.Panicf=function(a,b){var c;  #™c=A.Sprintf(a,b);  # I.Output(2,c);  #‹throw $panic(new $String(c));    }; 0Panicf0fmt:Sprintflog:std 0ÅØlog.Panicln0XrX=$pkg.Panicln=function(a){var b;  $Ob=A.Sprintln(a);  $hI.Output(2,b);  $zthrow $panic(new $String(b));    }; 0	Panicln0fmt:Sprintlnlog:std 0 Çú{"Base":9350,"Files":[{"Name":"/usr/local/go/src/pkg/log/log.go","Base":1,"Size":9348,"Lines":[0,55,109,159,160,239,314,390,463,532,559,629,694,706,707,716,723,729,735,746,754,762,764,765,851,859,939,1016,1084,1139,1194,1247,1338,1419,1523,1596,1598,1599,1671,1745,1817,1890,1911,1986,2050,2083,2128,2181,2183,2184,2241,2291,2358,2411,2470,2524,2526,2527,2567,2568,2661,2695,2736,2758,2783,2810,2819,2822,2823,2862,2878,2892,2927,2934,2942,2969,2972,3004,3006,3007,3088,3122,3168,3193,3225,3247,3275,3303,3331,3352,3380,3384,3425,3456,3478,3506,3527,3555,3576,3610,3639,3676,3681,3709,3713,3716,3757,3787,3804,3844,3868,3892,3903,3909,3914,3930,3934,3965,3992,4014,4045,4048,4050,4051,4123,4191,4259,4325,4395,4418,4475,4513,4530,4544,4557,4578,4619,4681,4697,4711,4759,4770,4786,4798,4802,4816,4819,4838,4879,4908,4948,4978,4981,5011,5023,5025,5026,5075,5129,5188,5228,5230,5231,5279,5332,5407,5408,5458,5513,5592,5593,5663,5706,5737,5749,5751,5752,5824,5883,5923,5935,5937,5938,6012,6057,6090,6102,6104,6105,6172,6215,6238,6254,6264,6266,6267,6336,6395,6427,6443,6453,6455,6456,6527,6572,6597,6613,6623,6625,6626,6676,6707,6720,6741,6756,6758,6759,6809,6847,6860,6881,6896,6898,6899,6951,6986,6999,7020,7037,7039,7040,7092,7136,7149,7170,7189,7191,7192,7258,7288,7303,7326,7339,7341,7342,7401,7420,7440,7442,7443,7502,7528,7548,7550,7551,7612,7635,7656,7658,7659,7720,7752,7775,7777,7778,7827,7828,7883,7936,7967,8000,8002,8003,8059,8113,8160,8202,8204,8205,8262,8317,8350,8385,8387,8388,8456,8487,8520,8532,8534,8535,8605,8652,8694,8706,8708,8709,8781,8814,8849,8861,8863,8864,8929,8960,8983,9001,9011,9013,9014,9081,9128,9160,9178,9188,9190,9191,9260,9293,9318,9336,9346],"Infos":null}]}
+ ˇ

@@ -1,4 +1,4 @@
-0ÇTcompress/zlibÇ"ppackage zlib
+0ÇT(compress/zlibÇ"jpackage zlib
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -27,16 +27,16 @@ func (? *@"".Writer) @"".writeHeader() (@"".err error)
 type @"".reader struct { @"".r @"compress/flate".Reader; @"".decompressor @"io".ReadCloser; @"".digest @"hash".Hash32; @"".err error; @"".scratch [4]byte }
 func (? *@"".reader) @"".Close() (? error)
 func (? *@"".reader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
-type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
-type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
-type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"compress/flate".Writer struct { @"compress/flate".d @"compress/flate".compressor; @"compress/flate".dict []byte }
 func (? *@"compress/flate".Writer) @"compress/flate".Close() (? error)
 func (? *@"compress/flate".Writer) @"compress/flate".Flush() (? error)
 func (? *@"compress/flate".Writer) @"compress/flate".Reset(@"compress/flate".dst @"io".Writer) ()
 func (? *@"compress/flate".Writer) @"compress/flate".Write(@"compress/flate".data []byte) (@"compress/flate".n int, @"compress/flate".err error)
-type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
-type @"compress/flate".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"compress/flate".ReadByte() (@"compress/flate".c byte, @"compress/flate".err error) }
+type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"compress/flate".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error); @"io".ReadByte() (@"io".c byte, @"io".err error) }
 type @"compress/flate".compressor struct { ? @"compress/flate".compressionLevel; @"compress/flate".w *@"compress/flate".huffmanBitWriter; @"compress/flate".fill func (? *@"compress/flate".compressor, ? []byte) (? int); @"compress/flate".step func (? *@"compress/flate".compressor) (); @"compress/flate".sync bool; @"compress/flate".chainHead int; @"compress/flate".hashHead []int; @"compress/flate".hashPrev []int; @"compress/flate".hashOffset int; @"compress/flate".index int; @"compress/flate".window []byte; @"compress/flate".windowEnd int; @"compress/flate".blockStart int; @"compress/flate".byteAvailable bool; @"compress/flate".tokens []@"compress/flate".token; @"compress/flate".length int; @"compress/flate".offset int; @"compress/flate".hash int; @"compress/flate".maxInsertIndex int; @"compress/flate".err error }
 func (? *@"compress/flate".compressor) @"compress/flate".close() (? error)
 func (? *@"compress/flate".compressor) @"compress/flate".deflate() ()
@@ -80,257 +80,19 @@ func (? *@"compress/flate".huffmanEncoder) @"compress/flate".bitLength(@"compres
 func (? *@"compress/flate".huffmanEncoder) @"compress/flate".generate(@"compress/flate".freq []int32, @"compress/flate".maxBits int32) ()
 type @"compress/flate".literalNode struct { @"compress/flate".literal uint16; @"compress/flate".freq int32 }
 $$
-0Å∂runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler32compress/zlib0x0bufiobufio0compress/flateflate0errorserrors0hashhash0hash/adler32adler320ioio0
-fmtfmt0Ç0]0ÇreaderÇ˜	reader = go$pkg.reader = go$newType(0, "Struct", "zlib.reader", "reader", "compress/zlib", function(r_, decompressor_, digest_, err_, scratch_) {
-		this.go$val = this;
-		this.r = r_ !== undefined ? r_ : null;
-		this.decompressor = decompressor_ !== undefined ? decompressor_ : null;
-		this.digest = digest_ !== undefined ? digest_ : null;
-		this.err = err_ !== undefined ? err_ : null;
-		this.scratch = scratch_ !== undefined ? scratch_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
-	});
-ÇÕ		(go$ptrType(reader)).methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1]];
-		reader.init([["r", "r", "compress/zlib", flate.Reader, ""], ["decompressor", "decompressor", "compress/zlib", io.ReadCloser, ""], ["digest", "digest", "compress/zlib", hash.Hash32, ""], ["err", "err", "compress/zlib", go$error, ""], ["scratch", "scratch", "compress/zlib", (go$arrayType(Go$Uint8, 4)), ""]]);
-0reader03compress/flate:Readerhash:Hash32io:ReadCloser0ÇKWriterÇÍ	Writer = go$pkg.Writer = go$newType(0, "Struct", "zlib.Writer", "Writer", "compress/zlib", function(w_, level_, dict_, compressor_, digest_, err_, scratch_, wroteHeader_) {
-		this.go$val = this;
-		this.w = w_ !== undefined ? w_ : null;
-		this.level = level_ !== undefined ? level_ : 0;
-		this.dict = dict_ !== undefined ? dict_ : (go$sliceType(Go$Uint8)).nil;
-		this.compressor = compressor_ !== undefined ? compressor_ : (go$ptrType(flate.Writer)).nil;
-		this.digest = digest_ !== undefined ? digest_ : null;
-		this.err = err_ !== undefined ? err_ : null;
-		this.scratch = scratch_ !== undefined ? scratch_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
-		this.wroteHeader = wroteHeader_ !== undefined ? wroteHeader_ : false;
-	});
-Ç		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false, -1], ["Flush", "", [], [go$error], false, -1], ["Reset", "", [io.Writer], [], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["writeHeader", "compress/zlib", [], [go$error], false, -1]];
-		Writer.init([["w", "w", "compress/zlib", io.Writer, ""], ["level", "level", "compress/zlib", Go$Int, ""], ["dict", "dict", "compress/zlib", (go$sliceType(Go$Uint8)), ""], ["compressor", "compressor", "compress/zlib", (go$ptrType(flate.Writer)), ""], ["digest", "digest", "compress/zlib", hash.Hash32, ""], ["err", "err", "compress/zlib", go$error, ""], ["scratch", "scratch", "compress/zlib", (go$arrayType(Go$Uint8, 4)), ""], ["wroteHeader", "wroteHeader", "compress/zlib", Go$Bool, ""]]);
-0Writer0/compress/flate:Writerhash:Hash32	io:Writer0Å¶	NewReaderk	NewReader = go$pkg.NewReader = function(r) {
-		return NewReaderDict(r, (go$sliceType(Go$Uint8)).nil);
-	};
- 0	NewReader0compress/zlib:NewReaderDict0Ç≈NewReaderDictÇ∫	NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
-		var z, _tuple, fr, ok, _tuple$1, err, h, _r, _tuple$2, checksum;
-		z = new reader.Ptr();
-		_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), fr = _tuple[0], ok = _tuple[1];
-		if (ok) {
-			z.r = fr;
-		} else {
-			z.r = bufio.NewReader(r);
-		}
-		_tuple$1 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 2)), err = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			return [null, err];
-		}
-		h = (((z.scratch[0] >>> 0) << 8 >>> 0) | (z.scratch[1] >>> 0)) >>> 0;
-		if ((!((((z.scratch[0] & 15) >>> 0) === 8))) || (!(((_r = h % 31, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0)))) {
-			return [null, go$pkg.ErrHeader];
-		}
-		if (!((((z.scratch[1] & 32) >>> 0) === 0))) {
-			_tuple$2 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err = _tuple$2[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				return [null, err];
-			}
-			checksum = (((((((z.scratch[0] >>> 0) << 24 >>> 0) | ((z.scratch[1] >>> 0) << 16 >>> 0)) >>> 0) | ((z.scratch[2] >>> 0) << 8 >>> 0)) >>> 0) | (z.scratch[3] >>> 0)) >>> 0;
-			if (!((checksum === adler32.Checksum(dict)))) {
-				return [null, go$pkg.ErrDictionary];
-			}
-			z.decompressor = flate.NewReaderDict(z.r, dict);
-		} else {
-			z.decompressor = flate.NewReader(z.r);
-		}
-		z.digest = adler32.New();
-		return [z, null];
-	};
- 0NewReaderDict0Å‚bufio:NewReadercompress/flate:NewReadercompress/flate:NewReaderDictcompress/flate:Readercompress/zlib:ErrDictionarycompress/zlib:ErrHeadercompress/zlib:readerhash/adler32:Checksumhash/adler32:Newio:ReadFull0Çt Ç	reader.Ptr.prototype.Read = function(p) {
-		var n, err, z, _tuple, _tuple$1, _tuple$2, _tuple$3, err$1, _tuple$4, checksum, _tuple$5;
-		n = 0;
-		err = null;
-		z = this;
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			_tuple = [0, z.err], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		if (p.length === 0) {
-			_tuple$1 = [0, null], n = _tuple$1[0], err = _tuple$1[1];
-			return [n, err];
-		}
-		_tuple$2 = z.decompressor.Read(p), n = _tuple$2[0], err = _tuple$2[1];
-		z.digest.Write(go$subslice(p, 0, n));
-		if (!((n === 0)) || !(go$interfaceIsEqual(err, io.EOF))) {
-			z.err = err;
-			return [n, err];
-		}
-		_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err$1 = _tuple$3[1];
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			z.err = err$1;
-			_tuple$4 = [0, err$1], n = _tuple$4[0], err = _tuple$4[1];
-			return [n, err];
-		}
-		checksum = (((((((z.scratch[0] >>> 0) << 24 >>> 0) | ((z.scratch[1] >>> 0) << 16 >>> 0)) >>> 0) | ((z.scratch[2] >>> 0) << 8 >>> 0)) >>> 0) | (z.scratch[3] >>> 0)) >>> 0;
-		if (!((checksum === z.digest.Sum32()))) {
-			z.err = go$pkg.ErrChecksum;
-			_tuple$5 = [0, z.err], n = _tuple$5[0], err = _tuple$5[1];
-			return [n, err];
-		}
-		return [n, err];
-	};
-	reader.prototype.Read = function(p) { return this.go$val.Read(p); };
- 0reader0Fcompress/zlib:ErrChecksumcompress/zlib:readerio:EOFio:ReadFull0Ç' Å˛	reader.Ptr.prototype.Close = function() {
-		var z;
-		z = this;
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			return z.err;
-		}
-		z.err = z.decompressor.Close();
-		return z.err;
-	};
-	reader.prototype.Close = function() { return this.go$val.Close(); };
- 0reader0compress/zlib:reader0Å„	NewWriterÅ¢	NewWriter = go$pkg.NewWriter = function(w) {
-		var _tuple, z;
-		_tuple = NewWriterLevelDict(w, -1, (go$sliceType(Go$Uint8)).nil), z = _tuple[0];
-		return z;
-	};
- 0	NewWriter0" compress/zlib:NewWriterLevelDict0Å”NewWriterLevelÅà	NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
-		return NewWriterLevelDict(w, level, (go$sliceType(Go$Uint8)).nil);
-	};
- 0NewWriterLevel0" compress/zlib:NewWriterLevelDict0ÇNewWriterLevelDictÇ©	NewWriterLevelDict = go$pkg.NewWriterLevelDict = function(w, level, dict) {
-		if (level < -1 || level > 9) {
-			return [(go$ptrType(Writer)).nil, fmt.Errorf("zlib: invalid compression level: %d", new (go$sliceType(go$emptyInterface))([new Go$Int(level)]))];
-		}
-		return [new Writer.Ptr(w, level, dict, (go$ptrType(flate.Writer)).nil, null, null, go$makeNativeArray("Uint8", 4, function() { return 0; }), false), null];
-	};
- 0NewWriterLevelDict09compress/flate:Writercompress/zlib:Writer
-fmt:Errorf0ÇÌ Ç¨	Writer.Ptr.prototype.Reset = function(w) {
-		var z;
-		z = this;
-		z.w = w;
-		if (!(z.compressor === (go$ptrType(flate.Writer)).nil)) {
-			z.compressor.Reset(w);
-		}
-		if (!(go$interfaceIsEqual(z.digest, null))) {
-			z.digest.Reset();
-		}
-		z.err = null;
-		z.scratch = go$makeNativeArray("Uint8", 4, function() { return 0; });
-		z.wroteHeader = false;
-	};
-	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
- 0Writer0-compress/flate:Writercompress/zlib:Writer0Çº Ç'	Writer.Ptr.prototype.writeHeader = function() {
-		var err, z, _ref, _lhs, _index, _lhs$1, _index$1, _r, _tuple, checksum, _tuple$1, _tuple$2;
-		err = null;
-		z = this;
-		z.wroteHeader = true;
-		z.scratch[0] = 120;
-		_ref = z.level;
-		if (_ref === 0 || _ref === 1) {
-			z.scratch[1] = 0;
-		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5) {
-			z.scratch[1] = 64;
-		} else if (_ref === 6 || _ref === -1) {
-			z.scratch[1] = 128;
-		} else if (_ref === 7 || _ref === 8 || _ref === 9) {
-			z.scratch[1] = 192;
-		} else {
-			throw go$panic(new Go$String("unreachable"));
-		}
-		if (!(z.dict === (go$sliceType(Go$Uint8)).nil)) {
-			_lhs = z.scratch, _index = 1, _lhs[_index] = (_lhs[_index] | 32) >>> 0;
-		}
-		_lhs$1 = z.scratch, _index$1 = 1, _lhs$1[_index$1] = _lhs$1[_index$1] + (((31 - (_r = ((((z.scratch[0] << 16 >>> 16) << 8 << 16 >>> 16) + (z.scratch[1] << 16 >>> 16) << 16 >>> 16)) % 31, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16) << 24 >>> 24)) << 24 >>> 24;
-		_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 2)), err = _tuple[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			err = err;
-			return err;
-		}
-		if (!(z.dict === (go$sliceType(Go$Uint8)).nil)) {
-			checksum = adler32.Checksum(z.dict);
-			z.scratch[0] = ((checksum >>> 24 >>> 0) << 24 >>> 24);
-			z.scratch[1] = ((checksum >>> 16 >>> 0) << 24 >>> 24);
-			z.scratch[2] = ((checksum >>> 8 >>> 0) << 24 >>> 24);
-			z.scratch[3] = ((checksum >>> 0 >>> 0) << 24 >>> 24);
-			_tuple$1 = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err = _tuple$1[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				err = err;
-				return err;
-			}
-		}
-		if (z.compressor === (go$ptrType(flate.Writer)).nil) {
-			_tuple$2 = flate.NewWriterDict(z.w, z.level, z.dict), z.compressor = _tuple$2[0], err = _tuple$2[1];
-			if (!(go$interfaceIsEqual(err, null))) {
-				err = err;
-				return err;
-			}
-			z.digest = adler32.New();
-		}
-		err = null;
-		return err;
-	};
-	Writer.prototype.writeHeader = function() { return this.go$val.writeHeader(); };
- 0WriterwriteHeader0tcompress/flate:NewWriterDictcompress/flate:Writercompress/zlib:Writerhash/adler32:Checksumhash/adler32:New0ÇÚ Ç≠	Writer.Ptr.prototype.Write = function(p) {
-		var n, err, z, _tuple, _tuple$1, _tuple$2;
-		n = 0;
-		err = null;
-		z = this;
-		if (!z.wroteHeader) {
-			z.err = z.writeHeader();
-		}
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			_tuple = [0, z.err], n = _tuple[0], err = _tuple[1];
-			return [n, err];
-		}
-		if (p.length === 0) {
-			_tuple$1 = [0, null], n = _tuple$1[0], err = _tuple$1[1];
-			return [n, err];
-		}
-		_tuple$2 = z.compressor.Write(p), n = _tuple$2[0], err = _tuple$2[1];
-		if (!(go$interfaceIsEqual(err, null))) {
-			z.err = err;
-			return [n, err];
-		}
-		z.digest.Write(p);
-		return [n, err];
-	};
-	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
- 0Writer01compress/zlib:Writercompress/zlib:writeHeader0Çy Ç4	Writer.Ptr.prototype.Flush = function() {
-		var z;
-		z = this;
-		if (!z.wroteHeader) {
-			z.err = z.writeHeader();
-		}
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			return z.err;
-		}
-		z.err = z.compressor.Flush();
-		return z.err;
-	};
-	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
- 0Writer01compress/zlib:Writercompress/zlib:writeHeader0Ç3 ÇÓ	Writer.Ptr.prototype.Close = function() {
-		var z, checksum, _tuple;
-		z = this;
-		if (!z.wroteHeader) {
-			z.err = z.writeHeader();
-		}
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			return z.err;
-		}
-		z.err = z.compressor.Close();
-		if (!(go$interfaceIsEqual(z.err, null))) {
-			return z.err;
-		}
-		checksum = z.digest.Sum32();
-		z.scratch[0] = ((checksum >>> 24 >>> 0) << 24 >>> 24);
-		z.scratch[1] = ((checksum >>> 16 >>> 0) << 24 >>> 24);
-		z.scratch[2] = ((checksum >>> 8 >>> 0) << 24 >>> 24);
-		z.scratch[3] = ((checksum >>> 0 >>> 0) << 24 >>> 24);
-		_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), z.err = _tuple[1];
-		return z.err;
-	};
-	Writer.prototype.Close = function() { return this.go$val.Close(); };
- 0Writer01compress/zlib:Writercompress/zlib:writeHeader0   0ErrChecksum0 0   0ErrDictionary0 0   0	ErrHeader0 0n  =		go$pkg.ErrChecksum = errors.New("zlib: invalid checksum");
-0 0'compress/zlib:ErrChecksum
-errors:New0t  A		go$pkg.ErrDictionary = errors.New("zlib: invalid dictionary");
-0 0)compress/zlib:ErrDictionary
-errors:New0h  9		go$pkg.ErrHeader = errors.New("zlib: invalid header");
-0 0%compress/zlib:ErrHeader
-errors:New0
-   0 0 0
-   0 0 0 
+0Å»github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler320_0
+bufioA0compress/flateB0errorsC0	hashD0hash/adler32E0ioF0fmtG0Ç)u0Ç_ 0HÇÉH=$pkg.reader=$newType(0,"Struct","zlib.reader","reader","compress/zlib",function(r_,decompressor_,digest_,err_,scratch_){this.$val=this;this.r=r_!==undefined?r_:null;this.decompressor=decompressor_!==undefined?decompressor_:null;this.digest=digest_!==undefined?digest_:null;this.err=err_!==undefined?err_:null;this.scratch=scratch_!==undefined?scratch_:($arrayType($Uint8,4)).zero();});Çã($ptrType(H)).methods=[["Close","Close","",[],[$error],false,-1],["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,-1]];H.init([["r","r","compress/zlib",B.Reader,""],["decompressor","decompressor","compress/zlib",F.ReadCloser,""],["digest","digest","compress/zlib",D.Hash32,""],["err","err","compress/zlib",$error,""],["scratch","scratch","compress/zlib",($arrayType($Uint8,4)),""]]);0reader03compress/flate:Readerhash:Hash32io:ReadCloser 0ÇX 0KÇHK=$pkg.Writer=$newType(0,"Struct","zlib.Writer","Writer","compress/zlib",function(w_,level_,dict_,compressor_,digest_,err_,scratch_,wroteHeader_){this.$val=this;this.w=w_!==undefined?w_:null;this.level=level_!==undefined?level_:0;this.dict=dict_!==undefined?dict_:($sliceType($Uint8)).nil;this.compressor=compressor_!==undefined?compressor_:($ptrType(B.Writer)).nil;this.digest=digest_!==undefined?digest_:null;this.err=err_!==undefined?err_:null;this.scratch=scratch_!==undefined?scratch_:($arrayType($Uint8,4)).zero();this.wroteHeader=wroteHeader_!==undefined?wroteHeader_:false;});Ç√($ptrType(K)).methods=[["Close","Close","",[],[$error],false,-1],["Flush","Flush","",[],[$error],false,-1],["Reset","Reset","",[F.Writer],[],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["writeHeader","writeHeader","compress/zlib",[],[$error],false,-1]];K.init([["w","w","compress/zlib",F.Writer,""],["level","level","compress/zlib",$Int,""],["dict","dict","compress/zlib",($sliceType($Uint8)),""],["compressor","compressor","compress/zlib",($ptrType(B.Writer)),""],["digest","digest","compress/zlib",D.Hash32,""],["err","err","compress/zlib",$error,""],["scratch","scratch","compress/zlib",($arrayType($Uint8,4)),""],["wroteHeader","wroteHeader","compress/zlib",$Bool,""]]);0Writer0/compress/flate:Writerhash:Hash32	io:Writer 0 0   0ErrChecksum0  0 0   0ErrDictionary0  0 0   0	ErrHeader0  0l 0  6    $pkg.ErrChecksum=C.New("zlib: invalid checksum");0 0'compress/zlib:ErrChecksum
+errors:New 0r 0  :    $pkg.ErrDictionary=C.New("zlib: invalid dictionary");0 0)compress/zlib:ErrDictionary
+errors:New 0f 0  2    $pkg.ErrHeader=C.New("zlib: invalid header");0 0%compress/zlib:ErrHeader
+errors:New 0Åücompress/zlib.NewReader0INI=$pkg.NewReader=function(a){  Greturn J(a,($sliceType($Uint8)).nil);    }; 0	NewReader0compress/zlib:NewReaderDict 0Çºcompress/zlib.NewReaderDict0JÇõJ=$pkg.NewReaderDict=function(a,b){var c,d,e,f,g,h,i,j,k,l;  Dc=new H.Ptr();  V  Yd=(a!==null&&B.Reader.implementedBy.indexOf(a.constructor)!==-1?[a,true]:[null,false]);e=d[0];f=d[1];    if(f){  |c.r=e;    }else{  ëc.r=A.NewReader(a);    }  Æg=F.ReadFull(c.r,$subslice(new($sliceType($Uint8))(c.scratch),0,2));h=g[1];  ⁄    if(!($interfaceIsEqual(h,null))){  Ïreturn[null,h];    }   i=(((c.scratch[0]>>>0)<<8>>>0)|(c.scratch[1]>>>0))>>>0;  1    if((!((((c.scratch[0]&15)>>>0)===8)))||(!(((j=i%31,j===j?j:$throwRuntimeError("integer divide by zero"))===0)))){  jreturn[null,$pkg.ErrHeader];    }  Ñ    if(!((((c.scratch[1]&32)>>>0)===0))){  ¢k=F.ReadFull(c.r,$subslice(new($sliceType($Uint8))(c.scratch),0,4));h=k[1];  Œ    if(!($interfaceIsEqual(h,null))){  ·return[null,h];    }  ˜l=(((((((c.scratch[0]>>>0)<<24>>>0)|((c.scratch[1]>>>0)<<16>>>0))>>>0)|((c.scratch[2]>>>0)<<8>>>0))>>>0)|(c.scratch[3]>>>0))>>>0;  	j    if(!((l===E.Checksum(b)))){  	ïreturn[null,$pkg.ErrDictionary];    }  	µc.decompressor=B.NewReaderDict(c.r,b);    }else{  	Òc.decompressor=B.NewReader(c.r);    }  
+c.digest=E.New();  
+5return[c,null];    }; 0NewReaderDict0Å‚bufio:NewReadercompress/flate:NewReadercompress/flate:NewReaderDictcompress/flate:Readercompress/zlib:ErrDictionarycompress/zlib:ErrHeadercompress/zlib:readerhash/adler32:Checksumhash/adler32:Newio:ReadFull 0Ç+(*compress/zlib.reader).Read0 Ç∞H.Ptr.prototype.Read=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p;b=0;c=null;  
+Ld=this;  
+|    if(!($interfaceIsEqual(d.err,null))){  
+ê    e=0;f=d.err;b=e;c=f;return[b,c];    }  
+§    if(a.$length===0){  
+∑    g=0;h=null;b=g;c=h;return[b,c];    }  
+ i=d.decompressor.Read(a);b=i[0];c=i[1];  
+Îd.digest.Write($subslice(a,0,b));      if(!((b===0))||!($interfaceIsEqual(c,F.EOF))){  "d.err=c;  0return[b,c];    }  _  bj=F.ReadFull(d.r,$subslice(new($sliceType($Uint8))(d.scratch),0,4));k=j[1];    if(!($interfaceIsEqual(k,null))){  ùd.err=k;  ´    l=0;m=k;b=l;c=m;return[b,c];    }  ¯n=(((((((d.scratch[0]>>>0)<<24>>>0)|((d.scratch[1]>>>0)<<16>>>0))>>>0)|((d.scratch[2]>>>0)<<8>>>0))>>>0)|(d.scratch[3]>>>0))>>>0;  j    if(!((n===d.digest.Sum32()))){  éd.err=$pkg.ErrChecksum;  §    o=0;p=d.err;b=o;c=p;return[b,c];    }  ∏return[b,c];    };H.prototype.Read=function(a){return this.$val.Read(a);}; 0reader0Fcompress/zlib:ErrChecksumcompress/zlib:readerio:EOFio:ReadFull 0Ç8(*compress/zlib.reader).Close0 ÅÌH.Ptr.prototype.Close=function(){var a;  a=this;  :    if(!($interfaceIsEqual(a.err,null))){  Nreturn a.err;    }  _a.err=a.decompressor.Close();  return a.err;    };H.prototype.Close=function(){return this.$val.Close();}; 0reader0compress/zlib:reader 0Åøcompress/zlib.NewWriter0LiL=$pkg.NewWriter=function(a){var b,c;  b=N(a,-1,($sliceType($Uint8)).nil);c=b[0];  Vreturn c;    }; 0	NewWriter0" compress/zlib:NewWriterLevelDict 0Å∑compress/zlib.NewWriterLevel0MWM=$pkg.NewWriterLevel=function(a,b){  ›return N(a,b,($sliceType($Uint8)).nil);    }; 0NewWriterLevel0" compress/zlib:NewWriterLevelDict 0Çπ compress/zlib.NewWriterLevelDict0NÇ8N=$pkg.NewWriterLevelDict=function(a,b,c){  #    if(b<-1||b>9){  `return[($ptrType(K)).nil,G.Errorf("zlib: invalid compression level: %d",new($sliceType($emptyInterface))([new $Int(b)]))];    }  ©return[new K.Ptr(a,b,c,($ptrType(B.Writer)).nil,null,null,($arrayType($Uint8,4)).zero(),false),null];    }; 0NewWriterLevelDict09compress/flate:Writercompress/zlib:Writer
+fmt:Errorf 0Çˇ(*compress/zlib.Writer).Reset0 ÇúK.Ptr.prototype.Reset=function(a){var b;  öb=this;  ªb.w=a;  Î    if(!(b.compressor===($ptrType(B.Writer)).nil)){  b.compressor.Reset(a);    }       if(!($interfaceIsEqual(b.digest,null))){  7b.digest.Reset();    }  Lb.err=null;  Y$copy(b.scratch,($arrayType($Uint8,4)).zero(),($arrayType($Uint8,4)));  pb.wroteHeader=false;    };K.prototype.Reset=function(a){return this.$val.Reset(a);}; 0Writer0-compress/flate:Writercompress/zlib:Writer 0Ç#(*compress/zlib.Writer).writeHeader0 ÇEK.Ptr.prototype.writeHeader=function(){var a,b,c,d,e,f,g,h,i,j,k,l;a=null;  ∂b=this;  ﬁb.wroteHeader=true;  Ëb.scratch[0]=120;  Êc=b.level;  ¯if(c===0||c===1){  b.scratch[1]=0;      }else if(c===2||c===3||c===4||c===5){  /b.scratch[1]=64;      F}else if(c===6||c===-1){  Tb.scratch[1]=128;      k}else if(c===7||c===8||c===9){  {b.scratch[1]=192;    }else{  ùthrow $panic(new $String("unreachable"));    }  ∂    if(!(b.dict===($sliceType($Uint8)).nil)){  Àd=b.scratch;e=1;d[e]=(d[e]|(32))>>>0;    }  Êf=b.scratch;g=1;f[g]=f[g]+(((31-(h=((((b.scratch[0]<<16>>>16)<<8<<16>>>16)+(b.scratch[1]<<16>>>16)<<16>>>16))%31,h===h?h:$throwRuntimeError("integer divide by zero"))<<16>>>16)<<24>>>24))<<24>>>24;  5  8i=b.w.Write($subslice(new($sliceType($Uint8))(b.scratch),0,2));a=i[1];    if(!($interfaceIsEqual(a,null))){  k    a=a;return a;    }  z    if(!(b.dict===($sliceType($Uint8)).nil)){  ’j=E.Checksum(b.dict);  ¸b.scratch[0]=((j>>>24>>>0)<<24>>>24);  #b.scratch[1]=((j>>>16>>>0)<<24>>>24);  Jb.scratch[2]=((j>>>8>>>0)<<24>>>24);  pb.scratch[3]=((j>>>0>>>0)<<24>>>24);  ñ  ôk=b.w.Write($subslice(new($sliceType($Uint8))(b.scratch),0,4));a=k[1];    if(!($interfaceIsEqual(a,null))){  Õ    a=a;return a;    }    }  ‡    if(b.compressor===($ptrType(B.Writer)).nil){  Ol=B.NewWriterDict(b.w,b.level,b.dict);b.compressor=l[0];a=l[1];  è    if(!($interfaceIsEqual(a,null))){  ¢    a=a;return a;    }  ≥b.digest=E.New();    }  –    a=null;return a;    };K.prototype.writeHeader=function(){return this.$val.writeHeader();}; 0WriterwriteHeader0tcompress/flate:NewWriterDictcompress/flate:Writercompress/zlib:Writerhash/adler32:Checksumhash/adler32:New 0Ç(*compress/zlib.Writer).Write0 ÇK.Ptr.prototype.Write=function(a){var b,c,d,e,f,g,h,i;b=0;c=null;  ëd=this;  ¬    if(!d.wroteHeader){  ÿd.err=d.writeHeader();    }  Ù    if(!($interfaceIsEqual(d.err,null))){      e=0;f=d.err;b=e;c=f;return[b,c];    }      if(a.$length===0){  /    g=0;h=null;b=g;c=h;return[b,c];    }  Ai=d.compressor.Write(a);b=i[0];c=i[1];  a    if(!($interfaceIsEqual(c,null))){  sd.err=c;  Åreturn[b,c];    }  åd.digest.Write(a);  üreturn[b,c];    };K.prototype.Write=function(a){return this.$val.Write(a);}; 0Writer01compress/zlib:Writercompress/zlib:writeHeader 0Çê(*compress/zlib.Writer).Flush0 Ç)K.Ptr.prototype.Flush=function(){var a;  Ëa=this;       if(!a.wroteHeader){   a.err=a.writeHeader();    }   6    if(!($interfaceIsEqual(a.err,null))){   Jreturn a.err;    }   [a.err=a.compressor.Flush();   yreturn a.err;    };K.prototype.Flush=function(){return this.$val.Flush();}; 0Writer01compress/zlib:Writercompress/zlib:writeHeader 0ÇË(*compress/zlib.Writer).Close0 ÇÅK.Ptr.prototype.Close=function(){var a,b,c;   Âa=this;  !    if(!a.wroteHeader){  !a.err=a.writeHeader();    }  !3    if(!($interfaceIsEqual(a.err,null))){  !Greturn a.err;    }  !Xa.err=a.compressor.Close();  !v    if(!($interfaceIsEqual(a.err,null))){  !äreturn a.err;    }  !õb=a.digest.Sum32();  !Ùa.scratch[0]=((b>>>24>>>0)<<24>>>24);  "a.scratch[1]=((b>>>16>>>0)<<24>>>24);  "@a.scratch[2]=((b>>>8>>>0)<<24>>>24);  "ea.scratch[3]=((b>>>0>>>0)<<24>>>24);  "äc=a.w.Write($subslice(new($sliceType($Uint8))(a.scratch),0,4));a.err=c[1];  "∞return a.err;    };K.prototype.Close=function(){return this.$val.Close();}; 0Writer01compress/zlib:Writercompress/zlib:writeHeader 0 Ç˙{"Base":8896,"Files":[{"Name":"/usr/local/go/src/pkg/compress/zlib/reader.go","Base":1,"Size":3469,"Lines":[0,55,109,159,160,163,239,265,266,333,401,414,415,435,460,495,506,507,535,536,566,589,600,603,616,617,626,635,653,663,671,687,693,695,696,718,719,725,806,858,943,999,1076,1124,1126,1127,1148,1175,1203,1229,1249,1271,1273,1274,1316,1390,1472,1552,1605,1635,1637,1638,1703,1788,1858,1876,1913,1924,1934,1961,1964,2008,2025,2043,2046,2095,2151,2175,2178,2207,2251,2269,2288,2292,2407,2449,2478,2482,2532,2542,2582,2585,2611,2626,2628,2629,2682,2701,2719,2722,2740,2756,2759,2760,2793,2817,2847,2861,2870,2873,2874,2909,2970,2984,3000,3003,3062,3176,3211,3233,3251,3254,3262,3264,3265,3351,3384,3403,3418,3421,3453,3467],"Infos":null},{"Name":"/usr/local/go/src/pkg/compress/zlib/writer.go","Base":3471,"Size":5424,"Lines":[0,55,109,159,160,173,174,183,201,208,216,232,238,240,241,321,387,395,437,475,519,566,568,569,632,694,715,738,755,775,802,827,846,867,885,887,888,923,989,992,1073,1128,1166,1222,1232,1234,1235,1315,1350,1353,1427,1503,1550,1613,1655,1657,1658,1733,1751,1754,1834,1859,1939,1999,2070,2073,2090,2102,2118,2133,2141,2143,2144,2220,2300,2309,2347,2356,2395,2421,2445,2448,2470,2489,2492,2505,2528,2551,2553,2554,2593,2638,2660,2720,2825,2904,2925,3003,3045,3103,3158,3176,3188,3212,3230,3254,3267,3291,3306,3330,3340,3363,3366,3386,3411,3414,3493,3546,3559,3562,3582,3652,3691,3730,3769,3807,3845,3899,3913,3917,3920,3946,4005,4030,4094,4112,4126,4130,4157,4160,4172,4174,4175,4247,4325,4348,4402,4423,4449,4452,4471,4489,4492,4510,4526,4529,4561,4578,4592,4601,4604,4623,4631,4633,4634,4691,4724,4745,4771,4774,4793,4808,4811,4841,4855,4857,4858,4944,4977,4998,5024,5027,5046,5061,5064,5094,5113,5128,5131,5161,5220,5258,5296,5333,5370,5408,5422],"Infos":null}]}
+ ˇ
