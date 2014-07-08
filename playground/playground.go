@@ -79,7 +79,7 @@ func main() {
 			scope.Set("output", output)
 			pkgsToLoad = nil
 
-			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").Str()), 0)
+			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").Str()), parser.ParseComments)
 			if err != nil {
 				if list, ok := err.(scanner.ErrorList); ok {
 					for _, entry := range list {
