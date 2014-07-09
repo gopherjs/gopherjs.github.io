@@ -1,53 +1,69 @@
-0É]>net/http/httptestÉÓpackage httptest
-import bytes "bytes"
-import http "net/http"
-import tls "crypto/tls"
-import flag "flag"
+0ÉK7net/http/fcgiÇÿgpackage fcgi
+import errors "errors"
 import fmt "fmt"
-import net "net"
-import os "os"
-import sync "sync"
-const @"".DefaultRemoteAddr = "1.2.3.4"
-func @"".NewRecorder() (? *@"".ResponseRecorder)
-func @"".NewServer(@"".handler @"net/http".Handler) (? *@"".Server)
-func @"".NewTLSServer(@"".handler @"net/http".Handler) (? *@"".Server)
-func @"".NewUnstartedServer(@"".handler @"net/http".Handler) (? *@"".Server)
-type @"".ResponseRecorder struct { @"".Code int; @"".HeaderMap @"net/http".Header; @"".Body *@"bytes".Buffer; @"".Flushed bool; @"".wroteHeader bool }
-func (? *@"".ResponseRecorder) @"".Flush() ()
-func (? *@"".ResponseRecorder) @"".Header() (? @"net/http".Header)
-func (? *@"".ResponseRecorder) @"".Write(@"".buf []byte) (? int, ? error)
-func (? *@"".ResponseRecorder) @"".WriteHeader(@"".code int) ()
-type @"".Server struct { @"".URL string; @"".Listener @"net".Listener; @"".TLS *@"crypto/tls".Config; @"".Config *@"net/http".Server; @"".wg @"sync".WaitGroup }
-func (? *@"".Server) @"".Close() ()
-func (? *@"".Server) @"".CloseClientConnections() ()
-func (? *@"".Server) @"".Start() ()
-func (? *@"".Server) @"".StartTLS() ()
-func (? *@"".Server) @"".wrapHandler() ()
-type @"".historyListener struct { ? @"net".Listener; ? @"sync".Mutex; @"".history []@"net".Conn }
-func (? *@"".historyListener) @"".Accept() (@"".c @"net".Conn, @"".err error)
-type @"".waitGroupHandler struct { @"".s *@"".Server; @"".h @"net/http".Handler }
-func (? *@"".waitGroupHandler) @"".ServeHTTP(@"".w @"net/http".ResponseWriter, @"".r *@"net/http".Request) ()
-type @"net/http".Handler interface { @"net/http".ServeHTTP(? @"net/http".ResponseWriter, ? *@"net/http".Request) () }
-type @"net/http".Header map[string][]string
-func (? @"net/http".Header) @"net/http".Add(@"net/http".key string, @"net/http".value string) ()
-func (? @"net/http".Header) @"net/http".Del(@"net/http".key string) ()
-func (? @"net/http".Header) @"net/http".Get(@"net/http".key string) (? string)
-func (? @"net/http".Header) @"net/http".Set(@"net/http".key string, @"net/http".value string) ()
 import io "io"
-func (? @"net/http".Header) @"net/http".Write(@"net/http".w @"io".Writer) (? error)
-func (? @"net/http".Header) @"net/http".WriteSubset(@"net/http".w @"io".Writer, @"net/http".exclude map[string]bool) (? error)
-func (? @"net/http".Header) @"net/http".clone() (? @"net/http".Header)
-func (? @"net/http".Header) @"net/http".get(@"net/http".key string) (? string)
-func (? @"net/http".Header) @"net/http".sortedKeyValues(@"net/http".exclude map[string]bool) (@"net/http".kvs []@"net/http".keyValues, @"net/http".hs *@"net/http".headerSorter)
-func (? *@"net/http".Header) @"net/http".Add(@"net/http".key string, @"net/http".value string) ()
-func (? *@"net/http".Header) @"net/http".Del(@"net/http".key string) ()
-func (? *@"net/http".Header) @"net/http".Get(@"net/http".key string) (? string)
-func (? *@"net/http".Header) @"net/http".Set(@"net/http".key string, @"net/http".value string) ()
-func (? *@"net/http".Header) @"net/http".Write(@"net/http".w @"io".Writer) (? error)
-func (? *@"net/http".Header) @"net/http".WriteSubset(@"net/http".w @"io".Writer, @"net/http".exclude map[string]bool) (? error)
-func (? *@"net/http".Header) @"net/http".clone() (? @"net/http".Header)
-func (? *@"net/http".Header) @"net/http".get(@"net/http".key string) (? string)
-func (? *@"net/http".Header) @"net/http".sortedKeyValues(@"net/http".exclude map[string]bool) (@"net/http".kvs []@"net/http".keyValues, @"net/http".hs *@"net/http".headerSorter)
+import ioutil "io/ioutil"
+import net "net"
+import http "net/http"
+import cgi "net/http/cgi"
+import os "os"
+import strings "strings"
+import sync "sync"
+import time "time"
+import bufio "bufio"
+import bytes "bytes"
+import binary "encoding/binary"
+func @"".Serve(@"".l @"net".Listener, @"".handler @"net/http".Handler) (? error)
+type @"".beginRequest struct { @"".role uint16; @"".flags uint8; @"".reserved [5]uint8 }
+func (? *@"".beginRequest) @"".read(@"".content []byte) (? error)
+type @"".bufWriter struct { @"".closer @"io".Closer; ? *@"bufio".Writer }
+func (? *@"".bufWriter) @"".Close() (? error)
+type @"".child struct { @"".conn *@"".conn; @"".handler @"net/http".Handler; @"".mu @"sync".Mutex; @"".requests map[uint16]*@"".request }
+func (? *@"".child) @"".handleRecord(@"".rec *@"".record) (? error)
+func (? *@"".child) @"".serve() ()
+func (? *@"".child) @"".serveRequest(@"".req *@"".request, @"".body @"io".ReadCloser) ()
+type @"".conn struct { @"".mutex @"sync".Mutex; @"".rwc @"io".ReadWriteCloser; @"".buf @"bytes".Buffer; @"".h @"".header }
+func (? *@"".conn) @"".Close() (? error)
+func (? *@"".conn) @"".writeBeginRequest(@"".reqId uint16, @"".role uint16, @"".flags uint8) (? error)
+func (? *@"".conn) @"".writeEndRequest(@"".reqId uint16, @"".appStatus int, @"".protocolStatus uint8) (? error)
+func (? *@"".conn) @"".writePairs(@"".recType @"".recType, @"".reqId uint16, @"".pairs map[string]string) (? error)
+func (? *@"".conn) @"".writeRecord(@"".recType @"".recType, @"".reqId uint16, @"".b []byte) (? error)
+type @"".header struct { @"".Version uint8; @"".Type @"".recType; @"".Id uint16; @"".ContentLength uint16; @"".PaddingLength uint8; @"".Reserved uint8 }
+func (? *@"".header) @"".init(@"".recType @"".recType, @"".reqId uint16, @"".contentLength int) ()
+type @"".recType uint8
+type @"".record struct { @"".h @"".header; @"".buf [65790]byte }
+func (? *@"".record) @"".content() (? []byte)
+func (? *@"".record) @"".read(@"".r @"io".Reader) (@"".err error)
+type @"".request struct { @"".pw *@"io".PipeWriter; @"".reqId uint16; @"".params map[string]string; @"".buf [1024]byte; @"".rawParams []byte; @"".keepConn bool }
+func (? *@"".request) @"".parseParams() ()
+type @"".response struct { @"".req *@"".request; @"".header @"net/http".Header; @"".w *@"".bufWriter; @"".wroteHeader bool }
+func (? *@"".response) @"".Close() (? error)
+func (? *@"".response) @"".Flush() ()
+func (? *@"".response) @"".Header() (? @"net/http".Header)
+func (? *@"".response) @"".Write(@"".data []byte) (? int, ? error)
+func (? *@"".response) @"".WriteHeader(@"".code int) ()
+type @"".streamWriter struct { @"".c *@"".conn; @"".recType @"".recType; @"".reqId uint16 }
+func (? *@"".streamWriter) @"".Close() (? error)
+func (? *@"".streamWriter) @"".Write(@"".p []byte) (? int, ? error)
+type @"net".Listener interface { @"net".Accept() (@"net".c @"net".Conn, @"net".err error); @"net".Addr() (? @"net".Addr); @"net".Close() (? error) }
+type @"net/http".Handler interface { @"net/http".ServeHTTP(? @"net/http".ResponseWriter, ? *@"net/http".Request) () }
+type @"io".Closer interface { @"io".Close() (? error) }
+type @"bufio".Writer struct { @"bufio".err error; @"bufio".buf []byte; @"bufio".n int; @"bufio".wr @"io".Writer }
+func (? *@"bufio".Writer) @"bufio".Available() (? int)
+func (? *@"bufio".Writer) @"bufio".Buffered() (? int)
+func (? *@"bufio".Writer) @"bufio".Flush() (? error)
+func (? *@"bufio".Writer) @"bufio".ReadFrom(@"bufio".r @"io".Reader) (@"bufio".n int64, @"bufio".err error)
+func (? *@"bufio".Writer) @"bufio".Reset(@"bufio".w @"io".Writer) ()
+func (? *@"bufio".Writer) @"bufio".Write(@"bufio".p []byte) (@"bufio".nn int, @"bufio".err error)
+func (? *@"bufio".Writer) @"bufio".WriteByte(@"bufio".c byte) (? error)
+func (? *@"bufio".Writer) @"bufio".WriteRune(@"bufio".r rune) (@"bufio".size int, @"bufio".err error)
+func (? *@"bufio".Writer) @"bufio".WriteString(@"bufio".s string) (? int, ? error)
+func (? *@"bufio".Writer) @"bufio".flush() (? error)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".ReadWriteCloser interface { @"io".Close() (? error); @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error); @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"bytes".Buffer struct { @"bytes".buf []byte; @"bytes".off int; @"bytes".runeBytes [4]byte; @"bytes".bootstrap [64]byte; @"bytes".lastRead @"bytes".readOp }
 func (? *@"bytes".Buffer) @"bytes".Bytes() (? []byte)
 func (? *@"bytes".Buffer) @"bytes".Grow(@"bytes".n int) ()
@@ -71,42 +87,36 @@ func (? *@"bytes".Buffer) @"bytes".WriteString(@"bytes".s string) (@"bytes".n in
 func (? *@"bytes".Buffer) @"bytes".WriteTo(@"bytes".w @"io".Writer) (@"bytes".n int64, @"bytes".err error)
 func (? *@"bytes".Buffer) @"bytes".grow(@"bytes".n int) (? int)
 func (? *@"bytes".Buffer) @"bytes".readSlice(@"bytes".delim byte) (@"bytes".line []byte, @"bytes".err error)
-type @"net".Listener interface { @"net".Accept() (@"net".c @"net".Conn, @"net".err error); @"net".Addr() (? @"net".Addr); @"net".Close() (? error) }
-import time "time"
-import x509 "crypto/x509"
-type @"crypto/tls".Config struct { @"crypto/tls".Rand @"io".Reader; @"crypto/tls".Time func () (? @"time".Time); @"crypto/tls".Certificates []@"crypto/tls".Certificate; @"crypto/tls".NameToCertificate map[string]*@"crypto/tls".Certificate; @"crypto/tls".RootCAs *@"crypto/x509".CertPool; @"crypto/tls".NextProtos []string; @"crypto/tls".ServerName string; @"crypto/tls".ClientAuth @"crypto/tls".ClientAuthType; @"crypto/tls".ClientCAs *@"crypto/x509".CertPool; @"crypto/tls".InsecureSkipVerify bool; @"crypto/tls".CipherSuites []uint16; @"crypto/tls".PreferServerCipherSuites bool; @"crypto/tls".SessionTicketsDisabled bool; @"crypto/tls".SessionTicketKey [32]byte; @"crypto/tls".ClientSessionCache @"crypto/tls".ClientSessionCache; @"crypto/tls".MinVersion uint16; @"crypto/tls".MaxVersion uint16; @"crypto/tls".CurvePreferences []@"crypto/tls".CurveID; @"crypto/tls".serverInitOnce @"sync".Once }
-func (? *@"crypto/tls".Config) @"crypto/tls".BuildNameToCertificate() ()
-func (? *@"crypto/tls".Config) @"crypto/tls".cipherSuites() (? []uint16)
-func (? *@"crypto/tls".Config) @"crypto/tls".curvePreferences() (? []@"crypto/tls".CurveID)
-func (? *@"crypto/tls".Config) @"crypto/tls".getCertificateForName(@"crypto/tls".name string) (? *@"crypto/tls".Certificate)
-func (? *@"crypto/tls".Config) @"crypto/tls".maxVersion() (? uint16)
-func (? *@"crypto/tls".Config) @"crypto/tls".minVersion() (? uint16)
-func (? *@"crypto/tls".Config) @"crypto/tls".mutualVersion(@"crypto/tls".vers uint16) (? uint16, ? bool)
-func (? *@"crypto/tls".Config) @"crypto/tls".rand() (? @"io".Reader)
-func (? *@"crypto/tls".Config) @"crypto/tls".serverInit() ()
-func (? *@"crypto/tls".Config) @"crypto/tls".time() (? @"time".Time)
-import log "log"
-type @"net/http".Server struct { @"net/http".Addr string; @"net/http".Handler @"net/http".Handler; @"net/http".ReadTimeout @"time".Duration; @"net/http".WriteTimeout @"time".Duration; @"net/http".MaxHeaderBytes int; @"net/http".TLSConfig *@"crypto/tls".Config; @"net/http".TLSNextProto map[string]func (? *@"net/http".Server, ? *@"crypto/tls".Conn, ? @"net/http".Handler) (); @"net/http".ConnState func (? @"net".Conn, ? @"net/http".ConnState) (); @"net/http".ErrorLog *@"log".Logger; @"net/http".disableKeepAlives int32 }
-func (? *@"net/http".Server) @"net/http".ListenAndServe() (? error)
-func (? *@"net/http".Server) @"net/http".ListenAndServeTLS(@"net/http".certFile string, @"net/http".keyFile string) (? error)
-func (? *@"net/http".Server) @"net/http".Serve(@"net/http".l @"net".Listener) (? error)
-func (? *@"net/http".Server) @"net/http".SetKeepAlivesEnabled(@"net/http".v bool) ()
-func (? *@"net/http".Server) @"net/http".doKeepAlives() (? bool)
-func (? *@"net/http".Server) @"net/http".initialLimitedReaderSize() (? int64)
-func (? *@"net/http".Server) @"net/http".logf(@"net/http".format string, @"net/http".args ...interface {  }) ()
-func (? *@"net/http".Server) @"net/http".maxHeaderBytes() (? int)
-func (? *@"net/http".Server) @"net/http".newConn(@"net/http".rwc @"net".Conn) (@"net/http".c *@"net/http".conn, @"net/http".err error)
-type @"sync".WaitGroup struct { @"sync".m @"sync".Mutex; @"sync".counter int32; @"sync".waiters int32; @"sync".sema *uint32 }
-func (? *@"sync".WaitGroup) @"sync".Add(@"sync".delta int) ()
-func (? *@"sync".WaitGroup) @"sync".Done() ()
-func (? *@"sync".WaitGroup) @"sync".Wait() ()
-type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
-func (? *@"sync".Mutex) @"sync".Lock() ()
-func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".PipeWriter struct { @"io".p *@"io".pipe }
+func (? *@"io".PipeWriter) @"io".Close() (? error)
+func (? *@"io".PipeWriter) @"io".CloseWithError(@"io".err error) (? error)
+func (? *@"io".PipeWriter) @"io".Write(@"io".data []byte) (@"io".n int, @"io".err error)
+type @"net/http".Header map[string][]string
+func (? @"net/http".Header) @"net/http".Add(@"net/http".key string, @"net/http".value string) ()
+func (? @"net/http".Header) @"net/http".Del(@"net/http".key string) ()
+func (? @"net/http".Header) @"net/http".Get(@"net/http".key string) (? string)
+func (? @"net/http".Header) @"net/http".Set(@"net/http".key string, @"net/http".value string) ()
+func (? @"net/http".Header) @"net/http".Write(@"net/http".w @"io".Writer) (? error)
+func (? @"net/http".Header) @"net/http".WriteSubset(@"net/http".w @"io".Writer, @"net/http".exclude map[string]bool) (? error)
+func (? @"net/http".Header) @"net/http".clone() (? @"net/http".Header)
+func (? @"net/http".Header) @"net/http".get(@"net/http".key string) (? string)
+func (? @"net/http".Header) @"net/http".sortedKeyValues(@"net/http".exclude map[string]bool) (@"net/http".kvs []@"net/http".keyValues, @"net/http".hs *@"net/http".headerSorter)
+func (? *@"net/http".Header) @"net/http".Add(@"net/http".key string, @"net/http".value string) ()
+func (? *@"net/http".Header) @"net/http".Del(@"net/http".key string) ()
+func (? *@"net/http".Header) @"net/http".Get(@"net/http".key string) (? string)
+func (? *@"net/http".Header) @"net/http".Set(@"net/http".key string, @"net/http".value string) ()
+func (? *@"net/http".Header) @"net/http".Write(@"net/http".w @"io".Writer) (? error)
+func (? *@"net/http".Header) @"net/http".WriteSubset(@"net/http".w @"io".Writer, @"net/http".exclude map[string]bool) (? error)
+func (? *@"net/http".Header) @"net/http".clone() (? @"net/http".Header)
+func (? *@"net/http".Header) @"net/http".get(@"net/http".key string) (? string)
+func (? *@"net/http".Header) @"net/http".sortedKeyValues(@"net/http".exclude map[string]bool) (@"net/http".kvs []@"net/http".keyValues, @"net/http".hs *@"net/http".headerSorter)
 type @"net".Conn interface { @"net".Close() (? error); @"net".LocalAddr() (? @"net".Addr); @"net".Read(@"net".b []byte) (@"net".n int, @"net".err error); @"net".RemoteAddr() (? @"net".Addr); @"net".SetDeadline(@"net".t @"time".Time) (? error); @"net".SetReadDeadline(@"net".t @"time".Time) (? error); @"net".SetWriteDeadline(@"net".t @"time".Time) (? error); @"net".Write(@"net".b []byte) (@"net".n int, @"net".err error) }
+type @"net".Addr interface { @"net".Network() (? string); @"net".String() (? string) }
 type @"net/http".ResponseWriter interface { @"net/http".Header() (? @"net/http".Header); @"net/http".Write(? []byte) (? int, ? error); @"net/http".WriteHeader(? int) () }
 import url "net/url"
 import multipart "mime/multipart"
+import tls "crypto/tls"
 type @"net/http".Request struct { @"net/http".Method string; @"net/http".URL *@"net/url".URL; @"net/http".Proto string; @"net/http".ProtoMajor int; @"net/http".ProtoMinor int; @"net/http".Header @"net/http".Header; @"net/http".Body @"io".ReadCloser; @"net/http".ContentLength int64; @"net/http".TransferEncoding []string; @"net/http".Close bool; @"net/http".Host string; @"net/http".Form @"net/url".Values; @"net/http".PostForm @"net/url".Values; @"net/http".MultipartForm *@"mime/multipart".Form; @"net/http".Trailer @"net/http".Header; @"net/http".RemoteAddr string; @"net/http".RequestURI string; @"net/http".TLS *@"crypto/tls".ConnectionState }
 func (? *@"net/http".Request) @"net/http".AddCookie(@"net/http".c *@"net/http".Cookie) ()
 func (? *@"net/http".Request) @"net/http".Cookie(@"net/http".name string) (? *@"net/http".Cookie, ? error)
@@ -130,14 +140,17 @@ func (? *@"net/http".Request) @"net/http".wantsClose() (? bool)
 func (? *@"net/http".Request) @"net/http".wantsHttp10KeepAlive() (? bool)
 func (? *@"net/http".Request) @"net/http".write(@"net/http".w @"io".Writer, @"net/http".usingProxy bool, @"net/http".extraHeaders @"net/http".Header) (? error)
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"bytes".readOp int
+type @"io".pipe struct { @"io".rl @"sync".Mutex; @"io".wl @"sync".Mutex; @"io".l @"sync".Mutex; @"io".data []byte; @"io".rwait @"sync".Cond; @"io".wwait @"sync".Cond; @"io".rerr error; @"io".werr error }
+func (? *@"io".pipe) @"io".rclose(@"io".err error) ()
+func (? *@"io".pipe) @"io".read(@"io".b []byte) (@"io".n int, @"io".err error)
+func (? *@"io".pipe) @"io".wclose(@"io".err error) ()
+func (? *@"io".pipe) @"io".write(@"io".b []byte) (@"io".n int, @"io".err error)
 type @"net/http".keyValues struct { @"net/http".key string; @"net/http".values []string }
 type @"net/http".headerSorter struct { @"net/http".kvs []@"net/http".keyValues }
 func (? *@"net/http".headerSorter) @"net/http".Len() (? int)
 func (? *@"net/http".headerSorter) @"net/http".Less(@"net/http".i int, @"net/http".j int) (? bool)
 func (? *@"net/http".headerSorter) @"net/http".Swap(@"net/http".i int, @"net/http".j int) ()
-type @"bytes".readOp int
-type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
-type @"net".Addr interface { @"net".Network() (? string); @"net".String() (? string) }
 type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
 func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
 func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
@@ -217,83 +230,6 @@ func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
 func (? *@"time".Time) @"time".abs() (? uint64)
 func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
 func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
-import crypto "crypto"
-type @"crypto/tls".Certificate struct { @"crypto/tls".Certificate [][]byte; @"crypto/tls".PrivateKey @"crypto".PrivateKey; @"crypto/tls".OCSPStaple []byte; @"crypto/tls".Leaf *@"crypto/x509".Certificate }
-type @"crypto/x509".CertPool struct { @"crypto/x509".bySubjectKeyId map[string][]int; @"crypto/x509".byName map[string][]int; @"crypto/x509".certs []*@"crypto/x509".Certificate }
-func (? *@"crypto/x509".CertPool) @"crypto/x509".AddCert(@"crypto/x509".cert *@"crypto/x509".Certificate) ()
-func (? *@"crypto/x509".CertPool) @"crypto/x509".AppendCertsFromPEM(@"crypto/x509".pemCerts []byte) (@"crypto/x509".ok bool)
-func (? *@"crypto/x509".CertPool) @"crypto/x509".Subjects() (@"crypto/x509".res [][]byte)
-func (? *@"crypto/x509".CertPool) @"crypto/x509".findVerifiedParents(@"crypto/x509".cert *@"crypto/x509".Certificate) (@"crypto/x509".parents []int, @"crypto/x509".errCert *@"crypto/x509".Certificate, @"crypto/x509".err error)
-type @"crypto/tls".ClientAuthType int
-type @"crypto/tls".ClientSessionCache interface { @"crypto/tls".Get(@"crypto/tls".sessionKey string) (@"crypto/tls".session *@"crypto/tls".ClientSessionState, @"crypto/tls".ok bool); @"crypto/tls".Put(@"crypto/tls".sessionKey string, @"crypto/tls".cs *@"crypto/tls".ClientSessionState) () }
-type @"crypto/tls".CurveID uint16
-type @"sync".Once struct { @"sync".m @"sync".Mutex; @"sync".done uint32 }
-func (? *@"sync".Once) @"sync".Do(@"sync".f func () ()) ()
-type @"time".Duration int64
-func (? @"time".Duration) @"time".Hours() (? float64)
-func (? @"time".Duration) @"time".Minutes() (? float64)
-func (? @"time".Duration) @"time".Nanoseconds() (? int64)
-func (? @"time".Duration) @"time".Seconds() (? float64)
-func (? @"time".Duration) @"time".String() (? string)
-func (? *@"time".Duration) @"time".Hours() (? float64)
-func (? *@"time".Duration) @"time".Minutes() (? float64)
-func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
-func (? *@"time".Duration) @"time".Seconds() (? float64)
-func (? *@"time".Duration) @"time".String() (? string)
-type @"crypto/tls".Conn struct { @"crypto/tls".conn @"net".Conn; @"crypto/tls".isClient bool; @"crypto/tls".handshakeMutex @"sync".Mutex; @"crypto/tls".handshakeErr error; @"crypto/tls".vers uint16; @"crypto/tls".haveVers bool; @"crypto/tls".config *@"crypto/tls".Config; @"crypto/tls".handshakeComplete bool; @"crypto/tls".didResume bool; @"crypto/tls".cipherSuite uint16; @"crypto/tls".ocspResponse []byte; @"crypto/tls".peerCertificates []*@"crypto/x509".Certificate; @"crypto/tls".verifiedChains [][]*@"crypto/x509".Certificate; @"crypto/tls".serverName string; @"crypto/tls".clientProtocol string; @"crypto/tls".clientProtocolFallback bool; @"crypto/tls".in @"crypto/tls".halfConn; @"crypto/tls".out @"crypto/tls".halfConn; @"crypto/tls".rawInput *@"crypto/tls".block; @"crypto/tls".input *@"crypto/tls".block; @"crypto/tls".hand @"bytes".Buffer; @"crypto/tls".tmp [16]byte }
-func (? *@"crypto/tls".Conn) @"crypto/tls".Close() (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".ConnectionState() (? @"crypto/tls".ConnectionState)
-func (? *@"crypto/tls".Conn) @"crypto/tls".Handshake() (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".LocalAddr() (? @"net".Addr)
-func (? *@"crypto/tls".Conn) @"crypto/tls".OCSPResponse() (? []byte)
-func (? *@"crypto/tls".Conn) @"crypto/tls".Read(@"crypto/tls".b []byte) (@"crypto/tls".n int, @"crypto/tls".err error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".RemoteAddr() (? @"net".Addr)
-func (? *@"crypto/tls".Conn) @"crypto/tls".SetDeadline(@"crypto/tls".t @"time".Time) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".SetReadDeadline(@"crypto/tls".t @"time".Time) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".SetWriteDeadline(@"crypto/tls".t @"time".Time) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".VerifyHostname(@"crypto/tls".host string) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".Write(@"crypto/tls".b []byte) (? int, ? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".clientHandshake() (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".decryptTicket(@"crypto/tls".encrypted []byte) (? *@"crypto/tls".sessionState, ? bool)
-func (? *@"crypto/tls".Conn) @"crypto/tls".encryptTicket(@"crypto/tls".state *@"crypto/tls".sessionState) (? []byte, ? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".readHandshake() (? interface {  }, ? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".readRecord(@"crypto/tls".want @"crypto/tls".recordType) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".sendAlert(@"crypto/tls".err @"crypto/tls".alert) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".sendAlertLocked(@"crypto/tls".err @"crypto/tls".alert) (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".serverHandshake() (? error)
-func (? *@"crypto/tls".Conn) @"crypto/tls".tryCipherSuite(@"crypto/tls".id uint16, @"crypto/tls".supportedCipherSuites []uint16, @"crypto/tls".version uint16, @"crypto/tls".ellipticOk bool, @"crypto/tls".ecdsaOk bool) (? *@"crypto/tls".cipherSuite)
-func (? *@"crypto/tls".Conn) @"crypto/tls".writeRecord(@"crypto/tls".typ @"crypto/tls".recordType, @"crypto/tls".data []byte) (@"crypto/tls".n int, @"crypto/tls".err error)
-type @"net/http".ConnState int
-func (? @"net/http".ConnState) @"net/http".String() (? string)
-func (? *@"net/http".ConnState) @"net/http".String() (? string)
-type @"log".Logger struct { @"log".mu @"sync".Mutex; @"log".prefix string; @"log".flag int; @"log".out @"io".Writer; @"log".buf []byte }
-func (? *@"log".Logger) @"log".Fatal(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Fatalf(@"log".format string, @"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Fatalln(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Flags() (? int)
-func (? *@"log".Logger) @"log".Output(@"log".calldepth int, @"log".s string) (? error)
-func (? *@"log".Logger) @"log".Panic(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Panicf(@"log".format string, @"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Panicln(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Prefix() (? string)
-func (? *@"log".Logger) @"log".Print(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Printf(@"log".format string, @"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".Println(@"log".v ...interface {  }) ()
-func (? *@"log".Logger) @"log".SetFlags(@"log".flag int) ()
-func (? *@"log".Logger) @"log".SetPrefix(@"log".prefix string) ()
-func (? *@"log".Logger) @"log".formatHeader(@"log".buf *[]byte, @"log".t @"time".Time, @"log".file string, @"log".line int) ()
-import bufio "bufio"
-type @"net/http".conn struct { @"net/http".remoteAddr string; @"net/http".server *@"net/http".Server; @"net/http".rwc @"net".Conn; @"net/http".sr @"net/http".liveSwitchReader; @"net/http".lr *@"io".LimitedReader; @"net/http".buf *@"bufio".ReadWriter; @"net/http".tlsState *@"crypto/tls".ConnectionState; @"net/http".mu @"sync".Mutex; @"net/http".clientGone bool; @"net/http".closeNotifyc chan bool; @"net/http".hijackedv bool }
-func (? *@"net/http".conn) @"net/http".close() ()
-func (? *@"net/http".conn) @"net/http".closeNotify() (? <-chan bool)
-func (? *@"net/http".conn) @"net/http".closeWriteAndWait() ()
-func (? *@"net/http".conn) @"net/http".finalFlush() ()
-func (? *@"net/http".conn) @"net/http".hijack() (@"net/http".rwc @"net".Conn, @"net/http".buf *@"bufio".ReadWriter, @"net/http".err error)
-func (? *@"net/http".conn) @"net/http".hijacked() (? bool)
-func (? *@"net/http".conn) @"net/http".noteClientGone() ()
-func (? *@"net/http".conn) @"net/http".readRequest() (@"net/http".w *@"net/http".response, @"net/http".err error)
-func (? *@"net/http".conn) @"net/http".serve() ()
-func (? *@"net/http".conn) @"net/http".setState(@"net/http".nc @"net".Conn, @"net/http".state @"net/http".ConnState) ()
 type @"net/url".URL struct { @"net/url".Scheme string; @"net/url".Opaque string; @"net/url".User *@"net/url".Userinfo; @"net/url".Host string; @"net/url".Path string; @"net/url".RawQuery string; @"net/url".Fragment string }
 func (? *@"net/url".URL) @"net/url".IsAbs() (? bool)
 func (? *@"net/url".URL) @"net/url".Parse(@"net/url".ref string) (? *@"net/url".URL, ? error)
@@ -301,7 +237,6 @@ func (? *@"net/url".URL) @"net/url".Query() (? @"net/url".Values)
 func (? *@"net/url".URL) @"net/url".RequestURI() (? string)
 func (? *@"net/url".URL) @"net/url".ResolveReference(@"net/url".ref *@"net/url".URL) (? *@"net/url".URL)
 func (? *@"net/url".URL) @"net/url".String() (? string)
-type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"net/url".Values map[string][]string
 func (? @"net/url".Values) @"net/url".Add(@"net/url".key string, @"net/url".value string) ()
 func (? @"net/url".Values) @"net/url".Del(@"net/url".key string) ()
@@ -315,6 +250,7 @@ func (? *@"net/url".Values) @"net/url".Get(@"net/url".key string) (? string)
 func (? *@"net/url".Values) @"net/url".Set(@"net/url".key string, @"net/url".value string) ()
 type @"mime/multipart".Form struct { @"mime/multipart".Value map[string][]string; @"mime/multipart".File map[string][]*@"mime/multipart".FileHeader }
 func (? *@"mime/multipart".Form) @"mime/multipart".RemoveAll() (? error)
+import x509 "crypto/x509"
 type @"crypto/tls".ConnectionState struct { @"crypto/tls".Version uint16; @"crypto/tls".HandshakeComplete bool; @"crypto/tls".DidResume bool; @"crypto/tls".CipherSuite uint16; @"crypto/tls".NegotiatedProtocol string; @"crypto/tls".NegotiatedProtocolIsMutual bool; @"crypto/tls".ServerName string; @"crypto/tls".PeerCertificates []*@"crypto/x509".Certificate; @"crypto/tls".VerifiedChains [][]*@"crypto/x509".Certificate }
 type @"net/http".Cookie struct { @"net/http".Name string; @"net/http".Value string; @"net/http".Path string; @"net/http".Domain string; @"net/http".Expires @"time".Time; @"net/http".RawExpires string; @"net/http".MaxAge int; @"net/http".Secure bool; @"net/http".HttpOnly bool; @"net/http".Raw string; @"net/http".Unparsed []string }
 func (? *@"net/http".Cookie) @"net/http".String() (? string)
@@ -328,6 +264,11 @@ func (? *@"mime/multipart".Reader) @"mime/multipart".ReadForm(@"mime/multipart".
 func (? *@"mime/multipart".Reader) @"mime/multipart".isBoundaryDelimiterLine(@"mime/multipart".line []byte) (@"mime/multipart".ret bool)
 func (? *@"mime/multipart".Reader) @"mime/multipart".isFinalBoundary(@"mime/multipart".line []byte) (? bool)
 func (? *@"mime/multipart".Reader) @"mime/multipart".peekBufferIsEmptyPart(@"mime/multipart".peek []byte) (? bool)
+type @"sync".Cond struct { @"sync".L @"sync".Locker; @"sync".sema @"sync".syncSema; @"sync".waiters uint32; @"sync".checker @"sync".copyChecker }
+func (? *@"sync".Cond) @"sync".Broadcast() ()
+func (? *@"sync".Cond) @"sync".Signal() ()
+func (? *@"sync".Cond) @"sync".Wait() ()
+func (? *@"sync".Cond) @"sync".signalImpl(@"sync".all bool) ()
 type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
 func (? *@"time".Location) @"time".String() (? string)
 func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
@@ -335,13 +276,27 @@ func (? *@"time".Location) @"time".get() (? *@"time".Location)
 func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
 func (? *@"time".Location) @"time".lookupFirstZone() (? int)
 func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
 type @"time".Month int
 func (? @"time".Month) @"time".String() (? string)
 func (? *@"time".Month) @"time".String() (? string)
 type @"time".Weekday int
 func (? @"time".Weekday) @"time".String() (? string)
 func (? *@"time".Weekday) @"time".String() (? string)
-type @"crypto".PrivateKey interface {  }
+type @"net/url".Userinfo struct { @"net/url".username string; @"net/url".password string; @"net/url".passwordSet bool }
+func (? *@"net/url".Userinfo) @"net/url".Password() (? string, ? bool)
+func (? *@"net/url".Userinfo) @"net/url".String() (? string)
+func (? *@"net/url".Userinfo) @"net/url".Username() (? string)
 import big "math/big"
 import pkix "crypto/x509/pkix"
 import asn1 "encoding/asn1"
@@ -356,60 +311,6 @@ func (? *@"crypto/x509".Certificate) @"crypto/x509".VerifyHostname(@"crypto/x509
 func (? *@"crypto/x509".Certificate) @"crypto/x509".buildChains(@"crypto/x509".cache map[int][][]*@"crypto/x509".Certificate, @"crypto/x509".currentChain []*@"crypto/x509".Certificate, @"crypto/x509".opts *@"crypto/x509".VerifyOptions) (@"crypto/x509".chains [][]*@"crypto/x509".Certificate, @"crypto/x509".err error)
 func (? *@"crypto/x509".Certificate) @"crypto/x509".isValid(@"crypto/x509".certType int, @"crypto/x509".currentChain []*@"crypto/x509".Certificate, @"crypto/x509".opts *@"crypto/x509".VerifyOptions) (? error)
 func (? *@"crypto/x509".Certificate) @"crypto/x509".systemVerify(@"crypto/x509".opts *@"crypto/x509".VerifyOptions) (@"crypto/x509".chains [][]*@"crypto/x509".Certificate, @"crypto/x509".err error)
-type @"crypto/tls".ClientSessionState struct { @"crypto/tls".sessionTicket []uint8; @"crypto/tls".vers uint16; @"crypto/tls".cipherSuite uint16; @"crypto/tls".masterSecret []byte; @"crypto/tls".serverCertificates []*@"crypto/x509".Certificate }
-type @"crypto/tls".halfConn struct { ? @"sync".Mutex; @"crypto/tls".err error; @"crypto/tls".version uint16; @"crypto/tls".cipher interface {  }; @"crypto/tls".mac @"crypto/tls".macFunction; @"crypto/tls".seq [8]byte; @"crypto/tls".bfree *@"crypto/tls".block; @"crypto/tls".nextCipher interface {  }; @"crypto/tls".nextMac @"crypto/tls".macFunction; @"crypto/tls".inDigestBuf []byte; @"crypto/tls".outDigestBuf []byte }
-func (? *@"crypto/tls".halfConn) @"crypto/tls".changeCipherSpec() (? error)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".decrypt(@"crypto/tls".b *@"crypto/tls".block) (@"crypto/tls".ok bool, @"crypto/tls".prefixLen int, @"crypto/tls".alertValue @"crypto/tls".alert)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".encrypt(@"crypto/tls".b *@"crypto/tls".block, @"crypto/tls".explicitIVLen int) (? bool, ? @"crypto/tls".alert)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".error() (? error)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".freeBlock(@"crypto/tls".b *@"crypto/tls".block) ()
-func (? *@"crypto/tls".halfConn) @"crypto/tls".incSeq() ()
-func (? *@"crypto/tls".halfConn) @"crypto/tls".newBlock() (? *@"crypto/tls".block)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".prepareCipherSpec(@"crypto/tls".version uint16, @"crypto/tls".cipher interface {  }, @"crypto/tls".mac @"crypto/tls".macFunction) ()
-func (? *@"crypto/tls".halfConn) @"crypto/tls".resetSeq() ()
-func (? *@"crypto/tls".halfConn) @"crypto/tls".setErrorLocked(@"crypto/tls".err error) (? error)
-func (? *@"crypto/tls".halfConn) @"crypto/tls".splitBlock(@"crypto/tls".b *@"crypto/tls".block, @"crypto/tls".n int) (? *@"crypto/tls".block, ? *@"crypto/tls".block)
-type @"crypto/tls".block struct { @"crypto/tls".data []byte; @"crypto/tls".off int; @"crypto/tls".link *@"crypto/tls".block }
-func (? *@"crypto/tls".block) @"crypto/tls".Read(@"crypto/tls".p []byte) (@"crypto/tls".n int, @"crypto/tls".err error)
-func (? *@"crypto/tls".block) @"crypto/tls".readFromUntil(@"crypto/tls".r @"io".Reader, @"crypto/tls".n int) (? error)
-func (? *@"crypto/tls".block) @"crypto/tls".reserve(@"crypto/tls".n int) ()
-func (? *@"crypto/tls".block) @"crypto/tls".resize(@"crypto/tls".n int) ()
-type @"crypto/tls".sessionState struct { @"crypto/tls".vers uint16; @"crypto/tls".cipherSuite uint16; @"crypto/tls".masterSecret []byte; @"crypto/tls".certificates [][]byte }
-func (? *@"crypto/tls".sessionState) @"crypto/tls".equal(@"crypto/tls".i interface {  }) (? bool)
-func (? *@"crypto/tls".sessionState) @"crypto/tls".marshal() (? []byte)
-func (? *@"crypto/tls".sessionState) @"crypto/tls".unmarshal(@"crypto/tls".data []byte) (? bool)
-type @"crypto/tls".recordType uint8
-type @"crypto/tls".alert uint8
-func (? @"crypto/tls".alert) @"crypto/tls".Error() (? string)
-func (? @"crypto/tls".alert) @"crypto/tls".String() (? string)
-func (? *@"crypto/tls".alert) @"crypto/tls".Error() (? string)
-func (? *@"crypto/tls".alert) @"crypto/tls".String() (? string)
-import cipher "crypto/cipher"
-type @"crypto/tls".cipherSuite struct { @"crypto/tls".id uint16; @"crypto/tls".keyLen int; @"crypto/tls".macLen int; @"crypto/tls".ivLen int; @"crypto/tls".ka func (@"crypto/tls".version uint16) (? @"crypto/tls".keyAgreement); @"crypto/tls".flags int; @"crypto/tls".cipher func (@"crypto/tls".key []byte, @"crypto/tls".iv []byte, @"crypto/tls".isRead bool) (? interface {  }); @"crypto/tls".mac func (@"crypto/tls".version uint16, @"crypto/tls".macKey []byte) (? @"crypto/tls".macFunction); @"crypto/tls".aead func (@"crypto/tls".key []byte, @"crypto/tls".fixedNonce []byte) (? @"crypto/cipher".AEAD) }
-type @"net/http".liveSwitchReader struct { ? @"sync".Mutex; @"net/http".r @"io".Reader }
-func (? *@"net/http".liveSwitchReader) @"net/http".Read(@"net/http".p []byte) (@"net/http".n int, @"net/http".err error)
-type @"io".LimitedReader struct { @"io".R @"io".Reader; @"io".N int64 }
-func (? *@"io".LimitedReader) @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error)
-type @"bufio".ReadWriter struct { ? *@"bufio".Reader; ? *@"bufio".Writer }
-type @"net/http".response struct { @"net/http".conn *@"net/http".conn; @"net/http".req *@"net/http".Request; @"net/http".wroteHeader bool; @"net/http".wroteContinue bool; @"net/http".w *@"bufio".Writer; @"net/http".cw @"net/http".chunkWriter; @"net/http".sw *@"net/http".switchWriter; @"net/http".handlerHeader @"net/http".Header; @"net/http".calledHeader bool; @"net/http".written int64; @"net/http".contentLength int64; @"net/http".status int; @"net/http".closeAfterReply bool; @"net/http".requestBodyLimitHit bool; @"net/http".handlerDone bool; @"net/http".dateBuf [29]byte; @"net/http".clenBuf [10]byte }
-func (? *@"net/http".response) @"net/http".CloseNotify() (? <-chan bool)
-func (? *@"net/http".response) @"net/http".Flush() ()
-func (? *@"net/http".response) @"net/http".Header() (? @"net/http".Header)
-func (? *@"net/http".response) @"net/http".Hijack() (@"net/http".rwc @"net".Conn, @"net/http".buf *@"bufio".ReadWriter, @"net/http".err error)
-func (? *@"net/http".response) @"net/http".ReadFrom(@"net/http".src @"io".Reader) (@"net/http".n int64, @"net/http".err error)
-func (? *@"net/http".response) @"net/http".Write(@"net/http".data []byte) (@"net/http".n int, @"net/http".err error)
-func (? *@"net/http".response) @"net/http".WriteHeader(@"net/http".code int) ()
-func (? *@"net/http".response) @"net/http".WriteString(@"net/http".data string) (@"net/http".n int, @"net/http".err error)
-func (? *@"net/http".response) @"net/http".bodyAllowed() (? bool)
-func (? *@"net/http".response) @"net/http".finishRequest() ()
-func (? *@"net/http".response) @"net/http".needsSniff() (? bool)
-func (? *@"net/http".response) @"net/http".requestTooLarge() ()
-func (? *@"net/http".response) @"net/http".sendExpectationFailed() ()
-func (? *@"net/http".response) @"net/http".write(@"net/http".lenData int, @"net/http".dataB []byte, @"net/http".dataS string) (@"net/http".n int, @"net/http".err error)
-type @"net/url".Userinfo struct { @"net/url".username string; @"net/url".password string; @"net/url".passwordSet bool }
-func (? *@"net/url".Userinfo) @"net/url".Password() (? string, ? bool)
-func (? *@"net/url".Userinfo) @"net/url".String() (? string)
-func (? *@"net/url".Userinfo) @"net/url".Username() (? string)
 type @"net/textproto".MIMEHeader map[string][]string
 func (? @"net/textproto".MIMEHeader) @"net/textproto".Add(@"net/textproto".key string, @"net/textproto".value string) ()
 func (? @"net/textproto".MIMEHeader) @"net/textproto".Del(@"net/textproto".key string) ()
@@ -444,6 +345,10 @@ func (? *@"mime/multipart".Part) @"mime/multipart".FormName() (? string)
 func (? *@"mime/multipart".Part) @"mime/multipart".Read(@"mime/multipart".d []byte) (@"mime/multipart".n int, @"mime/multipart".err error)
 func (? *@"mime/multipart".Part) @"mime/multipart".parseContentDisposition() ()
 func (? *@"mime/multipart".Part) @"mime/multipart".populateHeaders() (? error)
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"sync".syncSema [3]uintptr
+type @"sync".copyChecker uintptr
+func (? *@"sync".copyChecker) @"sync".check() ()
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 type @"crypto/x509".SignatureAlgorithm int
@@ -547,26 +452,6 @@ type @"crypto/x509/pkix".CertificateList struct { @"crypto/x509/pkix".TBSCertLis
 func (? *@"crypto/x509/pkix".CertificateList) @"crypto/x509/pkix".HasExpired(@"crypto/x509/pkix".now @"time".Time) (? bool)
 type @"crypto/x509/pkix".RevokedCertificate struct { @"crypto/x509/pkix".SerialNumber *@"math/big".Int; @"crypto/x509/pkix".RevocationTime @"time".Time; @"crypto/x509/pkix".Extensions []@"crypto/x509/pkix".Extension "asn1:\"optional\"" }
 type @"crypto/x509".VerifyOptions struct { @"crypto/x509".DNSName string; @"crypto/x509".Intermediates *@"crypto/x509".CertPool; @"crypto/x509".Roots *@"crypto/x509".CertPool; @"crypto/x509".CurrentTime @"time".Time; @"crypto/x509".KeyUsages []@"crypto/x509".ExtKeyUsage }
-type @"crypto/tls".macFunction interface { @"crypto/tls".MAC(@"crypto/tls".digestBuf []byte, @"crypto/tls".seq []byte, @"crypto/tls".header []byte, @"crypto/tls".data []byte) (? []byte); @"crypto/tls".Size() (? int) }
-type @"crypto/tls".keyAgreement interface { @"crypto/tls".generateClientKeyExchange(? *@"crypto/tls".Config, ? *@"crypto/tls".clientHelloMsg, ? *@"crypto/x509".Certificate) (? []byte, ? *@"crypto/tls".clientKeyExchangeMsg, ? error); @"crypto/tls".generateServerKeyExchange(? *@"crypto/tls".Config, ? *@"crypto/tls".Certificate, ? *@"crypto/tls".clientHelloMsg, ? *@"crypto/tls".serverHelloMsg) (? *@"crypto/tls".serverKeyExchangeMsg, ? error); @"crypto/tls".processClientKeyExchange(? *@"crypto/tls".Config, ? *@"crypto/tls".Certificate, ? *@"crypto/tls".clientKeyExchangeMsg, ? uint16) (? []byte, ? error); @"crypto/tls".processServerKeyExchange(? *@"crypto/tls".Config, ? *@"crypto/tls".clientHelloMsg, ? *@"crypto/tls".serverHelloMsg, ? *@"crypto/x509".Certificate, ? *@"crypto/tls".serverKeyExchangeMsg) (? error) }
-type @"crypto/cipher".AEAD interface { @"crypto/cipher".NonceSize() (? int); @"crypto/cipher".Open(@"crypto/cipher".dst []byte, @"crypto/cipher".nonce []byte, @"crypto/cipher".ciphertext []byte, @"crypto/cipher".data []byte) (? []byte, ? error); @"crypto/cipher".Overhead() (? int); @"crypto/cipher".Seal(@"crypto/cipher".dst []byte, @"crypto/cipher".nonce []byte, @"crypto/cipher".plaintext []byte, @"crypto/cipher".data []byte) (? []byte) }
-type @"bufio".Writer struct { @"bufio".err error; @"bufio".buf []byte; @"bufio".n int; @"bufio".wr @"io".Writer }
-func (? *@"bufio".Writer) @"bufio".Available() (? int)
-func (? *@"bufio".Writer) @"bufio".Buffered() (? int)
-func (? *@"bufio".Writer) @"bufio".Flush() (? error)
-func (? *@"bufio".Writer) @"bufio".ReadFrom(@"bufio".r @"io".Reader) (@"bufio".n int64, @"bufio".err error)
-func (? *@"bufio".Writer) @"bufio".Reset(@"bufio".w @"io".Writer) ()
-func (? *@"bufio".Writer) @"bufio".Write(@"bufio".p []byte) (@"bufio".nn int, @"bufio".err error)
-func (? *@"bufio".Writer) @"bufio".WriteByte(@"bufio".c byte) (? error)
-func (? *@"bufio".Writer) @"bufio".WriteRune(@"bufio".r rune) (@"bufio".size int, @"bufio".err error)
-func (? *@"bufio".Writer) @"bufio".WriteString(@"bufio".s string) (? int, ? error)
-func (? *@"bufio".Writer) @"bufio".flush() (? error)
-type @"net/http".chunkWriter struct { @"net/http".res *@"net/http".response; @"net/http".header @"net/http".Header; @"net/http".wroteHeader bool; @"net/http".chunking bool }
-func (? *@"net/http".chunkWriter) @"net/http".Write(@"net/http".p []byte) (@"net/http".n int, @"net/http".err error)
-func (? *@"net/http".chunkWriter) @"net/http".close() ()
-func (? *@"net/http".chunkWriter) @"net/http".flush() ()
-func (? *@"net/http".chunkWriter) @"net/http".writeHeader(@"net/http".p []byte) ()
-type @"net/http".switchWriter struct { ? @"io".Writer }
 type @"math/big".nat []@"math/big".Word
 func (? @"math/big".nat) @"math/big".add(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
 func (? @"math/big".nat) @"math/big".and(@"math/big".x @"math/big".nat, @"math/big".y @"math/big".nat) (? @"math/big".nat)
@@ -674,44 +559,50 @@ func (? @"encoding/asn1".BitString) @"encoding/asn1".At(@"encoding/asn1".i int) 
 func (? @"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
 func (? *@"encoding/asn1".BitString) @"encoding/asn1".At(@"encoding/asn1".i int) (? int)
 func (? *@"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
-type @"crypto/tls".clientHelloMsg struct { @"crypto/tls".raw []byte; @"crypto/tls".vers uint16; @"crypto/tls".random []byte; @"crypto/tls".sessionId []byte; @"crypto/tls".cipherSuites []uint16; @"crypto/tls".compressionMethods []uint8; @"crypto/tls".nextProtoNeg bool; @"crypto/tls".serverName string; @"crypto/tls".ocspStapling bool; @"crypto/tls".supportedCurves []@"crypto/tls".CurveID; @"crypto/tls".supportedPoints []uint8; @"crypto/tls".ticketSupported bool; @"crypto/tls".sessionTicket []uint8; @"crypto/tls".signatureAndHashes []@"crypto/tls".signatureAndHash; @"crypto/tls".secureRenegotiation bool }
-func (? *@"crypto/tls".clientHelloMsg) @"crypto/tls".equal(@"crypto/tls".i interface {  }) (? bool)
-func (? *@"crypto/tls".clientHelloMsg) @"crypto/tls".marshal() (? []byte)
-func (? *@"crypto/tls".clientHelloMsg) @"crypto/tls".unmarshal(@"crypto/tls".data []byte) (? bool)
-type @"crypto/tls".clientKeyExchangeMsg struct { @"crypto/tls".raw []byte; @"crypto/tls".ciphertext []byte }
-func (? *@"crypto/tls".clientKeyExchangeMsg) @"crypto/tls".equal(@"crypto/tls".i interface {  }) (? bool)
-func (? *@"crypto/tls".clientKeyExchangeMsg) @"crypto/tls".marshal() (? []byte)
-func (? *@"crypto/tls".clientKeyExchangeMsg) @"crypto/tls".unmarshal(@"crypto/tls".data []byte) (? bool)
-type @"crypto/tls".serverHelloMsg struct { @"crypto/tls".raw []byte; @"crypto/tls".vers uint16; @"crypto/tls".random []byte; @"crypto/tls".sessionId []byte; @"crypto/tls".cipherSuite uint16; @"crypto/tls".compressionMethod uint8; @"crypto/tls".nextProtoNeg bool; @"crypto/tls".nextProtos []string; @"crypto/tls".ocspStapling bool; @"crypto/tls".ticketSupported bool; @"crypto/tls".secureRenegotiation bool }
-func (? *@"crypto/tls".serverHelloMsg) @"crypto/tls".equal(@"crypto/tls".i interface {  }) (? bool)
-func (? *@"crypto/tls".serverHelloMsg) @"crypto/tls".marshal() (? []byte)
-func (? *@"crypto/tls".serverHelloMsg) @"crypto/tls".unmarshal(@"crypto/tls".data []byte) (? bool)
-type @"crypto/tls".serverKeyExchangeMsg struct { @"crypto/tls".raw []byte; @"crypto/tls".key []byte }
-func (? *@"crypto/tls".serverKeyExchangeMsg) @"crypto/tls".equal(@"crypto/tls".i interface {  }) (? bool)
-func (? *@"crypto/tls".serverKeyExchangeMsg) @"crypto/tls".marshal() (? []byte)
-func (? *@"crypto/tls".serverKeyExchangeMsg) @"crypto/tls".unmarshal(@"crypto/tls".data []byte) (? bool)
+type @"crypto/x509".CertPool struct { @"crypto/x509".bySubjectKeyId map[string][]int; @"crypto/x509".byName map[string][]int; @"crypto/x509".certs []*@"crypto/x509".Certificate }
+func (? *@"crypto/x509".CertPool) @"crypto/x509".AddCert(@"crypto/x509".cert *@"crypto/x509".Certificate) ()
+func (? *@"crypto/x509".CertPool) @"crypto/x509".AppendCertsFromPEM(@"crypto/x509".pemCerts []byte) (@"crypto/x509".ok bool)
+func (? *@"crypto/x509".CertPool) @"crypto/x509".Subjects() (@"crypto/x509".res [][]byte)
+func (? *@"crypto/x509".CertPool) @"crypto/x509".findVerifiedParents(@"crypto/x509".cert *@"crypto/x509".Certificate) (@"crypto/x509".parents []int, @"crypto/x509".errCert *@"crypto/x509".Certificate, @"crypto/x509".err error)
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"math/rand".seed int64) () }
 type @"crypto/x509/pkix".RelativeDistinguishedNameSET []@"crypto/x509/pkix".AttributeTypeAndValue
 type @"encoding/asn1".RawContent []byte
 type @"encoding/asn1".RawValue struct { @"encoding/asn1".Class int; @"encoding/asn1".Tag int; @"encoding/asn1".IsCompound bool; @"encoding/asn1".Bytes []byte; @"encoding/asn1".FullBytes []byte }
-type @"crypto/tls".signatureAndHash struct { @"crypto/tls".hash uint8; @"crypto/tls".signature uint8 }
 $$
-0ÇÊgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytescontainer/listhashmathstrconvcryptocrypto/subtlecrypto/cipher
-crypto/aesreflectencoding/binary
-crypto/dessyscallstringstimeosfmt	math/randmath/bigcrypto/ellipticcrypto/ecdsacrypto/hmac
-crypto/md5bufiocrypto/rand
+0Çgithub.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathstrconvreflectencoding/binarysyscallstringstimeosfmtsortpath/filepath	io/ioutil	math/randnetcompress/flatehash
+hash/crc32compress/gzipcontainer/listcryptocrypto/subtlecrypto/cipher
+crypto/aes
+crypto/desmath/bigcrypto/ellipticcrypto/ecdsacrypto/hmac
+crypto/md5crypto/rand
 crypto/rc4
 crypto/rsacrypto/sha1crypto/sha256
-crypto/dsacrypto/sha512encoding/asn1crypto/x509/pkixencoding/hexsortflagtext/tabwriterruntime/pproftestingencoding/base64encoding/pemnetpath/filepathos/execcrypto/x509	io/ioutil
-crypto/tlscompress/flate
-hash/crc32compress/gziplogmimenet/textprotomime/multipartnet/urlpathnet/http0_0
-bytesA0net/httpB0
-crypto/tlsC0	flagD0fmtE0netF0osG0	syncH0Ç5^0Ç∫ 0IÇºI=$pkg.ResponseRecorder=$newType(0,"Struct","httptest.ResponseRecorder","ResponseRecorder","net/http/httptest",function(Code_,HeaderMap_,Body_,Flushed_,wroteHeader_){this.$val=this;this.Code=Code_!==undefined?Code_:0;this.HeaderMap=HeaderMap_!==undefined?HeaderMap_:false;this.Body=Body_!==undefined?Body_:($ptrType(A.Buffer)).nil;this.Flushed=Flushed_!==undefined?Flushed_:false;this.wroteHeader=wroteHeader_!==undefined?wroteHeader_:false;});Ç∑($ptrType(I)).methods=[["Flush","Flush","",[],[],false,-1],["Header","Header","",[],[B.Header],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteHeader","WriteHeader","",[$Int],[],false,-1]];I.init([["Code","Code","",$Int,""],["HeaderMap","HeaderMap","",B.Header,""],["Body","Body","",($ptrType(A.Buffer)),""],["Flushed","Flushed","",$Bool,""],["wroteHeader","wroteHeader","net/http/httptest",$Bool,""]]);0ResponseRecorder0bytes:Buffernet/http:Header 0Ç‘ 0KÇçK=$pkg.Server=$newType(0,"Struct","httptest.Server","Server","net/http/httptest",function(URL_,Listener_,TLS_,Config_,wg_){this.$val=this;this.URL=URL_!==undefined?URL_:"";this.Listener=Listener_!==undefined?Listener_:null;this.TLS=TLS_!==undefined?TLS_:($ptrType(C.Config)).nil;this.Config=Config_!==undefined?Config_:($ptrType(B.Server)).nil;this.wg=wg_!==undefined?wg_:new H.WaitGroup.Ptr();});ÇÁ($ptrType(K)).methods=[["Close","Close","",[],[],false,-1],["CloseClientConnections","CloseClientConnections","",[],[],false,-1],["Start","Start","",[],[],false,-1],["StartTLS","StartTLS","",[],[],false,-1],["wrapHandler","wrapHandler","net/http/httptest",[],[],false,-1]];K.init([["URL","URL","",$String,""],["Listener","Listener","",F.Listener,""],["TLS","TLS","",($ptrType(C.Config)),""],["Config","Config","",($ptrType(B.Server)),""],["wg","wg","net/http/httptest",H.WaitGroup,""]]);0Server0Bcrypto/tls:Confignet/http:Servernet:Listenersync:WaitGroup 0Çj 0LÇPL=$pkg.historyListener=$newType(0,"Struct","httptest.historyListener","historyListener","net/http/httptest",function(Listener_,Mutex_,history_){this.$val=this;this.Listener=Listener_!==undefined?Listener_:null;this.Mutex=Mutex_!==undefined?Mutex_:new H.Mutex.Ptr();this.history=history_!==undefined?history_:($sliceType(F.Conn)).nil;});Ç≈L.methods=[["Addr","Addr","",[],[F.Addr],false,0],["Close","Close","",[],[$error],false,0]];($ptrType(L)).methods=[["Accept","Accept","",[],[F.Conn,$error],false,-1],["Addr","Addr","",[],[F.Addr],false,0],["Close","Close","",[],[$error],false,0],["Lock","Lock","",[],[],false,1],["Unlock","Unlock","",[],[],false,1]];L.init([["Listener","","",F.Listener,""],["Mutex","","",H.Mutex,""],["history","history","net/http/httptest",($sliceType(F.Conn)),""]]);0historyListener0.net:Addrnet:Connnet:Listener
-sync:Mutex 0Ç% 0RÅ⁄R=$pkg.waitGroupHandler=$newType(0,"Struct","httptest.waitGroupHandler","waitGroupHandler","net/http/httptest",function(s_,h_){this.$val=this;this.s=s_!==undefined?s_:($ptrType(K)).nil;this.h=h_!==undefined?h_:null;});ÅŒ($ptrType(R)).methods=[["ServeHTTP","ServeHTTP","",[B.ResponseWriter,($ptrType(B.Request))],[],false,-1]];R.init([["s","s","net/http/httptest",($ptrType(K)),""],["h","h","net/http/httptest",B.Handler,""]]);0waitGroupHandler0Wnet/http/httptest:Servernet/http:Handlernet/http:Requestnet/http:ResponseWriter 0 0N  0serve0  0! 0S  0localhostCert0  0  0T  0localhostKey0  0Åü 0  j    N=D.String("httptest.serve","","if non-empty, httptest.NewServer serves on this address and blocks");0 0&flag:Stringnet/http/httptest:serve 0Ç∂ 0  Çu    S=new($sliceType($Uint8))($stringToBytes("-----BEGIN CERTIFICATE-----\nMIIBdzCCASOgAwIBAgIBADALBgkqhkiG9w0BAQUwEjEQMA4GA1UEChMHQWNtZSBD\nbzAeFw03MDAxMDEwMDAwMDBaFw00OTEyMzEyMzU5NTlaMBIxEDAOBgNVBAoTB0Fj\nbWUgQ28wWjALBgkqhkiG9w0BAQEDSwAwSAJBAN55NcYKZeInyTuhcCwFMhDHCmwa\nIUSdtXdcbItRB/yfXGBhiex00IaLXQnSU+QZPRZWYqeTEbFSgihqi1PUDy8CAwEA\nAaNoMGYwDgYDVR0PAQH/BAQDAgCkMBMGA1UdJQQMMAoGCCsGAQUFBwMBMA8GA1Ud\nEwEB/wQFMAMBAf8wLgYDVR0RBCcwJYILZXhhbXBsZS5jb22HBH8AAAGHEAAAAAAA\nAAAAAAAAAAAAAAEwCwYJKoZIhvcNAQEFA0EAAoQn/ytgqpiLcZu9XKbCJsJcvkgk\nSe6AbGXgSlq+ZCEVo0qIwSgeBqmsJxUu7NCSOwVJLYNEBO2DtIxoYVk+MA==\n-----END CERTIFICATE-----"));0localhostCert0!net/http/httptest:localhostCert 0Çj 0  Ç+    T=new($sliceType($Uint8))($stringToBytes("-----BEGIN RSA PRIVATE KEY-----\nMIIBPAIBAAJBAN55NcYKZeInyTuhcCwFMhDHCmwaIUSdtXdcbItRB/yfXGBhiex0\n0IaLXQnSU+QZPRZWYqeTEbFSgihqi1PUDy8CAwEAAQJBAQdUx66rfh8sYsgfdcvV\nNoafYpnEcB5s4m/vSVe6SU7dCK6eYec9f9wpT353ljhDUHq3EbmE4foNzJngh35d\nAekCIQDhRQG5Li0Wj8TM4obOnnXUXf1jRv0UkzE9AHWLG5q3AwIhAPzSjpYUDjVW\nMCUXgckTpKCuGwbJk7424Nb8bLzf3kllAiA5mUBgjfr/WtFSJdWcPQ4Zt9KTMNKD\nEUO0ukpTwEIl6wIhAMbGqZK3zAAFdq8DD2jPx+UJXnh0rnOkZBzDtJ6/iN69AiEA\n1Aq8MJgTaYsDQWyU/hDq5YkDJc9e9DSCvUIzqxQWMQE=\n-----END RSA PRIVATE KEY-----"));0localhostKey0 net/http/httptest:localhostKey 0Åÿnet/http/httptest.NewRecorder0JjJ=$pkg.NewRecorder=function(){  ¸return new I.Ptr(200,new $Map(),new A.Buffer.Ptr(),false,false);    }; 0NewRecorder02bytes:Buffer"net/http/httptest:ResponseRecorder 0ÇM,(*net/http/httptest.ResponseRecorder).Header0 Å€I.Ptr.prototype.Header=function(){var a,b;  Oa=this;  }b=a.HeaderMap;  ê    if(b===false){  †b=new $Map();  ∏a.HeaderMap=b;    }  Õreturn b;    };I.prototype.Header=function(){return this.$val.Header();}; 0ResponseRecorder0$"net/http/httptest:ResponseRecorder 0Çö+(*net/http/httptest.ResponseRecorder).Write0 ÇI.Ptr.prototype.Write=function(a){var b;  b=this;  S    if(!b.wroteHeader){  jb.WriteHeader(200);    }  Ç    if(!(b.Body===($ptrType(A.Buffer)).nil)){  òb.Body.Write(a);    }  Øreturn[a.$length,null];    };I.prototype.Write=function(a){return this.$val.Write(a);}; 0ResponseRecorder02bytes:Buffer"net/http/httptest:ResponseRecorder 0ÇG1(*net/http/httptest.ResponseRecorder).WriteHeader0 Å–I.Ptr.prototype.WriteHeader=function(a){var b;  Íb=this;      if(!b.wroteHeader){  0b.Code=a;    }  Cb.wroteHeader=true;    };I.prototype.WriteHeader=function(a){return this.$val.WriteHeader(a);}; 0ResponseRecorder0$"net/http/httptest:ResponseRecorder 0Ç2+(*net/http/httptest.ResponseRecorder).Flush0 Å¡I.Ptr.prototype.Flush=function(){var a;  Ña=this;  •    if(!a.wroteHeader){  ºa.WriteHeader(200);    }  ‘a.Flushed=true;    };I.prototype.Flush=function(){return this.$val.Flush();}; 0ResponseRecorder0$"net/http/httptest:ResponseRecorder 0Ç´+(*net/http/httptest.historyListener).Accept0 Ç;L.Ptr.prototype.Accept=function(){var a=null,b=null,c,d;  üc=this;  ÿd=c.Listener.Accept();a=d[0];b=d[1];  ˜    if($interfaceIsEqual(b,null)){  	c.Mutex.Lock();  c.history=$append(c.history,a);  :c.Mutex.Unlock();    }  Jreturn[a,b];    };L.prototype.Accept=function(){return this.$val.Accept();}; 0historyListener0#!net/http/httptest:historyListener 0Ç"net/http/httptest.newLocalListener0MÇâM=function(){var a,b,c,d,e,f,g;  |    if(!(N.$get()==="")){  êa=F.Listen("tcp",N.$get());b=a[0];c=a[1];  ∂    if(!($interfaceIsEqual(c,null))){  …$panic(new $String(E.Sprintf("httptest: failed to listen on %v: %v",new($sliceType($emptyInterface))([new $String(N.$get()),c]))));    }  return b;    }  $d=F.Listen("tcp","127.0.0.1:0");e=d[0];f=d[1];  P    if(!($interfaceIsEqual(f,null))){  b  eg=F.Listen("tcp6","[::1]:0");e=g[0];f=g[1];    if(!($interfaceIsEqual(f,null))){  ù$panic(new $String(E.Sprintf("httptest: failed to listen on a port: %v",new($sliceType($emptyInterface))([f]))));    }    }  Èreturn e;    }; 0newLocalListener02fmt:Sprintfnet/http/httptest:serve
-net:Listen 0Çvnet/http/httptest.NewServer0OÇO=$pkg.NewServer=function(a,$b){var $this=this,$args=arguments,$r,$s=0,b;if(!$b){$nonblockingCall();};return function(){while(true){switch($s){case 0:  ◊b=P(a);  ˙$r=b.Start(true);$s=1;case 1:if($r&&$r.constructor===Function){$r=$r();}  return b;    case-1:}return;}};}; 0	NewServer0&$net/http/httptest:NewUnstartedServerˇ0Ç$net/http/httptest.NewUnstartedServer0PÇ:P=$pkg.NewUnstartedServer=function(a){  %return new K.Ptr("",M(),($ptrType(C.Config)).nil,new B.Server.Ptr("",a,new $packages["time"].Duration(0,0),new $packages["time"].Duration(0,0),0,($ptrType(C.Config)).nil,false,$throwNilPointerError,($ptrType($packages["log"].Logger)).nil,0),new H.WaitGroup.Ptr());    }; 0NewUnstartedServer0Åçcrypto/tls:Config
-log:Loggernet/http/httptest:Server"net/http/httptest:newLocalListenernet/http:Serversync:WaitGrouptime:Duration 0ÇK!(*net/http/httptest.Server).Start0 ÇlK.Ptr.prototype.Start=function($b){var $this=this,$args=arguments,$r,$s=0,a,b,c,d,e;if(!$b){$nonblockingCall();};return function(){while(true){switch($s){case 0:  øa=$this;  ’    if(!(a.URL==="")){  Ë$panic(new $String("Server already started"));    }  a.Listener=new L.Ptr(a.Listener,new H.Mutex.Ptr(),($sliceType(F.Conn)).nil);  Aa.URL="http://"+a.Listener.Addr().String();  qa.wrapHandler();  Ç$go((c=a.Config,function(b){$stackDepthOffset--;try{return c.Serve(b);}finally{$stackDepthOffset++;}}),[a.Listener]);  °    if(!(N.$get()==="")){}else{$s=1;continue;}  µE.Fprintln(G.Stderr,new($sliceType($emptyInterface))([new $String("httptest: serving on"),new $String(a.URL)]));  Óe=$select([],true);$s=2;case 2:if(e&&e.constructor===Function){e=e();}d=e;    case 1:    case-1:}return;}};};K.prototype.Start=function($b){return this.$val.Start($b);}; 0Server0Å§fmt:Fprintlnnet/http/httptest:Server!net/http/httptest:historyListenernet/http/httptest:servenet/http/httptest:wrapHandlernet:Conn	os:Stderr
-sync:Mutexˇ0Ç÷$(*net/http/httptest.Server).StartTLS0 Ç|K.Ptr.prototype.StartTLS=function(){var a,b,c,d,e,f,g,h;  @a=this;  Y    if(!(a.URL==="")){  l$panic(new $String("Server already started"));    }  êb=C.X509KeyPair(S,T);c=new C.Certificate.Ptr();$copy(c,b[0],C.Certificate);d=b[1];  À    if(!($interfaceIsEqual(d,null))){  ›$panic(new $String(E.Sprintf("httptest: NewTLSServer: %v",new($sliceType($emptyInterface))([d]))));    }  e=a.TLS;  1a.TLS=new C.Config.Ptr();  J    if(!(e===($ptrType(C.Config)).nil)){  g$copy(a.TLS,e,C.Config);    }  Ñ    if(a.TLS.NextProtos===($sliceType($String)).nil){  £a.TLS.NextProtos=new($sliceType($String))(["http/1.1"]);    }  œ    if(a.TLS.Certificates.$length===0){  Ûa.TLS.Certificates=new($sliceType(C.Certificate))([$clone(c,C.Certificate)]);    }  $f=C.NewListener(a.Listener,a.TLS);  Xa.Listener=new L.Ptr(f,new H.Mutex.Ptr(),($sliceType(F.Conn)).nil);  éa.URL="https://"+a.Listener.Addr().String();  øa.wrapHandler();  –$go((h=a.Config,function(g){$stackDepthOffset--;try{return h.Serve(g);}finally{$stackDepthOffset++;}}),[a.Listener]);    };K.prototype.StartTLS=function(){return this.$val.StartTLS();}; 0Server0Çcrypto/tls:Certificatecrypto/tls:Configcrypto/tls:NewListenercrypto/tls:X509KeyPairfmt:Sprintfnet/http/httptest:Server!net/http/httptest:historyListenernet/http/httptest:localhostCertnet/http/httptest:localhostKeynet/http/httptest:wrapHandlernet:Conn
-sync:Mutex 0ÇØ'(*net/http/httptest.Server).wrapHandler0 Ç
-K.Ptr.prototype.wrapHandler=function(){var a,b;  ˜a=this;  b=a.Config.Handler;  *    if($interfaceIsEqual(b,null)){  :b=B.DefaultServeMux;    }  Wa.Config.Handler=new R.Ptr(a,b);    };K.prototype.wrapHandler=function(){return this.$val.wrapHandler();}; 0ServerwrapHandler0Xnet/http/httptest:Server"net/http/httptest:waitGroupHandlernet/http:DefaultServeMux 0ÅΩnet/http/httptest.NewTLSServer0QYQ=$pkg.NewTLSServer=function(a){var b;  Ab=P(a);  db.StartTLS();  sreturn b;    }; 0NewTLSServer0&$net/http/httptest:NewUnstartedServer 0Ç!(*net/http/httptest.Server).Close0 ÇâK.Ptr.prototype.Close=function(){var a,b,c,d,e;  Òa=this;  a.Listener.Close();  a.wg.Wait();  (a.CloseClientConnections();  D  Gb=(c=B.DefaultTransport,(c!==null&&c.constructor===($ptrType(B.Transport))?[c.$val,true]:[($ptrType(B.Transport)).nil,false]));d=b[0];e=b[1];    if(e){  Äd.CloseIdleConnections();    }    };K.prototype.Close=function(){return this.$val.Close();}; 0Server0Inet/http/httptest:Servernet/http:DefaultTransportnet/http:Transport 0Çñ2(*net/http/httptest.Server).CloseClientConnections0 ÇK.Ptr.prototype.CloseClientConnections=function(){var a,b,c,d,e,f,g,h;  a=this;  (b=(c=a.Listener,(c!==null&&c.constructor===($ptrType(L))?[c.$val,true]:[($ptrType(L)).nil,false]));d=b[0];e=b[1];  Q    if(!e){  \return;    }  gd.Mutex.Lock();  rf=d.history;g=0;while(g<f.$length){h=((g<0||g>=f.$length)?$throwRuntimeError("index out of range"):f.$array[f.$offset+g]);  ñh.Close();    g++;}  ßd.Mutex.Unlock();    };K.prototype.CloseClientConnections=function(){return this.$val.CloseClientConnections();}; 0Server0=net/http/httptest:Server!net/http/httptest:historyListener 0Ç*/(*net/http/httptest.waitGroupHandler).ServeHTTP0 Ç¥R.Ptr.prototype.ServeHTTP=function(a,b){var $deferred=[],$err=null,c,d;try{$deferFrames.push($deferred);  ∏c=this;  c.s.wg.Add(1);  $deferred.push([(d=c.s.wg,function(){$stackDepthOffset--;try{return d.Done();}finally{$stackDepthOffset++;}}),[]]);  Qc.h.ServeHTTP(a,b);    }catch(err){$err=err;}finally{$deferFrames.pop();$callDeferred($deferred,$err);}};R.prototype.ServeHTTP=function(a,b){return this.$val.ServeHTTP(a,b);}; 0waitGroupHandler0$"net/http/httptest:waitGroupHandler 0 Ç{"Base":8520,"Files":[{"Name":"/usr/local/go/src/pkg/net/http/httptest/recorder.go","Base":1,"Size":1767,"Lines":[0,55,109,159,160,217,234,235,244,253,265,267,268,337,393,424,492,546,629,645,646,664,666,667,723,762,789,821,853,871,874,876,877,955,1019,1055,1056,1096,1147,1166,1181,1205,1224,1227,1237,1239,1240,1300,1361,1383,1405,1408,1429,1450,1453,1475,1477,1478,1507,1559,1581,1598,1601,1624,1626,1627,1661,1699,1721,1743,1746,1765],"Infos":null},{"Name":"/usr/local/go/src/pkg/net/http/httptest/server.go","Base":1769,"Size":6750,"Lines":[0,55,109,159,160,188,189,206,207,216,230,238,245,252,264,270,278,280,281,352,415,436,515,538,539,610,682,745,762,763,826,856,877,878,948,998,1017,1019,1020,1085,1098,1128,1142,1174,1197,1199,1200,1262,1293,1310,1322,1359,1373,1376,1384,1386,1387,1426,1445,1483,1501,1576,1580,1591,1594,1638,1655,1713,1784,1788,1791,1801,1803,1804,1859,1885,1943,2011,2127,2128,2174,2238,2285,2320,2332,2343,2345,2346,2411,2414,2483,2496,2499,2563,2619,2636,2668,2712,2715,2717,2718,2768,2795,2813,2847,2850,2903,2951,2968,2999,3018,3075,3087,3090,3092,3093,3153,3183,3201,3235,3238,3297,3314,3370,3373,3374,3399,3424,3452,3479,3482,3512,3554,3557,3592,3639,3642,3693,3694,3748,3797,3814,3845,3847,3848,3881,3904,3919,3946,3949,3988,3996,4004,4007,4009,4010,4069,4133,4183,4218,4233,4244,4246,4247,4311,4354,4381,4401,4414,4442,4501,4528,4531,4533,4534,4603,4626,4670,4711,4721,4730,4733,4744,4779,4794,4797,4810,4812,4813,4882,4949,4993,5024,5035,5062,5064,5065,5144,5159,5223,5244,5246,5247,5303,5376,5395,5433,5569,5625,5690,5755,5820,5885,5950,6015,6080,6141,6169,6170,6224,6283,6348,6413,6478,6543,6608,6673,6718],"Infos":null}]}
+crypto/dsacrypto/sha512encoding/asn1crypto/x509/pkixencoding/hexflagtext/tabwriterruntime/pproftestingencoding/base64encoding/pemos/execcrypto/x509
+crypto/tlslogmimenet/textprotomime/multipartnet/urlpathnet/httpregexp/syntaxregexpnet/http/cgi0Å∑0errorsA0fmtB0ioC0	io/ioutilD0netE0net/httpF0net/http/cgiG0osH0stringsI0	syncJ0	timeK0
+bufioL0
+bytesM0encoding/binaryN0Çc0Çƒ 0OÇ·O=$pkg.request=$newType(0,"Struct","fcgi.request","request","net/http/fcgi",function(pw_,reqId_,params_,buf_,rawParams_,keepConn_){this.$val=this;this.pw=pw_!==undefined?pw_:($ptrType(C.PipeWriter)).nil;this.reqId=reqId_!==undefined?reqId_:0;this.params=params_!==undefined?params_:false;this.buf=buf_!==undefined?buf_:($arrayType($Uint8,1024)).zero();this.rawParams=rawParams_!==undefined?rawParams_:($sliceType($Uint8)).nil;this.keepConn=keepConn_!==undefined?keepConn_:false;});Çµ($ptrType(O)).methods=[["parseParams","parseParams","net/http/fcgi",[],[],false,-1]];O.init([["pw","pw","net/http/fcgi",($ptrType(C.PipeWriter)),""],["reqId","reqId","net/http/fcgi",$Uint16,""],["params","params","net/http/fcgi",($mapType($String,$String)),""],["buf","buf","net/http/fcgi",($arrayType($Uint8,1024)),""],["rawParams","rawParams","net/http/fcgi",($sliceType($Uint8)),""],["keepConn","keepConn","net/http/fcgi",$Bool,""]]);0	request0io:PipeWriter 0Çà 0QÇPQ=$pkg.response=$newType(0,"Struct","fcgi.response","response","net/http/fcgi",function(req_,header_,w_,wroteHeader_){this.$val=this;this.req=req_!==undefined?req_:($ptrType(O)).nil;this.header=header_!==undefined?header_:false;this.w=w_!==undefined?w_:($ptrType(AH)).nil;this.wroteHeader=wroteHeader_!==undefined?wroteHeader_:false;});Ç◊($ptrType(Q)).methods=[["Close","Close","",[],[$error],false,-1],["Flush","Flush","",[],[],false,-1],["Header","Header","",[],[F.Header],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1],["WriteHeader","WriteHeader","",[$Int],[],false,-1]];Q.init([["req","req","net/http/fcgi",($ptrType(O)),""],["header","header","net/http/fcgi",F.Header,""],["w","w","net/http/fcgi",($ptrType(AH)),""],["wroteHeader","wroteHeader","net/http/fcgi",$Bool,""]]);0
+response0Anet/http/fcgi:bufWriternet/http/fcgi:requestnet/http:Header 0Ç© 0SÇFS=$pkg.child=$newType(0,"Struct","fcgi.child","child","net/http/fcgi",function(conn_,handler_,mu_,requests_){this.$val=this;this.conn=conn_!==undefined?conn_:($ptrType(AB)).nil;this.handler=handler_!==undefined?handler_:null;this.mu=mu_!==undefined?mu_:new J.Mutex.Ptr();this.requests=requests_!==undefined?requests_:false;});Çÿ($ptrType(S)).methods=[["handleRecord","handleRecord","net/http/fcgi",[($ptrType(AD))],[$error],false,-1],["serve","serve","net/http/fcgi",[],[],false,-1],["serveRequest","serveRequest","net/http/fcgi",[($ptrType(O)),C.ReadCloser],[],false,-1]];S.init([["conn","conn","net/http/fcgi",($ptrType(AB)),""],["handler","handler","net/http/fcgi",F.Handler,""],["mu","mu","net/http/fcgi",J.Mutex,""],["requests","requests","net/http/fcgi",($mapType($Uint16,($ptrType(O)))),""]]);0child0nio:ReadClosernet/http/fcgi:connnet/http/fcgi:recordnet/http/fcgi:requestnet/http:Handler
+sync:Mutex 0l 0XQX=$pkg.recType=$newType(1,"Uint8","fcgi.recType","recType","net/http/fcgi",null); 0	recType0  0Ç* 0YÇΩY=$pkg.header=$newType(0,"Struct","fcgi.header","header","net/http/fcgi",function(Version_,Type_,Id_,ContentLength_,PaddingLength_,Reserved_){this.$val=this;this.Version=Version_!==undefined?Version_:0;this.Type=Type_!==undefined?Type_:0;this.Id=Id_!==undefined?Id_:0;this.ContentLength=ContentLength_!==undefined?ContentLength_:0;this.PaddingLength=PaddingLength_!==undefined?PaddingLength_:0;this.Reserved=Reserved_!==undefined?Reserved_:0;});Ç8($ptrType(Y)).methods=[["init","init","net/http/fcgi",[X,$Uint16,$Int],[],false,-1]];Y.init([["Version","Version","",$Uint8,""],["Type","Type","",X,""],["Id","Id","",$Uint16,""],["ContentLength","ContentLength","",$Uint16,""],["PaddingLength","PaddingLength","",$Uint8,""],["Reserved","Reserved","",$Uint8,""]]);0header0net/http/fcgi:recType 0ÇM 0ZÇ%Z=$pkg.beginRequest=$newType(0,"Struct","fcgi.beginRequest","beginRequest","net/http/fcgi",function(role_,flags_,reserved_){this.$val=this;this.role=role_!==undefined?role_:0;this.flags=flags_!==undefined?flags_:0;this.reserved=reserved_!==undefined?reserved_:($arrayType($Uint8,5)).zero();});Ç($ptrType(Z)).methods=[["read","read","net/http/fcgi",[($sliceType($Uint8))],[$error],false,-1]];Z.init([["role","role","net/http/fcgi",$Uint16,""],["flags","flags","net/http/fcgi",$Uint8,""],["reserved","reserved","net/http/fcgi",($arrayType($Uint8,5)),""]]);0beginRequest0  0Ç 0ABÇ&AB=$pkg.conn=$newType(0,"Struct","fcgi.conn","conn","net/http/fcgi",function(mutex_,rwc_,buf_,h_){this.$val=this;this.mutex=mutex_!==undefined?mutex_:new J.Mutex.Ptr();this.rwc=rwc_!==undefined?rwc_:null;this.buf=buf_!==undefined?buf_:new M.Buffer.Ptr();this.h=h_!==undefined?h_:new Y.Ptr();});ÇÅ($ptrType(AB)).methods=[["Close","Close","",[],[$error],false,-1],["writeBeginRequest","writeBeginRequest","net/http/fcgi",[$Uint16,$Uint16,$Uint8],[$error],false,-1],["writeEndRequest","writeEndRequest","net/http/fcgi",[$Uint16,$Int,$Uint8],[$error],false,-1],["writePairs","writePairs","net/http/fcgi",[X,$Uint16,($mapType($String,$String))],[$error],false,-1],["writeRecord","writeRecord","net/http/fcgi",[X,$Uint16,($sliceType($Uint8))],[$error],false,-1]];AB.init([["mutex","mutex","net/http/fcgi",J.Mutex,""],["rwc","rwc","net/http/fcgi",C.ReadWriteCloser,""],["buf","buf","net/http/fcgi",M.Buffer,""],["h","h","net/http/fcgi",Y,""]]);0conn0[bytes:Bufferio:ReadWriteClosernet/http/fcgi:headernet/http/fcgi:recType
+sync:Mutex 0Ç 0ADÅ‘AD=$pkg.record=$newType(0,"Struct","fcgi.record","record","net/http/fcgi",function(h_,buf_){this.$val=this;this.h=h_!==undefined?h_:new Y.Ptr();this.buf=buf_!==undefined?buf_:($arrayType($Uint8,65790)).zero();});Ç($ptrType(AD)).methods=[["content","content","net/http/fcgi",[],[($sliceType($Uint8))],false,-1],["read","read","net/http/fcgi",[C.Reader],[$error],false,-1]];AD.init([["h","h","net/http/fcgi",Y,""],["buf","buf","net/http/fcgi",($arrayType($Uint8,65790)),""]]);0record0!	io:Readernet/http/fcgi:header 0Ç 0AHÅÌAH=$pkg.bufWriter=$newType(0,"Struct","fcgi.bufWriter","bufWriter","net/http/fcgi",function(closer_,Writer_){this.$val=this;this.closer=closer_!==undefined?closer_:null;this.Writer=Writer_!==undefined?Writer_:($ptrType(L.Writer)).nil;});ÇÿAH.methods=[["Available","Available","",[],[$Int],false,1],["Buffered","Buffered","",[],[$Int],false,1],["Flush","Flush","",[],[$error],false,1],["ReadFrom","ReadFrom","",[C.Reader],[$Int64,$error],false,1],["Reset","Reset","",[C.Writer],[],false,1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,1],["WriteByte","WriteByte","",[$Uint8],[$error],false,1],["WriteRune","WriteRune","",[$Int32],[$Int,$error],false,1],["WriteString","WriteString","",[$String],[$Int,$error],false,1],["flush","flush","bufio",[],[$error],false,1]];($ptrType(AH)).methods=[["Available","Available","",[],[$Int],false,1],["Buffered","Buffered","",[],[$Int],false,1],["Close","Close","",[],[$error],false,-1],["Flush","Flush","",[],[$error],false,1],["ReadFrom","ReadFrom","",[C.Reader],[$Int64,$error],false,1],["Reset","Reset","",[C.Writer],[],false,1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,1],["WriteByte","WriteByte","",[$Uint8],[$error],false,1],["WriteRune","WriteRune","",[$Int32],[$Int,$error],false,1],["WriteString","WriteString","",[$String],[$Int,$error],false,1],["flush","flush","bufio",[],[$error],false,1]];AH.init([["closer","closer","net/http/fcgi",C.Closer,""],["Writer","","",($ptrType(L.Writer)),""]]);0	bufWriter0/bufio:Writer	io:Closer	io:Reader	io:Writer 0Çp 0AJÇAJ=$pkg.streamWriter=$newType(0,"Struct","fcgi.streamWriter","streamWriter","net/http/fcgi",function(c_,recType_,reqId_){this.$val=this;this.c=c_!==undefined?c_:($ptrType(AB)).nil;this.recType=recType_!==undefined?recType_:0;this.reqId=reqId_!==undefined?reqId_:0;});Ç($ptrType(AJ)).methods=[["Close","Close","",[],[$error],false,-1],["Write","Write","",[($sliceType($Uint8))],[$Int,$error],false,-1]];AJ.init([["c","c","net/http/fcgi",($ptrType(AB)),""],["recType","recType","net/http/fcgi",X,""],["reqId","reqId","net/http/fcgi",$Uint16,""]]);0streamWriter0+net/http/fcgi:connnet/http/fcgi:recType 0  0U  0errCloseConn0  0 0V  0	emptyBody0  0N 0AA #AA=($arrayType($Uint8,255)).zero();0pad0net/http/fcgi:pad 0i 0  2    U=A.New("fcgi: connection should be closed");0 0(
+errors:Newnet/http/fcgi:errCloseConn 0t 0  $    V=D.NopCloser(I.NewReader(""));0 0Aio/ioutil:NopClosernet/http/fcgi:emptyBodystrings:NewReader 0Ç\net/http/fcgi.newRequest0PÅˇP=function(a,b){var c,d,e;  µe=new O.Ptr(($ptrType(C.PipeWriter)).nil,a,(c=new $Map(),c),($arrayType($Uint8,1024)).zero(),($sliceType($Uint8)).nil,!((((b&1)>>>0)===0)));  !e.rawParams=$subslice(new($sliceType($Uint8))(e.buf),0,0);  :return e;    }; 0
+newRequest0&io:PipeWriternet/http/fcgi:request 0Ç‘$(*net/http/fcgi.request).parseParams0 Ç@O.Ptr.prototype.parseParams=function(){var a,b,c,d,e,f,g,h,i,j;  Äa=this;  ùb=a.rawParams;  ≤a.rawParams=($sliceType($Uint8)).nil;  ≈while(b.$length>0){  €c=AE(b);d=c[0];e=c[1];  ˘    if(e===0){  return;    }  b=$subslice(b,e);  'f=AE(b);g=f[0];e=f[1];  E    if(e===0){  Treturn;    }  ab=$subslice(b,e);  sh=AF(b,d);  ïb=$subslice(b,d);  ¨i=AF(b,g);  Œb=$subslice(b,g);  Âj=h;(a.params||$throwRuntimeError("assignment to entry in nil map"))[j]={k:j,v:i};    }    };O.prototype.parseParams=function(){return this.$val.parseParams();}; 0requestparseParams0Inet/http/fcgi:readSizenet/http/fcgi:readStringnet/http/fcgi:request 0Å˝net/http/fcgi.newResponse0RdR=function(a,b){var c,d;  ‘return new Q.Ptr(b,(c=new $Map(),c),AI(a.conn,6,b.reqId),false);    }; 0newResponse0anet/http/fcgi:bufWriternet/http/fcgi:newWriternet/http/fcgi:requestnet/http/fcgi:response 0Å‹ (*net/http/fcgi.response).Header0 ÅäQ.Ptr.prototype.Header=function(){var a;  Na=this;  sreturn a.header;    };Q.prototype.Header=function(){return this.$val.Header();}; 0
+response0net/http/fcgi:response 0Ç!(*net/http/fcgi.response).Write0 Å–Q.Ptr.prototype.Write=function(a){var b;  åb=this;  º    if(!b.wroteHeader){  “b.WriteHeader(200);    }  Ûreturn b.w.Writer.Write(a);    };Q.prototype.Write=function(a){return this.$val.Write(a);}; 0
+response0net/http/fcgi:response 0Ç%(*net/http/fcgi.response).WriteHeader0 ÇyQ.Ptr.prototype.WriteHeader=function(a){var b;  b=this;  9    if(b.wroteHeader){  Nreturn;    }  Yb.wroteHeader=true;  o    if(a===304){  Æ(new F.Header(b.header)).Del("Content-Type");  Õ(new F.Header(b.header)).Del("Content-Length");  Ó(new F.Header(b.header)).Del("Transfer-Encoding");        }else if((new F.Header(b.header)).Get("Content-Type")===""){  B(new F.Header(b.header)).Set("Content-Type","text/html; charset=utf-8");    }  Ä    if((new F.Header(b.header)).Get("Date")===""){  ¢(new F.Header(b.header)).Set("Date",K.Now().UTC().Format("Mon, 02 Jan 2006 15:04:05 GMT"));    }  ÊB.Fprintf(b.w,"Status: %d %s\r\n",new($sliceType($emptyInterface))([new $Int(a),new $String(F.StatusText(a))]));  	*(new F.Header(b.header)).Write(b.w);  	?b.w.Writer.WriteString("\r\n");    };Q.prototype.WriteHeader=function(a){return this.$val.WriteHeader(a);}; 0
+response0Ufmt:Fprintfnet/http/fcgi:responsenet/http:Headernet/http:StatusTexttime:Now 0Ç(*net/http/fcgi.response).Flush0 Å≈Q.Ptr.prototype.Flush=function(){var a;  	`a=this;  	x    if(!a.wroteHeader){  	éa.WriteHeader(200);    }  	Øa.w.Writer.Flush();    };Q.prototype.Flush=function(){return this.$val.Flush();}; 0
+response0net/http/fcgi:response 0ÅÍ(*net/http/fcgi.response).Close0 ÅôQ.Ptr.prototype.Close=function(){var a;  	ƒa=this;  	‚a.Flush();  	Ìreturn a.w.Close();    };Q.prototype.Close=function(){return this.$val.Close();}; 0
+response0net/http/fcgi:response 0Å—net/http/fcgi.newChild0TST=function(a,b){  
+Ôreturn new S.Ptr(AC(a),b,new J.Mutex.Ptr(),new $Map());    }; 0
+newChild0Lnet/http/fcgi:childnet/http/fcgi:connnet/http/fcgi:newConn
+sync:Mutex 0Ç(*net/http/fcgi.child).serve0 ÇqS.Ptr.prototype.serve=function(){var $deferred=[],$err=null,a,b,c,d,e;try{$deferFrames.push($deferred);  `a=this;  u$deferred.push([(b=a.conn,function(){$stackDepthOffset--;try{return b.Close();}finally{$stackDepthOffset++;}}),[]]);  ã  èc=new AD.Ptr();$copy(c,new AD.Ptr(),AD);  õwhile(true){  £  ¶d=c.read(a.conn.rwc);    if(!($interfaceIsEqual(d,null))){  ”return;    }  ‡  „e=a.handleRecord(c);    if(!($interfaceIsEqual(e,null))){  return;    }    }    }catch(err){$err=err;}finally{$deferFrames.pop();$callDeferred($deferred,$err);}};S.prototype.serve=function(){return this.$val.serve();}; 0childserve0[net/http/fcgi:childnet/http/fcgi:handleRecordnet/http/fcgi:readnet/http/fcgi:record 0Ç
+A#(*net/http/fcgi.child).handleRecord0 ÇÖS.Ptr.prototype.handleRecord=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t;  §b=this;  —b.mu.Lock();  ﬁc=(d=b.requests[a.h.Id],d!==undefined?[d.v,true]:[($ptrType(O)).nil,false]);e=c[0];f=c[1];  ˇb.mu.Unlock();      if(!f&&!((a.h.Type===1))&&!((a.h.Type===9))){  åreturn null;    }  úg=a.h.Type;  ±if(g===1){       if(!(e===($ptrType(O)).nil)){  Oreturn A.New("fcgi: received ID that is already in-flight");    }  ó  õh=new Z.Ptr();$copy(h,new Z.Ptr(),Z);  ≠  ∞i=h.read(a.content());    if(!($interfaceIsEqual(i,null))){  ﬂreturn i;    }      if(!((h.role===1))){  b.conn.writeEndRequest(a.h.Id,0,3);  Kreturn null;    }  \e=P(a.h.Id,h.flags);  Éb.mu.Lock();  ëj=a.h.Id;(b.requests||$throwRuntimeError("assignment to entry in nil map"))[j]={k:j,v:e};  Æb.mu.Unlock();  æreturn null;       }else if(g===4){  m    if(a.content().$length>0){  åe.rawParams=$appendSlice(e.rawParams,a.content());  «return null;    }  ÿe.parseParams();  Ïreturn null;      ¯}else if(g===5){  
+k=a.content();  %    if(e.pw===($ptrType(C.PipeWriter)).nil){  ;  ?l=null;  U    if(k.$length>0){  ⁄m=C.Pipe();l=m[0];e.pw=m[1];    }else{  l=V;    }  $go((p=b,function(n,o){$stackDepthOffset--;try{return p.serveRequest(n,o);}finally{$stackDepthOffset++;}}),[e,l]);    }  ?    if(k.$length>0){  €e.pw.Write(k);        }else if(!(e.pw===($ptrType(C.PipeWriter)).nil)){  e.pw.Close();    }  %return null;      1}else if(g===9){  Gq=(r=new $Map(),s="FCGI_MPXS_CONNS",r[s]={k:s,v:"1"},r);  }b.conn.writePairs(10,0,q);  ±return null;      Ω}else if(g===8){  return null;      }else if(g===2){  6console.log("abort");  Ib.mu.Lock();  Wdelete b.requests[a.h.Id];  vb.mu.Unlock();  Üb.conn.writeEndRequest(a.h.Id,0,0);  √    if(!e.keepConn){  return U;    }  return null;    }else{  2t=($sliceType($Uint8)).make(8);  I(0<0||0>=t.$length)?$throwRuntimeError("index out of range"):t.$array[t.$offset+0]=(a.h.Type<<24>>>24);  cb.conn.writeRecord(11,0,t);  èreturn null;    }    };S.prototype.handleRecord=function(a){return this.$val.handleRecord(a);}; 0childhandleRecord0Çq
+errors:Newio:Pipeio:PipeWriternet/http/fcgi:beginRequestnet/http/fcgi:childnet/http/fcgi:contentnet/http/fcgi:emptyBodynet/http/fcgi:errCloseConnnet/http/fcgi:newRequestnet/http/fcgi:parseParamsnet/http/fcgi:readnet/http/fcgi:requestnet/http/fcgi:serveRequestnet/http/fcgi:writeEndRequestnet/http/fcgi:writePairsnet/http/fcgi:writeRecord 0Çã#(*net/http/fcgi.child).serveRequest0 ÇùS.Ptr.prototype.serveRequest=function(a,b){var c,d,e,f,g;  ¶c=this;  ‚d=R(c,a);  ¸e=G.RequestFromMap(a.params);f=e[0];g=e[1];  ,    if(!($interfaceIsEqual(g,null))){  jd.WriteHeader(500);  öc.conn.writeRecord(7,a.reqId,new($sliceType($Uint8))($stringToBytes(g.Error())));    }else{  Âf.Body=b;  ˚c.handler.ServeHTTP(d,f);    }  d.Close();  *c.mu.Lock();  7delete c.requests[a.reqId];  Vc.mu.Unlock();  ec.conn.writeEndRequest(a.reqId,0,0);  *C.CopyN(D.Discard,b,new $Int64(0,104857600));  Sb.Close();  b    if(!a.keepConn){  wc.conn.Close();    }    };S.prototype.serveRequest=function(a,b){return this.$val.serveRequest(a,b);}; 0childserveRequest0Å§io/ioutil:Discardio:CopyNnet/http/cgi:RequestFromMapnet/http/fcgi:childnet/http/fcgi:newResponsenet/http/fcgi:writeEndRequestnet/http/fcgi:writeRecord 0Ç¨net/http/fcgi.Serve0WÇW=$pkg.Serve=function(a,b){var $deferred=[],$err=null,c,d,e,f,g,h,i,j;try{$deferFrames.push($deferred);  „    if($interfaceIsEqual(a,null)){  Û  ˜c=null;  d=E.FileListener(H.Stdin);a=d[0];c=d[1];  )    if(!($interfaceIsEqual(c,null))){  <return c;    }  M$deferred.push([(e=a,function(){$stackDepthOffset--;try{return e.Close();}finally{$stackDepthOffset++;}}),[]]);    }  a    if($interfaceIsEqual(b,null)){  wb=F.DefaultServeMux;    }  öwhile(true){  ¢f=a.Accept();g=f[0];h=f[1];  ∫    if(!($interfaceIsEqual(h,null))){  Õreturn h;    }  ﬁi=T(g,b);  ˚$go((j=i,function(){$stackDepthOffset--;try{return j.serve();}finally{$stackDepthOffset++;}}),[]);    }    }catch(err){$err=err;return null;}finally{$deferFrames.pop();$callDeferred($deferred,$err);}}; 0Serve0cnet/http/fcgi:newChildnet/http/fcgi:servenet/http:DefaultServeMuxnet:FileListeneros:Stdin 0Ç"(*net/http/fcgi.beginRequest).read0 ÇfZ.Ptr.prototype.read=function(a){var b;  "wb=this;  "ß    if(!((a.$length===8))){  "¿return A.New("fcgi: invalid begin request record");    }  "¸b.role=N.BigEndian.Uint16(a);  #(b.flags=((2<0||2>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+2]);  #?return null;    };Z.prototype.read=function(a){return this.$val.read(a);}; 0beginRequestread0Cencoding/binary:BigEndian
+errors:Newnet/http/fcgi:beginRequest 0ÇB(*net/http/fcgi.header).init0 ÅÚY.Ptr.prototype.init=function(a,b,c){var d;  #‚d=this;  $'d.Version=1;  $6d.Type=a;  $Hd.Id=b;  $Vd.ContentLength=(c<<16>>>16);  $d.PaddingLength=((-c&7)<<24>>>24);    };Y.prototype.init=function(a,b,c){return this.$val.init(a,b,c);}; 0headerinit0net/http/fcgi:header 0Å÷net/http/fcgi.newConn0ACaAC=function(a){  %ureturn new AB.Ptr(new J.Mutex.Ptr(),a,new M.Buffer.Ptr(),new Y.Ptr());    }; 0	newConn0Dbytes:Buffernet/http/fcgi:connnet/http/fcgi:header
+sync:Mutex 0Ç˘(*net/http/fcgi.conn).Close0 Ç≥AB.Ptr.prototype.Close=function(){var $deferred=[],$err=null,a,b;try{$deferFrames.push($deferred);  %ïa=this;  %Øa.mutex.Lock();  %ø$deferred.push([(b=a.mutex,function(){$stackDepthOffset--;try{return b.Unlock();}finally{$stackDepthOffset++;}}),[]]);  %◊return a.rwc.Close();    }catch(err){$err=err;return null;}finally{$deferFrames.pop();$callDeferred($deferred,$err);}};AB.prototype.Close=function(){return this.$val.Close();}; 0conn0net/http/fcgi:conn 0ÇÌ(*net/http/fcgi.record).read0 ÇRAD.Ptr.prototype.read=function(a){var b=null,c,d,e,f;  &6c=this;  &d  &gb=N.Read(a,(d=N.BigEndian,new d.constructor.Struct(d)),c.h);    if(!($interfaceIsEqual(b,null))){  &¶    b=b;return b;    }  &µ    if(!((c.h.Version===1))){  &œ    b=A.New("fcgi: invalid header version");return b;    }  'e=(c.h.ContentLength>>0)+(c.h.PaddingLength>>0)>>0;  '?  'Bf=C.ReadFull(a,$subslice(new($sliceType($Uint8))(c.buf),0,e));b=f[1];    if(!($interfaceIsEqual(b,null))){  'w    b=b;return b;    }  'Ü    b=null;return b;    };AD.prototype.read=function(a){return this.$val.read(a);}; 0recordread0`encoding/binary:BigEndianencoding/binary:Read
+errors:Newio:ReadFullnet/http/fcgi:record 0Ç(*net/http/fcgi.record).content0 ÅƒAD.Ptr.prototype.content=function(){var a;  'öa=this;  'πreturn $subslice(new($sliceType($Uint8))(a.buf),0,a.h.ContentLength);    };AD.prototype.content=function(){return this.$val.content();}; 0recordcontent0net/http/fcgi:record 0Ç{!(*net/http/fcgi.conn).writeRecord0 Ç…AB.Ptr.prototype.writeRecord=function(a,b,c){var $deferred=[],$err=null,d,e,f,g,h,i,j,k,l,m,n;try{$deferFrames.push($deferred);  (d=this;  ([d.mutex.Lock();  (k$deferred.push([(e=d.mutex,function(){$stackDepthOffset--;try{return e.Unlock();}finally{$stackDepthOffset++;}}),[]]);  (Éd.buf.Reset();  (íd.h.init(a,b,c.$length);  (¥  (∑h=N.Write(d.buf,(f=N.BigEndian,new f.constructor.Struct(f)),(g=d.h,new g.constructor.Struct(g)));    if(!($interfaceIsEqual(h,null))){  (˙return h;    }  )	  )i=d.buf.Write(c);j=i[1];    if(!($interfaceIsEqual(j,null))){  )5return j;    }  )D  )Gk=d.buf.Write($subslice(new($sliceType($Uint8))(AA),0,d.h.PaddingLength));l=k[1];    if(!($interfaceIsEqual(l,null))){  )Üreturn l;    }  )ïm=d.rwc.Write(d.buf.Bytes());n=m[1];  )ªreturn n;    }catch(err){$err=err;return null;}finally{$deferFrames.pop();$callDeferred($deferred,$err);}};AB.prototype.writeRecord=function(a,b,c){return this.$val.writeRecord(a,b,c);}; 0connwriteRecord0mencoding/binary:BigEndianencoding/binary:Writenet/http/fcgi:connnet/http/fcgi:initnet/http/fcgi:pad 0Çπ'(*net/http/fcgi.conn).writeBeginRequest0 Ç9AB.Ptr.prototype.writeBeginRequest=function(a,b,c){var d,e;  )œd=this;  *e=$toNativeArray("Uint8",[((b>>>8<<16>>>16)<<24>>>24),(b<<24>>>24),c,0,0,0,0,0]);  *Mreturn d.writeRecord(1,a,new($sliceType($Uint8))(e));    };AB.prototype.writeBeginRequest=function(a,b,c){return this.$val.writeBeginRequest(a,b,c);}; 0connwriteBeginRequest0/net/http/fcgi:connnet/http/fcgi:writeRecord 0Çˇ%(*net/http/fcgi.conn).writeEndRequest0 ÇhAB.Ptr.prototype.writeEndRequest=function(a,b,c){var d,e;  *äd=this;  *ﬂe=($sliceType($Uint8)).make(8);  *ıN.BigEndian.PutUint32(e,(b>>>0));  +'(4<0||4>=e.$length)?$throwRuntimeError("index out of range"):e.$array[e.$offset+4]=c;  +>return d.writeRecord(3,a,e);    };AB.prototype.writeEndRequest=function(a,b,c){return this.$val.writeEndRequest(a,b,c);}; 0connwriteEndRequest0Jencoding/binary:BigEndiannet/http/fcgi:connnet/http/fcgi:writeRecord 0Ç] (*net/http/fcgi.conn).writePairs0 Ç”AB.Ptr.prototype.writePairs=function(a,b,c){var d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;  +vd=this;  +Àe=AI(d,a,b);  +Óf=($sliceType($Uint8)).make(8);  ,g=c;h=0;i=$keys(g);while(h<i.length){j=g[i[h]];k=j.k;l=j.v;  , m=AG(f,(k.length>>>0));  ,Em=m+(AG($subslice(f,m),(l.length>>>0)))>>0;  ,n  ,qn=e.Writer.Write($subslice(f,0,m));o=n[1];    if(!($interfaceIsEqual(o,null))){  ,õreturn o;    }  ,¨  ,Øp=e.Writer.WriteString(k);q=p[1];    if(!($interfaceIsEqual(q,null))){  ,€return q;    }  ,Ï  ,Ôr=e.Writer.WriteString(l);s=r[1];    if(!($interfaceIsEqual(s,null))){  -return s;    }    h++;}  -.e.Close();  -9return null;    };AB.prototype.writePairs=function(a,b,c){return this.$val.writePairs(a,b,c);}; 0conn
+writePairs0Gnet/http/fcgi:connnet/http/fcgi:encodeSizenet/http/fcgi:newWriter 0ÇΩnet/http/fcgi.readSize0AEÇmAE=function(a){var b,c,d,e;  -p    if(a.$length===0){  -Éreturn[0,0];    }  -ìb=(((0<0||0>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+0])>>>0);c=1;d=b;e=c;  -Ø    if(!((((d&128)>>>0)===0))){  -«    if(a.$length<4){  -⁄return[0,0];    }  -Ïe=4;  -Ùd=N.BigEndian.Uint32(a);  .d=d&~(2147483648);    }  .-return[d,e];    }; 0
+readSize0encoding/binary:BigEndian 0Å∞net/http/fcgi.readString0AFyAF=function(a,b){  .p    if(b>(a.$length>>>0)){  .çreturn"";    }  .õreturn $bytesToString($subslice(a,0,b));    }; 0
+readString0  0ÇBnet/http/fcgi.encodeSize0AGÅÔAG=function(a,b){  .‰    if(b>127){  .ˆb=(b|(2147483648))>>>0;  /N.BigEndian.PutUint32(a,b);  /.return 4;    }  /;(0<0||0>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+0]=(b<<24>>>24);  /Nreturn 1;    }; 0
+encodeSize0encoding/binary:BigEndian 0ÇU (*net/http/fcgi.bufWriter).Close0 Ç AH.Ptr.prototype.Close=function(){var a,b;  /˘a=this;  0  0b=a.Writer.Flush();    if(!($interfaceIsEqual(b,null))){  0Ca.closer.Close();  0Vreturn b;    }  0ereturn a.closer.Close();    };AH.prototype.Close=function(){return this.$val.Close();}; 0	bufWriter0net/http/fcgi:bufWriter 0Ç
+net/http/fcgi.newWriter0AIwAI=function(a,b,c){var d,e;  0≈d=new AJ.Ptr(a,b,c);  0ˇe=L.NewWriterSize(d,65535);  1&return new AH.Ptr(d,e);    }; 0	newWriter0^bufio:NewWriterSizenet/http/fcgi:bufWriternet/http/fcgi:connnet/http/fcgi:streamWriter 0Ç#(*net/http/fcgi.streamWriter).Write0 ÇïAJ.Ptr.prototype.Write=function(a){var b,c,d,e;  2b=this;  2Bc=0;  2Kwhile(a.$length>0){  2^d=a.$length;  2l    if(d>65535){  2Åd=65535;    }  2î  2óe=b.c.writeRecord(b.recType,b.reqId,$subslice(a,0,d));    if(!($interfaceIsEqual(e,null))){  2⁄return[c,e];    }  2Ôc=c+(d)>>0;  2˘a=$subslice(a,d);    }  3return[c,null];    };AJ.prototype.Write=function(a){return this.$val.Write(a);}; 0streamWriter07net/http/fcgi:streamWriternet/http/fcgi:writeRecord 0Ç4#(*net/http/fcgi.streamWriter).Close0 ÅºAJ.Ptr.prototype.Close=function(){var a;  3a=this;  3kreturn a.c.writeRecord(a.recType,a.reqId,($sliceType($Uint8)).nil);    };AJ.prototype.Close=function(){return this.$val.Close();}; 0streamWriter07net/http/fcgi:streamWriternet/http/fcgi:writeRecord 0 Ç÷{"Base":13214,"Files":[{"Name":"/usr/local/go/src/pkg/net/http/fcgi/child.go","Base":1,"Size":7180,"Lines":[0,55,109,159,160,173,174,247,248,257,267,274,280,293,300,312,328,334,345,353,361,363,364,445,483,505,531,549,578,600,618,634,636,637,691,707,726,759,796,799,824,834,836,837,889,923,944,963,984,1014,1028,1038,1042,1060,1090,1104,1114,1118,1136,1170,1193,1227,1250,1272,1275,1277,1278,1322,1345,1367,1392,1416,1434,1436,1437,1490,1509,1524,1549,1601,1604,1606,1607,1649,1666,1668,1669,1722,1743,1774,1777,1801,1803,1804,1847,1867,1876,1879,1901,1938,1963,1994,2027,2063,2111,2170,2173,2174,2207,2272,2275,2276,2344,2365,2390,2392,2393,2422,2443,2474,2477,2490,2492,2493,2528,2539,2559,2561,2562,2582,2597,2619,2620,2672,2725,2727,2728,2797,2813,2839,2860,2899,2902,2904,2905,2931,2953,2969,2976,3023,3033,3037,3084,3094,3098,3101,3103,3104,3171,3172,3228,3229,3279,3292,3325,3340,3415,3465,3478,3481,3482,3503,3527,3545,3608,3659,3727,3731,3732,3754,3803,3817,3821,3853,3911,3925,3929,3968,3982,4011,4027,4040,4058,4129,4202,4232,4291,4305,4309,4329,4342,4359,4386,4407,4433,4458,4522,4565,4594,4606,4627,4632,4664,4668,4692,4760,4823,4848,4876,4894,4898,4911,4932,4986,5038,5051,5067,5134,5147,5171,5190,5204,5235,5251,5312,5333,5373,5396,5400,5413,5423,5446,5472,5516,5529,5532,5534,5535,5600,5626,5674,5691,5735,5783,5848,5858,5880,5914,5917,5928,5941,5972,5987,6048,6049,6113,6174,6229,6287,6343,6401,6440,6481,6495,6496,6516,6533,6536,6538,6539,6619,6694,6715,6772,6824,6881,6896,6912,6950,6968,6982,6986,7004,7007,7028,7061,7064,7071,7095,7113,7127,7131,7160,7175,7178],"Infos":null},{"Name":"/usr/local/go/src/pkg/net/http/fcgi/fcgi.go","Base":7182,"Size":6031,"Lines":[0,55,109,159,160,209,260,337,350,351,430,443,444,453,462,471,490,500,506,514,516,517,560,615,634,635,643,676,709,742,775,808,841,874,907,940,974,1008,1010,1011,1086,1109,1110,1118,1159,1175,1177,1178,1186,1248,1264,1276,1278,1279,1287,1317,1338,1356,1375,1377,1378,1398,1399,1420,1441,1464,1486,1508,1529,1550,1552,1553,1580,1597,1613,1632,1634,1635,1688,1712,1770,1773,1817,1840,1852,1854,1855,1912,1976,1997,1998,2072,2087,2105,2119,2160,2205,2207,2208,2239,2258,2276,2302,2303,2328,2346,2358,2360,2361,2406,2430,2432,2433,2464,2480,2504,2526,2528,2529,2550,2562,2591,2593,2594,2645,2710,2723,2726,2751,2803,2806,2864,2919,2932,2935,2947,2949,2950,2986,3020,3022,3023,3072,3148,3164,3188,3203,3237,3306,3319,3322,3365,3378,3381,3446,3459,3462,3500,3512,3514,3515,3596,3646,3699,3701,3702,3792,3814,3864,3887,3935,3937,3938,4028,4063,4085,4112,4149,4190,4234,4248,4252,4298,4312,4316,4362,4376,4380,4383,4394,4406,4408,4409,4449,4467,4481,4484,4512,4535,4553,4568,4572,4580,4616,4635,4638,4654,4656,4657,4705,4733,4745,4748,4773,4775,4776,4821,4838,4856,4894,4905,4908,4927,4937,4939,4940,5022,5033,5057,5075,5090,5092,5093,5129,5171,5190,5203,5206,5231,5233,5234,5302,5360,5399,5424,5426,5427,5507,5551,5578,5593,5610,5626,5628,5629,5683,5692,5710,5724,5744,5760,5764,5833,5851,5855,5865,5877,5880,5896,5898,5899,5938,5980,6029],"Infos":null}]}
  ˇ

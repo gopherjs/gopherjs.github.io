@@ -1,0 +1,191 @@
+0Çànet/mailÇ%üpackage mail
+import bufio "bufio"
+import bytes "bytes"
+import base64 "encoding/base64"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import ioutil "io/ioutil"
+import log "log"
+import textproto "net/textproto"
+import strconv "strconv"
+import strings "strings"
+import time "time"
+type @"".Address struct { @"".Name string; @"".Address string }
+func (? *@"".Address) @"".String() (? string)
+var @"".ErrHeaderNotPresent error
+type @"".Header map[string][]string
+func (? @"".Header) @"".AddressList(@"".key string) (? []*@"".Address, ? error)
+func (? @"".Header) @"".Date() (? @"time".Time, ? error)
+func (? @"".Header) @"".Get(@"".key string) (? string)
+func (? *@"".Header) @"".AddressList(@"".key string) (? []*@"".Address, ? error)
+func (? *@"".Header) @"".Date() (? @"time".Time, ? error)
+func (? *@"".Header) @"".Get(@"".key string) (? string)
+type @"".Message struct { @"".Header @"".Header; @"".Body @"io".Reader }
+func @"".ParseAddress(@"".address string) (? *@"".Address, ? error)
+func @"".ParseAddressList(@"".list string) (? []*@"".Address, ? error)
+func @"".ReadMessage(@"".r @"io".Reader) (@"".msg *@"".Message, @"".err error)
+type @"".addrParser []byte
+func (? *@"".addrParser) @"".consume(@"".c byte) (? bool)
+func (? *@"".addrParser) @"".consumeAddrSpec() (@"".spec string, @"".err error)
+func (? *@"".addrParser) @"".consumeAtom(@"".dot bool) (@"".atom string, @"".err error)
+func (? *@"".addrParser) @"".consumePhrase() (@"".phrase string, @"".err error)
+func (? *@"".addrParser) @"".consumeQuotedString() (@"".qs string, @"".err error)
+func (? *@"".addrParser) @"".empty() (? bool)
+func (? *@"".addrParser) @"".len() (? int)
+func (? *@"".addrParser) @"".parseAddress() (@"".addr *@"".Address, @"".err error)
+func (? *@"".addrParser) @"".parseAddressList() (? []*@"".Address, ? error)
+func (? *@"".addrParser) @"".peek() (? byte)
+func (? *@"".addrParser) @"".skipSpace() ()
+type @"".debugT bool
+func (? @"".debugT) @"".Printf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"".debugT) @"".Printf(@"".format string, @"".args ...interface {  }) ()
+type @"".qDecoder struct { @"".r @"io".Reader; @"".scratch [2]byte }
+func (? @"".qDecoder) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".qDecoder) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".firstZoneUsed() (? bool)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupFirstZone() (? int)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0Ç*github.com/gopherjs/gopherjs/jsruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathstrconvstringssyscalltimeosreflectfmtsortflagtext/tabwriterruntime/pproftestingencoding/base64path/filepath	io/ioutillog	math/randnetnet/textproto0Å£0
+bufioA0
+bytesB0encoding/base64C0errorsD0fmtE0ioF0	io/ioutilG0logH0net/textprotoI0strconvJ0stringsK0	timeL0ÇU0Ç 0NHN=$pkg.debugT=$newType(1,"Bool","mail.debugT","debugT","net/mail",null);Å∏N.methods=[["Printf","Printf","",[$String,($sliceType($emptyInterface))],[],true,-1]];($ptrType(N)).methods=[["Printf","Printf","",[$String,($sliceType($emptyInterface))],[],true,-1]];0debugT0  0ÇC 0OÅ∆O=$pkg.Message=$newType(0,"Struct","mail.Message","Message","net/mail",function(Header_,Body_){this.$val=this;this.Header=Header_!==undefined?Header_:false;this.Body=Body_!==undefined?Body_:null;});EO.init([["Header","Header","",T,""],["Body","Body","",F.Reader,""]]);0	Message0	io:Readernet/mail:Header 0Ç6 0TGT=$pkg.Header=$newType(4,"Map","mail.Header","Header","net/mail",null);Ç∂T.methods=[["AddressList","AddressList","",[$String],[($sliceType(($ptrType(U)))),$error],false,-1],["Date","Date","",[],[L.Time,$error],false,-1],["Get","Get","",[$String],[$String],false,-1]];($ptrType(T)).methods=[["AddressList","AddressList","",[$String],[($sliceType(($ptrType(U)))),$error],false,-1],["Date","Date","",[],[L.Time,$error],false,-1],["Get","Get","",[$String],[$String],false,-1]];T.init($String,($sliceType($String)));0Header0net/mail:Address	time:Time 0Çs 0UÅ≈U=$pkg.Address=$newType(0,"Struct","mail.Address","Address","net/mail",function(Name_,Address_){this.$val=this;this.Name=Name_!==undefined?Name_:"";this.Address=Address_!==undefined?Address_:"";});Åë($ptrType(U)).methods=[["String","String","",[],[$String],false,-1]];U.init([["Name","Name","",$String,""],["Address","Address","",$String,""]]);0	Address0  0Çñ 0XVX=$pkg.addrParser=$newType(12,"Slice","mail.addrParser","addrParser","net/mail",null);Ç($ptrType(X)).methods=[["consume","consume","net/mail",[$Uint8],[$Bool],false,-1],["consumeAddrSpec","consumeAddrSpec","net/mail",[],[$String,$error],false,-1],["consumeAtom","consumeAtom","net/mail",[$Bool],[$String,$error],false,-1],["consumePhrase","consumePhrase","net/mail",[],[$String,$error],false,-1],["consumeQuotedString","consumeQuotedString","net/mail",[],[$String,$error],false,-1],["empty","empty","net/mail",[],[$Bool],false,-1],["len","len","net/mail",[],[$Int],false,-1],["parseAddress","parseAddress","net/mail",[],[($ptrType(U)),$error],false,-1],["parseAddressList","parseAddressList","net/mail",[],[($sliceType(($ptrType(U)))),$error],false,-1],["peek","peek","net/mail",[],[$Uint8],false,-1],["skipSpace","skipSpace","net/mail",[],[],false,-1]];X.init($Uint8);0
+addrParser0net/mail:Address 0Ç 0AAÅ⁄AA=$pkg.qDecoder=$newType(0,"Struct","mail.qDecoder","qDecoder","net/mail",function(r_,scratch_){this.$val=this;this.r=r_!==undefined?r_:null;this.scratch=scratch_!==undefined?scratch_:($arrayType($Uint8,2)).zero();});ÇAA.methods=[["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,-1]];($ptrType(AA)).methods=[["Read","Read","",[($sliceType($Uint8))],[$Int,$error],false,-1]];AA.init([["r","r","net/mail",F.Reader,""],["scratch","scratch","net/mail",($arrayType($Uint8,2)),""]]);0
+qDecoder0	io:Reader 0 0M  0debug0  0Q 0Q Q=($sliceType($String)).nil;0dateLayouts0net/mail:dateLayouts 0$ 0   0ErrHeaderNotPresent0  0 0AB  0
+atextChars0  03 0      M=false;0debug0net/mail:debug 0| 0  C    $pkg.ErrHeaderNotPresent=D.New("mail: header not in message");0 0*
+errors:Newnet/mail:ErrHeaderNotPresent 0Å∂ 0  ÅÖ    AB=new($sliceType($Uint8))($stringToBytes("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'*+-/=?^_`{|}~"));0
+atextChars0net/mail:atextChars 0Ç(net/mail.debugT).Printf0 ÅªN.prototype.Printf=function(a,b){var c;  c=this.$val;  <    if(c){  EH.Printf(a,b);    }    };$ptrType(N).prototype.Printf=function(a,b){return new N(this.$get()).Printf(a,b);}; 0debugT0
+log:Printfnet/mail:debugT 0ÇÆnet/mail.ReadMessage0PÇ=P=$pkg.ReadMessage=function(a){var b=($ptrType(O)).nil,c=null,d,e,f,g,h,i,j;  íd=I.NewReader(A.NewReader(a));  ¬e=d.ReadMIMEHeader();f=e[0];c=e[1];  „    if(!($interfaceIsEqual(c,null))){  ı    g=($ptrType(O)).nil;h=c;b=g;c=h;return[b,c];    }  
+    i=new O.Ptr(f,d.R);j=null;b=i;c=j;return[b,c];    }; 0ReadMessage0<bufio:NewReadernet/mail:Messagenet/textproto:NewReader 0ÇÆnet/mail.init0RÇnR=function(){var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u;  ¯a=$toNativeArray("String",["","Mon, "]);  +b=$toNativeArray("String",["2","02"]);  ac=$toNativeArray("String",["2006","06"]);  °d=$toNativeArray("String",[":05",""]);  e=$toNativeArray("String",["-0700","MST","-0700 (MST)"]);  gf=a;g=0;while(g<2){h=((g<0||g>=f.length)?$throwRuntimeError("index out of range"):f[g]);  Ñi=b;j=0;while(j<2){k=((j<0||j>=i.length)?$throwRuntimeError("index out of range"):i[j]);  ¢l=c;m=0;while(m<2){n=((m<0||m>=l.length)?$throwRuntimeError("index out of range"):l[m]);  √o=d;p=0;while(p<2){q=((p<0||p>=o.length)?$throwRuntimeError("index out of range"):o[p]);  Èr=e;s=0;while(s<3){t=((s<0||s>=r.length)?$throwRuntimeError("index out of range"):r[s]);  u=h+k+" Jan "+n+" 15:04"+q+" "+t;  SQ=$append(Q,u);    s++;}    p++;}    m++;}    j++;}    g++;}    };	    R();0 0net/mail:dateLayouts 0Çnet/mail.parseDate0SÇüS=function(a){var b,c,d,e,f,g;  ∆b=Q;c=0;while(c<b.$length){d=((c<0||c>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+c]);  Ìe=L.Parse(d,a);f=new L.Time.Ptr();$copy(f,e[0],L.Time);g=e[1];  	    if($interfaceIsEqual(g,null)){  	%return[f,null];    }    c++;}  	;return[new L.Time.Ptr(new $Int64(0,0),0,($ptrType(L.Location)).nil),D.New("mail: header could not be parsed")];    }; 0	parseDate0H
+errors:Newnet/mail:dateLayoutstime:Location
+time:Parse	time:Time 0Ç(net/mail.Header).Get0 Å´T.prototype.Get=function(a){var b;  
+kb=this.$val;  
+èreturn(new I.MIMEHeader(b)).Get(a);    };$ptrType(T).prototype.Get=function(a){return new T(this.$get()).Get(a);}; 0Header0+net/mail:Headernet/textproto:MIMEHeader 0Çæ(net/mail.Header).Date0 Ç2T.prototype.Date=function(){var a,b;  +a=this.$val;  Rb=(new T(a)).Get("Date");  h    if(b===""){  yreturn[new L.Time.Ptr(new $Int64(0,0),0,($ptrType(L.Location)).nil),$pkg.ErrHeaderNotPresent];    }  •return S(b);    };$ptrType(T).prototype.Date=function(){return new T(this.$get()).Date();}; 0Header0]net/mail:ErrHeaderNotPresentnet/mail:Headernet/mail:parseDatetime:Location	time:Time 0Ç∫(net/mail.Header).AddressList0 Ç(T.prototype.AddressList=function(a){var b,c;  	b=this.$val;  Bc=(new T(b)).Get(a);  U    if(c===""){  freturn[($sliceType(($ptrType(U)))).nil,$pkg.ErrHeaderNotPresent];    }  äreturn W(c);    };$ptrType(T).prototype.AddressList=function(a){return new T(this.$get()).AddressList(a);}; 0Header0\net/mail:Addressnet/mail:ErrHeaderNotPresentnet/mail:Headernet/mail:ParseAddressList 0Å´net/mail.ParseAddress0VGV=$pkg.ParseAddress=function(a){  @return Y(a).parseAddress();    }; 0ParseAddress0/net/mail:newAddrParsernet/mail:parseAddress 0Åønet/mail.ParseAddressList0WOW=$pkg.ParseAddressList=function(a){  Óreturn Y(a).parseAddressList();    }; 0ParseAddressList03net/mail:newAddrParsernet/mail:parseAddressList 0Ç˛(*net/mail.Address).String0 Ç`U.Ptr.prototype.String=function(){var a,b,c,d,e,f,g,h,i;  Àa=this;  Íb="<"+a.Address+">";      if(a.Name===""){  return b;    }  ec=true;  {  d=0;while(d<a.Name.length){  Ò    if(!AE(a.Name.charCodeAt(d))&&!AF(a.Name.charCodeAt(d))){  "c=false;  :break;    }      ò  òd=d+(1)>>0;}  H    if(c){  \e=B.NewBufferString("\"");  ~  Çf=0;while(f<a.Name.length){  §    if(!AD(a.Name.charCodeAt(f))&&!AF(a.Name.charCodeAt(f))){  ÷e.WriteByte(92);    }  e.WriteByte(a.Name.charCodeAt(f));      õ  õf=f+(1)>>0;}  e.WriteString("\" ");  #e.WriteString(b);  6return e.String();    }  dg=B.NewBufferString("=?utf-8?q?");  é  íh=0;while(h<a.Name.length){  ≥  ∫i=a.Name.charCodeAt(h);  Œif(i===32){  ‡g.WriteByte(95);      Û}else if(AE(i)&&!((i===61))&&!((i===63))&&!((i===95))){  +g.WriteByte(i);    }else{  HE.Fprintf(g,"=%02X",new($sliceType($emptyInterface))([new $Uint8(i)]));    }      ´  ´h=h+(1)>>0;}  kg.WriteString("?= ");  Åg.WriteString(b);  ìreturn g.String();    };U.prototype.String=function(){return this.$val.String();}; 0	Address0jbytes:NewBufferStringfmt:Fprintfnet/mail:Addressnet/mail:isQtextnet/mail:isVcharnet/mail:isWSP 0Å–net/mail.newAddrParser0YÅÉY=function(a){var b;  Ïb=new X($stringToBytes(a));   return new($ptrType(X))(function(){return b;},function($v){b=$v;});    }; 0newAddrParser0net/mail:addrParser 0Çÿ'(*net/mail.addrParser).parseAddressList0 Ç$ptrType(X).prototype.parseAddressList=function(){var a,b,c,d,e;  a=this;  L  Pb=($sliceType(($ptrType(U)))).nil;  awhile(true){  ia.skipSpace();  yc=a.parseAddress();d=c[0];e=c[1];  ô    if(!($interfaceIsEqual(e,null))){  ¨return[($sliceType(($ptrType(U)))).nil,e];    }  ¬b=$append(b,d);  ﬂa.skipSpace();  Ô    if(a.empty()){  break;    }      if(!a.consume(44)){  %return[($sliceType(($ptrType(U)))).nil,D.New("mail: expected comma")];    }    }  \return[b,null];    }; 0
+addrParserparseAddressList0ÅÄ
+errors:Newnet/mail:Addressnet/mail:addrParsernet/mail:consumenet/mail:emptynet/mail:parseAddressnet/mail:skipSpace 0Ç$#(*net/mail.addrParser).parseAddress0 Ç
+$ptrType(X).prototype.parseAddress=function(){var a=($ptrType(U)).nil,b=null,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v;  ∫c=this;  ˆ(new N(M)).Printf("parseAddress: %q",new($sliceType($emptyInterface))([c.$get()]));  c.skipSpace();  +    if(c.empty()){  <    d=($ptrType(U)).nil;e=D.New("mail: no address");a=d;b=e;return[a,b];    }  df=c.consumeAddrSpec();g=f[0];b=f[1];  Ü    if($interfaceIsEqual(b,null)){  ò    h=new U.Ptr("",g);i=b;a=h;b=i;return[a,b];    }  »(new N(M)).Printf("parseAddress: not an addr-spec: %v",new($sliceType($emptyInterface))([b]));  (new N(M)).Printf("parseAddress: state is now %q",new($sliceType($emptyInterface))([c.$get()]));  F  Jj="";  ^    if(!((c.peek()===60))){  uk=c.consumePhrase();j=k[0];b=k[1];  ú    if(!($interfaceIsEqual(b,null))){  Ø    l=($ptrType(U)).nil;m=b;a=l;b=m;return[a,b];    }    }  «(new N(M)).Printf("parseAddress: displayName=%q",new($sliceType($emptyInterface))([new $String(j)]));  &c.skipSpace();  5    if(!c.consume(60)){  L    n=($ptrType(U)).nil;o=D.New("mail: no angle-addr");a=n;b=o;return[a,b];    }  ~p=c.consumeAddrSpec();g=p[0];b=p[1];  ü    if(!($interfaceIsEqual(b,null))){  ±    q=($ptrType(U)).nil;r=b;a=q;b=r;return[a,b];    }  ≈    if(!c.consume(62)){  ‹    s=($ptrType(U)).nil;t=D.New("mail: unclosed angle-addr");a=s;b=t;return[a,b];    }  (new N(M)).Printf("parseAddress: spec=%q",new($sliceType($emptyInterface))([new $String(g)]));  B    u=new U.Ptr(j,g);v=null;a=u;b=v;return[a,b];    }; 0
+addrParserparseAddress0ÅÀ
+errors:Newnet/mail:Addressnet/mail:addrParsernet/mail:consumenet/mail:consumeAddrSpecnet/mail:consumePhrasenet/mail:debugnet/mail:debugTnet/mail:emptynet/mail:peeknet/mail:skipSpace 0Ç&(*net/mail.addrParser).consumeAddrSpec0 Ç$ptrType(X).prototype.consumeAddrSpec=function(){var a="",b=null,$deferred=[],$err=null,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u;try{$deferFrames.push($deferred);  ÷c=this;  (new N(M)).Printf("consumeAddrSpec: %q",new($sliceType($emptyInterface))([c.$get()]));  =d=c.$get();  I$deferred.push([(function(){  Z    if(!($interfaceIsEqual(b,null))){  mc.$set(d);    }    }),[]]);  ¨  ∞e="";  ¬c.skipSpace();  —    if(c.empty()){  ‚    f="";g=D.New("mail: no addr-spec");a=f;b=g;return[a,b];    }      if(c.peek()===34){  <(new N(M)).Printf("consumeAddrSpec: parsing quoted-string",new($sliceType($emptyInterface))([]));  uh=c.consumeQuotedString();e=h[0];b=h[1];    }else{  ∏(new N(M)).Printf("consumeAddrSpec: parsing dot-atom",new($sliceType($emptyInterface))([]));  Ïi=c.consumeAtom(true);e=i[0];b=i[1];    }      if(!($interfaceIsEqual(b,null))){  '(new N(M)).Printf("consumeAddrSpec: failed: %v",new($sliceType($emptyInterface))([b]));  Z    j="";k=b;a=j;b=k;return[a,b];    }  n    if(!c.consume(64)){  Ö    l="";m=D.New("mail: missing @ in addr-spec");a=l;b=m;return[a,b];    }  Á  În="";  ˙c.skipSpace();  	    if(c.empty()){      o="";p=D.New("mail: no domain in addr-spec");a=o;b=p;return[a,b];    }  ~q=c.consumeAtom(true);n=q[0];b=q[1];  °    if(!($interfaceIsEqual(b,null))){  ≥    r="";s=b;a=r;b=s;return[a,b];    }  «    t=e+"@"+n;u=null;a=t;b=u;return[a,b];    }catch(err){$err=err;}finally{$deferFrames.pop();$callDeferred($deferred,$err);return[a,b];}}; 0
+addrParserconsumeAddrSpec0Åª
+errors:Newnet/mail:addrParsernet/mail:consumenet/mail:consumeAtomnet/mail:consumeQuotedStringnet/mail:debugnet/mail:debugTnet/mail:emptynet/mail:peeknet/mail:skipSpace 0Ç$(*net/mail.addrParser).consumePhrase0 Çõ$ptrType(X).prototype.consumePhrase=function(){var a="",b=null,c,d,e,f,g,h,i,j,k,l,m,n;  4c=this;  q(new N(M)).Printf("consumePhrase: [%s]",new($sliceType($emptyInterface))([c.$get()]));  Æ  ≤d=($sliceType($String)).nil;  ¬while(true){  Î  Ôe="";  ˝c.skipSpace();       if(c.empty()){       f="";g=D.New("mail: missing phrase");a=f;b=g;return[a,b];    }   S    if(c.peek()===34){   h=c.consumeQuotedString();e=h[0];b=h[1];    }else{  !i=c.consumeAtom(true);e=i[0];b=i[1];    }  !í    if($interfaceIsEqual(b,null)&&K.HasPrefix(e,"=?")&&K.HasSuffix(e,"?=")&&(K.Count(e,"?")===4)){  "j=Z(e);e=j[0];b=j[1];    }  "3    if(!($interfaceIsEqual(b,null))){  "Fbreak;    }  "R(new N(M)).Printf("consumePhrase: consumed %q",new($sliceType($emptyInterface))([new $String(e)]));  "Öd=$append(d,e);    }  "◊    if(!($interfaceIsEqual(b,null))&&(d.$length===0)){  "¸(new N(M)).Printf("consumePhrase: hit err: %v",new($sliceType($emptyInterface))([b]));  #.    k="";l=E.Errorf("mail: missing word in phrase: %v",new($sliceType($emptyInterface))([b]));a=k;b=l;return[a,b];    }  #qa=K.Join(d," ");  #î    m=a;n=null;a=m;b=n;return[a,b];    }; 0
+addrParserconsumePhrase0Ç
+errors:New
+fmt:Errorfnet/mail:addrParsernet/mail:consumeAtomnet/mail:consumeQuotedStringnet/mail:debugnet/mail:debugTnet/mail:decodeRFC2047Wordnet/mail:emptynet/mail:peeknet/mail:skipSpacestrings:Countstrings:HasPrefixstrings:HasSuffixstrings:Join 0Ç⁄*(*net/mail.addrParser).consumeQuotedString0 Ç1$ptrType(X).prototype.consumeQuotedString=function(){var a="",b=null,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q;  #Ûc=this;  $Pd=1;  $Xe=($sliceType($Uint8)).make(0,10);  $s  $zLoop:while(true){  $Ç    if(d>=c.len()){  $ó    f="";g=D.New("mail: unclosed quoted-string");a=f;b=g;return[a,b];    }  $”  $⁄i=(h=c.$get(),((d<0||d>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+d]));  $Ïif(i===34){  $˛break Loop;      %}else if(i===92){  %    if((d+1>>0)===c.len()){  %6    j="";k=D.New("mail: unclosed quoted-string");a=j;b=k;return[a,b];    }  %te=$append(e,(l=c.$get(),m=d+1>>0,((m<0||m>=l.$length)?$throwRuntimeError("index out of range"):l.$array[l.$offset+m])));  %îd=d+(2)>>0;      %ù}else if(AD(i)||(i===32)||(i===9)){  &'e=$append(e,i);  &?  &?d=d+(1)>>0;    }else{  &Q    n="";o=E.Errorf("mail: bad character in quoted-string: %q",new($sliceType($emptyInterface))([new $Uint8(i)]));a=n;b=o;return[a,b];    }    }  &ûc.$set($subslice((c.$get()),(d+1>>0)));  &Ø    p=$bytesToString(e);q=null;a=p;b=q;return[a,b];    }; 0!
+addrParserconsumeQuotedString0M
+errors:New
+fmt:Errorfnet/mail:addrParsernet/mail:isQtextnet/mail:len 0Çè"(*net/mail.addrParser).consumeAtom0 ÇÛ$ptrType(X).prototype.consumeAtom=function(a){var b="",c=null,d,e,f,g,h,i,j,k,l;  'Nd=this;  'è    if(!AC(d.peek(),false)){  '∞    e="";f=D.New("mail: invalid string");b=e;c=f;return[b,c];    }  '‚g=1;  'Íwhile(g<d.len()&&AC((h=d.$get(),((g<0||g>=h.$length)?$throwRuntimeError("index out of range"):h.$array[h.$offset+g])),a)){      (  (g=g+(1)>>0;}  ( i=$bytesToString($subslice((d.$get()),0,g));j=$subslice((d.$get()),g);b=i;d.$set(j);  (G    k=b;l=null;b=k;c=l;return[b,c];    }; 0
+addrParserconsumeAtom0P
+errors:Newnet/mail:addrParsernet/mail:isAtextnet/mail:lennet/mail:peek 0Ç3(*net/mail.addrParser).consume0 Åº$ptrType(X).prototype.consume=function(a){var b;  (ab=this;  (à    if(b.empty()||!((b.peek()===a))){  (™return false;    }  (ªb.$set($subslice((b.$get()),1));  ( return true;    }; 0
+addrParserconsume04net/mail:addrParsernet/mail:emptynet/mail:peek 0Çh (*net/mail.addrParser).skipSpace0 Å¸$ptrType(X).prototype.skipSpace=function(){var a,b,c;  )a=this;  )6a.$set((b=B.TrimLeft((c=a.$get(),$subslice(new($sliceType($Uint8))(c.$array),c.$offset,c.$offset+c.$length))," \t"),$subslice(new X(b.$array),b.$offset,b.$offset+b.$length)));    }; 0
+addrParser	skipSpace0%bytes:TrimLeftnet/mail:addrParser 0Ç (*net/mail.addrParser).peek0 ÅÆ$ptrType(X).prototype.peek=function(){var a,b;  )^a=this;  )|return(b=a.$get(),((0<0||0>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+0]));    }; 0
+addrParserpeek0net/mail:addrParser 0Åπ(*net/mail.addrParser).empty0 X$ptrType(X).prototype.empty=function(){var a;  )îa=this;  )≥return a.len()===0;    }; 0
+addrParserempty0#net/mail:addrParsernet/mail:len 0Å™(*net/mail.addrParser).len0 [$ptrType(X).prototype.len=function(){var a;  )–a=this;  )Ïreturn a.$get().$length;    }; 0
+addrParserlen0net/mail:addrParser 0ÇYnet/mail.decodeRFC2047Word0ZÇ[Z=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r;  *2b=K.Split(a,"?");  *S    if(!((b.$length===5))||!(((0<0||0>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+0])==="=")||!(((4<0||4>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+4])==="=")){  *ìreturn["",D.New("address not RFC 2047 encoded")];    }  *Õc=K.ToLower(((1<0||1>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+1]));d=K.ToLower(((2<0||2>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+2]));e=c;f=d;  +    if(!(e==="iso-8859-1")&&!(e==="utf-8")){  +Jreturn["",E.Errorf("charset not supported: %q",new($sliceType($emptyInterface))([new $String(e)]))];    }  +ãg=B.NewBufferString(((3<0||3>=b.$length)?$throwRuntimeError("index out of range"):b.$array[b.$offset+3]));  +≥  +∑h=null;  +ƒi=f;  +“if(i==="b"){  +ﬁh=C.NewDecoder(C.StdEncoding,g);      ,}else if(i==="q"){  ,h=(j=new AA.Ptr(g,($arrayType($Uint8,2)).zero()),new j.constructor.Struct(j));    }else{  ,9return["",E.Errorf("RFC 2047 encoding not supported: %q",new($sliceType($emptyInterface))([new $String(f)]))];    }  ,Äk=G.ReadAll(h);l=k[0];m=k[1];  ,ü    if(!($interfaceIsEqual(m,null))){  ,±return["",m];    }  ,≈n=e;  ,◊if(n==="iso-8859-1"){  ,Ïo=new B.Buffer.Ptr();  -p=l;q=0;while(q<p.$length){r=((q<0||q>=p.$length)?$throwRuntimeError("index out of range"):p.$array[p.$offset+q]);  - o.WriteRune((r>>0));    q++;}  -;return[o.String(),null];      -S}else if(n==="utf-8"){  -creturn[$bytesToString(l),null];    }  -$panic(new $String("unreachable"));    }; 0decodeRFC2047Word0Åºbytes:Bufferbytes:NewBufferStringencoding/base64:NewDecoderencoding/base64:StdEncoding
+errors:New
+fmt:Errorfio/ioutil:ReadAllnet/mail:qDecoderstrings:Splitstrings:ToLower 0Ç°(net/mail.qDecoder).Read0 Ç0AA.Ptr.prototype.Read=function(a){var b=0,c=null,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v;  -€d=new AA.Ptr();$copy(d,this,AA);  .=    if(a.$length===0){  .P    e=0;f=null;b=e;c=f;return[b,c];    }  .b  .eg=d.r.Read($subslice(new($sliceType($Uint8))(d.scratch),0,1));h=g[1];    if(!($interfaceIsEqual(h,null))){  .ô    i=0;j=h;b=i;c=j;return[b,c];    }  .´  .≤k=d.scratch[0];  .…if(k===61){  .⁄  .›l=F.ReadFull(d.r,$subslice(new($sliceType($Uint8))(d.scratch),0,2));m=l[1];    if(!($interfaceIsEqual(m,null))){  /    n=0;o=m;b=n;c=o;return[b,c];    }  /.p=J.ParseInt($bytesToString($subslice(new($sliceType($Uint8))(d.scratch),0,2)),16,64);q=p[0];r=p[1];  /k    if(!($interfaceIsEqual(r,null))){  /~    s=0;t=E.Errorf("mail: invalid RFC 2047 encoding: %q",new($sliceType($emptyInterface))([$subslice(new($sliceType($Uint8))(d.scratch),0,2)]));b=s;c=t;return[b,c];    }  /–(0<0||0>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+0]=(q.$low<<24>>>24);      /‡}else if(k===95){  /Ò(0<0||0>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+0]=32;    }else{  0(0<0||0>=a.$length)?$throwRuntimeError("index out of range"):a.$array[a.$offset+0]=k;    }  0    u=1;v=null;b=u;c=v;return[b,c];    };AA.prototype.Read=function(a){return this.$val.Read(a);}; 0
+qDecoder0>
+fmt:Errorfio:ReadFullnet/mail:qDecoderstrconv:ParseInt 0Åºnet/mail.isAtext0ACjAC=function(a,b){  11    if(b&&(a===46)){  1Hreturn true;    }  1Xreturn B.IndexByte(AB,a)>=0;    }; 0	isAtext0&bytes:IndexBytenet/mail:atextChars 0Åïnet/mail.isQtext0ADiAD=function(a){  2    if((a===92)||(a===34)){  23return false;    }  2Dreturn 33<=a&&a<=126;    }; 0	isQtext0  0\net/mail.isVchar0AE0AE=function(a){  2‡return 33<=a&&a<=126;    }; 0	isVchar0  0[net/mail.isWSP0AF3AF=function(a){  3áreturn(a===32)||(a===9);    }; 0isWSP0  0 Çx{"Base":13223,"Files":[{"Name":"/usr/local/go/src/pkg/net/mail/message.go","Base":1,"Size":13221,"Lines":[0,55,109,159,160,163,213,214,291,312,381,412,447,520,564,567,580,581,590,599,608,627,637,644,650,663,670,687,698,709,717,719,720,746,747,764,765,826,834,864,867,869,870,917,939,954,972,974,975,1014,1087,1110,1168,1215,1216,1249,1266,1284,1287,1288,1306,1329,1345,1353,1355,1356,1403,1432,1457,1458,1472,1525,1526,1577,1631,1695,1741,1794,1892,1893,1921,1950,1982,2019,2053,2124,2167,2174,2180,2185,2189,2192,2194,2195,2244,2282,2319,2337,2354,2358,2361,2429,2431,2432,2501,2533,2534,2593,2660,2701,2742,2744,2745,2813,2814,2852,2896,2918,2934,2976,2979,3002,3004,3005,3074,3136,3155,3171,3205,3208,3238,3240,3241,3286,3354,3417,3439,3485,3516,3518,3519,3592,3646,3692,3694,3695,3763,3820,3867,3869,3870,3929,3984,4036,4072,4100,4119,4130,4133,4195,4217,4253,4295,4334,4382,4406,4415,4419,4422,4441,4475,4512,4561,4583,4588,4614,4618,4640,4659,4679,4682,4683,4706,4748,4784,4811,4828,4848,4903,4921,4932,4962,4966,4969,4991,5009,5028,5030,5031,5054,5055,5098,5118,5129,5131,5132,5194,5215,5222,5238,5270,5288,5307,5311,5339,5340,5356,5373,5382,5386,5409,5459,5463,5466,5484,5486,5487,5555,5620,5658,5673,5689,5734,5737,5738,5774,5825,5826,5886,5942,5986,6020,6037,6056,6074,6083,6086,6143,6194,6195,6212,6236,6258,6297,6315,6334,6338,6341,6400,6401,6436,6451,6473,6521,6524,6557,6574,6592,6595,6617,6671,6674,6719,6720,6738,6762,6779,6787,6789,6790,6863,6929,6970,6971,6983,6999,7017,7030,7034,7039,7040,7082,7104,7119,7135,7181,7184,7206,7225,7282,7325,7335,7349,7401,7440,7443,7460,7511,7528,7531,7532,7554,7610,7613,7614,7653,7672,7687,7703,7759,7762,7804,7839,7856,7873,7876,7877,7915,7917,7918,7981,8047,8088,8108,8128,8135,8168,8186,8202,8219,8268,8272,8295,8315,8354,8365,8376,8436,8472,8507,8511,8512,8591,8708,8747,8751,8752,8770,8779,8783,8834,8864,8867,8917,8953,9003,9068,9071,9106,9126,9128,9129,9196,9264,9294,9302,9330,9336,9343,9363,9420,9424,9449,9466,9480,9498,9521,9579,9584,9616,9626,9668,9723,9763,9787,9794,9805,9877,9881,9884,9901,9926,9928,9929,9987,10055,10125,10157,10205,10208,10216,10267,10270,10309,10327,10329,10330,10374,10407,10422,10425,10440,10453,10455,10456,10513,10548,10580,10582,10583,10618,10634,10636,10637,10673,10694,10696,10697,10730,10746,10748,10749,10800,10833,10896,10952,10955,11027,11079,11141,11144,11145,11185,11202,11216,11227,11275,11286,11308,11318,11386,11389,11390,11421,11438,11455,11458,11459,11477,11497,11522,11548,11572,11576,11601,11616,11642,11645,11667,11669,11670,11693,11712,11729,11731,11732,11787,11835,11853,11869,11872,11926,11942,11945,11975,11991,12054,12071,12075,12136,12154,12233,12237,12254,12270,12283,12293,12304,12307,12322,12324,12325,12380,12412,12428,12452,12453,12514,12553,12591,12613,12627,12630,12674,12676,12677,12738,12766,12820,12848,12863,12866,12895,12897,12898,12959,12987,13022,13051,13053,13054,13105,13163,13189,13219],"Infos":null}]}
+ ˇ
