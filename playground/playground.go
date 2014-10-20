@@ -2,9 +2,6 @@ package main
 
 import (
 	"bytes"
-	"github.com/gopherjs/go-angularjs"
-	"github.com/gopherjs/gopherjs/compiler"
-	"github.com/gopherjs/gopherjs/js"
 	"go/ast"
 	"go/format"
 	"go/parser"
@@ -12,6 +9,10 @@ import (
 	"go/token"
 	"strings"
 	"time"
+
+	"github.com/gopherjs/gopherjs/compiler"
+	"github.com/gopherjs/gopherjs/js"
+	"github.com/neelance/go-angularjs"
 )
 
 type Line map[string]string
