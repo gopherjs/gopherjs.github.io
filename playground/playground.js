@@ -57014,7 +57014,7 @@ $packages["/home/h8liu/projects/gojs-pg/playground"] = (function() {
 			}));
 			run = $throwNilPointerError;
 			run = (function(loadOnly) {
-				var _tuple, file, err, _tuple$1, list, ok, _ref, _i, entry, _map, _key, _map$1, _key$1, _tuple$2, mainPkg, _key$2, _tuple$3, list$1, ok$1, output$1, _ref$1, _i$1, entry$1, _map$2, _key$3, _map$3, _key$4, allPkgs, _ref$2, _i$2, depPath, _tuple$4, dep, _ref$3, _i$3, path, req, p, mainPkgCode, _entry, jsCode;
+				var _tuple, file, err, _tuple$1, list, ok, _ref, _i, entry, _map, _key, _map$1, _key$1, _tuple$2, mainPkg, _key$2, _tuple$3, list$1, ok$1, output$1, _ref$1, _i$1, entry$1, _map$2, _key$3, _map$3, _key$4, allPkgs, _ref$2, _i$2, depPath, _tuple$4, dep, _ref$3, _i$3, req, path, p, mainPkgCode, _entry, jsCode;
 				output = ($sliceType(Line)).nil;
 				scope.Provider.Object.output = $externalize(output, ($sliceType(Line)));
 				pkgsToLoad = ($sliceType($String)).nil;
@@ -57071,8 +57071,8 @@ $packages["/home/h8liu/projects/gojs-pg/playground"] = (function() {
 					_ref$3 = pkgsToLoad;
 					_i$3 = 0;
 					while (_i$3 < _ref$3.$length) {
-						path = [undefined];
 						req = [undefined];
+						path = [undefined];
 						p = ((_i$3 < 0 || _i$3 >= _ref$3.$length) ? $throwRuntimeError("index out of range") : _ref$3.$array[_ref$3.$offset + _i$3]);
 						path[0] = p;
 						req[0] = new ($global.XMLHttpRequest)();
