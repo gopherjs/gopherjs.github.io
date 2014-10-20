@@ -19,7 +19,7 @@ type Line map[string]string
 var output []Line
 
 func main() {
-	app := angularjs.NewModule("playground", nil, nil)
+	app := angularjs.NewModule("playground", nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
 		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
