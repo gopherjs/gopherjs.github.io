@@ -1,0 +1,21 @@
+---
+layout: blog
+title: Blog
+permalink: /blog/
+---
+
+<div class="container mtb">
+    <div class="row">
+        <! -- BLOG POSTS LIST -->
+        <div class="col-md-8 col-md-offset-2">
+            {% for post in site.posts %}
+                <! -- Blog Post -->
+                <a href="{{ post.url | prepend: site.baseurl }}"><h2 class="ctitle">{{ post.title }}</h2></a>
+                <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
+                {{ post.content }}
+                <div class="hline"></div>
+                <div class="spacing"></div>
+            {% endfor %}
+        </div><! --/col-lg-8 -->
+    </div><! --/row -->
+</div><! --/container -->

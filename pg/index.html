@@ -7,7 +7,7 @@
         height: 100%;
       }
       body {
-        color: #000;
+        color: #222;
         height: 100%;
         margin: 0;
         padding: 0;
@@ -22,11 +22,12 @@
         top: 0px;
         right: 0px;
         bottom: 0px;
+				border: 300px;
       }
       .yellow {
-        background: #ffd;
+        background: #ebdac7;
         margin: 0px;
-        padding: 5px;
+        padding: 10px;
       }
       .show-generated-false #generated {
         display: none;
@@ -59,9 +60,11 @@
         overflow: scroll;
       }
       #output {
-        padding: 8px;
         position: absolute;
         overflow: scroll;
+        background: #ddd;
+				margin-top: 10px;
+        padding: 10px;
       }
       #output .system,#output .loading {
         color: #999;
@@ -73,17 +76,17 @@
         margin: 0;
       }
       #banner {
-        height: 50px;
         left: 0;
         position: absolute;
         right: 0;
         top: 0;
         white-space: nowrap;
-        padding: 8px;
+        padding: 4px;
       }
       #head {
-        font-family: Georgia,serif;
-        font-size: 30px;
+        font-family: Arial,sans;
+        font-size: 32px;
+				font-variant: small-caps;
       }
       #controls {
         padding-left: 20px;
@@ -91,7 +94,7 @@
       input[type="button"] {
         background: #eee;
         border: 1px solid #ccc;
-        color: #000;
+        color: #222;
         font-size: 20px;
         height: 30px;
       }
@@ -128,7 +131,7 @@
   </head>
   <body ng-controller="PlaygroundCtrl">
     <div id="banner">
-      <span id="head"><a href="https://github.com/gopherjs/gopherjs" style="color: black;">GopherJS</a> Playground</span>
+      <span id="head">playground</span>
       <span id="controls">
         <input type="button" value="Run" ng-click="run(false)" />
         <input type="button" value="Format" ng-click="format()" />
