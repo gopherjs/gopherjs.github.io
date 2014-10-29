@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "Go Recycle: SVGo"
+date:   2014-10-29
+author: Joseph Hager
+---
+
+One of the best features of GopherJS is that, most of the time, a pure Go library can be used without modification. For instance, before trying to decide which Javascript library to wrap in order to generate SVG images, I did a quick search on Github for a native Go solution. Sure enough, there was already a library for that, [SVGo](https://github.com/ajstarks/svgo).
+
+Just for fun, I fired up [SRVi](https://github.com/ajhager/srvi) in some of the many example projects that come with SVGo, to see what might need to be changed to support GopherJS, but they worked out of the box.
+
+The only thing left to do was to use the `js` package to add the generated SVG string to the DOM. You can see in the example below just how easy this is.
+
+```go
+package main
+
+import (
+	"bytes"
+
+	"github.com/ajstarks/svgo"
+	"github.com/gopherjs/gopherjs/js"
+)
+
+func main() {
+	var output bytes.Buffer
+
+	canvas := svg.New(&output)
+	canvas.Start(250, 250)
+	canvas.Circle(125, 125, 100, "fill:#28262C;stroke:#5BA642;stroke-width:5px")
+	canvas.Text(125, 135, "GopherJS!", "text-anchor:middle;font-size:36px;fill:#EB5633")
+	canvas.End()
+
+	js.Global.Get("document").Get("body").Set("innerHTML", output.String())
+}
+```
+
+SVGo is bundled with a program `svgplay` that hosts a website that has an editor for Go code on one side, and the SVG output of the program on the other. A fun project for the future would be to bundle a version of the GopherJS playground with SVGo, compiling and rendering 100% client side.
