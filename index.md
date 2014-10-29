@@ -32,7 +32,9 @@ Also, callbacks from external JavaScript code into Go code (see below) can never
 ### Installation and Usage
 Get or update GopherJS and dependencies with:
 
-	go get -u github.com/gopherjs/gopherjs
+```bash
+go get -u github.com/gopherjs/gopherjs
+```
 
 Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which behave similar to the `go` tool. For `main` packages, these commands create a `.js` file and `.js.map` source map in the current directory or in `$GOPATH/bin`. The generated JavaScript file can be used as usual in a website. Use `gopherjs help [command]` to get a list of possible command line flags, e.g. for minification and automatically watching for changes. If you want to run the generated code with Node.js, see [this page](//github.com/gopherjs/gopherjs/blob/master/doc/syscalls.md).
 
@@ -43,30 +45,36 @@ Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which 
 #### 1. Interacting with the DOM
 The package `github.com/gopherjs/gopherjs/js` (see [documentation](http://godoc.org/github.com/gopherjs/gopherjs/js)) provides functions for interacting with native JavaScript APIs. For example the line
 
-	document.write("Hello world!");
+```js
+document.write("Hello world!");
+```
 
 would look like this in Go:
 
-	js.Global.Get("document").Call("write", "Hello world!")
+```go
+js.Global.Get("document").Call("write", "Hello world!")
+```
 
 You may also want use the [DOM bindings](http://dominik.honnef.co/go/js/dom), the [jQuery bindings](https://github.com/gopherjs/jquery) (see [TodoMVC Example](https://github.com/gopherjs/todomvc)) or the [AngularJS bindings](https://github.com/gopherjs/go-angularjs). Those are some of the [bindings to JavaScript APIs and libraries](https://github.com/gopherjs/gopherjs/wiki/bindings) by community members.
 
 #### 2. Providing library functions for use in other JavaScript code
 Set a global variable to a map that contains the functions:
 
-	package main
+```go
+package main
 
-	import "github.com/gopherjs/gopherjs/js"
+import "github.com/gopherjs/gopherjs/js"
 
-	func main() {
-		js.Global.Set("myLibrary", map[string]interface{}{
-			"someFunction": someFunction,
-		})
-	}
+func main() {
+	js.Global.Set("myLibrary", map[string]interface{}{
+		"someFunction": someFunction,
+	})
+}
 
-	func someFunction() {
-		[...]
-	}
+func someFunction() {
+	[...]
+}
+```
 
 For more details see [Jason Stone's blog post](http://legacytotheedge.blogspot.de/2014/03/gopherjs-go-to-javascript-transpiler.html) about GopherJS.
 
