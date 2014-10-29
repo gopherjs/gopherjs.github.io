@@ -34,4 +34,11 @@ func main() {
 }
 ```
 
-SVGo is bundled with a program `svgplay` that hosts a website that has an editor for Go code on one side, and the SVG output of the program on the other. A fun project for the future would be to bundle a version of the GopherJS playground with SVGo, compiling and rendering 100% client side.
+When compiled with GopherJS, the program will display the image on the page:
+
+<svg width="250" height="250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="125" cy="125" r="100" style="fill:#28262C;stroke:#5BA642;stroke-width:5px"></circle>
+<text x="125" y="135" style="text-anchor:middle;font-size:36px;fill:#EB5633">GopherJS!</text>
+</svg>
+
+SVGo is bundled with a program `svgplay` that serves a website to "code sketch" svg images. It has an editor for Go code on one side, and the SVG output of the program on the other. A fun project for the future would be to bundle a version of the GopherJS playground with SVGo, compiling and rendering 100% client side.
