@@ -2,130 +2,7 @@
 <html ng-app="playground">
   <head>
     <title>GopherJS Playground</title>
-    <style>
-      html {
-        height: 100%;
-      }
-      body {
-        color: #222;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-      }
-      a {
-        color: #009;
-      }
-      .box {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-				border: 300px;
-      }
-      .yellow {
-        background: #ebdac7;
-        margin: 0px;
-        padding: 10px;
-      }
-      .show-generated-false #generated {
-        display: none;
-      }
-      .show-generated-true #input {
-        right: 50%;
-        margin-right: 2px;
-      }
-      .show-generated-true #generated {
-        left: 50%;
-        margin-left: 2px;
-      }
-      #code, #output, #generated, pre, .lines {
-        font-family: Menlo,Courier\ New,monospace;
-        font-size: 11pt;
-      }
-      #code {
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        border: none;
-        float: right;
-        margin: 0;
-        outline: none;
-        padding: 0;
-        resize: none;
-        wrap: off;
-      }
-      #generated {
-        overflow: scroll;
-      }
-      #output {
-        position: absolute;
-        overflow: scroll;
-        background: #ddd;
-				margin-top: 10px;
-        padding: 10px;
-      }
-      #output .system,#output .loading {
-        color: #999;
-      }
-      #output .err {
-        color: #900;
-      }
-      #output pre {
-        margin: 0;
-      }
-      #banner {
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        white-space: nowrap;
-        padding: 4px;
-      }
-      #head {
-        font-family: Arial,sans;
-        font-size: 32px;
-				font-variant: small-caps;
-      }
-      #controls {
-        padding-left: 20px;
-      }
-      input[type="button"] {
-        background: #eee;
-        border: 1px solid #ccc;
-        color: #222;
-        font-size: 20px;
-        height: 30px;
-      }
-      input[type="button"]:hover {
-        background: #666;
-        color: #fff;
-      }
-      label {
-        font-family: sans-serif;
-        font-size: 16px;
-      }
-      input[type="checkbox"] {
-        height: 14px;
-      }
-      .lines {
-        float: left;
-        overflow: hidden;
-        text-align: right;
-      }
-      .lines div {
-        color: #d3d3d3;
-        padding-right: 5px;
-      }
-      .lineerror {
-        background: #fdd;
-        color: red;
-      }
-      .exit {
-        color: #d3d3d3;
-      }
-    </style>
+		<link rel="stylesheet" type="text/css" href="playground.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
     <script src="playground.js"></script>
   </head>
@@ -139,15 +16,15 @@
       </span>
     </div>
     
-    <div class="box show-generated-{{showGenerated}}" style="top: 50px; bottom: 25%;">
+		<div class="box show-generated-{{showGenerated}}" id="content">
       <div class="box yellow" id="input">
         <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
       </div>
       <div class="box yellow" id="generated">
-        <pre style="margin: 0px;">{{generated}}</pre>
+        <pre>{{generated}}</pre>
       </div>
     </div>
-    <div class="box" style="top: 75%;" id="output">
+    <div class="box" id="output">
       <pre ng-repeat="line in output" class="{{line.type}}">{{line.content}}&nbsp;</pre>
     </div>
   </body>
