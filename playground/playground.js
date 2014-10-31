@@ -509,7 +509,7 @@ var $newType = function(size, kind, string, name, pkgPath, constructor) {
       typ.sendOnly = sendOnly;
       typ.recvOnly = recvOnly;
       typ.nil = new typ(0);
-      typ.nil.$sendQueue = typ.nil.$recvQueue = { length: 0, push: function() {}, shift: function() { return undefined; } };
+      typ.nil.$sendQueue = typ.nil.$recvQueue = { length: 0, push: function() {}, shift: function() { return undefined; }, indexOf: function() { return -1; } };
       typ.extendReflectType = function(rt) {
         rt.chanType = new $reflect.chanType.Ptr(rt, elem.reflectType(), sendOnly ? $reflect.SendDir : (recvOnly ? $reflect.RecvDir : $reflect.BothDir));
       };
@@ -1327,6 +1327,7 @@ var $go = function(fun, args, direct) {
   $awakeGoroutines++;
   args.push(true);
   var goroutine = function() {
+    var rescheduled = false;
     try {
       $curGoroutine = goroutine;
       $skippedDeferFrames = 0;
@@ -1336,6 +1337,7 @@ var $go = function(fun, args, direct) {
         fun = r;
         args = [];
         $schedule(goroutine, direct);
+        rescheduled = true;
         return;
       }
       goroutine.exit = true;
@@ -1346,14 +1348,14 @@ var $go = function(fun, args, direct) {
       }
     } finally {
       $curGoroutine = $dummyGoroutine;
-      if (goroutine.exit) { /* also set by runtime.Goexit() */
+      if (goroutine.exit && !rescheduled) { /* also set by runtime.Goexit() */
         $totalGoroutines--;
         goroutine.asleep = true;
       }
-      if (goroutine.asleep) {
+      if (goroutine.asleep && !rescheduled) {
         $awakeGoroutines--;
         if ($awakeGoroutines === 0 && $totalGoroutines !== 0 && $checkForDeadlock) {
-          $panic(new $String("fatal error: all goroutines are asleep - deadlock!"));
+          console.error("fatal error: all goroutines are asleep - deadlock!");
         }
       }
     }
@@ -1932,9 +1934,9 @@ $packages["runtime"] = (function() {
 	NotSupportedError.prototype.Error = function() { return this.$val.Error(); };
 	init = function() {
 		var e;
-		$throwRuntimeError = $externalize((function(msg) {
+		$throwRuntimeError = (function(msg) {
 			$panic(new errorString(msg));
-		}), ($funcType([$String], [], false)));
+		});
 		e = $ifaceNil;
 		e = new TypeAssertionError.Ptr("", "", "", "");
 		e = new NotSupportedError.Ptr("");
@@ -8474,7 +8476,7 @@ $packages["os"] = (function() {
 	};
 	fileInfoFromStat = function(st, name) {
 		var fs, _ref;
-		fs = new fileStat.Ptr(basename(name), st.Size, 0, timespecToTime($clone(st.Mtimespec, syscall.Timespec)), st);
+		fs = new fileStat.Ptr(basename(name), st.Size, 0, $clone(timespecToTime($clone(st.Mtimespec, syscall.Timespec)), time.Time), st);
 		fs.mode = (((st.Mode & 511) >>> 0) >>> 0);
 		_ref = (st.Mode & 61440) >>> 0;
 		if (_ref === 24576 || _ref === 57344) {
@@ -17286,7 +17288,7 @@ $packages["testing"] = (function() {
 		/* */ case -1: } return; } }; $f.$blocking = true; return $f;
 	};
 	Main = $pkg.Main = function(matchString, tests, benchmarks, examples, $b) {
-		var $this = this, $args = arguments, $r, $s = 0, failed, _ref, _i, err, done, t, test, _r, _tuple, e, ok;
+		var $this = this, $args = arguments, $r, $s = 0, failed, _ref, _i, t, err, done, test, _r, _tuple, e, ok;
 		/* */ if(!$b) { $nonblockingCall(); }; var $f = function() { while (true) { switch ($s) { case 0:
 		flag.Parse();
 		if (tests.$length === 0) {
@@ -17296,11 +17298,11 @@ $packages["testing"] = (function() {
 		_ref = tests;
 		_i = 0;
 		/* while (_i < _ref.$length) { */ case 1: if(!(_i < _ref.$length)) { $s = 2; continue; }
+			t = [undefined];
 			err = [undefined];
 			done = [undefined];
-			t = [undefined];
 			test = new InternalTest.Ptr(); $copy(test, ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]), InternalTest);
-			t[0] = new T.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), ($sliceType($Uint8)).nil, false, false, false, time.Now(), new time.Duration(0, 0), $ifaceNil, ($chanType($emptyInterface, false, false)).nil), test.Name, ($chanType($Bool, false, false)).nil);
+			t[0] = new T.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), ($sliceType($Uint8)).nil, false, false, false, $clone(time.Now(), time.Time), new time.Duration(0, 0), $ifaceNil, ($chanType($emptyInterface, false, false)).nil), test.Name, ($chanType($Bool, false, false)).nil);
 			t[0].common.self = t[0];
 			if (chatty.$get()) {
 				fmt.Printf("=== RUN %s\n", new ($sliceType($emptyInterface))([new $String(t[0].name)]));
@@ -22884,7 +22886,7 @@ $packages["go/scanner"] = (function() {
 	$ptrType(ErrorList).prototype.Add = function(pos, msg) {
 		var p;
 		p = this;
-		p.$set($append(p.$get(), new Error.Ptr(pos, msg)));
+		p.$set($append(p.$get(), new Error.Ptr($clone(pos, token.Position), msg)));
 	};
 	$ptrType(ErrorList).prototype.Reset = function() {
 		var p;
@@ -24984,7 +24986,7 @@ $packages["go/ast"] = (function() {
 		return cmap;
 	};
 	CommentMap.prototype.Update = function(old, new$1) {
-		var cmap, _entry, list, _entry$1, _key;
+		var cmap, _entry, list, _key, _entry$1;
 		cmap = this.$val !== undefined ? this.$val : this;
 		list = (_entry = cmap[old.$key()], _entry !== undefined ? _entry.v : ($sliceType(($ptrType(CommentGroup)))).nil);
 		if (list.$length > 0) {
@@ -25169,7 +25171,7 @@ $packages["go/ast"] = (function() {
 		return $assertType(prev, ($ptrType(ImportSpec))).Comment === ($ptrType(CommentGroup)).nil;
 	};
 	sortSpecs = function(fset, f, specs) {
-		var pos, _ref, _i, i, s, x, lastLine, cstart, cend, _ref$1, _i$1, i$1, g, comments, importComment$1, _map, _key, specIndex, _ref$2, _i$2, g$1, x$1, s$1, _entry, _key$1, deduped, _ref$3, _i$3, i$2, s$2, x$2, p, _ref$4, _i$4, i$3, s$3, s$4, _ref$5, _entry$1, _i$5, g$2, _ref$6, _i$6, c;
+		var pos, _ref, _i, i, s, x, lastLine, cstart, cend, _ref$1, _i$1, i$1, g, comments, importComment$1, _map, _key, specIndex, _ref$2, _i$2, g$1, x$1, s$1, _key$1, _entry, deduped, _ref$3, _i$3, i$2, s$2, x$2, p, _ref$4, _i$4, i$3, s$3, s$4, _ref$5, _entry$1, _i$5, g$2, _ref$6, _i$6, c;
 		if (specs.$length <= 1) {
 			return specs;
 		}
@@ -28398,7 +28400,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		this.hasLabel = hasLabel_ !== undefined ? hasLabel_ : false;
 		this.hasCallOrRecv = hasCallOrRecv_ !== undefined ? hasCallOrRecv_ : false;
 	});
-	Checker = $pkg.Checker = $newType(0, "Struct", "types.Checker", "Checker", "code.google.com/p/go.tools/go/types", function(conf_, fset_, pkg_, Info_, objMap_, files_, fileScopes_, dotImports_, firstErr_, methods_, untyped_, funcs_, delayed_, context_, indent_) {
+	Checker = $pkg.Checker = $newType(0, "Struct", "types.Checker", "Checker", "code.google.com/p/go.tools/go/types", function(conf_, fset_, pkg_, Info_, objMap_, files_, unusedDotImports_, firstErr_, methods_, untyped_, funcs_, delayed_, context_, indent_) {
 		this.$val = this;
 		this.conf = conf_ !== undefined ? conf_ : ($ptrType(Config)).nil;
 		this.fset = fset_ !== undefined ? fset_ : ($ptrType(token.FileSet)).nil;
@@ -28406,8 +28408,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		this.Info = Info_ !== undefined ? Info_ : ($ptrType(Info)).nil;
 		this.objMap = objMap_ !== undefined ? objMap_ : false;
 		this.files = files_ !== undefined ? files_ : ($sliceType(($ptrType(ast.File)))).nil;
-		this.fileScopes = fileScopes_ !== undefined ? fileScopes_ : ($sliceType(($ptrType(Scope)))).nil;
-		this.dotImports = dotImports_ !== undefined ? dotImports_ : ($sliceType(($mapType(($ptrType(Package)), token.Pos)))).nil;
+		this.unusedDotImports = unusedDotImports_ !== undefined ? unusedDotImports_ : false;
 		this.firstErr = firstErr_ !== undefined ? firstErr_ : $ifaceNil;
 		this.methods = methods_ !== undefined ? methods_ : false;
 		this.untyped = untyped_ !== undefined ? untyped_ : false;
@@ -28451,19 +28452,20 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	methodSet = $pkg.methodSet = $newType(4, "Map", "types.methodSet", "methodSet", "code.google.com/p/go.tools/go/types", null);
 	byUniqueName = $pkg.byUniqueName = $newType(12, "Slice", "types.byUniqueName", "byUniqueName", "code.google.com/p/go.tools/go/types", null);
 	Object = $pkg.Object = $newType(8, "Interface", "types.Object", "Object", "code.google.com/p/go.tools/go/types", null);
-	object = $pkg.object = $newType(0, "Struct", "types.object", "object", "code.google.com/p/go.tools/go/types", function(parent_, pos_, pkg_, name_, typ_, used_) {
+	object = $pkg.object = $newType(0, "Struct", "types.object", "object", "code.google.com/p/go.tools/go/types", function(parent_, pos_, pkg_, name_, typ_, order__) {
 		this.$val = this;
 		this.parent = parent_ !== undefined ? parent_ : ($ptrType(Scope)).nil;
 		this.pos = pos_ !== undefined ? pos_ : 0;
 		this.pkg = pkg_ !== undefined ? pkg_ : ($ptrType(Package)).nil;
 		this.name = name_ !== undefined ? name_ : "";
 		this.typ = typ_ !== undefined ? typ_ : $ifaceNil;
-		this.used = used_ !== undefined ? used_ : false;
+		this.order_ = order__ !== undefined ? order__ : 0;
 	});
-	PkgName = $pkg.PkgName = $newType(0, "Struct", "types.PkgName", "PkgName", "code.google.com/p/go.tools/go/types", function(object_, imported_) {
+	PkgName = $pkg.PkgName = $newType(0, "Struct", "types.PkgName", "PkgName", "code.google.com/p/go.tools/go/types", function(object_, imported_, used_) {
 		this.$val = this;
 		this.object = object_ !== undefined ? object_ : new object.Ptr();
 		this.imported = imported_ !== undefined ? imported_ : ($ptrType(Package)).nil;
+		this.used = used_ !== undefined ? used_ : false;
 	});
 	Const = $pkg.Const = $newType(0, "Struct", "types.Const", "Const", "code.google.com/p/go.tools/go/types", function(object_, val_, visited_) {
 		this.$val = this;
@@ -28475,20 +28477,22 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		this.$val = this;
 		this.object = object_ !== undefined ? object_ : new object.Ptr();
 	});
-	Var = $pkg.Var = $newType(0, "Struct", "types.Var", "Var", "code.google.com/p/go.tools/go/types", function(object_, anonymous_, visited_, isField_) {
+	Var = $pkg.Var = $newType(0, "Struct", "types.Var", "Var", "code.google.com/p/go.tools/go/types", function(object_, anonymous_, visited_, isField_, used_) {
 		this.$val = this;
 		this.object = object_ !== undefined ? object_ : new object.Ptr();
 		this.anonymous = anonymous_ !== undefined ? anonymous_ : false;
 		this.visited = visited_ !== undefined ? visited_ : false;
 		this.isField = isField_ !== undefined ? isField_ : false;
+		this.used = used_ !== undefined ? used_ : false;
 	});
 	Func = $pkg.Func = $newType(0, "Struct", "types.Func", "Func", "code.google.com/p/go.tools/go/types", function(object_) {
 		this.$val = this;
 		this.object = object_ !== undefined ? object_ : new object.Ptr();
 	});
-	Label = $pkg.Label = $newType(0, "Struct", "types.Label", "Label", "code.google.com/p/go.tools/go/types", function(object_) {
+	Label = $pkg.Label = $newType(0, "Struct", "types.Label", "Label", "code.google.com/p/go.tools/go/types", function(object_, used_) {
 		this.$val = this;
 		this.object = object_ !== undefined ? object_ : new object.Ptr();
+		this.used = used_ !== undefined ? used_ : false;
 	});
 	Builtin = $pkg.Builtin = $newType(0, "Struct", "types.Builtin", "Builtin", "code.google.com/p/go.tools/go/types", function(object_, id_) {
 		this.$val = this;
@@ -28837,7 +28841,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.initVar = function(lhs, x, result) { return this.$val.initVar(lhs, x, result); };
 	Checker.Ptr.prototype.assignVar = function(lhs, x) {
-		var check, _tuple, ident, v, v_used, obj, _tuple$1, z, _ref;
+		var check, _tuple, ident, v, v_used, _tuple$1, obj, _tuple$2, z, _ref;
 		check = this;
 		if ((x.mode === 0) || $interfaceIsEqual(x.typ, $pkg.Typ[0])) {
 			return $ifaceNil;
@@ -28854,18 +28858,18 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		v = ($ptrType(Var)).nil;
 		v_used = false;
 		if (!(ident === ($ptrType(ast.Ident)).nil)) {
-			obj = check.context.scope.LookupParent(ident.Name);
+			_tuple$1 = check.context.scope.LookupParent(ident.Name); obj = _tuple$1[1];
 			if (!($interfaceIsEqual(obj, $ifaceNil))) {
-				_tuple$1 = $assertType(obj, ($ptrType(Var)), true); v = _tuple$1[0];
+				_tuple$2 = $assertType(obj, ($ptrType(Var)), true); v = _tuple$2[0];
 				if (!(v === ($ptrType(Var)).nil)) {
-					v_used = v.object.used;
+					v_used = v.used;
 				}
 			}
 		}
 		z = new operand.Ptr(); $copy(z, new operand.Ptr(), operand);
 		check.expr(z, lhs);
 		if (!(v === ($ptrType(Var)).nil)) {
-			v.object.used = v_used;
+			v.used = v_used;
 		}
 		if ((z.mode === 0) || $interfaceIsEqual(z.typ, $pkg.Typ[0])) {
 			return $ifaceNil;
@@ -28894,7 +28898,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_tuple = unpack((function(x, i) {
 			check.expr(x, ((i < 0 || i >= rhs.$length) ? $throwRuntimeError("index out of range") : rhs.$array[rhs.$offset + i]));
 		}), rhs.$length, (l === 2) && !(new token.Pos(returnPos)).IsValid()); get = _tuple[0]; r = _tuple[1]; commaOk = _tuple[2];
-		if (!((l === r))) {
+		if (get === $throwNilPointerError || !((l === r))) {
 			_ref = lhs;
 			_i = 0;
 			while (_i < _ref.$length) {
@@ -28904,7 +28908,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				}
 				_i++;
 			}
-			check.use(rhs);
+			if (get === $throwNilPointerError) {
+				return;
+			}
+			check.useGetter(get, r);
 			if ((new token.Pos(returnPos)).IsValid()) {
 				check.errorf(returnPos, "wrong number of return values (want %d, got %d)", new ($sliceType($emptyInterface))([new $Int(l), new $Int(r)]));
 				return;
@@ -28944,9 +28951,12 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_tuple = unpack((function(x, i) {
 			check.expr(x, ((i < 0 || i >= rhs.$length) ? $throwRuntimeError("index out of range") : rhs.$array[rhs.$offset + i]));
 		}), rhs.$length, l === 2); get = _tuple[0]; r = _tuple[1]; commaOk = _tuple[2];
+		if (get === $throwNilPointerError) {
+			return;
+		}
 		if (!((l === r))) {
+			check.useGetter(get, r);
 			check.errorf(((0 < 0 || 0 >= rhs.$length) ? $throwRuntimeError("index out of range") : rhs.$array[rhs.$offset + 0]).Pos(), "assignment count mismatch (%d vs %d)", new ($sliceType($emptyInterface))([new $Int(l), new $Int(r)]));
-			check.use(rhs);
 			return;
 		}
 		x = new operand.Ptr(); $copy(x, new operand.Ptr(), operand);
@@ -29053,6 +29063,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				var x$2;
 				check.expr(x$1, (x$2 = call.Args, ((i < 0 || i >= x$2.$length) ? $throwRuntimeError("index out of range") : x$2.$array[x$2.$offset + i])));
 			}), nargs, false); arg = _tuple[0]; nargs = _tuple[1];
+			if (arg === $throwNilPointerError) {
+				x.mode = 0;
+				return result;
+			}
 			if (nargs > 0) {
 				arg(x, 0);
 				if (x.mode === 0) {
@@ -29577,6 +29591,11 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				var x$5;
 				check.expr(x$4, (x$5 = e.Args, ((i < 0 || i >= x$5.$length) ? $throwRuntimeError("index out of range") : x$5.$array[x$5.$offset + i])));
 			}), e.Args.$length, false); arg = _tuple$1[0]; n$1 = _tuple$1[1];
+			if (arg === $throwNilPointerError) {
+				x.mode = 0;
+				x.expr = e;
+				return 2;
+			}
 			check.arguments$(x, e, sig, arg, n$1);
 			_ref$2 = sig.results.Len();
 			if (_ref$2 === 0) {
@@ -29607,18 +29626,24 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	Checker.prototype.use = function(arg) { return this.$val.use(arg); };
+	Checker.Ptr.prototype.useGetter = function(get, n) {
+		var check, x, i;
+		check = this;
+		x = new operand.Ptr(); $copy(x, new operand.Ptr(), operand);
+		i = 0;
+		while (i < n) {
+			get(x, i);
+			i = i + (1) >> 0;
+		}
+	};
+	Checker.prototype.useGetter = function(get, n) { return this.$val.useGetter(get, n); };
 	unpack = function(get, n, allowCommaOk) {
 		var x0, _tuple, t, ok, a;
 		if (n === 1) {
 			x0 = new operand.Ptr(); $copy(x0, new operand.Ptr(), operand);
 			get(x0, 0);
 			if (x0.mode === 0) {
-				return [(function(x, i) {
-					if (!((i === 0))) {
-						unreachable();
-					}
-					x.mode = 0;
-				}), 1, false];
+				return [$throwNilPointerError, 0, false];
 			}
 			_tuple = $assertType(x0.typ, ($ptrType(Tuple)), true); t = _tuple[0]; ok = _tuple[1];
 			if (ok) {
@@ -29707,7 +29732,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.argument = function(sig, i, x, passSlice) { return this.$val.argument(sig, i, x, passSlice); };
 	Checker.Ptr.prototype.selector = function(x, e) {
-		var $this = this, $args = arguments, $s = 0, check, obj, index, indirect, sel, _tuple, ident, ok, _tuple$1, pkg, exp, exp$1, _ref, _tuple$2, _tuple$3, m, params, sig, obj$1, _ref$1, sig$1;
+		var $this = this, $args = arguments, $s = 0, check, obj, index, indirect, sel, _tuple, ident, ok, _tuple$1, obj$1, _tuple$2, pkg, exp, exp$1, _ref, _tuple$3, _tuple$4, m, params, sig, obj$2, _ref$1, sig$1;
 		/* */ while (true) { switch ($s) { case 0:
 		check = $this;
 		obj = $ifaceNil;
@@ -29716,10 +29741,12 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		sel = e.Sel.Name;
 		_tuple = $assertType(e.X, ($ptrType(ast.Ident)), true); ident = _tuple[0]; ok = _tuple[1];
 		/* if (ok) { */ if (ok) {} else { $s = 2; continue; }
-			_tuple$1 = $assertType(check.context.scope.LookupParent(ident.Name), ($ptrType(PkgName)), true); pkg = _tuple$1[0];
+			_tuple$1 = check.context.scope.LookupParent(ident.Name); obj$1 = _tuple$1[1];
+			_tuple$2 = $assertType(obj$1, ($ptrType(PkgName)), true); pkg = _tuple$2[0];
 			/* if (!(pkg === ($ptrType(PkgName)).nil)) { */ if (!(pkg === ($ptrType(PkgName)).nil)) {} else { $s = 3; continue; }
+				assert(pkg.object.pkg === check.pkg);
 				check.recordUse(ident, pkg);
-				pkg.object.used = true;
+				pkg.used = true;
 				exp = pkg.imported.scope.Lookup(sel);
 				/* if ($interfaceIsEqual(exp, $ifaceNil)) { */ if ($interfaceIsEqual(exp, $ifaceNil)) {} else { $s = 4; continue; }
 					if (!pkg.imported.fake) {
@@ -29767,7 +29794,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		/* if (x.mode === 0) { */ if (x.mode === 0) {} else { $s = 5; continue; }
 			/* goto Error */ $s = 1; continue;
 		/* } */ case 5:
-		_tuple$2 = LookupFieldOrMethod(x.typ, x.mode === 5, check.pkg, sel); obj = _tuple$2[0]; index = _tuple$2[1]; indirect = _tuple$2[2];
+		_tuple$3 = LookupFieldOrMethod(x.typ, x.mode === 5, check.pkg, sel); obj = _tuple$3[0]; index = _tuple$3[1]; indirect = _tuple$3[2];
 		/* if ($interfaceIsEqual(obj, $ifaceNil)) { */ if ($interfaceIsEqual(obj, $ifaceNil)) {} else { $s = 6; continue; }
 			if (!(index === ($sliceType($Int)).nil)) {
 				check.invalidOp(e.Pos(), "ambiguous selector %s", new ($sliceType($emptyInterface))([new $String(sel)]));
@@ -29779,7 +29806,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			/* goto Error */ $s = 1; continue;
 		/* } */ case 6:
 		/* if (x.mode === 3) { */ if (x.mode === 3) {} else { $s = 7; continue; }
-			_tuple$3 = $assertType(obj, ($ptrType(Func)), true); m = _tuple$3[0];
+			_tuple$4 = $assertType(obj, ($ptrType(Func)), true); m = _tuple$4[0];
 			/* if (m === ($ptrType(Func)).nil) { */ if (m === ($ptrType(Func)).nil) {} else { $s = 9; continue; }
 				check.invalidOp(e.Pos(), "%s has no method %s", new ($sliceType($emptyInterface))([x, new $String(sel)]));
 				/* goto Error */ $s = 1; continue;
@@ -29796,24 +29823,24 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		/* } else { */ $s = 8; continue; case 7: 
 			_ref$1 = obj;
 			if ($assertType(_ref$1, ($ptrType(Var)), true)[1]) {
-				obj$1 = _ref$1.$val;
-				check.recordSelection(e, 0, x.typ, obj$1, index, indirect);
+				obj$2 = _ref$1.$val;
+				check.recordSelection(e, 0, x.typ, obj$2, index, indirect);
 				if ((x.mode === 5) || indirect) {
 					x.mode = 5;
 				} else {
 					x.mode = 7;
 				}
-				x.typ = obj$1.object.typ;
+				x.typ = obj$2.object.typ;
 			} else if ($assertType(_ref$1, ($ptrType(Func)), true)[1]) {
-				obj$1 = _ref$1.$val;
-				check.recordSelection(e, 1, x.typ, obj$1, index, indirect);
+				obj$2 = _ref$1.$val;
+				check.recordSelection(e, 1, x.typ, obj$2, index, indirect);
 				x.mode = 7;
-				sig$1 = new Signature.Ptr(); $copy(sig$1, $assertType(obj$1.object.typ, ($ptrType(Signature))), Signature);
+				sig$1 = new Signature.Ptr(); $copy(sig$1, $assertType(obj$2.object.typ, ($ptrType(Signature))), Signature);
 				sig$1.recv = ($ptrType(Var)).nil;
 				x.typ = sig$1;
-				check.addDeclDep(obj$1);
+				check.addDeclDep(obj$2);
 			} else {
-				obj$1 = _ref$1;
+				obj$2 = _ref$1;
 				unreachable();
 			}
 		/* } */ case 8:
@@ -29825,6 +29852,22 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		/* */ case -1: } return; }
 	};
 	Checker.prototype.selector = function(x, e) { return this.$val.selector(x, e); };
+	Checker.Ptr.prototype.addUnusedDotImport = function(scope, pkg, pos) {
+		var check, mm, _entry, m, _key$2, _key$3;
+		check = this;
+		mm = check.unusedDotImports;
+		if (mm === false) {
+			mm = new $Map();
+			check.unusedDotImports = mm;
+		}
+		m = (_entry = mm[scope.$key()], _entry !== undefined ? _entry.v : false);
+		if (m === false) {
+			m = new $Map();
+			_key$2 = scope; (mm || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: m };
+		}
+		_key$3 = pkg; (m || $throwRuntimeError("assignment to entry in nil map"))[_key$3.$key()] = { k: _key$3, v: pos };
+	};
+	Checker.prototype.addUnusedDotImport = function(scope, pkg, pos) { return this.$val.addUnusedDotImport(scope, pkg, pos); };
 	Checker.Ptr.prototype.addDeclDep = function(to) {
 		var check, from, _tuple, _entry, found;
 		check = this;
@@ -29840,7 +29883,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.addDeclDep = function(to) { return this.$val.addDeclDep(to); };
 	Checker.Ptr.prototype.assocMethod = function(tname, meth) {
-		var check, m, _entry, _key$2;
+		var check, m, _key$2, _entry;
 		check = this;
 		m = check.methods;
 		if (m === false) {
@@ -29883,14 +29926,13 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		if (info === ($ptrType(Info)).nil) {
 			info = new Info.Ptr();
 		}
-		return new Checker.Ptr(conf, fset, pkg, info, new $Map(), ($sliceType(($ptrType(ast.File)))).nil, ($sliceType(($ptrType(Scope)))).nil, ($sliceType(($mapType(($ptrType(Package)), token.Pos)))).nil, $ifaceNil, false, false, ($sliceType(funcInfo)).nil, ($sliceType(($funcType([], [], false)))).nil, new context.Ptr(), 0);
+		return new Checker.Ptr(conf, fset, pkg, info, new $Map(), ($sliceType(($ptrType(ast.File)))).nil, false, $ifaceNil, false, false, ($sliceType(funcInfo)).nil, ($sliceType(($funcType([], [], false)))).nil, new context.Ptr(), 0);
 	};
 	Checker.Ptr.prototype.initFiles = function(files) {
-		var check, pkg, _ref, _i, i, file, name, _ref$1, comment, pos, fileScope;
+		var check, pkg, _ref, _i, file, name, _ref$1;
 		check = this;
 		check.files = ($sliceType(($ptrType(ast.File)))).nil;
-		check.fileScopes = ($sliceType(($ptrType(Scope)))).nil;
-		check.dotImports = ($sliceType(($mapType(($ptrType(Package)), token.Pos)))).nil;
+		check.unusedDotImports = false;
 		check.firstErr = $ifaceNil;
 		check.methods = false;
 		check.untyped = false;
@@ -29900,7 +29942,6 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_ref = files;
 		_i = 0;
 		while (_i < _ref.$length) {
-			i = _i;
 			file = ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]);
 			name = file.Name.Name;
 			_ref$1 = pkg.name;
@@ -29911,30 +29952,8 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					check.errorf(file.Name.Pos(), "invalid package name _", new ($sliceType($emptyInterface))([]));
 				}
 				check.files = $append(check.files, file);
-				comment = "";
-				pos = file.Pos();
-				if ((new token.Pos(pos)).IsValid()) {
-					comment = "file " + check.fset.File(pos).Name();
-				} else {
-					comment = fmt.Sprintf("file[%d]", new ($sliceType($emptyInterface))([new $Int(i)]));
-				}
-				fileScope = NewScope(pkg.scope, comment);
-				check.recordScope(file, fileScope);
-				check.fileScopes = $append(check.fileScopes, fileScope);
-				check.dotImports = $append(check.dotImports, false);
 			} else if (_ref$1 === name) {
 				check.files = $append(check.files, file);
-				comment = "";
-				pos = file.Pos();
-				if ((new token.Pos(pos)).IsValid()) {
-					comment = "file " + check.fset.File(pos).Name();
-				} else {
-					comment = fmt.Sprintf("file[%d]", new ($sliceType($emptyInterface))([new $Int(i)]));
-				}
-				fileScope = NewScope(pkg.scope, comment);
-				check.recordScope(file, fileScope);
-				check.fileScopes = $append(check.fileScopes, fileScope);
-				check.dotImports = $append(check.dotImports, false);
 			} else {
 				check.errorf(file.Package, "package %s; expected %s", new ($sliceType($emptyInterface))([new $String(name), new $String(pkg.name)]));
 			}
@@ -30054,7 +30073,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				assert(!($interfaceIsEqual(tv.Type, $ifaceNil)));
 				pos = x.Pos();
 				tv.Type = NewTuple(new ($sliceType(($ptrType(Var))))([NewVar(pos, check.pkg, "", a[0]), NewVar(pos, check.pkg, "", a[1])]));
-				_key$2 = x; (m || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: tv };
+				_key$2 = x; (m || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: $clone(tv, TypeAndValue) };
 				_tuple = $assertType(x, ($ptrType(ast.ParenExpr)), true); p = _tuple[0];
 				if (p === ($ptrType(ast.ParenExpr)).nil) {
 					break;
@@ -30957,7 +30976,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		} }
 		if (!final$1 && isUntyped(typ)) {
 			old.typ = $assertType(typ.Underlying(), ($ptrType(Basic)));
-			_key$2 = x; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: old };
+			_key$2 = x; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: $clone(old, exprInfo) };
 			return;
 		}
 		delete check.untyped[x.$key()];
@@ -30974,7 +30993,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_tuple = (_entry = check.untyped[x.$key()], _entry !== undefined ? [_entry.v, true] : [new exprInfo.Ptr(), false]); info = new exprInfo.Ptr(); $copy(info, _tuple[0], exprInfo); ok = _tuple[1];
 		if (ok) {
 			info.val = val;
-			_key$2 = x; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: info };
+			_key$2 = x; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: $clone(info, exprInfo) };
 		}
 	};
 	Checker.prototype.updateExprVal = function(x, val) { return this.$val.updateExprVal(x, val); };
@@ -31137,7 +31156,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				_tuple$1 = (_entry = check.untyped[x.expr.$key()], _entry !== undefined ? [_entry.v, true] : [new exprInfo.Ptr(), false]); info = new exprInfo.Ptr(); $copy(info, _tuple$1[0], exprInfo); found = _tuple$1[1];
 				assert(found);
 				info.isLhs = true;
-				_key$2 = x.expr; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: info };
+				_key$2 = x.expr; (check.untyped || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: $clone(info, exprInfo) };
 				x.mode = 7;
 				return;
 			}
@@ -31325,7 +31344,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.rawExpr = function(x, e, hint) { return this.$val.rawExpr(x, e, hint); };
 	Checker.Ptr.prototype.exprInternal = function(x, e, hint) {
-		var $this = this, $args = arguments, $s = 0, check, e$1, _ref, _tuple, sig, ok, typ, openArray, _tuple$1, atyp, _tuple$2, ellip, _tuple$3, typ$1, utyp, _ref$1, fields, _tuple$4, x$1, ok$1, visited, _ref$2, _i, e$2, _tuple$5, kv, _tuple$6, key, i, fld, etyp, _ref$3, _i$1, i$1, e$3, _tuple$7, kv$1, etyp$1, n, visited$1, _ref$4, _i$2, e$4, _tuple$8, kv$2, duplicate, _tuple$9, ok$2, _ref$5, _entry, _i$3, vtyp, _entry$1, _key$2, _tuple$10, _entry$2, _key$3, kind, valid, length, typ$2, _ref$6, _tuple$11, typ$3, key$1, valid$1, length$1, typ$4, _ref$7, _tuple$12, typ$5, ind, _ref$8, _i$4, i$2, expr, x$2, max, _tuple$13, t, ok$3, _ref$9, _i$5, i$3, x$3, _ref$10, _i$6, y, _tuple$14, xtyp, T, _ref$11, _tuple$15, typ$6, ok$4, x$4;
+		var $this = this, $args = arguments, $s = 0, check, e$1, _ref, _tuple, sig, ok, typ, openArray, _tuple$1, atyp, _tuple$2, ellip, _tuple$3, typ$1, utyp, _ref$1, fields, _tuple$4, x$1, ok$1, visited, _ref$2, _i, e$2, _tuple$5, kv, _tuple$6, key, i, fld, etyp, _ref$3, _i$1, i$1, e$3, _tuple$7, kv$1, etyp$1, n, visited$1, _ref$4, _i$2, e$4, _tuple$8, kv$2, duplicate, _tuple$9, ok$2, _ref$5, _entry, _i$3, vtyp, _key$2, _entry$1, _tuple$10, _entry$2, _key$3, kind, valid, length, typ$2, _ref$6, _tuple$11, typ$3, key$1, valid$1, length$1, typ$4, _ref$7, _tuple$12, typ$5, ind, _ref$8, _i$4, i$2, expr, x$2, max, _tuple$13, t, ok$3, _ref$9, _i$5, i$3, x$3, _ref$10, _i$6, y, _tuple$14, xtyp, T, _ref$11, _tuple$15, typ$6, ok$4, x$4;
 		/* */ while (true) { switch ($s) { case 0:
 		check = $this;
 		x.mode = 0;
@@ -32235,7 +32254,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		var a, _tmp, _tmp$1, x, y;
 		a = this;
 		_tmp = ((i < 0 || i >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + i]); _tmp$1 = ((j < 0 || j >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + j]); x = _tmp; y = _tmp$1;
-		return x.in$1 < y.in$1 || (x.in$1 === y.in$1) && x.obj.Pos() < y.obj.Pos();
+		return x.in$1 < y.in$1 || (x.in$1 === y.in$1) && x.obj.order() < y.obj.order();
 	};
 	$ptrType(nodeQueue).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	$ptrType(nodeQueue).prototype.Push = function(x) {
@@ -32266,7 +32285,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			alt = all.Lookup(name);
 			if (!($interfaceIsEqual(alt, $ifaceNil))) {
 				msg = "goto %s jumps into block";
-				$assertType(alt, ($ptrType(Label))).object.used = true;
+				$assertType(alt, ($ptrType(Label))).used = true;
 			} else {
 				msg = "label %s not declared";
 			}
@@ -32284,7 +32303,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 			obj = _entry.v;
 			lbl = $assertType(obj, ($ptrType(Label)));
-			if (!lbl.object.used) {
+			if (!lbl.used) {
 				check.softErrorf(lbl.object.pos, "label %s declared but not used", new ($sliceType($emptyInterface))([new $String(lbl.object.name)]));
 			}
 			_i$1++;
@@ -32388,7 +32407,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					while (_i < _ref$1.$length) {
 						jmp = ((_i < 0 || _i >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i]);
 						if (jmp.Label.Name === name) {
-							lbl.object.used = true;
+							lbl.used = true;
 							check.recordUse(jmp.Label, lbl);
 							if (jumpsOverVarDecl(jmp)) {
 								check.softErrorf(jmp.Label.Pos(), "goto %s jumps over variable declaration at line %d", new ($sliceType($emptyInterface))([new $String(name), new $Int(check.fset.Position(varDeclPos).Line)]));
@@ -32446,7 +32465,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					return;
 				}
 				obj = all.Lookup(name$1);
-				$assertType(obj, ($ptrType(Label))).object.used = true;
+				$assertType(obj, ($ptrType(Label))).used = true;
 				check.recordUse(s$1.Label, obj);
 			} else if ($assertType(_ref, ($ptrType(ast.AssignStmt)), true)[1]) {
 				s$1 = _ref.$val;
@@ -33068,12 +33087,19 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		$panic(new $String("abstract"));
 	};
 	object.prototype.String = function() { return this.$val.String(); };
-	object.Ptr.prototype.isUsed = function() {
+	object.Ptr.prototype.order = function() {
 		var obj;
 		obj = this;
-		return obj.used;
+		return obj.order_;
 	};
-	object.prototype.isUsed = function() { return this.$val.isUsed(); };
+	object.prototype.order = function() { return this.$val.order(); };
+	object.Ptr.prototype.setOrder = function(order) {
+		var obj;
+		obj = this;
+		assert(order > 0);
+		obj.order_ = order;
+	};
+	object.prototype.setOrder = function(order) { return this.$val.setOrder(order); };
 	object.Ptr.prototype.setParent = function(parent) {
 		var obj;
 		obj = this;
@@ -33096,7 +33122,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	object.prototype.sameId = function(pkg, name) { return this.$val.sameId(pkg, name); };
 	NewPkgName = $pkg.NewPkgName = function(pos, pkg, name, imported) {
-		return new PkgName.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, $pkg.Typ[0], false), imported);
+		return new PkgName.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, $pkg.Typ[0], 0), imported, false);
 	};
 	PkgName.Ptr.prototype.Imported = function() {
 		var obj;
@@ -33105,7 +33131,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	PkgName.prototype.Imported = function() { return this.$val.Imported(); };
 	NewConst = $pkg.NewConst = function(pos, pkg, name, typ, val) {
-		return new Const.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, false), val, false);
+		return new Const.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0), val, false);
 	};
 	Const.Ptr.prototype.Val = function() {
 		var obj;
@@ -33114,16 +33140,16 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Const.prototype.Val = function() { return this.$val.Val(); };
 	NewTypeName = $pkg.NewTypeName = function(pos, pkg, name, typ) {
-		return new TypeName.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, false));
+		return new TypeName.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0));
 	};
 	NewVar = $pkg.NewVar = function(pos, pkg, name, typ) {
-		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, false), false, false, false);
+		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0), false, false, false, false);
 	};
 	NewParam = $pkg.NewParam = function(pos, pkg, name, typ) {
-		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, true), false, false, false);
+		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0), false, false, false, true);
 	};
 	NewField = $pkg.NewField = function(pos, pkg, name, typ, anonymous) {
-		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, false), anonymous, false, true);
+		return new Var.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0), anonymous, false, true, false);
 	};
 	Var.Ptr.prototype.Anonymous = function() {
 		var obj;
@@ -33143,7 +33169,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		if (!(sig === ($ptrType(Signature)).nil)) {
 			typ = sig;
 		}
-		return new Func.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, false));
+		return new Func.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, typ, 0));
 	};
 	Func.Ptr.prototype.FullName = function() {
 		var obj, buf;
@@ -33160,10 +33186,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Func.prototype.Scope = function() { return this.$val.Scope(); };
 	NewLabel = $pkg.NewLabel = function(pos, pkg, name) {
-		return new Label.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, $pkg.Typ[0], false));
+		return new Label.Ptr(new object.Ptr(($ptrType(Scope)).nil, pos, pkg, name, $pkg.Typ[0], 0), false);
 	};
 	newBuiltin = function(id) {
-		return new Builtin.Ptr(new object.Ptr(($ptrType(Scope)).nil, 0, ($ptrType(Package)).nil, ((id < 0 || id >= predeclaredFuncs.length) ? $throwRuntimeError("index out of range") : predeclaredFuncs[id]).name, $pkg.Typ[0], false), id);
+		return new Builtin.Ptr(new object.Ptr(($ptrType(Scope)).nil, 0, ($ptrType(Package)).nil, ((id < 0 || id >= predeclaredFuncs.length) ? $throwRuntimeError("index out of range") : predeclaredFuncs[id]).name, $pkg.Typ[0], 0), id);
 	};
 	writeObject = function(buf, this$1, obj) {
 		var typ, obj$1, _ref, path$1, pkg;
@@ -33602,7 +33628,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	inSourceOrder.prototype.Less = function(i, j) {
 		var a;
 		a = this;
-		return ((i < 0 || i >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + i]).Pos() < ((j < 0 || j >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + j]).Pos();
+		return ((i < 0 || i >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + i]).order() < ((j < 0 || j >= a.$length) ? $throwRuntimeError("index out of range") : a.$array[a.$offset + j]).order();
 	};
 	$ptrType(inSourceOrder).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	inSourceOrder.prototype.Swap = function(i, j) {
@@ -34006,10 +34032,22 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		check.declare(check.pkg.scope, ident, obj);
 		_key$2 = obj; (check.objMap || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: d };
+		obj.setOrder(($keys(check.objMap).length >>> 0));
 	};
 	Checker.prototype.declarePkgObj = function(ident, obj, d) { return this.$val.declarePkgObj(ident, obj, d); };
+	Checker.Ptr.prototype.filename = function(fileNo) {
+		var check, x, file, pos;
+		check = this;
+		file = (x = check.files, ((fileNo < 0 || fileNo >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + fileNo]));
+		pos = file.Pos();
+		if ((new token.Pos(pos)).IsValid()) {
+			return check.fset.File(pos).Name();
+		}
+		return fmt.Sprintf("file[%d]", new ($sliceType($emptyInterface))([new $Int(fileNo)]));
+	};
+	Checker.prototype.filename = function(fileNo) { return this.$val.filename(fileNo); };
 	Checker.Ptr.prototype.collectObjects = function() {
-		var check, pkg, importer, pkgImports, _ref, _i, imp, _key$2, _ref$1, _i$1, fileNo, file, x, fileScope, _ref$2, _i$2, decl, d, _ref$3, last, _ref$4, _i$3, iota, spec, s, _ref$5, imp$1, _tuple, path$1, err, err$1, _tuple$1, _entry, _key$3, name, obj, _ref$6, _i$4, _keys, _entry$1, obj$1, x$1, posSet, x$2, _key$4, _ref$7, _ref$8, _i$5, i, name$1, obj$2, init$1, x$3, d$1, lhs, d1, x$4, _ref$9, _i$6, i$1, name$2, obj$3, d$2, init$2, x$5, obj$4, name$3, obj$5, list, typ, _tuple$2, ptr, _tuple$3, base, info, _key$5, _ref$10, _i$7, scope, _ref$11, _i$8, _keys$1, _entry$2, obj$6, alt, _tuple$4, pkg$1, ok;
+		var check, pkg, importer, pkgImports, _ref, _i, imp, _key$2, _ref$1, _i$1, fileNo, file, fileScope, _ref$2, _i$2, decl, d, _ref$3, last, _ref$4, _i$3, iota, spec, s, _ref$5, imp$1, _tuple, path$1, err, err$1, _tuple$1, _entry, _key$3, name, obj, _ref$6, _i$4, _keys, _entry$1, obj$1, _ref$7, _ref$8, _i$5, i, name$1, obj$2, init$1, x, d$1, lhs, d1, x$1, _ref$9, _i$6, i$1, name$2, obj$3, d$2, init$2, x$2, obj$4, name$3, obj$5, list, typ, _tuple$2, ptr, _tuple$3, base, info, _key$4, _ref$10, _i$7, scope, _ref$11, _i$8, _keys$1, _entry$2, obj$6, alt, _tuple$4, pkg$1, ok;
 		check = this;
 		pkg = check.pkg;
 		importer = check.conf.Import;
@@ -34033,7 +34071,8 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			fileNo = _i$1;
 			file = ((_i$1 < 0 || _i$1 >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i$1]);
 			check.recordDef(file.Name, $ifaceNil);
-			fileScope = (x = check.fileScopes, ((fileNo < 0 || fileNo >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + fileNo]));
+			fileScope = NewScope(check.pkg.scope, check.filename(fileNo));
+			check.recordScope(file, fileScope);
 			_ref$2 = file.Decls;
 			_i$2 = 0;
 			while (_i$2 < _ref$2.$length) {
@@ -34112,12 +34151,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 									}
 									_i$4++;
 								}
-								posSet = (x$1 = check.dotImports, ((fileNo < 0 || fileNo >= x$1.$length) ? $throwRuntimeError("index out of range") : x$1.$array[x$1.$offset + fileNo]));
-								if (posSet === false) {
-									posSet = new $Map();
-									(x$2 = check.dotImports, (fileNo < 0 || fileNo >= x$2.$length) ? $throwRuntimeError("index out of range") : x$2.$array[x$2.$offset + fileNo] = posSet);
-								}
-								_key$4 = imp$1; (posSet || $throwRuntimeError("assignment to entry in nil map"))[_key$4.$key()] = { k: _key$4, v: s.Pos() };
+								check.addUnusedDotImport(fileScope, imp$1, s.Pos());
 							} else {
 								check.declare(fileScope, ($ptrType(ast.Ident)).nil, obj);
 							}
@@ -34138,7 +34172,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 									obj$2 = NewConst(name$1.Pos(), pkg, name$1.Name, $ifaceNil, exact.MakeInt64(new $Int64(0, iota)));
 									init$1 = $ifaceNil;
 									if (i < last.Values.$length) {
-										init$1 = (x$3 = last.Values, ((i < 0 || i >= x$3.$length) ? $throwRuntimeError("index out of range") : x$3.$array[x$3.$offset + i]));
+										init$1 = (x = last.Values, ((i < 0 || i >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + i]));
 									}
 									d$1 = new declInfo.Ptr(fileScope, ($sliceType(($ptrType(Var)))).nil, last.Type, init$1, ($ptrType(ast.FuncDecl)).nil, false, 0);
 									check.declarePkgObj(name$1, obj$2, d$1);
@@ -34149,7 +34183,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 								lhs = ($sliceType(($ptrType(Var)))).make(s.Names.$length);
 								d1 = ($ptrType(declInfo)).nil;
 								if (s.Values.$length === 1) {
-									d1 = new declInfo.Ptr(fileScope, lhs, s.Type, (x$4 = s.Values, ((0 < 0 || 0 >= x$4.$length) ? $throwRuntimeError("index out of range") : x$4.$array[x$4.$offset + 0])), ($ptrType(ast.FuncDecl)).nil, false, 0);
+									d1 = new declInfo.Ptr(fileScope, lhs, s.Type, (x$1 = s.Values, ((0 < 0 || 0 >= x$1.$length) ? $throwRuntimeError("index out of range") : x$1.$array[x$1.$offset + 0])), ($ptrType(ast.FuncDecl)).nil, false, 0);
 								}
 								_ref$9 = s.Names;
 								_i$6 = 0;
@@ -34162,7 +34196,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 									if (d$2 === ($ptrType(declInfo)).nil) {
 										init$2 = $ifaceNil;
 										if (i$1 < s.Values.$length) {
-											init$2 = (x$5 = s.Values, ((i$1 < 0 || i$1 >= x$5.$length) ? $throwRuntimeError("index out of range") : x$5.$array[x$5.$offset + i$1]));
+											init$2 = (x$2 = s.Values, ((i$1 < 0 || i$1 >= x$2.$length) ? $throwRuntimeError("index out of range") : x$2.$array[x$2.$offset + i$1]));
 										}
 										d$2 = new declInfo.Ptr(fileScope, ($sliceType(($ptrType(Var)))).nil, s.Type, init$2, ($ptrType(ast.FuncDecl)).nil, false, 0);
 									}
@@ -34213,7 +34247,8 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 						}
 					}
 					info = new declInfo.Ptr(fileScope, ($sliceType(($ptrType(Var)))).nil, $ifaceNil, $ifaceNil, d, false, 0);
-					_key$5 = obj$5; (check.objMap || $throwRuntimeError("assignment to entry in nil map"))[_key$5.$key()] = { k: _key$5, v: info };
+					_key$4 = obj$5; (check.objMap || $throwRuntimeError("assignment to entry in nil map"))[_key$4.$key()] = { k: _key$4, v: info };
+					obj$5.object.setOrder(($keys(check.objMap).length >>> 0));
 				} else {
 					d = _ref$3;
 					check.invalidAST(d.Pos(), "unknown ast.Decl node %T", new ($sliceType($emptyInterface))([d]));
@@ -34222,7 +34257,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 			_i$1++;
 		}
-		_ref$10 = check.fileScopes;
+		_ref$10 = check.pkg.scope.children;
 		_i$7 = 0;
 		while (_i$7 < _ref$10.$length) {
 			scope = ((_i$7 < 0 || _i$7 >= _ref$10.$length) ? $throwRuntimeError("index out of range") : _ref$10.$array[_ref$10.$offset + _i$7]);
@@ -34290,17 +34325,15 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.functionBodies = function() { return this.$val.functionBodies(); };
 	Checker.Ptr.prototype.unusedImports = function() {
-		var check, _ref, _i, i, scope, usedDotImports, _ref$1, _i$1, _keys, _entry, obj, obj$1, _ref$2, path$1, base, _key$2, _ref$3, x, _i$2, _keys$1, _entry$1, pkg, pos, _entry$2;
+		var check, _ref, _i, scope, _ref$1, _i$1, _keys, _entry, obj, _tuple, obj$1, ok, path$1, base, _ref$2, _i$2, _keys$1, _entry$1, unusedDotImports, _ref$3, _i$3, _keys$2, _entry$2, pkg, pos;
 		check = this;
 		if (check.conf.IgnoreFuncBodies) {
 			return;
 		}
-		_ref = check.fileScopes;
+		_ref = check.pkg.scope.children;
 		_i = 0;
 		while (_i < _ref.$length) {
-			i = _i;
 			scope = ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]);
-			usedDotImports = false;
 			_ref$1 = scope.elems;
 			_i$1 = 0;
 			_keys = $keys(_ref$1);
@@ -34311,10 +34344,9 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					continue;
 				}
 				obj = _entry.v;
-				_ref$2 = obj;
-				if ($assertType(_ref$2, ($ptrType(PkgName)), true)[1]) {
-					obj$1 = _ref$2.$val;
-					if (!obj$1.object.used) {
+				_tuple = $assertType(obj, ($ptrType(PkgName)), true); obj$1 = _tuple[0]; ok = _tuple[1];
+				if (ok) {
+					if (!obj$1.used) {
 						path$1 = obj$1.imported.path;
 						base = path.Base(path$1);
 						if (obj$1.object.name === base) {
@@ -34323,39 +34355,41 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 							check.softErrorf(obj$1.object.pos, "%q imported but not used as %s", new ($sliceType($emptyInterface))([new $String(path$1), new $String(obj$1.object.name)]));
 						}
 					}
-				} else {
-					obj$1 = _ref$2;
-					if (obj$1.isUsed()) {
-						if (usedDotImports === false) {
-							usedDotImports = new $Map();
-						}
-						_key$2 = obj$1.Pkg(); (usedDotImports || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: true };
-					}
 				}
 				_i$1++;
 			}
-			_ref$3 = (x = check.dotImports, ((i < 0 || i >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + i]));
-			_i$2 = 0;
-			_keys$1 = $keys(_ref$3);
-			while (_i$2 < _keys$1.length) {
-				_entry$1 = _ref$3[_keys$1[_i$2]];
-				if (_entry$1 === undefined) {
-					_i$2++;
+			_i++;
+		}
+		_ref$2 = check.unusedDotImports;
+		_i$2 = 0;
+		_keys$1 = $keys(_ref$2);
+		while (_i$2 < _keys$1.length) {
+			_entry$1 = _ref$2[_keys$1[_i$2]];
+			if (_entry$1 === undefined) {
+				_i$2++;
+				continue;
+			}
+			unusedDotImports = _entry$1.v;
+			_ref$3 = unusedDotImports;
+			_i$3 = 0;
+			_keys$2 = $keys(_ref$3);
+			while (_i$3 < _keys$2.length) {
+				_entry$2 = _ref$3[_keys$2[_i$3]];
+				if (_entry$2 === undefined) {
+					_i$3++;
 					continue;
 				}
-				pkg = _entry$1.k;
-				pos = _entry$1.v;
-				if (!(_entry$2 = usedDotImports[pkg.$key()], _entry$2 !== undefined ? _entry$2.v : false)) {
-					check.softErrorf(pos, "%q imported but not used", new ($sliceType($emptyInterface))([new $String(pkg.path)]));
-				}
-				_i$2++;
+				pkg = _entry$2.k;
+				pos = _entry$2.v;
+				check.softErrorf(pos, "%q imported but not used", new ($sliceType($emptyInterface))([new $String(pkg.path)]));
+				_i$3++;
 			}
-			_i++;
+			_i$2++;
 		}
 	};
 	Checker.prototype.unusedImports = function() { return this.$val.unusedImports(); };
 	Checker.Ptr.prototype.isTerminating = function(s, label) {
-		var check, s$1, _ref, _tuple, call, _tuple$1, id, obj, _tuple$2, b, _ref$1, _i, s$2, cc;
+		var check, s$1, _ref, _tuple, call, _tuple$1, id, _tuple$2, obj, _tuple$3, b, _ref$1, _i, s$2, cc;
 		check = this;
 		_ref = s;
 		if ($assertType(_ref, ($ptrType(ast.BadStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.DeclStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.EmptyStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.SendStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.IncDecStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.AssignStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.GoStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.DeferStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.RangeStmt)), true)[1]) {
@@ -34369,9 +34403,9 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			if (!(call === ($ptrType(ast.CallExpr)).nil)) {
 				_tuple$1 = $assertType(call.Fun, ($ptrType(ast.Ident)), true); id = _tuple$1[0];
 				if (!(id === ($ptrType(ast.Ident)).nil)) {
-					obj = check.context.scope.LookupParent(id.Name);
+					_tuple$2 = check.context.scope.LookupParent(id.Name); obj = _tuple$2[1];
 					if (!($interfaceIsEqual(obj, $ifaceNil))) {
-						_tuple$2 = $assertType(obj, ($ptrType(Builtin)), true); b = _tuple$2[0];
+						_tuple$3 = $assertType(obj, ($ptrType(Builtin)), true); b = _tuple$3[0];
 						if (!(b === ($ptrType(Builtin)).nil) && (b.id === 10)) {
 							return true;
 						}
@@ -34595,11 +34629,11 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		while (!(s === ($ptrType(Scope)).nil)) {
 			obj = (_entry = s.elems[name], _entry !== undefined ? _entry.v : $ifaceNil);
 			if (!($interfaceIsEqual(obj, $ifaceNil))) {
-				return obj;
+				return [s, obj];
 			}
 			s = s.parent;
 		}
-		return $ifaceNil;
+		return [($ptrType(Scope)).nil, $ifaceNil];
 	};
 	Scope.prototype.LookupParent = function(name) { return this.$val.LookupParent(name); };
 	Scope.Ptr.prototype.Insert = function(obj) {
@@ -34799,7 +34833,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	StdSizes.prototype.Offsetsof = function(fields) { return this.$val.Offsetsof(fields); };
 	StdSizes.Ptr.prototype.Sizeof = function(T) {
-		var s, t, _ref, k, s$1, a, z, n, offsets, x, x$1, x$2, x$3, x$4;
+		var s, t, _ref, k, s$1, n, a, z, x, n$1, offsets, x$1, x$2, x$3, x$4, x$5;
 		s = this;
 		_ref = T.Underlying();
 		if ($assertType(_ref, ($ptrType(Basic)), true)[1]) {
@@ -34817,16 +34851,20 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(Array)), true)[1]) {
 			t = _ref.$val;
+			n = t.len;
+			if ((n.$high === 0 && n.$low === 0)) {
+				return new $Int64(0, 0);
+			}
 			a = s.Alignof(t.elem);
 			z = s.Sizeof(t.elem);
-			return $mul64(align(z, a), t.len);
+			return (x = $mul64(align(z, a), (new $Int64(n.$high - 0, n.$low - 1))), new $Int64(x.$high + z.$high, x.$low + z.$low));
 		} else if ($assertType(_ref, ($ptrType(Slice)), true)[1]) {
 			t = _ref.$val;
 			return $mul64(s.WordSize, new $Int64(0, 3));
 		} else if ($assertType(_ref, ($ptrType(Struct)), true)[1]) {
 			t = _ref.$val;
-			n = t.NumFields();
-			if (n === 0) {
+			n$1 = t.NumFields();
+			if (n$1 === 0) {
 				return new $Int64(0, 0);
 			}
 			offsets = t.offsets;
@@ -34834,7 +34872,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				offsets = s.Offsetsof(t.fields);
 				t.offsets = offsets;
 			}
-			return (x = (x$1 = n - 1 >> 0, ((x$1 < 0 || x$1 >= offsets.$length) ? $throwRuntimeError("index out of range") : offsets.$array[offsets.$offset + x$1])), x$2 = s.Sizeof((x$3 = t.fields, x$4 = n - 1 >> 0, ((x$4 < 0 || x$4 >= x$3.$length) ? $throwRuntimeError("index out of range") : x$3.$array[x$3.$offset + x$4])).object.typ), new $Int64(x.$high + x$2.$high, x.$low + x$2.$low));
+			return (x$1 = (x$2 = n$1 - 1 >> 0, ((x$2 < 0 || x$2 >= offsets.$length) ? $throwRuntimeError("index out of range") : offsets.$array[offsets.$offset + x$2])), x$3 = s.Sizeof((x$4 = t.fields, x$5 = n$1 - 1 >> 0, ((x$5 < 0 || x$5 >= x$4.$length) ? $throwRuntimeError("index out of range") : x$4.$array[x$4.$offset + x$5])).object.typ), new $Int64(x$1.$high + x$3.$high, x$1.$low + x$3.$low));
 		} else if ($assertType(_ref, ($ptrType(Interface)), true)[1]) {
 			t = _ref.$val;
 			return $mul64(s.WordSize, new $Int64(0, 2));
@@ -34954,7 +34992,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 			obj = _entry.v;
 			_tuple = $assertType(obj, ($ptrType(Var)), true); v = _tuple[0];
-			if (!(v === ($ptrType(Var)).nil) && !v.object.used) {
+			if (!(v === ($ptrType(Var)).nil) && !v.used) {
 				check.softErrorf(v.object.pos, "%s declared but not used", new ($sliceType($emptyInterface))([new $String(v.object.name)]));
 			}
 			_i++;
@@ -34968,19 +35006,19 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	Checker.prototype.usage = function(scope) { return this.$val.usage(scope); };
-	Checker.Ptr.prototype.initStmt = function(s) {
+	Checker.Ptr.prototype.simpleStmt = function(s) {
 		var check;
 		check = this;
 		if (!($interfaceIsEqual(s, $ifaceNil))) {
 			check.stmt(0, s);
 		}
 	};
-	Checker.prototype.initStmt = function(s) { return this.$val.initStmt(s); };
+	Checker.prototype.simpleStmt = function(s) { return this.$val.simpleStmt(s); };
 	Checker.Ptr.prototype.stmtList = function(ctxt, list) {
 		var check, ok, inner, _ref, _i, i, s, inner$1;
 		check = this;
-		ok = !((((ctxt & 1) >>> 0) === 0));
-		inner = ctxt & ~1;
+		ok = !((((ctxt & 4) >>> 0) === 0));
+		inner = ctxt & ~4;
 		_ref = list;
 		_i = 0;
 		while (_i < _ref.$length) {
@@ -34988,7 +35026,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			s = ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]);
 			inner$1 = inner;
 			if (ok && ((i + 1 >> 0) === list.$length)) {
-				inner$1 = (inner$1 | (1)) >>> 0;
+				inner$1 = (inner$1 | (4)) >>> 0;
 			}
 			check.stmt(inner$1, s);
 			_i++;
@@ -35135,11 +35173,11 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Checker.prototype.caseTypes = function(x, xtyp, types, seen) { return this.$val.caseTypes(x, xtyp, types, seen); };
 	Checker.Ptr.prototype.stmt = function(ctxt, s) {
-		var $deferred = [], $err = null, check, inner, s$1, _ref, x, kind, msg, _ref$1, _tmp, _tmp$1, ch, x$1, _tuple, tch, ok, op, _ref$2, x$2, Y, _ref$3, op$1, x$3, x$4, x$5, x$6, res, x$7, _ref$4, _i, obj, alt, x$8, _ref$5, x$9, x$10, _ref$6, _i$1, i, c, _tuple$1, clause, inner$1, lhs, rhs, guard, _ref$7, _tuple$2, x$11, x$12, _tuple$3, expr, x$13, _tuple$4, xtyp, lhsVars, seen, _ref$8, _i$2, s$2, _tuple$5, clause$1, T, obj$1, used, _ref$9, _i$3, v, _ref$10, _i$4, s$3, _tuple$6, clause$2, valid, rhs$1, s$4, _ref$11, x$14, _tuple$7, x$15, x$16, decl, x$17, _tmp$2, _tmp$3, key, val, typ, _ref$12, _tuple$8, typ$1, lhs$1, rhs$2, vars, _ref$13, _i$5, i$1, lhs$2, obj$2, _tuple$9, ident, name, _ref$14, _i$6, obj$3, _ref$15, _i$7, i$2, lhs$3;
+		var $deferred = [], $err = null, check, inner, s$1, _ref, x, kind, msg, _ref$1, _tmp, _tmp$1, ch, x$1, _tuple, tch, ok, op, _ref$2, x$2, Y, _ref$3, op$1, x$3, x$4, x$5, x$6, res, x$7, _ref$4, _i, obj, _tuple$1, alt, x$8, _ref$5, x$9, x$10, _ref$6, _i$1, i, c, _tuple$2, clause, inner$1, lhs, rhs, guard, _ref$7, _tuple$3, x$11, x$12, _tuple$4, expr, x$13, _tuple$5, xtyp, lhsVars, seen, _ref$8, _i$2, s$2, _tuple$6, clause$1, T, obj$1, used, _ref$9, _i$3, v, _ref$10, _i$4, s$3, _tuple$7, clause$2, valid, rhs$1, s$4, _ref$11, x$14, _tuple$8, x$15, x$16, _tuple$9, s$5, decl, x$17, _tmp$2, _tmp$3, key, val, typ, _ref$12, _tuple$10, typ$1, lhs$1, rhs$2, vars, _ref$13, _i$5, i$1, lhs$2, obj$2, _tuple$11, ident, name, _ref$14, _i$6, obj$3, _ref$15, _i$7, i$2, lhs$3;
 		/* */ try { $deferFrames.push($deferred);
 		check = this;
 		assert($interfaceIsEqual(check.context.iota, $ifaceNil));
-		inner = ctxt & ~1;
+		inner = ctxt & ~4;
 		_ref = s;
 		if ($assertType(_ref, ($ptrType(ast.BadStmt)), true)[1] || $assertType(_ref, ($ptrType(ast.EmptyStmt)), true)[1]) {
 			s$1 = _ref;
@@ -35245,7 +35283,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					_i = 0;
 					while (_i < _ref$4.$length) {
 						obj = ((_i < 0 || _i >= _ref$4.$length) ? $throwRuntimeError("index out of range") : _ref$4.$array[_ref$4.$offset + _i]);
-						alt = check.context.scope.LookupParent(obj.object.name);
+						_tuple$1 = check.context.scope.LookupParent(obj.object.name); alt = _tuple$1[1];
 						if (!($interfaceIsEqual(alt, $ifaceNil)) && !($interfaceIsEqual(alt, obj))) {
 							check.errorf(s$1.Pos(), "result parameter %s not in scope at return", new ($sliceType($emptyInterface))([new $String(obj.object.name)]));
 							check.errorf(alt.Pos(), "\tinner declaration of %s", new ($sliceType($emptyInterface))([obj]));
@@ -35267,15 +35305,15 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 			_ref$5 = s$1.Tok;
 			if (_ref$5 === 61) {
-				if (((ctxt & 2) >>> 0) === 0) {
+				if (((ctxt & 1) >>> 0) === 0) {
 					check.error(s$1.Pos(), "break not in for, switch, or select statement");
 				}
 			} else if (_ref$5 === 65) {
-				if (((ctxt & 4) >>> 0) === 0) {
+				if (((ctxt & 2) >>> 0) === 0) {
 					check.error(s$1.Pos(), "continue not in for statement");
 				}
 			} else if (_ref$5 === 69) {
-				if (((ctxt & 1) >>> 0) === 0) {
+				if (((ctxt & 4) >>> 0) === 0) {
 					check.error(s$1.Pos(), "fallthrough statement out of place");
 				}
 			} else {
@@ -35290,7 +35328,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			s$1 = _ref.$val;
 			check.openScope(s$1, "if");
 			$deferred.push([$methodVal(check, "closeScope"), []]);
-			check.initStmt(s$1.Init);
+			check.simpleStmt(s$1.Init);
 			x$9 = new operand.Ptr(); $copy(x$9, new operand.Ptr(), operand);
 			check.expr(x$9, s$1.Cond);
 			if (!((x$9.mode === 0)) && !isBoolean(x$9.typ)) {
@@ -35302,10 +35340,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(ast.SwitchStmt)), true)[1]) {
 			s$1 = _ref.$val;
-			inner = (inner | (2)) >>> 0;
+			inner = (inner | (1)) >>> 0;
 			check.openScope(s$1, "switch");
 			$deferred.push([$methodVal(check, "closeScope"), []]);
-			check.initStmt(s$1.Init);
+			check.simpleStmt(s$1.Init);
 			x$10 = new operand.Ptr(); $copy(x$10, new operand.Ptr(), operand);
 			if (!($interfaceIsEqual(s$1.Tag, $ifaceNil))) {
 				check.expr(x$10, s$1.Tag);
@@ -35321,7 +35359,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			while (_i$1 < _ref$6.$length) {
 				i = _i$1;
 				c = ((_i$1 < 0 || _i$1 >= _ref$6.$length) ? $throwRuntimeError("index out of range") : _ref$6.$array[_ref$6.$offset + _i$1]);
-				_tuple$1 = $assertType(c, ($ptrType(ast.CaseClause)), true); clause = _tuple$1[0];
+				_tuple$2 = $assertType(c, ($ptrType(ast.CaseClause)), true); clause = _tuple$2[0];
 				if (clause === ($ptrType(ast.CaseClause)).nil) {
 					check.invalidAST(c.Pos(), "incorrect expression switch case", new ($sliceType($emptyInterface))([]));
 					_i$1++;
@@ -35333,7 +35371,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				check.openScope(clause, "case");
 				inner$1 = inner;
 				if ((i + 1 >> 0) < s$1.Body.List.$length) {
-					inner$1 = (inner$1 | (1)) >>> 0;
+					inner$1 = (inner$1 | (4)) >>> 0;
 				}
 				check.stmtList(inner$1, clause.Body);
 				check.closeScope();
@@ -35341,10 +35379,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(ast.TypeSwitchStmt)), true)[1]) {
 			s$1 = _ref.$val;
-			inner = (inner | (2)) >>> 0;
+			inner = (inner | (1)) >>> 0;
 			check.openScope(s$1, "type switch");
 			$deferred.push([$methodVal(check, "closeScope"), []]);
-			check.initStmt(s$1.Init);
+			check.simpleStmt(s$1.Init);
 			lhs = ($ptrType(ast.Ident)).nil;
 			rhs = $ifaceNil;
 			_ref$7 = s$1.Assign;
@@ -35357,7 +35395,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					check.invalidAST(s$1.Pos(), "incorrect form of type switch guard", new ($sliceType($emptyInterface))([]));
 					return;
 				}
-				_tuple$2 = $assertType((x$11 = guard.Lhs, ((0 < 0 || 0 >= x$11.$length) ? $throwRuntimeError("index out of range") : x$11.$array[x$11.$offset + 0])), ($ptrType(ast.Ident)), true); lhs = _tuple$2[0];
+				_tuple$3 = $assertType((x$11 = guard.Lhs, ((0 < 0 || 0 >= x$11.$length) ? $throwRuntimeError("index out of range") : x$11.$array[x$11.$offset + 0])), ($ptrType(ast.Ident)), true); lhs = _tuple$3[0];
 				if (lhs === ($ptrType(ast.Ident)).nil) {
 					check.invalidAST(s$1.Pos(), "incorrect form of type switch guard", new ($sliceType($emptyInterface))([]));
 					return;
@@ -35369,7 +35407,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				check.invalidAST(s$1.Pos(), "incorrect form of type switch guard", new ($sliceType($emptyInterface))([]));
 				return;
 			}
-			_tuple$3 = $assertType(rhs, ($ptrType(ast.TypeAssertExpr)), true); expr = _tuple$3[0];
+			_tuple$4 = $assertType(rhs, ($ptrType(ast.TypeAssertExpr)), true); expr = _tuple$4[0];
 			if (expr === ($ptrType(ast.TypeAssertExpr)).nil || !($interfaceIsEqual(expr.Type, $ifaceNil))) {
 				check.invalidAST(s$1.Pos(), "incorrect form of type switch guard", new ($sliceType($emptyInterface))([]));
 				return;
@@ -35379,7 +35417,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			if (x$13.mode === 0) {
 				return;
 			}
-			_tuple$4 = $assertType(x$13.typ.Underlying(), ($ptrType(Interface)), true); xtyp = _tuple$4[0];
+			_tuple$5 = $assertType(x$13.typ.Underlying(), ($ptrType(Interface)), true); xtyp = _tuple$5[0];
 			if (xtyp === ($ptrType(Interface)).nil) {
 				check.errorf(x$13.pos(), "%s is not an interface", new ($sliceType($emptyInterface))([x$13]));
 				return;
@@ -35391,7 +35429,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			_i$2 = 0;
 			while (_i$2 < _ref$8.$length) {
 				s$2 = ((_i$2 < 0 || _i$2 >= _ref$8.$length) ? $throwRuntimeError("index out of range") : _ref$8.$array[_ref$8.$offset + _i$2]);
-				_tuple$5 = $assertType(s$2, ($ptrType(ast.CaseClause)), true); clause$1 = _tuple$5[0];
+				_tuple$6 = $assertType(s$2, ($ptrType(ast.CaseClause)), true); clause$1 = _tuple$6[0];
 				if (clause$1 === ($ptrType(ast.CaseClause)).nil) {
 					check.invalidAST(s$2.Pos(), "incorrect type switch case", new ($sliceType($emptyInterface))([]));
 					_i$2++;
@@ -35418,10 +35456,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				_i$3 = 0;
 				while (_i$3 < _ref$9.$length) {
 					v = ((_i$3 < 0 || _i$3 >= _ref$9.$length) ? $throwRuntimeError("index out of range") : _ref$9.$array[_ref$9.$offset + _i$3]);
-					if (v.object.used) {
+					if (v.used) {
 						used = true;
 					}
-					v.object.used = true;
+					v.used = true;
 					_i$3++;
 				}
 				if (!used) {
@@ -35430,13 +35468,13 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(ast.SelectStmt)), true)[1]) {
 			s$1 = _ref.$val;
-			inner = (inner | (2)) >>> 0;
+			inner = (inner | (1)) >>> 0;
 			check.multipleDefaults(s$1.Body.List);
 			_ref$10 = s$1.Body.List;
 			_i$4 = 0;
 			while (_i$4 < _ref$10.$length) {
 				s$3 = ((_i$4 < 0 || _i$4 >= _ref$10.$length) ? $throwRuntimeError("index out of range") : _ref$10.$array[_ref$10.$offset + _i$4]);
-				_tuple$6 = $assertType(s$3, ($ptrType(ast.CommClause)), true); clause$2 = _tuple$6[0];
+				_tuple$7 = $assertType(s$3, ($ptrType(ast.CommClause)), true); clause$2 = _tuple$7[0];
 				if (clause$2 === ($ptrType(ast.CommClause)).nil) {
 					_i$4++;
 					continue;
@@ -35457,7 +35495,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					rhs$1 = s$4.X;
 				}
 				if (!($interfaceIsEqual(rhs$1, $ifaceNil))) {
-					_tuple$7 = $assertType(unparen(rhs$1), ($ptrType(ast.UnaryExpr)), true); x$15 = _tuple$7[0];
+					_tuple$8 = $assertType(unparen(rhs$1), ($ptrType(ast.UnaryExpr)), true); x$15 = _tuple$8[0];
 					if (!(x$15 === ($ptrType(ast.UnaryExpr)).nil) && (x$15.Op === 36)) {
 						valid = true;
 					}
@@ -35477,10 +35515,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(ast.ForStmt)), true)[1]) {
 			s$1 = _ref.$val;
-			inner = (inner | (6)) >>> 0;
+			inner = (inner | (3)) >>> 0;
 			check.openScope(s$1, "for");
 			$deferred.push([$methodVal(check, "closeScope"), []]);
-			check.initStmt(s$1.Init);
+			check.simpleStmt(s$1.Init);
 			if (!($interfaceIsEqual(s$1.Cond, $ifaceNil))) {
 				x$16 = new operand.Ptr(); $copy(x$16, new operand.Ptr(), operand);
 				check.expr(x$16, s$1.Cond);
@@ -35488,11 +35526,16 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 					check.error(s$1.Cond.Pos(), "non-boolean condition in for statement");
 				}
 			}
-			check.initStmt(s$1.Post);
+			check.simpleStmt(s$1.Post);
+			_tuple$9 = $assertType(s$1.Post, ($ptrType(ast.AssignStmt)), true); s$5 = _tuple$9[0];
+			if (!(s$5 === ($ptrType(ast.AssignStmt)).nil) && (s$5.Tok === 47)) {
+				check.softErrorf(s$5.Pos(), "cannot declare in post statement", new ($sliceType($emptyInterface))([]));
+				check.use(s$5.Lhs);
+			}
 			check.stmt(inner, s$1.Body);
 		} else if ($assertType(_ref, ($ptrType(ast.RangeStmt)), true)[1]) {
 			s$1 = _ref.$val;
-			inner = (inner | (6)) >>> 0;
+			inner = (inner | (3)) >>> 0;
 			check.openScope(s$1, "for");
 			$deferred.push([$methodVal(check, "closeScope"), []]);
 			decl = s$1.Tok === 47;
@@ -35522,7 +35565,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 				val = typ.elem;
 			} else if ($assertType(_ref$12, ($ptrType(Pointer)), true)[1]) {
 				typ = _ref$12.$val;
-				_tuple$8 = $assertType(typ.base.Underlying(), ($ptrType(Array)), true); typ$1 = _tuple$8[0];
+				_tuple$10 = $assertType(typ.base.Underlying(), ($ptrType(Array)), true); typ$1 = _tuple$10[0];
 				if (!(typ$1 === ($ptrType(Array)).nil)) {
 					key = $pkg.Typ[2];
 					val = typ$1.elem;
@@ -35563,7 +35606,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 						continue;
 					}
 					obj$2 = ($ptrType(Var)).nil;
-					_tuple$9 = $assertType(lhs$2, ($ptrType(ast.Ident)), true); ident = _tuple$9[0];
+					_tuple$11 = $assertType(lhs$2, ($ptrType(ast.Ident)), true); ident = _tuple$11[0];
 					if (!(ident === ($ptrType(ast.Ident)).nil)) {
 						name = ident.Name;
 						obj$2 = NewVar(ident.Pos(), check.pkg, name, $ifaceNil);
@@ -36314,11 +36357,11 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		writeTuple(buf, this$1, sig.results, false, visited);
 	};
 	Checker.Ptr.prototype.ident = function(x, e, def$1, path$1) {
-		var check, obj, typ, obj$1, _ref, _ref$1, _i, i, prev, _ref$2, _i$1, obj$2;
+		var check, _tuple, scope, obj, typ, pkg, _entry, obj$1, _ref, _ref$1, _i, i, prev, _ref$2, _i$1, obj$2;
 		check = this;
 		x.mode = 0;
 		x.expr = e;
-		obj = check.context.scope.LookupParent(e.Name);
+		_tuple = check.context.scope.LookupParent(e.Name); scope = _tuple[0]; obj = _tuple[1];
 		if ($interfaceIsEqual(obj, $ifaceNil)) {
 			if (e.Name === "_") {
 				check.errorf(e.Pos(), "cannot use _ as value or type", new ($sliceType($emptyInterface))([]));
@@ -36331,6 +36374,10 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		check.objDecl(obj, def$1, path$1);
 		typ = obj.Type();
 		assert(!($interfaceIsEqual(typ, $ifaceNil)));
+		pkg = obj.Pkg();
+		if (!(pkg === check.pkg) && !(pkg === ($ptrType(Package)).nil)) {
+			delete (_entry = check.unusedDotImports[scope.$key()], _entry !== undefined ? _entry.v : false)[pkg.$key()];
+		}
 		_ref = obj;
 		if ($assertType(_ref, ($ptrType(PkgName)), true)[1]) {
 			obj$1 = _ref.$val;
@@ -36338,7 +36385,6 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			return;
 		} else if ($assertType(_ref, ($ptrType(Const)), true)[1]) {
 			obj$1 = _ref.$val;
-			obj$1.object.used = true;
 			check.addDeclDep(obj$1);
 			if ($interfaceIsEqual(typ, $pkg.Typ[0])) {
 				return;
@@ -36356,7 +36402,6 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			x.mode = 4;
 		} else if ($assertType(_ref, ($ptrType(TypeName)), true)[1]) {
 			obj$1 = _ref.$val;
-			obj$1.object.used = true;
 			x.mode = 3;
 			_ref$1 = path$1;
 			_i = 0;
@@ -36380,17 +36425,20 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if ($assertType(_ref, ($ptrType(Var)), true)[1]) {
 			obj$1 = _ref.$val;
-			obj$1.object.used = true;
+			if (obj$1.object.pkg === check.pkg) {
+				obj$1.used = true;
+			}
 			check.addDeclDep(obj$1);
+			if ($interfaceIsEqual(typ, $pkg.Typ[0])) {
+				return;
+			}
 			x.mode = 5;
 		} else if ($assertType(_ref, ($ptrType(Func)), true)[1]) {
 			obj$1 = _ref.$val;
-			obj$1.object.used = true;
 			check.addDeclDep(obj$1);
 			x.mode = 7;
 		} else if ($assertType(_ref, ($ptrType(Builtin)), true)[1]) {
 			obj$1 = _ref.$val;
-			obj$1.object.used = true;
 			x.id = obj$1.id;
 			x.mode = 2;
 		} else if ($assertType(_ref, ($ptrType(Nil)), true)[1]) {
@@ -36997,7 +37045,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	defPredeclaredNil = function() {
-		def(new Nil.Ptr(new object.Ptr(($ptrType(Scope)).nil, 0, ($ptrType(Package)).nil, "nil", $pkg.Typ[25], false)));
+		def(new Nil.Ptr(new object.Ptr(($ptrType(Scope)).nil, 0, ($ptrType(Package)).nil, "nil", $pkg.Typ[25], 0)));
 	};
 	defPredeclaredFuncs = function() {
 		var _ref, _i, i, id;
@@ -37074,8 +37122,8 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		funcInfo.init([["name", "name", "code.google.com/p/go.tools/go/types", $String, ""], ["decl", "decl", "code.google.com/p/go.tools/go/types", ($ptrType(declInfo)), ""], ["sig", "sig", "code.google.com/p/go.tools/go/types", ($ptrType(Signature)), ""], ["body", "body", "code.google.com/p/go.tools/go/types", ($ptrType(ast.BlockStmt)), ""]]);
 		context.init([["decl", "decl", "code.google.com/p/go.tools/go/types", ($ptrType(declInfo)), ""], ["scope", "scope", "code.google.com/p/go.tools/go/types", ($ptrType(Scope)), ""], ["iota", "iota", "code.google.com/p/go.tools/go/types", exact.Value, ""], ["sig", "sig", "code.google.com/p/go.tools/go/types", ($ptrType(Signature)), ""], ["hasLabel", "hasLabel", "code.google.com/p/go.tools/go/types", $Bool, ""], ["hasCallOrRecv", "hasCallOrRecv", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
 		Checker.methods = [["ObjectOf", "ObjectOf", "", $funcType([($ptrType(ast.Ident))], [Object], false), 3], ["TypeOf", "TypeOf", "", $funcType([ast.Expr], [Type], false), 3]];
-		($ptrType(Checker)).methods = [["Files", "Files", "", $funcType([($sliceType(($ptrType(ast.File))))], [$error], false), -1], ["ObjectOf", "ObjectOf", "", $funcType([($ptrType(ast.Ident))], [Object], false), 3], ["TypeOf", "TypeOf", "", $funcType([ast.Expr], [Type], false), 3], ["addDeclDep", "addDeclDep", "code.google.com/p/go.tools/go/types", $funcType([Object], [], false), -1], ["addMethodDecls", "addMethodDecls", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(TypeName))], [], false), -1], ["appendInPostOrder", "appendInPostOrder", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(($sliceType(Object)))), Object], [], false), -1], ["argument", "argument", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Signature)), $Int, ($ptrType(operand)), $Bool], [], false), -1], ["arguments$", "arguments", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr)), ($ptrType(Signature)), getter, $Int], [], false), -1], ["arityMatch", "arityMatch", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.ValueSpec)), ($ptrType(ast.ValueSpec))], [], false), -1], ["arrayLength", "arrayLength", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [$Int64], false), -1], ["assignVar", "assignVar", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(operand))], [Type], false), -1], ["assignVars", "assignVars", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr)), ($sliceType(ast.Expr))], [], false), -1], ["assignment", "assignment", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [$Bool], false), -1], ["assocMethod", "assocMethod", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(Func))], [], false), -1], ["binary", "binary", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, ast.Expr, token.Token], [], false), -1], ["blockBranches", "blockBranches", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(block)), ($ptrType(ast.LabeledStmt)), ($sliceType(ast.Stmt))], [($sliceType(($ptrType(ast.BranchStmt))))], false), -1], ["builtin", "builtin", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr)), builtinId], [$Bool], false), -1], ["call", "call", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr))], [exprKind], false), -1], ["caseTypes", "caseTypes", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(Interface)), ($sliceType(ast.Expr)), ($mapType(Type, token.Pos))], [Type], false), -1], ["caseValues", "caseValues", "code.google.com/p/go.tools/go/types", $funcType([operand, ($sliceType(ast.Expr))], [], false), -1], ["closeScope", "closeScope", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["collectObjects", "collectObjects", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["collectParams", "collectParams", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(ast.FieldList)), $Bool], [($sliceType(($ptrType(Var)))), $Bool], false), -1], ["comparison", "comparison", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(operand)), token.Token], [], false), -1], ["complexArg", "complexArg", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand))], [$Bool], false), -1], ["constDecl", "constDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Const)), ast.Expr, ast.Expr], [], false), -1], ["conversion", "conversion", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [], false), -1], ["convertUntyped", "convertUntyped", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [], false), -1], ["declStmt", "declStmt", "code.google.com/p/go.tools/go/types", $funcType([ast.Decl], [], false), -1], ["declare", "declare", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(ast.Ident)), Object], [], false), -1], ["declareInSet", "declareInSet", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(objset)), token.Pos, Object], [$Bool], false), -1], ["declarePkgObj", "declarePkgObj", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object, ($ptrType(declInfo))], [], false), -1], ["delay", "delay", "code.google.com/p/go.tools/go/types", $funcType([($funcType([], [], false))], [], false), -1], ["dump", "dump", "code.google.com/p/go.tools/go/types", $funcType([$String, ($sliceType($emptyInterface))], [], true), -1], ["err", "err", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, $Bool], [], false), -1], ["error", "error", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String], [], false), -1], ["errorf", "errorf", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["expr", "expr", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr], [], false), -1], ["exprInternal", "exprInternal", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [exprKind], false), -1], ["exprOrType", "exprOrType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr], [], false), -1], ["exprWithHint", "exprWithHint", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [], false), -1], ["funcBody", "funcBody", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(declInfo)), $String, ($ptrType(Signature)), ($ptrType(ast.BlockStmt))], [], false), -1], ["funcDecl", "funcDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Func)), ($ptrType(declInfo))], [], false), -1], ["funcType", "funcType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Signature)), ($ptrType(ast.FieldList)), ($ptrType(ast.FuncType))], [($ptrType(Signature))], false), -1], ["functionBodies", "functionBodies", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["handleBailout", "handleBailout", "code.google.com/p/go.tools/go/types", $funcType([($ptrType($error))], [], false), -1], ["ident", "ident", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.Ident)), ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["index", "index", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, $Int64], [$Int64, $Bool], false), -1], ["indexedElts", "indexedElts", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr)), Type, $Int64], [$Int64], false), -1], ["initConst", "initConst", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Const)), ($ptrType(operand))], [], false), -1], ["initFiles", "initFiles", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(ast.File))))], [], false), -1], ["initOrder", "initOrder", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["initStmt", "initStmt", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt], [], false), -1], ["initVar", "initVar", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Var)), ($ptrType(operand)), $Bool], [Type], false), -1], ["initVars", "initVars", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(Var)))), ($sliceType(ast.Expr)), token.Pos], [], false), -1], ["interfaceFor", "interfaceFor", "code.google.com/p/go.tools/go/types", $funcType([Object], [($ptrType(ast.InterfaceType))], false), -1], ["interfaceType", "interfaceType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Interface)), ($ptrType(ast.InterfaceType)), ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["invalidAST", "invalidAST", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["invalidArg", "invalidArg", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["invalidOp", "invalidOp", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["isTerminating", "isTerminating", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt, $String], [$Bool], false), -1], ["isTerminatingList", "isTerminatingList", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Stmt)), $String], [$Bool], false), -1], ["isTerminatingSwitch", "isTerminatingSwitch", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BlockStmt)), $String], [$Bool], false), -1], ["labels", "labels", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BlockStmt))], [], false), -1], ["later", "later", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(declInfo)), ($ptrType(Signature)), ($ptrType(ast.BlockStmt))], [], false), -1], ["multipleDefaults", "multipleDefaults", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Stmt))], [], false), -1], ["objDecl", "objDecl", "code.google.com/p/go.tools/go/types", $funcType([Object, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["op", "op", "code.google.com/p/go.tools/go/types", $funcType([opPredicates, ($ptrType(operand)), token.Token], [$Bool], false), -1], ["openScope", "openScope", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt, $String], [], false), -1], ["packageObjects", "packageObjects", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(Object))], [], false), -1], ["rawExpr", "rawExpr", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [exprKind], false), -1], ["recordBuiltinType", "recordBuiltinType", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Signature))], [], false), -1], ["recordCommaOkTypes", "recordCommaOkTypes", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($arrayType(Type, 2))], [], false), -1], ["recordDef", "recordDef", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object], [], false), -1], ["recordImplicit", "recordImplicit", "code.google.com/p/go.tools/go/types", $funcType([ast.Node, Object], [], false), -1], ["recordScope", "recordScope", "code.google.com/p/go.tools/go/types", $funcType([ast.Node, ($ptrType(Scope))], [], false), -1], ["recordSelection", "recordSelection", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.SelectorExpr)), SelectionKind, Type, Object, ($sliceType($Int)), $Bool], [], false), -1], ["recordTypeAndValue", "recordTypeAndValue", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, operandMode, Type, exact.Value], [], false), -1], ["recordUntyped", "recordUntyped", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["recordUse", "recordUse", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object], [], false), -1], ["rememberUntyped", "rememberUntyped", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, $Bool, operandMode, ($ptrType(Basic)), exact.Value], [], false), -1], ["reportAltDecl", "reportAltDecl", "code.google.com/p/go.tools/go/types", $funcType([Object], [], false), -1], ["reportCycle", "reportCycle", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(objNode)))), $Int], [], false), -1], ["representable", "representable", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(Basic))], [], false), -1], ["resolveOrder", "resolveOrder", "code.google.com/p/go.tools/go/types", $funcType([], [($sliceType(Object))], false), -1], ["selector", "selector", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.SelectorExpr))], [], false), -1], ["shift", "shift", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(operand)), token.Token], [], false), -1], ["shortVarDecl", "shortVarDecl", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, ($sliceType(ast.Expr)), ($sliceType(ast.Expr))], [], false), -1], ["softErrorf", "softErrorf", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["sprintf", "sprintf", "code.google.com/p/go.tools/go/types", $funcType([$String, ($sliceType($emptyInterface))], [$String], true), -1], ["stmt", "stmt", "code.google.com/p/go.tools/go/types", $funcType([stmtContext, ast.Stmt], [], false), -1], ["stmtList", "stmtList", "code.google.com/p/go.tools/go/types", $funcType([stmtContext, ($sliceType(ast.Stmt))], [], false), -1], ["structType", "structType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Struct)), ($ptrType(ast.StructType)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["suspendedCall", "suspendedCall", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(ast.CallExpr))], [], false), -1], ["tag", "tag", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BasicLit))], [$String], false), -1], ["trace", "trace", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["typ", "typ", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [Type], false), -1], ["typExpr", "typExpr", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [Type], false), -1], ["typExprInternal", "typExprInternal", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [Type], false), -1], ["typOrNil", "typOrNil", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [Type], false), -1], ["typeAssertion", "typeAssertion", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, ($ptrType(operand)), ($ptrType(Interface)), Type], [], false), -1], ["typeDecl", "typeDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(TypeName)), ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["unary", "unary", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), token.Token], [], false), -1], ["unusedImports", "unusedImports", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["updateExprType", "updateExprType", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, Type, $Bool], [], false), -1], ["updateExprVal", "updateExprVal", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, exact.Value], [], false), -1], ["usage", "usage", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), -1], ["use", "use", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr))], [], true), -1], ["varDecl", "varDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Var)), ($sliceType(($ptrType(Var)))), ast.Expr, ast.Expr], [], false), -1]];
-		Checker.init([["conf", "conf", "code.google.com/p/go.tools/go/types", ($ptrType(Config)), ""], ["fset", "fset", "code.google.com/p/go.tools/go/types", ($ptrType(token.FileSet)), ""], ["pkg", "pkg", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""], ["Info", "", "", ($ptrType(Info)), ""], ["objMap", "objMap", "code.google.com/p/go.tools/go/types", ($mapType(Object, ($ptrType(declInfo)))), ""], ["files", "files", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(ast.File)))), ""], ["fileScopes", "fileScopes", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(Scope)))), ""], ["dotImports", "dotImports", "code.google.com/p/go.tools/go/types", ($sliceType(($mapType(($ptrType(Package)), token.Pos)))), ""], ["firstErr", "firstErr", "code.google.com/p/go.tools/go/types", $error, ""], ["methods", "methods", "code.google.com/p/go.tools/go/types", ($mapType($String, ($sliceType(($ptrType(Func)))))), ""], ["untyped", "untyped", "code.google.com/p/go.tools/go/types", ($mapType(ast.Expr, exprInfo)), ""], ["funcs", "funcs", "code.google.com/p/go.tools/go/types", ($sliceType(funcInfo)), ""], ["delayed", "delayed", "code.google.com/p/go.tools/go/types", ($sliceType(($funcType([], [], false)))), ""], ["context", "", "code.google.com/p/go.tools/go/types", context, ""], ["indent", "indent", "code.google.com/p/go.tools/go/types", $Int, ""]]);
+		($ptrType(Checker)).methods = [["Files", "Files", "", $funcType([($sliceType(($ptrType(ast.File))))], [$error], false), -1], ["ObjectOf", "ObjectOf", "", $funcType([($ptrType(ast.Ident))], [Object], false), 3], ["TypeOf", "TypeOf", "", $funcType([ast.Expr], [Type], false), 3], ["addDeclDep", "addDeclDep", "code.google.com/p/go.tools/go/types", $funcType([Object], [], false), -1], ["addMethodDecls", "addMethodDecls", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(TypeName))], [], false), -1], ["addUnusedDotImport", "addUnusedDotImport", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(Package)), token.Pos], [], false), -1], ["appendInPostOrder", "appendInPostOrder", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(($sliceType(Object)))), Object], [], false), -1], ["argument", "argument", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Signature)), $Int, ($ptrType(operand)), $Bool], [], false), -1], ["arguments$", "arguments", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr)), ($ptrType(Signature)), getter, $Int], [], false), -1], ["arityMatch", "arityMatch", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.ValueSpec)), ($ptrType(ast.ValueSpec))], [], false), -1], ["arrayLength", "arrayLength", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [$Int64], false), -1], ["assignVar", "assignVar", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(operand))], [Type], false), -1], ["assignVars", "assignVars", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr)), ($sliceType(ast.Expr))], [], false), -1], ["assignment", "assignment", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [$Bool], false), -1], ["assocMethod", "assocMethod", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(Func))], [], false), -1], ["binary", "binary", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, ast.Expr, token.Token], [], false), -1], ["blockBranches", "blockBranches", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(block)), ($ptrType(ast.LabeledStmt)), ($sliceType(ast.Stmt))], [($sliceType(($ptrType(ast.BranchStmt))))], false), -1], ["builtin", "builtin", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr)), builtinId], [$Bool], false), -1], ["call", "call", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.CallExpr))], [exprKind], false), -1], ["caseTypes", "caseTypes", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(Interface)), ($sliceType(ast.Expr)), ($mapType(Type, token.Pos))], [Type], false), -1], ["caseValues", "caseValues", "code.google.com/p/go.tools/go/types", $funcType([operand, ($sliceType(ast.Expr))], [], false), -1], ["closeScope", "closeScope", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["collectObjects", "collectObjects", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["collectParams", "collectParams", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(ast.FieldList)), $Bool], [($sliceType(($ptrType(Var)))), $Bool], false), -1], ["comparison", "comparison", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(operand)), token.Token], [], false), -1], ["complexArg", "complexArg", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand))], [$Bool], false), -1], ["constDecl", "constDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Const)), ast.Expr, ast.Expr], [], false), -1], ["conversion", "conversion", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [], false), -1], ["convertUntyped", "convertUntyped", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), Type], [], false), -1], ["declStmt", "declStmt", "code.google.com/p/go.tools/go/types", $funcType([ast.Decl], [], false), -1], ["declare", "declare", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope)), ($ptrType(ast.Ident)), Object], [], false), -1], ["declareInSet", "declareInSet", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(objset)), token.Pos, Object], [$Bool], false), -1], ["declarePkgObj", "declarePkgObj", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object, ($ptrType(declInfo))], [], false), -1], ["delay", "delay", "code.google.com/p/go.tools/go/types", $funcType([($funcType([], [], false))], [], false), -1], ["dump", "dump", "code.google.com/p/go.tools/go/types", $funcType([$String, ($sliceType($emptyInterface))], [], true), -1], ["err", "err", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, $Bool], [], false), -1], ["error", "error", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String], [], false), -1], ["errorf", "errorf", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["expr", "expr", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr], [], false), -1], ["exprInternal", "exprInternal", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [exprKind], false), -1], ["exprOrType", "exprOrType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr], [], false), -1], ["exprWithHint", "exprWithHint", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [], false), -1], ["filename", "filename", "code.google.com/p/go.tools/go/types", $funcType([$Int], [$String], false), -1], ["funcBody", "funcBody", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(declInfo)), $String, ($ptrType(Signature)), ($ptrType(ast.BlockStmt))], [], false), -1], ["funcDecl", "funcDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Func)), ($ptrType(declInfo))], [], false), -1], ["funcType", "funcType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Signature)), ($ptrType(ast.FieldList)), ($ptrType(ast.FuncType))], [($ptrType(Signature))], false), -1], ["functionBodies", "functionBodies", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["handleBailout", "handleBailout", "code.google.com/p/go.tools/go/types", $funcType([($ptrType($error))], [], false), -1], ["ident", "ident", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.Ident)), ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["index", "index", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, $Int64], [$Int64, $Bool], false), -1], ["indexedElts", "indexedElts", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr)), Type, $Int64], [$Int64], false), -1], ["initConst", "initConst", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Const)), ($ptrType(operand))], [], false), -1], ["initFiles", "initFiles", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(ast.File))))], [], false), -1], ["initOrder", "initOrder", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["initVar", "initVar", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Var)), ($ptrType(operand)), $Bool], [Type], false), -1], ["initVars", "initVars", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(Var)))), ($sliceType(ast.Expr)), token.Pos], [], false), -1], ["interfaceFor", "interfaceFor", "code.google.com/p/go.tools/go/types", $funcType([Object], [($ptrType(ast.InterfaceType))], false), -1], ["interfaceType", "interfaceType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Interface)), ($ptrType(ast.InterfaceType)), ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["invalidAST", "invalidAST", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["invalidArg", "invalidArg", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["invalidOp", "invalidOp", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["isTerminating", "isTerminating", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt, $String], [$Bool], false), -1], ["isTerminatingList", "isTerminatingList", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Stmt)), $String], [$Bool], false), -1], ["isTerminatingSwitch", "isTerminatingSwitch", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BlockStmt)), $String], [$Bool], false), -1], ["labels", "labels", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BlockStmt))], [], false), -1], ["later", "later", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(declInfo)), ($ptrType(Signature)), ($ptrType(ast.BlockStmt))], [], false), -1], ["multipleDefaults", "multipleDefaults", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Stmt))], [], false), -1], ["objDecl", "objDecl", "code.google.com/p/go.tools/go/types", $funcType([Object, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["op", "op", "code.google.com/p/go.tools/go/types", $funcType([opPredicates, ($ptrType(operand)), token.Token], [$Bool], false), -1], ["openScope", "openScope", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt, $String], [], false), -1], ["packageObjects", "packageObjects", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(Object))], [], false), -1], ["rawExpr", "rawExpr", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ast.Expr, Type], [exprKind], false), -1], ["recordBuiltinType", "recordBuiltinType", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Signature))], [], false), -1], ["recordCommaOkTypes", "recordCommaOkTypes", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($arrayType(Type, 2))], [], false), -1], ["recordDef", "recordDef", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object], [], false), -1], ["recordImplicit", "recordImplicit", "code.google.com/p/go.tools/go/types", $funcType([ast.Node, Object], [], false), -1], ["recordScope", "recordScope", "code.google.com/p/go.tools/go/types", $funcType([ast.Node, ($ptrType(Scope))], [], false), -1], ["recordSelection", "recordSelection", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.SelectorExpr)), SelectionKind, Type, Object, ($sliceType($Int)), $Bool], [], false), -1], ["recordTypeAndValue", "recordTypeAndValue", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, operandMode, Type, exact.Value], [], false), -1], ["recordUntyped", "recordUntyped", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["recordUse", "recordUse", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.Ident)), Object], [], false), -1], ["rememberUntyped", "rememberUntyped", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, $Bool, operandMode, ($ptrType(Basic)), exact.Value], [], false), -1], ["reportAltDecl", "reportAltDecl", "code.google.com/p/go.tools/go/types", $funcType([Object], [], false), -1], ["reportCycle", "reportCycle", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(($ptrType(objNode)))), $Int], [], false), -1], ["representable", "representable", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(Basic))], [], false), -1], ["resolveOrder", "resolveOrder", "code.google.com/p/go.tools/go/types", $funcType([], [($sliceType(Object))], false), -1], ["selector", "selector", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(ast.SelectorExpr))], [], false), -1], ["shift", "shift", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), ($ptrType(operand)), token.Token], [], false), -1], ["shortVarDecl", "shortVarDecl", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, ($sliceType(ast.Expr)), ($sliceType(ast.Expr))], [], false), -1], ["simpleStmt", "simpleStmt", "code.google.com/p/go.tools/go/types", $funcType([ast.Stmt], [], false), -1], ["softErrorf", "softErrorf", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["sprintf", "sprintf", "code.google.com/p/go.tools/go/types", $funcType([$String, ($sliceType($emptyInterface))], [$String], true), -1], ["stmt", "stmt", "code.google.com/p/go.tools/go/types", $funcType([stmtContext, ast.Stmt], [], false), -1], ["stmtList", "stmtList", "code.google.com/p/go.tools/go/types", $funcType([stmtContext, ($sliceType(ast.Stmt))], [], false), -1], ["structType", "structType", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Struct)), ($ptrType(ast.StructType)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["suspendedCall", "suspendedCall", "code.google.com/p/go.tools/go/types", $funcType([$String, ($ptrType(ast.CallExpr))], [], false), -1], ["tag", "tag", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(ast.BasicLit))], [$String], false), -1], ["trace", "trace", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, $String, ($sliceType($emptyInterface))], [], true), -1], ["typ", "typ", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [Type], false), -1], ["typExpr", "typExpr", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [Type], false), -1], ["typExprInternal", "typExprInternal", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [Type], false), -1], ["typOrNil", "typOrNil", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr], [Type], false), -1], ["typeAssertion", "typeAssertion", "code.google.com/p/go.tools/go/types", $funcType([token.Pos, ($ptrType(operand)), ($ptrType(Interface)), Type], [], false), -1], ["typeDecl", "typeDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(TypeName)), ast.Expr, ($ptrType(Named)), ($sliceType(($ptrType(TypeName))))], [], false), -1], ["unary", "unary", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(operand)), token.Token], [], false), -1], ["unusedImports", "unusedImports", "code.google.com/p/go.tools/go/types", $funcType([], [], false), -1], ["updateExprType", "updateExprType", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, Type, $Bool], [], false), -1], ["updateExprVal", "updateExprVal", "code.google.com/p/go.tools/go/types", $funcType([ast.Expr, exact.Value], [], false), -1], ["usage", "usage", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), -1], ["use", "use", "code.google.com/p/go.tools/go/types", $funcType([($sliceType(ast.Expr))], [], true), -1], ["useGetter", "useGetter", "code.google.com/p/go.tools/go/types", $funcType([getter, $Int], [], false), -1], ["varDecl", "varDecl", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Var)), ($sliceType(($ptrType(Var)))), ast.Expr, ast.Expr], [], false), -1]];
+		Checker.init([["conf", "conf", "code.google.com/p/go.tools/go/types", ($ptrType(Config)), ""], ["fset", "fset", "code.google.com/p/go.tools/go/types", ($ptrType(token.FileSet)), ""], ["pkg", "pkg", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""], ["Info", "", "", ($ptrType(Info)), ""], ["objMap", "objMap", "code.google.com/p/go.tools/go/types", ($mapType(Object, ($ptrType(declInfo)))), ""], ["files", "files", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(ast.File)))), ""], ["unusedDotImports", "unusedDotImports", "code.google.com/p/go.tools/go/types", ($mapType(($ptrType(Scope)), ($mapType(($ptrType(Package)), token.Pos)))), ""], ["firstErr", "firstErr", "code.google.com/p/go.tools/go/types", $error, ""], ["methods", "methods", "code.google.com/p/go.tools/go/types", ($mapType($String, ($sliceType(($ptrType(Func)))))), ""], ["untyped", "untyped", "code.google.com/p/go.tools/go/types", ($mapType(ast.Expr, exprInfo)), ""], ["funcs", "funcs", "code.google.com/p/go.tools/go/types", ($sliceType(funcInfo)), ""], ["delayed", "delayed", "code.google.com/p/go.tools/go/types", ($sliceType(($funcType([], [], false)))), ""], ["context", "", "code.google.com/p/go.tools/go/types", context, ""], ["indent", "indent", "code.google.com/p/go.tools/go/types", $Int, ""]]);
 		bailout.init([]);
 		opPredicates.init(token.Token, ($funcType([Type], [$Bool], false)));
 		objNode.init([["obj", "obj", "code.google.com/p/go.tools/go/types", Object, ""], ["in$1", "in", "code.google.com/p/go.tools/go/types", $Int, ""], ["out", "out", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(objNode)))), ""], ["index", "index", "code.google.com/p/go.tools/go/types", $Int, ""], ["mark", "mark", "code.google.com/p/go.tools/go/types", $Int, ""]]);
@@ -37096,24 +37144,24 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		byUniqueName.methods = [["Len", "Len", "", $funcType([], [$Int], false), -1], ["Less", "Less", "", $funcType([$Int, $Int], [$Bool], false), -1], ["Swap", "Swap", "", $funcType([$Int, $Int], [], false), -1]];
 		($ptrType(byUniqueName)).methods = [["Len", "Len", "", $funcType([], [$Int], false), -1], ["Less", "Less", "", $funcType([$Int, $Int], [$Bool], false), -1], ["Swap", "Swap", "", $funcType([$Int, $Int], [], false), -1]];
 		byUniqueName.init(($ptrType(Selection)));
-		Object.init([["Exported", "Exported", "", $funcType([], [$Bool], false)], ["Id", "Id", "", $funcType([], [$String], false)], ["Name", "Name", "", $funcType([], [$String], false)], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false)], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false)], ["Pos", "Pos", "", $funcType([], [token.Pos], false)], ["String", "String", "", $funcType([], [$String], false)], ["Type", "Type", "", $funcType([], [Type], false)], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false)], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false)], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false)]]);
-		($ptrType(object)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), -1], ["Id", "Id", "", $funcType([], [$String], false), -1], ["Name", "Name", "", $funcType([], [$String], false), -1], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), -1], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), -1], ["Pos", "Pos", "", $funcType([], [token.Pos], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), -1], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), -1], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), -1], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), -1]];
-		object.init([["parent", "parent", "code.google.com/p/go.tools/go/types", ($ptrType(Scope)), ""], ["pos", "pos", "code.google.com/p/go.tools/go/types", token.Pos, ""], ["pkg", "pkg", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""], ["name", "name", "code.google.com/p/go.tools/go/types", $String, ""], ["typ", "typ", "code.google.com/p/go.tools/go/types", Type, ""], ["used", "used", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
-		($ptrType(PkgName)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Imported", "Imported", "", $funcType([], [($ptrType(Package))], false), -1], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
-		PkgName.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["imported", "imported", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""]]);
-		($ptrType(Const)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["Val", "Val", "", $funcType([], [exact.Value], false), -1], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		Object.init([["Exported", "Exported", "", $funcType([], [$Bool], false)], ["Id", "Id", "", $funcType([], [$String], false)], ["Name", "Name", "", $funcType([], [$String], false)], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false)], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false)], ["Pos", "Pos", "", $funcType([], [token.Pos], false)], ["String", "String", "", $funcType([], [$String], false)], ["Type", "Type", "", $funcType([], [Type], false)], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false)], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false)], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false)], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false)]]);
+		($ptrType(object)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), -1], ["Id", "Id", "", $funcType([], [$String], false), -1], ["Name", "Name", "", $funcType([], [$String], false), -1], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), -1], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), -1], ["Pos", "Pos", "", $funcType([], [token.Pos], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), -1], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), -1], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), -1], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), -1], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), -1]];
+		object.init([["parent", "parent", "code.google.com/p/go.tools/go/types", ($ptrType(Scope)), ""], ["pos", "pos", "code.google.com/p/go.tools/go/types", token.Pos, ""], ["pkg", "pkg", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""], ["name", "name", "code.google.com/p/go.tools/go/types", $String, ""], ["typ", "typ", "code.google.com/p/go.tools/go/types", Type, ""], ["order_", "order_", "code.google.com/p/go.tools/go/types", $Uint32, ""]]);
+		($ptrType(PkgName)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Imported", "Imported", "", $funcType([], [($ptrType(Package))], false), -1], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		PkgName.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["imported", "imported", "code.google.com/p/go.tools/go/types", ($ptrType(Package)), ""], ["used", "used", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
+		($ptrType(Const)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["Val", "Val", "", $funcType([], [exact.Value], false), -1], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
 		Const.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["val", "val", "code.google.com/p/go.tools/go/types", exact.Value, ""], ["visited", "visited", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
-		($ptrType(TypeName)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		($ptrType(TypeName)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
 		TypeName.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""]]);
-		($ptrType(Var)).methods = [["Anonymous", "Anonymous", "", $funcType([], [$Bool], false), -1], ["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["IsField", "IsField", "", $funcType([], [$Bool], false), -1], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
-		Var.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["anonymous", "anonymous", "code.google.com/p/go.tools/go/types", $Bool, ""], ["visited", "visited", "code.google.com/p/go.tools/go/types", $Bool, ""], ["isField", "isField", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
-		($ptrType(Func)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["FullName", "FullName", "", $funcType([], [$String], false), -1], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["Scope", "Scope", "", $funcType([], [($ptrType(Scope))], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		($ptrType(Var)).methods = [["Anonymous", "Anonymous", "", $funcType([], [$Bool], false), -1], ["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["IsField", "IsField", "", $funcType([], [$Bool], false), -1], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		Var.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["anonymous", "anonymous", "code.google.com/p/go.tools/go/types", $Bool, ""], ["visited", "visited", "code.google.com/p/go.tools/go/types", $Bool, ""], ["isField", "isField", "code.google.com/p/go.tools/go/types", $Bool, ""], ["used", "used", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
+		($ptrType(Func)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["FullName", "FullName", "", $funcType([], [$String], false), -1], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["Scope", "Scope", "", $funcType([], [($ptrType(Scope))], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
 		Func.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""]]);
-		($ptrType(Label)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
-		Label.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""]]);
-		($ptrType(Builtin)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		($ptrType(Label)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		Label.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["used", "used", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
+		($ptrType(Builtin)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
 		Builtin.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""], ["id", "id", "code.google.com/p/go.tools/go/types", builtinId, ""]]);
-		($ptrType(Nil)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["isUsed", "isUsed", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
+		($ptrType(Nil)).methods = [["Exported", "Exported", "", $funcType([], [$Bool], false), 0], ["Id", "Id", "", $funcType([], [$String], false), 0], ["Name", "Name", "", $funcType([], [$String], false), 0], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), 0], ["Pkg", "Pkg", "", $funcType([], [($ptrType(Package))], false), 0], ["Pos", "Pos", "", $funcType([], [token.Pos], false), 0], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), 0], ["order", "order", "code.google.com/p/go.tools/go/types", $funcType([], [$Uint32], false), 0], ["sameId", "sameId", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Package)), $String], [$Bool], false), 0], ["setOrder", "setOrder", "code.google.com/p/go.tools/go/types", $funcType([$Uint32], [], false), 0], ["setParent", "setParent", "code.google.com/p/go.tools/go/types", $funcType([($ptrType(Scope))], [], false), 0]];
 		Nil.init([["object", "", "code.google.com/p/go.tools/go/types", object, ""]]);
 		($ptrType(objset)).methods = [["insert", "insert", "code.google.com/p/go.tools/go/types", $funcType([Object], [Object], false), -1]];
 		objset.init($String, Object);
@@ -37128,7 +37176,7 @@ $packages["code.google.com/p/go.tools/go/types"] = (function() {
 		ifacePair.init([["x", "x", "code.google.com/p/go.tools/go/types", ($ptrType(Interface)), ""], ["y", "y", "code.google.com/p/go.tools/go/types", ($ptrType(Interface)), ""], ["prev", "prev", "code.google.com/p/go.tools/go/types", ($ptrType(ifacePair)), ""]]);
 		($ptrType(declInfo)).methods = [["addDep", "addDep", "code.google.com/p/go.tools/go/types", $funcType([Object], [], false), -1], ["hasInitializer", "hasInitializer", "code.google.com/p/go.tools/go/types", $funcType([], [$Bool], false), -1]];
 		declInfo.init([["file", "file", "code.google.com/p/go.tools/go/types", ($ptrType(Scope)), ""], ["lhs", "lhs", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(Var)))), ""], ["typ", "typ", "code.google.com/p/go.tools/go/types", ast.Expr, ""], ["init", "init", "code.google.com/p/go.tools/go/types", ast.Expr, ""], ["fdecl", "fdecl", "code.google.com/p/go.tools/go/types", ($ptrType(ast.FuncDecl)), ""], ["deps", "deps", "code.google.com/p/go.tools/go/types", ($mapType(Object, $Bool)), ""], ["mark", "mark", "code.google.com/p/go.tools/go/types", $Int, ""]]);
-		($ptrType(Scope)).methods = [["Child", "Child", "", $funcType([$Int], [($ptrType(Scope))], false), -1], ["Insert", "Insert", "", $funcType([Object], [Object], false), -1], ["Len", "Len", "", $funcType([], [$Int], false), -1], ["Lookup", "Lookup", "", $funcType([$String], [Object], false), -1], ["LookupParent", "LookupParent", "", $funcType([$String], [Object], false), -1], ["Names", "Names", "", $funcType([], [($sliceType($String))], false), -1], ["NumChildren", "NumChildren", "", $funcType([], [$Int], false), -1], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["WriteTo", "WriteTo", "", $funcType([io.Writer, $Int, $Bool], [], false), -1]];
+		($ptrType(Scope)).methods = [["Child", "Child", "", $funcType([$Int], [($ptrType(Scope))], false), -1], ["Insert", "Insert", "", $funcType([Object], [Object], false), -1], ["Len", "Len", "", $funcType([], [$Int], false), -1], ["Lookup", "Lookup", "", $funcType([$String], [Object], false), -1], ["LookupParent", "LookupParent", "", $funcType([$String], [($ptrType(Scope)), Object], false), -1], ["Names", "Names", "", $funcType([], [($sliceType($String))], false), -1], ["NumChildren", "NumChildren", "", $funcType([], [$Int], false), -1], ["Parent", "Parent", "", $funcType([], [($ptrType(Scope))], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["WriteTo", "WriteTo", "", $funcType([io.Writer, $Int, $Bool], [], false), -1]];
 		Scope.init([["parent", "parent", "code.google.com/p/go.tools/go/types", ($ptrType(Scope)), ""], ["children", "children", "code.google.com/p/go.tools/go/types", ($sliceType(($ptrType(Scope)))), ""], ["comment", "comment", "code.google.com/p/go.tools/go/types", $String, ""], ["elems", "elems", "code.google.com/p/go.tools/go/types", ($mapType($String, Object)), ""]]);
 		($ptrType(Selection)).methods = [["Index", "Index", "", $funcType([], [($sliceType($Int))], false), -1], ["Indirect", "Indirect", "", $funcType([], [$Bool], false), -1], ["Kind", "Kind", "", $funcType([], [SelectionKind], false), -1], ["Obj", "Obj", "", $funcType([], [Object], false), -1], ["Recv", "Recv", "", $funcType([], [Type], false), -1], ["String", "String", "", $funcType([], [$String], false), -1], ["Type", "Type", "", $funcType([], [Type], false), -1]];
 		Selection.init([["kind", "kind", "code.google.com/p/go.tools/go/types", SelectionKind, ""], ["recv", "recv", "code.google.com/p/go.tools/go/types", Type, ""], ["obj", "obj", "code.google.com/p/go.tools/go/types", Object, ""], ["index", "index", "code.google.com/p/go.tools/go/types", ($sliceType($Int)), ""], ["indirect", "indirect", "code.google.com/p/go.tools/go/types", $Bool, ""]]);
@@ -40491,7 +40539,7 @@ $packages["regexp"] = (function() {
 				(x = prog.Inst, ((ix < 0 || ix >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + ix])).Next = ($sliceType($Uint32)).nil;
 			} else if (_ref$1 === 8 || _ref$1 === 9 || _ref$1 === 10) {
 				(x$1 = prog.Inst, ((ix < 0 || ix >= x$1.$length) ? $throwRuntimeError("index out of range") : x$1.$array[x$1.$offset + ix])).Next = ($sliceType($Uint32)).nil;
-				$copy((x$2 = prog.Inst, ((ix < 0 || ix >= x$2.$length) ? $throwRuntimeError("index out of range") : x$2.$array[x$2.$offset + ix])), new onePassInst.Ptr(instOriginal, ($sliceType($Uint32)).nil), onePassInst);
+				$copy((x$2 = prog.Inst, ((ix < 0 || ix >= x$2.$length) ? $throwRuntimeError("index out of range") : x$2.$array[x$2.$offset + ix])), new onePassInst.Ptr($clone(instOriginal, syntax.Inst), ($sliceType($Uint32)).nil), onePassInst);
 			}
 			_i++;
 		}
@@ -40503,7 +40551,7 @@ $packages["regexp"] = (function() {
 		_i = 0;
 		while (_i < _ref.$length) {
 			inst = new syntax.Inst.Ptr(); $copy(inst, ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]), syntax.Inst);
-			p.Inst = $append(p.Inst, new onePassInst.Ptr(inst, ($sliceType($Uint32)).nil));
+			p.Inst = $append(p.Inst, new onePassInst.Ptr($clone(inst, syntax.Inst), ($sliceType($Uint32)).nil));
 			_i++;
 		}
 		_ref$1 = p.Inst;
@@ -40603,7 +40651,7 @@ $packages["regexp"] = (function() {
 			}
 		});
 		check = (function(pc, m) {
-			var ok = false, x, inst, _ref, _entry, matchOut, _entry$1, matchArg, _tmp, _tmp$1, _tmp$2, _tmp$3, _key, _tuple, x$1, x$2, x$3, x$4, x$5, _entry$2, _key$1, x$6, _q, i, _entry$3, _key$2, x$7, _q$1, i$1, _key$3, _key$4, runes, x$8, r0, r1, _q$2, i$2, _key$5, runes$1, x$9, r0$1, r1$1, x$10, x$11, _q$3, i$3, _key$6, _key$7, _q$4, i$4;
+			var ok = false, x, inst, _ref, _entry, matchOut, _entry$1, matchArg, _tmp, _tmp$1, _tmp$2, _tmp$3, _key, _tuple, x$1, x$2, x$3, x$4, x$5, _key$1, _entry$2, x$6, _q, i, _key$2, _entry$3, x$7, _q$1, i$1, _key$3, _key$4, runes, x$8, r0, r1, _q$2, i$2, _key$5, runes$1, x$9, r0$1, r1$1, x$10, x$11, _q$3, i$3, _key$6, _key$7, _q$4, i$4;
 			ok = true;
 			inst = (x = p.Inst, ((pc < 0 || pc >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + pc]));
 			if (visitQueue.contains(pc)) {
@@ -41849,7 +41897,7 @@ $packages["text/template"] = (function() {
 			if (!goodFunc(v.Type())) {
 				$panic(fmt.Errorf("can't install method/function %q with %d results", new ($sliceType($emptyInterface))([new $String(name), new $Int(v.Type().NumOut())])));
 			}
-			_key$1 = name; (out || $throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: v };
+			_key$1 = name; (out || $throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: $clone(v, reflect.Value) };
 			_i++;
 		}
 	};
@@ -42886,7 +42934,7 @@ $packages["go/build"] = (function() {
 		return name.substring(i);
 	};
 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var $this = this, $args = arguments, $s = 0, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, _tuple$1, sub, ok, all, _ref$1, _i, i, root$1, rootsrc, _tuple$2, sub$1, ok$1, dir$1, _ref$2, _i$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, root$2, dir$4, isDir$1, paths, i$1, format, x, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _key$1, _entry$1, _key$2, _entry$2, _key$3, cg, err$3, _key$4, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
+		var $this = this, $args = arguments, $s = 0, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, _tuple$1, sub, ok, all, _ref$1, _i, i, root$1, rootsrc, _tuple$2, sub$1, ok$1, dir$1, _ref$2, _i$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, root$2, dir$4, isDir$1, paths, i$1, format, x, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _key$1, _entry, _key$2, _entry$1, _key$3, _entry$2, cg, err$3, _key$4, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
 		/* */ while (true) { switch ($s) { case 0:
 		ctxt = $this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", ($sliceType($String)).nil, "", ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, ($sliceType($String)).nil, false, ($sliceType($String)).nil, ($sliceType($String)).nil, false, ($sliceType($String)).nil, ($sliceType($String)).nil, false);
@@ -44568,7 +44616,7 @@ $packages["code.google.com/p/go.tools/go/gcimporter"] = (function() {
 		if (ok) {
 			err = errors.New(s);
 		}
-		$panic((x = new importError.Ptr(p.scanner.Pos(), $assertType(err, $error)), new x.constructor.Struct(x)));
+		$panic((x = new importError.Ptr($clone(p.scanner.Pos(), scanner.Position), $assertType(err, $error)), new x.constructor.Struct(x)));
 	};
 	parser.prototype.error = function(err) { return this.$val.error(err); };
 	parser.Ptr.prototype.errorf = function(format, args) {
@@ -47533,7 +47581,7 @@ $packages["encoding/json"] = (function() {
 		bits = this.$val !== undefined ? this.$val : this;
 		f = v.Float();
 		if (math.IsInf(f, 0) || math.IsNaN(f)) {
-			e.error(new UnsupportedValueError.Ptr(v, strconv.FormatFloat(f, 103, -1, (bits >> 0))));
+			e.error(new UnsupportedValueError.Ptr($clone(v, reflect.Value), strconv.FormatFloat(f, 103, -1, (bits >> 0))));
 		}
 		b = strconv.AppendFloat($subslice(new ($sliceType($Uint8))(e.scratch), 0, 0), f, 103, -1, (bits >> 0));
 		if (quoted) {
@@ -48008,7 +48056,7 @@ $packages["encoding/json"] = (function() {
 	};
 	$ptrType(byIndex).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	typeFields = function(t) {
-		var current, next, count, _map, _key, nextCount, _map$1, _key$1, visited, _map$2, _key$2, fields, _tmp, _tmp$1, _tmp$2, _tmp$3, _map$3, _key$3, _ref, _i, f, _entry, _key$4, i, sf, tag, _tuple, name, opts, index, x, ft, tagged, _entry$1, x$1, _lhs, _index, _entry$2, _key$5, _entry$3, out, _tmp$4, _tmp$5, advance, i$1, fi, name$1, x$2, fj, _tuple$1, dominant, ok;
+		var current, next, count, _map, _key, nextCount, _map$1, _key$1, visited, _map$2, _key$2, fields, _tmp, _tmp$1, _tmp$2, _tmp$3, _map$3, _key$3, _ref, _i, f, _entry, _key$4, i, sf, tag, _tuple, name, opts, index, x, ft, tagged, _entry$1, x$1, _lhs, _index, _key$5, _entry$2, _entry$3, out, _tmp$4, _tmp$5, advance, i$1, fi, name$1, x$2, fj, _tuple$1, dominant, ok;
 		current = new ($sliceType(field))([]);
 		next = new ($sliceType(field))([new field.Ptr("", ($sliceType($Uint8)).nil, $throwNilPointerError, false, ($sliceType($Int)).nil, t, false, false)]);
 		count = (_map = new $Map(), _map);
@@ -49391,7 +49439,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 		return new ImportContext.Ptr((_map = new $Map(), _key = "unsafe", _map[_key] = { k: _key, v: types.Unsafe }, _map), importFunc);
 	};
 	WriteProgramCode = $pkg.WriteProgramCode = function(pkgs, importContext, w) {
-		var x, mainPkg, minify, declsByObject, pendingDecls, _ref, _i, pkg, _ref$1, _i$1, i, x$1, d, _ref$2, _i$2, f, o, _entry, _key, x$2, d$1, _ref$3, _i$3, dep, o$1, _tuple, _entry$1, decls, ok, x$3, name, _ref$4, _i$4, d$2, _ref$5, _i$5, i$1, f$1, x$4, x$5, x$6, _tuple$1, err, _tuple$2, err$1, _tuple$3, err$2, _ref$6, _i$6, pkg$1, err$3, _tuple$4, err$4;
+		var x, mainPkg, minify, declsByObject, pendingDecls, _ref, _i, pkg, _ref$1, _i$1, i, x$1, d, _ref$2, _i$2, f, o, _key, _entry, x$2, d$1, _ref$3, _i$3, dep, o$1, _tuple, _entry$1, decls, ok, x$3, name, _ref$4, _i$4, d$2, _ref$5, _i$5, i$1, f$1, x$4, x$5, x$6, _tuple$1, err, _tuple$2, err$1, _tuple$3, err$2, _ref$6, _i$6, pkg$1, err$3, _tuple$4, err$4;
 		mainPkg = (x = pkgs.$length - 1 >> 0, ((x < 0 || x >= pkgs.$length) ? $throwRuntimeError("index out of range") : pkgs.$array[pkgs.$offset + x]));
 		minify = mainPkg.Minified;
 		declsByObject = new $Map();
@@ -49463,7 +49511,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 		if (!($interfaceIsEqual(err, $ifaceNil))) {
 			return err;
 		}
-		_tuple$2 = w.Write(removeWhitespace(new ($sliceType($Uint8))($stringToBytes("Error.stackTraceLimit = Infinity;\n\nvar $global, $module;\nif (typeof window !== \"undefined\") { /* web page */\n  $global = window;\n} else if (typeof self !== \"undefined\") { /* web worker */\n  $global = self;\n} else if (typeof global !== \"undefined\") { /* Node.js */\n  $global = global;\n  $global.require = require;\n} else {\n  console.log(\"warning: no global object found\");\n}\nif (typeof module !== \"undefined\") {\n  $module = module;\n}\n\nvar $packages = {}, $reflect, $idCounter = 0;\nvar $keys = function(m) { return m ? Object.keys(m) : []; };\nvar $min = Math.min;\nvar $mod = function(x, y) { return x % y; };\nvar $parseInt = parseInt;\nvar $parseFloat = function(f) {\n  if (f.constructor === Number) {\n    return f;\n  }\n  return parseFloat(f);\n};\n\nvar $mapArray = function(array, f) {\n  var newArray = new array.constructor(array.length), i;\n  for (i = 0; i < array.length; i++) {\n    newArray[i] = f(array[i]);\n  }\n  return newArray;\n};\n\nvar $methodVal = function(recv, name) {\n  var vals = recv.$methodVals || {};\n  recv.$methodVals = vals; /* noop for primitives */\n  var f = vals[name];\n  if (f !== undefined) {\n    return f;\n  }\n  var method = recv[name];\n  f = function() {\n    $stackDepthOffset--;\n    try {\n      return method.apply(recv, arguments);\n    } finally {\n      $stackDepthOffset++;\n    }\n  };\n  vals[name] = f;\n  return f;\n};\n\nvar $methodExpr = function(method) {\n  if (method.$expr === undefined) {\n    method.$expr = function() {\n      $stackDepthOffset--;\n      try {\n        return Function.call.apply(method, arguments);\n      } finally {\n        $stackDepthOffset++;\n      }\n    };\n  }\n  return method.$expr;\n};\n\nvar $subslice = function(slice, low, high, max) {\n  if (low < 0 || high < low || max < high || high > slice.$capacity || max > slice.$capacity) {\n    $throwRuntimeError(\"slice bounds out of range\");\n  }\n  var s = new slice.constructor(slice.$array);\n  s.$offset = slice.$offset + low;\n  s.$length = slice.$length - low;\n  s.$capacity = slice.$capacity - low;\n  if (high !== undefined) {\n    s.$length = high - low;\n  }\n  if (max !== undefined) {\n    s.$capacity = max - low;\n  }\n  return s;\n};\n\nvar $sliceToArray = function(slice) {\n  if (slice.$length === 0) {\n    return [];\n  }\n  if (slice.$array.constructor !== Array) {\n    return slice.$array.subarray(slice.$offset, slice.$offset + slice.$length);\n  }\n  return slice.$array.slice(slice.$offset, slice.$offset + slice.$length);\n};\n\nvar $decodeRune = function(str, pos) {\n  var c0 = str.charCodeAt(pos);\n\n  if (c0 < 0x80) {\n    return [c0, 1];\n  }\n\n  if (c0 !== c0 || c0 < 0xC0) {\n    return [0xFFFD, 1];\n  }\n\n  var c1 = str.charCodeAt(pos + 1);\n  if (c1 !== c1 || c1 < 0x80 || 0xC0 <= c1) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xE0) {\n    var r = (c0 & 0x1F) << 6 | (c1 & 0x3F);\n    if (r <= 0x7F) {\n      return [0xFFFD, 1];\n    }\n    return [r, 2];\n  }\n\n  var c2 = str.charCodeAt(pos + 2);\n  if (c2 !== c2 || c2 < 0x80 || 0xC0 <= c2) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xF0) {\n    var r = (c0 & 0x0F) << 12 | (c1 & 0x3F) << 6 | (c2 & 0x3F);\n    if (r <= 0x7FF) {\n      return [0xFFFD, 1];\n    }\n    if (0xD800 <= r && r <= 0xDFFF) {\n      return [0xFFFD, 1];\n    }\n    return [r, 3];\n  }\n\n  var c3 = str.charCodeAt(pos + 3);\n  if (c3 !== c3 || c3 < 0x80 || 0xC0 <= c3) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xF8) {\n    var r = (c0 & 0x07) << 18 | (c1 & 0x3F) << 12 | (c2 & 0x3F) << 6 | (c3 & 0x3F);\n    if (r <= 0xFFFF || 0x10FFFF < r) {\n      return [0xFFFD, 1];\n    }\n    return [r, 4];\n  }\n\n  return [0xFFFD, 1];\n};\n\nvar $encodeRune = function(r) {\n  if (r < 0 || r > 0x10FFFF || (0xD800 <= r && r <= 0xDFFF)) {\n    r = 0xFFFD;\n  }\n  if (r <= 0x7F) {\n    return String.fromCharCode(r);\n  }\n  if (r <= 0x7FF) {\n    return String.fromCharCode(0xC0 | r >> 6, 0x80 | (r & 0x3F));\n  }\n  if (r <= 0xFFFF) {\n    return String.fromCharCode(0xE0 | r >> 12, 0x80 | (r >> 6 & 0x3F), 0x80 | (r & 0x3F));\n  }\n  return String.fromCharCode(0xF0 | r >> 18, 0x80 | (r >> 12 & 0x3F), 0x80 | (r >> 6 & 0x3F), 0x80 | (r & 0x3F));\n};\n\nvar $stringToBytes = function(str) {\n  var array = new Uint8Array(str.length), i;\n  for (i = 0; i < str.length; i++) {\n    array[i] = str.charCodeAt(i);\n  }\n  return array;\n};\n\nvar $bytesToString = function(slice) {\n  if (slice.$length === 0) {\n    return \"\";\n  }\n  var str = \"\", i;\n  for (i = 0; i < slice.$length; i += 10000) {\n    str += String.fromCharCode.apply(null, slice.$array.subarray(slice.$offset + i, slice.$offset + Math.min(slice.$length, i + 10000)));\n  }\n  return str;\n};\n\nvar $stringToRunes = function(str) {\n  var array = new Int32Array(str.length);\n  var rune, i, j = 0;\n  for (i = 0; i < str.length; i += rune[1], j++) {\n    rune = $decodeRune(str, i);\n    array[j] = rune[0];\n  }\n  return array.subarray(0, j);\n};\n\nvar $runesToString = function(slice) {\n  if (slice.$length === 0) {\n    return \"\";\n  }\n  var str = \"\", i;\n  for (i = 0; i < slice.$length; i++) {\n    str += $encodeRune(slice.$array[slice.$offset + i]);\n  }\n  return str;\n};\n\nvar $copyString = function(dst, src) {\n  var n = Math.min(src.length, dst.$length), i;\n  for (i = 0; i < n; i++) {\n    dst.$array[dst.$offset + i] = src.charCodeAt(i);\n  }\n  return n;\n};\n\nvar $copySlice = function(dst, src) {\n  var n = Math.min(src.$length, dst.$length), i;\n  $internalCopy(dst.$array, src.$array, dst.$offset, src.$offset, n, dst.constructor.elem);\n  return n;\n};\n\nvar $copy = function(dst, src, type) {\n  var i;\n  switch (type.kind) {\n  case \"Array\":\n    $internalCopy(dst, src, 0, 0, src.length, type.elem);\n    return true;\n  case \"Struct\":\n    for (i = 0; i < type.fields.length; i++) {\n      var field = type.fields[i];\n      var name = field[0];\n      if (!$copy(dst[name], src[name], field[3])) {\n        dst[name] = src[name];\n      }\n    }\n    return true;\n  default:\n    return false;\n  }\n};\n\nvar $internalCopy = function(dst, src, dstOffset, srcOffset, n, elem) {\n  var i;\n  if (n === 0) {\n    return;\n  }\n\n  if (src.subarray) {\n    dst.set(src.subarray(srcOffset, srcOffset + n), dstOffset);\n    return;\n  }\n\n  switch (elem.kind) {\n  case \"Array\":\n  case \"Struct\":\n    for (i = 0; i < n; i++) {\n      $copy(dst[dstOffset + i], src[srcOffset + i], elem);\n    }\n    return;\n  }\n\n  for (i = 0; i < n; i++) {\n    dst[dstOffset + i] = src[srcOffset + i];\n  }\n};\n\nvar $clone = function(src, type) {\n  var clone = type.zero();\n  $copy(clone, src, type);\n  return clone;\n};\n\nvar $append = function(slice) {\n  return $internalAppend(slice, arguments, 1, arguments.length - 1);\n};\n\nvar $appendSlice = function(slice, toAppend) {\n  return $internalAppend(slice, toAppend.$array, toAppend.$offset, toAppend.$length);\n};\n\nvar $internalAppend = function(slice, array, offset, length) {\n  if (length === 0) {\n    return slice;\n  }\n\n  var newArray = slice.$array;\n  var newOffset = slice.$offset;\n  var newLength = slice.$length + length;\n  var newCapacity = slice.$capacity;\n\n  if (newLength > newCapacity) {\n    newOffset = 0;\n    newCapacity = Math.max(newLength, slice.$capacity < 1024 ? slice.$capacity * 2 : Math.floor(slice.$capacity * 5 / 4));\n\n    if (slice.$array.constructor === Array) {\n      newArray = slice.$array.slice(slice.$offset, slice.$offset + slice.$length);\n      newArray.length = newCapacity;\n      var zero = slice.constructor.elem.zero, i;\n      for (i = slice.$length; i < newCapacity; i++) {\n        newArray[i] = zero();\n      }\n    } else {\n      newArray = new slice.$array.constructor(newCapacity);\n      newArray.set(slice.$array.subarray(slice.$offset, slice.$offset + slice.$length));\n    }\n  }\n\n  $internalCopy(newArray, array, newOffset + slice.$length, offset, length, slice.constructor.elem);\n\n  var newSlice = new slice.constructor(newArray);\n  newSlice.$offset = newOffset;\n  newSlice.$length = newLength;\n  newSlice.$capacity = newCapacity;\n  return newSlice;\n};\n\nvar $equal = function(a, b, type) {\n  if (a === b) {\n    return true;\n  }\n  var i;\n  switch (type.kind) {\n  case \"Float32\":\n    return $float32IsEqual(a, b);\n  case \"Complex64\":\n    return $float32IsEqual(a.$real, b.$real) && $float32IsEqual(a.$imag, b.$imag);\n  case \"Complex128\":\n    return a.$real === b.$real && a.$imag === b.$imag;\n  case \"Int64\":\n  case \"Uint64\":\n    return a.$high === b.$high && a.$low === b.$low;\n  case \"Ptr\":\n    if (a.constructor.Struct) {\n      return false;\n    }\n    return $pointerIsEqual(a, b);\n  case \"Array\":\n    if (a.length != b.length) {\n      return false;\n    }\n    var i;\n    for (i = 0; i < a.length; i++) {\n      if (!$equal(a[i], b[i], type.elem)) {\n        return false;\n      }\n    }\n    return true;\n  case \"Struct\":\n    for (i = 0; i < type.fields.length; i++) {\n      var field = type.fields[i];\n      var name = field[0];\n      if (!$equal(a[name], b[name], field[3])) {\n        return false;\n      }\n    }\n    return true;\n  default:\n    return false;\n  }\n};\n\nvar $interfaceIsEqual = function(a, b) {\n  if (a === null || b === null || a === undefined || b === undefined || a.constructor !== b.constructor) {\n    return a === b;\n  }\n  switch (a.constructor.kind) {\n  case \"Func\":\n  case \"Map\":\n  case \"Slice\":\n  case \"Struct\":\n    $throwRuntimeError(\"comparing uncomparable type \" + a.constructor.string);\n  case undefined: /* js.Object */\n    return a === b;\n  default:\n    return $equal(a.$val, b.$val, a.constructor);\n  }\n};\n\nvar $float32IsEqual = function(a, b) {\n  if (a === b) {\n    return true;\n  }\n  if (a === 0 || b === 0 || a === 1/0 || b === 1/0 || a === -1/0 || b === -1/0 || a !== a || b !== b) {\n    return false;\n  }\n  var math = $packages[\"math\"];\n  return math !== undefined && math.Float32bits(a) === math.Float32bits(b);\n};\n\nvar $pointerIsEqual = function(a, b) {\n  if (a === b) {\n    return true;\n  }\n  if (a.$get === $throwNilPointerError || b.$get === $throwNilPointerError) {\n    return a.$get === $throwNilPointerError && b.$get === $throwNilPointerError;\n  }\n  var va = a.$get();\n  var vb = b.$get();\n  if (va !== vb) {\n    return false;\n  }\n  var dummy = va + 1;\n  a.$set(dummy);\n  var equal = b.$get() === dummy;\n  a.$set(va);\n  return equal;\n};\n\nvar $newType = function(size, kind, string, name, pkgPath, constructor) {\n  var typ;\n  switch(kind) {\n  case \"Bool\":\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\" :\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"String\":\n  case \"UnsafePointer\":\n    typ = function(v) { this.$val = v; };\n    typ.prototype.$key = function() { return string + \"$\" + this.$val; };\n    break;\n\n  case \"Float32\":\n  case \"Float64\":\n    typ = function(v) { this.$val = v; };\n    typ.prototype.$key = function() { return string + \"$\" + $floatKey(this.$val); };\n    break;\n\n  case \"Int64\":\n    typ = function(high, low) {\n      this.$high = (high + Math.floor(Math.ceil(low) / 4294967296)) >> 0;\n      this.$low = low >>> 0;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$high + \"$\" + this.$low; };\n    break;\n\n  case \"Uint64\":\n    typ = function(high, low) {\n      this.$high = (high + Math.floor(Math.ceil(low) / 4294967296)) >>> 0;\n      this.$low = low >>> 0;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$high + \"$\" + this.$low; };\n    break;\n\n  case \"Complex64\":\n  case \"Complex128\":\n    typ = function(real, imag) {\n      this.$real = real;\n      this.$imag = imag;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$real + \"$\" + this.$imag; };\n    break;\n\n  case \"Array\":\n    typ = function(v) { this.$val = v; };\n    typ.Ptr = $newType(4, \"Ptr\", \"*\" + string, \"\", \"\", function(array) {\n      this.$get = function() { return array; };\n      this.$val = array;\n    });\n    typ.init = function(elem, len) {\n      typ.elem = elem;\n      typ.len = len;\n      typ.prototype.$key = function() {\n        return string + \"$\" + Array.prototype.join.call($mapArray(this.$val, function(e) {\n          var key = e.$key ? e.$key() : String(e);\n          return key.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\$/g, \"\\\\$\");\n        }), \"$\");\n      };\n      typ.extendReflectType = function(rt) {\n        rt.arrayType = new $reflect.arrayType.Ptr(rt, elem.reflectType(), undefined, len);\n      };\n      typ.Ptr.init(typ);\n      Object.defineProperty(typ.Ptr.nil, \"nilCheck\", { get: $throwNilPointerError });\n    };\n    break;\n\n  case \"Chan\":\n    typ = function(capacity) {\n      this.$val = this;\n      this.$capacity = capacity;\n      this.$buffer = [];\n      this.$sendQueue = [];\n      this.$recvQueue = [];\n      this.$closed = false;\n    };\n    typ.prototype.$key = function() {\n      if (this.$id === undefined) {\n        $idCounter++;\n        this.$id = $idCounter;\n      }\n      return String(this.$id);\n    };\n    typ.init = function(elem, sendOnly, recvOnly) {\n      typ.elem = elem;\n      typ.sendOnly = sendOnly;\n      typ.recvOnly = recvOnly;\n      typ.nil = new typ(0);\n      typ.nil.$sendQueue = typ.nil.$recvQueue = { length: 0, push: function() {}, shift: function() { return undefined; } };\n      typ.extendReflectType = function(rt) {\n        rt.chanType = new $reflect.chanType.Ptr(rt, elem.reflectType(), sendOnly ? $reflect.SendDir : (recvOnly ? $reflect.RecvDir : $reflect.BothDir));\n      };\n    };\n    break;\n\n  case \"Func\":\n    typ = function(v) { this.$val = v; };\n    typ.init = function(params, results, variadic) {\n      typ.params = params;\n      typ.results = results;\n      typ.variadic = variadic;\n      typ.extendReflectType = function(rt) {\n        var typeSlice = ($sliceType($ptrType($reflect.rtype.Ptr)));\n        rt.funcType = new $reflect.funcType.Ptr(rt, variadic, new typeSlice($mapArray(params, function(p) { return p.reflectType(); })), new typeSlice($mapArray(results, function(p) { return p.reflectType(); })));\n      };\n    };\n    break;\n\n  case \"Interface\":\n    typ = { implementedBy: {}, missingMethodFor: {} };\n    typ.init = function(methods) {\n      typ.methods = methods;\n      typ.extendReflectType = function(rt) {\n        var imethods = $mapArray(methods, function(m) {\n          return new $reflect.imethod.Ptr($newStringPtr(m[1]), $newStringPtr(m[2]), m[3].reflectType());\n        });\n        var methodSlice = ($sliceType($ptrType($reflect.imethod.Ptr)));\n        rt.interfaceType = new $reflect.interfaceType.Ptr(rt, new methodSlice(imethods));\n      };\n    };\n    break;\n\n  case \"Map\":\n    typ = function(v) { this.$val = v; };\n    typ.init = function(key, elem) {\n      typ.key = key;\n      typ.elem = elem;\n      typ.extendReflectType = function(rt) {\n        rt.mapType = new $reflect.mapType.Ptr(rt, key.reflectType(), elem.reflectType(), undefined, undefined);\n      };\n    };\n    break;\n\n  case \"Ptr\":\n    typ = constructor || function(getter, setter, target) {\n      this.$get = getter;\n      this.$set = setter;\n      this.$target = target;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() {\n      if (this.$id === undefined) {\n        $idCounter++;\n        this.$id = $idCounter;\n      }\n      return String(this.$id);\n    };\n    typ.init = function(elem) {\n      typ.nil = new typ($throwNilPointerError, $throwNilPointerError);\n      typ.extendReflectType = function(rt) {\n        rt.ptrType = new $reflect.ptrType.Ptr(rt, elem.reflectType());\n      };\n    };\n    break;\n\n  case \"Slice\":\n    var nativeArray;\n    typ = function(array) {\n      if (array.constructor !== nativeArray) {\n        array = new nativeArray(array);\n      }\n      this.$array = array;\n      this.$offset = 0;\n      this.$length = array.length;\n      this.$capacity = array.length;\n      this.$val = this;\n    };\n    typ.make = function(length, capacity) {\n      capacity = capacity || length;\n      var array = new nativeArray(capacity), i;\n      if (nativeArray === Array) {\n        for (i = 0; i < capacity; i++) {\n          array[i] = typ.elem.zero();\n        }\n      }\n      var slice = new typ(array);\n      slice.$length = length;\n      return slice;\n    };\n    typ.init = function(elem) {\n      typ.elem = elem;\n      nativeArray = $nativeArray(elem.kind);\n      typ.nil = new typ([]);\n      typ.extendReflectType = function(rt) {\n        rt.sliceType = new $reflect.sliceType.Ptr(rt, elem.reflectType());\n      };\n    };\n    break;\n\n  case \"Struct\":\n    typ = function(v) { this.$val = v; };\n    typ.Ptr = $newType(4, \"Ptr\", \"*\" + string, \"\", \"\", constructor);\n    typ.Ptr.Struct = typ;\n    typ.Ptr.prototype.$get = function() { return this; };\n    typ.init = function(fields) {\n      var i;\n      typ.fields = fields;\n      typ.prototype.$key = function() {\n        var val = this.$val;\n        return string + \"$\" + $mapArray(fields, function(field) {\n          var e = val[field[0]];\n          var key = e.$key ? e.$key() : String(e);\n          return key.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\$/g, \"\\\\$\");\n        }).join(\"$\");\n      };\n      typ.Ptr.extendReflectType = function(rt) {\n        rt.ptrType = new $reflect.ptrType.Ptr(rt, typ.reflectType());\n      };\n      /* nil value */\n      typ.Ptr.nil = Object.create(constructor.prototype);\n      typ.Ptr.nil.$val = typ.Ptr.nil;\n      for (i = 0; i < fields.length; i++) {\n        var field = fields[i];\n        Object.defineProperty(typ.Ptr.nil, field[0], { get: $throwNilPointerError, set: $throwNilPointerError });\n      }\n      /* methods for embedded fields */\n      for (i = 0; i < typ.methods.length; i++) {\n        var m = typ.methods[i];\n        if (m[4] != -1) {\n          (function(field, methodName) {\n            typ.prototype[methodName] = function() {\n              var v = this.$val[field[0]];\n              return v[methodName].apply(v, arguments);\n            };\n          })(fields[m[4]], m[0]);\n        }\n      }\n      for (i = 0; i < typ.Ptr.methods.length; i++) {\n        var m = typ.Ptr.methods[i];\n        if (m[4] != -1) {\n          (function(field, methodName) {\n            typ.Ptr.prototype[methodName] = function() {\n              var v = this[field[0]];\n              if (v.$val === undefined) {\n                v = new field[3](v);\n              }\n              return v[methodName].apply(v, arguments);\n            };\n          })(fields[m[4]], m[0]);\n        }\n      }\n      /* reflect type */\n      typ.extendReflectType = function(rt) {\n        var reflectFields = new Array(fields.length), i;\n        for (i = 0; i < fields.length; i++) {\n          var field = fields[i];\n          reflectFields[i] = new $reflect.structField.Ptr($newStringPtr(field[1]), $newStringPtr(field[2]), field[3].reflectType(), $newStringPtr(field[4]), i);\n        }\n        rt.structType = new $reflect.structType.Ptr(rt, new ($sliceType($reflect.structField.Ptr))(reflectFields));\n      };\n    };\n    break;\n\n  default:\n    $panic(new $String(\"invalid kind: \" + kind));\n  }\n\n  switch(kind) {\n  case \"Bool\":\n  case \"Map\":\n    typ.zero = function() { return false; };\n    break;\n\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\" :\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"UnsafePointer\":\n  case \"Float32\":\n  case \"Float64\":\n    typ.zero = function() { return 0; };\n    break;\n\n  case \"String\":\n    typ.zero = function() { return \"\"; };\n    break;\n\n  case \"Int64\":\n  case \"Uint64\":\n  case \"Complex64\":\n  case \"Complex128\":\n    var zero = new typ(0, 0);\n    typ.zero = function() { return zero; };\n    break;\n\n  case \"Chan\":\n  case \"Ptr\":\n  case \"Slice\":\n    typ.zero = function() { return typ.nil; };\n    break;\n\n  case \"Func\":\n    typ.zero = function() { return $throwNilPointerError; };\n    break;\n\n  case \"Interface\":\n    typ.zero = function() { return $ifaceNil; };\n    break;\n\n  case \"Array\":\n    typ.zero = function() {\n      var arrayClass = $nativeArray(typ.elem.kind);\n      if (arrayClass !== Array) {\n        return new arrayClass(typ.len);\n      }\n      var array = new Array(typ.len), i;\n      for (i = 0; i < typ.len; i++) {\n        array[i] = typ.elem.zero();\n      }\n      return array;\n    };\n    break;\n\n  case \"Struct\":\n    typ.zero = function() { return new typ.Ptr(); };\n    break;\n\n  default:\n    $panic(new $String(\"invalid kind: \" + kind));\n  }\n\n  typ.kind = kind;\n  typ.string = string;\n  typ.typeName = name;\n  typ.pkgPath = pkgPath;\n  typ.methods = [];\n  var rt = null;\n  typ.reflectType = function() {\n    if (rt === null) {\n      rt = new $reflect.rtype.Ptr(size, 0, 0, 0, 0, $reflect.kinds[kind], undefined, undefined, $newStringPtr(string), undefined, undefined);\n      rt.jsType = typ;\n\n      var methods = [];\n      if (typ.methods !== undefined) {\n        var i;\n        for (i = 0; i < typ.methods.length; i++) {\n          var m = typ.methods[i];\n          var t = m[3];\n          methods.push(new $reflect.method.Ptr($newStringPtr(m[1]), $newStringPtr(m[2]), t.reflectType(), $funcType([typ].concat(t.params), t.results, t.variadic).reflectType(), undefined, undefined));\n        }\n      }\n      if (name !== \"\" || methods.length !== 0) {\n        var methodSlice = ($sliceType($ptrType($reflect.method.Ptr)));\n        rt.uncommonType = new $reflect.uncommonType.Ptr($newStringPtr(name), $newStringPtr(pkgPath), new methodSlice(methods));\n        rt.uncommonType.jsType = typ;\n      }\n\n      if (typ.extendReflectType !== undefined) {\n        typ.extendReflectType(rt);\n      }\n    }\n    return rt;\n  };\n  return typ;\n};\n\nvar $Bool          = $newType( 1, \"Bool\",          \"bool\",           \"bool\",       \"\", null);\nvar $Int           = $newType( 4, \"Int\",           \"int\",            \"int\",        \"\", null);\nvar $Int8          = $newType( 1, \"Int8\",          \"int8\",           \"int8\",       \"\", null);\nvar $Int16         = $newType( 2, \"Int16\",         \"int16\",          \"int16\",      \"\", null);\nvar $Int32         = $newType( 4, \"Int32\",         \"int32\",          \"int32\",      \"\", null);\nvar $Int64         = $newType( 8, \"Int64\",         \"int64\",          \"int64\",      \"\", null);\nvar $Uint          = $newType( 4, \"Uint\",          \"uint\",           \"uint\",       \"\", null);\nvar $Uint8         = $newType( 1, \"Uint8\",         \"uint8\",          \"uint8\",      \"\", null);\nvar $Uint16        = $newType( 2, \"Uint16\",        \"uint16\",         \"uint16\",     \"\", null);\nvar $Uint32        = $newType( 4, \"Uint32\",        \"uint32\",         \"uint32\",     \"\", null);\nvar $Uint64        = $newType( 8, \"Uint64\",        \"uint64\",         \"uint64\",     \"\", null);\nvar $Uintptr       = $newType( 4, \"Uintptr\",       \"uintptr\",        \"uintptr\",    \"\", null);\nvar $Float32       = $newType( 4, \"Float32\",       \"float32\",        \"float32\",    \"\", null);\nvar $Float64       = $newType( 8, \"Float64\",       \"float64\",        \"float64\",    \"\", null);\nvar $Complex64     = $newType( 8, \"Complex64\",     \"complex64\",      \"complex64\",  \"\", null);\nvar $Complex128    = $newType(16, \"Complex128\",    \"complex128\",     \"complex128\", \"\", null);\nvar $String        = $newType( 8, \"String\",        \"string\",         \"string\",     \"\", null);\nvar $UnsafePointer = $newType( 4, \"UnsafePointer\", \"unsafe.Pointer\", \"Pointer\",    \"\", null);\n\nvar $nativeArray = function(elemKind) {\n  return ({ Int: Int32Array, Int8: Int8Array, Int16: Int16Array, Int32: Int32Array, Uint: Uint32Array, Uint8: Uint8Array, Uint16: Uint16Array, Uint32: Uint32Array, Uintptr: Uint32Array, Float32: Float32Array, Float64: Float64Array })[elemKind] || Array;\n};\nvar $toNativeArray = function(elemKind, array) {\n  var nativeArray = $nativeArray(elemKind);\n  if (nativeArray === Array) {\n    return array;\n  }\n  return new nativeArray(array);\n};\nvar $arrayTypes = {};\nvar $arrayType = function(elem, len) {\n  var string = \"[\" + len + \"]\" + elem.string;\n  var typ = $arrayTypes[string];\n  if (typ === undefined) {\n    typ = $newType(12, \"Array\", string, \"\", \"\", null);\n    typ.init(elem, len);\n    $arrayTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $chanType = function(elem, sendOnly, recvOnly) {\n  var string = (recvOnly ? \"<-\" : \"\") + \"chan\" + (sendOnly ? \"<- \" : \" \") + elem.string;\n  var field = sendOnly ? \"SendChan\" : (recvOnly ? \"RecvChan\" : \"Chan\");\n  var typ = elem[field];\n  if (typ === undefined) {\n    typ = $newType(4, \"Chan\", string, \"\", \"\", null);\n    typ.init(elem, sendOnly, recvOnly);\n    elem[field] = typ;\n  }\n  return typ;\n};\n\nvar $funcTypes = {};\nvar $funcType = function(params, results, variadic) {\n  var paramTypes = $mapArray(params, function(p) { return p.string; });\n  if (variadic) {\n    paramTypes[paramTypes.length - 1] = \"...\" + paramTypes[paramTypes.length - 1].substr(2);\n  }\n  var string = \"func(\" + paramTypes.join(\", \") + \")\";\n  if (results.length === 1) {\n    string += \" \" + results[0].string;\n  } else if (results.length > 1) {\n    string += \" (\" + $mapArray(results, function(r) { return r.string; }).join(\", \") + \")\";\n  }\n  var typ = $funcTypes[string];\n  if (typ === undefined) {\n    typ = $newType(4, \"Func\", string, \"\", \"\", null);\n    typ.init(params, results, variadic);\n    $funcTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $interfaceTypes = {};\nvar $interfaceType = function(methods) {\n  var string = \"interface {}\";\n  if (methods.length !== 0) {\n    string = \"interface { \" + $mapArray(methods, function(m) {\n      return (m[2] !== \"\" ? m[2] + \".\" : \"\") + m[1] + m[3].string.substr(4);\n    }).join(\"; \") + \" }\";\n  }\n  var typ = $interfaceTypes[string];\n  if (typ === undefined) {\n    typ = $newType(8, \"Interface\", string, \"\", \"\", null);\n    typ.init(methods);\n    $interfaceTypes[string] = typ;\n  }\n  return typ;\n};\nvar $emptyInterface = $interfaceType([]);\nvar $ifaceNil = { $key: function() { return \"nil\"; } };\nvar $error = $newType(8, \"Interface\", \"error\", \"error\", \"\", null);\n$error.init([[\"Error\", \"Error\", \"\", $funcType([], [$String], false)]]);\n\nvar $Map = function() {};\n(function() {\n  var names = Object.getOwnPropertyNames(Object.prototype), i;\n  for (i = 0; i < names.length; i++) {\n    $Map.prototype[names[i]] = undefined;\n  }\n})();\nvar $mapTypes = {};\nvar $mapType = function(key, elem) {\n  var string = \"map[\" + key.string + \"]\" + elem.string;\n  var typ = $mapTypes[string];\n  if (typ === undefined) {\n    typ = $newType(4, \"Map\", string, \"\", \"\", null);\n    typ.init(key, elem);\n    $mapTypes[string] = typ;\n  }\n  return typ;\n};\n\n\nvar $throwNilPointerError = function() { $throwRuntimeError(\"invalid memory address or nil pointer dereference\"); };\nvar $ptrType = function(elem) {\n  var typ = elem.Ptr;\n  if (typ === undefined) {\n    typ = $newType(4, \"Ptr\", \"*\" + elem.string, \"\", \"\", null);\n    typ.init(elem);\n    elem.Ptr = typ;\n  }\n  return typ;\n};\n\nvar $stringPtrMap = new $Map();\nvar $newStringPtr = function(str) {\n  if (str === undefined || str === \"\") {\n    return $ptrType($String).nil;\n  }\n  var ptr = $stringPtrMap[str];\n  if (ptr === undefined) {\n    ptr = new ($ptrType($String))(function() { return str; }, function(v) { str = v; });\n    $stringPtrMap[str] = ptr;\n  }\n  return ptr;\n};\n\nvar $newDataPointer = function(data, constructor) {\n  if (constructor.Struct) {\n    return data;\n  }\n  return new constructor(function() { return data; }, function(v) { data = v; });\n};\n\nvar $sliceType = function(elem) {\n  var typ = elem.Slice;\n  if (typ === undefined) {\n    typ = $newType(12, \"Slice\", \"[]\" + elem.string, \"\", \"\", null);\n    typ.init(elem);\n    elem.Slice = typ;\n  }\n  return typ;\n};\n\nvar $structTypes = {};\nvar $structType = function(fields) {\n  var string = \"struct { \" + $mapArray(fields, function(f) {\n    return f[1] + \" \" + f[3].string + (f[4] !== \"\" ? (\" \\\"\" + f[4].replace(/\\\\/g, \"\\\\\\\\\").replace(/\"/g, \"\\\\\\\"\") + \"\\\"\") : \"\");\n  }).join(\"; \") + \" }\";\n  if (fields.length === 0) {\n    string = \"struct {}\";\n  }\n  var typ = $structTypes[string];\n  if (typ === undefined) {\n    typ = $newType(0, \"Struct\", string, \"\", \"\", function() {\n      this.$val = this;\n      var i;\n      for (i = 0; i < fields.length; i++) {\n        var field = fields[i];\n        var arg = arguments[i];\n        this[field[0]] = arg !== undefined ? arg : field[3].zero();\n      }\n    });\n    /* collect methods for anonymous fields */\n    var i, j;\n    for (i = 0; i < fields.length; i++) {\n      var field = fields[i];\n      if (field[1] === \"\") {\n        var methods = field[3].methods;\n        for (j = 0; j < methods.length; j++) {\n          var m = methods[j].slice(0, 6).concat([i]);\n          typ.methods.push(m);\n          typ.Ptr.methods.push(m);\n        }\n        if (field[3].kind === \"Struct\") {\n          var methods = field[3].Ptr.methods;\n          for (j = 0; j < methods.length; j++) {\n            typ.Ptr.methods.push(methods[j].slice(0, 6).concat([i]));\n          }\n        }\n      }\n    }\n    typ.init(fields);\n    $structTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $assertType = function(value, type, returnTuple) {\n  var isInterface = (type.kind === \"Interface\"), ok, missingMethod = \"\";\n  if (value === $ifaceNil) {\n    ok = false;\n  } else if (!isInterface) {\n    ok = value.constructor === type;\n  } else if (type.string === \"js.Object\") {\n    ok = true;\n  } else {\n    var valueTypeString = value.constructor.string;\n    ok = type.implementedBy[valueTypeString];\n    if (ok === undefined) {\n      ok = true;\n      var valueMethods = value.constructor.methods;\n      var typeMethods = type.methods;\n      for (var i = 0; i < typeMethods.length; i++) {\n        var tm = typeMethods[i];\n        var found = false;\n        for (var j = 0; j < valueMethods.length; j++) {\n          var vm = valueMethods[j];\n          if (vm[1] === tm[1] && vm[2] === tm[2] && vm[3] === tm[3]) {\n            found = true;\n            break;\n          }\n        }\n        if (!found) {\n          ok = false;\n          type.missingMethodFor[valueTypeString] = tm[1];\n          break;\n        }\n      }\n      type.implementedBy[valueTypeString] = ok;\n    }\n    if (!ok) {\n      missingMethod = type.missingMethodFor[valueTypeString];\n    }\n  }\n\n  if (!ok) {\n    if (returnTuple) {\n      return [type.zero(), false];\n    }\n    $panic(new $packages[\"runtime\"].TypeAssertionError.Ptr(\"\", (value === $ifaceNil ? \"\" : value.constructor.string), type.string, missingMethod));\n  }\n\n  if (!isInterface) {\n    value = value.$val;\n  }\n  return returnTuple ? [value, true] : value;\n};\n\nvar $coerceFloat32 = function(f) {\n  var math = $packages[\"math\"];\n  if (math === undefined) {\n    return f;\n  }\n  return math.Float32frombits(math.Float32bits(f));\n};\n\nvar $floatKey = function(f) {\n  if (f !== f) {\n    $idCounter++;\n    return \"NaN$\" + $idCounter;\n  }\n  return String(f);\n};\n\nvar $flatten64 = function(x) {\n  return x.$high * 4294967296 + x.$low;\n};\n\nvar $shiftLeft64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high << y | x.$low >>> (32 - y), (x.$low << y) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(x.$low << (y - 32), 0);\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $shiftRightInt64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high >> y, (x.$low >>> y | x.$high << (32 - y)) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(x.$high >> 31, (x.$high >> (y - 32)) >>> 0);\n  }\n  if (x.$high < 0) {\n    return new x.constructor(-1, 4294967295);\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $shiftRightUint64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high >>> y, (x.$low >>> y | x.$high << (32 - y)) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(0, x.$high >>> (y - 32));\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $mul64 = function(x, y) {\n  var high = 0, low = 0, i;\n  if ((y.$low & 1) !== 0) {\n    high = x.$high;\n    low = x.$low;\n  }\n  for (i = 1; i < 32; i++) {\n    if ((y.$low & 1<<i) !== 0) {\n      high += x.$high << i | x.$low >>> (32 - i);\n      low += (x.$low << i) >>> 0;\n    }\n  }\n  for (i = 0; i < 32; i++) {\n    if ((y.$high & 1<<i) !== 0) {\n      high += x.$low << i;\n    }\n  }\n  return new x.constructor(high, low);\n};\n\nvar $div64 = function(x, y, returnRemainder) {\n  if (y.$high === 0 && y.$low === 0) {\n    $throwRuntimeError(\"integer divide by zero\");\n  }\n\n  var s = 1;\n  var rs = 1;\n\n  var xHigh = x.$high;\n  var xLow = x.$low;\n  if (xHigh < 0) {\n    s = -1;\n    rs = -1;\n    xHigh = -xHigh;\n    if (xLow !== 0) {\n      xHigh--;\n      xLow = 4294967296 - xLow;\n    }\n  }\n\n  var yHigh = y.$high;\n  var yLow = y.$low;\n  if (y.$high < 0) {\n    s *= -1;\n    yHigh = -yHigh;\n    if (yLow !== 0) {\n      yHigh--;\n      yLow = 4294967296 - yLow;\n    }\n  }\n\n  var high = 0, low = 0, n = 0, i;\n  while (yHigh < 2147483648 && ((xHigh > yHigh) || (xHigh === yHigh && xLow > yLow))) {\n    yHigh = (yHigh << 1 | yLow >>> 31) >>> 0;\n    yLow = (yLow << 1) >>> 0;\n    n++;\n  }\n  for (i = 0; i <= n; i++) {\n    high = high << 1 | low >>> 31;\n    low = (low << 1) >>> 0;\n    if ((xHigh > yHigh) || (xHigh === yHigh && xLow >= yLow)) {\n      xHigh = xHigh - yHigh;\n      xLow = xLow - yLow;\n      if (xLow < 0) {\n        xHigh--;\n        xLow += 4294967296;\n      }\n      low++;\n      if (low === 4294967296) {\n        high++;\n        low = 0;\n      }\n    }\n    yLow = (yLow >>> 1 | yHigh << (32 - 1)) >>> 0;\n    yHigh = yHigh >>> 1;\n  }\n\n  if (returnRemainder) {\n    return new x.constructor(xHigh * rs, xLow * rs);\n  }\n  return new x.constructor(high * s, low * s);\n};\n\nvar $divComplex = function(n, d) {\n  var ninf = n.$real === 1/0 || n.$real === -1/0 || n.$imag === 1/0 || n.$imag === -1/0;\n  var dinf = d.$real === 1/0 || d.$real === -1/0 || d.$imag === 1/0 || d.$imag === -1/0;\n  var nnan = !ninf && (n.$real !== n.$real || n.$imag !== n.$imag);\n  var dnan = !dinf && (d.$real !== d.$real || d.$imag !== d.$imag);\n  if(nnan || dnan) {\n    return new n.constructor(0/0, 0/0);\n  }\n  if (ninf && !dinf) {\n    return new n.constructor(1/0, 1/0);\n  }\n  if (!ninf && dinf) {\n    return new n.constructor(0, 0);\n  }\n  if (d.$real === 0 && d.$imag === 0) {\n    if (n.$real === 0 && n.$imag === 0) {\n      return new n.constructor(0/0, 0/0);\n    }\n    return new n.constructor(1/0, 1/0);\n  }\n  var a = Math.abs(d.$real);\n  var b = Math.abs(d.$imag);\n  if (a <= b) {\n    var ratio = d.$real / d.$imag;\n    var denom = d.$real * ratio + d.$imag;\n    return new n.constructor((n.$real * ratio + n.$imag) / denom, (n.$imag * ratio - n.$real) / denom);\n  }\n  var ratio = d.$imag / d.$real;\n  var denom = d.$imag * ratio + d.$real;\n  return new n.constructor((n.$imag * ratio + n.$real) / denom, (n.$imag - n.$real * ratio) / denom);\n};\n\nvar $stackDepthOffset = 0;\nvar $getStackDepth = function() {\n  var err = new Error();\n  if (err.stack === undefined) {\n    return undefined;\n  }\n  return $stackDepthOffset + err.stack.split(\"\\n\").length;\n};\n\nvar $deferFrames = [], $skippedDeferFrames = 0, $jumpToDefer = false, $panicStackDepth = null, $panicValue;\nvar $callDeferred = function(deferred, jsErr) {\n  if ($skippedDeferFrames !== 0) {\n    $skippedDeferFrames--;\n    throw jsErr;\n  }\n  if ($jumpToDefer) {\n    $jumpToDefer = false;\n    throw jsErr;\n  }\n  if (jsErr) {\n    var newErr = null;\n    try {\n      $deferFrames.push(deferred);\n      $panic(new $packages[\"github.com/gopherjs/gopherjs/js\"].Error.Ptr(jsErr));\n    } catch (err) {\n      newErr = err;\n    }\n    $deferFrames.pop();\n    $callDeferred(deferred, newErr);\n    return;\n  }\n\n  $stackDepthOffset--;\n  var outerPanicStackDepth = $panicStackDepth;\n  var outerPanicValue = $panicValue;\n\n  var localPanicValue = $curGoroutine.panicStack.pop();\n  if (localPanicValue !== undefined) {\n    $panicStackDepth = $getStackDepth();\n    $panicValue = localPanicValue;\n  }\n\n  var call;\n  try {\n    while (true) {\n      if (deferred === null) {\n        deferred = $deferFrames[$deferFrames.length - 1 - $skippedDeferFrames];\n        if (deferred === undefined) {\n          if (localPanicValue.constructor === $String) {\n            throw new Error(localPanicValue.$val);\n          } else if (localPanicValue.Error !== undefined) {\n            throw new Error(localPanicValue.Error());\n          } else if (localPanicValue.String !== undefined) {\n            throw new Error(localPanicValue.String());\n          } else {\n            throw new Error(localPanicValue);\n          }\n        }\n      }\n      var call = deferred.pop();\n      if (call === undefined) {\n        if (localPanicValue !== undefined) {\n          $skippedDeferFrames++;\n          deferred = null;\n          continue;\n        }\n        return;\n      }\n      var r = call[0].apply(undefined, call[1]);\n      if (r && r.$blocking) {\n        deferred.push([r, []]);\n      }\n\n      if (localPanicValue !== undefined && $panicStackDepth === null) {\n        throw null; /* error was recovered */\n      }\n    }\n  } finally {\n    if ($curGoroutine.asleep) {\n      deferred.push(call);\n      $jumpToDefer = true;\n    }\n    if (localPanicValue !== undefined) {\n      if ($panicStackDepth !== null) {\n        $curGoroutine.panicStack.push(localPanicValue);\n      }\n      $panicStackDepth = outerPanicStackDepth;\n      $panicValue = outerPanicValue;\n    }\n    $stackDepthOffset++;\n  }\n};\n\nvar $panic = function(value) {\n  $curGoroutine.panicStack.push(value);\n  $callDeferred(null, null);\n};\nvar $recover = function() {\n  if ($panicStackDepth === null || ($panicStackDepth !== undefined && $panicStackDepth !== $getStackDepth() - 2)) {\n    return $ifaceNil;\n  }\n  $panicStackDepth = null;\n  return $panicValue;\n};\nvar $nonblockingCall = function() {\n  $panic(new $packages[\"runtime\"].NotSupportedError.Ptr(\"non-blocking call to blocking function (mark call with \\\"//gopherjs:blocking\\\" to fix)\"));\n};\nvar $throw = function(err) { throw err; };\nvar $throwRuntimeError; /* set by package \"runtime\" */\n\nvar $dummyGoroutine = { asleep: false, exit: false, panicStack: [] };\nvar $curGoroutine = $dummyGoroutine, $totalGoroutines = 0, $awakeGoroutines = 0, $checkForDeadlock = true;\nvar $go = function(fun, args, direct) {\n  $totalGoroutines++;\n  $awakeGoroutines++;\n  args.push(true);\n  var goroutine = function() {\n    try {\n      $curGoroutine = goroutine;\n      $skippedDeferFrames = 0;\n      $jumpToDefer = false;\n      var r = fun.apply(undefined, args);\n      if (r && r.$blocking) {\n        fun = r;\n        args = [];\n        $schedule(goroutine, direct);\n        return;\n      }\n      goroutine.exit = true;\n    } catch (err) {\n      if (!$curGoroutine.asleep) {\n        goroutine.exit = true;\n        throw err;\n      }\n    } finally {\n      $curGoroutine = $dummyGoroutine;\n      if (goroutine.exit) { /* also set by runtime.Goexit() */\n        $totalGoroutines--;\n        goroutine.asleep = true;\n      }\n      if (goroutine.asleep) {\n        $awakeGoroutines--;\n        if ($awakeGoroutines === 0 && $totalGoroutines !== 0 && $checkForDeadlock) {\n          $panic(new $String(\"fatal error: all goroutines are asleep - deadlock!\"));\n        }\n      }\n    }\n  };\n  goroutine.asleep = false;\n  goroutine.exit = false;\n  goroutine.panicStack = [];\n  $schedule(goroutine, direct);\n};\n\nvar $scheduled = [], $schedulerLoopActive = false;\nvar $schedule = function(goroutine, direct) {\n  if (goroutine.asleep) {\n    goroutine.asleep = false;\n    $awakeGoroutines++;\n  }\n\n  if (direct) {\n    goroutine();\n    return;\n  }\n\n  $scheduled.push(goroutine);\n  if (!$schedulerLoopActive) {\n    $schedulerLoopActive = true;\n    setTimeout(function() {\n      while (true) {\n        var r = $scheduled.shift();\n        if (r === undefined) {\n          $schedulerLoopActive = false;\n          break;\n        }\n        r();\n      };\n    }, 0);\n  }\n};\n\nvar $send = function(chan, value) {\n  if (chan.$closed) {\n    $throwRuntimeError(\"send on closed channel\");\n  }\n  var queuedRecv = chan.$recvQueue.shift();\n  if (queuedRecv !== undefined) {\n    queuedRecv([value, true]);\n    return;\n  }\n  if (chan.$buffer.length < chan.$capacity) {\n    chan.$buffer.push(value);\n    return;\n  }\n\n  var thisGoroutine = $curGoroutine;\n  chan.$sendQueue.push(function() {\n    $schedule(thisGoroutine);\n    return value;\n  });\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      if (chan.$closed) {\n        $throwRuntimeError(\"send on closed channel\");\n      }\n      return;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\nvar $recv = function(chan) {\n  var queuedSend = chan.$sendQueue.shift();\n  if (queuedSend !== undefined) {\n    chan.$buffer.push(queuedSend());\n  }\n  var bufferedValue = chan.$buffer.shift();\n  if (bufferedValue !== undefined) {\n    return [bufferedValue, true];\n  }\n  if (chan.$closed) {\n    return [chan.constructor.elem.zero(), false];\n  }\n\n  var thisGoroutine = $curGoroutine, value;\n  var queueEntry = function(v) {\n    value = v;\n    $schedule(thisGoroutine);\n  };\n  chan.$recvQueue.push(queueEntry);\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      return value;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\nvar $close = function(chan) {\n  if (chan.$closed) {\n    $throwRuntimeError(\"close of closed channel\");\n  }\n  chan.$closed = true;\n  while (true) {\n    var queuedSend = chan.$sendQueue.shift();\n    if (queuedSend === undefined) {\n      break;\n    }\n    queuedSend(); /* will panic because of closed channel */\n  }\n  while (true) {\n    var queuedRecv = chan.$recvQueue.shift();\n    if (queuedRecv === undefined) {\n      break;\n    }\n    queuedRecv([chan.constructor.elem.zero(), false]);\n  }\n};\nvar $select = function(comms) {\n  var ready = [], i;\n  var selection = -1;\n  for (i = 0; i < comms.length; i++) {\n    var comm = comms[i];\n    var chan = comm[0];\n    switch (comm.length) {\n    case 0: /* default */\n      selection = i;\n      break;\n    case 1: /* recv */\n      if (chan.$sendQueue.length !== 0 || chan.$buffer.length !== 0 || chan.$closed) {\n        ready.push(i);\n      }\n      break;\n    case 2: /* send */\n      if (chan.$closed) {\n        $throwRuntimeError(\"send on closed channel\");\n      }\n      if (chan.$recvQueue.length !== 0 || chan.$buffer.length < chan.$capacity) {\n        ready.push(i);\n      }\n      break;\n    }\n  }\n\n  if (ready.length !== 0) {\n    selection = ready[Math.floor(Math.random() * ready.length)];\n  }\n  if (selection !== -1) {\n    var comm = comms[selection];\n    switch (comm.length) {\n    case 0: /* default */\n      return [selection];\n    case 1: /* recv */\n      return [selection, $recv(comm[0])];\n    case 2: /* send */\n      $send(comm[0], comm[1]);\n      return [selection];\n    }\n  }\n\n  var entries = [];\n  var thisGoroutine = $curGoroutine;\n  var removeFromQueues = function() {\n    for (i = 0; i < entries.length; i++) {\n      var entry = entries[i];\n      var queue = entry[0];\n      var index = queue.indexOf(entry[1]);\n      if (index !== -1) {\n        queue.splice(index, 1);\n      }\n    }\n  };\n  for (i = 0; i < comms.length; i++) {\n    (function(i) {\n      var comm = comms[i];\n      switch (comm.length) {\n      case 1: /* recv */\n        var queueEntry = function(value) {\n          selection = [i, value];\n          removeFromQueues();\n          $schedule(thisGoroutine);\n        };\n        entries.push([comm[0].$recvQueue, queueEntry]);\n        comm[0].$recvQueue.push(queueEntry);\n        break;\n      case 2: /* send */\n        var queueEntry = function() {\n          if (comm[0].$closed) {\n            $throwRuntimeError(\"send on closed channel\");\n          }\n          selection = [i];\n          removeFromQueues();\n          $schedule(thisGoroutine);\n          return comm[1];\n        };\n        entries.push([comm[0].$sendQueue, queueEntry]);\n        comm[0].$sendQueue.push(queueEntry);\n        break;\n      }\n    })(i);\n  }\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      return selection;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\n\nvar $needsExternalization = function(t) {\n  switch (t.kind) {\n    case \"Bool\":\n    case \"Int\":\n    case \"Int8\":\n    case \"Int16\":\n    case \"Int32\":\n    case \"Uint\":\n    case \"Uint8\":\n    case \"Uint16\":\n    case \"Uint32\":\n    case \"Uintptr\":\n    case \"Float32\":\n    case \"Float64\":\n      return false;\n    case \"Interface\":\n      return t !== $packages[\"github.com/gopherjs/gopherjs/js\"].Object;\n    default:\n      return true;\n  }\n};\n\nvar $externalize = function(v, t) {\n  switch (t.kind) {\n  case \"Bool\":\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\":\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"Float32\":\n  case \"Float64\":\n    return v;\n  case \"Int64\":\n  case \"Uint64\":\n    return $flatten64(v);\n  case \"Array\":\n    if ($needsExternalization(t.elem)) {\n      return $mapArray(v, function(e) { return $externalize(e, t.elem); });\n    }\n    return v;\n  case \"Func\":\n    if (v === $throwNilPointerError) {\n      return null;\n    }\n    if (v.$externalizeWrapper === undefined) {\n      $checkForDeadlock = false;\n      var convert = false;\n      var i;\n      for (i = 0; i < t.params.length; i++) {\n        convert = convert || (t.params[i] !== $packages[\"github.com/gopherjs/gopherjs/js\"].Object);\n      }\n      for (i = 0; i < t.results.length; i++) {\n        convert = convert || $needsExternalization(t.results[i]);\n      }\n      if (!convert) {\n        return v;\n      }\n      v.$externalizeWrapper = function() {\n        var args = [], i;\n        for (i = 0; i < t.params.length; i++) {\n          if (t.variadic && i === t.params.length - 1) {\n            var vt = t.params[i].elem, varargs = [], j;\n            for (j = i; j < arguments.length; j++) {\n              varargs.push($internalize(arguments[j], vt));\n            }\n            args.push(new (t.params[i])(varargs));\n            break;\n          }\n          args.push($internalize(arguments[i], t.params[i]));\n        }\n        var result = v.apply(this, args);\n        switch (t.results.length) {\n        case 0:\n          return;\n        case 1:\n          return $externalize(result, t.results[0]);\n        default:\n          for (i = 0; i < t.results.length; i++) {\n            result[i] = $externalize(result[i], t.results[i]);\n          }\n          return result;\n        }\n      };\n    }\n    return v.$externalizeWrapper;\n  case \"Interface\":\n    if (v === $ifaceNil) {\n      return null;\n    }\n    if (t === $packages[\"github.com/gopherjs/gopherjs/js\"].Object || v.constructor.kind === undefined) {\n      return v;\n    }\n    return $externalize(v.$val, v.constructor);\n  case \"Map\":\n    var m = {};\n    var keys = $keys(v), i;\n    for (i = 0; i < keys.length; i++) {\n      var entry = v[keys[i]];\n      m[$externalize(entry.k, t.key)] = $externalize(entry.v, t.elem);\n    }\n    return m;\n  case \"Ptr\":\n    var o = {}, i;\n    for (i = 0; i < t.methods.length; i++) {\n      var m = t.methods[i];\n      if (m[2] !== \"\") { /* not exported */\n        continue;\n      }\n      (function(m) {\n        o[m[1]] = $externalize(function() {\n          return v[m[0]].apply(v, arguments);\n        }, m[3]);\n      })(m);\n    }\n    return o;\n  case \"Slice\":\n    if ($needsExternalization(t.elem)) {\n      return $mapArray($sliceToArray(v), function(e) { return $externalize(e, t.elem); });\n    }\n    return $sliceToArray(v);\n  case \"String\":\n    var s = \"\", r, i, j = 0;\n    for (i = 0; i < v.length; i += r[1], j++) {\n      r = $decodeRune(v, i);\n      s += String.fromCharCode(r[0]);\n    }\n    return s;\n  case \"Struct\":\n    var timePkg = $packages[\"time\"];\n    if (timePkg && v.constructor === timePkg.Time.Ptr) {\n      var milli = $div64(v.UnixNano(), new $Int64(0, 1000000));\n      return new Date($flatten64(milli));\n    }\n    var o = {}, i;\n    for (i = 0; i < t.fields.length; i++) {\n      var f = t.fields[i];\n      if (f[2] !== \"\") { /* not exported */\n        continue;\n      }\n      o[f[1]] = $externalize(v[f[0]], f[3]);\n    }\n    return o;\n  }\n  $panic(new $String(\"cannot externalize \" + t.string));\n};\n\nvar $internalize = function(v, t, recv) {\n  switch (t.kind) {\n  case \"Bool\":\n    return !!v;\n  case \"Int\":\n    return parseInt(v);\n  case \"Int8\":\n    return parseInt(v) << 24 >> 24;\n  case \"Int16\":\n    return parseInt(v) << 16 >> 16;\n  case \"Int32\":\n    return parseInt(v) >> 0;\n  case \"Uint\":\n    return parseInt(v);\n  case \"Uint8\":\n    return parseInt(v) << 24 >>> 24;\n  case \"Uint16\":\n    return parseInt(v) << 16 >>> 16;\n  case \"Uint32\":\n  case \"Uintptr\":\n    return parseInt(v) >>> 0;\n  case \"Int64\":\n  case \"Uint64\":\n    return new t(0, v);\n  case \"Float32\":\n  case \"Float64\":\n    return parseFloat(v);\n  case \"Array\":\n    if (v.length !== t.len) {\n      $throwRuntimeError(\"got array with wrong size from JavaScript native\");\n    }\n    return $mapArray(v, function(e) { return $internalize(e, t.elem); });\n  case \"Func\":\n    return function() {\n      var args = [], i;\n      for (i = 0; i < t.params.length; i++) {\n        if (t.variadic && i === t.params.length - 1) {\n          var vt = t.params[i].elem, varargs = arguments[i], j;\n          for (j = 0; j < varargs.$length; j++) {\n            args.push($externalize(varargs.$array[varargs.$offset + j], vt));\n          }\n          break;\n        }\n        args.push($externalize(arguments[i], t.params[i]));\n      }\n      var result = v.apply(recv, args);\n      switch (t.results.length) {\n      case 0:\n        return;\n      case 1:\n        return $internalize(result, t.results[0]);\n      default:\n        for (i = 0; i < t.results.length; i++) {\n          result[i] = $internalize(result[i], t.results[i]);\n        }\n        return result;\n      }\n    };\n  case \"Interface\":\n    if (t === $packages[\"github.com/gopherjs/gopherjs/js\"].Object) {\n      return v;\n    }\n    if (v === null) {\n      return $ifaceNil;\n    }\n    switch (v.constructor) {\n    case Int8Array:\n      return new ($sliceType($Int8))(v);\n    case Int16Array:\n      return new ($sliceType($Int16))(v);\n    case Int32Array:\n      return new ($sliceType($Int))(v);\n    case Uint8Array:\n      return new ($sliceType($Uint8))(v);\n    case Uint16Array:\n      return new ($sliceType($Uint16))(v);\n    case Uint32Array:\n      return new ($sliceType($Uint))(v);\n    case Float32Array:\n      return new ($sliceType($Float32))(v);\n    case Float64Array:\n      return new ($sliceType($Float64))(v);\n    case Array:\n      return $internalize(v, $sliceType($emptyInterface));\n    case Boolean:\n      return new $Bool(!!v);\n    case Date:\n      var timePkg = $packages[\"time\"];\n      if (timePkg) {\n        return new timePkg.Time(timePkg.Unix(new $Int64(0, 0), new $Int64(0, v.getTime() * 1000000)));\n      }\n    case Function:\n      var funcType = $funcType([$sliceType($emptyInterface)], [$packages[\"github.com/gopherjs/gopherjs/js\"].Object], true);\n      return new funcType($internalize(v, funcType));\n    case Number:\n      return new $Float64(parseFloat(v));\n    case String:\n      return new $String($internalize(v, $String));\n    default:\n      if ($global.Node && v instanceof $global.Node) {\n        return v;\n      }\n      var mapType = $mapType($String, $emptyInterface);\n      return new mapType($internalize(v, mapType));\n    }\n  case \"Map\":\n    var m = new $Map();\n    var keys = $keys(v), i;\n    for (i = 0; i < keys.length; i++) {\n      var key = $internalize(keys[i], t.key);\n      m[key.$key ? key.$key() : key] = { k: key, v: $internalize(v[keys[i]], t.elem) };\n    }\n    return m;\n  case \"Slice\":\n    return new t($mapArray(v, function(e) { return $internalize(e, t.elem); }));\n  case \"String\":\n    v = String(v);\n    var s = \"\", i;\n    for (i = 0; i < v.length; i++) {\n      s += $encodeRune(v.charCodeAt(i));\n    }\n    return s;\n  default:\n    $panic(new $String(\"cannot internalize \" + t.string));\n  }\n};\n")), minify)); err$1 = _tuple$2[1];
+		_tuple$2 = w.Write(removeWhitespace(new ($sliceType($Uint8))($stringToBytes("Error.stackTraceLimit = Infinity;\n\nvar $global, $module;\nif (typeof window !== \"undefined\") { /* web page */\n  $global = window;\n} else if (typeof self !== \"undefined\") { /* web worker */\n  $global = self;\n} else if (typeof global !== \"undefined\") { /* Node.js */\n  $global = global;\n  $global.require = require;\n} else {\n  console.log(\"warning: no global object found\");\n}\nif (typeof module !== \"undefined\") {\n  $module = module;\n}\n\nvar $packages = {}, $reflect, $idCounter = 0;\nvar $keys = function(m) { return m ? Object.keys(m) : []; };\nvar $min = Math.min;\nvar $mod = function(x, y) { return x % y; };\nvar $parseInt = parseInt;\nvar $parseFloat = function(f) {\n  if (f.constructor === Number) {\n    return f;\n  }\n  return parseFloat(f);\n};\n\nvar $mapArray = function(array, f) {\n  var newArray = new array.constructor(array.length), i;\n  for (i = 0; i < array.length; i++) {\n    newArray[i] = f(array[i]);\n  }\n  return newArray;\n};\n\nvar $methodVal = function(recv, name) {\n  var vals = recv.$methodVals || {};\n  recv.$methodVals = vals; /* noop for primitives */\n  var f = vals[name];\n  if (f !== undefined) {\n    return f;\n  }\n  var method = recv[name];\n  f = function() {\n    $stackDepthOffset--;\n    try {\n      return method.apply(recv, arguments);\n    } finally {\n      $stackDepthOffset++;\n    }\n  };\n  vals[name] = f;\n  return f;\n};\n\nvar $methodExpr = function(method) {\n  if (method.$expr === undefined) {\n    method.$expr = function() {\n      $stackDepthOffset--;\n      try {\n        return Function.call.apply(method, arguments);\n      } finally {\n        $stackDepthOffset++;\n      }\n    };\n  }\n  return method.$expr;\n};\n\nvar $subslice = function(slice, low, high, max) {\n  if (low < 0 || high < low || max < high || high > slice.$capacity || max > slice.$capacity) {\n    $throwRuntimeError(\"slice bounds out of range\");\n  }\n  var s = new slice.constructor(slice.$array);\n  s.$offset = slice.$offset + low;\n  s.$length = slice.$length - low;\n  s.$capacity = slice.$capacity - low;\n  if (high !== undefined) {\n    s.$length = high - low;\n  }\n  if (max !== undefined) {\n    s.$capacity = max - low;\n  }\n  return s;\n};\n\nvar $sliceToArray = function(slice) {\n  if (slice.$length === 0) {\n    return [];\n  }\n  if (slice.$array.constructor !== Array) {\n    return slice.$array.subarray(slice.$offset, slice.$offset + slice.$length);\n  }\n  return slice.$array.slice(slice.$offset, slice.$offset + slice.$length);\n};\n\nvar $decodeRune = function(str, pos) {\n  var c0 = str.charCodeAt(pos);\n\n  if (c0 < 0x80) {\n    return [c0, 1];\n  }\n\n  if (c0 !== c0 || c0 < 0xC0) {\n    return [0xFFFD, 1];\n  }\n\n  var c1 = str.charCodeAt(pos + 1);\n  if (c1 !== c1 || c1 < 0x80 || 0xC0 <= c1) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xE0) {\n    var r = (c0 & 0x1F) << 6 | (c1 & 0x3F);\n    if (r <= 0x7F) {\n      return [0xFFFD, 1];\n    }\n    return [r, 2];\n  }\n\n  var c2 = str.charCodeAt(pos + 2);\n  if (c2 !== c2 || c2 < 0x80 || 0xC0 <= c2) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xF0) {\n    var r = (c0 & 0x0F) << 12 | (c1 & 0x3F) << 6 | (c2 & 0x3F);\n    if (r <= 0x7FF) {\n      return [0xFFFD, 1];\n    }\n    if (0xD800 <= r && r <= 0xDFFF) {\n      return [0xFFFD, 1];\n    }\n    return [r, 3];\n  }\n\n  var c3 = str.charCodeAt(pos + 3);\n  if (c3 !== c3 || c3 < 0x80 || 0xC0 <= c3) {\n    return [0xFFFD, 1];\n  }\n\n  if (c0 < 0xF8) {\n    var r = (c0 & 0x07) << 18 | (c1 & 0x3F) << 12 | (c2 & 0x3F) << 6 | (c3 & 0x3F);\n    if (r <= 0xFFFF || 0x10FFFF < r) {\n      return [0xFFFD, 1];\n    }\n    return [r, 4];\n  }\n\n  return [0xFFFD, 1];\n};\n\nvar $encodeRune = function(r) {\n  if (r < 0 || r > 0x10FFFF || (0xD800 <= r && r <= 0xDFFF)) {\n    r = 0xFFFD;\n  }\n  if (r <= 0x7F) {\n    return String.fromCharCode(r);\n  }\n  if (r <= 0x7FF) {\n    return String.fromCharCode(0xC0 | r >> 6, 0x80 | (r & 0x3F));\n  }\n  if (r <= 0xFFFF) {\n    return String.fromCharCode(0xE0 | r >> 12, 0x80 | (r >> 6 & 0x3F), 0x80 | (r & 0x3F));\n  }\n  return String.fromCharCode(0xF0 | r >> 18, 0x80 | (r >> 12 & 0x3F), 0x80 | (r >> 6 & 0x3F), 0x80 | (r & 0x3F));\n};\n\nvar $stringToBytes = function(str) {\n  var array = new Uint8Array(str.length), i;\n  for (i = 0; i < str.length; i++) {\n    array[i] = str.charCodeAt(i);\n  }\n  return array;\n};\n\nvar $bytesToString = function(slice) {\n  if (slice.$length === 0) {\n    return \"\";\n  }\n  var str = \"\", i;\n  for (i = 0; i < slice.$length; i += 10000) {\n    str += String.fromCharCode.apply(null, slice.$array.subarray(slice.$offset + i, slice.$offset + Math.min(slice.$length, i + 10000)));\n  }\n  return str;\n};\n\nvar $stringToRunes = function(str) {\n  var array = new Int32Array(str.length);\n  var rune, i, j = 0;\n  for (i = 0; i < str.length; i += rune[1], j++) {\n    rune = $decodeRune(str, i);\n    array[j] = rune[0];\n  }\n  return array.subarray(0, j);\n};\n\nvar $runesToString = function(slice) {\n  if (slice.$length === 0) {\n    return \"\";\n  }\n  var str = \"\", i;\n  for (i = 0; i < slice.$length; i++) {\n    str += $encodeRune(slice.$array[slice.$offset + i]);\n  }\n  return str;\n};\n\nvar $copyString = function(dst, src) {\n  var n = Math.min(src.length, dst.$length), i;\n  for (i = 0; i < n; i++) {\n    dst.$array[dst.$offset + i] = src.charCodeAt(i);\n  }\n  return n;\n};\n\nvar $copySlice = function(dst, src) {\n  var n = Math.min(src.$length, dst.$length), i;\n  $internalCopy(dst.$array, src.$array, dst.$offset, src.$offset, n, dst.constructor.elem);\n  return n;\n};\n\nvar $copy = function(dst, src, type) {\n  var i;\n  switch (type.kind) {\n  case \"Array\":\n    $internalCopy(dst, src, 0, 0, src.length, type.elem);\n    return true;\n  case \"Struct\":\n    for (i = 0; i < type.fields.length; i++) {\n      var field = type.fields[i];\n      var name = field[0];\n      if (!$copy(dst[name], src[name], field[3])) {\n        dst[name] = src[name];\n      }\n    }\n    return true;\n  default:\n    return false;\n  }\n};\n\nvar $internalCopy = function(dst, src, dstOffset, srcOffset, n, elem) {\n  var i;\n  if (n === 0) {\n    return;\n  }\n\n  if (src.subarray) {\n    dst.set(src.subarray(srcOffset, srcOffset + n), dstOffset);\n    return;\n  }\n\n  switch (elem.kind) {\n  case \"Array\":\n  case \"Struct\":\n    for (i = 0; i < n; i++) {\n      $copy(dst[dstOffset + i], src[srcOffset + i], elem);\n    }\n    return;\n  }\n\n  for (i = 0; i < n; i++) {\n    dst[dstOffset + i] = src[srcOffset + i];\n  }\n};\n\nvar $clone = function(src, type) {\n  var clone = type.zero();\n  $copy(clone, src, type);\n  return clone;\n};\n\nvar $append = function(slice) {\n  return $internalAppend(slice, arguments, 1, arguments.length - 1);\n};\n\nvar $appendSlice = function(slice, toAppend) {\n  return $internalAppend(slice, toAppend.$array, toAppend.$offset, toAppend.$length);\n};\n\nvar $internalAppend = function(slice, array, offset, length) {\n  if (length === 0) {\n    return slice;\n  }\n\n  var newArray = slice.$array;\n  var newOffset = slice.$offset;\n  var newLength = slice.$length + length;\n  var newCapacity = slice.$capacity;\n\n  if (newLength > newCapacity) {\n    newOffset = 0;\n    newCapacity = Math.max(newLength, slice.$capacity < 1024 ? slice.$capacity * 2 : Math.floor(slice.$capacity * 5 / 4));\n\n    if (slice.$array.constructor === Array) {\n      newArray = slice.$array.slice(slice.$offset, slice.$offset + slice.$length);\n      newArray.length = newCapacity;\n      var zero = slice.constructor.elem.zero, i;\n      for (i = slice.$length; i < newCapacity; i++) {\n        newArray[i] = zero();\n      }\n    } else {\n      newArray = new slice.$array.constructor(newCapacity);\n      newArray.set(slice.$array.subarray(slice.$offset, slice.$offset + slice.$length));\n    }\n  }\n\n  $internalCopy(newArray, array, newOffset + slice.$length, offset, length, slice.constructor.elem);\n\n  var newSlice = new slice.constructor(newArray);\n  newSlice.$offset = newOffset;\n  newSlice.$length = newLength;\n  newSlice.$capacity = newCapacity;\n  return newSlice;\n};\n\nvar $equal = function(a, b, type) {\n  if (a === b) {\n    return true;\n  }\n  var i;\n  switch (type.kind) {\n  case \"Float32\":\n    return $float32IsEqual(a, b);\n  case \"Complex64\":\n    return $float32IsEqual(a.$real, b.$real) && $float32IsEqual(a.$imag, b.$imag);\n  case \"Complex128\":\n    return a.$real === b.$real && a.$imag === b.$imag;\n  case \"Int64\":\n  case \"Uint64\":\n    return a.$high === b.$high && a.$low === b.$low;\n  case \"Ptr\":\n    if (a.constructor.Struct) {\n      return false;\n    }\n    return $pointerIsEqual(a, b);\n  case \"Array\":\n    if (a.length != b.length) {\n      return false;\n    }\n    var i;\n    for (i = 0; i < a.length; i++) {\n      if (!$equal(a[i], b[i], type.elem)) {\n        return false;\n      }\n    }\n    return true;\n  case \"Struct\":\n    for (i = 0; i < type.fields.length; i++) {\n      var field = type.fields[i];\n      var name = field[0];\n      if (!$equal(a[name], b[name], field[3])) {\n        return false;\n      }\n    }\n    return true;\n  default:\n    return false;\n  }\n};\n\nvar $interfaceIsEqual = function(a, b) {\n  if (a === null || b === null || a === undefined || b === undefined || a.constructor !== b.constructor) {\n    return a === b;\n  }\n  switch (a.constructor.kind) {\n  case \"Func\":\n  case \"Map\":\n  case \"Slice\":\n  case \"Struct\":\n    $throwRuntimeError(\"comparing uncomparable type \" + a.constructor.string);\n  case undefined: /* js.Object */\n    return a === b;\n  default:\n    return $equal(a.$val, b.$val, a.constructor);\n  }\n};\n\nvar $float32IsEqual = function(a, b) {\n  if (a === b) {\n    return true;\n  }\n  if (a === 0 || b === 0 || a === 1/0 || b === 1/0 || a === -1/0 || b === -1/0 || a !== a || b !== b) {\n    return false;\n  }\n  var math = $packages[\"math\"];\n  return math !== undefined && math.Float32bits(a) === math.Float32bits(b);\n};\n\nvar $pointerIsEqual = function(a, b) {\n  if (a === b) {\n    return true;\n  }\n  if (a.$get === $throwNilPointerError || b.$get === $throwNilPointerError) {\n    return a.$get === $throwNilPointerError && b.$get === $throwNilPointerError;\n  }\n  var va = a.$get();\n  var vb = b.$get();\n  if (va !== vb) {\n    return false;\n  }\n  var dummy = va + 1;\n  a.$set(dummy);\n  var equal = b.$get() === dummy;\n  a.$set(va);\n  return equal;\n};\n\nvar $newType = function(size, kind, string, name, pkgPath, constructor) {\n  var typ;\n  switch(kind) {\n  case \"Bool\":\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\" :\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"String\":\n  case \"UnsafePointer\":\n    typ = function(v) { this.$val = v; };\n    typ.prototype.$key = function() { return string + \"$\" + this.$val; };\n    break;\n\n  case \"Float32\":\n  case \"Float64\":\n    typ = function(v) { this.$val = v; };\n    typ.prototype.$key = function() { return string + \"$\" + $floatKey(this.$val); };\n    break;\n\n  case \"Int64\":\n    typ = function(high, low) {\n      this.$high = (high + Math.floor(Math.ceil(low) / 4294967296)) >> 0;\n      this.$low = low >>> 0;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$high + \"$\" + this.$low; };\n    break;\n\n  case \"Uint64\":\n    typ = function(high, low) {\n      this.$high = (high + Math.floor(Math.ceil(low) / 4294967296)) >>> 0;\n      this.$low = low >>> 0;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$high + \"$\" + this.$low; };\n    break;\n\n  case \"Complex64\":\n  case \"Complex128\":\n    typ = function(real, imag) {\n      this.$real = real;\n      this.$imag = imag;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() { return string + \"$\" + this.$real + \"$\" + this.$imag; };\n    break;\n\n  case \"Array\":\n    typ = function(v) { this.$val = v; };\n    typ.Ptr = $newType(4, \"Ptr\", \"*\" + string, \"\", \"\", function(array) {\n      this.$get = function() { return array; };\n      this.$val = array;\n    });\n    typ.init = function(elem, len) {\n      typ.elem = elem;\n      typ.len = len;\n      typ.prototype.$key = function() {\n        return string + \"$\" + Array.prototype.join.call($mapArray(this.$val, function(e) {\n          var key = e.$key ? e.$key() : String(e);\n          return key.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\$/g, \"\\\\$\");\n        }), \"$\");\n      };\n      typ.extendReflectType = function(rt) {\n        rt.arrayType = new $reflect.arrayType.Ptr(rt, elem.reflectType(), undefined, len);\n      };\n      typ.Ptr.init(typ);\n      Object.defineProperty(typ.Ptr.nil, \"nilCheck\", { get: $throwNilPointerError });\n    };\n    break;\n\n  case \"Chan\":\n    typ = function(capacity) {\n      this.$val = this;\n      this.$capacity = capacity;\n      this.$buffer = [];\n      this.$sendQueue = [];\n      this.$recvQueue = [];\n      this.$closed = false;\n    };\n    typ.prototype.$key = function() {\n      if (this.$id === undefined) {\n        $idCounter++;\n        this.$id = $idCounter;\n      }\n      return String(this.$id);\n    };\n    typ.init = function(elem, sendOnly, recvOnly) {\n      typ.elem = elem;\n      typ.sendOnly = sendOnly;\n      typ.recvOnly = recvOnly;\n      typ.nil = new typ(0);\n      typ.nil.$sendQueue = typ.nil.$recvQueue = { length: 0, push: function() {}, shift: function() { return undefined; }, indexOf: function() { return -1; } };\n      typ.extendReflectType = function(rt) {\n        rt.chanType = new $reflect.chanType.Ptr(rt, elem.reflectType(), sendOnly ? $reflect.SendDir : (recvOnly ? $reflect.RecvDir : $reflect.BothDir));\n      };\n    };\n    break;\n\n  case \"Func\":\n    typ = function(v) { this.$val = v; };\n    typ.init = function(params, results, variadic) {\n      typ.params = params;\n      typ.results = results;\n      typ.variadic = variadic;\n      typ.extendReflectType = function(rt) {\n        var typeSlice = ($sliceType($ptrType($reflect.rtype.Ptr)));\n        rt.funcType = new $reflect.funcType.Ptr(rt, variadic, new typeSlice($mapArray(params, function(p) { return p.reflectType(); })), new typeSlice($mapArray(results, function(p) { return p.reflectType(); })));\n      };\n    };\n    break;\n\n  case \"Interface\":\n    typ = { implementedBy: {}, missingMethodFor: {} };\n    typ.init = function(methods) {\n      typ.methods = methods;\n      typ.extendReflectType = function(rt) {\n        var imethods = $mapArray(methods, function(m) {\n          return new $reflect.imethod.Ptr($newStringPtr(m[1]), $newStringPtr(m[2]), m[3].reflectType());\n        });\n        var methodSlice = ($sliceType($ptrType($reflect.imethod.Ptr)));\n        rt.interfaceType = new $reflect.interfaceType.Ptr(rt, new methodSlice(imethods));\n      };\n    };\n    break;\n\n  case \"Map\":\n    typ = function(v) { this.$val = v; };\n    typ.init = function(key, elem) {\n      typ.key = key;\n      typ.elem = elem;\n      typ.extendReflectType = function(rt) {\n        rt.mapType = new $reflect.mapType.Ptr(rt, key.reflectType(), elem.reflectType(), undefined, undefined);\n      };\n    };\n    break;\n\n  case \"Ptr\":\n    typ = constructor || function(getter, setter, target) {\n      this.$get = getter;\n      this.$set = setter;\n      this.$target = target;\n      this.$val = this;\n    };\n    typ.prototype.$key = function() {\n      if (this.$id === undefined) {\n        $idCounter++;\n        this.$id = $idCounter;\n      }\n      return String(this.$id);\n    };\n    typ.init = function(elem) {\n      typ.nil = new typ($throwNilPointerError, $throwNilPointerError);\n      typ.extendReflectType = function(rt) {\n        rt.ptrType = new $reflect.ptrType.Ptr(rt, elem.reflectType());\n      };\n    };\n    break;\n\n  case \"Slice\":\n    var nativeArray;\n    typ = function(array) {\n      if (array.constructor !== nativeArray) {\n        array = new nativeArray(array);\n      }\n      this.$array = array;\n      this.$offset = 0;\n      this.$length = array.length;\n      this.$capacity = array.length;\n      this.$val = this;\n    };\n    typ.make = function(length, capacity) {\n      capacity = capacity || length;\n      var array = new nativeArray(capacity), i;\n      if (nativeArray === Array) {\n        for (i = 0; i < capacity; i++) {\n          array[i] = typ.elem.zero();\n        }\n      }\n      var slice = new typ(array);\n      slice.$length = length;\n      return slice;\n    };\n    typ.init = function(elem) {\n      typ.elem = elem;\n      nativeArray = $nativeArray(elem.kind);\n      typ.nil = new typ([]);\n      typ.extendReflectType = function(rt) {\n        rt.sliceType = new $reflect.sliceType.Ptr(rt, elem.reflectType());\n      };\n    };\n    break;\n\n  case \"Struct\":\n    typ = function(v) { this.$val = v; };\n    typ.Ptr = $newType(4, \"Ptr\", \"*\" + string, \"\", \"\", constructor);\n    typ.Ptr.Struct = typ;\n    typ.Ptr.prototype.$get = function() { return this; };\n    typ.init = function(fields) {\n      var i;\n      typ.fields = fields;\n      typ.prototype.$key = function() {\n        var val = this.$val;\n        return string + \"$\" + $mapArray(fields, function(field) {\n          var e = val[field[0]];\n          var key = e.$key ? e.$key() : String(e);\n          return key.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\$/g, \"\\\\$\");\n        }).join(\"$\");\n      };\n      typ.Ptr.extendReflectType = function(rt) {\n        rt.ptrType = new $reflect.ptrType.Ptr(rt, typ.reflectType());\n      };\n      /* nil value */\n      typ.Ptr.nil = Object.create(constructor.prototype);\n      typ.Ptr.nil.$val = typ.Ptr.nil;\n      for (i = 0; i < fields.length; i++) {\n        var field = fields[i];\n        Object.defineProperty(typ.Ptr.nil, field[0], { get: $throwNilPointerError, set: $throwNilPointerError });\n      }\n      /* methods for embedded fields */\n      for (i = 0; i < typ.methods.length; i++) {\n        var m = typ.methods[i];\n        if (m[4] != -1) {\n          (function(field, methodName) {\n            typ.prototype[methodName] = function() {\n              var v = this.$val[field[0]];\n              return v[methodName].apply(v, arguments);\n            };\n          })(fields[m[4]], m[0]);\n        }\n      }\n      for (i = 0; i < typ.Ptr.methods.length; i++) {\n        var m = typ.Ptr.methods[i];\n        if (m[4] != -1) {\n          (function(field, methodName) {\n            typ.Ptr.prototype[methodName] = function() {\n              var v = this[field[0]];\n              if (v.$val === undefined) {\n                v = new field[3](v);\n              }\n              return v[methodName].apply(v, arguments);\n            };\n          })(fields[m[4]], m[0]);\n        }\n      }\n      /* reflect type */\n      typ.extendReflectType = function(rt) {\n        var reflectFields = new Array(fields.length), i;\n        for (i = 0; i < fields.length; i++) {\n          var field = fields[i];\n          reflectFields[i] = new $reflect.structField.Ptr($newStringPtr(field[1]), $newStringPtr(field[2]), field[3].reflectType(), $newStringPtr(field[4]), i);\n        }\n        rt.structType = new $reflect.structType.Ptr(rt, new ($sliceType($reflect.structField.Ptr))(reflectFields));\n      };\n    };\n    break;\n\n  default:\n    $panic(new $String(\"invalid kind: \" + kind));\n  }\n\n  switch(kind) {\n  case \"Bool\":\n  case \"Map\":\n    typ.zero = function() { return false; };\n    break;\n\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\" :\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"UnsafePointer\":\n  case \"Float32\":\n  case \"Float64\":\n    typ.zero = function() { return 0; };\n    break;\n\n  case \"String\":\n    typ.zero = function() { return \"\"; };\n    break;\n\n  case \"Int64\":\n  case \"Uint64\":\n  case \"Complex64\":\n  case \"Complex128\":\n    var zero = new typ(0, 0);\n    typ.zero = function() { return zero; };\n    break;\n\n  case \"Chan\":\n  case \"Ptr\":\n  case \"Slice\":\n    typ.zero = function() { return typ.nil; };\n    break;\n\n  case \"Func\":\n    typ.zero = function() { return $throwNilPointerError; };\n    break;\n\n  case \"Interface\":\n    typ.zero = function() { return $ifaceNil; };\n    break;\n\n  case \"Array\":\n    typ.zero = function() {\n      var arrayClass = $nativeArray(typ.elem.kind);\n      if (arrayClass !== Array) {\n        return new arrayClass(typ.len);\n      }\n      var array = new Array(typ.len), i;\n      for (i = 0; i < typ.len; i++) {\n        array[i] = typ.elem.zero();\n      }\n      return array;\n    };\n    break;\n\n  case \"Struct\":\n    typ.zero = function() { return new typ.Ptr(); };\n    break;\n\n  default:\n    $panic(new $String(\"invalid kind: \" + kind));\n  }\n\n  typ.kind = kind;\n  typ.string = string;\n  typ.typeName = name;\n  typ.pkgPath = pkgPath;\n  typ.methods = [];\n  var rt = null;\n  typ.reflectType = function() {\n    if (rt === null) {\n      rt = new $reflect.rtype.Ptr(size, 0, 0, 0, 0, $reflect.kinds[kind], undefined, undefined, $newStringPtr(string), undefined, undefined);\n      rt.jsType = typ;\n\n      var methods = [];\n      if (typ.methods !== undefined) {\n        var i;\n        for (i = 0; i < typ.methods.length; i++) {\n          var m = typ.methods[i];\n          var t = m[3];\n          methods.push(new $reflect.method.Ptr($newStringPtr(m[1]), $newStringPtr(m[2]), t.reflectType(), $funcType([typ].concat(t.params), t.results, t.variadic).reflectType(), undefined, undefined));\n        }\n      }\n      if (name !== \"\" || methods.length !== 0) {\n        var methodSlice = ($sliceType($ptrType($reflect.method.Ptr)));\n        rt.uncommonType = new $reflect.uncommonType.Ptr($newStringPtr(name), $newStringPtr(pkgPath), new methodSlice(methods));\n        rt.uncommonType.jsType = typ;\n      }\n\n      if (typ.extendReflectType !== undefined) {\n        typ.extendReflectType(rt);\n      }\n    }\n    return rt;\n  };\n  return typ;\n};\n\nvar $Bool          = $newType( 1, \"Bool\",          \"bool\",           \"bool\",       \"\", null);\nvar $Int           = $newType( 4, \"Int\",           \"int\",            \"int\",        \"\", null);\nvar $Int8          = $newType( 1, \"Int8\",          \"int8\",           \"int8\",       \"\", null);\nvar $Int16         = $newType( 2, \"Int16\",         \"int16\",          \"int16\",      \"\", null);\nvar $Int32         = $newType( 4, \"Int32\",         \"int32\",          \"int32\",      \"\", null);\nvar $Int64         = $newType( 8, \"Int64\",         \"int64\",          \"int64\",      \"\", null);\nvar $Uint          = $newType( 4, \"Uint\",          \"uint\",           \"uint\",       \"\", null);\nvar $Uint8         = $newType( 1, \"Uint8\",         \"uint8\",          \"uint8\",      \"\", null);\nvar $Uint16        = $newType( 2, \"Uint16\",        \"uint16\",         \"uint16\",     \"\", null);\nvar $Uint32        = $newType( 4, \"Uint32\",        \"uint32\",         \"uint32\",     \"\", null);\nvar $Uint64        = $newType( 8, \"Uint64\",        \"uint64\",         \"uint64\",     \"\", null);\nvar $Uintptr       = $newType( 4, \"Uintptr\",       \"uintptr\",        \"uintptr\",    \"\", null);\nvar $Float32       = $newType( 4, \"Float32\",       \"float32\",        \"float32\",    \"\", null);\nvar $Float64       = $newType( 8, \"Float64\",       \"float64\",        \"float64\",    \"\", null);\nvar $Complex64     = $newType( 8, \"Complex64\",     \"complex64\",      \"complex64\",  \"\", null);\nvar $Complex128    = $newType(16, \"Complex128\",    \"complex128\",     \"complex128\", \"\", null);\nvar $String        = $newType( 8, \"String\",        \"string\",         \"string\",     \"\", null);\nvar $UnsafePointer = $newType( 4, \"UnsafePointer\", \"unsafe.Pointer\", \"Pointer\",    \"\", null);\n\nvar $nativeArray = function(elemKind) {\n  return ({ Int: Int32Array, Int8: Int8Array, Int16: Int16Array, Int32: Int32Array, Uint: Uint32Array, Uint8: Uint8Array, Uint16: Uint16Array, Uint32: Uint32Array, Uintptr: Uint32Array, Float32: Float32Array, Float64: Float64Array })[elemKind] || Array;\n};\nvar $toNativeArray = function(elemKind, array) {\n  var nativeArray = $nativeArray(elemKind);\n  if (nativeArray === Array) {\n    return array;\n  }\n  return new nativeArray(array);\n};\nvar $arrayTypes = {};\nvar $arrayType = function(elem, len) {\n  var string = \"[\" + len + \"]\" + elem.string;\n  var typ = $arrayTypes[string];\n  if (typ === undefined) {\n    typ = $newType(12, \"Array\", string, \"\", \"\", null);\n    typ.init(elem, len);\n    $arrayTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $chanType = function(elem, sendOnly, recvOnly) {\n  var string = (recvOnly ? \"<-\" : \"\") + \"chan\" + (sendOnly ? \"<- \" : \" \") + elem.string;\n  var field = sendOnly ? \"SendChan\" : (recvOnly ? \"RecvChan\" : \"Chan\");\n  var typ = elem[field];\n  if (typ === undefined) {\n    typ = $newType(4, \"Chan\", string, \"\", \"\", null);\n    typ.init(elem, sendOnly, recvOnly);\n    elem[field] = typ;\n  }\n  return typ;\n};\n\nvar $funcTypes = {};\nvar $funcType = function(params, results, variadic) {\n  var paramTypes = $mapArray(params, function(p) { return p.string; });\n  if (variadic) {\n    paramTypes[paramTypes.length - 1] = \"...\" + paramTypes[paramTypes.length - 1].substr(2);\n  }\n  var string = \"func(\" + paramTypes.join(\", \") + \")\";\n  if (results.length === 1) {\n    string += \" \" + results[0].string;\n  } else if (results.length > 1) {\n    string += \" (\" + $mapArray(results, function(r) { return r.string; }).join(\", \") + \")\";\n  }\n  var typ = $funcTypes[string];\n  if (typ === undefined) {\n    typ = $newType(4, \"Func\", string, \"\", \"\", null);\n    typ.init(params, results, variadic);\n    $funcTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $interfaceTypes = {};\nvar $interfaceType = function(methods) {\n  var string = \"interface {}\";\n  if (methods.length !== 0) {\n    string = \"interface { \" + $mapArray(methods, function(m) {\n      return (m[2] !== \"\" ? m[2] + \".\" : \"\") + m[1] + m[3].string.substr(4);\n    }).join(\"; \") + \" }\";\n  }\n  var typ = $interfaceTypes[string];\n  if (typ === undefined) {\n    typ = $newType(8, \"Interface\", string, \"\", \"\", null);\n    typ.init(methods);\n    $interfaceTypes[string] = typ;\n  }\n  return typ;\n};\nvar $emptyInterface = $interfaceType([]);\nvar $ifaceNil = { $key: function() { return \"nil\"; } };\nvar $error = $newType(8, \"Interface\", \"error\", \"error\", \"\", null);\n$error.init([[\"Error\", \"Error\", \"\", $funcType([], [$String], false)]]);\n\nvar $Map = function() {};\n(function() {\n  var names = Object.getOwnPropertyNames(Object.prototype), i;\n  for (i = 0; i < names.length; i++) {\n    $Map.prototype[names[i]] = undefined;\n  }\n})();\nvar $mapTypes = {};\nvar $mapType = function(key, elem) {\n  var string = \"map[\" + key.string + \"]\" + elem.string;\n  var typ = $mapTypes[string];\n  if (typ === undefined) {\n    typ = $newType(4, \"Map\", string, \"\", \"\", null);\n    typ.init(key, elem);\n    $mapTypes[string] = typ;\n  }\n  return typ;\n};\n\n\nvar $throwNilPointerError = function() { $throwRuntimeError(\"invalid memory address or nil pointer dereference\"); };\nvar $ptrType = function(elem) {\n  var typ = elem.Ptr;\n  if (typ === undefined) {\n    typ = $newType(4, \"Ptr\", \"*\" + elem.string, \"\", \"\", null);\n    typ.init(elem);\n    elem.Ptr = typ;\n  }\n  return typ;\n};\n\nvar $stringPtrMap = new $Map();\nvar $newStringPtr = function(str) {\n  if (str === undefined || str === \"\") {\n    return $ptrType($String).nil;\n  }\n  var ptr = $stringPtrMap[str];\n  if (ptr === undefined) {\n    ptr = new ($ptrType($String))(function() { return str; }, function(v) { str = v; });\n    $stringPtrMap[str] = ptr;\n  }\n  return ptr;\n};\n\nvar $newDataPointer = function(data, constructor) {\n  if (constructor.Struct) {\n    return data;\n  }\n  return new constructor(function() { return data; }, function(v) { data = v; });\n};\n\nvar $sliceType = function(elem) {\n  var typ = elem.Slice;\n  if (typ === undefined) {\n    typ = $newType(12, \"Slice\", \"[]\" + elem.string, \"\", \"\", null);\n    typ.init(elem);\n    elem.Slice = typ;\n  }\n  return typ;\n};\n\nvar $structTypes = {};\nvar $structType = function(fields) {\n  var string = \"struct { \" + $mapArray(fields, function(f) {\n    return f[1] + \" \" + f[3].string + (f[4] !== \"\" ? (\" \\\"\" + f[4].replace(/\\\\/g, \"\\\\\\\\\").replace(/\"/g, \"\\\\\\\"\") + \"\\\"\") : \"\");\n  }).join(\"; \") + \" }\";\n  if (fields.length === 0) {\n    string = \"struct {}\";\n  }\n  var typ = $structTypes[string];\n  if (typ === undefined) {\n    typ = $newType(0, \"Struct\", string, \"\", \"\", function() {\n      this.$val = this;\n      var i;\n      for (i = 0; i < fields.length; i++) {\n        var field = fields[i];\n        var arg = arguments[i];\n        this[field[0]] = arg !== undefined ? arg : field[3].zero();\n      }\n    });\n    /* collect methods for anonymous fields */\n    var i, j;\n    for (i = 0; i < fields.length; i++) {\n      var field = fields[i];\n      if (field[1] === \"\") {\n        var methods = field[3].methods;\n        for (j = 0; j < methods.length; j++) {\n          var m = methods[j].slice(0, 6).concat([i]);\n          typ.methods.push(m);\n          typ.Ptr.methods.push(m);\n        }\n        if (field[3].kind === \"Struct\") {\n          var methods = field[3].Ptr.methods;\n          for (j = 0; j < methods.length; j++) {\n            typ.Ptr.methods.push(methods[j].slice(0, 6).concat([i]));\n          }\n        }\n      }\n    }\n    typ.init(fields);\n    $structTypes[string] = typ;\n  }\n  return typ;\n};\n\nvar $assertType = function(value, type, returnTuple) {\n  var isInterface = (type.kind === \"Interface\"), ok, missingMethod = \"\";\n  if (value === $ifaceNil) {\n    ok = false;\n  } else if (!isInterface) {\n    ok = value.constructor === type;\n  } else if (type.string === \"js.Object\") {\n    ok = true;\n  } else {\n    var valueTypeString = value.constructor.string;\n    ok = type.implementedBy[valueTypeString];\n    if (ok === undefined) {\n      ok = true;\n      var valueMethods = value.constructor.methods;\n      var typeMethods = type.methods;\n      for (var i = 0; i < typeMethods.length; i++) {\n        var tm = typeMethods[i];\n        var found = false;\n        for (var j = 0; j < valueMethods.length; j++) {\n          var vm = valueMethods[j];\n          if (vm[1] === tm[1] && vm[2] === tm[2] && vm[3] === tm[3]) {\n            found = true;\n            break;\n          }\n        }\n        if (!found) {\n          ok = false;\n          type.missingMethodFor[valueTypeString] = tm[1];\n          break;\n        }\n      }\n      type.implementedBy[valueTypeString] = ok;\n    }\n    if (!ok) {\n      missingMethod = type.missingMethodFor[valueTypeString];\n    }\n  }\n\n  if (!ok) {\n    if (returnTuple) {\n      return [type.zero(), false];\n    }\n    $panic(new $packages[\"runtime\"].TypeAssertionError.Ptr(\"\", (value === $ifaceNil ? \"\" : value.constructor.string), type.string, missingMethod));\n  }\n\n  if (!isInterface) {\n    value = value.$val;\n  }\n  return returnTuple ? [value, true] : value;\n};\n\nvar $coerceFloat32 = function(f) {\n  var math = $packages[\"math\"];\n  if (math === undefined) {\n    return f;\n  }\n  return math.Float32frombits(math.Float32bits(f));\n};\n\nvar $floatKey = function(f) {\n  if (f !== f) {\n    $idCounter++;\n    return \"NaN$\" + $idCounter;\n  }\n  return String(f);\n};\n\nvar $flatten64 = function(x) {\n  return x.$high * 4294967296 + x.$low;\n};\n\nvar $shiftLeft64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high << y | x.$low >>> (32 - y), (x.$low << y) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(x.$low << (y - 32), 0);\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $shiftRightInt64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high >> y, (x.$low >>> y | x.$high << (32 - y)) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(x.$high >> 31, (x.$high >> (y - 32)) >>> 0);\n  }\n  if (x.$high < 0) {\n    return new x.constructor(-1, 4294967295);\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $shiftRightUint64 = function(x, y) {\n  if (y === 0) {\n    return x;\n  }\n  if (y < 32) {\n    return new x.constructor(x.$high >>> y, (x.$low >>> y | x.$high << (32 - y)) >>> 0);\n  }\n  if (y < 64) {\n    return new x.constructor(0, x.$high >>> (y - 32));\n  }\n  return new x.constructor(0, 0);\n};\n\nvar $mul64 = function(x, y) {\n  var high = 0, low = 0, i;\n  if ((y.$low & 1) !== 0) {\n    high = x.$high;\n    low = x.$low;\n  }\n  for (i = 1; i < 32; i++) {\n    if ((y.$low & 1<<i) !== 0) {\n      high += x.$high << i | x.$low >>> (32 - i);\n      low += (x.$low << i) >>> 0;\n    }\n  }\n  for (i = 0; i < 32; i++) {\n    if ((y.$high & 1<<i) !== 0) {\n      high += x.$low << i;\n    }\n  }\n  return new x.constructor(high, low);\n};\n\nvar $div64 = function(x, y, returnRemainder) {\n  if (y.$high === 0 && y.$low === 0) {\n    $throwRuntimeError(\"integer divide by zero\");\n  }\n\n  var s = 1;\n  var rs = 1;\n\n  var xHigh = x.$high;\n  var xLow = x.$low;\n  if (xHigh < 0) {\n    s = -1;\n    rs = -1;\n    xHigh = -xHigh;\n    if (xLow !== 0) {\n      xHigh--;\n      xLow = 4294967296 - xLow;\n    }\n  }\n\n  var yHigh = y.$high;\n  var yLow = y.$low;\n  if (y.$high < 0) {\n    s *= -1;\n    yHigh = -yHigh;\n    if (yLow !== 0) {\n      yHigh--;\n      yLow = 4294967296 - yLow;\n    }\n  }\n\n  var high = 0, low = 0, n = 0, i;\n  while (yHigh < 2147483648 && ((xHigh > yHigh) || (xHigh === yHigh && xLow > yLow))) {\n    yHigh = (yHigh << 1 | yLow >>> 31) >>> 0;\n    yLow = (yLow << 1) >>> 0;\n    n++;\n  }\n  for (i = 0; i <= n; i++) {\n    high = high << 1 | low >>> 31;\n    low = (low << 1) >>> 0;\n    if ((xHigh > yHigh) || (xHigh === yHigh && xLow >= yLow)) {\n      xHigh = xHigh - yHigh;\n      xLow = xLow - yLow;\n      if (xLow < 0) {\n        xHigh--;\n        xLow += 4294967296;\n      }\n      low++;\n      if (low === 4294967296) {\n        high++;\n        low = 0;\n      }\n    }\n    yLow = (yLow >>> 1 | yHigh << (32 - 1)) >>> 0;\n    yHigh = yHigh >>> 1;\n  }\n\n  if (returnRemainder) {\n    return new x.constructor(xHigh * rs, xLow * rs);\n  }\n  return new x.constructor(high * s, low * s);\n};\n\nvar $divComplex = function(n, d) {\n  var ninf = n.$real === 1/0 || n.$real === -1/0 || n.$imag === 1/0 || n.$imag === -1/0;\n  var dinf = d.$real === 1/0 || d.$real === -1/0 || d.$imag === 1/0 || d.$imag === -1/0;\n  var nnan = !ninf && (n.$real !== n.$real || n.$imag !== n.$imag);\n  var dnan = !dinf && (d.$real !== d.$real || d.$imag !== d.$imag);\n  if(nnan || dnan) {\n    return new n.constructor(0/0, 0/0);\n  }\n  if (ninf && !dinf) {\n    return new n.constructor(1/0, 1/0);\n  }\n  if (!ninf && dinf) {\n    return new n.constructor(0, 0);\n  }\n  if (d.$real === 0 && d.$imag === 0) {\n    if (n.$real === 0 && n.$imag === 0) {\n      return new n.constructor(0/0, 0/0);\n    }\n    return new n.constructor(1/0, 1/0);\n  }\n  var a = Math.abs(d.$real);\n  var b = Math.abs(d.$imag);\n  if (a <= b) {\n    var ratio = d.$real / d.$imag;\n    var denom = d.$real * ratio + d.$imag;\n    return new n.constructor((n.$real * ratio + n.$imag) / denom, (n.$imag * ratio - n.$real) / denom);\n  }\n  var ratio = d.$imag / d.$real;\n  var denom = d.$imag * ratio + d.$real;\n  return new n.constructor((n.$imag * ratio + n.$real) / denom, (n.$imag - n.$real * ratio) / denom);\n};\n\nvar $stackDepthOffset = 0;\nvar $getStackDepth = function() {\n  var err = new Error();\n  if (err.stack === undefined) {\n    return undefined;\n  }\n  return $stackDepthOffset + err.stack.split(\"\\n\").length;\n};\n\nvar $deferFrames = [], $skippedDeferFrames = 0, $jumpToDefer = false, $panicStackDepth = null, $panicValue;\nvar $callDeferred = function(deferred, jsErr) {\n  if ($skippedDeferFrames !== 0) {\n    $skippedDeferFrames--;\n    throw jsErr;\n  }\n  if ($jumpToDefer) {\n    $jumpToDefer = false;\n    throw jsErr;\n  }\n  if (jsErr) {\n    var newErr = null;\n    try {\n      $deferFrames.push(deferred);\n      $panic(new $packages[\"github.com/gopherjs/gopherjs/js\"].Error.Ptr(jsErr));\n    } catch (err) {\n      newErr = err;\n    }\n    $deferFrames.pop();\n    $callDeferred(deferred, newErr);\n    return;\n  }\n\n  $stackDepthOffset--;\n  var outerPanicStackDepth = $panicStackDepth;\n  var outerPanicValue = $panicValue;\n\n  var localPanicValue = $curGoroutine.panicStack.pop();\n  if (localPanicValue !== undefined) {\n    $panicStackDepth = $getStackDepth();\n    $panicValue = localPanicValue;\n  }\n\n  var call;\n  try {\n    while (true) {\n      if (deferred === null) {\n        deferred = $deferFrames[$deferFrames.length - 1 - $skippedDeferFrames];\n        if (deferred === undefined) {\n          if (localPanicValue.constructor === $String) {\n            throw new Error(localPanicValue.$val);\n          } else if (localPanicValue.Error !== undefined) {\n            throw new Error(localPanicValue.Error());\n          } else if (localPanicValue.String !== undefined) {\n            throw new Error(localPanicValue.String());\n          } else {\n            throw new Error(localPanicValue);\n          }\n        }\n      }\n      var call = deferred.pop();\n      if (call === undefined) {\n        if (localPanicValue !== undefined) {\n          $skippedDeferFrames++;\n          deferred = null;\n          continue;\n        }\n        return;\n      }\n      var r = call[0].apply(undefined, call[1]);\n      if (r && r.$blocking) {\n        deferred.push([r, []]);\n      }\n\n      if (localPanicValue !== undefined && $panicStackDepth === null) {\n        throw null; /* error was recovered */\n      }\n    }\n  } finally {\n    if ($curGoroutine.asleep) {\n      deferred.push(call);\n      $jumpToDefer = true;\n    }\n    if (localPanicValue !== undefined) {\n      if ($panicStackDepth !== null) {\n        $curGoroutine.panicStack.push(localPanicValue);\n      }\n      $panicStackDepth = outerPanicStackDepth;\n      $panicValue = outerPanicValue;\n    }\n    $stackDepthOffset++;\n  }\n};\n\nvar $panic = function(value) {\n  $curGoroutine.panicStack.push(value);\n  $callDeferred(null, null);\n};\nvar $recover = function() {\n  if ($panicStackDepth === null || ($panicStackDepth !== undefined && $panicStackDepth !== $getStackDepth() - 2)) {\n    return $ifaceNil;\n  }\n  $panicStackDepth = null;\n  return $panicValue;\n};\nvar $nonblockingCall = function() {\n  $panic(new $packages[\"runtime\"].NotSupportedError.Ptr(\"non-blocking call to blocking function (mark call with \\\"//gopherjs:blocking\\\" to fix)\"));\n};\nvar $throw = function(err) { throw err; };\nvar $throwRuntimeError; /* set by package \"runtime\" */\n\nvar $dummyGoroutine = { asleep: false, exit: false, panicStack: [] };\nvar $curGoroutine = $dummyGoroutine, $totalGoroutines = 0, $awakeGoroutines = 0, $checkForDeadlock = true;\nvar $go = function(fun, args, direct) {\n  $totalGoroutines++;\n  $awakeGoroutines++;\n  args.push(true);\n  var goroutine = function() {\n    var rescheduled = false;\n    try {\n      $curGoroutine = goroutine;\n      $skippedDeferFrames = 0;\n      $jumpToDefer = false;\n      var r = fun.apply(undefined, args);\n      if (r && r.$blocking) {\n        fun = r;\n        args = [];\n        $schedule(goroutine, direct);\n        rescheduled = true;\n        return;\n      }\n      goroutine.exit = true;\n    } catch (err) {\n      if (!$curGoroutine.asleep) {\n        goroutine.exit = true;\n        throw err;\n      }\n    } finally {\n      $curGoroutine = $dummyGoroutine;\n      if (goroutine.exit && !rescheduled) { /* also set by runtime.Goexit() */\n        $totalGoroutines--;\n        goroutine.asleep = true;\n      }\n      if (goroutine.asleep && !rescheduled) {\n        $awakeGoroutines--;\n        if ($awakeGoroutines === 0 && $totalGoroutines !== 0 && $checkForDeadlock) {\n          console.error(\"fatal error: all goroutines are asleep - deadlock!\");\n        }\n      }\n    }\n  };\n  goroutine.asleep = false;\n  goroutine.exit = false;\n  goroutine.panicStack = [];\n  $schedule(goroutine, direct);\n};\n\nvar $scheduled = [], $schedulerLoopActive = false;\nvar $schedule = function(goroutine, direct) {\n  if (goroutine.asleep) {\n    goroutine.asleep = false;\n    $awakeGoroutines++;\n  }\n\n  if (direct) {\n    goroutine();\n    return;\n  }\n\n  $scheduled.push(goroutine);\n  if (!$schedulerLoopActive) {\n    $schedulerLoopActive = true;\n    setTimeout(function() {\n      while (true) {\n        var r = $scheduled.shift();\n        if (r === undefined) {\n          $schedulerLoopActive = false;\n          break;\n        }\n        r();\n      };\n    }, 0);\n  }\n};\n\nvar $send = function(chan, value) {\n  if (chan.$closed) {\n    $throwRuntimeError(\"send on closed channel\");\n  }\n  var queuedRecv = chan.$recvQueue.shift();\n  if (queuedRecv !== undefined) {\n    queuedRecv([value, true]);\n    return;\n  }\n  if (chan.$buffer.length < chan.$capacity) {\n    chan.$buffer.push(value);\n    return;\n  }\n\n  var thisGoroutine = $curGoroutine;\n  chan.$sendQueue.push(function() {\n    $schedule(thisGoroutine);\n    return value;\n  });\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      if (chan.$closed) {\n        $throwRuntimeError(\"send on closed channel\");\n      }\n      return;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\nvar $recv = function(chan) {\n  var queuedSend = chan.$sendQueue.shift();\n  if (queuedSend !== undefined) {\n    chan.$buffer.push(queuedSend());\n  }\n  var bufferedValue = chan.$buffer.shift();\n  if (bufferedValue !== undefined) {\n    return [bufferedValue, true];\n  }\n  if (chan.$closed) {\n    return [chan.constructor.elem.zero(), false];\n  }\n\n  var thisGoroutine = $curGoroutine, value;\n  var queueEntry = function(v) {\n    value = v;\n    $schedule(thisGoroutine);\n  };\n  chan.$recvQueue.push(queueEntry);\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      return value;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\nvar $close = function(chan) {\n  if (chan.$closed) {\n    $throwRuntimeError(\"close of closed channel\");\n  }\n  chan.$closed = true;\n  while (true) {\n    var queuedSend = chan.$sendQueue.shift();\n    if (queuedSend === undefined) {\n      break;\n    }\n    queuedSend(); /* will panic because of closed channel */\n  }\n  while (true) {\n    var queuedRecv = chan.$recvQueue.shift();\n    if (queuedRecv === undefined) {\n      break;\n    }\n    queuedRecv([chan.constructor.elem.zero(), false]);\n  }\n};\nvar $select = function(comms) {\n  var ready = [], i;\n  var selection = -1;\n  for (i = 0; i < comms.length; i++) {\n    var comm = comms[i];\n    var chan = comm[0];\n    switch (comm.length) {\n    case 0: /* default */\n      selection = i;\n      break;\n    case 1: /* recv */\n      if (chan.$sendQueue.length !== 0 || chan.$buffer.length !== 0 || chan.$closed) {\n        ready.push(i);\n      }\n      break;\n    case 2: /* send */\n      if (chan.$closed) {\n        $throwRuntimeError(\"send on closed channel\");\n      }\n      if (chan.$recvQueue.length !== 0 || chan.$buffer.length < chan.$capacity) {\n        ready.push(i);\n      }\n      break;\n    }\n  }\n\n  if (ready.length !== 0) {\n    selection = ready[Math.floor(Math.random() * ready.length)];\n  }\n  if (selection !== -1) {\n    var comm = comms[selection];\n    switch (comm.length) {\n    case 0: /* default */\n      return [selection];\n    case 1: /* recv */\n      return [selection, $recv(comm[0])];\n    case 2: /* send */\n      $send(comm[0], comm[1]);\n      return [selection];\n    }\n  }\n\n  var entries = [];\n  var thisGoroutine = $curGoroutine;\n  var removeFromQueues = function() {\n    for (i = 0; i < entries.length; i++) {\n      var entry = entries[i];\n      var queue = entry[0];\n      var index = queue.indexOf(entry[1]);\n      if (index !== -1) {\n        queue.splice(index, 1);\n      }\n    }\n  };\n  for (i = 0; i < comms.length; i++) {\n    (function(i) {\n      var comm = comms[i];\n      switch (comm.length) {\n      case 1: /* recv */\n        var queueEntry = function(value) {\n          selection = [i, value];\n          removeFromQueues();\n          $schedule(thisGoroutine);\n        };\n        entries.push([comm[0].$recvQueue, queueEntry]);\n        comm[0].$recvQueue.push(queueEntry);\n        break;\n      case 2: /* send */\n        var queueEntry = function() {\n          if (comm[0].$closed) {\n            $throwRuntimeError(\"send on closed channel\");\n          }\n          selection = [i];\n          removeFromQueues();\n          $schedule(thisGoroutine);\n          return comm[1];\n        };\n        entries.push([comm[0].$sendQueue, queueEntry]);\n        comm[0].$sendQueue.push(queueEntry);\n        break;\n      }\n    })(i);\n  }\n  var blocked = false;\n  var f = function() {\n    if (blocked) {\n      return selection;\n    };\n    blocked = true;\n    $curGoroutine.asleep = true;\n    throw null;\n  };\n  f.$blocking = true;\n  return f;\n};\n\nvar $needsExternalization = function(t) {\n  switch (t.kind) {\n    case \"Bool\":\n    case \"Int\":\n    case \"Int8\":\n    case \"Int16\":\n    case \"Int32\":\n    case \"Uint\":\n    case \"Uint8\":\n    case \"Uint16\":\n    case \"Uint32\":\n    case \"Uintptr\":\n    case \"Float32\":\n    case \"Float64\":\n      return false;\n    case \"Interface\":\n      return t !== $packages[\"github.com/gopherjs/gopherjs/js\"].Object;\n    default:\n      return true;\n  }\n};\n\nvar $externalize = function(v, t) {\n  switch (t.kind) {\n  case \"Bool\":\n  case \"Int\":\n  case \"Int8\":\n  case \"Int16\":\n  case \"Int32\":\n  case \"Uint\":\n  case \"Uint8\":\n  case \"Uint16\":\n  case \"Uint32\":\n  case \"Uintptr\":\n  case \"Float32\":\n  case \"Float64\":\n    return v;\n  case \"Int64\":\n  case \"Uint64\":\n    return $flatten64(v);\n  case \"Array\":\n    if ($needsExternalization(t.elem)) {\n      return $mapArray(v, function(e) { return $externalize(e, t.elem); });\n    }\n    return v;\n  case \"Func\":\n    if (v === $throwNilPointerError) {\n      return null;\n    }\n    if (v.$externalizeWrapper === undefined) {\n      $checkForDeadlock = false;\n      var convert = false;\n      var i;\n      for (i = 0; i < t.params.length; i++) {\n        convert = convert || (t.params[i] !== $packages[\"github.com/gopherjs/gopherjs/js\"].Object);\n      }\n      for (i = 0; i < t.results.length; i++) {\n        convert = convert || $needsExternalization(t.results[i]);\n      }\n      if (!convert) {\n        return v;\n      }\n      v.$externalizeWrapper = function() {\n        var args = [], i;\n        for (i = 0; i < t.params.length; i++) {\n          if (t.variadic && i === t.params.length - 1) {\n            var vt = t.params[i].elem, varargs = [], j;\n            for (j = i; j < arguments.length; j++) {\n              varargs.push($internalize(arguments[j], vt));\n            }\n            args.push(new (t.params[i])(varargs));\n            break;\n          }\n          args.push($internalize(arguments[i], t.params[i]));\n        }\n        var result = v.apply(this, args);\n        switch (t.results.length) {\n        case 0:\n          return;\n        case 1:\n          return $externalize(result, t.results[0]);\n        default:\n          for (i = 0; i < t.results.length; i++) {\n            result[i] = $externalize(result[i], t.results[i]);\n          }\n          return result;\n        }\n      };\n    }\n    return v.$externalizeWrapper;\n  case \"Interface\":\n    if (v === $ifaceNil) {\n      return null;\n    }\n    if (t === $packages[\"github.com/gopherjs/gopherjs/js\"].Object || v.constructor.kind === undefined) {\n      return v;\n    }\n    return $externalize(v.$val, v.constructor);\n  case \"Map\":\n    var m = {};\n    var keys = $keys(v), i;\n    for (i = 0; i < keys.length; i++) {\n      var entry = v[keys[i]];\n      m[$externalize(entry.k, t.key)] = $externalize(entry.v, t.elem);\n    }\n    return m;\n  case \"Ptr\":\n    var o = {}, i;\n    for (i = 0; i < t.methods.length; i++) {\n      var m = t.methods[i];\n      if (m[2] !== \"\") { /* not exported */\n        continue;\n      }\n      (function(m) {\n        o[m[1]] = $externalize(function() {\n          return v[m[0]].apply(v, arguments);\n        }, m[3]);\n      })(m);\n    }\n    return o;\n  case \"Slice\":\n    if ($needsExternalization(t.elem)) {\n      return $mapArray($sliceToArray(v), function(e) { return $externalize(e, t.elem); });\n    }\n    return $sliceToArray(v);\n  case \"String\":\n    var s = \"\", r, i, j = 0;\n    for (i = 0; i < v.length; i += r[1], j++) {\n      r = $decodeRune(v, i);\n      s += String.fromCharCode(r[0]);\n    }\n    return s;\n  case \"Struct\":\n    var timePkg = $packages[\"time\"];\n    if (timePkg && v.constructor === timePkg.Time.Ptr) {\n      var milli = $div64(v.UnixNano(), new $Int64(0, 1000000));\n      return new Date($flatten64(milli));\n    }\n    var o = {}, i;\n    for (i = 0; i < t.fields.length; i++) {\n      var f = t.fields[i];\n      if (f[2] !== \"\") { /* not exported */\n        continue;\n      }\n      o[f[1]] = $externalize(v[f[0]], f[3]);\n    }\n    return o;\n  }\n  $panic(new $String(\"cannot externalize \" + t.string));\n};\n\nvar $internalize = function(v, t, recv) {\n  switch (t.kind) {\n  case \"Bool\":\n    return !!v;\n  case \"Int\":\n    return parseInt(v);\n  case \"Int8\":\n    return parseInt(v) << 24 >> 24;\n  case \"Int16\":\n    return parseInt(v) << 16 >> 16;\n  case \"Int32\":\n    return parseInt(v) >> 0;\n  case \"Uint\":\n    return parseInt(v);\n  case \"Uint8\":\n    return parseInt(v) << 24 >>> 24;\n  case \"Uint16\":\n    return parseInt(v) << 16 >>> 16;\n  case \"Uint32\":\n  case \"Uintptr\":\n    return parseInt(v) >>> 0;\n  case \"Int64\":\n  case \"Uint64\":\n    return new t(0, v);\n  case \"Float32\":\n  case \"Float64\":\n    return parseFloat(v);\n  case \"Array\":\n    if (v.length !== t.len) {\n      $throwRuntimeError(\"got array with wrong size from JavaScript native\");\n    }\n    return $mapArray(v, function(e) { return $internalize(e, t.elem); });\n  case \"Func\":\n    return function() {\n      var args = [], i;\n      for (i = 0; i < t.params.length; i++) {\n        if (t.variadic && i === t.params.length - 1) {\n          var vt = t.params[i].elem, varargs = arguments[i], j;\n          for (j = 0; j < varargs.$length; j++) {\n            args.push($externalize(varargs.$array[varargs.$offset + j], vt));\n          }\n          break;\n        }\n        args.push($externalize(arguments[i], t.params[i]));\n      }\n      var result = v.apply(recv, args);\n      switch (t.results.length) {\n      case 0:\n        return;\n      case 1:\n        return $internalize(result, t.results[0]);\n      default:\n        for (i = 0; i < t.results.length; i++) {\n          result[i] = $internalize(result[i], t.results[i]);\n        }\n        return result;\n      }\n    };\n  case \"Interface\":\n    if (t === $packages[\"github.com/gopherjs/gopherjs/js\"].Object) {\n      return v;\n    }\n    if (v === null) {\n      return $ifaceNil;\n    }\n    switch (v.constructor) {\n    case Int8Array:\n      return new ($sliceType($Int8))(v);\n    case Int16Array:\n      return new ($sliceType($Int16))(v);\n    case Int32Array:\n      return new ($sliceType($Int))(v);\n    case Uint8Array:\n      return new ($sliceType($Uint8))(v);\n    case Uint16Array:\n      return new ($sliceType($Uint16))(v);\n    case Uint32Array:\n      return new ($sliceType($Uint))(v);\n    case Float32Array:\n      return new ($sliceType($Float32))(v);\n    case Float64Array:\n      return new ($sliceType($Float64))(v);\n    case Array:\n      return $internalize(v, $sliceType($emptyInterface));\n    case Boolean:\n      return new $Bool(!!v);\n    case Date:\n      var timePkg = $packages[\"time\"];\n      if (timePkg) {\n        return new timePkg.Time(timePkg.Unix(new $Int64(0, 0), new $Int64(0, v.getTime() * 1000000)));\n      }\n    case Function:\n      var funcType = $funcType([$sliceType($emptyInterface)], [$packages[\"github.com/gopherjs/gopherjs/js\"].Object], true);\n      return new funcType($internalize(v, funcType));\n    case Number:\n      return new $Float64(parseFloat(v));\n    case String:\n      return new $String($internalize(v, $String));\n    default:\n      if ($global.Node && v instanceof $global.Node) {\n        return v;\n      }\n      var mapType = $mapType($String, $emptyInterface);\n      return new mapType($internalize(v, mapType));\n    }\n  case \"Map\":\n    var m = new $Map();\n    var keys = $keys(v), i;\n    for (i = 0; i < keys.length; i++) {\n      var key = $internalize(keys[i], t.key);\n      m[key.$key ? key.$key() : key] = { k: key, v: $internalize(v[keys[i]], t.elem) };\n    }\n    return m;\n  case \"Slice\":\n    return new t($mapArray(v, function(e) { return $internalize(e, t.elem); }));\n  case \"String\":\n    v = String(v);\n    var s = \"\", i;\n    for (i = 0; i < v.length; i++) {\n      s += $encodeRune(v.charCodeAt(i));\n    }\n    return s;\n  default:\n    $panic(new $String(\"cannot internalize \" + t.string));\n  }\n};\n")), minify)); err$1 = _tuple$2[1];
 		if (!($interfaceIsEqual(err$1, $ifaceNil))) {
 			return err$1;
 		}
@@ -49664,7 +49712,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 	};
 	expression.prototype.StringWithParens = function() { return this.$val.StringWithParens(); };
 	funcContext.Ptr.prototype.translateExpr = function(expr) {
-		var c, _entry, exprType, _entry$1, value, basic, _tuple, d, _tuple$1, d$1, _tuple$2, f, _tuple$3, r, _tuple$4, i, e, _ref, _tuple$5, ptrType, isPointer, collectIndexedElements, t, _ref$1, elements, zero, x, mapVar, keyVar, assignments, _ref$2, _i, element, kve, elements$1, isKeyValue, _tuple$6, x$1, _ref$3, _i$1, i$1, element$1, _ref$4, _i$2, i$2, _ref$5, _i$3, element$2, kve$1, _ref$6, _i$4, j, innerContext, _tuple$7, params, body, names, _ref$7, _i$5, _keys, _entry$2, obj, _entry$3, list, _entry$4, t$1, _ref$8, _ref$9, x$2, _ref$10, _entry$5, _entry$6, obj$1, _entry$7, _entry$8, _entry$9, newSel, _entry$10, _key, _entry$11, newIndex, call, _key$1, _tuple$8, isTuple, basic$1, _ref$11, x$3, _entry$12, t$2, _entry$13, t2, _tuple$9, isInterface, _tuple$10, basic$2, isBasic, _ref$12, _ref$13, _ref$14, _ref$15, shift, op, _entry$14, y, _ref$16, x$4, y$1, x$5, y$2, u, _ref$17, _ref$18, x$6, t$3, _ref$19, _entry$15, pattern, _entry$16, _tuple$11, ok, key, _tuple$12, isTuple$1, _tuple$13, _entry$17, b, isBasic$1, slice, _tuple$14, _entry$18, sel, ok$1, _entry$19, obj$2, _ref$20, args, _entry$20, _ref$21, _tuple$15, fields, jsTag, _tuple$16, ok$2, _key$2, recv, _key$3, plainFun, _tuple$17, p, isParen, isType, x$7, _entry$21, fun, f$1, _ref$22, _tuple$18, _entry$22, o, ok$3, _tuple$19, _entry$23, sel$1, ok$4, _entry$24, obj$3, _ref$23, x$8, externalizeExpr, externalizeArgs, _ref$24, _key$4, methodName, _entry$25, recvType, _tuple$20, isPointer$1, methodsRecvType, _tuple$21, pointerExpected, recv$1, _ref$25, _i$6, index, _tuple$22, ptr, isPtr, s, globalRef, _ref$26, _tuple$23, x$9, id, ok$5, x$10, _tuple$24, x$11, id$1, ok$6, x$12, x$13, x$14, x$15, x$16, x$17, x$18, _tuple$25, x$19, id$2, ok$7, objVar, x$20, objVar$1, x$21, x$22, x$23, x$24, x$25, _tuple$26, fields$1, jsTag$1, sig, _entry$26, sig$1, _tuple$27, x$26, _entry$27, tuple, isTuple$2, tupleVar, args$1, _ref$27, _i$7, i$3, x$27, args$2, _entry$28, resumeCase, returnVar, _tuple$28, c1, isCall, _tuple$29, x$28, c2, isCall$1, _entry$29, _tuple$30, x$29, unary, isUnary, _ref$28, _entry$30, t$4, _tuple$31, isTuple$3, _entry$31, obj$4, _entry$32, o$1, _ref$29, _entry$33, _entry$34, this$1, _entry$35;
+		var c, _entry, exprType, _entry$1, value, basic, _tuple, d, _tuple$1, d$1, _tuple$2, f, _tuple$3, r, _tuple$4, i, obj, e, _ref, _entry$2, _entry$3, _entry$4, _ref$1, args, _entry$5, e$1, _ref$2, _tuple$5, ptrType, isPointer, collectIndexedElements, t, _ref$3, elements, zero, x, mapVar, keyVar, assignments, _ref$4, _i, element, kve, elements$1, isKeyValue, _tuple$6, x$1, _ref$5, _i$1, i$1, element$1, _ref$6, _i$2, i$2, _ref$7, _i$3, element$2, kve$1, _ref$8, _i$4, j, innerContext, _tuple$7, params, body, names, _ref$9, _i$5, _keys, _entry$6, obj$1, _entry$7, list, _entry$8, t$1, _ref$10, _ref$11, x$2, _ref$12, _entry$9, _entry$10, obj$2, _entry$11, _entry$12, _entry$13, newSel, _key, _entry$14, _entry$15, newIndex, call, _key$1, _tuple$8, isTuple, basic$1, _ref$13, x$3, _entry$16, t$2, _entry$17, t2, _tuple$9, isInterface, _tuple$10, basic$2, isBasic, _ref$14, _ref$15, _ref$16, _ref$17, shift, op, _entry$18, y, _ref$18, x$4, y$1, x$5, y$2, u, _ref$19, _ref$20, x$6, t$3, _ref$21, _entry$19, pattern, _entry$20, _tuple$11, ok, key, _tuple$12, isTuple$1, _tuple$13, _entry$21, b, isBasic$1, slice, _tuple$14, _entry$22, sel, ok$1, _ref$22, _tuple$15, fields, jsTag, _tuple$16, ok$2, _key$2, recv, _key$3, plainFun, _tuple$17, p, isParen, isType, x$7, _entry$23, fun, f$1, _ref$23, _tuple$18, _entry$24, o, ok$3, _tuple$19, _entry$25, sel$1, ok$4, _entry$26, obj$3, _ref$24, x$8, externalizeExpr, externalizeArgs, _ref$25, _key$4, methodName, _entry$27, recvType, _tuple$20, isPointer$1, methodsRecvType, _tuple$21, pointerExpected, recv$1, _ref$26, _i$6, index, _tuple$22, ptr, isPtr, s, globalRef, _ref$27, _tuple$23, x$9, id, ok$5, x$10, _tuple$24, x$11, id$1, ok$6, x$12, x$13, x$14, x$15, x$16, x$17, x$18, _tuple$25, x$19, id$2, ok$7, objVar, x$20, objVar$1, x$21, x$22, x$23, x$24, x$25, _tuple$26, fields$1, jsTag$1, sig, _entry$28, sig$1, _tuple$27, x$26, _entry$29, tuple, isTuple$2, tupleVar, args$1, _ref$28, _i$7, i$3, x$27, args$2, _entry$30, resumeCase, returnVar, _tuple$28, c1, isCall, _tuple$29, x$28, c2, isCall$1, _entry$31, _tuple$30, x$29, unary, isUnary, _ref$29, _entry$32, t$4, _tuple$31, isTuple$3, o$1, _ref$30, _entry$33, _entry$34, this$1, _entry$35;
 		c = this;
 		exprType = (_entry = c.p.info.Types[expr.$key()], _entry !== undefined ? _entry.v : new types.TypeAndValue.Ptr()).Type;
 		value = (_entry$1 = c.p.info.Types[expr.$key()], _entry$1 !== undefined ? _entry$1.v : new types.TypeAndValue.Ptr()).Value;
@@ -49701,25 +49749,56 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				$panic(new $String("Unhandled constant type: " + basic.String()));
 			}
 		}
+		obj = $ifaceNil;
 		_ref = expr;
-		if ($assertType(_ref, ($ptrType(ast.CompositeLit)), true)[1]) {
+		if ($assertType(_ref, ($ptrType(ast.SelectorExpr)), true)[1]) {
 			e = _ref.$val;
+			obj = (_entry$2 = c.p.info.Uses[e.Sel.$key()], _entry$2 !== undefined ? _entry$2.v : $ifaceNil);
+		} else if ($assertType(_ref, ($ptrType(ast.Ident)), true)[1]) {
+			e = _ref.$val;
+			obj = (_entry$3 = c.p.info.Defs[e.$key()], _entry$3 !== undefined ? _entry$3.v : $ifaceNil);
+			if ($interfaceIsEqual(obj, $ifaceNil)) {
+				obj = (_entry$4 = c.p.info.Uses[e.$key()], _entry$4 !== undefined ? _entry$4.v : $ifaceNil);
+			}
+		}
+		if (!($interfaceIsEqual(obj, $ifaceNil)) && isJsPackage(obj.Pkg())) {
+			_ref$1 = obj.Name();
+			if (_ref$1 === "Global") {
+				return c.formatExpr("$global", new ($sliceType($emptyInterface))([]));
+			} else if (_ref$1 === "This") {
+				if (!(($keys(c.flattened).length === 0))) {
+					return c.formatExpr("$this", new ($sliceType($emptyInterface))([]));
+				}
+				return c.formatExpr("this", new ($sliceType($emptyInterface))([]));
+			} else if (_ref$1 === "Arguments") {
+				args = "arguments";
+				if (!(($keys(c.flattened).length === 0))) {
+					args = "$args";
+				}
+				return c.formatExpr("new ($sliceType(%s.Object))($global.Array.prototype.slice.call(%s, []))", new ($sliceType($emptyInterface))([new $String((_entry$5 = c.p.pkgVars["github.com/gopherjs/gopherjs/js"], _entry$5 !== undefined ? _entry$5.v : "")), new $String(args)]));
+			} else if (_ref$1 === "Module") {
+				return c.formatExpr("$module", new ($sliceType($emptyInterface))([]));
+			}
+		}
+		_ref$2 = expr;
+		if ($assertType(_ref$2, ($ptrType(ast.CompositeLit)), true)[1]) {
+			e$1 = _ref$2.$val;
 			_tuple$5 = $assertType(exprType, ($ptrType(types.Pointer)), true); ptrType = _tuple$5[0]; isPointer = _tuple$5[1];
 			if (isPointer) {
 				exprType = ptrType.Elem();
 			}
 			collectIndexedElements = (function(elementType) {
-				var elements, i$1, zero, _ref$1, _i, element, _tuple$6, kve, isKve, _tuple$7, _entry$2, key;
+				var elements, i$1, zero, _ref$3, _i, element, _tuple$6, kve, isKve, _tuple$7, _entry$6, key;
 				elements = ($sliceType($String)).make(0);
 				i$1 = 0;
 				zero = c.zeroValue(elementType);
-				_ref$1 = e.Elts;
+				_ref$3 = e$1.Elts;
 				_i = 0;
-				while (_i < _ref$1.$length) {
-					element = ((_i < 0 || _i >= _ref$1.$length) ? $throwRuntimeError("index out of range") : _ref$1.$array[_ref$1.$offset + _i]);
+				while (_i < _ref$3.$length) {
+					element = ((_i < 0 || _i >= _ref$3.$length) ? $throwRuntimeError("index out of range") : _ref$3.$array[_ref$3.$offset + _i]);
 					_tuple$6 = $assertType(element, ($ptrType(ast.KeyValueExpr)), true); kve = _tuple$6[0]; isKve = _tuple$6[1];
 					if (isKve) {
-						_tuple$7 = exact.Int64Val((_entry$2 = c.p.info.Types[kve.Key.$key()], _entry$2 !== undefined ? _entry$2.v : new types.TypeAndValue.Ptr()).Value); key = _tuple$7[0];
+						_tuple$7 = exact.Int64Val((_entry$6 = c.p.info.Types[kve.Key.$key()], _entry$6 !== undefined ? _entry$6.v : new types.TypeAndValue.Ptr()).Value); key = _tuple$7[0];
 						i$1 = ((key.$low + ((key.$high >> 31) * 4294967296)) >> 0);
 						element = kve.Value;
 					}
@@ -49732,9 +49811,9 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				}
 				return elements;
 			});
-			_ref$1 = exprType.Underlying();
-			if ($assertType(_ref$1, ($ptrType(types.Array)), true)[1]) {
-				t = _ref$1.$val;
+			_ref$3 = exprType.Underlying();
+			if ($assertType(_ref$3, ($ptrType(types.Array)), true)[1]) {
+				t = _ref$3.$val;
 				elements = collectIndexedElements(t.Elem());
 				if (elements.$length === 0) {
 					return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.zeroValue(t))]));
@@ -49744,59 +49823,59 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 					elements = $append(elements, zero);
 				}
 				return c.formatExpr("$toNativeArray(\"%s\", [%s])", new ($sliceType($emptyInterface))([new $String(typeKind(t.Elem())), new $String(strings.Join(elements, ", "))]));
-			} else if ($assertType(_ref$1, ($ptrType(types.Slice)), true)[1]) {
-				t = _ref$1.$val;
+			} else if ($assertType(_ref$3, ($ptrType(types.Slice)), true)[1]) {
+				t = _ref$3.$val;
 				return c.formatExpr("new %s([%s])", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), new $String(strings.Join(collectIndexedElements(t.Elem()), ", "))]));
-			} else if ($assertType(_ref$1, ($ptrType(types.Map)), true)[1]) {
-				t = _ref$1.$val;
+			} else if ($assertType(_ref$3, ($ptrType(types.Map)), true)[1]) {
+				t = _ref$3.$val;
 				mapVar = c.newVariable("_map");
 				keyVar = c.newVariable("_key");
 				assignments = "";
-				_ref$2 = e.Elts;
+				_ref$4 = e$1.Elts;
 				_i = 0;
-				while (_i < _ref$2.$length) {
-					element = ((_i < 0 || _i >= _ref$2.$length) ? $throwRuntimeError("index out of range") : _ref$2.$array[_ref$2.$offset + _i]);
+				while (_i < _ref$4.$length) {
+					element = ((_i < 0 || _i >= _ref$4.$length) ? $throwRuntimeError("index out of range") : _ref$4.$array[_ref$4.$offset + _i]);
 					kve = $assertType(element, ($ptrType(ast.KeyValueExpr)));
-					assignments = assignments + (c.formatExpr("%s = %s, %s[%s] = { k: %s, v: %s }, ", new ($sliceType($emptyInterface))([new $String(keyVar), c.translateImplicitConversion(kve.Key, t.Key()), new $String(mapVar), new $String(c.makeKey(c.newIdent(keyVar, t.Key()), t.Key())), new $String(keyVar), c.translateImplicitConversion(kve.Value, t.Elem())])).String());
+					assignments = assignments + (c.formatExpr("%s = %s, %s[%s] = { k: %s, v: %s }, ", new ($sliceType($emptyInterface))([new $String(keyVar), c.translateImplicitConversionWithCloning(kve.Key, t.Key()), new $String(mapVar), new $String(c.makeKey(c.newIdent(keyVar, t.Key()), t.Key())), new $String(keyVar), c.translateImplicitConversionWithCloning(kve.Value, t.Elem())])).String());
 					_i++;
 				}
 				return c.formatExpr("(%s = new $Map(), %s%s)", new ($sliceType($emptyInterface))([new $String(mapVar), new $String(assignments), new $String(mapVar)]));
-			} else if ($assertType(_ref$1, ($ptrType(types.Struct)), true)[1]) {
-				t = _ref$1.$val;
+			} else if ($assertType(_ref$3, ($ptrType(types.Struct)), true)[1]) {
+				t = _ref$3.$val;
 				elements$1 = ($sliceType($String)).make(t.NumFields());
 				isKeyValue = true;
-				if (!((e.Elts.$length === 0))) {
-					_tuple$6 = $assertType((x$1 = e.Elts, ((0 < 0 || 0 >= x$1.$length) ? $throwRuntimeError("index out of range") : x$1.$array[x$1.$offset + 0])), ($ptrType(ast.KeyValueExpr)), true); isKeyValue = _tuple$6[1];
+				if (!((e$1.Elts.$length === 0))) {
+					_tuple$6 = $assertType((x$1 = e$1.Elts, ((0 < 0 || 0 >= x$1.$length) ? $throwRuntimeError("index out of range") : x$1.$array[x$1.$offset + 0])), ($ptrType(ast.KeyValueExpr)), true); isKeyValue = _tuple$6[1];
 				}
 				if (!isKeyValue) {
-					_ref$3 = e.Elts;
+					_ref$5 = e$1.Elts;
 					_i$1 = 0;
-					while (_i$1 < _ref$3.$length) {
+					while (_i$1 < _ref$5.$length) {
 						i$1 = _i$1;
-						element$1 = ((_i$1 < 0 || _i$1 >= _ref$3.$length) ? $throwRuntimeError("index out of range") : _ref$3.$array[_ref$3.$offset + _i$1]);
-						(i$1 < 0 || i$1 >= elements$1.$length) ? $throwRuntimeError("index out of range") : elements$1.$array[elements$1.$offset + i$1] = c.translateImplicitConversion(element$1, t.Field(i$1).object.Type()).String();
+						element$1 = ((_i$1 < 0 || _i$1 >= _ref$5.$length) ? $throwRuntimeError("index out of range") : _ref$5.$array[_ref$5.$offset + _i$1]);
+						(i$1 < 0 || i$1 >= elements$1.$length) ? $throwRuntimeError("index out of range") : elements$1.$array[elements$1.$offset + i$1] = c.translateImplicitConversionWithCloning(element$1, t.Field(i$1).object.Type()).String();
 						_i$1++;
 					}
 				}
 				if (isKeyValue) {
-					_ref$4 = elements$1;
+					_ref$6 = elements$1;
 					_i$2 = 0;
-					while (_i$2 < _ref$4.$length) {
+					while (_i$2 < _ref$6.$length) {
 						i$2 = _i$2;
 						(i$2 < 0 || i$2 >= elements$1.$length) ? $throwRuntimeError("index out of range") : elements$1.$array[elements$1.$offset + i$2] = c.zeroValue(t.Field(i$2).object.Type());
 						_i$2++;
 					}
-					_ref$5 = e.Elts;
+					_ref$7 = e$1.Elts;
 					_i$3 = 0;
-					while (_i$3 < _ref$5.$length) {
-						element$2 = ((_i$3 < 0 || _i$3 >= _ref$5.$length) ? $throwRuntimeError("index out of range") : _ref$5.$array[_ref$5.$offset + _i$3]);
+					while (_i$3 < _ref$7.$length) {
+						element$2 = ((_i$3 < 0 || _i$3 >= _ref$7.$length) ? $throwRuntimeError("index out of range") : _ref$7.$array[_ref$7.$offset + _i$3]);
 						kve$1 = $assertType(element$2, ($ptrType(ast.KeyValueExpr)));
-						_ref$6 = elements$1;
+						_ref$8 = elements$1;
 						_i$4 = 0;
-						while (_i$4 < _ref$6.$length) {
+						while (_i$4 < _ref$8.$length) {
 							j = _i$4;
 							if ($assertType(kve$1.Key, ($ptrType(ast.Ident))).Name === t.Field(j).object.Name()) {
-								(j < 0 || j >= elements$1.$length) ? $throwRuntimeError("index out of range") : elements$1.$array[elements$1.$offset + j] = c.translateImplicitConversion(kve$1.Value, t.Field(j).object.Type()).String();
+								(j < 0 || j >= elements$1.$length) ? $throwRuntimeError("index out of range") : elements$1.$array[elements$1.$offset + j] = c.translateImplicitConversionWithCloning(kve$1.Value, t.Field(j).object.Type()).String();
 								break;
 							}
 							_i$4++;
@@ -49806,26 +49885,26 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				}
 				return c.formatExpr("new %s.Ptr(%s)", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), new $String(strings.Join(elements$1, ", "))]));
 			} else {
-				t = _ref$1;
+				t = _ref$3;
 				$panic(new $String(fmt.Sprintf("Unhandled CompositeLit type: %T\n", new ($sliceType($emptyInterface))([t]))));
 			}
-		} else if ($assertType(_ref, ($ptrType(ast.FuncLit)), true)[1]) {
-			e = _ref.$val;
-			innerContext = c.p.analyzeFunction($assertType(exprType, ($ptrType(types.Signature))), e.Body);
-			_tuple$7 = innerContext.translateFunction(e.Type, e.Body.List, c.allVars); params = _tuple$7[0]; body = _tuple$7[1];
+		} else if ($assertType(_ref$2, ($ptrType(ast.FuncLit)), true)[1]) {
+			e$1 = _ref$2.$val;
+			innerContext = c.p.analyzeFunction($assertType(exprType, ($ptrType(types.Signature))), e$1.Body);
+			_tuple$7 = innerContext.translateFunction(e$1.Type, e$1.Body.List, c.allVars); params = _tuple$7[0]; body = _tuple$7[1];
 			if (!(($keys(c.p.escapingVars).length === 0))) {
 				names = ($sliceType($String)).make(0, $keys(c.p.escapingVars).length);
-				_ref$7 = c.p.escapingVars;
+				_ref$9 = c.p.escapingVars;
 				_i$5 = 0;
-				_keys = $keys(_ref$7);
+				_keys = $keys(_ref$9);
 				while (_i$5 < _keys.length) {
-					_entry$2 = _ref$7[_keys[_i$5]];
-					if (_entry$2 === undefined) {
+					_entry$6 = _ref$9[_keys[_i$5]];
+					if (_entry$6 === undefined) {
 						_i$5++;
 						continue;
 					}
-					obj = _entry$2.k;
-					names = $append(names, (_entry$3 = c.p.objectVars[obj.$key()], _entry$3 !== undefined ? _entry$3.v : ""));
+					obj$1 = _entry$6.k;
+					names = $append(names, (_entry$7 = c.p.objectVars[obj$1.$key()], _entry$7 !== undefined ? _entry$7.v : ""));
 					_i$5++;
 				}
 				sort.Strings(names);
@@ -49833,44 +49912,44 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				return c.formatExpr("(function(%s) { return function(%s) {\n%s%s}; })(%s)", new ($sliceType($emptyInterface))([new $String(list), new $String(strings.Join(params, ", ")), new $String($bytesToString(body)), new $String(strings.Repeat("\t", c.p.indentation)), new $String(list)]));
 			}
 			return c.formatExpr("(function(%s) {\n%s%s})", new ($sliceType($emptyInterface))([new $String(strings.Join(params, ", ")), new $String($bytesToString(body)), new $String(strings.Repeat("\t", c.p.indentation))]));
-		} else if ($assertType(_ref, ($ptrType(ast.UnaryExpr)), true)[1]) {
-			e = _ref.$val;
-			t$1 = (_entry$4 = c.p.info.Types[e.X.$key()], _entry$4 !== undefined ? _entry$4.v : new types.TypeAndValue.Ptr()).Type;
-			_ref$8 = e.Op;
-			if (_ref$8 === 17) {
-				_ref$9 = t$1.Underlying();
-				if ($assertType(_ref$9, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$9, ($ptrType(types.Array)), true)[1]) {
-					return c.translateExpr(e.X);
+		} else if ($assertType(_ref$2, ($ptrType(ast.UnaryExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			t$1 = (_entry$8 = c.p.info.Types[e$1.X.$key()], _entry$8 !== undefined ? _entry$8.v : new types.TypeAndValue.Ptr()).Type;
+			_ref$10 = e$1.Op;
+			if (_ref$10 === 17) {
+				_ref$11 = t$1.Underlying();
+				if ($assertType(_ref$11, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$11, ($ptrType(types.Array)), true)[1]) {
+					return c.translateExpr(e$1.X);
 				}
-				_ref$10 = removeParens(e.X);
-				if ($assertType(_ref$10, ($ptrType(ast.CompositeLit)), true)[1]) {
-					x$2 = _ref$10.$val;
-					return c.formatExpr("$newDataPointer(%e, %s)", new ($sliceType($emptyInterface))([x$2, new $String(c.typeName((_entry$5 = c.p.info.Types[e.$key()], _entry$5 !== undefined ? _entry$5.v : new types.TypeAndValue.Ptr()).Type))]));
-				} else if ($assertType(_ref$10, ($ptrType(ast.Ident)), true)[1]) {
-					x$2 = _ref$10.$val;
-					obj$1 = (_entry$6 = c.p.info.Uses[x$2.$key()], _entry$6 !== undefined ? _entry$6.v : $ifaceNil);
-					if ((_entry$7 = c.p.escapingVars[obj$1.$key()], _entry$7 !== undefined ? _entry$7.v : false)) {
-						return c.formatExpr("new %s(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, %s)", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), new $String((_entry$8 = c.p.objectVars[obj$1.$key()], _entry$8 !== undefined ? _entry$8.v : ""))]));
+				_ref$12 = removeParens(e$1.X);
+				if ($assertType(_ref$12, ($ptrType(ast.CompositeLit)), true)[1]) {
+					x$2 = _ref$12.$val;
+					return c.formatExpr("$newDataPointer(%e, %s)", new ($sliceType($emptyInterface))([x$2, new $String(c.typeName((_entry$9 = c.p.info.Types[e$1.$key()], _entry$9 !== undefined ? _entry$9.v : new types.TypeAndValue.Ptr()).Type))]));
+				} else if ($assertType(_ref$12, ($ptrType(ast.Ident)), true)[1]) {
+					x$2 = _ref$12.$val;
+					obj$2 = (_entry$10 = c.p.info.Uses[x$2.$key()], _entry$10 !== undefined ? _entry$10.v : $ifaceNil);
+					if ((_entry$11 = c.p.escapingVars[obj$2.$key()], _entry$11 !== undefined ? _entry$11.v : false)) {
+						return c.formatExpr("new %s(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, %s)", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), new $String((_entry$12 = c.p.objectVars[obj$2.$key()], _entry$12 !== undefined ? _entry$12.v : ""))]));
 					}
 					return c.formatExpr("new %s(function() { return %e; }, function($v) { %s })", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), x$2, new $String(c.translateAssign(x$2, "$v", exprType, false))]));
-				} else if ($assertType(_ref$10, ($ptrType(ast.SelectorExpr)), true)[1]) {
-					x$2 = _ref$10.$val;
-					newSel = new ast.SelectorExpr.Ptr(c.newIdent("this.$target", (_entry$9 = c.p.info.Types[x$2.X.$key()], _entry$9 !== undefined ? _entry$9.v : new types.TypeAndValue.Ptr()).Type), x$2.Sel);
-					_key = newSel; (c.p.info.Selections || $throwRuntimeError("assignment to entry in nil map"))[_key.$key()] = { k: _key, v: (_entry$10 = c.p.info.Selections[x$2.$key()], _entry$10 !== undefined ? _entry$10.v : ($ptrType(types.Selection)).nil) };
+				} else if ($assertType(_ref$12, ($ptrType(ast.SelectorExpr)), true)[1]) {
+					x$2 = _ref$12.$val;
+					newSel = new ast.SelectorExpr.Ptr(c.newIdent("this.$target", (_entry$13 = c.p.info.Types[x$2.X.$key()], _entry$13 !== undefined ? _entry$13.v : new types.TypeAndValue.Ptr()).Type), x$2.Sel);
+					_key = newSel; (c.p.info.Selections || $throwRuntimeError("assignment to entry in nil map"))[_key.$key()] = { k: _key, v: (_entry$14 = c.p.info.Selections[x$2.$key()], _entry$14 !== undefined ? _entry$14.v : ($ptrType(types.Selection)).nil) };
 					return c.formatExpr("new %s(function() { return %e; }, function($v) { %s }, %e)", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), newSel, new $String(c.translateAssign(newSel, "$v", exprType, false)), x$2.X]));
-				} else if ($assertType(_ref$10, ($ptrType(ast.IndexExpr)), true)[1]) {
-					x$2 = _ref$10.$val;
-					newIndex = new ast.IndexExpr.Ptr(c.newIdent("this.$target", (_entry$11 = c.p.info.Types[x$2.X.$key()], _entry$11 !== undefined ? _entry$11.v : new types.TypeAndValue.Ptr()).Type), 0, x$2.Index, 0);
+				} else if ($assertType(_ref$12, ($ptrType(ast.IndexExpr)), true)[1]) {
+					x$2 = _ref$12.$val;
+					newIndex = new ast.IndexExpr.Ptr(c.newIdent("this.$target", (_entry$15 = c.p.info.Types[x$2.X.$key()], _entry$15 !== undefined ? _entry$15.v : new types.TypeAndValue.Ptr()).Type), 0, x$2.Index, 0);
 					return c.formatExpr("new %s(function() { return %e; }, function($v) { %s }, %e)", new ($sliceType($emptyInterface))([new $String(c.typeName(exprType)), newIndex, new $String(c.translateAssign(newIndex, "$v", exprType, false)), x$2.X]));
-				} else if ($assertType(_ref$10, ($ptrType(ast.StarExpr)), true)[1]) {
-					x$2 = _ref$10.$val;
+				} else if ($assertType(_ref$12, ($ptrType(ast.StarExpr)), true)[1]) {
+					x$2 = _ref$12.$val;
 					return c.translateExpr(x$2.X);
 				} else {
-					x$2 = _ref$10;
+					x$2 = _ref$12;
 					$panic(new $String(fmt.Sprintf("Unhandled: %T\n", new ($sliceType($emptyInterface))([x$2]))));
 				}
-			} else if (_ref$8 === 36) {
-				call = new ast.CallExpr.Ptr(c.newIdent("$recv", types.NewSignature(($ptrType(types.Scope)).nil, ($ptrType(types.Var)).nil, types.NewTuple(new ($sliceType(($ptrType(types.Var))))([types.NewVar(0, ($ptrType(types.Package)).nil, "", t$1)])), types.NewTuple(new ($sliceType(($ptrType(types.Var))))([types.NewVar(0, ($ptrType(types.Package)).nil, "", exprType), types.NewVar(0, ($ptrType(types.Package)).nil, "", types.Typ[1])])), false)), 0, new ($sliceType(ast.Expr))([e.X]), 0, 0);
+			} else if (_ref$10 === 36) {
+				call = new ast.CallExpr.Ptr(c.newIdent("$recv", types.NewSignature(($ptrType(types.Scope)).nil, ($ptrType(types.Var)).nil, types.NewTuple(new ($sliceType(($ptrType(types.Var))))([types.NewVar(0, ($ptrType(types.Package)).nil, "", t$1)])), types.NewTuple(new ($sliceType(($ptrType(types.Var))))([types.NewVar(0, ($ptrType(types.Package)).nil, "", exprType), types.NewVar(0, ($ptrType(types.Package)).nil, "", types.Typ[1])])), false)), 0, new ($sliceType(ast.Expr))([e$1.X]), 0, 0);
 				_key$1 = call; (c.blocking || $throwRuntimeError("assignment to entry in nil map"))[_key$1.$key()] = { k: _key$1, v: true };
 				_tuple$8 = $assertType(exprType, ($ptrType(types.Tuple)), true); isTuple = _tuple$8[1];
 				if (isTuple) {
@@ -49879,26 +49958,26 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				return c.formatExpr("%e[0]", new ($sliceType($emptyInterface))([call]));
 			}
 			basic$1 = $assertType(t$1.Underlying(), ($ptrType(types.Basic)));
-			_ref$11 = e.Op;
-			if (_ref$11 === 12) {
-				return c.translateExpr(e.X);
-			} else if (_ref$11 === 13) {
+			_ref$13 = e$1.Op;
+			if (_ref$13 === 12) {
+				return c.translateExpr(e$1.X);
+			} else if (_ref$13 === 13) {
 				if (is64Bit(basic$1)) {
-					return c.formatExpr("new %1s(-%2h, -%2l)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e.X]));
+					return c.formatExpr("new %1s(-%2h, -%2l)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e$1.X]));
 				} else if (!(((basic$1.Info() & 16) === 0))) {
-					return c.formatExpr("new %1s(-%2r, -%2i)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e.X]));
+					return c.formatExpr("new %1s(-%2r, -%2i)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e$1.X]));
 				} else if (!(((basic$1.Info() & 4) === 0))) {
-					return c.fixNumber(c.formatExpr("-%e", new ($sliceType($emptyInterface))([e.X])), basic$1);
+					return c.fixNumber(c.formatExpr("-%e", new ($sliceType($emptyInterface))([e$1.X])), basic$1);
 				} else {
-					return c.formatExpr("-%e", new ($sliceType($emptyInterface))([e.X]));
+					return c.formatExpr("-%e", new ($sliceType($emptyInterface))([e$1.X]));
 				}
-			} else if (_ref$11 === 19) {
+			} else if (_ref$13 === 19) {
 				if (is64Bit(basic$1)) {
-					return c.formatExpr("new %1s(~%2h, ~%2l >>> 0)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e.X]));
+					return c.formatExpr("new %1s(~%2h, ~%2l >>> 0)", new ($sliceType($emptyInterface))([new $String(c.typeName(t$1)), e$1.X]));
 				}
-				return c.fixNumber(c.formatExpr("~%e", new ($sliceType($emptyInterface))([e.X])), basic$1);
-			} else if (_ref$11 === 43) {
-				x$3 = c.translateExpr(e.X);
+				return c.fixNumber(c.formatExpr("~%e", new ($sliceType($emptyInterface))([e$1.X])), basic$1);
+			} else if (_ref$13 === 43) {
+				x$3 = c.translateExpr(e$1.X);
 				if (x$3.String() === "true") {
 					return c.formatExpr("false", new ($sliceType($emptyInterface))([]));
 				}
@@ -49907,15 +49986,15 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				}
 				return c.formatExpr("!%s", new ($sliceType($emptyInterface))([x$3]));
 			} else {
-				$panic(new token.Token(e.Op));
+				$panic(new token.Token(e$1.Op));
 			}
-		} else if ($assertType(_ref, ($ptrType(ast.BinaryExpr)), true)[1]) {
-			e = _ref.$val;
-			if (e.Op === 44) {
-				return c.formatExpr("!(%s)", new ($sliceType($emptyInterface))([c.translateExpr(new ast.BinaryExpr.Ptr(e.X, 0, 39, e.Y))]));
+		} else if ($assertType(_ref$2, ($ptrType(ast.BinaryExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			if (e$1.Op === 44) {
+				return c.formatExpr("!(%s)", new ($sliceType($emptyInterface))([c.translateExpr(new ast.BinaryExpr.Ptr(e$1.X, 0, 39, e$1.Y))]));
 			}
-			t$2 = (_entry$12 = c.p.info.Types[e.X.$key()], _entry$12 !== undefined ? _entry$12.v : new types.TypeAndValue.Ptr()).Type;
-			t2 = (_entry$13 = c.p.info.Types[e.Y.$key()], _entry$13 !== undefined ? _entry$13.v : new types.TypeAndValue.Ptr()).Type;
+			t$2 = (_entry$16 = c.p.info.Types[e$1.X.$key()], _entry$16 !== undefined ? _entry$16.v : new types.TypeAndValue.Ptr()).Type;
+			t2 = (_entry$17 = c.p.info.Types[e$1.Y.$key()], _entry$17 !== undefined ? _entry$17.v : new types.TypeAndValue.Ptr()).Type;
 			_tuple$9 = $assertType(t2.Underlying(), ($ptrType(types.Interface)), true); isInterface = _tuple$9[1];
 			if (isInterface) {
 				t$2 = t2;
@@ -49923,287 +50002,265 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 			_tuple$10 = $assertType(t$2.Underlying(), ($ptrType(types.Basic)), true); basic$2 = _tuple$10[0]; isBasic = _tuple$10[1];
 			if (isBasic && !(((basic$2.Info() & 26) === 0))) {
 				if (is64Bit(basic$2)) {
-					_ref$12 = e.Op;
-					if (_ref$12 === 14) {
-						return c.formatExpr("$mul64(%e, %e)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 15) {
-						return c.formatExpr("$div64(%e, %e, false)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 16) {
-						return c.formatExpr("$div64(%e, %e, true)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 20) {
-						return c.formatExpr("$shiftLeft64(%e, %f)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 21) {
-						return c.formatExpr("$shiftRight%s(%e, %f)", new ($sliceType($emptyInterface))([new $String(toJavaScriptType(basic$2)), e.X, e.Y]));
-					} else if (_ref$12 === 39) {
-						return c.formatExpr("(%1h === %2h && %1l === %2l)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 40) {
-						return c.formatExpr("(%1h < %2h || (%1h === %2h && %1l < %2l))", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 45) {
-						return c.formatExpr("(%1h < %2h || (%1h === %2h && %1l <= %2l))", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 41) {
-						return c.formatExpr("(%1h > %2h || (%1h === %2h && %1l > %2l))", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 46) {
-						return c.formatExpr("(%1h > %2h || (%1h === %2h && %1l >= %2l))", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$12 === 12 || _ref$12 === 13) {
-						return c.formatExpr("new %3s(%1h %4t %2h, %1l %4t %2l)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2)), new token.Token(e.Op)]));
-					} else if (_ref$12 === 17 || _ref$12 === 18 || _ref$12 === 19) {
-						return c.formatExpr("new %3s(%1h %4t %2h, (%1l %4t %2l) >>> 0)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2)), new token.Token(e.Op)]));
-					} else if (_ref$12 === 22) {
-						return c.formatExpr("new %3s(%1h &~ %2h, (%1l &~ %2l) >>> 0)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2))]));
+					_ref$14 = e$1.Op;
+					if (_ref$14 === 14) {
+						return c.formatExpr("$mul64(%e, %e)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 15) {
+						return c.formatExpr("$div64(%e, %e, false)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 16) {
+						return c.formatExpr("$div64(%e, %e, true)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 20) {
+						return c.formatExpr("$shiftLeft64(%e, %f)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 21) {
+						return c.formatExpr("$shiftRight%s(%e, %f)", new ($sliceType($emptyInterface))([new $String(toJavaScriptType(basic$2)), e$1.X, e$1.Y]));
+					} else if (_ref$14 === 39) {
+						return c.formatExpr("(%1h === %2h && %1l === %2l)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 40) {
+						return c.formatExpr("(%1h < %2h || (%1h === %2h && %1l < %2l))", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 45) {
+						return c.formatExpr("(%1h < %2h || (%1h === %2h && %1l <= %2l))", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 41) {
+						return c.formatExpr("(%1h > %2h || (%1h === %2h && %1l > %2l))", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 46) {
+						return c.formatExpr("(%1h > %2h || (%1h === %2h && %1l >= %2l))", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$14 === 12 || _ref$14 === 13) {
+						return c.formatExpr("new %3s(%1h %4t %2h, %1l %4t %2l)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2)), new token.Token(e$1.Op)]));
+					} else if (_ref$14 === 17 || _ref$14 === 18 || _ref$14 === 19) {
+						return c.formatExpr("new %3s(%1h %4t %2h, (%1l %4t %2l) >>> 0)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2)), new token.Token(e$1.Op)]));
+					} else if (_ref$14 === 22) {
+						return c.formatExpr("new %3s(%1h &~ %2h, (%1l &~ %2l) >>> 0)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2))]));
 					} else {
-						$panic(new token.Token(e.Op));
+						$panic(new token.Token(e$1.Op));
 					}
 				}
 				if (!(((basic$2.Info() & 16) === 0))) {
-					_ref$13 = e.Op;
-					if (_ref$13 === 39) {
+					_ref$15 = e$1.Op;
+					if (_ref$15 === 39) {
 						if (basic$2.Kind() === 15) {
-							return c.formatExpr("($float32IsEqual(%1r, %2r) && $float32IsEqual(%1i, %2i))", new ($sliceType($emptyInterface))([e.X, e.Y]));
+							return c.formatExpr("($float32IsEqual(%1r, %2r) && $float32IsEqual(%1i, %2i))", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
 						}
-						return c.formatExpr("(%1r === %2r && %1i === %2i)", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$13 === 12 || _ref$13 === 13) {
-						return c.formatExpr("new %3s(%1r %4t %2r, %1i %4t %2i)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2)), new token.Token(e.Op)]));
-					} else if (_ref$13 === 14) {
-						return c.formatExpr("new %3s(%1r * %2r - %1i * %2i, %1r * %2i + %1i * %2r)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2))]));
-					} else if (_ref$13 === 15) {
-						return c.formatExpr("$divComplex(%e, %e)", new ($sliceType($emptyInterface))([e.X, e.Y]));
+						return c.formatExpr("(%1r === %2r && %1i === %2i)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$15 === 12 || _ref$15 === 13) {
+						return c.formatExpr("new %3s(%1r %4t %2r, %1i %4t %2i)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2)), new token.Token(e$1.Op)]));
+					} else if (_ref$15 === 14) {
+						return c.formatExpr("new %3s(%1r * %2r - %1i * %2i, %1r * %2i + %1i * %2r)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2))]));
+					} else if (_ref$15 === 15) {
+						return c.formatExpr("$divComplex(%e, %e)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
 					} else {
-						$panic(new token.Token(e.Op));
+						$panic(new token.Token(e$1.Op));
 					}
 				}
-				_ref$14 = e.Op;
-				if (_ref$14 === 39) {
+				_ref$16 = e$1.Op;
+				if (_ref$16 === 39) {
 					if (basic$2.Kind() === 13) {
-						return c.formatParenExpr("$float32IsEqual(%e, %e)", new ($sliceType($emptyInterface))([e.X, e.Y]));
+						return c.formatParenExpr("$float32IsEqual(%e, %e)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
 					}
-					return c.formatParenExpr("%e === %e", new ($sliceType($emptyInterface))([e.X, e.Y]));
-				} else if (_ref$14 === 40 || _ref$14 === 45 || _ref$14 === 41 || _ref$14 === 46) {
-					return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y]));
-				} else if (_ref$14 === 12 || _ref$14 === 13) {
+					return c.formatParenExpr("%e === %e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+				} else if (_ref$16 === 40 || _ref$16 === 45 || _ref$16 === 41 || _ref$16 === 46) {
+					return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y]));
+				} else if (_ref$16 === 12 || _ref$16 === 13) {
 					if (!(((basic$2.Info() & 2) === 0))) {
-						return c.fixNumber(c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y])), basic$2);
+						return c.fixNumber(c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y])), basic$2);
 					}
-					return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y]));
-				} else if (_ref$14 === 14) {
-					_ref$15 = basic$2.Kind();
-					if (_ref$15 === 5 || _ref$15 === 2) {
-						return c.formatParenExpr("(((%1e >>> 16 << 16) * %2e >> 0) + (%1e << 16 >>> 16) * %2e) >> 0", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$15 === 10 || _ref$15 === 7 || _ref$15 === 12) {
-						return c.formatParenExpr("(((%1e >>> 16 << 16) * %2e >>> 0) + (%1e << 16 >>> 16) * %2e) >>> 0", new ($sliceType($emptyInterface))([e.X, e.Y]));
-					} else if (_ref$15 === 13 || _ref$15 === 14) {
-						return c.formatExpr("%e * %e", new ($sliceType($emptyInterface))([e.X, e.Y]));
+					return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y]));
+				} else if (_ref$16 === 14) {
+					_ref$17 = basic$2.Kind();
+					if (_ref$17 === 5 || _ref$17 === 2) {
+						return c.formatParenExpr("(((%1e >>> 16 << 16) * %2e >> 0) + (%1e << 16 >>> 16) * %2e) >> 0", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$17 === 10 || _ref$17 === 7 || _ref$17 === 12) {
+						return c.formatParenExpr("(((%1e >>> 16 << 16) * %2e >>> 0) + (%1e << 16 >>> 16) * %2e) >>> 0", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+					} else if (_ref$17 === 13 || _ref$17 === 14) {
+						return c.formatExpr("%e * %e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
 					} else {
-						return c.fixNumber(c.formatExpr("%e * %e", new ($sliceType($emptyInterface))([e.X, e.Y])), basic$2);
+						return c.fixNumber(c.formatExpr("%e * %e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y])), basic$2);
 					}
-				} else if (_ref$14 === 15) {
+				} else if (_ref$16 === 15) {
 					if (!(((basic$2.Info() & 2) === 0))) {
 						shift = ">>";
 						if (!(((basic$2.Info() & 4) === 0))) {
 							shift = ">>>";
 						}
-						return c.formatExpr("(%1s = %2e / %3e, (%1s === %1s && %1s !== 1/0 && %1s !== -1/0) ? %1s %4s 0 : $throwRuntimeError(\"integer divide by zero\"))", new ($sliceType($emptyInterface))([new $String(c.newVariable("_q")), e.X, e.Y, new $String(shift)]));
+						return c.formatExpr("(%1s = %2e / %3e, (%1s === %1s && %1s !== 1/0 && %1s !== -1/0) ? %1s %4s 0 : $throwRuntimeError(\"integer divide by zero\"))", new ($sliceType($emptyInterface))([new $String(c.newVariable("_q")), e$1.X, e$1.Y, new $String(shift)]));
 					}
-					return c.formatExpr("%e / %e", new ($sliceType($emptyInterface))([e.X, e.Y]));
-				} else if (_ref$14 === 16) {
-					return c.formatExpr("(%1s = %2e %% %3e, %1s === %1s ? %1s : $throwRuntimeError(\"integer divide by zero\"))", new ($sliceType($emptyInterface))([new $String(c.newVariable("_r")), e.X, e.Y]));
-				} else if (_ref$14 === 20 || _ref$14 === 21) {
-					op = (new token.Token(e.Op)).String();
-					if ((e.Op === 21) && !(((basic$2.Info() & 4) === 0))) {
+					return c.formatExpr("%e / %e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+				} else if (_ref$16 === 16) {
+					return c.formatExpr("(%1s = %2e %% %3e, %1s === %1s ? %1s : $throwRuntimeError(\"integer divide by zero\"))", new ($sliceType($emptyInterface))([new $String(c.newVariable("_r")), e$1.X, e$1.Y]));
+				} else if (_ref$16 === 20 || _ref$16 === 21) {
+					op = (new token.Token(e$1.Op)).String();
+					if ((e$1.Op === 21) && !(((basic$2.Info() & 4) === 0))) {
 						op = ">>>";
 					}
-					if (!($interfaceIsEqual((_entry$14 = c.p.info.Types[e.Y.$key()], _entry$14 !== undefined ? _entry$14.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil))) {
-						return c.fixNumber(c.formatExpr("%e %s %e", new ($sliceType($emptyInterface))([e.X, new $String(op), e.Y])), basic$2);
+					if (!($interfaceIsEqual((_entry$18 = c.p.info.Types[e$1.Y.$key()], _entry$18 !== undefined ? _entry$18.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil))) {
+						return c.fixNumber(c.formatExpr("%e %s %e", new ($sliceType($emptyInterface))([e$1.X, new $String(op), e$1.Y])), basic$2);
 					}
-					if ((e.Op === 21) && ((basic$2.Info() & 4) === 0)) {
-						return c.fixNumber(c.formatParenExpr("%e >> $min(%e, 31)", new ($sliceType($emptyInterface))([e.X, e.Y])), basic$2);
+					if ((e$1.Op === 21) && ((basic$2.Info() & 4) === 0)) {
+						return c.fixNumber(c.formatParenExpr("%e >> $min(%e, 31)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y])), basic$2);
 					}
 					y = c.newVariable("y");
-					return c.fixNumber(c.formatExpr("(%s = %s, %s < 32 ? (%e %s %s) : 0)", new ($sliceType($emptyInterface))([new $String(y), c.translateImplicitConversion(e.Y, types.Typ[7]), new $String(y), e.X, new $String(op), new $String(y)])), basic$2);
-				} else if (_ref$14 === 17 || _ref$14 === 18) {
+					return c.fixNumber(c.formatExpr("(%s = %s, %s < 32 ? (%e %s %s) : 0)", new ($sliceType($emptyInterface))([new $String(y), c.translateImplicitConversion(e$1.Y, types.Typ[7]), new $String(y), e$1.X, new $String(op), new $String(y)])), basic$2);
+				} else if (_ref$16 === 17 || _ref$16 === 18) {
 					if (!(((basic$2.Info() & 4) === 0))) {
-						return c.formatParenExpr("(%e %t %e) >>> 0", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y]));
+						return c.formatParenExpr("(%e %t %e) >>> 0", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y]));
 					}
-					return c.formatParenExpr("%e %t %e", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y]));
-				} else if (_ref$14 === 22) {
-					return c.formatParenExpr("%e & ~%e", new ($sliceType($emptyInterface))([e.X, e.Y]));
-				} else if (_ref$14 === 19) {
-					return c.fixNumber(c.formatParenExpr("%e ^ %e", new ($sliceType($emptyInterface))([e.X, e.Y])), basic$2);
+					return c.formatParenExpr("%e %t %e", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y]));
+				} else if (_ref$16 === 22) {
+					return c.formatParenExpr("%e & ~%e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y]));
+				} else if (_ref$16 === 19) {
+					return c.fixNumber(c.formatParenExpr("%e ^ %e", new ($sliceType($emptyInterface))([e$1.X, e$1.Y])), basic$2);
 				} else {
-					$panic(new token.Token(e.Op));
+					$panic(new token.Token(e$1.Op));
 				}
 			}
-			_ref$16 = e.Op;
-			if (_ref$16 === 12 || _ref$16 === 40 || _ref$16 === 45 || _ref$16 === 41 || _ref$16 === 46) {
-				return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e.X, new token.Token(e.Op), e.Y]));
-			} else if (_ref$16 === 34) {
-				x$4 = c.translateExpr(e.X);
-				y$1 = c.translateExpr(e.Y);
+			_ref$18 = e$1.Op;
+			if (_ref$18 === 12 || _ref$18 === 40 || _ref$18 === 45 || _ref$18 === 41 || _ref$18 === 46) {
+				return c.formatExpr("%e %t %e", new ($sliceType($emptyInterface))([e$1.X, new token.Token(e$1.Op), e$1.Y]));
+			} else if (_ref$18 === 34) {
+				x$4 = c.translateExpr(e$1.X);
+				y$1 = c.translateExpr(e$1.Y);
 				if (x$4.String() === "false") {
 					return c.formatExpr("false", new ($sliceType($emptyInterface))([]));
 				}
 				return c.formatExpr("%s && %s", new ($sliceType($emptyInterface))([x$4, y$1]));
-			} else if (_ref$16 === 35) {
-				x$5 = c.translateExpr(e.X);
-				y$2 = c.translateExpr(e.Y);
+			} else if (_ref$18 === 35) {
+				x$5 = c.translateExpr(e$1.X);
+				y$2 = c.translateExpr(e$1.Y);
 				if (x$5.String() === "true") {
 					return c.formatExpr("true", new ($sliceType($emptyInterface))([]));
 				}
 				return c.formatExpr("%s || %s", new ($sliceType($emptyInterface))([x$5, y$2]));
-			} else if (_ref$16 === 39) {
-				_ref$17 = t$2.Underlying();
-				if ($assertType(_ref$17, ($ptrType(types.Array)), true)[1] || $assertType(_ref$17, ($ptrType(types.Struct)), true)[1]) {
-					u = _ref$17;
-					return c.formatExpr("$equal(%e, %e, %s)", new ($sliceType($emptyInterface))([e.X, e.Y, new $String(c.typeName(t$2))]));
-				} else if ($assertType(_ref$17, ($ptrType(types.Interface)), true)[1]) {
-					u = _ref$17.$val;
+			} else if (_ref$18 === 39) {
+				_ref$19 = t$2.Underlying();
+				if ($assertType(_ref$19, ($ptrType(types.Array)), true)[1] || $assertType(_ref$19, ($ptrType(types.Struct)), true)[1]) {
+					u = _ref$19;
+					return c.formatExpr("$equal(%e, %e, %s)", new ($sliceType($emptyInterface))([e$1.X, e$1.Y, new $String(c.typeName(t$2))]));
+				} else if ($assertType(_ref$19, ($ptrType(types.Interface)), true)[1]) {
+					u = _ref$19.$val;
 					if (isJsObject(t$2)) {
-						return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2)]));
+						return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2)]));
 					}
-					return c.formatExpr("$interfaceIsEqual(%s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2)]));
-				} else if ($assertType(_ref$17, ($ptrType(types.Pointer)), true)[1]) {
-					u = _ref$17.$val;
-					_ref$18 = u.Elem().Underlying();
-					if ($assertType(_ref$18, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$18, ($ptrType(types.Interface)), true)[1]) {
-						return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2)]));
-					} else if ($assertType(_ref$18, ($ptrType(types.Array)), true)[1]) {
-						return c.formatExpr("$equal(%s, %s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2), new $String(c.typeName(u.Elem()))]));
+					return c.formatExpr("$interfaceIsEqual(%s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2)]));
+				} else if ($assertType(_ref$19, ($ptrType(types.Pointer)), true)[1]) {
+					u = _ref$19.$val;
+					_ref$20 = u.Elem().Underlying();
+					if ($assertType(_ref$20, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$20, ($ptrType(types.Interface)), true)[1]) {
+						return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2)]));
+					} else if ($assertType(_ref$20, ($ptrType(types.Array)), true)[1]) {
+						return c.formatExpr("$equal(%s, %s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2), new $String(c.typeName(u.Elem()))]));
 					} else {
-						return c.formatExpr("$pointerIsEqual(%s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2)]));
+						return c.formatExpr("$pointerIsEqual(%s, %s)", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2)]));
 					}
 				} else {
-					u = _ref$17;
-					return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e.X, t$2), c.translateImplicitConversion(e.Y, t$2)]));
+					u = _ref$19;
+					return c.formatExpr("%s === %s", new ($sliceType($emptyInterface))([c.translateImplicitConversion(e$1.X, t$2), c.translateImplicitConversion(e$1.Y, t$2)]));
 				}
 			} else {
-				$panic(new token.Token(e.Op));
+				$panic(new token.Token(e$1.Op));
 			}
-		} else if ($assertType(_ref, ($ptrType(ast.ParenExpr)), true)[1]) {
-			e = _ref.$val;
-			x$6 = c.translateExpr(e.X);
+		} else if ($assertType(_ref$2, ($ptrType(ast.ParenExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			x$6 = c.translateExpr(e$1.X);
 			if (x$6.String() === "true" || x$6.String() === "false") {
 				return x$6;
 			}
 			return c.formatParenExpr("%s", new ($sliceType($emptyInterface))([x$6]));
-		} else if ($assertType(_ref, ($ptrType(ast.IndexExpr)), true)[1]) {
-			e = _ref.$val;
-			_ref$19 = (_entry$15 = c.p.info.Types[e.X.$key()], _entry$15 !== undefined ? _entry$15.v : new types.TypeAndValue.Ptr()).Type.Underlying();
-			if ($assertType(_ref$19, ($ptrType(types.Array)), true)[1] || $assertType(_ref$19, ($ptrType(types.Pointer)), true)[1]) {
-				t$3 = _ref$19;
+		} else if ($assertType(_ref$2, ($ptrType(ast.IndexExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			_ref$21 = (_entry$19 = c.p.info.Types[e$1.X.$key()], _entry$19 !== undefined ? _entry$19.v : new types.TypeAndValue.Ptr()).Type.Underlying();
+			if ($assertType(_ref$21, ($ptrType(types.Array)), true)[1] || $assertType(_ref$21, ($ptrType(types.Pointer)), true)[1]) {
+				t$3 = _ref$21;
 				pattern = "%1e[%2f]";
-				if ($interfaceIsEqual((_entry$16 = c.p.info.Types[e.Index.$key()], _entry$16 !== undefined ? _entry$16.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil)) {
+				if ($interfaceIsEqual((_entry$20 = c.p.info.Types[e$1.Index.$key()], _entry$20 !== undefined ? _entry$20.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil)) {
 					pattern = "((%2f < 0 || %2f >= %1e.length) ? $throwRuntimeError(\"index out of range\") : " + pattern + ")";
 				}
 				_tuple$11 = $assertType(t$3, ($ptrType(types.Pointer)), true); ok = _tuple$11[1];
 				if (ok) {
 					pattern = "(%1e.nilCheck, " + pattern + ")";
 				}
-				return c.formatExpr(pattern, new ($sliceType($emptyInterface))([e.X, e.Index]));
-			} else if ($assertType(_ref$19, ($ptrType(types.Slice)), true)[1]) {
-				t$3 = _ref$19.$val;
-				return c.formatExpr("((%2f < 0 || %2f >= %1e.$length) ? $throwRuntimeError(\"index out of range\") : %1e.$array[%1e.$offset + %2f])", new ($sliceType($emptyInterface))([e.X, e.Index]));
-			} else if ($assertType(_ref$19, ($ptrType(types.Map)), true)[1]) {
-				t$3 = _ref$19.$val;
-				key = c.makeKey(e.Index, t$3.Key());
+				return c.formatExpr(pattern, new ($sliceType($emptyInterface))([e$1.X, e$1.Index]));
+			} else if ($assertType(_ref$21, ($ptrType(types.Slice)), true)[1]) {
+				t$3 = _ref$21.$val;
+				return c.formatExpr("((%2f < 0 || %2f >= %1e.$length) ? $throwRuntimeError(\"index out of range\") : %1e.$array[%1e.$offset + %2f])", new ($sliceType($emptyInterface))([e$1.X, e$1.Index]));
+			} else if ($assertType(_ref$21, ($ptrType(types.Map)), true)[1]) {
+				t$3 = _ref$21.$val;
+				key = c.makeKey(e$1.Index, t$3.Key());
 				_tuple$12 = $assertType(exprType, ($ptrType(types.Tuple)), true); isTuple$1 = _tuple$12[1];
 				if (isTuple$1) {
-					return c.formatExpr("(%1s = %2e[%3s], %1s !== undefined ? [%1s.v, true] : [%4s, false])", new ($sliceType($emptyInterface))([new $String(c.newVariable("_entry")), e.X, new $String(key), new $String(c.zeroValue(t$3.Elem()))]));
+					return c.formatExpr("(%1s = %2e[%3s], %1s !== undefined ? [%1s.v, true] : [%4s, false])", new ($sliceType($emptyInterface))([new $String(c.newVariable("_entry")), e$1.X, new $String(key), new $String(c.zeroValue(t$3.Elem()))]));
 				}
-				return c.formatExpr("(%1s = %2e[%3s], %1s !== undefined ? %1s.v : %4s)", new ($sliceType($emptyInterface))([new $String(c.newVariable("_entry")), e.X, new $String(key), new $String(c.zeroValue(t$3.Elem()))]));
-			} else if ($assertType(_ref$19, ($ptrType(types.Basic)), true)[1]) {
-				t$3 = _ref$19.$val;
-				return c.formatExpr("%e.charCodeAt(%f)", new ($sliceType($emptyInterface))([e.X, e.Index]));
+				return c.formatExpr("(%1s = %2e[%3s], %1s !== undefined ? %1s.v : %4s)", new ($sliceType($emptyInterface))([new $String(c.newVariable("_entry")), e$1.X, new $String(key), new $String(c.zeroValue(t$3.Elem()))]));
+			} else if ($assertType(_ref$21, ($ptrType(types.Basic)), true)[1]) {
+				t$3 = _ref$21.$val;
+				return c.formatExpr("%e.charCodeAt(%f)", new ($sliceType($emptyInterface))([e$1.X, e$1.Index]));
 			} else {
-				t$3 = _ref$19;
+				t$3 = _ref$21;
 				$panic(new $String(fmt.Sprintf("Unhandled IndexExpr: %T\n", new ($sliceType($emptyInterface))([t$3]))));
 			}
-		} else if ($assertType(_ref, ($ptrType(ast.SliceExpr)), true)[1]) {
-			e = _ref.$val;
-			_tuple$13 = $assertType((_entry$17 = c.p.info.Types[e.X.$key()], _entry$17 !== undefined ? _entry$17.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Basic)), true); b = _tuple$13[0]; isBasic$1 = _tuple$13[1];
+		} else if ($assertType(_ref$2, ($ptrType(ast.SliceExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			_tuple$13 = $assertType((_entry$21 = c.p.info.Types[e$1.X.$key()], _entry$21 !== undefined ? _entry$21.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Basic)), true); b = _tuple$13[0]; isBasic$1 = _tuple$13[1];
 			if (isBasic$1 && !(((b.Info() & 32) === 0))) {
-				if ($interfaceIsEqual(e.Low, $ifaceNil) && $interfaceIsEqual(e.High, $ifaceNil)) {
-					return c.translateExpr(e.X);
-				} else if ($interfaceIsEqual(e.Low, $ifaceNil)) {
-					return c.formatExpr("%e.substring(0, %f)", new ($sliceType($emptyInterface))([e.X, e.High]));
-				} else if ($interfaceIsEqual(e.High, $ifaceNil)) {
-					return c.formatExpr("%e.substring(%f)", new ($sliceType($emptyInterface))([e.X, e.Low]));
+				if ($interfaceIsEqual(e$1.Low, $ifaceNil) && $interfaceIsEqual(e$1.High, $ifaceNil)) {
+					return c.translateExpr(e$1.X);
+				} else if ($interfaceIsEqual(e$1.Low, $ifaceNil)) {
+					return c.formatExpr("%e.substring(0, %f)", new ($sliceType($emptyInterface))([e$1.X, e$1.High]));
+				} else if ($interfaceIsEqual(e$1.High, $ifaceNil)) {
+					return c.formatExpr("%e.substring(%f)", new ($sliceType($emptyInterface))([e$1.X, e$1.Low]));
 				} else {
-					return c.formatExpr("%e.substring(%f, %f)", new ($sliceType($emptyInterface))([e.X, e.Low, e.High]));
+					return c.formatExpr("%e.substring(%f, %f)", new ($sliceType($emptyInterface))([e$1.X, e$1.Low, e$1.High]));
 				}
 			}
-			slice = c.translateConversionToSlice(e.X, exprType);
-			if ($interfaceIsEqual(e.Low, $ifaceNil) && $interfaceIsEqual(e.High, $ifaceNil)) {
+			slice = c.translateConversionToSlice(e$1.X, exprType);
+			if ($interfaceIsEqual(e$1.Low, $ifaceNil) && $interfaceIsEqual(e$1.High, $ifaceNil)) {
 				return c.formatExpr("%s", new ($sliceType($emptyInterface))([slice]));
-			} else if ($interfaceIsEqual(e.Low, $ifaceNil)) {
-				if (!($interfaceIsEqual(e.Max, $ifaceNil))) {
-					return c.formatExpr("$subslice(%s, 0, %f, %f)", new ($sliceType($emptyInterface))([slice, e.High, e.Max]));
+			} else if ($interfaceIsEqual(e$1.Low, $ifaceNil)) {
+				if (!($interfaceIsEqual(e$1.Max, $ifaceNil))) {
+					return c.formatExpr("$subslice(%s, 0, %f, %f)", new ($sliceType($emptyInterface))([slice, e$1.High, e$1.Max]));
 				}
-				return c.formatExpr("$subslice(%s, 0, %f)", new ($sliceType($emptyInterface))([slice, e.High]));
-			} else if ($interfaceIsEqual(e.High, $ifaceNil)) {
-				return c.formatExpr("$subslice(%s, %f)", new ($sliceType($emptyInterface))([slice, e.Low]));
+				return c.formatExpr("$subslice(%s, 0, %f)", new ($sliceType($emptyInterface))([slice, e$1.High]));
+			} else if ($interfaceIsEqual(e$1.High, $ifaceNil)) {
+				return c.formatExpr("$subslice(%s, %f)", new ($sliceType($emptyInterface))([slice, e$1.Low]));
 			} else {
-				if (!($interfaceIsEqual(e.Max, $ifaceNil))) {
-					return c.formatExpr("$subslice(%s, %f, %f, %f)", new ($sliceType($emptyInterface))([slice, e.Low, e.High, e.Max]));
+				if (!($interfaceIsEqual(e$1.Max, $ifaceNil))) {
+					return c.formatExpr("$subslice(%s, %f, %f, %f)", new ($sliceType($emptyInterface))([slice, e$1.Low, e$1.High, e$1.Max]));
 				}
-				return c.formatExpr("$subslice(%s, %f, %f)", new ($sliceType($emptyInterface))([slice, e.Low, e.High]));
+				return c.formatExpr("$subslice(%s, %f, %f)", new ($sliceType($emptyInterface))([slice, e$1.Low, e$1.High]));
 			}
-		} else if ($assertType(_ref, ($ptrType(ast.SelectorExpr)), true)[1]) {
-			e = _ref.$val;
-			_tuple$14 = (_entry$18 = c.p.info.Selections[e.$key()], _entry$18 !== undefined ? [_entry$18.v, true] : [($ptrType(types.Selection)).nil, false]); sel = _tuple$14[0]; ok$1 = _tuple$14[1];
+		} else if ($assertType(_ref$2, ($ptrType(ast.SelectorExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			_tuple$14 = (_entry$22 = c.p.info.Selections[e$1.$key()], _entry$22 !== undefined ? [_entry$22.v, true] : [($ptrType(types.Selection)).nil, false]); sel = _tuple$14[0]; ok$1 = _tuple$14[1];
 			if (!ok$1) {
-				obj$2 = (_entry$19 = c.p.info.Uses[e.Sel.$key()], _entry$19 !== undefined ? _entry$19.v : $ifaceNil);
-				if (isJsPackage(obj$2.Pkg())) {
-					_ref$20 = obj$2.Name();
-					if (_ref$20 === "Global") {
-						return c.formatExpr("$global", new ($sliceType($emptyInterface))([]));
-					} else if (_ref$20 === "This") {
-						if (!(($keys(c.flattened).length === 0))) {
-							return c.formatExpr("$this", new ($sliceType($emptyInterface))([]));
-						}
-						return c.formatExpr("this", new ($sliceType($emptyInterface))([]));
-					} else if (_ref$20 === "Arguments") {
-						args = "arguments";
-						if (!(($keys(c.flattened).length === 0))) {
-							args = "$args";
-						}
-						return c.formatExpr("new ($sliceType(%s.Object))($global.Array.prototype.slice.call(%s, []))", new ($sliceType($emptyInterface))([new $String((_entry$20 = c.p.pkgVars["github.com/gopherjs/gopherjs/js"], _entry$20 !== undefined ? _entry$20.v : "")), new $String(args)]));
-					} else if (_ref$20 === "Module") {
-						return c.formatExpr("$module", new ($sliceType($emptyInterface))([]));
-					} else {
-						$panic(new $String("Invalid js package object: " + obj$2.Name()));
-					}
-				}
-				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.objectName(obj$2))]));
+				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.objectName(obj))]));
 			}
-			_ref$21 = sel.Kind();
-			if (_ref$21 === 0) {
+			_ref$22 = sel.Kind();
+			if (_ref$22 === 0) {
 				_tuple$15 = c.translateSelection(sel); fields = _tuple$15[0]; jsTag = _tuple$15[1];
 				if (!(jsTag === "")) {
 					_tuple$16 = $assertType(sel.Type(), ($ptrType(types.Signature)), true); ok$2 = _tuple$16[1];
 					if (ok$2) {
-						return c.formatExpr("$internalize(%1e.%2s.%3s, %4s, %1e.%2s)", new ($sliceType($emptyInterface))([e.X, new $String(strings.Join(fields, ".")), new $String(jsTag), new $String(c.typeName(sel.Type()))]));
+						return c.formatExpr("$internalize(%1e.%2s.%3s, %4s, %1e.%2s)", new ($sliceType($emptyInterface))([e$1.X, new $String(strings.Join(fields, ".")), new $String(jsTag), new $String(c.typeName(sel.Type()))]));
 					}
-					return c.internalize(c.formatExpr("%e.%s.%s", new ($sliceType($emptyInterface))([e.X, new $String(strings.Join(fields, ".")), new $String(jsTag)])), sel.Type());
+					return c.internalize(c.formatExpr("%e.%s.%s", new ($sliceType($emptyInterface))([e$1.X, new $String(strings.Join(fields, ".")), new $String(jsTag)])), sel.Type());
 				}
-				return c.formatExpr("%e.%s", new ($sliceType($emptyInterface))([e.X, new $String(strings.Join(fields, "."))]));
-			} else if (_ref$21 === 1) {
+				return c.formatExpr("%e.%s", new ($sliceType($emptyInterface))([e$1.X, new $String(strings.Join(fields, "."))]));
+			} else if (_ref$22 === 1) {
 				if (!sel.Obj().Exported()) {
 					_key$2 = sel.Obj(); (c.p.dependencies || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: true };
 				}
-				recv = c.translateExpr(e.X);
+				recv = c.translateExpr(e$1.X);
 				if (isWrapped(sel.Recv())) {
 					recv = c.formatParenExpr("new %s(%s)", new ($sliceType($emptyInterface))([new $String(c.typeName(sel.Recv())), recv]));
 				}
 				return c.formatExpr("$methodVal(%s, \"%s\")", new ($sliceType($emptyInterface))([recv, new $String($assertType(sel.Obj(), ($ptrType(types.Func))).object.Name())]));
-			} else if (_ref$21 === 2) {
+			} else if (_ref$22 === 2) {
 				if (!sel.Obj().Exported()) {
 					_key$3 = sel.Obj(); (c.p.dependencies || $throwRuntimeError("assignment to entry in nil map"))[_key$3.$key()] = { k: _key$3, v: true };
 				}
 				return c.formatExpr("$methodExpr(%s.prototype.%s)", new ($sliceType($emptyInterface))([new $String(c.typeName(sel.Recv())), new $String($assertType(sel.Obj(), ($ptrType(types.Func))).object.Name())]));
 			}
 			$panic(new $String(""));
-		} else if ($assertType(_ref, ($ptrType(ast.CallExpr)), true)[1]) {
-			e = _ref.$val;
-			plainFun = e.Fun;
+		} else if ($assertType(_ref$2, ($ptrType(ast.CallExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			plainFun = e$1.Fun;
 			while (true) {
 				_tuple$17 = $assertType(plainFun, ($ptrType(ast.ParenExpr)), true); p = _tuple$17[0]; isParen = _tuple$17[1];
 				if (isParen) {
@@ -50214,84 +50271,86 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 			}
 			isType = $throwNilPointerError;
 			isType = (function(expr$1) {
-				var e$1, _ref$22, _tuple$18, _entry$21, ok$3, _tuple$19, _entry$22, ok$4;
-				_ref$22 = expr$1;
-				if ($assertType(_ref$22, ($ptrType(ast.ArrayType)), true)[1] || $assertType(_ref$22, ($ptrType(ast.ChanType)), true)[1] || $assertType(_ref$22, ($ptrType(ast.FuncType)), true)[1] || $assertType(_ref$22, ($ptrType(ast.InterfaceType)), true)[1] || $assertType(_ref$22, ($ptrType(ast.MapType)), true)[1] || $assertType(_ref$22, ($ptrType(ast.StructType)), true)[1]) {
-					e$1 = _ref$22;
+				var e$2, _ref$23, _tuple$18, _entry$23, ok$3, _tuple$19, _entry$24, ok$4;
+				_ref$23 = expr$1;
+				if ($assertType(_ref$23, ($ptrType(ast.ArrayType)), true)[1] || $assertType(_ref$23, ($ptrType(ast.ChanType)), true)[1] || $assertType(_ref$23, ($ptrType(ast.FuncType)), true)[1] || $assertType(_ref$23, ($ptrType(ast.InterfaceType)), true)[1] || $assertType(_ref$23, ($ptrType(ast.MapType)), true)[1] || $assertType(_ref$23, ($ptrType(ast.StructType)), true)[1]) {
+					e$2 = _ref$23;
 					return true;
-				} else if ($assertType(_ref$22, ($ptrType(ast.StarExpr)), true)[1]) {
-					e$1 = _ref$22.$val;
-					return isType(e$1.X);
-				} else if ($assertType(_ref$22, ($ptrType(ast.Ident)), true)[1]) {
-					e$1 = _ref$22.$val;
-					_tuple$18 = $assertType((_entry$21 = c.p.info.Uses[e$1.$key()], _entry$21 !== undefined ? _entry$21.v : $ifaceNil), ($ptrType(types.TypeName)), true); ok$3 = _tuple$18[1];
+				} else if ($assertType(_ref$23, ($ptrType(ast.StarExpr)), true)[1]) {
+					e$2 = _ref$23.$val;
+					return isType(e$2.X);
+				} else if ($assertType(_ref$23, ($ptrType(ast.Ident)), true)[1]) {
+					e$2 = _ref$23.$val;
+					_tuple$18 = $assertType((_entry$23 = c.p.info.Uses[e$2.$key()], _entry$23 !== undefined ? _entry$23.v : $ifaceNil), ($ptrType(types.TypeName)), true); ok$3 = _tuple$18[1];
 					return ok$3;
-				} else if ($assertType(_ref$22, ($ptrType(ast.SelectorExpr)), true)[1]) {
-					e$1 = _ref$22.$val;
-					_tuple$19 = $assertType((_entry$22 = c.p.info.Uses[e$1.Sel.$key()], _entry$22 !== undefined ? _entry$22.v : $ifaceNil), ($ptrType(types.TypeName)), true); ok$4 = _tuple$19[1];
+				} else if ($assertType(_ref$23, ($ptrType(ast.SelectorExpr)), true)[1]) {
+					e$2 = _ref$23.$val;
+					_tuple$19 = $assertType((_entry$24 = c.p.info.Uses[e$2.Sel.$key()], _entry$24 !== undefined ? _entry$24.v : $ifaceNil), ($ptrType(types.TypeName)), true); ok$4 = _tuple$19[1];
 					return ok$4;
-				} else if ($assertType(_ref$22, ($ptrType(ast.ParenExpr)), true)[1]) {
-					e$1 = _ref$22.$val;
-					return isType(e$1.X);
+				} else if ($assertType(_ref$23, ($ptrType(ast.ParenExpr)), true)[1]) {
+					e$2 = _ref$23.$val;
+					return isType(e$2.X);
 				} else {
-					e$1 = _ref$22;
+					e$2 = _ref$23;
 					return false;
 				}
 			});
 			if (isType(plainFun)) {
-				return c.formatExpr("%s", new ($sliceType($emptyInterface))([c.translateConversion((x$7 = e.Args, ((0 < 0 || 0 >= x$7.$length) ? $throwRuntimeError("index out of range") : x$7.$array[x$7.$offset + 0])), (_entry$21 = c.p.info.Types[plainFun.$key()], _entry$21 !== undefined ? _entry$21.v : new types.TypeAndValue.Ptr()).Type)]));
+				return c.formatExpr("%s", new ($sliceType($emptyInterface))([c.translateConversion((x$7 = e$1.Args, ((0 < 0 || 0 >= x$7.$length) ? $throwRuntimeError("index out of range") : x$7.$array[x$7.$offset + 0])), (_entry$23 = c.p.info.Types[plainFun.$key()], _entry$23 !== undefined ? _entry$23.v : new types.TypeAndValue.Ptr()).Type)]));
 			}
 			fun = ($ptrType(expression)).nil;
-			_ref$22 = plainFun;
-			switch (0) { default: if ($assertType(_ref$22, ($ptrType(ast.Ident)), true)[1]) {
-				f$1 = _ref$22.$val;
-				_tuple$18 = $assertType((_entry$22 = c.p.info.Uses[f$1.$key()], _entry$22 !== undefined ? _entry$22.v : $ifaceNil), ($ptrType(types.Builtin)), true); o = _tuple$18[0]; ok$3 = _tuple$18[1];
+			_ref$23 = plainFun;
+			switch (0) { default: if ($assertType(_ref$23, ($ptrType(ast.Ident)), true)[1]) {
+				f$1 = _ref$23.$val;
+				_tuple$18 = $assertType((_entry$24 = c.p.info.Uses[f$1.$key()], _entry$24 !== undefined ? _entry$24.v : $ifaceNil), ($ptrType(types.Builtin)), true); o = _tuple$18[0]; ok$3 = _tuple$18[1];
 				if (ok$3) {
-					return c.translateBuiltin(o.object.Name(), e.Args, (new token.Pos(e.Ellipsis)).IsValid(), exprType);
+					return c.translateBuiltin(o.object.Name(), e$1.Args, (new token.Pos(e$1.Ellipsis)).IsValid(), exprType);
 				}
 				fun = c.translateExpr(plainFun);
-			} else if ($assertType(_ref$22, ($ptrType(ast.SelectorExpr)), true)[1]) {
-				f$1 = _ref$22.$val;
-				_tuple$19 = (_entry$23 = c.p.info.Selections[f$1.$key()], _entry$23 !== undefined ? [_entry$23.v, true] : [($ptrType(types.Selection)).nil, false]); sel$1 = _tuple$19[0]; ok$4 = _tuple$19[1];
+			} else if ($assertType(_ref$23, ($ptrType(ast.SelectorExpr)), true)[1]) {
+				f$1 = _ref$23.$val;
+				_tuple$19 = (_entry$25 = c.p.info.Selections[f$1.$key()], _entry$25 !== undefined ? [_entry$25.v, true] : [($ptrType(types.Selection)).nil, false]); sel$1 = _tuple$19[0]; ok$4 = _tuple$19[1];
 				if (!ok$4) {
-					obj$3 = (_entry$24 = c.p.info.Uses[f$1.Sel.$key()], _entry$24 !== undefined ? _entry$24.v : $ifaceNil);
+					obj$3 = (_entry$26 = c.p.info.Uses[f$1.Sel.$key()], _entry$26 !== undefined ? _entry$26.v : $ifaceNil);
 					if (isJsPackage(obj$3.Pkg())) {
-						_ref$23 = obj$3.Name();
-						if (_ref$23 === "InternalObject") {
-							return c.translateExpr((x$8 = e.Args, ((0 < 0 || 0 >= x$8.$length) ? $throwRuntimeError("index out of range") : x$8.$array[x$8.$offset + 0])));
+						_ref$24 = obj$3.Name();
+						if (_ref$24 === "Debugger") {
+							return c.formatExpr("debugger", new ($sliceType($emptyInterface))([]));
+						} else if (_ref$24 === "InternalObject") {
+							return c.translateExpr((x$8 = e$1.Args, ((0 < 0 || 0 >= x$8.$length) ? $throwRuntimeError("index out of range") : x$8.$array[x$8.$offset + 0])));
 						}
 					}
 					fun = c.translateExpr(f$1);
 					break;
 				}
-				externalizeExpr = (function(e$1) {
-					var _entry$25, t$4;
-					t$4 = (_entry$25 = c.p.info.Types[e$1.$key()], _entry$25 !== undefined ? _entry$25.v : new types.TypeAndValue.Ptr()).Type;
+				externalizeExpr = (function(e$2) {
+					var _entry$27, t$4;
+					t$4 = (_entry$27 = c.p.info.Types[e$2.$key()], _entry$27 !== undefined ? _entry$27.v : new types.TypeAndValue.Ptr()).Type;
 					if (types.Identical(t$4, types.Typ[25])) {
 						return "null";
 					}
-					return c.externalize(c.translateExpr(e$1).String(), t$4);
+					return c.externalize(c.translateExpr(e$2).String(), t$4);
 				});
 				externalizeArgs = (function(args$1) {
-					var s, _ref$24, _i$6, i$3, arg;
+					var s, _ref$25, _i$6, i$3, arg;
 					s = ($sliceType($String)).make(args$1.$length);
-					_ref$24 = args$1;
+					_ref$25 = args$1;
 					_i$6 = 0;
-					while (_i$6 < _ref$24.$length) {
+					while (_i$6 < _ref$25.$length) {
 						i$3 = _i$6;
-						arg = ((_i$6 < 0 || _i$6 >= _ref$24.$length) ? $throwRuntimeError("index out of range") : _ref$24.$array[_ref$24.$offset + _i$6]);
+						arg = ((_i$6 < 0 || _i$6 >= _ref$25.$length) ? $throwRuntimeError("index out of range") : _ref$25.$array[_ref$25.$offset + _i$6]);
 						(i$3 < 0 || i$3 >= s.$length) ? $throwRuntimeError("index out of range") : s.$array[s.$offset + i$3] = externalizeExpr(arg);
 						_i$6++;
 					}
 					return strings.Join(s, ", ");
 				});
-				_ref$24 = sel$1.Kind();
-				switch (0) { default: if (_ref$24 === 1) {
+				_ref$25 = sel$1.Kind();
+				switch (0) { default: if (_ref$25 === 1) {
 					if (!sel$1.Obj().Exported()) {
 						_key$4 = sel$1.Obj(); (c.p.dependencies || $throwRuntimeError("assignment to entry in nil map"))[_key$4.$key()] = { k: _key$4, v: true };
 					}
 					methodName = sel$1.Obj().Name();
-					if ((_entry$25 = reservedKeywords[methodName], _entry$25 !== undefined ? _entry$25.v : false)) {
+					if ((_entry$27 = reservedKeywords[methodName], _entry$27 !== undefined ? _entry$27.v : false)) {
 						methodName = methodName + ("$");
 					}
 					recvType = sel$1.Recv();
@@ -50304,10 +50363,10 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 					} else {
 						recv$1 = c.translateExpr(f$1.X);
 					}
-					_ref$25 = $subslice(sel$1.Index(), 0, (sel$1.Index().$length - 1 >> 0));
+					_ref$26 = $subslice(sel$1.Index(), 0, (sel$1.Index().$length - 1 >> 0));
 					_i$6 = 0;
-					while (_i$6 < _ref$25.$length) {
-						index = ((_i$6 < 0 || _i$6 >= _ref$25.$length) ? $throwRuntimeError("index out of range") : _ref$25.$array[_ref$25.$offset + _i$6]);
+					while (_i$6 < _ref$26.$length) {
+						index = ((_i$6 < 0 || _i$6 >= _ref$26.$length) ? $throwRuntimeError("index out of range") : _ref$26.$array[_ref$26.$offset + _i$6]);
 						_tuple$22 = $assertType(recvType, ($ptrType(types.Pointer)), true); ptr = _tuple$22[0]; isPtr = _tuple$22[1];
 						if (isPtr) {
 							recvType = ptr.Elem();
@@ -50324,70 +50383,70 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 							}
 							return recv$1.String() + "." + id;
 						});
-						_ref$26 = sel$1.Obj().Name();
-						if (_ref$26 === "Get") {
-							_tuple$23 = c.identifierConstant((x$9 = e.Args, ((0 < 0 || 0 >= x$9.$length) ? $throwRuntimeError("index out of range") : x$9.$array[x$9.$offset + 0]))); id = _tuple$23[0]; ok$5 = _tuple$23[1];
+						_ref$27 = sel$1.Obj().Name();
+						if (_ref$27 === "Get") {
+							_tuple$23 = c.identifierConstant((x$9 = e$1.Args, ((0 < 0 || 0 >= x$9.$length) ? $throwRuntimeError("index out of range") : x$9.$array[x$9.$offset + 0]))); id = _tuple$23[0]; ok$5 = _tuple$23[1];
 							if (ok$5) {
 								return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(globalRef(id))]));
 							}
-							return c.formatExpr("%s[$externalize(%e, $String)]", new ($sliceType($emptyInterface))([recv$1, (x$10 = e.Args, ((0 < 0 || 0 >= x$10.$length) ? $throwRuntimeError("index out of range") : x$10.$array[x$10.$offset + 0]))]));
-						} else if (_ref$26 === "Set") {
-							_tuple$24 = c.identifierConstant((x$11 = e.Args, ((0 < 0 || 0 >= x$11.$length) ? $throwRuntimeError("index out of range") : x$11.$array[x$11.$offset + 0]))); id$1 = _tuple$24[0]; ok$6 = _tuple$24[1];
+							return c.formatExpr("%s[$externalize(%e, $String)]", new ($sliceType($emptyInterface))([recv$1, (x$10 = e$1.Args, ((0 < 0 || 0 >= x$10.$length) ? $throwRuntimeError("index out of range") : x$10.$array[x$10.$offset + 0]))]));
+						} else if (_ref$27 === "Set") {
+							_tuple$24 = c.identifierConstant((x$11 = e$1.Args, ((0 < 0 || 0 >= x$11.$length) ? $throwRuntimeError("index out of range") : x$11.$array[x$11.$offset + 0]))); id$1 = _tuple$24[0]; ok$6 = _tuple$24[1];
 							if (ok$6) {
-								return c.formatExpr("%s = %s", new ($sliceType($emptyInterface))([new $String(globalRef(id$1)), new $String(externalizeExpr((x$12 = e.Args, ((1 < 0 || 1 >= x$12.$length) ? $throwRuntimeError("index out of range") : x$12.$array[x$12.$offset + 1]))))]));
+								return c.formatExpr("%s = %s", new ($sliceType($emptyInterface))([new $String(globalRef(id$1)), new $String(externalizeExpr((x$12 = e$1.Args, ((1 < 0 || 1 >= x$12.$length) ? $throwRuntimeError("index out of range") : x$12.$array[x$12.$offset + 1]))))]));
 							}
-							return c.formatExpr("%s[$externalize(%e, $String)] = %s", new ($sliceType($emptyInterface))([recv$1, (x$13 = e.Args, ((0 < 0 || 0 >= x$13.$length) ? $throwRuntimeError("index out of range") : x$13.$array[x$13.$offset + 0])), new $String(externalizeExpr((x$14 = e.Args, ((1 < 0 || 1 >= x$14.$length) ? $throwRuntimeError("index out of range") : x$14.$array[x$14.$offset + 1]))))]));
-						} else if (_ref$26 === "Delete") {
-							return c.formatExpr("delete %s[$externalize(%e, $String)]", new ($sliceType($emptyInterface))([recv$1, (x$15 = e.Args, ((0 < 0 || 0 >= x$15.$length) ? $throwRuntimeError("index out of range") : x$15.$array[x$15.$offset + 0]))]));
-						} else if (_ref$26 === "Length") {
+							return c.formatExpr("%s[$externalize(%e, $String)] = %s", new ($sliceType($emptyInterface))([recv$1, (x$13 = e$1.Args, ((0 < 0 || 0 >= x$13.$length) ? $throwRuntimeError("index out of range") : x$13.$array[x$13.$offset + 0])), new $String(externalizeExpr((x$14 = e$1.Args, ((1 < 0 || 1 >= x$14.$length) ? $throwRuntimeError("index out of range") : x$14.$array[x$14.$offset + 1]))))]));
+						} else if (_ref$27 === "Delete") {
+							return c.formatExpr("delete %s[$externalize(%e, $String)]", new ($sliceType($emptyInterface))([recv$1, (x$15 = e$1.Args, ((0 < 0 || 0 >= x$15.$length) ? $throwRuntimeError("index out of range") : x$15.$array[x$15.$offset + 0]))]));
+						} else if (_ref$27 === "Length") {
 							return c.formatExpr("$parseInt(%s.length)", new ($sliceType($emptyInterface))([recv$1]));
-						} else if (_ref$26 === "Index") {
-							return c.formatExpr("%s[%e]", new ($sliceType($emptyInterface))([recv$1, (x$16 = e.Args, ((0 < 0 || 0 >= x$16.$length) ? $throwRuntimeError("index out of range") : x$16.$array[x$16.$offset + 0]))]));
-						} else if (_ref$26 === "SetIndex") {
-							return c.formatExpr("%s[%e] = %s", new ($sliceType($emptyInterface))([recv$1, (x$17 = e.Args, ((0 < 0 || 0 >= x$17.$length) ? $throwRuntimeError("index out of range") : x$17.$array[x$17.$offset + 0])), new $String(externalizeExpr((x$18 = e.Args, ((1 < 0 || 1 >= x$18.$length) ? $throwRuntimeError("index out of range") : x$18.$array[x$18.$offset + 1]))))]));
-						} else if (_ref$26 === "Call") {
-							_tuple$25 = c.identifierConstant((x$19 = e.Args, ((0 < 0 || 0 >= x$19.$length) ? $throwRuntimeError("index out of range") : x$19.$array[x$19.$offset + 0]))); id$2 = _tuple$25[0]; ok$7 = _tuple$25[1];
+						} else if (_ref$27 === "Index") {
+							return c.formatExpr("%s[%e]", new ($sliceType($emptyInterface))([recv$1, (x$16 = e$1.Args, ((0 < 0 || 0 >= x$16.$length) ? $throwRuntimeError("index out of range") : x$16.$array[x$16.$offset + 0]))]));
+						} else if (_ref$27 === "SetIndex") {
+							return c.formatExpr("%s[%e] = %s", new ($sliceType($emptyInterface))([recv$1, (x$17 = e$1.Args, ((0 < 0 || 0 >= x$17.$length) ? $throwRuntimeError("index out of range") : x$17.$array[x$17.$offset + 0])), new $String(externalizeExpr((x$18 = e$1.Args, ((1 < 0 || 1 >= x$18.$length) ? $throwRuntimeError("index out of range") : x$18.$array[x$18.$offset + 1]))))]));
+						} else if (_ref$27 === "Call") {
+							_tuple$25 = c.identifierConstant((x$19 = e$1.Args, ((0 < 0 || 0 >= x$19.$length) ? $throwRuntimeError("index out of range") : x$19.$array[x$19.$offset + 0]))); id$2 = _tuple$25[0]; ok$7 = _tuple$25[1];
 							if (ok$7) {
-								if ((new token.Pos(e.Ellipsis)).IsValid()) {
+								if ((new token.Pos(e$1.Ellipsis)).IsValid()) {
 									objVar = c.newVariable("obj");
-									return c.formatExpr("(%s = %s, %s.%s.apply(%s, %s))", new ($sliceType($emptyInterface))([new $String(objVar), recv$1, new $String(objVar), new $String(id$2), new $String(objVar), new $String(externalizeExpr((x$20 = e.Args, ((1 < 0 || 1 >= x$20.$length) ? $throwRuntimeError("index out of range") : x$20.$array[x$20.$offset + 1]))))]));
+									return c.formatExpr("(%s = %s, %s.%s.apply(%s, %s))", new ($sliceType($emptyInterface))([new $String(objVar), recv$1, new $String(objVar), new $String(id$2), new $String(objVar), new $String(externalizeExpr((x$20 = e$1.Args, ((1 < 0 || 1 >= x$20.$length) ? $throwRuntimeError("index out of range") : x$20.$array[x$20.$offset + 1]))))]));
 								}
-								return c.formatExpr("%s(%s)", new ($sliceType($emptyInterface))([new $String(globalRef(id$2)), new $String(externalizeArgs($subslice(e.Args, 1)))]));
+								return c.formatExpr("%s(%s)", new ($sliceType($emptyInterface))([new $String(globalRef(id$2)), new $String(externalizeArgs($subslice(e$1.Args, 1)))]));
 							}
-							if ((new token.Pos(e.Ellipsis)).IsValid()) {
+							if ((new token.Pos(e$1.Ellipsis)).IsValid()) {
 								objVar$1 = c.newVariable("obj");
-								return c.formatExpr("(%s = %s, %s[$externalize(%e, $String)].apply(%s, %s))", new ($sliceType($emptyInterface))([new $String(objVar$1), recv$1, new $String(objVar$1), (x$21 = e.Args, ((0 < 0 || 0 >= x$21.$length) ? $throwRuntimeError("index out of range") : x$21.$array[x$21.$offset + 0])), new $String(objVar$1), new $String(externalizeExpr((x$22 = e.Args, ((1 < 0 || 1 >= x$22.$length) ? $throwRuntimeError("index out of range") : x$22.$array[x$22.$offset + 1]))))]));
+								return c.formatExpr("(%s = %s, %s[$externalize(%e, $String)].apply(%s, %s))", new ($sliceType($emptyInterface))([new $String(objVar$1), recv$1, new $String(objVar$1), (x$21 = e$1.Args, ((0 < 0 || 0 >= x$21.$length) ? $throwRuntimeError("index out of range") : x$21.$array[x$21.$offset + 0])), new $String(objVar$1), new $String(externalizeExpr((x$22 = e$1.Args, ((1 < 0 || 1 >= x$22.$length) ? $throwRuntimeError("index out of range") : x$22.$array[x$22.$offset + 1]))))]));
 							}
-							return c.formatExpr("%s[$externalize(%e, $String)](%s)", new ($sliceType($emptyInterface))([recv$1, (x$23 = e.Args, ((0 < 0 || 0 >= x$23.$length) ? $throwRuntimeError("index out of range") : x$23.$array[x$23.$offset + 0])), new $String(externalizeArgs($subslice(e.Args, 1)))]));
-						} else if (_ref$26 === "Invoke") {
-							if ((new token.Pos(e.Ellipsis)).IsValid()) {
-								return c.formatExpr("%s.apply(undefined, %s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeExpr((x$24 = e.Args, ((0 < 0 || 0 >= x$24.$length) ? $throwRuntimeError("index out of range") : x$24.$array[x$24.$offset + 0]))))]));
+							return c.formatExpr("%s[$externalize(%e, $String)](%s)", new ($sliceType($emptyInterface))([recv$1, (x$23 = e$1.Args, ((0 < 0 || 0 >= x$23.$length) ? $throwRuntimeError("index out of range") : x$23.$array[x$23.$offset + 0])), new $String(externalizeArgs($subslice(e$1.Args, 1)))]));
+						} else if (_ref$27 === "Invoke") {
+							if ((new token.Pos(e$1.Ellipsis)).IsValid()) {
+								return c.formatExpr("%s.apply(undefined, %s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeExpr((x$24 = e$1.Args, ((0 < 0 || 0 >= x$24.$length) ? $throwRuntimeError("index out of range") : x$24.$array[x$24.$offset + 0]))))]));
 							}
-							return c.formatExpr("%s(%s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeArgs(e.Args))]));
-						} else if (_ref$26 === "New") {
-							if ((new token.Pos(e.Ellipsis)).IsValid()) {
-								return c.formatExpr("new ($global.Function.prototype.bind.apply(%s, [undefined].concat(%s)))", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeExpr((x$25 = e.Args, ((0 < 0 || 0 >= x$25.$length) ? $throwRuntimeError("index out of range") : x$25.$array[x$25.$offset + 0]))))]));
+							return c.formatExpr("%s(%s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeArgs(e$1.Args))]));
+						} else if (_ref$27 === "New") {
+							if ((new token.Pos(e$1.Ellipsis)).IsValid()) {
+								return c.formatExpr("new ($global.Function.prototype.bind.apply(%s, [undefined].concat(%s)))", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeExpr((x$25 = e$1.Args, ((0 < 0 || 0 >= x$25.$length) ? $throwRuntimeError("index out of range") : x$25.$array[x$25.$offset + 0]))))]));
 							}
-							return c.formatExpr("new (%s)(%s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeArgs(e.Args))]));
-						} else if (_ref$26 === "Bool") {
+							return c.formatExpr("new (%s)(%s)", new ($sliceType($emptyInterface))([recv$1, new $String(externalizeArgs(e$1.Args))]));
+						} else if (_ref$27 === "Bool") {
 							return c.internalize(recv$1, types.Typ[1]);
-						} else if (_ref$26 === "Str") {
+						} else if (_ref$27 === "Str") {
 							return c.internalize(recv$1, types.Typ[17]);
-						} else if (_ref$26 === "Int") {
+						} else if (_ref$27 === "Int") {
 							return c.internalize(recv$1, types.Typ[2]);
-						} else if (_ref$26 === "Int64") {
+						} else if (_ref$27 === "Int64") {
 							return c.internalize(recv$1, types.Typ[6]);
-						} else if (_ref$26 === "Uint64") {
+						} else if (_ref$27 === "Uint64") {
 							return c.internalize(recv$1, types.Typ[11]);
-						} else if (_ref$26 === "Float") {
+						} else if (_ref$27 === "Float") {
 							return c.internalize(recv$1, types.Typ[14]);
-						} else if (_ref$26 === "Interface") {
+						} else if (_ref$27 === "Interface") {
 							return c.internalize(recv$1, types.NewInterface(($sliceType(($ptrType(types.Func)))).nil, ($sliceType(($ptrType(types.Named)))).nil));
-						} else if (_ref$26 === "Unsafe") {
+						} else if (_ref$27 === "Unsafe") {
 							return recv$1;
-						} else if (_ref$26 === "IsUndefined") {
+						} else if (_ref$27 === "IsUndefined") {
 							return c.formatParenExpr("%s === undefined", new ($sliceType($emptyInterface))([recv$1]));
-						} else if (_ref$26 === "IsNull") {
+						} else if (_ref$27 === "IsNull") {
 							return c.formatParenExpr("%s === null", new ($sliceType($emptyInterface))([recv$1]));
 						} else {
 							$panic(new $String("Invalid js package object: " + sel$1.Obj().Name()));
@@ -50398,40 +50457,40 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 						break;
 					}
 					fun = c.formatExpr("%s.%s", new ($sliceType($emptyInterface))([recv$1, new $String(methodName)]));
-				} else if (_ref$24 === 0) {
+				} else if (_ref$25 === 0) {
 					_tuple$26 = c.translateSelection(sel$1); fields$1 = _tuple$26[0]; jsTag$1 = _tuple$26[1];
 					if (!(jsTag$1 === "")) {
 						sig = $assertType(sel$1.Type(), ($ptrType(types.Signature)));
-						return c.internalize(c.formatExpr("%e.%s.%s(%s)", new ($sliceType($emptyInterface))([f$1.X, new $String(strings.Join(fields$1, ".")), new $String(jsTag$1), new $String(externalizeArgs(e.Args))])), sig.Results().At(0).object.Type());
+						return c.internalize(c.formatExpr("%e.%s.%s(%s)", new ($sliceType($emptyInterface))([f$1.X, new $String(strings.Join(fields$1, ".")), new $String(jsTag$1), new $String(externalizeArgs(e$1.Args))])), sig.Results().At(0).object.Type());
 					}
 					fun = c.formatExpr("%e.%s", new ($sliceType($emptyInterface))([f$1.X, new $String(strings.Join(fields$1, "."))]));
-				} else if (_ref$24 === 2) {
+				} else if (_ref$25 === 2) {
 					fun = c.translateExpr(f$1);
 				} else {
 					$panic(new $String(""));
 				} }
 			} else {
-				f$1 = _ref$22;
+				f$1 = _ref$23;
 				fun = c.translateExpr(plainFun);
 			} }
-			sig$1 = $assertType((_entry$26 = c.p.info.Types[plainFun.$key()], _entry$26 !== undefined ? _entry$26.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Signature)));
-			if (e.Args.$length === 1) {
-				_tuple$27 = $assertType((_entry$27 = c.p.info.Types[(x$26 = e.Args, ((0 < 0 || 0 >= x$26.$length) ? $throwRuntimeError("index out of range") : x$26.$array[x$26.$offset + 0])).$key()], _entry$27 !== undefined ? _entry$27.v : new types.TypeAndValue.Ptr()).Type, ($ptrType(types.Tuple)), true); tuple = _tuple$27[0]; isTuple$2 = _tuple$27[1];
+			sig$1 = $assertType((_entry$28 = c.p.info.Types[plainFun.$key()], _entry$28 !== undefined ? _entry$28.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Signature)));
+			if (e$1.Args.$length === 1) {
+				_tuple$27 = $assertType((_entry$29 = c.p.info.Types[(x$26 = e$1.Args, ((0 < 0 || 0 >= x$26.$length) ? $throwRuntimeError("index out of range") : x$26.$array[x$26.$offset + 0])).$key()], _entry$29 !== undefined ? _entry$29.v : new types.TypeAndValue.Ptr()).Type, ($ptrType(types.Tuple)), true); tuple = _tuple$27[0]; isTuple$2 = _tuple$27[1];
 				if (isTuple$2) {
 					tupleVar = c.newVariable("_tuple");
 					args$1 = ($sliceType(ast.Expr)).make(tuple.Len());
-					_ref$27 = args$1;
+					_ref$28 = args$1;
 					_i$7 = 0;
-					while (_i$7 < _ref$27.$length) {
+					while (_i$7 < _ref$28.$length) {
 						i$3 = _i$7;
 						(i$3 < 0 || i$3 >= args$1.$length) ? $throwRuntimeError("index out of range") : args$1.$array[args$1.$offset + i$3] = c.newIdent(c.formatExpr("%s[%d]", new ($sliceType($emptyInterface))([new $String(tupleVar), new $Int(i$3)])).String(), tuple.At(i$3).object.Type());
 						_i$7++;
 					}
-					return c.formatExpr("(%s = %e, %s(%s))", new ($sliceType($emptyInterface))([new $String(tupleVar), (x$27 = e.Args, ((0 < 0 || 0 >= x$27.$length) ? $throwRuntimeError("index out of range") : x$27.$array[x$27.$offset + 0])), fun, new $String(strings.Join(c.translateArgs(sig$1, args$1, false), ", "))]));
+					return c.formatExpr("(%s = %e, %s(%s))", new ($sliceType($emptyInterface))([new $String(tupleVar), (x$27 = e$1.Args, ((0 < 0 || 0 >= x$27.$length) ? $throwRuntimeError("index out of range") : x$27.$array[x$27.$offset + 0])), fun, new $String(strings.Join(c.translateArgs(sig$1, args$1, false), ", "))]));
 				}
 			}
-			args$2 = c.translateArgs(sig$1, e.Args, (new token.Pos(e.Ellipsis)).IsValid());
-			if ((_entry$28 = c.blocking[e.$key()], _entry$28 !== undefined ? _entry$28.v : false)) {
+			args$2 = c.translateArgs(sig$1, e$1.Args, (new token.Pos(e$1.Ellipsis)).IsValid());
+			if ((_entry$30 = c.blocking[e$1.$key()], _entry$30 !== undefined ? _entry$30.v : false)) {
 				resumeCase = c.caseCounter;
 				c.caseCounter = c.caseCounter + (1) >> 0;
 				returnVar = "$r";
@@ -50445,79 +50504,75 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				return ($ptrType(expression)).nil;
 			}
 			return c.formatExpr("%s(%s)", new ($sliceType($emptyInterface))([fun, new $String(strings.Join(args$2, ", "))]));
-		} else if ($assertType(_ref, ($ptrType(ast.StarExpr)), true)[1]) {
-			e = _ref.$val;
-			_tuple$28 = $assertType(e.X, ($ptrType(ast.CallExpr)), true); c1 = _tuple$28[0]; isCall = _tuple$28[1];
+		} else if ($assertType(_ref$2, ($ptrType(ast.StarExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			_tuple$28 = $assertType(e$1.X, ($ptrType(ast.CallExpr)), true); c1 = _tuple$28[0]; isCall = _tuple$28[1];
 			if (isCall && (c1.Args.$length === 1)) {
 				_tuple$29 = $assertType((x$28 = c1.Args, ((0 < 0 || 0 >= x$28.$length) ? $throwRuntimeError("index out of range") : x$28.$array[x$28.$offset + 0])), ($ptrType(ast.CallExpr)), true); c2 = _tuple$29[0]; isCall$1 = _tuple$29[1];
-				if (isCall$1 && (c2.Args.$length === 1) && types.Identical((_entry$29 = c.p.info.Types[c2.Fun.$key()], _entry$29 !== undefined ? _entry$29.v : new types.TypeAndValue.Ptr()).Type, types.Typ[18])) {
+				if (isCall$1 && (c2.Args.$length === 1) && types.Identical((_entry$31 = c.p.info.Types[c2.Fun.$key()], _entry$31 !== undefined ? _entry$31.v : new types.TypeAndValue.Ptr()).Type, types.Typ[18])) {
 					_tuple$30 = $assertType((x$29 = c2.Args, ((0 < 0 || 0 >= x$29.$length) ? $throwRuntimeError("index out of range") : x$29.$array[x$29.$offset + 0])), ($ptrType(ast.UnaryExpr)), true); unary = _tuple$30[0]; isUnary = _tuple$30[1];
 					if (isUnary && (unary.Op === 17)) {
 						return c.translateExpr(unary.X);
 					}
 				}
 			}
-			_ref$28 = exprType.Underlying();
-			if ($assertType(_ref$28, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$28, ($ptrType(types.Array)), true)[1]) {
-				return c.translateExpr(e.X);
+			_ref$29 = exprType.Underlying();
+			if ($assertType(_ref$29, ($ptrType(types.Struct)), true)[1] || $assertType(_ref$29, ($ptrType(types.Array)), true)[1]) {
+				return c.translateExpr(e$1.X);
 			}
-			return c.formatExpr("%e.$get()", new ($sliceType($emptyInterface))([e.X]));
-		} else if ($assertType(_ref, ($ptrType(ast.TypeAssertExpr)), true)[1]) {
-			e = _ref.$val;
-			if ($interfaceIsEqual(e.Type, $ifaceNil)) {
-				return c.translateExpr(e.X);
+			return c.formatExpr("%e.$get()", new ($sliceType($emptyInterface))([e$1.X]));
+		} else if ($assertType(_ref$2, ($ptrType(ast.TypeAssertExpr)), true)[1]) {
+			e$1 = _ref$2.$val;
+			if ($interfaceIsEqual(e$1.Type, $ifaceNil)) {
+				return c.translateExpr(e$1.X);
 			}
-			t$4 = (_entry$30 = c.p.info.Types[e.Type.$key()], _entry$30 !== undefined ? _entry$30.v : new types.TypeAndValue.Ptr()).Type;
+			t$4 = (_entry$32 = c.p.info.Types[e$1.Type.$key()], _entry$32 !== undefined ? _entry$32.v : new types.TypeAndValue.Ptr()).Type;
 			_tuple$31 = $assertType(exprType, ($ptrType(types.Tuple)), true); isTuple$3 = _tuple$31[1];
 			if (isTuple$3) {
-				return c.formatExpr("$assertType(%e, %s, true)", new ($sliceType($emptyInterface))([e.X, new $String(c.typeName(t$4))]));
+				return c.formatExpr("$assertType(%e, %s, true)", new ($sliceType($emptyInterface))([e$1.X, new $String(c.typeName(t$4))]));
 			}
-			return c.formatExpr("$assertType(%e, %s)", new ($sliceType($emptyInterface))([e.X, new $String(c.typeName(t$4))]));
-		} else if ($assertType(_ref, ($ptrType(ast.Ident)), true)[1]) {
-			e = _ref.$val;
-			if (e.Name === "_") {
+			return c.formatExpr("$assertType(%e, %s)", new ($sliceType($emptyInterface))([e$1.X, new $String(c.typeName(t$4))]));
+		} else if ($assertType(_ref$2, ($ptrType(ast.Ident)), true)[1]) {
+			e$1 = _ref$2.$val;
+			if (e$1.Name === "_") {
 				$panic(new $String("Tried to translate underscore identifier."));
 			}
-			obj$4 = (_entry$31 = c.p.info.Defs[e.$key()], _entry$31 !== undefined ? _entry$31.v : $ifaceNil);
-			if ($interfaceIsEqual(obj$4, $ifaceNil)) {
-				obj$4 = (_entry$32 = c.p.info.Uses[e.$key()], _entry$32 !== undefined ? _entry$32.v : $ifaceNil);
-			}
-			_ref$29 = obj$4;
-			if ($assertType(_ref$29, ($ptrType(types.PkgName)), true)[1]) {
-				o$1 = _ref$29.$val;
+			_ref$30 = obj;
+			if ($assertType(_ref$30, ($ptrType(types.PkgName)), true)[1]) {
+				o$1 = _ref$30.$val;
 				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String((_entry$33 = c.p.pkgVars[o$1.Imported().Path()], _entry$33 !== undefined ? _entry$33.v : ""))]));
-			} else if ($assertType(_ref$29, ($ptrType(types.Var)), true)[1] || $assertType(_ref$29, ($ptrType(types.Const)), true)[1]) {
-				o$1 = _ref$29;
+			} else if ($assertType(_ref$30, ($ptrType(types.Var)), true)[1] || $assertType(_ref$30, ($ptrType(types.Const)), true)[1]) {
+				o$1 = _ref$30;
 				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.objectName(o$1))]));
-			} else if ($assertType(_ref$29, ($ptrType(types.Func)), true)[1]) {
-				o$1 = _ref$29.$val;
+			} else if ($assertType(_ref$30, ($ptrType(types.Func)), true)[1]) {
+				o$1 = _ref$30.$val;
 				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.objectName(o$1))]));
-			} else if ($assertType(_ref$29, ($ptrType(types.TypeName)), true)[1]) {
-				o$1 = _ref$29.$val;
+			} else if ($assertType(_ref$30, ($ptrType(types.TypeName)), true)[1]) {
+				o$1 = _ref$30.$val;
 				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.typeName(o$1.object.Type()))]));
-			} else if ($assertType(_ref$29, ($ptrType(types.Nil)), true)[1]) {
-				o$1 = _ref$29.$val;
-				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.zeroValue((_entry$34 = c.p.info.Types[e.$key()], _entry$34 !== undefined ? _entry$34.v : new types.TypeAndValue.Ptr()).Type))]));
+			} else if ($assertType(_ref$30, ($ptrType(types.Nil)), true)[1]) {
+				o$1 = _ref$30.$val;
+				return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(c.zeroValue((_entry$34 = c.p.info.Types[e$1.$key()], _entry$34 !== undefined ? _entry$34.v : new types.TypeAndValue.Ptr()).Type))]));
 			} else {
-				o$1 = _ref$29;
+				o$1 = _ref$30;
 				$panic(new $String(fmt.Sprintf("Unhandled object: %T\n", new ($sliceType($emptyInterface))([o$1]))));
 			}
-		} else if ($assertType(_ref, ($ptrType(This)), true)[1]) {
-			e = _ref.$val;
+		} else if ($assertType(_ref$2, ($ptrType(This)), true)[1]) {
+			e$1 = _ref$2.$val;
 			this$1 = "this";
 			if (!(($keys(c.flattened).length === 0))) {
 				this$1 = "$this";
 			}
-			if (isWrapped((_entry$35 = c.p.info.Types[e.$key()], _entry$35 !== undefined ? _entry$35.v : new types.TypeAndValue.Ptr()).Type)) {
+			if (isWrapped((_entry$35 = c.p.info.Types[e$1.$key()], _entry$35 !== undefined ? _entry$35.v : new types.TypeAndValue.Ptr()).Type)) {
 				return c.formatExpr("%1s.$val !== undefined ? %1s.$val : %1s", new ($sliceType($emptyInterface))([new $String(this$1)]));
 			}
 			return c.formatExpr("%s", new ($sliceType($emptyInterface))([new $String(this$1)]));
-		} else if (_ref === $ifaceNil) {
-			e = _ref;
+		} else if (_ref$2 === $ifaceNil) {
+			e$1 = _ref$2;
 			return c.formatExpr("", new ($sliceType($emptyInterface))([]));
 		} else {
-			e = _ref;
-			$panic(new $String(fmt.Sprintf("Unhandled expression: %T\n", new ($sliceType($emptyInterface))([e]))));
+			e$1 = _ref$2;
+			$panic(new $String(fmt.Sprintf("Unhandled expression: %T\n", new ($sliceType($emptyInterface))([e$1]))));
 		}
 	};
 	funcContext.prototype.translateExpr = function(expr) { return this.$val.translateExpr(expr); };
@@ -51840,7 +51895,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				}
 			});
 			callTo = (function(obj) {
-				var o, _ref$2, recv, _tuple$1, ok$1, fullName, _tuple$2, archive, err, _ref$3, _i$1, d, _tuple$3, _entry$1, context, ok$2, stack, _entry$2, _key$2;
+				var o, _ref$2, recv, _tuple$1, ok$1, fullName, _tuple$2, archive, err, _ref$3, _i$1, d, _tuple$3, _entry$1, context, ok$2, stack, _key$2, _entry$2;
 				_ref$2 = obj;
 				if ($assertType(_ref$2, ($ptrType(types.Func)), true)[1]) {
 					o = _ref$2.$val;
@@ -52112,7 +52167,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 	};
 	funcContext.prototype.translateStmtList = function(stmts) { return this.$val.translateStmtList(stmts); };
 	funcContext.Ptr.prototype.translateStmt = function(stmt, label) {
-		var c, s, _ref, caseClauses, ifStmt, elseStmt, _ref$1, _entry, translateCond, refVar, _entry$1, expr, typeSwitchVar, a, _ref$2, x, x$1, _ref$3, _i, caseClause, _key, _entry$2, refVar$1, translateCond$1, printCaseBodyPrefix, _entry$3, cond, _entry$4, refVar$2, t, _ref$4, _entry$5, iVar, runeVar, _entry$6, iVar$1, keysVar, _entry$7, length, elemType, t2, _ref$5, iVar$2, _entry$8, okVar, forStmt, _key$1, labelSuffix, _entry$9, data, _entry$10, _ref$6, _entry$11, results, _ref$7, v, values, _ref$8, _i$1, i, result, isBuiltin, isJs, fun, _ref$9, builtin, _tuple, _entry$12, _entry$13, args, _ref$10, _i$2, i$1, arg, _entry$14, call, _entry$15, sig, args$1, op, _ref$11, parts, x$2, lhs, l, _ref$12, lhsVar, indexVar, _entry$16, _entry$17, _entry$18, lhsVar$1, _entry$19, _entry$20, v$1, lhsVar$2, _entry$21, _entry$22, _entry$23, _key$2, x$3, _entry$24, lhsType, x$4, x$5, _entry$25, _ref$13, _i$3, lhs$1, _entry$26, obj, _entry$27, x$6, lhs$2, v$2, x$7, x$8, x$9, _entry$28, lhsType$1, x$10, tupleVar, x$11, out, x$12, _entry$29, tuple, _ref$14, _i$4, i$2, lhs$3, x$13, _entry$30, lhsType$2, tmpVars, parts$1, _ref$15, _i$5, i$3, rhs, x$14, v$3, x$15, _entry$31, lhsType$3, x$16, _entry$32, _ref$16, _i$6, i$4, lhs$4, _entry$33, _entry$34, t$1, _tuple$1, iExpr, isIExpr, u, _ref$17, _entry$35, tok, decl, _ref$18, _ref$19, _i$7, spec, valueSpec, lhs$5, _ref$20, _i$8, i$5, name, rhs$1, isTuple, _tuple$2, _entry$36, _ref$21, _i$9, spec$1, _entry$37, o, expr$1, _entry$38, _entry$39, chanType, call$1, _key$3, channels, caseClauses$1, flattened, hasDefault, _ref$22, _i$10, i$6, s$1, clause, comm, _ref$23, x$17, _entry$40, selectCall, _key$4, selectionVar, translateCond$2, printCaseBodyPrefix$1;
+		var c, s, _ref, caseClauses, ifStmt, elseStmt, _ref$1, _entry, translateCond, refVar, _entry$1, expr, typeSwitchVar, a, _ref$2, x, x$1, _ref$3, _i, caseClause, _key, _entry$2, refVar$1, translateCond$1, printCaseBodyPrefix, _entry$3, cond, _entry$4, refVar$2, t, _ref$4, _entry$5, iVar, runeVar, _entry$6, iVar$1, keysVar, _entry$7, length, elemType, t2, _ref$5, iVar$2, _entry$8, okVar, forStmt, _key$1, labelSuffix, _entry$9, data, _entry$10, _ref$6, _entry$11, results, _ref$7, v, values, _ref$8, _i$1, i, result, isBuiltin, isJs, fun, _ref$9, builtin, _tuple, _entry$12, _entry$13, args, _ref$10, _i$2, i$1, arg, _entry$14, call, _entry$15, sig, args$1, op, _ref$11, parts, x$2, lhs, l, _ref$12, lhsVar, indexVar, _entry$16, _entry$17, _entry$18, lhsVar$1, _entry$19, _entry$20, v$1, lhsVar$2, _entry$21, _entry$22, _key$2, _entry$23, x$3, _entry$24, lhsType, x$4, x$5, _entry$25, _ref$13, _i$3, lhs$1, _entry$26, obj, _entry$27, x$6, lhs$2, v$2, x$7, x$8, x$9, _entry$28, lhsType$1, x$10, tupleVar, x$11, out, x$12, _entry$29, tuple, _ref$14, _i$4, i$2, lhs$3, x$13, _entry$30, lhsType$2, tmpVars, parts$1, _ref$15, _i$5, i$3, rhs, x$14, v$3, x$15, _entry$31, lhsType$3, x$16, _entry$32, _ref$16, _i$6, i$4, lhs$4, _entry$33, _entry$34, t$1, _tuple$1, iExpr, isIExpr, u, _ref$17, _entry$35, tok, decl, _ref$18, _ref$19, _i$7, spec, valueSpec, lhs$5, _ref$20, _i$8, i$5, name, rhs$1, isTuple, _tuple$2, _entry$36, _ref$21, _i$9, spec$1, _entry$37, o, expr$1, _entry$38, _entry$39, chanType, call$1, _key$3, channels, caseClauses$1, flattened, hasDefault, _ref$22, _i$10, i$6, s$1, clause, comm, _ref$23, x$17, _entry$40, selectCall, _key$4, selectionVar, translateCond$2, printCaseBodyPrefix$1;
 		c = this;
 		c.WritePos(stmt.Pos());
 		_ref = stmt;
@@ -52463,7 +52518,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 					}
 				}
 				lhsType = (_entry$24 = c.p.info.Types[(x$3 = s.Lhs, ((0 < 0 || 0 >= x$3.$length) ? $throwRuntimeError("index out of range") : x$3.$array[x$3.$offset + 0])).$key()], _entry$24 !== undefined ? _entry$24.v : new types.TypeAndValue.Ptr()).Type;
-				parts = $append(parts, c.translateAssign(lhs, c.translateExpr(c.setType(new ast.BinaryExpr.Ptr(lhs, 0, op, c.setType(new ast.ParenExpr.Ptr(0, (x$4 = s.Rhs, ((0 < 0 || 0 >= x$4.$length) ? $throwRuntimeError("index out of range") : x$4.$array[x$4.$offset + 0])), 0), (_entry$25 = c.p.info.Types[(x$5 = s.Rhs, ((0 < 0 || 0 >= x$5.$length) ? $throwRuntimeError("index out of range") : x$5.$array[x$5.$offset + 0])).$key()], _entry$25 !== undefined ? _entry$25.v : new types.TypeAndValue.Ptr()).Type)), lhsType)).String(), lhsType, s.Tok === 47));
+				parts = $append(parts, c.translateAssignOfExpr(lhs, c.setType(new ast.BinaryExpr.Ptr(lhs, 0, op, c.setType(new ast.ParenExpr.Ptr(0, (x$4 = s.Rhs, ((0 < 0 || 0 >= x$4.$length) ? $throwRuntimeError("index out of range") : x$4.$array[x$4.$offset + 0])), 0), (_entry$25 = c.p.info.Types[(x$5 = s.Rhs, ((0 < 0 || 0 >= x$5.$length) ? $throwRuntimeError("index out of range") : x$5.$array[x$5.$offset + 0])).$key()], _entry$25 !== undefined ? _entry$25.v : new types.TypeAndValue.Ptr()).Type)), lhsType), lhsType, s.Tok === 47));
 				c.Printf("%s", new ($sliceType($emptyInterface))([new $String(strings.Join(parts, " "))]));
 				return;
 			}
@@ -52944,29 +52999,29 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 	};
 	funcContext.prototype.translateLoopingStmt = function(cond, body, bodyPrefix, post, label, flatten) { return this.$val.translateLoopingStmt(cond, body, bodyPrefix, post, label, flatten); };
 	funcContext.Ptr.prototype.translateAssignOfExpr = function(lhs, rhs, typ, define) {
-		var c, _tuple, ok;
+		var c, _tuple, l, ok, _tuple$1, _entry, t, ok$1, keyVar, _tuple$2, ok$2;
 		c = this;
-		_tuple = $assertType(rhs, ($ptrType(ast.CompositeLit)), true); ok = _tuple[1];
-		if (ok && define) {
+		_tuple = $assertType(lhs, ($ptrType(ast.IndexExpr)), true); l = _tuple[0]; ok = _tuple[1];
+		if (ok) {
+			_tuple$1 = $assertType((_entry = c.p.info.Types[l.X.$key()], _entry !== undefined ? _entry.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Map)), true); t = _tuple$1[0]; ok$1 = _tuple$1[1];
+			if (ok$1) {
+				keyVar = c.newVariable("_key");
+				return fmt.Sprintf("%s = %s; (%s || $throwRuntimeError(\"assignment to entry in nil map\"))[%s] = { k: %s, v: %s };", new ($sliceType($emptyInterface))([new $String(keyVar), c.translateImplicitConversionWithCloning(l.Index, t.Key()), c.translateExpr(l.X), new $String(c.makeKey(c.newIdent(keyVar, t.Key()), t.Key())), new $String(keyVar), c.translateImplicitConversionWithCloning(rhs, t.Elem())]));
+			}
+		}
+		_tuple$2 = $assertType(rhs, ($ptrType(ast.CompositeLit)), true); ok$2 = _tuple$2[1];
+		if (ok$2 && define) {
 			return fmt.Sprintf("%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(lhs), c.translateImplicitConversion(rhs, typ)]));
 		}
 		return c.translateAssign(lhs, c.translateImplicitConversion(rhs, typ).String(), typ, define);
 	};
 	funcContext.prototype.translateAssignOfExpr = function(lhs, rhs, typ, define) { return this.$val.translateAssignOfExpr(lhs, rhs, typ, define); };
 	funcContext.Ptr.prototype.translateAssign = function(lhs, rhs, typ, define) {
-		var c, _tuple, l, ok, _tuple$1, _entry, t, ok$1, keyVar, _ref, l$1, _ref$1, _entry$1, o, _entry$2, _tuple$2, _entry$3, sel, ok$2, _tuple$3, fields, jsTag, t$1, _ref$2, _entry$4, pattern, _entry$5, _tuple$4, ok$3;
+		var c, _ref, l, _ref$1, _entry, o, _entry$1, _tuple, _entry$2, sel, ok, _tuple$1, fields, jsTag, t, _ref$2, _entry$3, pattern, _entry$4, _tuple$2, ok$1;
 		c = this;
 		lhs = removeParens(lhs);
 		if (isBlank(lhs)) {
 			$panic(new $String("translateAssign with blank lhs"));
-		}
-		_tuple = $assertType(lhs, ($ptrType(ast.IndexExpr)), true); l = _tuple[0]; ok = _tuple[1];
-		if (ok) {
-			_tuple$1 = $assertType((_entry = c.p.info.Types[l.X.$key()], _entry !== undefined ? _entry.v : new types.TypeAndValue.Ptr()).Type.Underlying(), ($ptrType(types.Map)), true); t = _tuple$1[0]; ok$1 = _tuple$1[1];
-			if (ok$1) {
-				keyVar = c.newVariable("_key");
-				return fmt.Sprintf("%s = %s; (%s || $throwRuntimeError(\"assignment to entry in nil map\"))[%s] = { k: %s, v: %s };", new ($sliceType($emptyInterface))([new $String(keyVar), c.translateImplicitConversion(l.Index, t.Key()), c.translateExpr(l.X), new $String(c.makeKey(c.newIdent(keyVar, t.Key()), t.Key())), new $String(keyVar), new $String(rhs)]));
-			}
 		}
 		_ref = typ.Underlying();
 		if ($assertType(_ref, ($ptrType(types.Array)), true)[1] || $assertType(_ref, ($ptrType(types.Struct)), true)[1]) {
@@ -52977,50 +53032,50 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 		}
 		_ref$1 = lhs;
 		if ($assertType(_ref$1, ($ptrType(ast.Ident)), true)[1]) {
-			l$1 = _ref$1.$val;
-			o = (_entry$1 = c.p.info.Defs[l$1.$key()], _entry$1 !== undefined ? _entry$1.v : $ifaceNil);
+			l = _ref$1.$val;
+			o = (_entry = c.p.info.Defs[l.$key()], _entry !== undefined ? _entry.v : $ifaceNil);
 			if ($interfaceIsEqual(o, $ifaceNil)) {
-				o = (_entry$2 = c.p.info.Uses[l$1.$key()], _entry$2 !== undefined ? _entry$2.v : $ifaceNil);
+				o = (_entry$1 = c.p.info.Uses[l.$key()], _entry$1 !== undefined ? _entry$1.v : $ifaceNil);
 			}
 			return fmt.Sprintf("%s = %s;", new ($sliceType($emptyInterface))([new $String(c.objectName(o)), new $String(rhs)]));
 		} else if ($assertType(_ref$1, ($ptrType(ast.SelectorExpr)), true)[1]) {
-			l$1 = _ref$1.$val;
-			_tuple$2 = (_entry$3 = c.p.info.Selections[l$1.$key()], _entry$3 !== undefined ? [_entry$3.v, true] : [($ptrType(types.Selection)).nil, false]); sel = _tuple$2[0]; ok$2 = _tuple$2[1];
-			if (!ok$2) {
-				return fmt.Sprintf("%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l$1.X), new $String(l$1.Sel.Name), new $String(rhs)]));
+			l = _ref$1.$val;
+			_tuple = (_entry$2 = c.p.info.Selections[l.$key()], _entry$2 !== undefined ? [_entry$2.v, true] : [($ptrType(types.Selection)).nil, false]); sel = _tuple[0]; ok = _tuple[1];
+			if (!ok) {
+				return fmt.Sprintf("%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l.X), new $String(l.Sel.Name), new $String(rhs)]));
 			}
-			_tuple$3 = c.translateSelection(sel); fields = _tuple$3[0]; jsTag = _tuple$3[1];
+			_tuple$1 = c.translateSelection(sel); fields = _tuple$1[0]; jsTag = _tuple$1[1];
 			if (!(jsTag === "")) {
-				return fmt.Sprintf("%s.%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l$1.X), new $String(strings.Join(fields, ".")), new $String(jsTag), new $String(c.externalize(rhs, sel.Type()))]));
+				return fmt.Sprintf("%s.%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l.X), new $String(strings.Join(fields, ".")), new $String(jsTag), new $String(c.externalize(rhs, sel.Type()))]));
 			}
-			return fmt.Sprintf("%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l$1.X), new $String(strings.Join(fields, ".")), new $String(rhs)]));
+			return fmt.Sprintf("%s.%s = %s;", new ($sliceType($emptyInterface))([c.translateExpr(l.X), new $String(strings.Join(fields, ".")), new $String(rhs)]));
 		} else if ($assertType(_ref$1, ($ptrType(ast.StarExpr)), true)[1]) {
-			l$1 = _ref$1.$val;
-			return fmt.Sprintf("%s.$set(%s);", new ($sliceType($emptyInterface))([c.translateExpr(l$1.X), new $String(rhs)]));
+			l = _ref$1.$val;
+			return fmt.Sprintf("%s.$set(%s);", new ($sliceType($emptyInterface))([c.translateExpr(l.X), new $String(rhs)]));
 		} else if ($assertType(_ref$1, ($ptrType(ast.IndexExpr)), true)[1]) {
-			l$1 = _ref$1.$val;
-			_ref$2 = (_entry$4 = c.p.info.Types[l$1.X.$key()], _entry$4 !== undefined ? _entry$4.v : new types.TypeAndValue.Ptr()).Type.Underlying();
+			l = _ref$1.$val;
+			_ref$2 = (_entry$3 = c.p.info.Types[l.X.$key()], _entry$3 !== undefined ? _entry$3.v : new types.TypeAndValue.Ptr()).Type.Underlying();
 			if ($assertType(_ref$2, ($ptrType(types.Array)), true)[1] || $assertType(_ref$2, ($ptrType(types.Pointer)), true)[1]) {
-				t$1 = _ref$2;
+				t = _ref$2;
 				pattern = "%1e[%2f] = %3s";
-				if ($interfaceIsEqual((_entry$5 = c.p.info.Types[l$1.Index.$key()], _entry$5 !== undefined ? _entry$5.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil)) {
+				if ($interfaceIsEqual((_entry$4 = c.p.info.Types[l.Index.$key()], _entry$4 !== undefined ? _entry$4.v : new types.TypeAndValue.Ptr()).Value, $ifaceNil)) {
 					pattern = "(%2f < 0 || %2f >= %1e.length) ? $throwRuntimeError(\"index out of range\") : " + pattern;
 				}
-				_tuple$4 = $assertType(t$1, ($ptrType(types.Pointer)), true); ok$3 = _tuple$4[1];
-				if (ok$3) {
+				_tuple$2 = $assertType(t, ($ptrType(types.Pointer)), true); ok$1 = _tuple$2[1];
+				if (ok$1) {
 					pattern = "%1e.nilCheck, " + pattern;
 				}
-				return c.formatExpr(pattern, new ($sliceType($emptyInterface))([l$1.X, l$1.Index, new $String(rhs)])).String() + ";";
+				return c.formatExpr(pattern, new ($sliceType($emptyInterface))([l.X, l.Index, new $String(rhs)])).String() + ";";
 			} else if ($assertType(_ref$2, ($ptrType(types.Slice)), true)[1]) {
-				t$1 = _ref$2.$val;
-				return c.formatExpr("(%2f < 0 || %2f >= %1e.$length) ? $throwRuntimeError(\"index out of range\") : %1e.$array[%1e.$offset + %2f] = %3s", new ($sliceType($emptyInterface))([l$1.X, l$1.Index, new $String(rhs)])).String() + ";";
+				t = _ref$2.$val;
+				return c.formatExpr("(%2f < 0 || %2f >= %1e.$length) ? $throwRuntimeError(\"index out of range\") : %1e.$array[%1e.$offset + %2f] = %3s", new ($sliceType($emptyInterface))([l.X, l.Index, new $String(rhs)])).String() + ";";
 			} else {
-				t$1 = _ref$2;
-				$panic(new $String(fmt.Sprintf("Unhandled lhs type: %T\n", new ($sliceType($emptyInterface))([t$1]))));
+				t = _ref$2;
+				$panic(new $String(fmt.Sprintf("Unhandled lhs type: %T\n", new ($sliceType($emptyInterface))([t]))));
 			}
 		} else {
-			l$1 = _ref$1;
-			$panic(new $String(fmt.Sprintf("Unhandled lhs type: %T\n", new ($sliceType($emptyInterface))([l$1]))));
+			l = _ref$1;
+			$panic(new $String(fmt.Sprintf("Unhandled lhs type: %T\n", new ($sliceType($emptyInterface))([l]))));
 		}
 	};
 	funcContext.prototype.translateAssign = function(lhs, rhs, typ, define) { return this.$val.translateAssign(lhs, rhs, typ, define); };
@@ -56577,7 +56632,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground"] = (function() {
 	};
 	setupEnvironment = function(scope) {
 		$global.goPrintToConsole = (function(b) {
-			var lines, _entry, x, _map, _key, _lhs, _index, x$1, _entry$1, _key$1, i, _map$1, _key$2;
+			var lines, _entry, x, _map, _key, _lhs, _index, x$1, _key$1, _entry$1, i, _map$1, _key$2;
 			lines = strings.Split($bytesToString(b), "\n");
 			if ((output.$length === 0) || !((_entry = (x = output.$length - 1 >> 0, ((x < 0 || x >= output.$length) ? $throwRuntimeError("index out of range") : output.$array[output.$offset + x]))["type"], _entry !== undefined ? _entry.v : "") === "out")) {
 				output = $append(output, (_map = new $Map(), _key = "type", _map[_key] = { k: _key, v: "out" }, _key = "content", _map[_key] = { k: _key, v: "" }, _map));
