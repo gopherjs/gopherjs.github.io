@@ -12,5 +12,5 @@ Working on the application itself is made easier by using the [SRVi](https://git
 
 ```bash
 go get -u github.com/ajhager/srvi
-srvi -index index.html playground.go
+srvi -index index.html -endpoint playground.js playground.go
 ```
