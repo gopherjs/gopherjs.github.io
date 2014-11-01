@@ -17288,7 +17288,7 @@ $packages["testing"] = (function() {
 		/* */ case -1: } return; } }; $f.$blocking = true; return $f;
 	};
 	Main = $pkg.Main = function(matchString, tests, benchmarks, examples, $b) {
-		var $this = this, $args = arguments, $r, $s = 0, failed, _ref, _i, t, err, done, test, _r, _tuple, e, ok;
+		var $this = this, $args = arguments, $r, $s = 0, failed, _ref, _i, err, done, t, test, _r, _tuple, e, ok;
 		/* */ if(!$b) { $nonblockingCall(); }; var $f = function() { while (true) { switch ($s) { case 0:
 		flag.Parse();
 		if (tests.$length === 0) {
@@ -17298,9 +17298,9 @@ $packages["testing"] = (function() {
 		_ref = tests;
 		_i = 0;
 		/* while (_i < _ref.$length) { */ case 1: if(!(_i < _ref.$length)) { $s = 2; continue; }
-			t = [undefined];
-			err = [undefined];
 			done = [undefined];
+			err = [undefined];
+			t = [undefined];
 			test = new InternalTest.Ptr(); $copy(test, ((_i < 0 || _i >= _ref.$length) ? $throwRuntimeError("index out of range") : _ref.$array[_ref.$offset + _i]), InternalTest);
 			t[0] = new T.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), ($sliceType($Uint8)).nil, false, false, false, $clone(time.Now(), time.Time), new time.Duration(0, 0), $ifaceNil, ($chanType($emptyInterface, false, false)).nil), test.Name, ($chanType($Bool, false, false)).nil);
 			t[0].common.self = t[0];
@@ -51519,9 +51519,9 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 		_ref$20 = functions;
 		_i$18 = 0;
 		while (_i$18 < _ref$20.$length) {
-			o$7 = [undefined];
-			d$4 = [undefined];
 			context$1 = [undefined];
+			d$4 = [undefined];
+			o$7 = [undefined];
 			fun = ((_i$18 < 0 || _i$18 >= _ref$20.$length) ? $throwRuntimeError("index out of range") : _ref$20.$array[_ref$20.$offset + _i$18]);
 			o$7[0] = $assertType((_entry$10 = c.p.info.Defs[fun.Name.$key()], _entry$10 !== undefined ? _entry$10.v : $ifaceNil), ($ptrType(types.Func)));
 			context$1[0] = (_entry$11 = c.p.funcContexts[o$7[0].$key()], _entry$11 !== undefined ? _entry$11.v : ($ptrType(funcContext)).nil);
@@ -52946,9 +52946,7 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 		}
 		c.PrintCond(!flatten, fmt.Sprintf("while (%s) {", new ($sliceType($emptyInterface))([new $String(cond)])), fmt.Sprintf("case %d: if(!(%s)) { $s = %d; continue; }", new ($sliceType($emptyInterface))([new $Int(data.beginCase), new $String(cond), new $Int(data.endCase)])));
 		c.Indent((function() {
-			var v, prevEV, _ref, _i, _keys, _entry$2, escaping, _key$2, _ref$1, _i$1, _keys$1, _entry$3, escaping$1, _key$3, isTerminated, _ref$2, x, x$1;
-			v = new escapeAnalysis.Ptr(c.p.info, new $Map(), new $Map());
-			ast.Walk(v, body);
+			var prevEV, _ref, _i, _keys, _entry$2, escaping, _key$2, v, names, _ref$1, _i$1, _keys$1, _entry$3, obj, _key$3, _ref$2, _i$2, name, isTerminated, _ref$3, x, x$1;
 			prevEV = c.p.escapingVars;
 			c.p.escapingVars = new $Map();
 			_ref = prevEV;
@@ -52964,6 +52962,9 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 				_key$2 = escaping; (c.p.escapingVars || $throwRuntimeError("assignment to entry in nil map"))[_key$2.$key()] = { k: _key$2, v: true };
 				_i++;
 			}
+			v = new escapeAnalysis.Ptr(c.p.info, new $Map(), new $Map());
+			ast.Walk(v, body);
+			names = ($sliceType($String)).make(0, $keys(c.p.escapingVars).length);
 			_ref$1 = v.escaping;
 			_i$1 = 0;
 			_keys$1 = $keys(_ref$1);
@@ -52973,10 +52974,18 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 					_i$1++;
 					continue;
 				}
-				escaping$1 = _entry$3.k;
-				c.Printf("%s = [undefined];", new ($sliceType($emptyInterface))([new $String(c.objectName(escaping$1))]));
-				_key$3 = escaping$1; (c.p.escapingVars || $throwRuntimeError("assignment to entry in nil map"))[_key$3.$key()] = { k: _key$3, v: true };
+				obj = _entry$3.k;
+				names = $append(names, c.objectName(obj));
+				_key$3 = obj; (c.p.escapingVars || $throwRuntimeError("assignment to entry in nil map"))[_key$3.$key()] = { k: _key$3, v: true };
 				_i$1++;
+			}
+			sort.Strings(names);
+			_ref$2 = names;
+			_i$2 = 0;
+			while (_i$2 < _ref$2.$length) {
+				name = ((_i$2 < 0 || _i$2 >= _ref$2.$length) ? $throwRuntimeError("index out of range") : _ref$2.$array[_ref$2.$offset + _i$2]);
+				c.Printf("%s = [undefined];", new ($sliceType($emptyInterface))([new $String(name)]));
+				_i$2++;
 			}
 			if (!(bodyPrefix === $throwNilPointerError)) {
 				bodyPrefix();
@@ -52984,8 +52993,8 @@ $packages["github.com/gopherjs/gopherjs/compiler"] = (function() {
 			c.translateStmtList(body.List);
 			isTerminated = false;
 			if (!((body.List.$length === 0))) {
-				_ref$2 = (x = body.List, x$1 = body.List.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + x$1]));
-				if ($assertType(_ref$2, ($ptrType(ast.ReturnStmt)), true)[1] || $assertType(_ref$2, ($ptrType(ast.BranchStmt)), true)[1]) {
+				_ref$3 = (x = body.List, x$1 = body.List.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? $throwRuntimeError("index out of range") : x.$array[x.$offset + x$1]));
+				if ($assertType(_ref$3, ($ptrType(ast.ReturnStmt)), true)[1] || $assertType(_ref$3, ($ptrType(ast.BranchStmt)), true)[1]) {
 					isTerminated = true;
 				}
 			}
@@ -56569,8 +56578,8 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground"] = (function() {
 					_ref$3 = pkgsToLoad;
 					_i$3 = 0;
 					while (_i$3 < _ref$3.$length) {
-						req = [undefined];
 						path = [undefined];
+						req = [undefined];
 						p = ((_i$3 < 0 || _i$3 >= _ref$3.$length) ? $throwRuntimeError("index out of range") : _ref$3.$array[_ref$3.$offset + _i$3]);
 						path[0] = p;
 						req[0] = new ($global.XMLHttpRequest)();
