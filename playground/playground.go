@@ -123,7 +123,7 @@ func main() {
 					path := p
 
 					req := js.Global.Get("XMLHttpRequest").New()
-					req.Call("open", "GET", "pkg/"+path+".a", true)
+					req.Call("open", "GET", "pkg/"+path+".a.js", true)
 					req.Set("responseType", "arraybuffer")
 					req.Set("onload", func() {
 						if req.Get("status").Int() != 200 {

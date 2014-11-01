@@ -56583,7 +56583,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground"] = (function() {
 						p = ((_i$3 < 0 || _i$3 >= _ref$3.$length) ? $throwRuntimeError("index out of range") : _ref$3.$array[_ref$3.$offset + _i$3]);
 						path[0] = p;
 						req[0] = new ($global.XMLHttpRequest)();
-						req[0].open($externalize("GET", $String), $externalize("pkg/" + path[0] + ".a", $String), $externalize(true, $Bool));
+						req[0].open($externalize("GET", $String), $externalize("pkg/" + path[0] + ".a.js", $String), $externalize(true, $Bool));
 						req[0].responseType = $externalize("arraybuffer", $String);
 						req[0].onload = $externalize((function(path, req) { return function() {
 							var data, _tuple$5, _key$5;
