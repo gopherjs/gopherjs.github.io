@@ -134,7 +134,7 @@ func main() {
 						}
 
 						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
-						packages[path], err = compiler.UnmarshalArchive(path+".a", path, []byte(data), importContext)
+						packages[path], err = compiler.ReadArchive(path+".a", path, bytes.NewReader(data), importContext)
 						if err != nil {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
