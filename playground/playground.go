@@ -110,11 +110,7 @@ func main() {
 
 			var allPkgs []*compiler.Archive
 			if len(pkgsToLoad) == 0 {
-				for _, depPath := range mainPkg.Dependencies {
-					dep, _ := importContext.Import(string(depPath))
-					allPkgs = append(allPkgs, dep)
-				}
-				allPkgs = append(allPkgs, mainPkg)
+				allPkgs, _ = compiler.ImportDependencies(mainPkg, importContext.Import)
 			}
 
 			if len(pkgsToLoad) != 0 {
@@ -134,7 +130,7 @@ func main() {
 						}
 
 						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
-						packages[path], err = compiler.ReadArchive(path+".a", path, bytes.NewReader(data), importContext)
+						packages[path], err = compiler.ReadArchive(path+".a", path, bytes.NewReader(data), importContext.Packages)
 						if err != nil {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
@@ -161,7 +157,7 @@ func main() {
 
 			jsCode := bytes.NewBuffer(nil)
 			jsCode.WriteString("try{\n")
-			compiler.WriteProgramCode(allPkgs, importContext, &compiler.SourceMapFilter{Writer: jsCode})
+			compiler.WriteProgramCode(allPkgs, &compiler.SourceMapFilter{Writer: jsCode})
 			jsCode.WriteString("} catch (err) {\ngoPanicHandler(err.message);\n}\n")
 			js.Global.Call("eval", js.InternalObject(jsCode.String()))
 		}
