@@ -159,6 +159,7 @@ func main() {
 			jsCode.WriteString("try{\n")
 			compiler.WriteProgramCode(allPkgs, &compiler.SourceMapFilter{Writer: jsCode})
 			jsCode.WriteString("} catch (err) {\ngoPanicHandler(err.message);\n}\n")
+			js.Global.Set("$checkForDeadlock", true)
 			js.Global.Call("eval", js.InternalObject(jsCode.String()))
 		}
 		scope.Set("run", run)
