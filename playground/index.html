@@ -12,10 +12,12 @@
       <span id="controls">
         <input type="button" value="Run" ng-click="run(false)" />
         <input type="button" value="Format" ng-click="format()" />
+        <input type="button" value="Share" ng-click="share()" />
+        <input type="text" class="show-share-url-{{showShareUrl}}" id="share-url" value="{{shareUrl}}" />
         <label><input ng-model="showGenerated" type="checkbox" />Show generated code for main package</label>
       </span>
     </div>
-    
+
 		<div class="box show-generated-{{showGenerated}}" id="content">
       <div class="box yellow" id="input">
         <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>

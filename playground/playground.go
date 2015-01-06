@@ -13,17 +13,46 @@ import (
 	"github.com/gopherjs/gopherjs/compiler"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/neelance/go-angularjs"
+	"honnef.co/go/js/dom" // TODO: Should it be used?
 )
 
 type Line map[string]string
 
 var output []Line
 
+//const snippetStoreHost = "localhost:8080"
+const snippetStoreHost = "gotools.org:26204" // TODO: Decide on where the snippet-store server will be hosted.
+
 func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+		if strings.HasPrefix(dom.GetWindow().Location().Hash, "#/") {
+			id := dom.GetWindow().Location().Hash[2:]
+
+			// TODO: Maybe use "honnef.co/go/js/xhr" now that there are more requests being done?
+			req := js.Global.Get("XMLHttpRequest").New()
+			req.Call("open", "GET", "http://"+snippetStoreHost+"/p/"+id, true)
+			req.Set("responseType", "arraybuffer")
+			req.Set("onload", func() {
+				if req.Get("status").Int() != 200 {
+					scope.Apply(func() {
+						scope.Set("output", []Line{Line{"type": "err", "content": `cannot load snippet "` + id + `"`}})
+					})
+					return
+				}
+
+				data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
+				scope.Apply(func() {
+					scope.Set("code", string(data))
+				})
+			})
+			req.Call("send")
+		} else {
+			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+		}
+		//scope.Set("shareUrl", "")
+		scope.Set("showShareUrl", false)
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
@@ -42,6 +71,10 @@ func main() {
 		setupEnvironment(scope)
 
 		codeArea := angularjs.ElementById("code")
+		codeArea.On("input", func(e *angularjs.Event) {
+			scope.Set("showShareUrl", false)
+			dom.GetWindow().Location().Hash = ""
+		})
 		codeArea.On("keydown", func(e *angularjs.Event) {
 			toInsert := ""
 			switch e.KeyCode {
@@ -62,6 +95,9 @@ func main() {
 				}
 			}
 			if toInsert != "" {
+				scope.Set("showShareUrl", false)
+				dom.GetWindow().Location().Hash = ""
+
 				start := codeArea.Prop("selectionStart").Int()
 				end := codeArea.Prop("selectionEnd").Int()
 				code := scope.Get("code").Str()
@@ -173,6 +209,38 @@ func main() {
 			}
 			scope.Set("code", string(out))
 			scope.Set("output", []Line{})
+		})
+
+		scope.Set("share", func() {
+			req := js.Global.Get("XMLHttpRequest").New()
+			req.Call("open", "POST", "http://"+snippetStoreHost+"/share", true)
+			req.Set("responseType", "arraybuffer")
+			req.Set("onload", func() {
+				if req.Get("status").Int() != 200 {
+					scope.Apply(func() {
+						scope.Set("output", []Line{Line{"type": "err", "content": `cannot share snippet`}})
+					})
+					return
+				}
+
+				data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
+				scope.Apply(func() {
+					id := string(data)
+
+					dom.GetWindow().Location().Hash = "#/" + id
+
+					scope.Set("shareUrl", dom.GetWindow().Location().Str())
+					scope.Set("showShareUrl", true)
+					// TODO: Do this better using AngularJS.
+					//       Perhaps using http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/18295416.
+					go func() {
+						time.Sleep(time.Millisecond)
+						dom.GetWindow().Document().GetElementByID("share-url").(*dom.HTMLInputElement).Select()
+					}()
+				})
+			})
+			// TODO: Should be sending as binary blob or is text okay?
+			req.Call("send", scope.Get("code").Str())
 		})
 	})
 }
