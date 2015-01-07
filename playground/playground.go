@@ -13,7 +13,8 @@ import (
 	"github.com/gopherjs/gopherjs/compiler"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/neelance/go-angularjs"
-	"honnef.co/go/js/dom" // TODO: Should it be used?
+	"honnef.co/go/js/dom"
+	"honnef.co/go/js/xhr"
 )
 
 type Line map[string]string
@@ -30,28 +31,26 @@ func main() {
 		if strings.HasPrefix(dom.GetWindow().Location().Hash, "#/") {
 			id := dom.GetWindow().Location().Hash[2:]
 
-			// TODO: Maybe use "honnef.co/go/js/xhr" now that there are more requests being done?
-			req := js.Global.Get("XMLHttpRequest").New()
-			req.Call("open", "GET", "http://"+snippetStoreHost+"/p/"+id, true)
-			req.Set("responseType", "arraybuffer")
-			req.Set("onload", func() {
-				if req.Get("status").Int() != 200 {
+			req := xhr.NewRequest("GET", "http://"+snippetStoreHost+"/p/"+id)
+			req.ResponseType = xhr.ArrayBuffer
+			go func() {
+				err := req.Send(nil)
+				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
 						scope.Set("output", []Line{Line{"type": "err", "content": `cannot load snippet "` + id + `"`}})
 					})
 					return
 				}
 
-				data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
+				data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
 				scope.Apply(func() {
 					scope.Set("code", string(data))
 				})
-			})
-			req.Call("send")
+			}()
 		} else {
 			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 		}
-		//scope.Set("shareUrl", "")
+		scope.Set("shareUrl", "")
 		scope.Set("showShareUrl", false)
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
@@ -154,18 +153,18 @@ func main() {
 				for _, p := range pkgsToLoad {
 					path := p
 
-					req := js.Global.Get("XMLHttpRequest").New()
-					req.Call("open", "GET", "pkg/"+path+".a.js", true)
-					req.Set("responseType", "arraybuffer")
-					req.Set("onload", func() {
-						if req.Get("status").Int() != 200 {
+					req := xhr.NewRequest("GET", "pkg/"+path+".a.js")
+					req.ResponseType = xhr.ArrayBuffer
+					go func() {
+						err := req.Send(nil)
+						if err != nil || req.Status != 200 {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
 							})
 							return
 						}
 
-						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
+						data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
 						packages[path], err = compiler.ReadArchive(path+".a", path, bytes.NewReader(data), importContext.Packages)
 						if err != nil {
 							scope.Apply(func() {
@@ -177,8 +176,7 @@ func main() {
 						if pkgsReceived == len(pkgsToLoad) {
 							run(loadOnly)
 						}
-					})
-					req.Call("send")
+					}()
 				}
 				return
 			}
@@ -212,18 +210,19 @@ func main() {
 		})
 
 		scope.Set("share", func() {
-			req := js.Global.Get("XMLHttpRequest").New()
-			req.Call("open", "POST", "http://"+snippetStoreHost+"/share", true)
-			req.Set("responseType", "arraybuffer")
-			req.Set("onload", func() {
-				if req.Get("status").Int() != 200 {
+			req := xhr.NewRequest("POST", "http://"+snippetStoreHost+"/share")
+			req.ResponseType = xhr.ArrayBuffer
+			go func() {
+				// TODO: Send as binary?
+				err := req.Send(scope.Get("code").Str())
+				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
 						scope.Set("output", []Line{Line{"type": "err", "content": `cannot share snippet`}})
 					})
 					return
 				}
 
-				data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
+				data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
 				scope.Apply(func() {
 					id := string(data)
 
@@ -238,9 +237,7 @@ func main() {
 						dom.GetWindow().Document().GetElementByID("share-url").(*dom.HTMLInputElement).Select()
 					}()
 				})
-			})
-			// TODO: Should be sending as binary blob or is text okay?
-			req.Call("send", scope.Get("code").Str())
+			}()
 		})
 	})
 }
