@@ -21,10 +21,11 @@ type Line map[string]string
 
 var output []Line
 
-//const snippetStoreHost = "localhost:8080"
-const snippetStoreHost = "gotools.org:26204" // TODO: Decide on where the snippet-store server will be hosted.
+const snippetStoreHost = "snippets.gotools.org"
 
 func main() {
+	codeReady := make(chan struct{}) // Used to synchronize when "code" value is ready.
+
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
@@ -37,7 +38,7 @@ func main() {
 				err := req.Send(nil)
 				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
-						scope.Set("output", []Line{Line{"type": "err", "content": `cannot load snippet "` + id + `"`}})
+						scope.Set("output", []Line{Line{"type": "err", "content": `failed to load snippet "` + id + `"`}})
 					})
 					return
 				}
@@ -45,10 +46,12 @@ func main() {
 				data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
 				scope.Apply(func() {
 					scope.Set("code", string(data))
+					close(codeReady)
 				})
 			}()
 		} else {
 			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+			close(codeReady)
 		}
 		scope.Set("shareUrl", "")
 		scope.Set("showShareUrl", false)
@@ -159,7 +162,7 @@ func main() {
 						err := req.Send(nil)
 						if err != nil || req.Status != 200 {
 							scope.Apply(func() {
-								scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
+								scope.Set("output", []Line{Line{"type": "err", "content": `failed to load package "` + path + `"`}})
 							})
 							return
 						}
@@ -197,7 +200,10 @@ func main() {
 			js.Global.Call("eval", js.InternalObject(jsCode.String()))
 		}
 		scope.Set("run", run)
-		run(true)
+		go func() {
+			<-codeReady // Wait for "code" value to be ready.
+			run(true)
+		}()
 
 		scope.Set("format", func() {
 			out, err := format.Source([]byte(scope.Get("code").Str()))
@@ -217,7 +223,7 @@ func main() {
 				err := req.Send(scope.Get("code").Str())
 				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
-						scope.Set("output", []Line{Line{"type": "err", "content": `cannot share snippet`}})
+						scope.Set("output", []Line{Line{"type": "err", "content": `failed to share snippet`}})
 					})
 					return
 				}
