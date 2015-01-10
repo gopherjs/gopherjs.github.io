@@ -24,13 +24,15 @@ var output []Line
 const snippetStoreHost = "snippets.gotools.org"
 
 func main() {
+	var location = dom.GetWindow().Top().Location() // We might be inside an iframe, but want to use the location of topmost window.
+
 	codeReady := make(chan struct{}) // Used to synchronize when "code" value is ready.
 
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		if strings.HasPrefix(dom.GetWindow().Location().Hash, "#/") {
-			id := dom.GetWindow().Location().Hash[2:]
+		if strings.HasPrefix(location.Hash, "#/") {
+			id := location.Hash[2:]
 
 			req := xhr.NewRequest("GET", "http://"+snippetStoreHost+"/p/"+id)
 			req.ResponseType = xhr.ArrayBuffer
@@ -75,7 +77,7 @@ func main() {
 		codeArea := angularjs.ElementById("code")
 		codeArea.On("input", func(e *angularjs.Event) {
 			scope.Set("showShareUrl", false)
-			dom.GetWindow().Location().Hash = ""
+			location.Hash = ""
 		})
 		codeArea.On("keydown", func(e *angularjs.Event) {
 			toInsert := ""
@@ -98,7 +100,7 @@ func main() {
 			}
 			if toInsert != "" {
 				scope.Set("showShareUrl", false)
-				dom.GetWindow().Location().Hash = ""
+				location.Hash = ""
 
 				start := codeArea.Prop("selectionStart").Int()
 				end := codeArea.Prop("selectionEnd").Int()
@@ -232,9 +234,9 @@ func main() {
 				scope.Apply(func() {
 					id := string(data)
 
-					dom.GetWindow().Location().Hash = "#/" + id
+					location.Hash = "#/" + id
 
-					scope.Set("shareUrl", dom.GetWindow().Location().Str())
+					scope.Set("shareUrl", location.Str())
 					scope.Set("showShareUrl", true)
 					// TODO: Do this better using AngularJS.
 					//       Perhaps using http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/18295416.
