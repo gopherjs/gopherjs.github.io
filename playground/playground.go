@@ -247,6 +247,32 @@ func main() {
 				})
 			}()
 		})
+
+		// Start watching for hashchange events, and reload snippet if it happens.
+		dom.GetWindow().Top().AddEventListener("hashchange", false, func(event dom.Event) {
+			event.PreventDefault()
+
+			if strings.HasPrefix(location.Hash, "#/") {
+				id := location.Hash[2:]
+
+				req := xhr.NewRequest("GET", "http://"+snippetStoreHost+"/p/"+id)
+				req.ResponseType = xhr.ArrayBuffer
+				go func() {
+					err := req.Send(nil)
+					if err != nil || req.Status != 200 {
+						scope.Apply(func() {
+							scope.Set("output", []Line{Line{"type": "err", "content": `failed to load snippet "` + id + `"`}})
+						})
+						return
+					}
+
+					data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
+					scope.Apply(func() {
+						scope.Set("code", string(data))
+					})
+				}()
+			}
+		})
 	})
 }
 
