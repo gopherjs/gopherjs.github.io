@@ -13,7 +13,7 @@
         <input type="button" value="Run" ng-click="run(false)" />
         <input type="button" value="Format" ng-click="format()" />
         <input type="button" value="Share" ng-click="share()" />
-        <input type="text" class="show-share-url-{{showShareUrl}}" id="share-url" value="{{shareUrl}}" />
+        <input type="text" class="show-share-url-{{showShareUrl}}" id="share-url" value="{{shareUrl}}" onfocus="select()" />
         <label><input ng-model="showGenerated" type="checkbox" />Show generated code for main package</label>
       </span>
     </div>
