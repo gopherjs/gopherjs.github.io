@@ -87,7 +87,7 @@ func main() {
 			case '\r':
 				toInsert = "\n"
 				start := codeArea.Prop("selectionStart").Int()
-				code := scope.Get("code").Str()
+				code := scope.Get("code").String()
 				i := strings.LastIndex(code[:start], "\n") + 1
 				for i < start {
 					c := code[i]
@@ -104,7 +104,7 @@ func main() {
 
 				start := codeArea.Prop("selectionStart").Int()
 				end := codeArea.Prop("selectionEnd").Int()
-				code := scope.Get("code").Str()
+				code := scope.Get("code").String()
 				scope.Apply(func() {
 					scope.Set("code", code[:start]+toInsert+code[end:])
 				})
@@ -120,7 +120,7 @@ func main() {
 			scope.Set("output", output)
 			pkgsToLoad = nil
 
-			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").Str()), parser.ParseComments)
+			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").String()), parser.ParseComments)
 			if err != nil {
 				if list, ok := err.(scanner.ErrorList); ok {
 					for _, entry := range list {
@@ -208,7 +208,7 @@ func main() {
 		}()
 
 		scope.Set("format", func() {
-			out, err := format.Source([]byte(scope.Get("code").Str()))
+			out, err := format.Source([]byte(scope.Get("code").String()))
 			if err != nil {
 				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
@@ -222,7 +222,7 @@ func main() {
 			req.ResponseType = xhr.ArrayBuffer
 			go func() {
 				// TODO: Send as binary?
-				err := req.Send(scope.Get("code").Str())
+				err := req.Send(scope.Get("code").String())
 				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
 						scope.Set("output", []Line{Line{"type": "err", "content": `failed to share snippet`}})
@@ -236,7 +236,7 @@ func main() {
 
 					location.Hash = "#/" + id
 
-					scope.Set("shareUrl", location.Str())
+					scope.Set("shareUrl", location.String())
 					scope.Set("showShareUrl", true)
 					// TODO: Do this better using AngularJS.
 					//       Perhaps using http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/18295416.
