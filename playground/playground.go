@@ -21,7 +21,7 @@ type Line map[string]string
 
 var output []Line
 
-const snippetStoreHost = "snippets.gotools.org"
+const snippetStoreHost = "snippets.gopherjs.org"
 
 func main() {
 	var location = dom.GetWindow().Top().Location() // We might be inside an iframe, but want to use the location of topmost window.
