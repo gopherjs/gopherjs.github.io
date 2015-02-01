@@ -221,8 +221,7 @@ func main() {
 			req := xhr.NewRequest("POST", "http://"+snippetStoreHost+"/share")
 			req.ResponseType = xhr.ArrayBuffer
 			go func() {
-				// TODO: Send as binary?
-				err := req.Send(scope.Get("code").String())
+				err := req.Send([]byte(scope.Get("code").String())) // Send as binary.
 				if err != nil || req.Status != 200 {
 					scope.Apply(func() {
 						scope.Set("output", []Line{Line{"type": "err", "content": `failed to share snippet`}})
