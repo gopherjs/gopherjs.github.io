@@ -36,13 +36,17 @@ Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which 
 ### Getting started
 #### Interacting with the DOM
 The package `github.com/gopherjs/gopherjs/js` (see [documentation](http://godoc.org/github.com/gopherjs/gopherjs/js)) provides functions for interacting with native JavaScript APIs. For example the line
+
 ```js
 document.write("Hello world!");
 ```
+
 would look like this in Go:
+
 ```go
 js.Global.Get("document").Call("write", "Hello world!")
 ```
+
 You may also want use the [DOM bindings](http://dominik.honnef.co/go/js/dom), the [jQuery bindings](https://github.com/gopherjs/jquery) (see [TodoMVC Example](https://github.com/gopherjs/todomvc)) or the [AngularJS bindings](https://github.com/gopherjs/go-angularjs). Those are some of the [bindings to JavaScript APIs and libraries](https://github.com/gopherjs/gopherjs/wiki/bindings) by community members.
 
 #### Providing library functions for use in other JavaScript code
