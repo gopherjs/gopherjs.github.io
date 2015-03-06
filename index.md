@@ -10,14 +10,14 @@ GopherJS - A compiler from Go to JavaScript
 GopherJS compiles Go code ([golang.org](http://golang.org/)) to pure JavaScript code. Its main purpose is to give you the opportunity to write front-end code in Go which will still run in all browsers. Give GopherJS a try on the [GopherJS Playground](http://gopherjs.github.io/playground/).
 
 ### What is supported?
-Nearly everything, including Goroutines ([compatibility table](doc/packages.md)). Performance is quite good in most cases, see [HTML5 game engine benchmark](http://ajhager.github.io/enj/).
+Nearly everything, including Goroutines ([compatibility table](https://github.com/gopherjs/gopherjs/blob/master/doc/packages.md)). Performance is quite good in most cases, see [HTML5 game engine benchmark](http://ajhager.github.io/enj/).
 
 ### Installation and Usage
 Get or update GopherJS and dependencies with:
 ```
 go get -u github.com/gopherjs/gopherjs
 ```
-Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which behave similar to the `go` tool. For `main` packages, these commands create a `.js` file and `.js.map` source map in the current directory or in `$GOPATH/bin`. The generated JavaScript file can be used as usual in a website. Use `gopherjs help [command]` to get a list of possible command line flags, e.g. for minification and automatically watching for changes. If you want to run the generated code with Node.js, see [this page](doc/syscalls.md).
+Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which behave similar to the `go` tool. For `main` packages, these commands create a `.js` file and `.js.map` source map in the current directory or in `$GOPATH/bin`. The generated JavaScript file can be used as usual in a website. Use `gopherjs help [command]` to get a list of possible command line flags, e.g. for minification and automatically watching for changes. If you want to run the generated code with Node.js, see [this page](https://github.com/gopherjs/gopherjs/blob/master/doc/syscalls.md).
 
 *Note: GopherJS will try to write compiled object files of the core packages to your $GOROOT/pkg directory. If that fails, it will fall back to $GOPATH/pkg.*
 
