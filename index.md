@@ -14,9 +14,11 @@ Nearly everything, including Goroutines ([compatibility table](https://github.co
 
 ### Installation and Usage
 Get or update GopherJS and dependencies with:
+
 ```
 go get -u github.com/gopherjs/gopherjs
 ```
+
 Now you can use  `gopherjs build [files]` or `gopherjs install [package]` which behave similar to the `go` tool. For `main` packages, these commands create a `.js` file and `.js.map` source map in the current directory or in `$GOPATH/bin`. The generated JavaScript file can be used as usual in a website. Use `gopherjs help [command]` to get a list of possible command line flags, e.g. for minification and automatically watching for changes. If you want to run the generated code with Node.js, see [this page](https://github.com/gopherjs/gopherjs/blob/master/doc/syscalls.md).
 
 *Note: GopherJS will try to write compiled object files of the core packages to your $GOROOT/pkg directory. If that fails, it will fall back to $GOPATH/pkg.*
@@ -51,6 +53,7 @@ You may also want use the [DOM bindings](http://dominik.honnef.co/go/js/dom), th
 
 #### Providing library functions for use in other JavaScript code
 Set a global variable to a map that contains the functions:
+
 ```go
 package main
 
@@ -78,6 +81,7 @@ func (p *Pet) SetName(name string) {
 	p.name = name
 }
 ```
+
 For more details see [Jason Stone's blog post](http://legacytotheedge.blogspot.de/2014/03/gopherjs-go-to-javascript-transpiler.html) about GopherJS.
 
 ### Architecture
