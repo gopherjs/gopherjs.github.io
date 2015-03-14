@@ -57,8 +57,6 @@ func main() {
 		}
 		scope.Set("shareUrl", "")
 		scope.Set("showShareUrl", false)
-		scope.Set("showGenerated", false)
-		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
 		packages := make(map[string]*compiler.Archive)
 		var pkgsToLoad []string
@@ -189,10 +187,6 @@ func main() {
 			if loadOnly {
 				return
 			}
-
-			mainPkgCode := bytes.NewBuffer(nil)
-			compiler.WritePkgCode(packages["main"], false, &compiler.SourceMapFilter{Writer: mainPkgCode})
-			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
 			jsCode.WriteString("try{\n")

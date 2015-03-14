@@ -44,23 +44,8 @@ a {
 	display: none;
 }
 
-.show-generated-false #generated {
-	display: none;
-}
-
-.show-generated-true #input {
-	right: 50%;
-	margin-right: 2px;
-}
-
-.show-generated-true #generated {
-	left: 50%;
-	margin-left: 2px;
-}
-
 #code,
 #output,
-#generated,
 pre,
 .lines {
 	font-family: Menlo, Courier\ New, monospace;
@@ -79,10 +64,6 @@ pre,
 	padding: 0;
 	resize: none;
 	wrap: off;
-}
-
-#generated {
-	overflow: scroll;
 }
 
 #output {
