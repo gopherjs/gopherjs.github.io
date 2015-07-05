@@ -59,12 +59,12 @@ func main() {
 		scope.Set("showShareUrl", false)
 
 		packages := make(map[string]*compiler.Archive)
-		var pkgsToLoad map[string]bool
+		var pkgsToLoad map[string]struct{}
 		importContext := compiler.NewImportContext(func(path string) (*compiler.Archive, error) {
 			if pkg, found := packages[path]; found {
 				return pkg, nil
 			}
-			pkgsToLoad[path] = true
+			pkgsToLoad[path] = struct{}{}
 			return &compiler.Archive{}, nil
 		})
 		fileSet := token.NewFileSet()
@@ -116,7 +116,7 @@ func main() {
 		run = func(loadOnly bool) {
 			output = nil
 			scope.Set("output", output)
-			pkgsToLoad = make(map[string]bool)
+			pkgsToLoad = make(map[string]struct{})
 
 			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").String()), parser.ParseComments)
 			if err != nil {
