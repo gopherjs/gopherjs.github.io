@@ -59,12 +59,12 @@ func main() {
 		scope.Set("showShareUrl", false)
 
 		packages := make(map[string]*compiler.Archive)
-		var pkgsToLoad []string
+		var pkgsToLoad map[string]bool
 		importContext := compiler.NewImportContext(func(path string) (*compiler.Archive, error) {
 			if pkg, found := packages[path]; found {
 				return pkg, nil
 			}
-			pkgsToLoad = append(pkgsToLoad, path)
+			pkgsToLoad[path] = true
 			return &compiler.Archive{}, nil
 		})
 		fileSet := token.NewFileSet()
@@ -116,7 +116,7 @@ func main() {
 		run = func(loadOnly bool) {
 			output = nil
 			scope.Set("output", output)
-			pkgsToLoad = nil
+			pkgsToLoad = make(map[string]bool)
 
 			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").String()), parser.ParseComments)
 			if err != nil {
@@ -135,7 +135,7 @@ func main() {
 			packages["main"] = mainPkg
 			if err != nil && len(pkgsToLoad) == 0 {
 				if list, ok := err.(compiler.ErrorList); ok {
-					output := make([]Line, 0)
+					var output []Line
 					for _, entry := range list {
 						output = append(output, Line{"type": "err", "content": entry.Error()})
 					}
@@ -153,12 +153,10 @@ func main() {
 
 			if len(pkgsToLoad) != 0 {
 				pkgsReceived = 0
-				for _, p := range pkgsToLoad {
-					path := p
-
+				for path := range pkgsToLoad {
 					req := xhr.NewRequest("GET", "pkg/"+path+".a.js")
 					req.ResponseType = xhr.ArrayBuffer
-					go func() {
+					go func(path string) {
 						err := req.Send(nil)
 						if err != nil || req.Status != 200 {
 							scope.Apply(func() {
@@ -179,7 +177,7 @@ func main() {
 						if pkgsReceived == len(pkgsToLoad) {
 							run(loadOnly)
 						}
-					}()
+					}(path)
 				}
 				return
 			}
