@@ -1,4 +1,4 @@
-// +build ignore
+// +build generate
 
 // mkstdlib generates the zstdlib.go file, containing the Go standard
 // library API symbols. It's baked into the binary to avoid scanning
@@ -8,17 +8,22 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"fmt"
 	"go/format"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
 )
+
+var outputFlag = flag.String("output", "", "output file name without extension; if empty, then print to stdout")
 
 func mustOpen(name string) io.Reader {
 	f, err := os.Open(name)
@@ -29,12 +34,20 @@ func mustOpen(name string) io.Reader {
 }
 
 func api(base string) string {
-	return filepath.Join(os.Getenv("GOROOT"), "api", base)
+	return filepath.Join(runtime.GOROOT(), "api", base)
 }
 
 var sym = regexp.MustCompile(`^pkg (\S+).*?, (?:var|func|type|const) ([A-Z]\w*)`)
 
+var skips = map[string]struct{}{
+	// Skip syscall because it's really big and causes Maximum call stack size exceeded panic.
+	// See https://github.com/gopherjs/gopherjs/issues/305.
+	"syscall": {},
+}
+
 func main() {
+	flag.Parse()
+
 	var buf bytes.Buffer
 	outf := func(format string, args ...interface{}) {
 		fmt.Fprintf(&buf, format, args...)
@@ -46,6 +59,10 @@ func main() {
 		mustOpen(api("go1.txt")),
 		mustOpen(api("go1.1.txt")),
 		mustOpen(api("go1.2.txt")),
+		mustOpen(api("go1.3.txt")),
+		mustOpen(api("go1.4.txt")),
+		mustOpen(api("go1.5.txt")),
+		mustOpen("gopherjs.txt"),
 	)
 	sc := bufio.NewScanner(f)
 	fullImport := map[string]string{} // "zip.NewReader" => "archive/zip"
@@ -75,6 +92,9 @@ func main() {
 	}
 	sort.Strings(keys)
 	for _, key := range keys {
+		if _, skip := skips[fullImport[key]]; skip {
+			continue
+		}
 		if ambiguous[key] {
 			outf("\t// %q is ambiguous\n", key)
 		} else {
@@ -86,5 +106,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.Stdout.Write(fmtbuf)
+	switch *outputFlag {
+	case "":
+		os.Stdout.Write(fmtbuf)
+	default:
+		err := ioutil.WriteFile(*outputFlag+".go", fmtbuf, 0644)
+		if err != nil {
+			log.Fatalf("writing output: %s", err)
+		}
+	}
 }

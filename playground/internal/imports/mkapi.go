@@ -1,8 +1,15 @@
+// +build generate
+
 // Copyright 2011 The Go Authors.  All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 // Binary api computes the exported API of a set of Go packages.
+//
+// It's a copy of cmd/api tool, but with a patch to enable
+// operating on packages in GOPATH workspaces merged in
+// (https://github.com/golang/go/issues/4993#issuecomment-66075958),
+// and an output flag added for go generate usage.
 package main
 
 import (
@@ -29,12 +36,14 @@ import (
 
 // Flags
 var (
-	checkFile  = flag.String("c", "", "optional comma-separated filename(s) to check API against")
-	allowNew   = flag.Bool("allow_new", true, "allow API additions")
-	exceptFile = flag.String("except", "", "optional filename of packages that are allowed to change without triggering a failure in the tool")
-	nextFile   = flag.String("next", "", "optional filename of tentative upcoming API features for the next release. This file can be lazily maintained. It only affects the delta warnings from the -c file printed on success.")
-	verbose    = flag.Bool("v", false, "verbose debugging")
-	forceCtx   = flag.String("contexts", "", "optional comma-separated list of <goos>-<goarch>[-cgo] to override default contexts.")
+	output        = flag.String("output", "", "output file name; if empty, then print to stdout")
+	includeGopath = flag.Bool("gopath", false, "include GOPATH packages")
+	checkFile     = flag.String("c", "", "optional comma-separated filename(s) to check API against")
+	allowNew      = flag.Bool("allow_new", true, "allow API additions")
+	exceptFile    = flag.String("except", "", "optional filename of packages that are allowed to change without triggering a failure in the tool")
+	nextFile      = flag.String("next", "", "optional filename of tentative upcoming API features for the next release. This file can be lazily maintained. It only affects the delta warnings from the -c file printed on success.")
+	verbose       = flag.Bool("v", false, "verbose debugging")
+	forceCtx      = flag.String("contexts", "", "optional comma-separated list of <goos>-<goarch>[-cgo] to override default contexts.")
 )
 
 // contexts are the default contexts which are scanned, unless
@@ -126,6 +135,12 @@ func main() {
 	var pkgNames []string
 	if flag.NArg() > 0 {
 		pkgNames = flag.Args()
+	} else if *includeGopath {
+		alls, err := exec.Command("go", "list", "all").Output()
+		if err != nil {
+			log.Fatal(err)
+		}
+		pkgNames = strings.Fields(string(alls))
 	} else {
 		stds, err := exec.Command("go", "list", "std").Output()
 		if err != nil {
@@ -186,7 +201,19 @@ func main() {
 		}
 	}()
 
-	bw := bufio.NewWriter(os.Stdout)
+	var out io.Writer
+	switch *output {
+	case "":
+		out = os.Stdout
+	default:
+		f, err := os.OpenFile(*output, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+		if err != nil {
+			log.Fatalf("opening file %q for output: %v", *output, err)
+		}
+		defer f.Close()
+		out = f
+	}
+	bw := bufio.NewWriter(out)
 	defer bw.Flush()
 
 	if *checkFile == "" {
@@ -428,15 +455,25 @@ func (w *Walker) Import(name string) (*types.Package, error) {
 	}
 	w.imported[name] = &importing
 
-	// Determine package files.
-	dir := filepath.Join(w.root, filepath.FromSlash(name))
-	if fi, err := os.Stat(dir); err != nil || !fi.IsDir() {
-		log.Fatalf("no source in tree for package %q", pkg)
-	}
-
 	context := w.context
 	if context == nil {
 		context = &build.Default
+	}
+
+	// Determine package files.
+	var dir string
+	// if 'name' is not a std package, then include GOPATH
+	if pkg == nil && *includeGopath {
+		c_pkg, err := build.Default.Import(name, "", build.FindOnly)
+		if err != nil {
+			log.Fatalf("failed to find import %q", name)
+		}
+		dir = c_pkg.Dir
+	} else {
+		dir = filepath.Join(w.root, filepath.FromSlash(name))
+		if fi, err := os.Stat(dir); err != nil || !fi.IsDir() {
+			log.Fatalf("no source in tree for package %q (import name %q)", pkg, name)
+		}
 	}
 
 	// Look in cache.
