@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/imports"
 	"github.com/gopherjs/gopherjs/compiler"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/neelance/go-angularjs"
@@ -52,7 +53,7 @@ func main() {
 				})
 			}()
 		} else {
-			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 			close(codeReady)
 		}
 		scope.Set("shareUrl", "")
@@ -200,13 +201,26 @@ func main() {
 		}()
 
 		scope.Set("format", func() {
-			out, err := format.Source([]byte(scope.Get("code").String()))
-			if err != nil {
-				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
-				return
-			}
-			scope.Set("code", string(out))
-			scope.Set("output", []Line{})
+			go func() {
+				var out []byte
+				var err error
+				switch dom.GetWindow().Document().GetElementByID("imports").(*dom.HTMLInputElement).Checked {
+				case true:
+					out, err = imports.Process("prog.go", []byte(scope.Get("code").String()), nil)
+				case false:
+					out, err = format.Source([]byte(scope.Get("code").String()))
+				}
+				if err != nil {
+					scope.Apply(func() {
+						scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
+					})
+					return
+				}
+				scope.Apply(func() {
+					scope.Set("code", string(out))
+					scope.Set("output", []Line{})
+				})
+			}()
 		})
 
 		scope.Set("share", func() {
