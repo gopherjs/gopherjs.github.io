@@ -56,6 +56,7 @@ func main() {
 			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 			close(codeReady)
 		}
+		scope.Set("imports", true)
 		scope.Set("shareUrl", "")
 		scope.Set("showShareUrl", false)
 
@@ -202,13 +203,14 @@ func main() {
 
 		scope.Set("format", func() {
 			go func() {
+				code := []byte(scope.Get("code").String())
 				var out []byte
 				var err error
-				switch dom.GetWindow().Document().GetElementByID("imports").(*dom.HTMLInputElement).Checked {
+				switch scope.Get("imports").Bool() {
 				case true:
-					out, err = imports.Process("prog.go", []byte(scope.Get("code").String()), nil)
+					out, err = imports.Process("prog.go", code, nil)
 				case false:
-					out, err = format.Source([]byte(scope.Get("code").String()))
+					out, err = format.Source(code)
 				}
 				if err != nil {
 					scope.Apply(func() {
