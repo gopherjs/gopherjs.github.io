@@ -3,6 +3,8 @@ set -e
 
 go install github.com/gopherjs/gopherjs/...
 
+go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports
+
 gopherjs install -m github.com/gopherjs/gopherjs.github.io/playground github.com/gopherjs/gopherjs/js
 cp $GOPATH/bin/playground.js $GOPATH/src/github.com/gopherjs/gopherjs.github.io/playground/playground.js
 cp $GOPATH/bin/playground.js.map $GOPATH/src/github.com/gopherjs/gopherjs.github.io/playground/playground.js.map
