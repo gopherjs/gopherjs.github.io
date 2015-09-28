@@ -5,7 +5,7 @@ date:   2015-09-28
 author: Dmitri Shuralyov
 ---
 
-The GopherJS project first caught my attention about 2 year ago, back when few parts of the Go spec were implemented.
+The GopherJS project first caught my attention about 2 years ago, back when few parts of the Go spec were implemented.
 However, I noticed the incredible pace at which Richard was working, making multiple sophisticated commits per day, as well as fixing reported compiler issues within hours.
 A few months later, I decided to download it and give it try on a relatively [large pure Go package](https://godoc.org/github.com/shurcooL/markdownfmt/markdown?import-graph&hide=1) for formatting Markdown, and I was quite shocked when it... [simply worked](https://github.com/shurcooL/atom-markdown-format/commit/6b5f21c4457309f8eba3a78b82e0c9a458ff13b4).
 
