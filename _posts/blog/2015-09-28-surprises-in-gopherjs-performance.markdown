@@ -85,7 +85,7 @@ Is node doing something weird?
 
 I tried running it in the [GopherJS Playground](http://www.gopherjs.org/playground/#/K7r0-q_Jwc), which you can also do:
 
-http://www.gopherjs.org/playground/#/K7r0-q_Jwc
+<http://www.gopherjs.org/playground/#/K7r0-q_Jwc>
 
 And got the same time in Chrome browser (stable channel).
 
@@ -261,7 +261,7 @@ However, using `Pow` with such inputs is silly and should not be done, as you ca
 
 You can try the final optimized version of GopherJS in your browser via the GopherJS Playground:
 
-http://www.gopherjs.org/playground/#/sDEYM2TwC7
+<http://www.gopherjs.org/playground/#/sDEYM2TwC7>
 
 It's fascinating to think about what happens when you do that.
 The GopherJS compiler, written in pure Go, has compiled itself to JavaScript, which runs in your browser.
