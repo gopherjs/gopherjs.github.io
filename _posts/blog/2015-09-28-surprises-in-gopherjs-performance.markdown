@@ -177,7 +177,7 @@ So the size of `int` is 32-bit for GopherJS code but 64-bit for Go code.
 Let's make it use `int32` consistently and try again:
 
 ```bash
-$ gopherjs run main.go
+$ go run main.go
 approximating pi with 1000000000 iterations.
 3.1415926545880506
 total time taken is: 6.658s
