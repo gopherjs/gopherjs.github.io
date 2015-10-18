@@ -57,7 +57,6 @@ func gen() error {
 			return err
 		}
 	}
-
 	return nil
 }
 
