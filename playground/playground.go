@@ -7,6 +7,7 @@ import (
 	"go/parser"
 	"go/scanner"
 	"go/token"
+	"go/types"
 	"strings"
 	"time"
 
@@ -62,13 +63,16 @@ func main() {
 
 		packages := make(map[string]*compiler.Archive)
 		var pkgsToLoad map[string]struct{}
-		importContext := compiler.NewImportContext(func(path string) (*compiler.Archive, error) {
-			if pkg, found := packages[path]; found {
-				return pkg, nil
-			}
-			pkgsToLoad[path] = struct{}{}
-			return &compiler.Archive{}, nil
-		})
+		importContext := &compiler.ImportContext{
+			Packages: map[string]*types.Package{"unsafe": types.Unsafe},
+			Import: func(path string) (*compiler.Archive, error) {
+				if pkg, found := packages[path]; found {
+					return pkg, nil
+				}
+				pkgsToLoad[path] = struct{}{}
+				return &compiler.Archive{}, nil
+			},
+		}
 		fileSet := token.NewFileSet()
 		pkgsReceived := 0
 
