@@ -36,4 +36,5 @@ cp -r $GOROOT/pkg/darwin_amd64_js_min/* $PKG
 rm -r /tmp/gopherjsplayground_goroot
 rm -r /tmp/gopherjsplayground_gopath
 
-rename 's/\.a/\.a.js/' $(find $PKG -name "*.a")
+# Rename all *.a files in $PKG to *.a.js.
+find "$PKG" -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
