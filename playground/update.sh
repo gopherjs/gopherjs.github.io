@@ -1,6 +1,14 @@
 #!/bin/sh
 set -e
 
+cleanup() {
+    rm -rf /tmp/gopherjsplayground_gopath
+    rm -rf /tmp/gopherjsplayground_goroot
+    exit
+}
+
+trap cleanup EXIT SIGHUP SIGINT SIGTERM
+
 go install github.com/gopherjs/gopherjs/...
 
 go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports
@@ -130,9 +138,6 @@ gopherjs install -m \
 
 cp -r $GOROOT/pkg/*_js_min/* $PKG
 cp -r $GOROOT/pkg/*_amd64_js_min/* $PKG
-
-rm -r /tmp/gopherjsplayground_goroot
-rm -r /tmp/gopherjsplayground_gopath
 
 # Rename all *.a files in $PKG to *.a.js.
 find "$PKG" -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
