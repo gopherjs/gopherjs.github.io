@@ -29,7 +29,7 @@ rm -r $PKG
 # so that all the standard library packages get written to GOROOT/pkg.
 export GOPATH="$tmp_gopath"
 mkdir -p $GOPATH/src/github.com/gopherjs/gopherjs
-cp -r $GOPHERJSGOPATH/src/github.com/gopherjs/gopherjs/* $GOPATH/src/github.com/gopherjs/gopherjs
+cp -a $GOPHERJSGOPATH/src/github.com/gopherjs/gopherjs/* $GOPATH/src/github.com/gopherjs/gopherjs
 
 gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
 mkdir -p $PKG/github.com/gopherjs/gopherjs
@@ -38,7 +38,7 @@ cp $GOPATH/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a $PKG/github.com/go
 
 # Make a copy of GOROOT that is user-writeable,
 # use it to build and copy out standard library packages.
-cp -r $(go env GOROOT)/. "$tmp_goroot"
+cp -a $(go env GOROOT)/. "$tmp_goroot"
 export GOROOT="$tmp_goroot"
 gopherjs install -m \
          archive/tar \
@@ -139,8 +139,8 @@ gopherjs install -m \
          unicode/utf16 \
          unicode/utf8
 
-cp -r $GOROOT/pkg/*_js_min/* $PKG
-cp -r $GOROOT/pkg/*_amd64_js_min/* $PKG
+cp -a $GOROOT/pkg/*_js_min/* $PKG
+cp -a $GOROOT/pkg/*_amd64_js_min/* $PKG
 
 # Rename all *.a files in $PKG to *.a.js.
 find "$PKG" -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
