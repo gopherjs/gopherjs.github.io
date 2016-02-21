@@ -1,9 +1,12 @@
 #!/bin/sh
 set -e
 
+tmp_gopath=$(mktemp -d --suffix _play_gopath)
+tmp_goroot=$(mktemp -d --suffix _play_goroot)
+
 cleanup() {
-    rm -rf /tmp/gopherjsplayground_gopath
-    rm -rf /tmp/gopherjsplayground_goroot
+    rm -rf "$tmp_gopath"
+    rm -rf "$tmp_goroot"
     exit
 }
 
@@ -24,7 +27,7 @@ rm -r $PKG
 
 # Use an empty GOPATH workspace with just gopherjs,
 # so that all the standard library packages get written to GOROOT/pkg.
-export GOPATH=/tmp/gopherjsplayground_gopath
+export GOPATH="$tmp_gopath"
 mkdir -p $GOPATH/src/github.com/gopherjs/gopherjs
 cp -r $GOPHERJSGOPATH/src/github.com/gopherjs/gopherjs/* $GOPATH/src/github.com/gopherjs/gopherjs
 
@@ -35,8 +38,8 @@ cp $GOPATH/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a $PKG/github.com/go
 
 # Make a copy of GOROOT that is user-writeable,
 # use it to build and copy out standard library packages.
-cp -r $(go env GOROOT) /tmp/gopherjsplayground_goroot
-export GOROOT=/tmp/gopherjsplayground_goroot
+cp -r $(go env GOROOT)/. "$tmp_goroot"
+export GOROOT="$tmp_goroot"
 gopherjs install -m \
          archive/tar \
          archive/zip \
