@@ -22,8 +22,8 @@ cp -r $GOPHERJSGOPATH/src/github.com/gopherjs/gopherjs/* $GOPATH/src/github.com/
 
 gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
 mkdir -p $PKG/github.com/gopherjs/gopherjs
-cp $GOPATH/pkg/darwin_js_min/github.com/gopherjs/gopherjs/js.a $PKG/github.com/gopherjs/gopherjs/js.a
-cp $GOPATH/pkg/darwin_js_min/github.com/gopherjs/gopherjs/nosync.a $PKG/github.com/gopherjs/gopherjs/nosync.a
+cp $GOPATH/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a $PKG/github.com/gopherjs/gopherjs/js.a
+cp $GOPATH/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a $PKG/github.com/gopherjs/gopherjs/nosync.a
 
 # Make a copy of GOROOT that is user-writeable,
 # use it to build and copy out standard library packages.
@@ -128,8 +128,8 @@ gopherjs install -m \
          unicode/utf16 \
          unicode/utf8
 
-cp -r $GOROOT/pkg/darwin_js_min/* $PKG
-cp -r $GOROOT/pkg/darwin_amd64_js_min/* $PKG
+cp -r $GOROOT/pkg/*_js_min/* $PKG
+cp -r $GOROOT/pkg/*_amd64_js_min/* $PKG
 
 rm -r /tmp/gopherjsplayground_goroot
 rm -r /tmp/gopherjsplayground_gopath
