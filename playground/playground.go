@@ -64,7 +64,7 @@ func main() {
 		packages := make(map[string]*compiler.Archive)
 		var pkgsToLoad map[string]struct{}
 		importContext := &compiler.ImportContext{
-			Packages: map[string]*types.Package{"unsafe": types.Unsafe},
+			Packages: make(map[string]*types.Package),
 			Import: func(path string) (*compiler.Archive, error) {
 				if pkg, found := packages[path]; found {
 					return pkg, nil
