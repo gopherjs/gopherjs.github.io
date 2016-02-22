@@ -20,8 +20,7 @@ gopherjs build -m
 # The GOPATH workspace where the GopherJS project is.
 gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
 
-pkg=pkg
-rm -r "$pkg"
+rm -r pkg/
 
 # Use an empty GOPATH workspace with just gopherjs,
 # so that all the standard library packages get written to GOROOT/pkg.
@@ -30,9 +29,9 @@ mkdir -p "$GOPATH"/src/github.com/gopherjs/gopherjs
 cp -a "$gopherjsgopath"/src/github.com/gopherjs/gopherjs/* "$GOPATH"/src/github.com/gopherjs/gopherjs
 
 gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
-mkdir -p "$pkg"/github.com/gopherjs/gopherjs
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a "$pkg"/github.com/gopherjs/gopherjs/js.a
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a "$pkg"/github.com/gopherjs/gopherjs/nosync.a
+mkdir -p pkg/github.com/gopherjs/gopherjs
+cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a pkg/github.com/gopherjs/gopherjs/js.a
+cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a pkg/github.com/gopherjs/gopherjs/nosync.a
 
 # Make a copy of GOROOT that is user-writeable,
 # use it to build and copy out standard library packages.
@@ -137,8 +136,8 @@ gopherjs install -m \
          unicode/utf16 \
          unicode/utf8
 
-cp -a "$GOROOT"/pkg/*_js_min/* $pkg
-cp -a "$GOROOT"/pkg/*_amd64_js_min/* $pkg
+cp -a "$GOROOT"/pkg/*_js_min/* pkg/
+cp -a "$GOROOT"/pkg/*_amd64_js_min/* pkg/
 
-# Rename all *.a files in $pkg to *.a.js.
-find "$pkg" -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
+# Rename all *.a files in pkg/ to *.a.js.
+find pkg -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
