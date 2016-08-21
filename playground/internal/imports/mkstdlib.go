@@ -62,6 +62,8 @@ func main() {
 		mustOpen(api("go1.3.txt")),
 		mustOpen(api("go1.4.txt")),
 		mustOpen(api("go1.5.txt")),
+		mustOpen(api("go1.6.txt")),
+		mustOpen(api("go1.7.txt")),
 		mustOpen("gopherjs.txt"),
 	)
 	sc := bufio.NewScanner(f)
