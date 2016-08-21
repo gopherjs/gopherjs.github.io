@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "GopherJS 1.7-1 is released"
+date:   2016-08-21
+author: Dmitri Shuralyov
+---
+
+Hello gophers,
+
+Today, we are happy to make two announcements for GopherJS. First, GopherJS now [officially supports Go 1.7](https://github.com/gopherjs/gopherjs/issues/475), which is the current stable release of Go that came out recently. Second, GopherJS has its first named version attached to it, and we're calling it GopherJS 1.7-1. This makes it possible to have a release history tracking major changes and additions between versions.
+
+The support for Go 1.7 means that GopherJS 1.7-1 requires Go 1.7 and no longer works with Go 1.6. It's highly recommended to be using the latest version of Go and GopherJS, but if you cannot update from Go 1.6 right away, you should continue to use GopherJS on the [`go1.6` branch](https://github.com/gopherjs/gopherjs/commits/go1.6).
+
+GopherJS 1.7-1 continues to support nearly everything of the [Go language specification](https://golang.org/ref/spec), including goroutines. Please consult the [package compatibility table](https://github.com/gopherjs/gopherjs/blob/master/doc/packages.md) to see which standard library packages are supported. Everything from the previous Go 1.6 version is still supported, as are many additions to Go 1.7, but there are some exceptions. For example, the new [`reflect.StructOf` function](https://godoc.org/reflect#StructOf) is not yet supported, but [issue #499](https://github.com/gopherjs/gopherjs/issues/499) tracks its implementation status. If you run into any bugs or discrepancies with what the compatibility table says, please [file an issue](https://github.com/gopherjs/gopherjs/issues).
+
+Installation or upgrade instructions remain the same, even though GopherJS has a version number now. To get the latest official stable release, please follow the instructions at https://github.com/gopherjs/gopherjs#installation-and-usage. You can confirm that you have the right version if `gopherjs version` prints `GopherJS 1.7-1`.
+
+Over the last few years, GopherJS has become increasingly complete and stable. Support for many advanced features of the Go language spec, such as goroutines, channels, and select statements, was added over time. More and more of the viable standard library packages would have all their tests pass and become officially supported. Many bugs were reported, investigated and fixed. GopherJS has become quite stable and is used by many for a broad range of projects.
+
+However, many of those improvements to GopherJS were done quietly and internally, so only developers and people who follow the project very closely would be aware. Without a version number and release history, it's harder for newcomers or people waiting for a stable release to have insight on the readiness state of GopherJS. With this version number and future release history, we hope to better communicate the maturity level of GopherJS and that you can get started with it today.
+
+In closing, we would like to thank every contributor to this project for helping making this release of GopherJS possible. Richard Musiol created and implemented the core parts of GopherJS and Go 1.7 support, and many people have contributed code, reported/investigated/helped reproduce bugs, created libraries and wrappers for various browser APIs. Everyone's effort helped get GopherJS to where it is today, giving us the opportunity to write front-end code in Go which will run in all modern browsers. See [list of code contributors](https://github.com/gopherjs/gopherjs/graphs/contributors) and [list of closed issues](https://github.com/gopherjs/gopherjs/issues?q=is%3Aissue+is%3Aclosed). We welcome all help; if you'd like to get involved, see the [community section](https://github.com/gopherjs/gopherjs#community). If you have a good experience with GopherJS, tell your fellow gophers about it!
+
+Happy surfing with Go and GopherJS!
