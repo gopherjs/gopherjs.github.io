@@ -8,6 +8,8 @@
 
     <title>{{ site.title }}{% if page.title %} - {{ page.title }}{% endif %}</title>
 
+    {% if page.title == "Blog" %}<link rel="alternate" type="application/atom+xml" title="GopherJS Blog" href="/feed.xml" />{% endif %}
+
     <!-- Bootstrap core CSS -->
     <link href="{{ "/assets/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet">
 
