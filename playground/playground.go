@@ -23,7 +23,7 @@ type Line map[string]string
 
 var output []Line
 
-const snippetStoreHost = "snippets.gopherjs.org"
+const snippetStoreHost = "https://snippets.gopherjs.org"
 
 func main() {
 	var location = dom.GetWindow().Top().Location() // We might be inside an iframe, but want to use the location of topmost window.
@@ -36,7 +36,7 @@ func main() {
 		if strings.HasPrefix(location.Hash, "#/") {
 			id := location.Hash[2:]
 
-			req := xhr.NewRequest("GET", "http://"+snippetStoreHost+"/p/"+id)
+			req := xhr.NewRequest("GET", snippetStoreHost+"/p/"+id)
 			req.ResponseType = xhr.ArrayBuffer
 			go func() {
 				err := req.Send(nil)
@@ -230,7 +230,7 @@ func main() {
 		})
 
 		scope.Set("share", func() {
-			req := xhr.NewRequest("POST", "http://"+snippetStoreHost+"/share")
+			req := xhr.NewRequest("POST", snippetStoreHost+"/share")
 			req.ResponseType = xhr.ArrayBuffer
 			go func() {
 				err := req.Send([]byte(scope.Get("code").String())) // Send as binary.
@@ -266,7 +266,7 @@ func main() {
 			if strings.HasPrefix(location.Hash, "#/") {
 				id := location.Hash[2:]
 
-				req := xhr.NewRequest("GET", "http://"+snippetStoreHost+"/p/"+id)
+				req := xhr.NewRequest("GET", snippetStoreHost+"/p/"+id)
 				req.ResponseType = xhr.ArrayBuffer
 				go func() {
 					err := req.Send(nil)
