@@ -206,27 +206,21 @@ func main() {
 		}()
 
 		scope.Set("format", func() {
-			go func() {
-				code := []byte(scope.Get("code").String())
-				var out []byte
-				var err error
-				switch scope.Get("imports").Bool() {
-				case true:
-					out, err = imports.Process("prog.go", code, nil)
-				case false:
-					out, err = format.Source(code)
-				}
-				if err != nil {
-					scope.Apply(func() {
-						scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
-					})
-					return
-				}
-				scope.Apply(func() {
-					scope.Set("code", string(out))
-					scope.Set("output", []Line{})
-				})
-			}()
+			code := []byte(scope.Get("code").String())
+			var out []byte
+			var err error
+			switch scope.Get("imports").Bool() {
+			case true:
+				out, err = imports.Process("prog.go", code, nil)
+			case false:
+				out, err = format.Source(code)
+			}
+			if err != nil {
+				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
+				return
+			}
+			scope.Set("code", string(out))
+			scope.Set("output", []Line{})
 		})
 
 		scope.Set("share", func() {
