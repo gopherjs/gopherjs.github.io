@@ -103,6 +103,7 @@ gopherjs install -m \
          io/ioutil \
          math \
          math/big \
+         math/bits \
          math/cmplx \
          math/rand \
          mime \
