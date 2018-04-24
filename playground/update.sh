@@ -8,7 +8,7 @@ cleanup() {
     exit
 }
 
-trap cleanup EXIT SIGHUP SIGINT SIGTERM
+trap cleanup EXIT HUP INT TERM
 
 go install github.com/gopherjs/gopherjs/...
 
@@ -20,7 +20,7 @@ gopherjs build -m
 # The GOPATH workspace where the GopherJS project is.
 gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
 
-rm -r pkg/
+rm -rf pkg/
 
 # Use an empty GOPATH workspace with just gopherjs,
 # so that all the standard library packages get written to GOROOT/pkg.
@@ -28,10 +28,7 @@ export GOPATH="$tmp/gopath"
 mkdir -p "$GOPATH"/src/github.com/gopherjs/gopherjs
 cp -a "$gopherjsgopath"/src/github.com/gopherjs/gopherjs/* "$GOPATH"/src/github.com/gopherjs/gopherjs
 
-gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
-mkdir -p pkg/github.com/gopherjs/gopherjs
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a pkg/github.com/gopherjs/gopherjs/js.a
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a pkg/github.com/gopherjs/gopherjs/nosync.a
+mkdir pkg
 
 # Make a copy of GOROOT that is user-writeable,
 # use it to build and copy out standard library packages.
