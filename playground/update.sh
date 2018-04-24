@@ -8,7 +8,7 @@ cleanup() {
     exit
 }
 
-trap cleanup EXIT SIGHUP SIGINT SIGTERM
+trap cleanup EXIT HUP INT TERM
 
 go install github.com/gopherjs/gopherjs/...
 
@@ -20,7 +20,7 @@ gopherjs build -m
 # The GOPATH workspace where the GopherJS project is.
 gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
 
-rm -r pkg/
+rm -rf pkg/
 
 # Use an empty GOPATH workspace with just gopherjs,
 # so that all the standard library packages get written to GOROOT/pkg.
