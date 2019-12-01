@@ -15,23 +15,24 @@ trap cleanup EXIT HUP INT TERM
 # github.com/gopherjs/gopherjs.github.io repositories.
 export GO111MODULE=off
 
-# TODO: This script relies on $(go env GOROOT) not being user-writable.
-# It can be improved to work even when $(go env GOROOT) is user-writable
-# by making a GOROOT copy here, immediately chmod-ing it to be non-user-writable,
-# and later on chmod-ing it be user-writable again.
-# See https://github.com/gopherjs/gopherjs.github.io/issues/69.
-
 go install github.com/gopherjs/gopherjs/...
 
 go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports
 
-# Build playground itself.
-gopherjs build -m
-
 # The GOPATH workspace where the GopherJS project is.
 gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
 
-rm -rf pkg/
+# Make a copy of GOROOT that is non-user-writable,
+# to prevent any GopherJS packages being written to it for now.
+echo "copying GOROOT from $(go env GOROOT) to $tmp/goroot"
+cp -a "$(go env GOROOT)" "$tmp/goroot"
+echo "making our copy of GOROOT non-user-writable for now"
+chmod -R -w "$tmp/goroot"
+export GOROOT="$tmp/goroot"
+unset GOPHERJS_GOROOT  # force $GOROOT to be used
+
+# Build playground itself.
+gopherjs build -m
 
 # Use an empty GOPATH workspace with just gopherjs,
 # so that all the standard library packages get written to GOROOT/pkg.
@@ -39,17 +40,18 @@ export GOPATH="$tmp/gopath"
 mkdir -p "$GOPATH"/src/github.com/gopherjs/gopherjs
 cp -a "$gopherjsgopath"/src/github.com/gopherjs/gopherjs/* "$GOPATH"/src/github.com/gopherjs/gopherjs
 
+rm -rf pkg/
+
 gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
 mkdir -p pkg/github.com/gopherjs/gopherjs
 cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a pkg/github.com/gopherjs/gopherjs/js.a
 cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a pkg/github.com/gopherjs/gopherjs/nosync.a
 
-# Make a copy of GOROOT that is user-writable,
+# Make our GOROOT copy user-writable now, then
 # use it to build and copy out standard library packages.
-echo "copying GOROOT from $(go env GOROOT) to $tmp/goroot"
-cp -a "$(go env GOROOT)" "$tmp/goroot"
-export GOROOT="$tmp/goroot"
-unset GOPHERJS_GOROOT  # force $GOROOT to be used
+echo "making our copy of GOROOT user-writable again"
+chmod -R u+w "$tmp/goroot"
+
 gopherjs install -m \
          archive/tar \
          archive/zip \
