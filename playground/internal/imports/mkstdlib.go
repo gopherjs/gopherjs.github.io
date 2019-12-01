@@ -69,6 +69,11 @@ func main() {
 		mustOpen(api("go1.10.txt")),
 		mustOpen(api("go1.11.txt")),
 		mustOpen(api("go1.12.txt")),
+
+		// The API of the syscall/js package needs to be computed explicitly,
+		// because it's not included in the GOROOT/api/go1.*.txt files at this time.
+		mustOpen("syscalljs.txt"),
+
 		mustOpen("gopherjs.txt"),
 	)
 	sc := bufio.NewScanner(f)
