@@ -54,7 +54,7 @@ func main() {
 				})
 			}()
 		} else {
-			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+			scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"syscall/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global().Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 			close(codeReady)
 		}
 		scope.Set("imports", true)

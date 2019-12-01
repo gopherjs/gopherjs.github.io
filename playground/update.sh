@@ -10,6 +10,17 @@ cleanup() {
 
 trap cleanup EXIT HUP INT TERM
 
+# This script relies on GOPATH mode. The GOPATH workspace
+# must contain both github.com/gopherjs/gopherjs and
+# github.com/gopherjs/gopherjs.github.io repositories.
+export GO111MODULE=off
+
+# TODO: This script relies on $(go env GOROOT) not being user-writable.
+# It can be improved to work even when $(go env GOROOT) is user-writable
+# by making a GOROOT copy here, immediately chmod-ing it to be non-user-writable,
+# and later on chmod-ing it be user-writable again.
+# See https://github.com/gopherjs/gopherjs.github.io/issues/69.
+
 go install github.com/gopherjs/gopherjs/...
 
 go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports
@@ -33,10 +44,12 @@ mkdir -p pkg/github.com/gopherjs/gopherjs
 cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a pkg/github.com/gopherjs/gopherjs/js.a
 cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a pkg/github.com/gopherjs/gopherjs/nosync.a
 
-# Make a copy of GOROOT that is user-writeable,
+# Make a copy of GOROOT that is user-writable,
 # use it to build and copy out standard library packages.
+echo "copying GOROOT from $(go env GOROOT) to $tmp/goroot"
 cp -a "$(go env GOROOT)" "$tmp/goroot"
 export GOROOT="$tmp/goroot"
+unset GOPHERJS_GOROOT  # force $GOROOT to be used
 gopherjs install -m \
          archive/tar \
          archive/zip \
@@ -125,6 +138,7 @@ gopherjs install -m \
          strconv \
          strings \
          sync/atomic \
+         syscall/js \
          testing \
          testing/iotest \
          testing/quick \
