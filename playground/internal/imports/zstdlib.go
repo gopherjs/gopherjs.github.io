@@ -2634,6 +2634,8 @@ var stdlib = map[string]string{
 	"jpeg.Options":                                  "image/jpeg",
 	"jpeg.Reader":                                   "image/jpeg",
 	"jpeg.UnsupportedError":                         "image/jpeg",
+	"js.CopyBytesToGo":                              "syscall/js",
+	"js.CopyBytesToJS":                              "syscall/js",
 	"js.Debugger":                                   "github.com/gopherjs/gopherjs/js",
 	// "js.Error" is ambiguous
 	"js.Func":   "syscall/js",
@@ -2658,8 +2660,6 @@ var stdlib = map[string]string{
 	"js.TypeString":     "syscall/js",
 	"js.TypeSymbol":     "syscall/js",
 	"js.TypeUndefined":  "syscall/js",
-	"js.TypedArray":     "syscall/js",
-	"js.TypedArrayOf":   "syscall/js",
 	// "js.Undefined" is ambiguous
 	"js.Value":                              "syscall/js",
 	"js.ValueError":                         "syscall/js",
