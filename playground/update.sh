@@ -25,7 +25,7 @@ gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
 # Make a copy of GOROOT that is non-user-writable,
 # to prevent any GopherJS packages being written to it for now.
 echo "copying GOROOT from $(go env GOROOT) to $tmp/goroot"
-cp -a "$(go env GOROOT)" "$tmp/goroot"
+cp -a "$(go env GOROOT)/" "$tmp/goroot/"
 echo "making our copy of GOROOT non-user-writable for now"
 chmod -R -w "$tmp/goroot"
 export GOROOT="$tmp/goroot"
