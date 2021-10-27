@@ -1,3 +1,4 @@
+//go:build generate
 // +build generate
 
 // mkstdlib generates the zstdlib.go file, containing the Go standard
@@ -25,16 +26,28 @@ import (
 
 var outputFlag = flag.String("output", "", "output file name without extension; if empty, then print to stdout")
 
-func mustOpen(name string) io.Reader {
-	f, err := os.Open(name)
-	if err != nil {
-		log.Fatal(err)
+func mustOpenAll(names ...string) []io.Reader {
+	ff := []io.Reader{}
+	for _, name := range names {
+		f, err := os.Open(name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		ff = append(ff, f)
 	}
-	return f
+	return ff
 }
 
 func api(base string) string {
 	return filepath.Join(runtime.GOROOT(), "api", base)
+}
+
+func goAPIs() []string {
+	paths, err := filepath.Glob(filepath.Join(runtime.GOROOT(), "api", "go1.*.txt"))
+	if err != nil {
+		log.Fatalf("Failed to match Go API files: %s", err)
+	}
+	return paths
 }
 
 var sym = regexp.MustCompile(`^pkg (\S+).*?, (?:var|func|type|const) ([A-Z]\w*)`)
@@ -56,26 +69,13 @@ func main() {
 	outf("package imports\n")
 	outf("var stdlib = map[string]string{\n")
 	f := io.MultiReader(
-		mustOpen(api("go1.txt")),
-		mustOpen(api("go1.1.txt")),
-		mustOpen(api("go1.2.txt")),
-		mustOpen(api("go1.3.txt")),
-		mustOpen(api("go1.4.txt")),
-		mustOpen(api("go1.5.txt")),
-		mustOpen(api("go1.6.txt")),
-		mustOpen(api("go1.7.txt")),
-		mustOpen(api("go1.8.txt")),
-		mustOpen(api("go1.9.txt")),
-		mustOpen(api("go1.10.txt")),
-		mustOpen(api("go1.11.txt")),
-		mustOpen(api("go1.12.txt")),
-
-		// The API of the syscall/js package needs to be computed explicitly,
-		// because it's not included in the GOROOT/api/go1.*.txt files at this time.
-		mustOpen("syscalljs.txt"),
-
-		mustOpen("gopherjs.txt"),
-	)
+		mustOpenAll(append(
+			// Standard library packages.
+			goAPIs(),
+			// The API of the syscall/js package needs to be computed explicitly,
+			// because it's not included in the GOROOT/api/go1.*.txt files at this time.
+			"syscalljs.txt",
+			"gopherjs.txt")...)...)
 	sc := bufio.NewScanner(f)
 	fullImport := map[string]string{} // "zip.NewReader" => "archive/zip"
 	ambiguous := map[string]bool{}
