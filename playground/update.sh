@@ -1,160 +1,58 @@
 #!/bin/sh
-set -e
+set -e;
 
-tmp=$(mktemp -d "${TMPDIR:-/tmp}/gopherjs_playground.XXXXXXXXXX")
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/gopherjs_playground.XXXXXXXXXX");
 
 cleanup() {
-    rm -rf "$tmp"
-    exit
+    chmod -R u+w "$tmp";
+    rm -rf "$tmp";
+    exit;
 }
 
-trap cleanup EXIT HUP INT TERM
+isolated_goroot() {
+    REAL_GOROOT="$(go env GOROOT)"
+    export GOROOT="$tmp/goroot"
+    unset GOPHERJS_GOROOT  # force $GOROOT to be used
+    mkdir -p "$GOROOT/pkg"
+    for f in $(ls $REAL_GOROOT | grep -v pkg); do
+        ln -s "$REAL_GOROOT/$f" "$GOROOT/$f"
+    done
+    export GOPATH="$tmp/gopath"  # Intentionally doesn't exist.
+}
 
-# This script relies on GOPATH mode. The GOPATH workspace
-# must contain both github.com/gopherjs/gopherjs and
-# github.com/gopherjs/gopherjs.github.io repositories.
-export GO111MODULE=off
+trap cleanup EXIT HUP INT TERM;
 
-go install github.com/gopherjs/gopherjs/...
+export GO111MODULE=on;
 
-go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports
+# Stage 1: Install latest released GopherJS version.
+go install github.com/gopherjs/gopherjs@latest;
 
-# The GOPATH workspace where the GopherJS project is.
-gopherjsgopath=$(go list -f '{{.Root}}' github.com/gopherjs/gopherjs)
+# Stage 2: Regenerate stdlib API information for auto-imports.
+go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports;
 
-# Make a copy of GOROOT that is non-user-writable,
-# to prevent any GopherJS packages being written to it for now.
-echo "copying GOROOT from $(go env GOROOT) to $tmp/goroot"
-cp -a "$(go env GOROOT)/" "$tmp/goroot/"
-echo "making our copy of GOROOT non-user-writable for now"
-chmod -R -w "$tmp/goroot"
-export GOROOT="$tmp/goroot"
-unset GOPHERJS_GOROOT  # force $GOROOT to be used
+# Stage 3: Build playground itself.
+gopherjs build -m .;
 
-# Build playground itself.
-gopherjs build -m
+# Stage 4: Precompile standard library and GopherJS packages.
 
-# Use an empty GOPATH workspace with just gopherjs,
-# so that all the standard library packages get written to GOROOT/pkg.
-export GOPATH="$tmp/gopath"
-mkdir -p "$GOPATH"/src/github.com/gopherjs/gopherjs
-cp -a "$gopherjsgopath"/src/github.com/gopherjs/gopherjs/* "$GOPATH"/src/github.com/gopherjs/gopherjs
+# Stage 4.1: Set up isolated GOROOT/GOPATH directory so that we can easily
+# extract all compiled archives.
+isolated_goroot;
 
-rm -rf pkg/
+# Stage 4.2: Wipe out all previously built archives.
+rm -rf pkg/;
 
-gopherjs install -m github.com/gopherjs/gopherjs/js github.com/gopherjs/gopherjs/nosync
-mkdir -p pkg/github.com/gopherjs/gopherjs
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/js.a pkg/github.com/gopherjs/gopherjs/js.a
-cp "$GOPATH"/pkg/*_js_min/github.com/gopherjs/gopherjs/nosync.a pkg/github.com/gopherjs/gopherjs/nosync.a
+# Stage 4.3: Precompile GopherJS libraries.
+mkdir -p pkg/github.com/gopherjs/gopherjs;
+gopherjs build -o pkg/github.com/gopherjs/gopherjs/js.a github.com/gopherjs/gopherjs/js;
+gopherjs build -o pkg/github.com/gopherjs/gopherjs/nosync.a github.com/gopherjs/gopherjs/nosync;
 
-# Make our GOROOT copy user-writable now, then
-# use it to build and copy out standard library packages.
-echo "making our copy of GOROOT user-writable again"
-chmod -R u+w "$tmp/goroot"
+# Stage 4.4: Precompile standard library.
+gopherjs install $(GOOS=js GOARCH=wasm go list std | grep -v -E "internal/|vendor/|pprof|plugin")
 
-gopherjs install -m \
-         archive/tar \
-         archive/zip \
-         bufio \
-         bytes \
-         compress/bzip2 \
-         compress/flate \
-         compress/gzip \
-         compress/lzw \
-         compress/zlib \
-         container/heap \
-         container/list \
-         container/ring \
-         crypto/aes \
-         crypto/cipher \
-         crypto/des \
-         crypto/dsa \
-         crypto/ecdsa \
-         crypto/elliptic \
-         crypto/hmac \
-         crypto/md5 \
-         crypto/rand \
-         crypto/rc4 \
-         crypto/rsa \
-         crypto/sha1 \
-         crypto/sha256 \
-         crypto/sha512 \
-         crypto/subtle \
-         database/sql/driver \
-         debug/gosym \
-         debug/pe \
-         encoding/ascii85 \
-         encoding/asn1 \
-         encoding/base32 \
-         encoding/base64 \
-         encoding/binary \
-         encoding/csv \
-         encoding/gob \
-         encoding/hex \
-         encoding/json \
-         encoding/pem \
-         encoding/xml \
-         errors \
-         fmt \
-         go/ast \
-         go/doc \
-         go/format \
-         go/printer \
-         go/token \
-         hash/adler32 \
-         hash/crc32 \
-         hash/crc64 \
-         hash/fnv \
-         html \
-         html/template \
-         image \
-         image/color \
-         image/draw \
-         image/gif \
-         image/jpeg \
-         image/png \
-         index/suffixarray \
-         io \
-         io/ioutil \
-         math \
-         math/big \
-         math/bits \
-         math/cmplx \
-         math/rand \
-         mime \
-         net/http/cookiejar \
-         net/http/fcgi \
-         net/http/httptest \
-         net/http/httputil \
-         net/mail \
-         net/smtp \
-         net/textproto \
-         net/url \
-         path \
-         path/filepath \
-         reflect \
-         regexp \
-         regexp/syntax \
-         runtime/internal/sys \
-         sort \
-         strconv \
-         strings \
-         sync/atomic \
-         syscall/js \
-         testing \
-         testing/iotest \
-         testing/quick \
-         text/scanner \
-         text/tabwriter \
-         text/template \
-         text/template/parse \
-         time \
-         unicode \
-         unicode/utf16 \
-         unicode/utf8
+# Stage 4.5: Copy compiled archives into the repository tree.
+cp -a "$GOROOT"/pkg/*_js/* pkg/
+cp -a "$GOROOT"/pkg/*_amd64_amd64/* pkg/  # This is for the syscall package, which is built with a different GOARCH.
 
-cp -a "$GOROOT"/pkg/*_js_min/* pkg/
-cp -a "$GOROOT"/pkg/*_amd64_js_min/* pkg/
-
-# Rename all *.a files in pkg/ to *.a.js.
+# Stage 4.6 Rename all *.a files in pkg/ to *.a.js.
 find pkg -name "*.a" -exec sh -c 'mv $0 $0.js' {} \;
