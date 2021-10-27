@@ -8,6 +8,7 @@ import (
 	"go/scanner"
 	"go/token"
 	"go/types"
+	"runtime"
 	"strings"
 	"time"
 
@@ -194,7 +195,7 @@ func main() {
 
 			jsCode := bytes.NewBuffer(nil)
 			jsCode.WriteString("try{\n")
-			compiler.WriteProgramCode(allPkgs, &compiler.SourceMapFilter{Writer: jsCode})
+			compiler.WriteProgramCode(allPkgs, &compiler.SourceMapFilter{Writer: jsCode}, runtime.Version())
 			jsCode.WriteString("} catch (err) {\ngoPanicHandler(err.message);\n}\n")
 			js.Global.Set("$checkForDeadlock", true)
 			js.Global.Call("eval", js.InternalObject(jsCode.String()))
