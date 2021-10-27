@@ -61,6 +61,7 @@ func main() {
 		scope.Set("imports", true)
 		scope.Set("shareUrl", "")
 		scope.Set("showShareUrl", false)
+		scope.Set("version", compiler.Version)
 
 		packages := make(map[string]*compiler.Archive)
 		var pkgsToLoad map[string]struct{}
