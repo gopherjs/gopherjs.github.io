@@ -26,6 +26,8 @@ export GO111MODULE=on;
 
 # Stage 1: Install latest released GopherJS version.
 go install github.com/gopherjs/gopherjs@latest;
+go get -d github.com/gopherjs/gopherjs;
+go mod tidy
 
 # Stage 2: Regenerate stdlib API information for auto-imports.
 go generate github.com/gopherjs/gopherjs.github.io/playground/internal/imports;
