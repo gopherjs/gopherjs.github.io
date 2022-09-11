@@ -174,8 +174,14 @@ func main() {
 						}
 
 						data := js.Global.Get("Uint8Array").New(req.Response).Interface().([]byte)
-						packages[path], err = compiler.ReadArchive(path+".a", path, bytes.NewReader(data), importContext.Packages)
+						packages[path], err = compiler.ReadArchive(path+".a", bytes.NewReader(data))
 						if err != nil {
+							scope.Apply(func() {
+								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
+							})
+							return
+						}
+						if err := packages[path].RegisterTypes(importContext.Packages); err != nil {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 							})

@@ -13,3 +13,12 @@ gopherjs serve
 ```
 
 Then open <http://localhost:8080/github.com/gopherjs/gopherjs.github.io/playground>.
+
+## Upgrading GopherJS release
+
+```shell
+VERSION="$(go list -m -versions -f "{{ range .Versions }}{{ println . }}{{ end }}" github.com/gopherjs/gopherjs | tail -n 1)"
+echo "$VERSION"
+go get -v "github.com/gopherjs/gopherjs@$VERSION"
+go mod tidy
+```
