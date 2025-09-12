@@ -1,12 +1,12 @@
-// Program precompile updates pre-built standard library packages for the
+// Program precompile updates prepackaged standard library packages for the
 // playground.
 //
 // This script performs the following sequence of steps:
 //
-//  - Enumerate all standard packages that should be available in the playground.
-//  - Precompile them, including transitive dependencies.
-//  - Delete all old precompiled archive.
-//  - Write all new precompiled archive in their place.
+//   - Enumerate all standard packages that should be available in the playground.
+//   - Parses and augments them, including transitive dependencies.
+//   - Delete all old prepackaged packages.
+//   - Write all new prepackaged packages in their place.
 //
 // This will use the same GopherJS version as specified in the playground gm.mod
 // to ensure consistency. The script uses GopherJS compiler API directly, so
@@ -14,6 +14,8 @@
 package main
 
 import (
+	"compress/gzip"
+	"encoding/gob"
 	"flag"
 	"fmt"
 	gobuild "go/build"
@@ -22,7 +24,7 @@ import (
 	"strings"
 
 	"github.com/gopherjs/gopherjs/build"
-	"github.com/gopherjs/gopherjs/compiler"
+	"github.com/gopherjs/gopherjs/compiler/sources"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -55,39 +57,64 @@ func run() error {
 	packages = importable(packages)
 	packages = append(packages, "github.com/gopherjs/gopherjs/js", "github.com/gopherjs/gopherjs/nosync")
 
-	for _, pkg := range packages {
-		_, err := s.BuildImportPath(pkg)
+	for _, path := range packages {
+		pkg, err := s.XContext().Import(path, ``, 0)
 		if err != nil {
-			return fmt.Errorf("failed to precompile package %q: %w", pkg, err)
+			return fmt.Errorf("failed to get build package for %s: %w", path, err)
+		}
+
+		var srcs *sources.Sources
+		if srcs, err = s.LoadPackages(pkg); err != nil {
+			return fmt.Errorf("failed to prepackaged package %q: %w", pkg, err)
+		}
+
+		if _, err := s.PrepareAndCompilePackages(srcs); err != nil {
+			return fmt.Errorf("failed to compile package %q: %w", pkg, err)
 		}
 	}
 
 	target, err := targetDir(s)
+	if err != nil {
+		return fmt.Errorf("failed to determine target directory: %w", err)
+	}
 	if err := os.RemoveAll(target); err != nil {
-		return fmt.Errorf("failed to clean out old precompiled archives: %w", err)
+		return fmt.Errorf("failed to clean out old packages: %w", err)
 	}
 
-	for _, archive := range s.UpToDateArchives {
-		if err := writeArchive(target, archive); err != nil {
-			return fmt.Errorf("failed to write package %q archive: %w", archive.ImportPath, err)
+	for _, srcs := range s.GetSortedSources() {
+		if err := writePackage(target, srcs); err != nil {
+			return fmt.Errorf("failed to write package %q: %w", srcs.ImportPath, err)
 		}
 	}
 
 	return nil
 }
 
-func writeArchive(target string, archive *compiler.Archive) error {
-	path := filepath.Join(target, filepath.FromSlash(archive.ImportPath)+".a.js")
+func writePackage(target string, srcs *sources.Sources) (err error) {
+	path := filepath.Join(target, filepath.FromSlash(srcs.ImportPath)+".a.js")
 	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 		return fmt.Errorf("failed to create precompiled package directory %q: %w", filepath.Dir(path), err)
 	}
+
 	f, err := os.Create(path)
 	if err != nil {
 		return fmt.Errorf("failed to create precompiled archive %q: %w", path, err)
 	}
-	defer f.Close()
+	defer func() {
+		if closeErr := f.Close(); err == nil {
+			err = closeErr
+		}
+	}()
 
-	return compiler.WriteArchive(archive, f)
+	zw := gzip.NewWriter(f)
+	defer func() {
+		// This close flushes the gzip but does not close the file.
+		if closeErr := zw.Close(); err == nil {
+			err = closeErr
+		}
+	}()
+
+	return srcs.Write(gob.NewEncoder(zw).Encode)
 }
 
 // targetDir returns path to the directory where precompiled packages must be
