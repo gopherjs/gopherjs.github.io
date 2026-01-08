@@ -1,0 +1,74 @@
+// This is an example of using goroutines and channels
+// to create an asynchrounous work group.
+// The work group queues several workers then only allows a specific number
+// of the workers to run at a time using a limited set of tokens.
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math/rand"
+	"sync"
+)
+
+func newFibonacciWorker(n int) func() (int, error) {
+	return func() (int, error) {
+		if n < 0 {
+			return 0, errors.New(`given iteration value, "n", must be zero or more`)
+		}
+		if n == 0 {
+			return 0, nil
+		}
+		a, b := 0, 1
+		for i := 2; i <= n; i++ {
+			a, b = b, a+b
+		}
+		return b, nil
+	}
+}
+
+type WorkGroup struct {
+	tokenSet chan int
+	wait     *sync.WaitGroup
+}
+
+func NewWorkGroup(size int) *WorkGroup {
+	tokenSet := make(chan int, size)
+	for i := 0; i < size; i++ {
+		tokenSet <- i
+	}
+	return &WorkGroup{
+		tokenSet: tokenSet,
+		wait:     &sync.WaitGroup{},
+	}
+}
+
+func AddWorker[T any](wg *WorkGroup, name string, worker func() (T, error)) {
+	wg.wait.Add(1)
+	go func() {
+		token := <-wg.tokenSet
+		defer func() {
+			wg.tokenSet <- token
+			wg.wait.Done()
+		}()
+
+		fmt.Printf("[%d] %s started\n", token, name)
+		result, err := worker()
+		if err != nil {
+			fmt.Printf("[%d] %s failed: %v\n", token, name, err)
+			return
+		}
+		fmt.Printf("[%d] %s returned %v\n", token, name, result)
+	}()
+}
+
+func main() {
+	wg := NewWorkGroup(10)
+	for i := 0; i < 100; i++ {
+		n := rand.Intn(10) - 1
+		name := fmt.Sprintf(`worker %d - fib(%d)`, i, n)
+		AddWorker(wg, name, newFibonacciWorker(n))
+	}
+	wg.wait.Wait()
+	fmt.Println(`Done`)
+}

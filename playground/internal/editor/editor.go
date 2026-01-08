@@ -4,50 +4,29 @@
 package editor
 
 import (
-	"strings"
-	"unicode"
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/common"
 )
 
-const (
-	// TabWidth is the number of spaces per tab.
-	TabWidth = 4
+// TabWidth is the number of spaces per tab.
+const TabWidth = 4
 
-	EscapeEvent = `escape`
-	SaveEvent   = `save`
-	UndoEvent   = `undo`
-	RedoEvent   = `redo`
-
-	commentPrefix    = `// `
+var (
+	commentPrefix    = []rune(`// `)
 	commentPrefixLen = len(commentPrefix)
 )
-
-type CodeBoxWrapper interface {
-	Code() string
-	GetSelection() Selection
-	SetCode(sel Selection, code string)
-	EmitEvent(event string)
-}
-
-type Selection struct {
-	Start int
-	End   int
-}
-
-// IsCaret returns true if the selection represents a caret position
-// (i.e. start and end are the same).
-// See https://en.wikipedia.org/wiki/Caret_navigation
-func (sel Selection) IsCaret() bool {
-	return sel.Start == sel.End
-}
 
 // MeasureLineLength returns the length of the line.
 // This counts tabs as multiple spaces so that the visual horizontal offset
 // is correct, assuming a monospace font.
 func MeasureLineLength(line string) int {
+	return measureLineRuneLength([]rune(line))
+}
+
+func measureLineRuneLength(line []rune) int {
 	length := len(line)
 	tabAdjust := 0
-	for i := 0; i < length; i++ {
-		if line[i] == '\t' {
+	for i, r := range line {
+		if r == '\t' {
 			// since tabs can vary in lenght depending on position to aling
 			// with multiples of the tab width, calculate the adjustment needed
 			// to allign current index to the next tab stop.
@@ -63,17 +42,21 @@ func MeasureLineLength(line string) int {
 // This counts tabs as multiple spaces so that the visual horizontal offset
 // is correct, assuming a monospace font.
 func LongestMeasuredLineLength(code string) int {
+	return longestMeasuredLineRuneLength([]rune(code))
+}
+
+func longestMeasuredLineRuneLength(code []rune) int {
 	longest := 0
-	process := func(line string) {
+	process := func(line []rune) {
 		if len(line)*TabWidth > longest {
-			if length := MeasureLineLength(line); length > longest {
+			if length := measureLineRuneLength(line); length > longest {
 				longest = length
 			}
 		}
 	}
 
 	for {
-		index := strings.IndexByte(code, '\n')
+		index := indexRune(code, '\n')
 		if index < 0 {
 			process(code)
 			break
@@ -84,12 +67,19 @@ func LongestMeasuredLineLength(code string) int {
 	return longest
 }
 
-func ProcessKeyDown(wrapper CodeBoxWrapper, key string, shift, ctrl bool) bool {
-	ce := &codeEditor{CodeBoxWrapper: wrapper}
+func ProcessKeyDown(wrapper common.CodeBox, key string, shift, ctrl bool) bool {
+	ce := &codeEditor{wrapper: wrapper}
 	return ce.handleKeyDown(key, shift, ctrl)
 }
 
-type codeEditor struct{ CodeBoxWrapper }
+type codeEditor struct{ wrapper common.CodeBox }
+
+func (ce *codeEditor) Code() []rune                   { return []rune(ce.wrapper.Code()) }
+func (ce *codeEditor) GetSelection() common.Selection { return ce.wrapper.GetSelection() }
+func (ce *codeEditor) EmitEvent(event common.Event)   { ce.wrapper.EmitEvent(event) }
+func (ce *codeEditor) SetCode(sel common.Selection, code []rune) {
+	ce.wrapper.SetCode(sel, string(code))
+}
 
 func (ce *codeEditor) handleKeyDown(key string, shift, ctrl bool) bool {
 	switch key {
@@ -106,17 +96,17 @@ func (ce *codeEditor) handleKeyDown(key string, shift, ctrl bool) bool {
 	case `/`:
 		return ce.handleCommentToggle(shift, ctrl)
 	case `"`:
-		return ce.insertPair(ctrl, `"`, `"`)
+		return ce.insertPair(ctrl, key, '"', '"')
 	case `'`:
-		return ce.insertPair(ctrl, `'`, `'`)
+		return ce.insertPair(ctrl, key, '\'', '\'')
 	case "`":
-		return ce.insertPair(ctrl, "`", "`")
-	case `(`:
-		return ce.insertPair(ctrl, `(`, `)`)
-	case `{`:
-		return ce.insertPair(ctrl, `{`, `}`)
-	case `[`:
-		return ce.insertPair(ctrl, `[`, `]`)
+		return ce.insertPair(ctrl, key, '`', '`')
+	case `(`, `)`:
+		return ce.insertPair(ctrl, key, '(', ')')
+	case `{`, `}`:
+		return ce.insertPair(ctrl, key, '{', '}')
+	case `[`, `]`:
+		return ce.insertPair(ctrl, key, '[', ']')
 	case `Escape`:
 		return ce.handleEscape()
 	case `z`:
@@ -170,22 +160,20 @@ func (ce *codeEditor) handleSpace(shift, ctrl bool) bool {
 
 	// When replacing spaces with tabs, we want to maintain the same
 	// visual character offset so use the length measurement adjusted for tabs.
-	length := MeasureLineLength(code[lineStart:caret])
+	length := measureLineRuneLength(code[lineStart:caret])
 	length++ // for the new space being inserted
 	tabs := length / TabWidth
 	spaces := length % TabWidth
 
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code) + tabs + spaces - (caret - lineStart))
-
-	write(newCode, code[:lineStart])
-	write(newCode, strings.Repeat("\t", tabs))
-	write(newCode, strings.Repeat(" ", spaces))
-	write(newCode, code[caret:])
+	newCode := newRuneBuilder(len(code) + tabs + spaces - (caret - lineStart))
+	newCode.Write(code[:lineStart])
+	newCode.Write(runeRepeat('\t', tabs))
+	newCode.Write(runeRepeat(' ', spaces))
+	newCode.Write(code[caret:])
 
 	caret = lineStart + tabs + spaces
-	newSel := Selection{Start: caret, End: caret}
-	ce.SetCode(newSel, newCode.String())
+	newSel := common.Selection{Start: caret, End: caret}
+	ce.SetCode(newSel, newCode.Runes())
 	return true
 }
 
@@ -205,7 +193,7 @@ func (ce *codeEditor) handleTab(shift, ctrl bool) bool {
 	sel := ce.GetSelection()
 	if sel.IsCaret() {
 		// No selection, just insert tab character at caret.
-		ce.insertAtSelection("\t", ``, false)
+		ce.insertAtSelection([]rune{'\t'}, nil, ce.GetSelection(), false)
 		return true
 	}
 	return ce.addIndents()
@@ -215,7 +203,7 @@ func (ce *codeEditor) handleTab(shift, ctrl bool) bool {
 func (ce *codeEditor) addIndents() bool {
 	lineSel := ce.getSelectedLines()
 	nonBlankLines := 0
-	ce.foreachLine(lineSel, func(line string, _ Selection) bool {
+	ce.foreachLine(lineSel, func(line []rune, _ common.Selection) bool {
 		if !isBlankLine(line) {
 			nonBlankLines++
 		}
@@ -229,23 +217,22 @@ func (ce *codeEditor) addIndents() bool {
 	code := ce.Code()
 	sel := ce.GetSelection()
 	newSel := sel
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code) + nonBlankLines)
+	newCode := newRuneBuilder(len(code) + nonBlankLines)
 
-	write(newCode, code[:lineSel.Start])
-	ce.foreachLine(lineSel, func(line string, curLineSel Selection) bool {
+	newCode.Write(code[:lineSel.Start])
+	ce.foreachLine(lineSel, func(line []rune, curLineSel common.Selection) bool {
 		if isBlankLine(line) {
-			write(newCode, line) // Empty line, just add as-is.
+			newCode.Write(line) // Empty line, just add as-is.
 			return true
 		}
 		adjustSel(&newSel, sel, curLineSel.Start, 1)
-		write(newCode, "\t")
-		write(newCode, line)
+		newCode.WriteRune('\t')
+		newCode.Write(line)
 		return true
 	})
-	write(newCode, code[lineSel.End:])
+	newCode.Write(code[lineSel.End:])
 
-	ce.SetCode(newSel, newCode.String())
+	ce.SetCode(newSel, newCode.Runes())
 	return true
 }
 
@@ -253,7 +240,7 @@ func (ce *codeEditor) addIndents() bool {
 func (ce *codeEditor) removeIndents() bool {
 	lineSel := ce.getSelectedLines()
 	indentedLines := 0
-	ce.foreachLine(lineSel, func(line string, _ Selection) bool {
+	ce.foreachLine(lineSel, func(line []rune, _ common.Selection) bool {
 		if line[0] == '\t' || line[0] == ' ' {
 			indentedLines++
 		}
@@ -267,11 +254,10 @@ func (ce *codeEditor) removeIndents() bool {
 	code := ce.Code()
 	sel := ce.GetSelection()
 	newSel := sel
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code) - indentedLines) // assumes tabs are being removed
+	newCode := newRuneBuilder(len(code) - indentedLines) // assumes tabs are being removed
 
-	write(newCode, code[:lineSel.Start])
-	ce.foreachLine(lineSel, func(line string, curLineSel Selection) bool {
+	newCode.Write(code[:lineSel.Start])
+	ce.foreachLine(lineSel, func(line []rune, curLineSel common.Selection) bool {
 		// Trim up to one tab or equivalent spaces.
 		removeChars := 0
 		for i := 0; i < len(line); i++ {
@@ -289,17 +275,17 @@ func (ce *codeEditor) removeIndents() bool {
 		}
 		if removeChars == 0 {
 			// Nothing to remove, just add line as-is.
-			write(newCode, line)
+			newCode.Write(line)
 			return true
 		}
 
 		adjustSel(&newSel, sel, curLineSel.Start+removeChars, -removeChars)
-		write(newCode, line[removeChars:])
+		newCode.Write(line[removeChars:])
 		return true
 	})
-	write(newCode, code[lineSel.End:])
+	newCode.Write(code[lineSel.End:])
 
-	ce.SetCode(newSel, newCode.String())
+	ce.SetCode(newSel, newCode.Runes())
 	return true
 }
 
@@ -323,7 +309,7 @@ func (ce *codeEditor) handleMultilineComment(shift, ctrl bool) bool {
 	}
 
 	// Insert '*/' after caret to complete the multi-line comment.
-	ce.insertAtSelection(`*`, `*/`, false)
+	ce.insertAtSelection([]rune{'*'}, []rune{'*', '/'}, ce.GetSelection(), false)
 	return true
 }
 
@@ -335,29 +321,51 @@ func (ce *codeEditor) handleNewline(shift, ctrl bool) bool {
 	}
 
 	code := ce.Code()
+	codeLen := len(code)
 	sel := ce.GetSelection()
-	before := "\n" + ce.indentAt(sel.Start)
-	after := ``
+	before := []rune{'\n'}
+	before = append(before, ce.indentAt(sel.Start)...)
+	after := []rune{}
 
-	// add extra indent if the character before the selection is an opening brace.
-	if inRange(sel.Start, 1, len(code)) {
-		switch code[sel.Start-1] {
-		case '{', '(', '[':
-			before += "\t"
-		}
-	}
-
-	// add extra after if the character after the selection is a closing brace.
-	if inRange(sel.End, 0, len(code)-1) {
-		switch code[sel.End] {
-		case '}', ')', ']':
-			if opening := findMatchingOpeningBrace(code, sel.End); opening >= 0 {
-				after = "\n" + ce.indentAt(opening)
+	inComment := false
+	if inRange(sel.Start, 0, codeLen) {
+		lineStart := findStartOfLastLine(code[:sel.Start])
+		line := code[lineStart:sel.Start]
+		if trimmed := trimLeftSpace(line); len(trimmed) > 0 && hasPrefix(trimmed, commentPrefix) {
+			inComment = true
+			lineEnd := findEndOfLineAfter(sel.End, code)
+			// add a comment prefix if there is text after the selection on the
+			// same line as the selection. Also extend selection out to remove
+			// any whitespace after the selection before the next text.
+			if tailLen := len(trimLeftSpace(code[sel.End:lineEnd])); tailLen > 0 {
+				before = append(before, commentPrefix...)
+				sel.End += lineEnd - (sel.End + tailLen)
 			}
 		}
 	}
 
-	ce.insertAtSelection(before, after, false)
+	if !inComment {
+		// add extra indent if the character before the selection is an opening brace.
+		if inRange(sel.Start, 1, codeLen) {
+			switch code[sel.Start-1] {
+			case '{', '(', '[':
+				before = append(before, '\t')
+			}
+		}
+
+		// add extra after if the character after the selection is a closing brace.
+		if inRange(sel.End, 0, codeLen-1) {
+			switch code[sel.End] {
+			case '}', ')', ']':
+				if opening := findMatchingOpeningBrace(code, sel.End); opening >= 0 {
+					after = []rune{'\n'}
+					after = append(after, ce.indentAt(opening)...)
+				}
+			}
+		}
+	}
+
+	ce.insertAtSelection(before, after, sel, false)
 	return true
 }
 
@@ -367,12 +375,12 @@ func (ce *codeEditor) handleSave(shift, ctrl bool) bool {
 		return false
 	}
 
-	ce.EmitEvent(SaveEvent)
+	ce.EmitEvent(common.SaveEvent)
 	return true
 }
 
 func (ce *codeEditor) handleEscape() bool {
-	ce.EmitEvent(EscapeEvent)
+	ce.EmitEvent(common.EscapeEvent)
 	return true
 }
 
@@ -383,11 +391,11 @@ func (ce *codeEditor) handleUndo(shift, ctrl bool) bool {
 	}
 
 	if shift {
-		ce.EmitEvent(RedoEvent)
+		ce.EmitEvent(common.RedoEvent)
 		return true
 	}
 
-	ce.EmitEvent(UndoEvent)
+	ce.EmitEvent(common.UndoEvent)
 	return true
 }
 
@@ -397,7 +405,7 @@ func (ce *codeEditor) handleRedo(shift, ctrl bool) bool {
 		return false
 	}
 
-	ce.EmitEvent(RedoEvent)
+	ce.EmitEvent(common.RedoEvent)
 	return true
 }
 
@@ -411,10 +419,10 @@ func (ce *codeEditor) handleCommentToggle(shift, ctrl bool) bool {
 	lineSel := ce.getSelectedLines()
 	containsOnlyBlankLines := true
 	containsUncommentedLine := false
-	ce.foreachLine(lineSel, func(line string, _ Selection) bool {
-		if trimmed := trimLeftSpace(line); trimmed != `` {
+	ce.foreachLine(lineSel, func(line []rune, _ common.Selection) bool {
+		if trimmed := trimLeftSpace(line); len(trimmed) > 0 {
 			containsOnlyBlankLines = false
-			if !strings.HasPrefix(trimmed, commentPrefix) {
+			if !hasPrefix(trimmed, commentPrefix) {
 				containsUncommentedLine = true
 				return false
 			}
@@ -438,11 +446,11 @@ func (ce *codeEditor) handleCommentToggle(shift, ctrl bool) bool {
 
 // addCommenting will add the comment prefix to each non-blank line in
 // the given range including any lines that already are commented.
-func (ce *codeEditor) addCommenting(lineSel Selection) {
+func (ce *codeEditor) addCommenting(lineSel common.Selection) {
 	leastIndent := -1
 	nonBlankLines := 0
-	ce.foreachLine(lineSel, func(line string, _ Selection) bool {
-		if trimmed := trimLeftSpace(line); trimmed != `` {
+	ce.foreachLine(lineSel, func(line []rune, _ common.Selection) bool {
+		if trimmed := trimLeftSpace(line); len(trimmed) > 0 {
 			if indent := len(line) - len(trimmed); leastIndent < 0 || indent < leastIndent {
 				leastIndent = indent
 			}
@@ -461,51 +469,49 @@ func (ce *codeEditor) addCommenting(lineSel Selection) {
 	code := ce.Code()
 	sel := ce.GetSelection()
 	newSel := sel
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code) + nonBlankLines*commentPrefixLen)
+	newCode := newRuneBuilder(len(code) + nonBlankLines*commentPrefixLen)
 
-	write(newCode, code[:lineSel.Start])
-	ce.foreachLine(lineSel, func(line string, curLineSel Selection) bool {
+	newCode.Write(code[:lineSel.Start])
+	ce.foreachLine(lineSel, func(line []rune, curLineSel common.Selection) bool {
 		if isBlankLine(line) {
-			write(newCode, line) // Empty line, just add as-is.
+			newCode.Write(line) // Empty line, just add as-is.
 			return true
 		}
 		adjustSel(&newSel, sel, curLineSel.Start+leastIndent, commentPrefixLen)
-		write(newCode, line[:leastIndent])
-		write(newCode, commentPrefix)
-		write(newCode, line[leastIndent:])
+		newCode.Write(line[:leastIndent])
+		newCode.Write(commentPrefix)
+		newCode.Write(line[leastIndent:])
 		return true
 	})
-	write(newCode, code[lineSel.End:])
+	newCode.Write(code[lineSel.End:])
 
-	ce.SetCode(newSel, newCode.String())
+	ce.SetCode(newSel, newCode.Runes())
 }
 
 // removeCommenting will uncomment any line that starts with the comment prefix
 // (and preceding whitespace).
-func (ce *codeEditor) removeCommenting(lineSel Selection) {
+func (ce *codeEditor) removeCommenting(lineSel common.Selection) {
 	code := ce.Code()
 	sel := ce.GetSelection()
 	newSel := sel
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code))
+	newCode := newRuneBuilder(len(code))
 
-	write(newCode, code[:lineSel.Start])
-	ce.foreachLine(lineSel, func(line string, curLineSel Selection) bool {
-		if trimmed := trimLeftSpace(line); trimmed != `` {
-			if index := strings.Index(line, commentPrefix); index >= 0 {
-				write(newCode, line[:index])
-				write(newCode, line[index+commentPrefixLen:])
+	newCode.Write(code[:lineSel.Start])
+	ce.foreachLine(lineSel, func(line []rune, curLineSel common.Selection) bool {
+		if trimmed := trimLeftSpace(line); len(trimmed) > 0 {
+			if index := indexRunes(line, commentPrefix); index >= 0 {
+				newCode.Write(line[:index])
+				newCode.Write(line[index+commentPrefixLen:])
 				adjustSel(&newSel, sel, curLineSel.Start+index, -commentPrefixLen)
 				return true
 			}
 		}
-		write(newCode, line) // Leave line as is
+		newCode.Write(line) // Leave line as is
 		return true
 	})
-	write(newCode, code[lineSel.End:])
+	newCode.Write(code[lineSel.End:])
 
-	ce.SetCode(newSel, newCode.String())
+	ce.SetCode(newSel, newCode.Runes())
 }
 
 // getSelectedLines returns the start and end character indices of that
@@ -514,11 +520,11 @@ func (ce *codeEditor) removeCommenting(lineSel Selection) {
 // or at the front of all the code.
 // The returned end should be after the "\n" after the selection
 // or at the end of all the code.
-func (ce *codeEditor) getSelectedLines() Selection {
+func (ce *codeEditor) getSelectedLines() common.Selection {
 	code := ce.Code()
 	codeLen := len(code)
 	sel := ce.GetSelection()
-	lineSel := Selection{Start: 0, End: codeLen}
+	lineSel := common.Selection{Start: 0, End: codeLen}
 	if inRange(sel.Start, 0, codeLen) {
 		lineSel.Start = findStartOfLastLine(code[:sel.Start])
 	}
@@ -542,12 +548,12 @@ func (ce *codeEditor) getSelectedLines() Selection {
 //
 // If the yield function returns false, iteration stops and
 // foreachLine returns false. Otherwise, it returns true.
-func (ce *codeEditor) foreachLine(sel Selection, yield func(line string, curLineSel Selection) bool) bool {
+func (ce *codeEditor) foreachLine(sel common.Selection, yield func(line []rune, curLineSel common.Selection) bool) bool {
 	code := ce.Code()
 	for i := sel.Start; i < sel.End; {
 		lineEnd := findEndOfLineAfter(i, code[:sel.End])
 		line := code[i:lineEnd]
-		if !yield(line, Selection{i, lineEnd}) {
+		if !yield(line, common.Selection{Start: i, End: lineEnd}) {
 			return false
 		}
 		i = lineEnd
@@ -555,20 +561,37 @@ func (ce *codeEditor) foreachLine(sel Selection, yield func(line string, curLine
 	return true
 }
 
-func (ce *codeEditor) insertPair(ctrl bool, before, after string) bool {
+func (ce *codeEditor) insertPair(ctrl bool, key string, before, after rune) bool {
 	if ctrl {
 		// Allow default behavior for Ctrl+key.
 		return false
 	}
 
-	ce.insertAtSelection(before, after, true)
-	return true
+	// If the key is the same as the end of the pair, check if in a tight pair
+	// and only adjust the selection if so. This handles when someone presses
+	// `(` so `()` gets inserted and then they press `)` with muscle memory.
+	// This will avoid adding an additional `)` and simply move the cursor.
+	sel := ce.GetSelection()
+	if sel.IsCaret() && key == string(after) {
+		caret := sel.Start
+		code := ce.Code()
+		if caret > 0 && caret < len(code) && code[caret-1] == before && code[caret] == after {
+			ce.SetCode(common.Selection{Start: caret + 1, End: caret + 1}, code)
+			return true
+		}
+	}
+
+	// If not in a tight pair and the key is the same as before, then handle it.
+	if key == string(before) {
+		ce.insertAtSelection([]rune{before}, []rune{after}, ce.GetSelection(), true)
+		return true
+	}
+	return false
 }
 
-func (ce *codeEditor) insertAtSelection(before, after string, keepSelection bool) {
+func (ce *codeEditor) insertAtSelection(before, after []rune, sel common.Selection, keepSelection bool) {
 	code := ce.Code()
-	sel := ce.GetSelection()
-	newSel := Selection{Start: sel.Start, End: sel.Start} // set both to start initially
+	newSel := common.Selection{Start: sel.Start, End: sel.Start} // set both to start initially
 
 	beforeLen := len(before)
 	afterLen := len(after)
@@ -577,40 +600,39 @@ func (ce *codeEditor) insertAtSelection(before, after string, keepSelection bool
 		selectionLen = sel.End - sel.Start
 	}
 
-	newCode := &strings.Builder{}
-	newCode.Grow(len(code) + beforeLen + afterLen + selectionLen)
+	newCode := newRuneBuilder(len(code) + beforeLen + afterLen + selectionLen)
 
 	if sel.Start > 0 {
-		write(newCode, code[:sel.Start])
+		newCode.Write(code[:sel.Start])
 	}
 
 	if beforeLen > 0 {
-		write(newCode, before)
+		newCode.Write(before)
 		newSel.Start += beforeLen
 		newSel.End += beforeLen
 	}
 
 	if selectionLen > 0 {
 		selected := code[sel.Start:sel.End]
-		write(newCode, selected)
+		newCode.Write(selected)
 		newSel.End += selectionLen
 	}
 
 	if afterLen > 0 {
-		write(newCode, after)
+		newCode.Write(after)
 	}
 
 	if sel.End < len(code) {
-		write(newCode, code[sel.End:])
+		newCode.Write(code[sel.End:])
 	}
 
-	ce.SetCode(newSel, newCode.String())
+	ce.SetCode(newSel, newCode.Runes())
 }
 
-func (ce *codeEditor) indentAt(start int) string {
+func (ce *codeEditor) indentAt(start int) []rune {
 	code := ce.Code()
 	if !inRange(start, 1, len(code)) {
-		return ``
+		return []rune{}
 	}
 	par := findStartOfLastLine(code[:start])
 	i := par
@@ -627,11 +649,11 @@ func (ce *codeEditor) indentAt(start int) string {
 // for the closing brace at the given caret position.
 // Currently this does not account for braces inside strings or comments.
 // It returns -1 if no matching opening brace is found.
-func findMatchingOpeningBrace(code string, caret int) int {
+func findMatchingOpeningBrace(code []rune, caret int) int {
 	if caret <= 0 || caret > len(code) {
 		return -1
 	}
-	pairs := map[byte]byte{
+	pairs := map[rune]rune{
 		'}': '{',
 		')': '(',
 		']': '[',
@@ -640,7 +662,7 @@ func findMatchingOpeningBrace(code string, caret int) int {
 	if !ok {
 		return -1 // Caret not at a closing brace
 	}
-	stack := []byte{openingBrace}
+	stack := []rune{openingBrace}
 	for i := caret - 1; i >= 0; i-- {
 		c := code[i]
 		switch c {
@@ -670,40 +692,11 @@ func inRange(value, start, end int) bool {
 // if the current selection is after the given limit.
 // This moves the selection based on where new text is being inserted at or
 // removed from the limit position.
-func adjustSel(newSel *Selection, curSel Selection, limit, adjustment int) {
+func adjustSel(newSel *common.Selection, curSel common.Selection, limit, adjustment int) {
 	if curSel.Start > limit {
 		newSel.Start += adjustment
 	}
 	if curSel.End > limit {
 		newSel.End += adjustment
 	}
-}
-
-func write(sb *strings.Builder, s string) {
-	// Ignore error since strings.Builder.WriteString never returns an error.
-	_, _ = sb.WriteString(s)
-}
-
-func findEndOfLineAfter(start int, code string) int {
-	index := strings.IndexByte(code[start:], '\n')
-	if index < 0 {
-		return len(code)
-	}
-	return index + start + 1
-}
-
-func findStartOfLastLine(code string) int {
-	index := strings.LastIndexByte(code, '\n')
-	if index < 0 {
-		return 0
-	}
-	return index + 1
-}
-
-func trimLeftSpace(s string) string {
-	return strings.TrimLeftFunc(s, unicode.IsSpace)
-}
-
-func isBlankLine(s string) bool {
-	return trimLeftSpace(s) == ``
 }

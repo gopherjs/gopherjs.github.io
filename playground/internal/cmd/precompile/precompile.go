@@ -28,13 +28,20 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+const (
+	pkgPath = `pkg/`
+	pkgExt  = `.zip`
+
+	jsPkgPath         = `github.com/gopherjs/gopherjs/js`
+	nosyncPkgPath     = `github.com/gopherjs/gopherjs/nosync`
+	playgroundPkgPath = `github.com/gopherjs/gopherjs.github.io/playground`
+)
+
 type logLevelFlag struct{ log.Level }
 
 func (l *logLevelFlag) Set(raw string) error { return l.UnmarshalText([]byte(raw)) }
 
-var (
-	logLevel logLevelFlag = logLevelFlag{Level: log.ErrorLevel}
-)
+var logLevel logLevelFlag = logLevelFlag{Level: log.ErrorLevel}
 
 func init() {
 	flag.Var(&logLevel, "log_level", "Default logging level.")
@@ -55,7 +62,7 @@ func run() error {
 		return fmt.Errorf("failed to enumerate standard library packages")
 	}
 	packages = importable(packages)
-	packages = append(packages, "github.com/gopherjs/gopherjs/js", "github.com/gopherjs/gopherjs/nosync")
+	packages = append(packages, jsPkgPath, nosyncPkgPath)
 
 	for _, path := range packages {
 		pkg, err := s.XContext().Import(path, ``, 0)
@@ -63,13 +70,8 @@ func run() error {
 			return fmt.Errorf("failed to get build package for %s: %w", path, err)
 		}
 
-		var srcs *sources.Sources
-		if srcs, err = s.LoadPackages(pkg); err != nil {
+		if _, err = s.LoadPackages(pkg); err != nil {
 			return fmt.Errorf("failed to prepackaged package %q: %w", pkg, err)
-		}
-
-		if _, err := s.PrepareAndCompilePackages(srcs); err != nil {
-			return fmt.Errorf("failed to compile package %q: %w", pkg, err)
 		}
 	}
 
@@ -91,7 +93,7 @@ func run() error {
 }
 
 func writePackage(target string, srcs *sources.Sources) (err error) {
-	path := filepath.Join(target, filepath.FromSlash(srcs.ImportPath)+".a.js")
+	path := filepath.Join(target, filepath.FromSlash(srcs.ImportPath)+pkgExt)
 	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 		return fmt.Errorf("failed to create precompiled package directory %q: %w", filepath.Dir(path), err)
 	}
@@ -120,11 +122,11 @@ func writePackage(target string, srcs *sources.Sources) (err error) {
 // targetDir returns path to the directory where precompiled packages must be
 // stored.
 func targetDir(s *build.Session) (string, error) {
-	pkg, err := s.XContext().Import("github.com/gopherjs/gopherjs.github.io/playground", "", gobuild.FindOnly)
+	pkg, err := s.XContext().Import(playgroundPkgPath, "", gobuild.FindOnly)
 	if err != nil {
 		return "", fmt.Errorf("failed to find playground package directory: %w", err)
 	}
-	target := filepath.Join(pkg.Dir, "pkg")
+	target := filepath.Join(pkg.Dir, pkgPath)
 	if _, err := os.Stat(target); os.IsNotExist(err) {
 		return "", fmt.Errorf("target directory %q not found", target)
 	}

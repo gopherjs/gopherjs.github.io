@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/gopherjs/gopherjs.github.io/playground/internal/react"
-
 	"github.com/gopherjs/gopherjs/js"
+
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react"
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/url"
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/page"
 )
 
 func main() {
@@ -12,8 +14,11 @@ func main() {
 		react.ReactDOMClient = rdc
 
 		root := react.CreateRoot(`playground`)
-		root.Render(react.StrictMode(
-			react.Playground(),
-		))
+		pg := page.Playground()
+		if url.GetQueryBool(`debug`) {
+			root.Render(react.StrictMode(pg))
+		} else {
+			root.Render(pg)
+		}
 	})
 }

@@ -1,0 +1,137 @@
+// This is a spinning donut (torus) rendered in the terminal
+// using Braille unicode characters as a rough dither.
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math"
+	"strings"
+	"time"
+)
+
+const (
+	screenWidth  = 40
+	screenHeight = 20
+	frames       = 1200
+)
+
+var luminance = [9]rune{0x2800, 0x2801, 0x2881, 0x2891, 0x2895, 0x289D, 0x28DD, 0x28DF, 0x28FF}
+
+func main() {
+	var a, b float64
+	screen := newScreen(screenWidth, screenHeight)
+	for f := 0; f < frames; f++ {
+		screen.clear()
+
+		sinA, cosA := math.Sin(a), math.Cos(a)
+		sinB, cosB := math.Sin(b), math.Cos(b)
+		for jStep := 0; jStep < 90; jStep++ {
+			j := float64(jStep) * 0.07
+			sinJ, cosJ := math.Sin(j), math.Cos(j)
+			for iStep := 0; iStep < 314; iStep++ {
+				i := float64(iStep) * 0.02
+				sinI, cosI := math.Sin(i), math.Cos(i)
+
+				h := cosJ + 2
+				d := 1.0 / (sinI*h*sinA + sinJ*cosA + 5)
+				t := sinI*h*cosA - sinJ*sinA
+				x := d * (cosI*h*cosB - t*sinB)
+				y := d * (cosI*h*sinB + t*cosB)
+				c := ((sinJ*sinA-sinI*cosJ*cosA)*cosB - sinI*cosJ*sinA - sinJ*cosA - cosI*cosJ*sinB)
+				c = c/math.Sqrt2*2.0 - 1.0
+				screen.write(x, y, c, d)
+			}
+		}
+		screen.render()
+		a += 0.08
+		b += 0.03
+		time.Sleep(50 * time.Millisecond)
+	}
+}
+
+type screen struct {
+	width  int
+	height int
+	z      [][]float64
+	c      [][]rune
+}
+
+func newScreen(width, height int) *screen {
+	if width < 1 || height < 1 {
+		panic(errors.New(`invalid screen size`))
+	}
+	z := make([][]float64, height)
+	c := make([][]rune, height)
+	for y := range c {
+		z[y] = make([]float64, width)
+		c[y] = make([]rune, width)
+	}
+	return &screen{
+		width:  width,
+		height: height,
+		z:      z,
+		c:      c,
+	}
+}
+
+func (s *screen) clear() {
+	for y := range s.z {
+		zRow := s.z[y]
+		cRow := s.c[y]
+		for x := range zRow {
+			zRow[x] = 0.0
+			cRow[x] = ' '
+		}
+	}
+}
+
+func quantize(v float64, max int) (int, bool) {
+	q := int((v + 1.0) * 0.5 * float64(max))
+	oob := q < 0 || q >= max
+	return q, oob
+}
+
+func clamp(v, max int) int {
+	if v < 0 {
+		return 0
+	}
+	if v > max {
+		return max
+	}
+	return v
+}
+
+func (s *screen) write(x, y, c, depth float64) {
+	ix, oob := quantize(x, s.width)
+	if oob {
+		return
+	}
+
+	iy, oob := quantize(y, s.height)
+	if oob {
+		return
+	}
+
+	if depth <= s.z[iy][ix] {
+		return
+	}
+	s.z[iy][ix] = depth
+
+	lux := len(luminance)
+	ic, oob := quantize(c, lux)
+	if oob {
+		ic = clamp(ic, lux-1)
+	}
+	s.c[iy][ix] = luminance[ic]
+}
+
+func (t *screen) render() {
+	var sb strings.Builder
+	sb.WriteByte('\x0c') // clear playgound output
+	for _, cRow := range t.c {
+		sb.WriteString(string(cRow))
+		sb.WriteByte('\n')
+	}
+	fmt.Print(sb.String())
+}

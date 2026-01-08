@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/gopherjs/gopherjs.github.io/playground/internal/common"
 )
 
 func Test_Editor_LongestMeasuredLineLength(t *testing.T) {
@@ -68,7 +69,7 @@ func Test_Editor_ProcessKeyDown_Default(t *testing.T) {
 		key:                `a`,
 		selectionStart:     12,
 		selectionEnd:       12,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 }
 
@@ -78,7 +79,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		code:               `func main() {}`,
 		key:                ` `,
 		ctrl:               true,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -86,7 +87,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		code:               `func main() {}`,
 		key:                ` `,
 		shift:              true,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -95,7 +96,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		key:                ` `,
 		selectionStart:     9,  // before '('
 		selectionEnd:       11, // after ')'
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -104,7 +105,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		key:                ` `,
 		selectionStart:     100,
 		selectionEnd:       100,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -113,7 +114,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		key:                ` `,
 		selectionStart:     10, // between the parentheses
 		selectionEnd:       10,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -122,7 +123,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		key:                ` `,
 		selectionStart:     15, // before ')'
 		selectionEnd:       15,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -134,7 +135,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		wantCode:           `   func main(){}`,
 		wantSelectionStart: 3, // before 'f'
 		wantSelectionEnd:   3,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -146,7 +147,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		wantCode:           `			  func main(){}`,
 		wantSelectionStart: 5, // before 'f'
 		wantSelectionEnd:   5,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -158,7 +159,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		wantCode:           `	func main(){}`,
 		wantSelectionStart: 1, // after new tab and before 'f'
 		wantSelectionEnd:   1,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -176,7 +177,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 			`}`),
 		wantSelectionStart: 14, // after new tab on line 2
 		wantSelectionEnd:   14,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -188,7 +189,7 @@ func Test_Editor_ProcessKeyDown_Space(t *testing.T) {
 		wantCode:           `					 func main(){}`,
 		wantSelectionStart: 6, // before 'f'
 		wantSelectionEnd:   6,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 }
 
@@ -208,7 +209,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 15,
 		wantSelectionEnd:   15,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -216,7 +217,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		code:               `func main() {}`,
 		key:                `Tab`,
 		ctrl:               true,
-		wantPrefentDefault: false, // allow default behavior to change focus
+		wantPreventDefault: false, // allow default behavior to change focus
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -228,7 +229,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		wantCode:           `	func main() {}`,
 		wantSelectionStart: 0, // before added tab
 		wantSelectionEnd:   5,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -240,7 +241,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		wantCode:           `	func main() {}`,
 		wantSelectionStart: 2, // select `unc`
 		wantSelectionEnd:   5,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -266,7 +267,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 19,
 		wantSelectionEnd:   109,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -288,7 +289,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 15,
 		wantSelectionEnd:   41,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -301,7 +302,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		wantCode:           `func main() {}`,
 		wantSelectionStart: 1, // select `unc`
 		wantSelectionEnd:   4,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -328,7 +329,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 18,
 		wantSelectionEnd:   104,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -351,7 +352,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 15,
 		wantSelectionEnd:   38,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -378,7 +379,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 			`}`),
 		wantSelectionStart: 17,
 		wantSelectionEnd:   110,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -387,7 +388,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		key:                `Tab`,
 		selectionStart:     0,
 		selectionEnd:       3,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -397,7 +398,7 @@ func Test_Editor_ProcessKeyDown_Tab(t *testing.T) {
 		shift:              true,
 		selectionStart:     0,
 		selectionEnd:       3,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 }
 
@@ -487,7 +488,7 @@ func Test_Editor_findMatchingOpeningBrace(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := findMatchingOpeningBrace(tt.code, tt.caret)
+			got := findMatchingOpeningBrace([]rune(tt.code), tt.caret)
 			check(t, `position`, got, tt.exp)
 		})
 	}
@@ -499,7 +500,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 		code:               `func main() {}`,
 		key:                `Enter`,
 		ctrl:               true,
-		wantPrefentDefault: false, // allow default behavior to change focus
+		wantPreventDefault: false, // allow default behavior to change focus
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -507,7 +508,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 		code:               `func main() {}`,
 		key:                `Enter`,
 		shift:              true,
-		wantPrefentDefault: false, // allow default behavior to change focus
+		wantPreventDefault: false, // allow default behavior to change focus
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -521,7 +522,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`dog`),
 		wantSelectionStart: 12, // before `dog`
 		wantSelectionEnd:   12,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -535,7 +536,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`dog`),
 		wantSelectionStart: 15, // before `dog`
 		wantSelectionEnd:   15,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -556,7 +557,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`  `),
 		wantSelectionStart: 30, // before `dog`
 		wantSelectionEnd:   30,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -573,7 +574,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`   og`),
 		wantSelectionStart: 9, // before `og`
 		wantSelectionEnd:   9,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -592,7 +593,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 22, // before `cat`
 		wantSelectionEnd:   22,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -620,7 +621,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 49, // after tabs on line 7
 		wantSelectionEnd:   49,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -640,7 +641,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 22, // after tabs on line 3
 		wantSelectionEnd:   22,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -660,7 +661,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 22, // after tabs on line 3
 		wantSelectionEnd:   22,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -680,7 +681,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 22, // after tabs on line 3
 		wantSelectionEnd:   22,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -699,7 +700,7 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`}`),
 		wantSelectionStart: 21, // before `>`
 		wantSelectionEnd:   21,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -713,7 +714,58 @@ func Test_Editor_ProcessKeyDown_Newline(t *testing.T) {
 			`func main() {}`),
 		wantSelectionStart: 1, // before `func`
 		wantSelectionEnd:   1,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name: `before comment`,
+		code: lines(
+			`	// I do things`,
+			`	func main() {}`),
+		key:            `Enter`,
+		selectionStart: 1, // before `//`
+		selectionEnd:   1,
+		wantCode: lines(
+			`	`,
+			`	// I do things`,
+			`	func main() {}`),
+		wantSelectionStart: 3, // still before `//`
+		wantSelectionEnd:   3,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name: `after comment`,
+		code: lines(
+			`	// I do things`,
+			`	func main() {}`),
+		key:            `Enter`,
+		selectionStart: 15, // after `things`
+		selectionEnd:   15,
+		wantCode: lines(
+			`	// I do things`,
+			`	`,
+			`	func main() {}`),
+		wantSelectionStart: 17, // after tab on line 2
+		wantSelectionEnd:   17,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name: `afterin middle of comment`,
+		code: lines(
+			`	// I do things`,
+			`	func main() {}`),
+		key:            `Enter`,
+		selectionStart: 8, // after `do`
+		selectionEnd:   8,
+		wantCode: lines(
+			`	// I do`,
+			`	// things`,
+			`	func main() {}`),
+		wantSelectionStart: 13, // before `things`
+		wantSelectionEnd:   13,
+		wantPreventDefault: true,
 	})
 }
 
@@ -781,14 +833,14 @@ func Test_Editor_ProcessKeyDown_SelectedLines(t *testing.T) {
 				initSelectionStart: tt.selectionStart,
 				initSelectionEnd:   tt.selectionEnd,
 			}
-			ce := &codeEditor{CodeBoxWrapper: cb}
+			ce := &codeEditor{wrapper: cb}
 			lineSel := ce.getSelectedLines()
 			check(t, `startLine`, lineSel.Start, tt.wantStartLine)
 			check(t, `endLine`, lineSel.End, tt.wantEndLine)
 
 			gotSelectedLines := []string{}
-			ce.foreachLine(lineSel, func(line string, _ Selection) bool {
-				gotSelectedLines = append(gotSelectedLines, line)
+			ce.foreachLine(lineSel, func(line []rune, _ common.Selection) bool {
+				gotSelectedLines = append(gotSelectedLines, string(line))
 				return true
 			})
 			check(t, `selectedLines`, gotSelectedLines, tt.wantSelectedLines)
@@ -803,14 +855,14 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 		key:                `/`, // with the shift should be `?` but check it anyway
 		shift:              true,
 		ctrl:               true,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
 		name:               `without ctrl does default`,
 		code:               `func main() {}`,
 		key:                `/`,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -833,7 +885,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 21, // selection adjusted for added `// `s
 		wantSelectionEnd:   36,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -860,7 +912,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 25, // selection adjusted for added `// `s
 		wantSelectionEnd:   98,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -885,7 +937,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 21, // selection adjusted for added `// `s
 		wantSelectionEnd:   39,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -901,7 +953,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 		selectionStart:     15, // end of line 2
 		selectionEnd:       19, // middle of line 4
 		wantCode:           ``, // no code change set.
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -928,7 +980,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 22, // selection adjusted for removed `// `s
 		wantSelectionEnd:   86,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -953,7 +1005,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 18, // selection adjusted for removed `// `s
 		wantSelectionEnd:   33,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -972,7 +1024,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 21, // selection adjusted for added `// `s
 		wantSelectionEnd:   21,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -991,7 +1043,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 18, // selection adjusted for removed `// `s
 		wantSelectionEnd:   18,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1014,7 +1066,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 14, // before added `// `s
 		wantSelectionEnd:   54, // before last added `// `s
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1037,7 +1089,7 @@ func Test_Editor_ProcessKeyDown_CommentToggle(t *testing.T) {
 			`}`),
 		wantSelectionStart: 14, // before added `// `s
 		wantSelectionEnd:   48, // before last added `// `s
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 }
 
@@ -1047,9 +1099,9 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		code:               "func main() {}",
 		key:                `s`,
 		ctrl:               true,
-		wantPrefentDefault: true,
-		wantEventCalls: map[string]int{
-			SaveEvent: 1,
+		wantPreventDefault: true,
+		wantEventCalls: map[common.Event]int{
+			common.SaveEvent: 1,
 		},
 	})
 
@@ -1057,16 +1109,16 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		name:               `s without ctrl does default`,
 		code:               "func main() {}",
 		key:                `s`,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
 		name:               `Escape`,
 		code:               "func main() {}",
 		key:                `Escape`,
-		wantPrefentDefault: true,
-		wantEventCalls: map[string]int{
-			EscapeEvent: 1,
+		wantPreventDefault: true,
+		wantEventCalls: map[common.Event]int{
+			common.EscapeEvent: 1,
 		},
 	})
 
@@ -1075,9 +1127,9 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		code:               "func main() {}",
 		key:                `z`,
 		ctrl:               true,
-		wantPrefentDefault: true,
-		wantEventCalls: map[string]int{
-			UndoEvent: 1,
+		wantPreventDefault: true,
+		wantEventCalls: map[common.Event]int{
+			common.UndoEvent: 1,
 		},
 	})
 
@@ -1087,9 +1139,9 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		key:                `z`,
 		ctrl:               true,
 		shift:              true,
-		wantPrefentDefault: true,
-		wantEventCalls: map[string]int{
-			RedoEvent: 1,
+		wantPreventDefault: true,
+		wantEventCalls: map[common.Event]int{
+			common.RedoEvent: 1,
 		},
 	})
 
@@ -1097,7 +1149,7 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		name:               `z without ctrl does default`,
 		code:               "func main() {}",
 		key:                `z`,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1105,9 +1157,9 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		code:               "func main() {}",
 		key:                `y`,
 		ctrl:               true,
-		wantPrefentDefault: true,
-		wantEventCalls: map[string]int{
-			RedoEvent: 1,
+		wantPreventDefault: true,
+		wantEventCalls: map[common.Event]int{
+			common.RedoEvent: 1,
 		},
 	})
 
@@ -1115,7 +1167,7 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		name:               `y without ctrl does default`,
 		code:               "func main() {}",
 		key:                `y`,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1124,9 +1176,8 @@ func Test_Editor_ProcessKeyDown_Callback(t *testing.T) {
 		key:                `y`,
 		ctrl:               true,
 		shift:              true,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
-
 }
 
 func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
@@ -1139,7 +1190,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println("")`,
 		wantSelectionStart: 13, // caret between the quotes
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1151,7 +1202,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println("cat")`,
 		wantSelectionStart: 13,
 		wantSelectionEnd:   16,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1161,7 +1212,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		ctrl:               true,
 		selectionStart:     12, // select `cat``
 		selectionEnd:       15,
-		wantPrefentDefault: false, // allow default behavior
+		wantPreventDefault: false, // allow default behavior
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1173,7 +1224,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println('')`,
 		wantSelectionStart: 13, // caret between the quotes
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1185,7 +1236,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           "fmt.Println(``)",
 		wantSelectionStart: 13, // caret between the ticks
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1197,7 +1248,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println(())`,
 		wantSelectionStart: 13, // caret between the parentheses
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1209,7 +1260,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println([])`,
 		wantSelectionStart: 13, // caret between the brackets
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1221,7 +1272,7 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		wantCode:           `fmt.Println({})`,
 		wantSelectionStart: 13, // caret between the brackets
 		wantSelectionEnd:   13,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1230,7 +1281,99 @@ func Test_Editor_ProcessKeyDown_InsertPair(t *testing.T) {
 		key:                `<`,
 		selectionStart:     12,
 		selectionEnd:       12,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
+	})
+}
+
+func Test_Editor_ProcessKeyDown_MatchingPair(t *testing.T) {
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching double quote`,
+		code:               `fmt.Println("")`,
+		key:                `"`,
+		selectionStart:     13, // caret between quotes
+		selectionEnd:       13,
+		wantCode:           `fmt.Println("")`,
+		wantSelectionStart: 14, // caret after last quote
+		wantSelectionEnd:   14,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching single quote`,
+		code:               `fmt.Println('')`,
+		key:                `'`,
+		selectionStart:     13, // caret between the quotes
+		selectionEnd:       13,
+		wantCode:           `fmt.Println('')`,
+		wantSelectionStart: 14, // caret after last quote
+		wantSelectionEnd:   14,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching backtick`,
+		code:               "fmt.Println(``)",
+		key:                "`",
+		selectionStart:     13, // caret between the ticks
+		selectionEnd:       13,
+		wantCode:           "fmt.Println(``)",
+		wantSelectionStart: 14, // caret after last tick
+		wantSelectionEnd:   14,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching parenthesis`,
+		code:               `fmt.Println()`,
+		key:                `)`,
+		selectionStart:     12, // caret between the parentheses
+		selectionEnd:       12,
+		wantCode:           `fmt.Println()`,
+		wantSelectionStart: 13, // caret after `)`
+		wantSelectionEnd:   13,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching square bracket`,
+		code:               `fmt.Println[]`,
+		key:                `]`,
+		selectionStart:     12, // caret between the brackets
+		selectionEnd:       12,
+		wantCode:           `fmt.Println[]`,
+		wantSelectionStart: 13, // caret after `]`
+		wantSelectionEnd:   13,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert matching curly bracket`,
+		code:               `fmt.Println{}`,
+		key:                `}`,
+		selectionStart:     12, // caret between the brackets
+		selectionEnd:       12,
+		wantCode:           `fmt.Println{}`,
+		wantSelectionStart: 13, // caret after `}`
+		wantSelectionEnd:   13,
+		wantPreventDefault: true,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert curly bracket at front`,
+		code:               `fmt`,
+		key:                `}`,
+		selectionStart:     0, // before `fmt`
+		selectionEnd:       0,
+		wantPreventDefault: false,
+	})
+
+	runKeyDownTest(t, testKeyDown{
+		name:               `Insert into not tight pair`,
+		code:               `{fmt`,
+		key:                `}`,
+		selectionStart:     1, // after `}`
+		selectionEnd:       1,
+		wantPreventDefault: false,
 	})
 }
 
@@ -1245,7 +1388,7 @@ func Test_Editor_ProcessKeyDown_MultilineComment(t *testing.T) {
 		wantCode:           `fmt.Println(/**/)`,
 		wantSelectionStart: 14, // caret between the asterisks
 		wantSelectionEnd:   14,
-		wantPrefentDefault: true,
+		wantPreventDefault: true,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1256,7 +1399,7 @@ func Test_Editor_ProcessKeyDown_MultilineComment(t *testing.T) {
 		ctrl:               true,
 		selectionStart:     13,
 		selectionEnd:       13,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1265,7 +1408,7 @@ func Test_Editor_ProcessKeyDown_MultilineComment(t *testing.T) {
 		key:                `*`, // shouln't be possible because this would be an `8`.`
 		selectionStart:     13,
 		selectionEnd:       13,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1275,7 +1418,7 @@ func Test_Editor_ProcessKeyDown_MultilineComment(t *testing.T) {
 		shift:              true,
 		selectionStart:     13,
 		selectionEnd:       16,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 
 	runKeyDownTest(t, testKeyDown{
@@ -1285,7 +1428,7 @@ func Test_Editor_ProcessKeyDown_MultilineComment(t *testing.T) {
 		shift:              true,
 		selectionStart:     12,
 		selectionEnd:       12,
-		wantPrefentDefault: false,
+		wantPreventDefault: false,
 	})
 }
 
@@ -1301,8 +1444,8 @@ type testKeyDown struct {
 	wantCode           string
 	wantSelectionStart int
 	wantSelectionEnd   int
-	wantPrefentDefault bool
-	wantEventCalls     map[string]int
+	wantPreventDefault bool
+	wantEventCalls     map[common.Event]int
 }
 
 func runKeyDownTest(t *testing.T, tt testKeyDown) {
@@ -1317,7 +1460,7 @@ func runKeyDownTest(t *testing.T, tt testKeyDown) {
 		check(t, `code`, cb.gotCode, tt.wantCode)
 		check(t, `selectedStart`, cb.gotSelectionStart, tt.wantSelectionStart)
 		check(t, `selectedEnd`, cb.gotSelectionEnd, tt.wantSelectionEnd)
-		check(t, `preventDefault`, gotPreventDefault, tt.wantPrefentDefault)
+		check(t, `preventDefault`, gotPreventDefault, tt.wantPreventDefault)
 		check(t, `eventCalls`, cb.gotEventCalls, tt.wantEventCalls)
 	})
 }
@@ -1330,25 +1473,25 @@ type fakeCodeBox struct {
 	gotCode           string
 	gotSelectionStart int
 	gotSelectionEnd   int
-	gotEventCalls     map[string]int
+	gotEventCalls     map[common.Event]int
 }
 
-var _ CodeBoxWrapper = (*fakeCodeBox)(nil)
+var _ common.CodeBox = (*fakeCodeBox)(nil)
 
 func (cb *fakeCodeBox) Code() string { return cb.initCode }
 
-func (cb *fakeCodeBox) EmitEvent(event string) {
+func (cb *fakeCodeBox) EmitEvent(event common.Event) {
 	if cb.gotEventCalls == nil {
-		cb.gotEventCalls = map[string]int{}
+		cb.gotEventCalls = map[common.Event]int{}
 	}
 	cb.gotEventCalls[event]++
 }
 
-func (cb *fakeCodeBox) GetSelection() Selection {
-	return Selection{Start: cb.initSelectionStart, End: cb.initSelectionEnd}
+func (cb *fakeCodeBox) GetSelection() common.Selection {
+	return common.Selection{Start: cb.initSelectionStart, End: cb.initSelectionEnd}
 }
 
-func (cb *fakeCodeBox) SetCode(sel Selection, code string) {
+func (cb *fakeCodeBox) SetCode(sel common.Selection, code string) {
 	if cb.gotCode != "" {
 		panic(errors.New(`SetCode called multiple times`))
 	}

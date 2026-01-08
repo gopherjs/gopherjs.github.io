@@ -1,6 +1,7 @@
 :root {
 	--color-scheme: light;
 	--color-banner-title-text: black;
+	--color-banner-title-hover: #0E6A8A;
 	--color-banner-background: 	#e5fafa;
 
 	--color-run-button-background: #FFF5D5;
@@ -32,9 +33,12 @@
 	--color-code-box-borders: black;
 	--color-line-nums-text: #888;
 	--color-line-nums-background: #EBDAC7;
+	--color-line-nums-error-text: #FDD;
+	--color-line-nums-error-background: #F44;
 	--color-code-line-nums-border: black;
 
 	--color-output-normal-text: black;
+	--color-output-system-text: #444;
 	--color-output-normal-background: #DDD;
 	--color-output-error-text: #800;
 	--color-output-error-background: #FCC;
@@ -43,7 +47,7 @@
 	--font-family-banner-title: Arial, sans;
 	--font-size-banner-title: 32px;
 	--font-size-banner-title-sub: 24px;
-	--font-size-banner-title-version: 24px;
+	--font-size-banner-title-version: 18px;
 	--font-family-controls: sans-serif;
 	--font-size-controls: 16px;
 	--size-toggle-box: 30px;
@@ -57,6 +61,7 @@
 [data-theme='dark'] {
 	--color-scheme: dark;
 	--color-banner-title-text: white;
+	--color-banner-title-hover: #7CF;
 	--color-banner-background: #007D9C;
 
 	--color-run-button-background: #253443;
@@ -88,9 +93,12 @@
 	--color-code-box-borders: #50B7E0;
 	--color-line-nums-text: #7CF;
 	--color-line-nums-background: #253443;
+	--color-line-nums-error-text: #F77;
+	--color-line-nums-error-background: #800;
 	--color-code-line-nums-border: #50B7E0;
 
 	--color-output-normal-text: #F0F1F2;
+	--color-output-system-text: #CCC;
 	--color-output-normal-background: #2B2D2F;
 	--color-output-error-text: #E67193;
 	--color-output-error-background: #411;
@@ -99,6 +107,9 @@
 html, body {
 	width: 100%;
 	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -110,6 +121,9 @@ html, body {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
 }
 
 #banner {
@@ -139,6 +153,18 @@ html, body {
 	font-size: var(--font-size-banner-title-version);
 }
 
+#banner-title-sub a:link,    #banner-title-version a:link,
+#banner-title-sub a:visited, #banner-title-version a:visited,
+#banner-title-sub a:active,  #banner-title-version a:active {
+	color: var(--color-banner-title-text);
+	text-decoration: none;
+}
+
+#banner-title-sub a:hover, #banner-title-version a:hover {
+	color: var(--color-banner-title-hover);
+	text-decoration: underline;
+}
+
 /* The part of the banner containing the buttons and controls */
 #controls {
 	display: flex;
@@ -150,7 +176,9 @@ html, body {
 	gap: var(--gap-banner-controls);
 }
 
-#controls input[type=button] {
+#controls input[type=button],
+#controls input[type=text],
+#controls select {
 	padding: 5px 8px 5px 8px;
 	border-radius: 5px;
 	font-family: var(--font-family-controls);
@@ -268,13 +296,29 @@ html, body {
 	display: none;
 }
 
+#snippets-drop-down {
+	margin: 0px 5px 0px 5px;
+	flex-grow: 3;
+	font-family: var(--font-family-controls);
+	font-size: var(--font-size-controls);
+	border: 1px solid var(--color-share-url-boarder);
+	background: var(--color-share-url-background);
+	color: var(--color-share-url-text);
+}
+
+.snippets-drop-down-hidden {
+	display: none;
+}
+
 /* The panel that contains everything below the banner */
 #code-output-box{
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	box-sizing: border-box;
-	overflow: none;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
 }
 
 /* A panel containing the code-box used for resizable layout */
@@ -296,7 +340,7 @@ html, body {
 	flex-direction: row;
 	flex-grow: 1;
 	box-sizing: border-box;
-	overflow: none;
+	overflow: hidden;
 	resize: none;
 	width: 100%;
 	align-items: stretch;
@@ -338,11 +382,24 @@ html, body {
 	white-space: pre-line;
 	border: none;
 	outline: none;
-	padding: var(--padding-mono);
+	padding-top: var(--padding-mono);
+	padding-bottom: var(--padding-mono);
 	font-family: var(--font-family-mono);
 	font-size: var(--font-size-mono);
 	color: var(--color-line-nums-text);
 	background: var(--color-line-nums-background);
+}
+
+#line-nums .normal {
+	padding-left: var(--padding-mono);
+	padding-right: var(--padding-mono);
+}
+
+#line-nums .error {
+	padding-left: var(--padding-mono);
+	padding-right: var(--padding-mono);
+    color: var(--color-line-nums-error-text);
+	background: var(--color-line-nums-error-background);
 }
 
 /* The readonly box that contains all the output */
@@ -357,23 +414,33 @@ html, body {
 	background: var(--color-output-normal-background);
 }
 
-/* The output pr for showing an error */
-.output-err {
-	width: 100%;
+/* The inside of the output box that is sized to the content
+so that background colors of the output continue into the overflow */
+#output-box-inner {
+	height: fit-content;
+	width: fit-content;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+/* The output span for showing output content, i.e. stdout, stderr, system */
+#output-box-inner > span {
+	white-space: pre-wrap;
 	margin: 0;
 	margin-block: 0;
 	font-family: var(--font-family-mono);
 	font-size: var(--font-size-mono);
+}
+
+#output-box-inner .stderr {
 	color: var(--color-output-error-text);
 	background: var(--color-output-error-background);
 }
 
-/* The output pre for showing normal text */
-.output-text {
-	width: 100%;
-	margin: 0;
-	margin-block: 0;
-	font-family: var(--font-family-mono);
-	font-size: var(--font-size-mono);
+#output-box-inner .stdout {
 	color: var(--color-output-normal-text);
+}
+
+#output-box-inner .system {
+	color: var(--color-output-system-text);
 }

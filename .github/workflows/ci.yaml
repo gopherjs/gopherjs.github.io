@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GO_VERSION: 1.19.13
+  GO_VERSION: 1.20.14
   NODE_VERSION: 18
   GOLANGCI_VERSION: v1.53.3
   SOURCE_MAP_SUPPORT: true
@@ -36,17 +36,12 @@ jobs:
       - name: Install golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
-          working-directory: ${{ env.GOPHERJS_PATH }}
+          working-directory: ${{ env.GOPHERJS_PATH }}/playground
           version: ${{ env.GOLANGCI_VERSION }}
           only-new-issues: true
       - name: Check go.mod
-        working-directory: ${{ env.GOPHERJS_PATH }}
+        working-directory: ${{ env.GOPHERJS_PATH }}/playground
         run: go mod tidy && git diff --exit-code
-      - name: Check natives build tags
-        working-directory: ${{ env.GOPHERJS_PATH }}
-        run: |
-          echo "Any following packages have at least one file that is missing //go:build js"
-          diff -u <(echo -n) <(go list ./compiler/natives/src/...)
 
   go_tests:
     name: Go Tests
@@ -55,8 +50,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: ${{ env.GOPHERJS_PATH }}
-      - name: Copy Actions
-        run: cp -r ${{ env.GOPHERJS_PATH }}/.github .
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -65,32 +58,6 @@ jobs:
         working-directory: ${{ env.GOPHERJS_PATH }}
         shell: bash
         run: echo "GOROOT=$(go env GOROOT)" >> $GITHUB_ENV
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-            node-version: ${{ env.NODE_VERSION }}
-      - name: Install Node.js for Linux
-        working-directory: ${{ env.GOPHERJS_PATH }}
-        shell: bash
-        # Install required Node.js packages including optional (node-syscall).
-        run: |
-            npm install --include=optional --no-package-lock
-      - name: Setup Node.js Environment
-        working-directory: ${{ env.GOPHERJS_PATH }}
-        shell: bash
-        # Make nodejs able to require installed modules from any working path.
-        run: echo "NODE_PATH=$(npm root)" >> $GITHUB_ENV
-      - name: Install GopherJS
-        working-directory: ${{ env.GOPHERJS_PATH }}
-        shell: bash
-        run: go install -v
-      - name: Setup information
-        shell: bash
-        run: |
-            echo ::notice::go version: $(go version)
-            echo ::notice::node version: $(node -v)
-            echo ::notice::npm version: $(npm -v)
-            echo ::notice::gopherjs version: $(gopherjs version)
-      - name: Run Tests
-        working-directory: ${{ env.GOPHERJS_PATH }}
+      - name: Run Playground Tests
+        working-directory: ${{ env.GOPHERJS_PATH }}/playground
         run: go test -v -race ./...

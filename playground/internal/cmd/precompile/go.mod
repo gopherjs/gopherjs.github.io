@@ -1,10 +1,10 @@
 module github.com/grantnelson-wf/gopherjs.github.io/playground/internal/cmd/precompile
 
-go 1.19
+go 1.20
 
 require (
-	github.com/gopherjs/gopherjs v1.19.0-beta2.0.20251008200541-113c92b42b18
-	github.com/sirupsen/logrus v1.8.1
+	github.com/gopherjs/gopherjs v1.20.1
+	github.com/sirupsen/logrus v1.8.3
 )
 
 require (
@@ -17,5 +17,3 @@ require (
 	golang.org/x/sys v0.10.0 // indirect
 	golang.org/x/tools v0.16.0 // indirect
 )
-
-replace github.com/gopherjs/gopherjs => /Users/grantnelson/go/src/github.com/Workiva/gopherjs // TODO(grantnelson-wf): REMOVE
