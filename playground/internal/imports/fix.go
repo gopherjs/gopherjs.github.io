@@ -146,11 +146,6 @@ func importPathToNameBasic(importPath string) (packageName string) {
 	return path.Base(importPath)
 }
 
-type pkg struct {
-	importpath string // full pkg import path, e.g. "net/http"
-	dir        string // absolute file path to pkg directory e.g. "/usr/lib/go/src/fmt"
-}
-
 // findImport searches for a package with the given symbols.
 // If no package is found, findImport returns "".
 // Declared as a variable rather than a function so goimports can be easily

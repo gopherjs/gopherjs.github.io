@@ -1,150 +1,446 @@
-html {
-	height: 100%;
+:root {
+	--color-scheme: light;
+	--color-banner-title-text: black;
+	--color-banner-title-hover: #0E6A8A;
+	--color-banner-background: 	#e5fafa;
+
+	--color-run-button-background: #FFF5D5;
+	--color-run-button-boarder: #0E6A8A;
+	--color-run-button-text: #black;
+	--color-run-button-hover-background: #0E6A8A;
+	--color-run-button-hover-boarder: #0E6A8A;
+	--color-run-button-hover-text: #FFF5D5;
+
+	--color-buttons-background: #EED;
+	--color-buttons-boarder: #CCC;
+	--color-buttons-text: #0E6A8A;
+	--color-buttons-hover-background: #0E6A8A;
+	--color-buttons-hover-boarder: #0E6A8A;
+	--color-buttons-hover-text: #FFF5D5;
+
+	--color-format-imports-text: #0E6A8A;
+	--color-toggle-background: #CCC;
+	--color-toggle-background-checked: #0E6A8A;
+	--color-toggle-foreground: #0E6A8A;
+	--color-toggle-foreground-checked: #FFF5D5;
+
+	--color-share-url-background: #EED;
+	--color-share-url-boarder: #CCC;
+	--color-share-url-text: black;
+
+	--color-code-text: black;
+	--color-code-background: #F5ECE3;
+	--color-code-box-borders: black;
+	--color-line-nums-text: #888;
+	--color-line-nums-background: #EBDAC7;
+	--color-line-nums-error-text: #FDD;
+	--color-line-nums-error-background: #F44;
+	--color-code-line-nums-border: black;
+
+	--color-output-normal-text: black;
+	--color-output-system-text: #444;
+	--color-output-normal-background: #DDD;
+	--color-output-error-text: #800;
+	--color-output-error-background: #FCC;
+
+	--color-buttons-shadow: rgba(0, 0, 0, 0.2) 2px 2px 4px;
+	--font-family-banner-title: Arial, sans;
+	--font-size-banner-title: 32px;
+	--font-size-banner-title-sub: 24px;
+	--font-size-banner-title-version: 18px;
+	--font-family-controls: sans-serif;
+	--font-size-controls: 16px;
+	--size-toggle-box: 30px;
+	--font-family-mono: Menlo, Courier\ New, monospace;
+	--font-size-mono: 11pt;
+	--padding-mono: 5px;
+	--gap-banner-controls: 5px;
+	--tab-size-code-text: 4;
 }
 
-body {
-	color: #222;
+[data-theme='dark'] {
+	--color-scheme: dark;
+	--color-banner-title-text: white;
+	--color-banner-title-hover: #7CF;
+	--color-banner-background: #007D9C;
+
+	--color-run-button-background: #253443;
+	--color-run-button-boarder: #00ADD8;
+	--color-run-button-text: #00ADD8;
+	--color-run-button-hover-background: #00ADD8;
+	--color-run-button-hover-boarder: black;
+	--color-run-button-hover-text: black;
+
+	--color-buttons-background: #003647;
+	--color-buttons-boarder: #50B7E0;
+	--color-buttons-text: #50B7E0;
+	--color-buttons-hover-background: #50B7E0;
+	--color-buttons-hover-boarder: #333;
+	--color-buttons-hover-text: #333;
+
+	--color-format-imports-text: #7CF;
+	--color-toggle-background: #333;
+	--color-toggle-background-checked: #7CF;
+	--color-toggle-foreground: #00ADD8;
+	--color-toggle-foreground-checked: #003647;
+
+	--color-share-url-background: #333;
+	--color-share-url-boarder: #50B7E0;
+	--color-share-url-text: #7CF;
+
+	--color-code-text: #F0F1F2;
+	--color-code-background: #253443;
+	--color-code-box-borders: #50B7E0;
+	--color-line-nums-text: #7CF;
+	--color-line-nums-background: #253443;
+	--color-line-nums-error-text: #F77;
+	--color-line-nums-error-background: #800;
+	--color-code-line-nums-border: #50B7E0;
+
+	--color-output-normal-text: #F0F1F2;
+	--color-output-system-text: #CCC;
+	--color-output-normal-background: #2B2D2F;
+	--color-output-error-text: #E67193;
+	--color-output-error-background: #411;
+}
+
+html, body {
+	width: 100%;
 	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	box-sizing: border-box;
+	color-scheme: var(--color-scheme);
 }
 
-a {
-	color: #009;
-}
-
-.box {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	border: 300px;
-}
-
-#content {
-	top: 50px;
-	bottom: 25%;
-}
-
-.yellow {
-	background: #ebdac7;
-	margin: 0px;
-	padding: 10px;
-}
-
-#share-url {
-	width: 320px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	background: #eee;
-}
-#share-url.show-share-url-false {
-	display: none;
-}
-
-#code,
-#output,
-pre,
-.lines {
-	font-family: Menlo, Courier\ New, monospace;
-	font-size: 11pt;
-	margin: 0px;
-}
-
-#code {
+#playground {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
-	background: inherit;
-	border: none;
-	float: right;
-	margin: 0;
-	outline: none;
-	padding: 0;
-	resize: none;
-	wrap: off;
-}
-
-#output {
-	position: absolute;
-	overflow: scroll;
-	background: #ddd;
-	margin-top: 10px;
-	padding: 10px;
-	top: 75%;
-}
-
-#output .system,
-#output .loading {
-	color: #999;
-}
-
-#output .err {
-	color: #900;
-}
-
-#output pre {
-	margin: 0;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
 }
 
 #banner {
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-	white-space: nowrap;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	flex-shrink: 0;
+	align-items: stretch;
 	padding: 4px;
+	background: var(--color-banner-background);
 }
 
-#head {
-	font-family: Arial, sans;
-	font-size: 32px;
+/* The title to show on the banner */
+#banner-title {
 	font-variant: small-caps;
+	white-space: nowrap;
+	font-family: var(--font-family-banner-title);
+	font-size: var(--font-size-banner-title);
+	color: var(--color-banner-title-text);
 }
 
+#banner-title-sub {
+	font-size: var(--font-size-banner-title-sub);
+}
+
+#banner-title-version {
+	font-size: var(--font-size-banner-title-version);
+}
+
+#banner-title-sub a:link,    #banner-title-version a:link,
+#banner-title-sub a:visited, #banner-title-version a:visited,
+#banner-title-sub a:active,  #banner-title-version a:active {
+	color: var(--color-banner-title-text);
+	text-decoration: none;
+}
+
+#banner-title-sub a:hover, #banner-title-version a:hover {
+	color: var(--color-banner-title-hover);
+	text-decoration: underline;
+}
+
+/* The part of the banner containing the buttons and controls */
 #controls {
-	padding-left: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	gap: var(--gap-banner-controls);
 }
 
-input[type="button"] {
-	background: #eee;
-	border: 1px solid #ccc;
-	color: #222;
-	font-size: 20px;
-	height: 30px;
+#controls input[type=button],
+#controls input[type=text],
+#controls select {
+	padding: 5px 8px 5px 8px;
+	border-radius: 5px;
+	font-family: var(--font-family-controls);
+	font-size: var(--font-size-controls);
+	box-shadow: var(--color-buttons-shadow);
 }
 
-input[type="button"]:hover {
-	background: #666;
-	color: #fff;
+/* The run code button */
+#run-button {
+	background: var(--color-run-button-background);
+	border: 1px solid var(--color-run-button-boarder);
+	color: var(--color-run-button-text);
 }
 
-label {
-	font-family: sans-serif;
-	font-size: 16px;
+#run-button:hover {
+	background: var(--color-run-button-hover-background);
+	border-color: var(--color-run-button-hover-boarder);
+	color: var(--color-run-button-hover-text);
 }
 
-input[type="checkbox"] {
-	height: 14px;
+/* The format code button */
+#format-button {
+	background: var(--color-buttons-background);
+	border: 1px solid var(--color-buttons-boarder);
+	color: var(--color-buttons-text);
 }
 
-.lines {
-	float: left;
+#format-button:hover {
+	background: var(--color-buttons-hover-background);
+	border-color: var(--color-buttons-hover-boarder);
+	color: var(--color-buttons-hover-text);
+}
+
+/* The checkbox and label for indicating if imports should be formatted */
+#format-imports {
+	font-family: var(--font-family-controls);
+	font-size: var(--font-size-controls);
+	color: var(--color-format-imports-text);
+}
+
+.toggle-box-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.toggle-box-wrapper .toggle-box-checkbox {
+	display: none;
+}
+
+.toggle-box-wrapper .toggle-box-checkbox+.toggle-box-toggle {
+	outline: 0;
+	display: block;
+	box-sizing: border-box;
+	width: calc(var(--size-toggle-box)/2);
+	height: var(--size-toggle-box);
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border-radius: calc(var(--size-toggle-box)/2);
+	padding: 2px;
+	background: var(--color-toggle-background);
+	transition: all 0.4s ease;
+}
+
+.toggle-box-wrapper .toggle-box-checkbox+.toggle-box-toggle:after {
+	position: relative;
+	top: calc(50% + 2px);
+	display: block;
+	content: "";
+	width: 100%;
+	height: calc(50% - 2px);
+	border-radius: 50%;
+	background: var(--color-toggle-foreground);
+	transition: all 0.2s ease;
+}
+
+.toggle-box-wrapper .toggle-box-checkbox:checked+.toggle-box-toggle {
+	background: var(--color-toggle-background-checked);
+}
+
+.toggle-box-wrapper .toggle-box-checkbox:checked+.toggle-box-toggle:after {
+	background: var(--color-toggle-foreground-checked);
+	top: 0;
+}
+
+/* The share code button */
+#share-button {
+	background: var(--color-buttons-background);
+	border: 1px solid var(--color-buttons-boarder);
+	color: var(--color-buttons-text);
+}
+
+#share-button:hover {
+	background: var(--color-buttons-hover-background);
+	border-color: var(--color-buttons-hover-boarder);
+	color: var(--color-buttons-hover-text);
+}
+
+/* The text box containing the url for sharing code. */
+#share-url {
+	margin: 0px 5px 0px 5px;
+	flex-grow: 3;
+	font-family: var(--font-family-controls);
+	font-size: var(--font-size-controls);
+	border: 1px solid var(--color-share-url-boarder);
+	background: var(--color-share-url-background);
+	color: var(--color-share-url-text);
+}
+
+.share-url-hidden {
+	display: none;
+}
+
+#snippets-drop-down {
+	margin: 0px 5px 0px 5px;
+	flex-grow: 3;
+	font-family: var(--font-family-controls);
+	font-size: var(--font-size-controls);
+	border: 1px solid var(--color-share-url-boarder);
+	background: var(--color-share-url-background);
+	color: var(--color-share-url-text);
+}
+
+.snippets-drop-down-hidden {
+	display: none;
+}
+
+/* The panel that contains everything below the banner */
+#code-output-box{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	box-sizing: border-box;
+	max-width: 100%;
+	max-height: 100%;
 	overflow: hidden;
+}
+
+/* A panel containing the code-box used for resizable layout */
+#code-box-container {
+	display: flex;
+	resize: vertical;
+	overflow: auto;
+	width: 100%;
+	min-height: 50px;
+	max-height: 80%;
+	height: 75%;
+	flex-shrink: 0;
+	background: var(--color-code-background);
+}
+
+/* The panel that contains the code text area and the lines numbers */
+#code-box {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	box-sizing: border-box;
+	overflow: hidden;
+	resize: none;
+	width: 100%;
+	align-items: stretch;
+	background: var(--color-code-background);
+	border-top: 1px solid var(--color-code-box-borders);
+	border-bottom: 1px solid var(--color-code-box-borders);
+}
+
+/* The interactable text area for the code */
+#code {
+	flex: 1;
+	resize: none;
+	box-sizing: border-box;
+	overflow-x: none;
+	overflow-y: scroll;
+	white-space: nowrap;
+	outline: none;
+	border: none;
+	border-left: 1px solid var(--color-code-line-nums-border);
+	padding: var(--padding-mono);
+	tab-size: var(--tab-size-code-text);
+	font-family: var(--font-family-mono);
+	font-size: var(--font-size-mono);
+	color: var(--color-code-text);
+	background: var(--color-code-background);
+}
+
+/* The readonly line numbers next to the code */
+#line-nums {
 	text-align: right;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	text-overflow: clip;
+	resize: none;
+	max-width: 4ch;
+	white-space: pre-line;
+	border: none;
+	outline: none;
+	padding-top: var(--padding-mono);
+	padding-bottom: var(--padding-mono);
+	font-family: var(--font-family-mono);
+	font-size: var(--font-size-mono);
+	color: var(--color-line-nums-text);
+	background: var(--color-line-nums-background);
 }
 
-.lines div {
-	color: #d3d3d3;
-	padding-right: 5px;
+#line-nums .normal {
+	padding-left: var(--padding-mono);
+	padding-right: var(--padding-mono);
 }
 
-.lineerror {
-	background: #fdd;
-	color: red;
+#line-nums .error {
+	padding-left: var(--padding-mono);
+	padding-right: var(--padding-mono);
+    color: var(--color-line-nums-error-text);
+	background: var(--color-line-nums-error-background);
 }
 
-.exit {
-	color: #d3d3d3;
+/* The readonly box that contains all the output */
+#output-box {
+	width: 100%;
+	min-height: 50px;
+	flex-grow: 1;
+	resize: none;
+	box-sizing: border-box;
+	overflow: auto;
+	padding: var(--padding-mono);
+	background: var(--color-output-normal-background);
+}
+
+/* The inside of the output box that is sized to the content
+so that background colors of the output continue into the overflow */
+#output-box-inner {
+	height: fit-content;
+	width: fit-content;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+/* The output span for showing output content, i.e. stdout, stderr, system */
+#output-box-inner > span {
+	white-space: pre-wrap;
+	margin: 0;
+	margin-block: 0;
+	font-family: var(--font-family-mono);
+	font-size: var(--font-size-mono);
+}
+
+#output-box-inner .stderr {
+	color: var(--color-output-error-text);
+	background: var(--color-output-error-background);
+}
+
+#output-box-inner .stdout {
+	color: var(--color-output-normal-text);
+}
+
+#output-box-inner .system {
+	color: var(--color-output-system-text);
 }

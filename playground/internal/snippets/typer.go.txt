@@ -1,0 +1,39 @@
+// This is an example of using sleep to slowly output text
+// to look as if someone was manually typing the text very fast.
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+	for _, c := range ipsum {
+		fmt.Print(string([]rune{c}))
+
+		dur := time.Duration(rand.Intn(10)+2) * time.Millisecond
+		time.Sleep(dur)
+	}
+}
+
+const ipsum = `RE: We need an illustration of a paradigm shift for a great plan!
+Let me diarize this then we can synchronise ourselves at a later sprint.
+First-order optimal strategies should be put in the parking lot.
+My supervisor didn't like the smell of the latest revision you gave me,
+so roll back to the prior revision as discussed in stand-up.
+
+Manage expectations because the throughput is all exactly as we previously stated.
+Ramp up the button-up approach then circle back for future adjustments until it is done done.
+That's not on the roadmap. You need to touch base. Let's set up a meeting to discuss
+what the following meeting will be about. Reserve a whiteboard for a post-meeting
+retrospective meeting. This is that meeting!
+
+Can you champion this proceduralization for technologically savvy bandwidth?
+Parallel paths inspire more creative, innovative, and energized philosophy to
+attract our stakeholders back to the drawing board to get buy-in.
+This proposal is a win-win situation that will cause a stellar paradigm shift,
+disrupt the charts, and move the needle.
+
+If you don't understand, you need to re-read Monday's memo and please forward me
+a copy so that I can be sure you got it.`

@@ -1,3 +1,4 @@
+//go:build generate
 // +build generate
 
 // Copyright 2011 The Go Authors.  All rights reserved.

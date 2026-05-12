@@ -1,32 +1,19 @@
-<!doctype html>
-<html ng-app="playground">
+<!DOCTYPE html>
+<html>
   <head>
+    <meta charset="UTF-8" />
     <title>GopherJS Playground</title>
 		<link rel="stylesheet" type="text/css" href="playground.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
-    <script src="playground.js"></script>
+    <link rel="icon" href="/favicon-gopherjs.png" sizes="any">
+    <script type="module">
+      "use strict";
+      import React from "https://esm.sh/react@19/?dev";
+      import ReactDOMClient from "https://esm.sh/react-dom@19/client/?dev";
+      import "./playground.js";
+      window.RunPlayground(React, ReactDOMClient);
+    </script>
   </head>
-  <body ng-controller="PlaygroundCtrl">
-    <div id="banner">
-      <span id="head">playground <small>(GopherJS {{version}})</small></span>
-      <span id="controls">
-        <input type="button" value="Run" ng-click="run(false)" />
-        <input type="button" value="Format" ng-click="format()" />
-        <label title="Rewrite imports on Format">
-          <input ng-model="imports" type="checkbox" />Imports
-        </label>
-        <input type="button" value="Share" ng-click="share()" />
-        <input type="text" class="show-share-url-{{showShareUrl}}" id="share-url" value="{{shareUrl}}" onfocus="select()" />
-      </span>
-    </div>
-
-		<div class="box" id="content">
-      <div class="box yellow" id="input">
-        <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
-      </div>
-    </div>
-    <div class="box" id="output">
-      <pre ng-repeat="line in output" class="{{line.type}}">{{line.content}}&nbsp;</pre>
-    </div>
+  <body>
+    <div id="playground"></div>
   </body>
 </html>

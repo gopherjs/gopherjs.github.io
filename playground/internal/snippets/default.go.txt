@@ -1,0 +1,17 @@
+// You can edit this code!
+// Click here and start typing.
+// Press Esc to move out of the editor.
+
+package main
+
+import (
+	"fmt"
+
+	"github.com/gopherjs/gopherjs/js"
+)
+
+func main() {
+	fmt.Println("Hello, playground")
+	println("Hello, JS console")
+	js.Global.Get("console").Call("error", "Making JS calls")
+}
