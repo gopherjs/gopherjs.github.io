@@ -71,28 +71,36 @@ func (r *compilerImp) Preload(goCode map[string]string) {
 		srcs.Files = append(srcs.Files, file)
 	}
 
+	// Always preload runtime since it is always needed.
+	r.asyncPreloadImports(`runtime`)
 	if len(srcs.Files) > 0 {
 		r.preloadImports(srcs)
 	}
 }
 
+// preloadImports will asynchronously preload the imports needed by the given sources.
 func (r *compilerImp) preloadImports(srcs *sources.Sources) {
 	imports := srcs.UnresolvedImports()
 	for _, imp := range imports {
-		// Run load asynchronously.
-		go func(path string) {
-			srcs, result, err := r.cache.Load(path)
-			if err != nil {
-				// Ignore errors here. They will be reported during actual compilation.
-				return
-			}
-			if result == loadFetched {
-				// If this is the first time this package was fetched,
-				// start preloading its imports too.
-				r.preloadImports(srcs)
-			}
-		}(imp)
+		r.asyncPreloadImports(imp)
 	}
+}
+
+// asyncPreloadImports will asynchronously preload the import with the
+// given path and any import that is needed for that import.
+func (r *compilerImp) asyncPreloadImports(path string) {
+	go func(path string) {
+		srcs, result, err := r.cache.Load(path)
+		if err != nil {
+			// Ignore errors here. They will be reported during actual compilation.
+			return
+		}
+		if result == loadFetched {
+			// If this is the first time this package was fetched,
+			// start preloading its imports too.
+			r.preloadImports(srcs)
+		}
+	}(path)
 }
 
 func (r *compilerImp) Compile(goCode map[string]string) (string, error) {

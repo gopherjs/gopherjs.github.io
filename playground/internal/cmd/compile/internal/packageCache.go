@@ -30,23 +30,33 @@ func newPackageCache(fetcher Fetcher) *packageCache {
 	}
 }
 
+// Load will get the sources for the given import path.
+//
+// This will block until the sources are available.
+// If the sources are cached, then this will be fast,
+// otherwise it will await a network request before returning.
 func (pc *packageCache) Load(importPath string) (*sources.Sources, loadResult, error) {
+	load := pc.getLoadStratagy(importPath)
+
 	srcs := &sources.Sources{}
-	result, err := pc.syncLoad(importPath)(srcs)
+	result, err := load(srcs)
 	return srcs, result, err
 }
 
-type syncLoadFunc func(srcs *sources.Sources) (loadResult, error)
-
-// syncLoad returns a function to complete loading the package.
+// loadStrategy is the stratagy for performing the load based
+// on the current state of any other load of the same package.
 //
-// The returned function may either return the cached package immediately,
-// wait for an in-progress load to complete, or perform the load itself.
-// syncLoad will not block, but the returned function may block.
-//
-// If the returned function is run and returns loadFailed, the error will be non-nil
+// If this returns loadFailed, the error will be non-nil.
 // and if the error is non-nil, the loadResult will be loadFailed.
-func (pc *packageCache) syncLoad(importPath string) syncLoadFunc {
+type loadStrategy func(srcs *sources.Sources) (loadResult, error)
+
+// getLoadStratagy returns the stratagy to complete loading the package.
+// When the returned stratagy is run, it may either return the cached
+// package immediately, wait for an in-progress load to complete,
+// or perform the load itself.
+//
+// getLoadStratagy will not block, but the returned function may block.
+func (pc *packageCache) getLoadStratagy(importPath string) loadStrategy {
 	pc.lock.Lock()
 	defer pc.lock.Unlock()
 
@@ -65,19 +75,19 @@ func (pc *packageCache) syncLoad(importPath string) syncLoadFunc {
 	return pc.startLoading(importPath, ch)
 }
 
-// alreadyLoaded returns a syncLoadFunc that returns the cached sources.
+// alreadyLoaded returns a load stratagy that returns the cached sources.
 // The given cached sources must be the sources that are already loaded in the cache.
-func (pc *packageCache) alreadyLoaded(cached *sources.Sources) syncLoadFunc {
+func (pc *packageCache) alreadyLoaded(cached *sources.Sources) loadStrategy {
 	return func(srcs *sources.Sources) (loadResult, error) {
 		*srcs = *cached // Shallow copy the cached sources.
 		return loadCached, nil
 	}
 }
 
-// alreadyInprogress returns a syncLoadFunc that waits for an in-progress load to complete.
+// alreadyInprogress returns a load stratagy that waits for an in-progress load to complete.
 // The given channel will be waited on until it is closed, indicating the load is complete
 // and the sources should now be in the cache.
-func (pc *packageCache) alreadyInprogress(importPath string, ch chan struct{}) syncLoadFunc {
+func (pc *packageCache) alreadyInprogress(importPath string, ch chan struct{}) loadStrategy {
 	return func(srcs *sources.Sources) (loadResult, error) {
 		<-ch // Wait for the in-progress load to complete.
 
@@ -88,17 +98,23 @@ func (pc *packageCache) alreadyInprogress(importPath string, ch chan struct{}) s
 			*srcs = *cached // Shallow copy the cached sources.
 			return loadCached, nil
 		}
-		return loadFailed, fmt.Errorf(`failed to find package %q in cache after waiting load`, importPath)
+
+		// The following may occur if the loading package failed for some reason
+		// and so the package was not added to the cache by the time the channel was closed.
+		return loadFailed, fmt.Errorf(`failed awaiting load of package %q`, importPath)
 	}
 }
 
-// startLoading returns a syncLoadFunc that performs the package load.
+// startLoading returns a load stratagy that performs the package load via a network request.
+// This occurs when the package is not cached and not currently in progress.
 // The given channel will be closed when the load is complete to indicate to any
 // other processed waiting on the load that it is done.
-func (pc *packageCache) startLoading(importPath string, ch chan struct{}) syncLoadFunc {
+func (pc *packageCache) startLoading(importPath string, ch chan struct{}) loadStrategy {
 	return func(srcs *sources.Sources) (loadResult, error) {
 		fetched, err := pc.fetcher.FetchPackage(importPath)
 		if err != nil {
+			delete(pc.inprogress, importPath)
+			close(ch)
 			return loadFailed, err
 		}
 
@@ -106,7 +122,7 @@ func (pc *packageCache) startLoading(importPath string, ch chan struct{}) syncLo
 		defer pc.lock.Unlock()
 
 		pc.cached[importPath] = fetched
-		*srcs = *fetched // Shallow copy the fetched sources.
+		*srcs = *fetched // Shallow copy the fetched sources into passed in sources.
 		delete(pc.inprogress, importPath)
 		close(ch)
 		return loadFetched, nil
