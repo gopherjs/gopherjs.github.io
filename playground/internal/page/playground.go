@@ -2,6 +2,7 @@ package page
 
 import (
 	"go/format"
+	"sync"
 
 	"github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react"
 	"github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/url"
@@ -14,15 +15,39 @@ func Playground() *react.Element {
 	return react.CreateElement(playgroundComponent, nil)
 }
 
+// Since React can create Refs twice when in "Strict Mode" but we do not
+// want any of these resources created twice so they are singletons.
+var (
+	compiler     = OnceValue(workers.NewCompiler)
+	runner       = OnceValue(workers.NewRunner)
+	snippetStore = OnceValue(snippets.NewStore)
+)
+
+// TODO(grantnelson-wf): Remove when we've reached go1.21
+func OnceValue[T any](f func() T) func() T {
+	var (
+		once   sync.Once
+		result T
+	)
+	return func() T {
+		once.Do(func() {
+			temp := f
+			f = nil
+			result = temp()
+		})
+		return result
+	}
+}
+
 func playgroundComponent(props react.Props) *react.Element {
 	var (
 		bannerRef  = react.UseRefLazy(NoopBannerHandle)
 		outputRef  = react.UseRefLazy(NoopOutput)
 		codeBoxRef = react.UseRefLazy(NoopCodeBoxHandle)
 
-		compilerRef      = react.UseRefLazy(workers.NewCompiler)
-		runnerRef        = react.UseRefLazy(workers.NewRunner)
-		snippetsStoreRef = react.UseRefLazy(snippets.NewStore)
+		compilerRef      = react.UseRefLazy(compiler)
+		runnerRef        = react.UseRefLazy(runner)
+		snippetsStoreRef = react.UseRefLazy(snippetStore)
 	)
 
 	// Get version number from compiler webworker.

@@ -164,33 +164,40 @@ func (r *compilerImp) collectAllSources(root *sources.Sources) (map[string]*sour
 	allSources := map[string]*sources.Sources{
 		root.ImportPath: root,
 	}
-
-	var collectDeps func(srcs *sources.Sources) error
-	collectDeps = func(srcs *sources.Sources) error {
-		for _, path := range srcs.UnresolvedImports() {
-			if _, has := allSources[path]; has {
-				continue // Already collected.
-			}
-
-			// Run load synchronously to await for the package to be available.
-			srcs, _, err := r.cache.Load(path)
-			if err != nil {
-				// Failed to load an import.
-				return fmt.Errorf(`failed to load package %q: %w`, path, err)
-			}
-			allSources[srcs.ImportPath] = srcs
-
-			if err := collectDeps(srcs); err != nil {
-				return err
-			}
-		}
-		return nil
-	}
-	if err := collectDeps(root); err != nil {
+	if err := r.addSourcesToSourcesMap(allSources, root); err != nil {
 		return nil, err
 	}
 
+	// Ensure `runtime` is added even if it was not explicitly imported.
+	if err := r.addPathToSourcesMap(allSources, `runtime`); err != nil {
+		return nil, err
+	}
 	return allSources, nil
+}
+
+func (r *compilerImp) addSourcesToSourcesMap(allSources map[string]*sources.Sources, srcs *sources.Sources) error {
+	for _, path := range srcs.UnresolvedImports() {
+		if err := r.addPathToSourcesMap(allSources, path); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (r *compilerImp) addPathToSourcesMap(allSources map[string]*sources.Sources, path string) error {
+	if _, has := allSources[path]; has {
+		return nil // Already collected.
+	}
+
+	// Run load synchronously to await for the package to be available.
+	srcs, _, err := r.cache.Load(path)
+	if err != nil {
+		// Failed to load an import.
+		return fmt.Errorf(`failed to load package %q: %w`, path, err)
+	}
+
+	allSources[srcs.ImportPath] = srcs
+	return r.addSourcesToSourcesMap(allSources, srcs)
 }
 
 func (r *compilerImp) prepareAndCompilePackages(rootPath string, allSources map[string]*sources.Sources) ([]*compiler.Archive, error) {
