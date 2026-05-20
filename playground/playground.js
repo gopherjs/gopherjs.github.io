@@ -5363,7 +5363,7 @@ $packages["errors"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react"] = (function() {
-	var $pkg = {}, $init, errors, js, Node, Root, Element, Props, Ref, ValueRef = [], Func, sliceType, funcType, sliceType$1, sliceType$2, funcType$1, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType, ptrType$1, valueRefLastId, valueRefStore, reactDom, react, CreateRoot, CreateElement, StrictMode, Fragment, Memo, Div, TextArea, Span, Button, A, GetProp = [], GetValueRef = [], castObj = [], UseState = [], UseStateLazy = [], UseRef, UseRefLazy = [], UseEffect, UseEffectWithCleanup, UseLayoutEffect, UseLayoutEffectWithCleanup, UseImperativeHandle = [], UseMemo = [], UseCallback;
+	var $pkg = {}, $init, errors, js, Node, Root, Element, Props, Ref, ValueRef = [], Func, sliceType, funcType, sliceType$1, sliceType$2, funcType$1, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType, ptrType$1, valueRefLastId, valueRefStore, reactDom, react, CreateRoot, CreateElement, StrictMode, Fragment, Memo, Div, TextArea, Span, Button, A, GetProp = [], GetValueRef = [], castObj = [], UseState = [], UseStateLazy = [], UseRef, UseRefWith = [], UseRefLazy = [], UseEffect, UseEffectWithCleanup, UseLayoutEffect, UseLayoutEffectWithCleanup, UseImperativeHandle = [], UseMemo = [], UseCallback;
 	errors = $packages["errors"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	Node = $newType(8, $kindInterface, "react.Node", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, null);
@@ -5431,7 +5431,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5439,7 +5439,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5447,7 +5447,15 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Object = null;
+			return;
+		}
+		this.Object = Object_;
+	});
+	ValueRef[56 /* string */] = $newType(0, $kindStruct, "react.ValueRef[string]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5636,7 +5644,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		Props.prototype.GetRef = function(...$args) { return this.$val.GetRef(...$args); };
 		GetProp[23 /* []int */] = function GetProp$1(p, key) {
 			var key, p;
-			return castObj[54 /* []int */]($clone(p, Props).Get(key));
+			return castObj[55 /* []int */]($clone(p, Props).Get(key));
 		};
 		GetValueRef[10 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */] = function GetValueRef$1(p, key) {
 			var key, p;
@@ -5650,7 +5658,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			var key, p;
 			return new ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].ptr($clone(p, Props).Get(key));
 		};
-		castObj[53 /* int */] = function castObj$1(obj) {
+		castObj[54 /* int */] = function castObj$1(obj) {
 			var _ref, obj, result, v;
 			result = 0;
 			if (obj === null || obj === undefined) {
@@ -5708,7 +5716,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[54 /* []int */] = function castObj$2(obj) {
+		castObj[55 /* []int */] = function castObj$2(obj) {
 			var _ref, obj, result, v;
 			result = sliceType$2.nil;
 			if (obj === null || obj === undefined) {
@@ -5766,7 +5774,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[55 /* bool */] = function castObj$3(obj) {
+		castObj[61 /* bool */] = function castObj$3(obj) {
 			var _ref, obj, result, v;
 			result = false;
 			if (obj === null || obj === undefined) {
@@ -5824,7 +5832,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[56 /* string */] = function castObj$4(obj) {
+		castObj[62 /* string */] = function castObj$4(obj) {
 			var _ref, obj, result, v;
 			result = "";
 			if (obj === null || obj === undefined) {
@@ -5882,7 +5890,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[57 /* []any */] = function castObj$5(obj) {
+		castObj[63 /* []any */] = function castObj$5(obj) {
 			var _ref, obj, result, v;
 			result = sliceType.nil;
 			if (obj === null || obj === undefined) {
@@ -5942,53 +5950,53 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		};
 		UseState[11 /* []any */] = function UseState$1(initial) {
 			var initial;
-			return UseStateLazy[50 /* []any */]((function UseState·func1() {
+			return UseStateLazy[51 /* []any */]((function UseState·func1() {
 					return initial;
 				}));
 		};
 		UseState[18 /* string */] = function UseState$2(initial) {
 			var initial;
-			return UseStateLazy[51 /* string */]((function UseState·func1$1() {
+			return UseStateLazy[52 /* string */]((function UseState·func1$1() {
 					return initial;
 				}));
 		};
 		UseState[19 /* []int */] = function UseState$3(initial) {
 			var initial;
-			return UseStateLazy[52 /* []int */]((function UseState·func1$2() {
+			return UseStateLazy[53 /* []int */]((function UseState·func1$2() {
 					return initial;
 				}));
 		};
-		UseState[34 /* bool */] = function UseState$4(initial) {
+		UseState[35 /* bool */] = function UseState$4(initial) {
 			var initial;
-			return UseStateLazy[33 /* bool */]((function UseState·func1$3() {
+			return UseStateLazy[34 /* bool */]((function UseState·func1$3() {
 					return initial;
 				}));
 		};
-		UseStateLazy[33 /* bool */] = function UseStateLazy$1(initialFn) {
+		UseStateLazy[34 /* bool */] = function UseStateLazy$1(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$1));
-			current = castObj[55 /* bool */](r[0]);
+			current = castObj[61 /* bool */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[50 /* []any */] = function UseStateLazy$2(initialFn) {
+		UseStateLazy[51 /* []any */] = function UseStateLazy$2(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$2));
-			current = castObj[57 /* []any */](r[0]);
+			current = castObj[63 /* []any */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[51 /* string */] = function UseStateLazy$3(initialFn) {
+		UseStateLazy[52 /* string */] = function UseStateLazy$3(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$3));
-			current = castObj[56 /* string */](r[0]);
+			current = castObj[62 /* string */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[52 /* []int */] = function UseStateLazy$4(initialFn) {
+		UseStateLazy[53 /* []int */] = function UseStateLazy$4(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$4));
-			current = castObj[54 /* []int */](r[0]);
+			current = castObj[55 /* []int */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
@@ -6008,6 +6016,17 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			ref.Object.current = v;
 		};
 		Ref.prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		UseRefWith[33 /* string */] = function UseRefWith$1(initial) {
+			var {$24r, _r, initial, $s, $r, $c} = $restore(this, {initial});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			initial = [initial];
+			_r = UseRefLazy[60 /* string */]((function(initial) { return function UseRefWith·func1() {
+					return initial[0];
+				}; })(initial)); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+			$24r = _r;
+			$s = 2; case 2: return $24r;
+			/* */ } return; } var $f = {$blk: UseRefWith$1, $c: true, $r, $24r, _r, initial, $s};return $f;
+		};
 		UseRefLazy[0 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseRefLazy$1(initialFn) {
 			var {_key, _r, id, initialFn, ref, $s, $r, $c} = $restore(this, {initialFn});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
@@ -6118,7 +6137,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].ptr(react().useRef(-1));
+			ref = new ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -6153,7 +6172,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].ptr(react().useRef(-1));
+			ref = new ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -6188,7 +6207,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].ptr(react().useRef(-1));
+			ref = new ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -6253,6 +6272,41 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			$s = -1; return ref;
 			/* */ } return; } var $f = {$blk: UseRefLazy$7, $c: true, $r, _key, _r, id, initialFn, ref, $s};return $f;
 		};
+		UseRefLazy[60 /* string */] = function UseRefLazy$8(initialFn) {
+			var {_key, _r, id, initialFn, ref, $s, $r, $c} = $restore(this, {initialFn});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			id = [id];
+			initialFn = [initialFn];
+			ref = new ValueRef[56 /* string */].ptr(react().useRef(-1));
+			id[0] = $parseInt(ref.Object.current) >> 0;
+			/* */ if (id[0] <= 0) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (id[0] <= 0) { */ case 1:
+				valueRefLastId = valueRefLastId + (1) >> 0;
+				id[0] = valueRefLastId;
+				ref.Object.current = id[0];
+				_r = initialFn[0](); /* */ $s = 3; case 3: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+				_key = id[0]; (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: new $String(_r) });
+			/* } */ case 2:
+			UseLayoutEffectWithCleanup((function(id, initialFn) { return function UseRefLazy·func1$7() {
+					var {_entry, _key$1, _r$1, _tuple, ok, $s, $r, $c} = $restore(this, {});
+					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+					_tuple = (_entry = $mapIndex(valueRefStore,$Int.keyFor(id[0])), _entry !== undefined ? [_entry.v, true] : [$ifaceNil, false]);
+					ok = _tuple[1];
+					/* */ if (!ok) { $s = 1; continue; }
+					/* */ $s = 2; continue;
+					/* if (!ok) { */ case 1:
+						_r$1 = initialFn[0](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+						_key$1 = id[0]; (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key$1), { k: _key$1, v: new $String(_r$1) });
+					/* } */ case 2:
+					$s = -1; return (function(id, initialFn) { return function UseRefLazy·func1·func1$7() {
+							$mapDelete(valueRefStore, $Int.keyFor(id[0]));
+						}; })(id, initialFn);
+					/* */ } return; } var $f = {$blk: UseRefLazy·func1$7, $c: true, $r, _entry, _key$1, _r$1, _tuple, ok, $s};return $f;
+				}; })(id, initialFn), new sliceType([]));
+			$s = -1; return ref;
+			/* */ } return; } var $f = {$blk: UseRefLazy$8, $c: true, $r, _key, _r, id, initialFn, ref, $s};return $f;
+		};
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.getId = function getId() {
 			var ref;
 			ref = this;
@@ -6277,24 +6331,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			return $parseInt(ref.Object.current) >> 0;
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.getId = function getId$4() {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.getId = function getId$4() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.getId = function getId$5() {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.getId = function getId$5() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.getId = function getId$6() {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.getId = function getId$6() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.getId = function getId$7() {
+			var ref;
+			ref = this;
+			return $parseInt(ref.Object.current) >> 0;
+		};
+		ValueRef[56 /* string */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.Current = function Current$1() {
 			var _entry, ref;
 			ref = this;
@@ -6319,24 +6379,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle);
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.Current = function Current$5() {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.Current = function Current$5() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler);
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.Current = function Current$6() {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.Current = function Current$6() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner);
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.Current = function Current$7() {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.Current = function Current$7() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore);
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.Current = function Current$8() {
+			var _entry, ref;
+			ref = this;
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[56 /* string */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $String);
+		};
+		ValueRef[56 /* string */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.SetCurrent = function SetCurrent$1(v) {
 			var _key, ref, v;
 			ref = this;
@@ -6361,24 +6427,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			_key = $clone(ref, ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.SetCurrent = function SetCurrent$5(v) {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.SetCurrent = function SetCurrent$5(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.SetCurrent = function SetCurrent$6(v) {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.SetCurrent = function SetCurrent$6(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.SetCurrent = function SetCurrent$7(v) {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.SetCurrent = function SetCurrent$7(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.SetCurrent = function SetCurrent$8(v) {
+			var _key, ref, v;
+			ref = this;
+			_key = $clone(ref, ValueRef[56 /* string */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: new $String(v) });
+		};
+		ValueRef[56 /* string */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
 		UseEffect = function UseEffect$1(effect, deps) {
 			var deps, effect;
 			react().useEffect($externalize(effect, funcType), $externalize(deps, sliceType));
@@ -6429,7 +6501,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 					/* */ } return; } var $f = {$blk: UseImperativeHandle·func1$1, $c: true, $r, _r, $s};return $f;
 				}), deps);
 		};
-		UseImperativeHandle[35 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseImperativeHandle$3(ref, createHandle, deps) {
+		UseImperativeHandle[36 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseImperativeHandle$3(ref, createHandle, deps) {
 			var createHandle, deps, ref;
 			UseLayoutEffectWithCleanup((function UseImperativeHandle·func1$2() {
 					var {_r, $s, $r, $c} = $restore(this, {});
@@ -6447,17 +6519,17 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		UseMemo[22 /* int */] = function UseMemo$1(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$6), $externalize(deps, sliceType));
-			return castObj[53 /* int */](r);
+			return castObj[54 /* int */](r);
 		};
-		UseMemo[36 /* string */] = function UseMemo$2(compute, deps) {
+		UseMemo[37 /* string */] = function UseMemo$2(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$3), $externalize(deps, sliceType));
-			return castObj[56 /* string */](r);
+			return castObj[62 /* string */](r);
 		};
-		UseMemo[37 /* []any */] = function UseMemo$3(compute, deps) {
+		UseMemo[38 /* []any */] = function UseMemo$3(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$2), $externalize(deps, sliceType));
-			return castObj[57 /* []any */](r);
+			return castObj[63 /* []any */](r);
 		};
 		UseCallback = function UseCallback$1(fn, deps) {
 			var deps, fn;
@@ -6468,6 +6540,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		$pkg.GetValueRef = GetValueRef;
 		$pkg.UseState = UseState;
 		$pkg.UseStateLazy = UseStateLazy;
+		$pkg.UseRefWith = UseRefWith;
 		$pkg.UseRefLazy = UseRefLazy;
 		$pkg.UseImperativeHandle = UseImperativeHandle;
 		$pkg.UseMemo = UseMemo;
@@ -6478,9 +6551,10 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].CodeBoxHandle], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].CodeBoxHandle], [], false)}];
 		ValueRef[24 /* github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo.UndoRedoStack */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo"].UndoRedoStack], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo"].UndoRedoStack], [], false)}];
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle], [], false)}];
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], [], false)}];
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], [], false)}];
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], [], false)}];
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], [], false)}];
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], [], false)}];
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], [], false)}];
+		ValueRef[56 /* string */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$String], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$String], [], false)}];
 		Node.init([]);
 		Root.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		Element.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
@@ -6490,9 +6564,10 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		ValueRef[24 /* github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo.UndoRedoStack */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[56 /* string */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		Func.init([{prop: "Invoke", name: "Invoke", pkg: "", typ: $funcType([sliceType], [ptrType$1], true)}]);
 	};
 	$init = function() {
@@ -11893,7 +11968,7 @@ $packages["sync"] = (function() {
 	return $pkg;
 })();
 $packages["unicode"] = (function() {
-	var $pkg = {}, $init, RangeTable, Range16, Range32, CaseRange, d, foldPair, sliceType, sliceType$1, sliceType$2, sliceType$3, arrayType, ptrType, sliceType$4, _C, _Cc, _Cf, _Co, _Cs, _L, _Ll, _Lm, _Lo, _Lt, _Lu, _M, _Mc, _Me, _Mn, _N, _Nd, _Nl, _No, _P, _Pc, _Pd, _Pe, _Pf, _Pi, _Po, _Ps, _S, _Sc, _Sk, _Sm, _So, _Z, _Zl, _Zp, _Zs, _Adlam, _Ahom, _Anatolian_Hieroglyphs, _Arabic, _Armenian, _Avestan, _Balinese, _Bamum, _Bassa_Vah, _Batak, _Bengali, _Bhaiksuki, _Bopomofo, _Brahmi, _Braille, _Buginese, _Buhid, _Canadian_Aboriginal, _Carian, _Caucasian_Albanian, _Chakma, _Cham, _Cherokee, _Chorasmian, _Common, _Coptic, _Cuneiform, _Cypriot, _Cyrillic, _Deseret, _Devanagari, _Dives_Akuru, _Dogra, _Duployan, _Egyptian_Hieroglyphs, _Elbasan, _Elymaic, _Ethiopic, _Georgian, _Glagolitic, _Gothic, _Grantha, _Greek, _Gujarati, _Gunjala_Gondi, _Gurmukhi, _Han, _Hangul, _Hanifi_Rohingya, _Hanunoo, _Hatran, _Hebrew, _Hiragana, _Imperial_Aramaic, _Inherited, _Inscriptional_Pahlavi, _Inscriptional_Parthian, _Javanese, _Kaithi, _Kannada, _Katakana, _Kayah_Li, _Kharoshthi, _Khitan_Small_Script, _Khmer, _Khojki, _Khudawadi, _Lao, _Latin, _Lepcha, _Limbu, _Linear_A, _Linear_B, _Lisu, _Lycian, _Lydian, _Mahajani, _Makasar, _Malayalam, _Mandaic, _Manichaean, _Marchen, _Masaram_Gondi, _Medefaidrin, _Meetei_Mayek, _Mende_Kikakui, _Meroitic_Cursive, _Meroitic_Hieroglyphs, _Miao, _Modi, _Mongolian, _Mro, _Multani, _Myanmar, _Nabataean, _Nandinagari, _New_Tai_Lue, _Newa, _Nko, _Nushu, _Nyiakeng_Puachue_Hmong, _Ogham, _Ol_Chiki, _Old_Hungarian, _Old_Italic, _Old_North_Arabian, _Old_Permic, _Old_Persian, _Old_Sogdian, _Old_South_Arabian, _Old_Turkic, _Oriya, _Osage, _Osmanya, _Pahawh_Hmong, _Palmyrene, _Pau_Cin_Hau, _Phags_Pa, _Phoenician, _Psalter_Pahlavi, _Rejang, _Runic, _Samaritan, _Saurashtra, _Sharada, _Shavian, _Siddham, _SignWriting, _Sinhala, _Sogdian, _Sora_Sompeng, _Soyombo, _Sundanese, _Syloti_Nagri, _Syriac, _Tagalog, _Tagbanwa, _Tai_Le, _Tai_Tham, _Tai_Viet, _Takri, _Tamil, _Tangut, _Telugu, _Thaana, _Thai, _Tibetan, _Tifinagh, _Tirhuta, _Ugaritic, _Vai, _Wancho, _Warang_Citi, _Yezidi, _Yi, _Zanabazar_Square, _White_Space, caseOrbit, foldL, foldLl, foldLt, foldLu, foldM, foldMn, foldCommon, foldGreek, foldInherited, asciiFold, _CaseRanges, properties, is16, is32, Is, isExcludingLatin, IsUpper, To, ToUpper, ToLower, SimpleFold, IsGraphic, IsPrint, In, IsLetter, IsPunct, IsSpace, to, IsDigit;
+	var $pkg = {}, $init, RangeTable, Range16, Range32, CaseRange, d, foldPair, sliceType, sliceType$1, sliceType$2, arrayType, sliceType$3, ptrType, sliceType$4, _C, _Cc, _Cf, _Co, _Cs, _L, _Ll, _Lm, _Lo, _Lt, _Lu, _M, _Mc, _Me, _Mn, _N, _Nd, _Nl, _No, _P, _Pc, _Pd, _Pe, _Pf, _Pi, _Po, _Ps, _S, _Sc, _Sk, _Sm, _So, _Z, _Zl, _Zp, _Zs, _Adlam, _Ahom, _Anatolian_Hieroglyphs, _Arabic, _Armenian, _Avestan, _Balinese, _Bamum, _Bassa_Vah, _Batak, _Bengali, _Bhaiksuki, _Bopomofo, _Brahmi, _Braille, _Buginese, _Buhid, _Canadian_Aboriginal, _Carian, _Caucasian_Albanian, _Chakma, _Cham, _Cherokee, _Chorasmian, _Common, _Coptic, _Cuneiform, _Cypriot, _Cyrillic, _Deseret, _Devanagari, _Dives_Akuru, _Dogra, _Duployan, _Egyptian_Hieroglyphs, _Elbasan, _Elymaic, _Ethiopic, _Georgian, _Glagolitic, _Gothic, _Grantha, _Greek, _Gujarati, _Gunjala_Gondi, _Gurmukhi, _Han, _Hangul, _Hanifi_Rohingya, _Hanunoo, _Hatran, _Hebrew, _Hiragana, _Imperial_Aramaic, _Inherited, _Inscriptional_Pahlavi, _Inscriptional_Parthian, _Javanese, _Kaithi, _Kannada, _Katakana, _Kayah_Li, _Kharoshthi, _Khitan_Small_Script, _Khmer, _Khojki, _Khudawadi, _Lao, _Latin, _Lepcha, _Limbu, _Linear_A, _Linear_B, _Lisu, _Lycian, _Lydian, _Mahajani, _Makasar, _Malayalam, _Mandaic, _Manichaean, _Marchen, _Masaram_Gondi, _Medefaidrin, _Meetei_Mayek, _Mende_Kikakui, _Meroitic_Cursive, _Meroitic_Hieroglyphs, _Miao, _Modi, _Mongolian, _Mro, _Multani, _Myanmar, _Nabataean, _Nandinagari, _New_Tai_Lue, _Newa, _Nko, _Nushu, _Nyiakeng_Puachue_Hmong, _Ogham, _Ol_Chiki, _Old_Hungarian, _Old_Italic, _Old_North_Arabian, _Old_Permic, _Old_Persian, _Old_Sogdian, _Old_South_Arabian, _Old_Turkic, _Oriya, _Osage, _Osmanya, _Pahawh_Hmong, _Palmyrene, _Pau_Cin_Hau, _Phags_Pa, _Phoenician, _Psalter_Pahlavi, _Rejang, _Runic, _Samaritan, _Saurashtra, _Sharada, _Shavian, _Siddham, _SignWriting, _Sinhala, _Sogdian, _Sora_Sompeng, _Soyombo, _Sundanese, _Syloti_Nagri, _Syriac, _Tagalog, _Tagbanwa, _Tai_Le, _Tai_Tham, _Tai_Viet, _Takri, _Tamil, _Tangut, _Telugu, _Thaana, _Thai, _Tibetan, _Tifinagh, _Tirhuta, _Ugaritic, _Vai, _Wancho, _Warang_Citi, _Yezidi, _Yi, _Zanabazar_Square, _White_Space, _CaseRanges, properties, asciiFold, caseOrbit, foldL, foldLl, foldLt, foldLu, foldM, foldMn, foldCommon, foldGreek, foldInherited, is16, is32, Is, isExcludingLatin, IsUpper, To, ToUpper, ToLower, SimpleFold, IsGraphic, IsPrint, In, IsLetter, IsPunct, IsSpace, to, IsDigit;
 	RangeTable = $newType(0, $kindStruct, "unicode.RangeTable", true, "unicode", true, function(R16_, R32_, LatinOffset_) {
 		this.$val = this;
 		if (arguments.length === 0) {
@@ -11962,9 +12037,9 @@ $packages["unicode"] = (function() {
 	$pkg.$finishSetup = function() {
 		sliceType = $sliceType(Range16);
 		sliceType$1 = $sliceType(Range32);
-		sliceType$2 = $sliceType(foldPair);
-		sliceType$3 = $sliceType(CaseRange);
+		sliceType$2 = $sliceType(CaseRange);
 		arrayType = $arrayType($Int32, 3);
+		sliceType$3 = $sliceType(foldPair);
 		ptrType = $ptrType(RangeTable);
 		sliceType$4 = $sliceType(ptrType);
 		is16 = function is16$1(ranges, r) {
@@ -12644,7 +12719,11 @@ $packages["unicode"] = (function() {
 		$pkg.Scripts = $makeMap($String.keyFor, [{ k: "Adlam", v: $pkg.Adlam }, { k: "Ahom", v: $pkg.Ahom }, { k: "Anatolian_Hieroglyphs", v: $pkg.Anatolian_Hieroglyphs }, { k: "Arabic", v: $pkg.Arabic }, { k: "Armenian", v: $pkg.Armenian }, { k: "Avestan", v: $pkg.Avestan }, { k: "Balinese", v: $pkg.Balinese }, { k: "Bamum", v: $pkg.Bamum }, { k: "Bassa_Vah", v: $pkg.Bassa_Vah }, { k: "Batak", v: $pkg.Batak }, { k: "Bengali", v: $pkg.Bengali }, { k: "Bhaiksuki", v: $pkg.Bhaiksuki }, { k: "Bopomofo", v: $pkg.Bopomofo }, { k: "Brahmi", v: $pkg.Brahmi }, { k: "Braille", v: $pkg.Braille }, { k: "Buginese", v: $pkg.Buginese }, { k: "Buhid", v: $pkg.Buhid }, { k: "Canadian_Aboriginal", v: $pkg.Canadian_Aboriginal }, { k: "Carian", v: $pkg.Carian }, { k: "Caucasian_Albanian", v: $pkg.Caucasian_Albanian }, { k: "Chakma", v: $pkg.Chakma }, { k: "Cham", v: $pkg.Cham }, { k: "Cherokee", v: $pkg.Cherokee }, { k: "Chorasmian", v: $pkg.Chorasmian }, { k: "Common", v: $pkg.Common }, { k: "Coptic", v: $pkg.Coptic }, { k: "Cuneiform", v: $pkg.Cuneiform }, { k: "Cypriot", v: $pkg.Cypriot }, { k: "Cyrillic", v: $pkg.Cyrillic }, { k: "Deseret", v: $pkg.Deseret }, { k: "Devanagari", v: $pkg.Devanagari }, { k: "Dives_Akuru", v: $pkg.Dives_Akuru }, { k: "Dogra", v: $pkg.Dogra }, { k: "Duployan", v: $pkg.Duployan }, { k: "Egyptian_Hieroglyphs", v: $pkg.Egyptian_Hieroglyphs }, { k: "Elbasan", v: $pkg.Elbasan }, { k: "Elymaic", v: $pkg.Elymaic }, { k: "Ethiopic", v: $pkg.Ethiopic }, { k: "Georgian", v: $pkg.Georgian }, { k: "Glagolitic", v: $pkg.Glagolitic }, { k: "Gothic", v: $pkg.Gothic }, { k: "Grantha", v: $pkg.Grantha }, { k: "Greek", v: $pkg.Greek }, { k: "Gujarati", v: $pkg.Gujarati }, { k: "Gunjala_Gondi", v: $pkg.Gunjala_Gondi }, { k: "Gurmukhi", v: $pkg.Gurmukhi }, { k: "Han", v: $pkg.Han }, { k: "Hangul", v: $pkg.Hangul }, { k: "Hanifi_Rohingya", v: $pkg.Hanifi_Rohingya }, { k: "Hanunoo", v: $pkg.Hanunoo }, { k: "Hatran", v: $pkg.Hatran }, { k: "Hebrew", v: $pkg.Hebrew }, { k: "Hiragana", v: $pkg.Hiragana }, { k: "Imperial_Aramaic", v: $pkg.Imperial_Aramaic }, { k: "Inherited", v: $pkg.Inherited }, { k: "Inscriptional_Pahlavi", v: $pkg.Inscriptional_Pahlavi }, { k: "Inscriptional_Parthian", v: $pkg.Inscriptional_Parthian }, { k: "Javanese", v: $pkg.Javanese }, { k: "Kaithi", v: $pkg.Kaithi }, { k: "Kannada", v: $pkg.Kannada }, { k: "Katakana", v: $pkg.Katakana }, { k: "Kayah_Li", v: $pkg.Kayah_Li }, { k: "Kharoshthi", v: $pkg.Kharoshthi }, { k: "Khitan_Small_Script", v: $pkg.Khitan_Small_Script }, { k: "Khmer", v: $pkg.Khmer }, { k: "Khojki", v: $pkg.Khojki }, { k: "Khudawadi", v: $pkg.Khudawadi }, { k: "Lao", v: $pkg.Lao }, { k: "Latin", v: $pkg.Latin }, { k: "Lepcha", v: $pkg.Lepcha }, { k: "Limbu", v: $pkg.Limbu }, { k: "Linear_A", v: $pkg.Linear_A }, { k: "Linear_B", v: $pkg.Linear_B }, { k: "Lisu", v: $pkg.Lisu }, { k: "Lycian", v: $pkg.Lycian }, { k: "Lydian", v: $pkg.Lydian }, { k: "Mahajani", v: $pkg.Mahajani }, { k: "Makasar", v: $pkg.Makasar }, { k: "Malayalam", v: $pkg.Malayalam }, { k: "Mandaic", v: $pkg.Mandaic }, { k: "Manichaean", v: $pkg.Manichaean }, { k: "Marchen", v: $pkg.Marchen }, { k: "Masaram_Gondi", v: $pkg.Masaram_Gondi }, { k: "Medefaidrin", v: $pkg.Medefaidrin }, { k: "Meetei_Mayek", v: $pkg.Meetei_Mayek }, { k: "Mende_Kikakui", v: $pkg.Mende_Kikakui }, { k: "Meroitic_Cursive", v: $pkg.Meroitic_Cursive }, { k: "Meroitic_Hieroglyphs", v: $pkg.Meroitic_Hieroglyphs }, { k: "Miao", v: $pkg.Miao }, { k: "Modi", v: $pkg.Modi }, { k: "Mongolian", v: $pkg.Mongolian }, { k: "Mro", v: $pkg.Mro }, { k: "Multani", v: $pkg.Multani }, { k: "Myanmar", v: $pkg.Myanmar }, { k: "Nabataean", v: $pkg.Nabataean }, { k: "Nandinagari", v: $pkg.Nandinagari }, { k: "New_Tai_Lue", v: $pkg.New_Tai_Lue }, { k: "Newa", v: $pkg.Newa }, { k: "Nko", v: $pkg.Nko }, { k: "Nushu", v: $pkg.Nushu }, { k: "Nyiakeng_Puachue_Hmong", v: $pkg.Nyiakeng_Puachue_Hmong }, { k: "Ogham", v: $pkg.Ogham }, { k: "Ol_Chiki", v: $pkg.Ol_Chiki }, { k: "Old_Hungarian", v: $pkg.Old_Hungarian }, { k: "Old_Italic", v: $pkg.Old_Italic }, { k: "Old_North_Arabian", v: $pkg.Old_North_Arabian }, { k: "Old_Permic", v: $pkg.Old_Permic }, { k: "Old_Persian", v: $pkg.Old_Persian }, { k: "Old_Sogdian", v: $pkg.Old_Sogdian }, { k: "Old_South_Arabian", v: $pkg.Old_South_Arabian }, { k: "Old_Turkic", v: $pkg.Old_Turkic }, { k: "Oriya", v: $pkg.Oriya }, { k: "Osage", v: $pkg.Osage }, { k: "Osmanya", v: $pkg.Osmanya }, { k: "Pahawh_Hmong", v: $pkg.Pahawh_Hmong }, { k: "Palmyrene", v: $pkg.Palmyrene }, { k: "Pau_Cin_Hau", v: $pkg.Pau_Cin_Hau }, { k: "Phags_Pa", v: $pkg.Phags_Pa }, { k: "Phoenician", v: $pkg.Phoenician }, { k: "Psalter_Pahlavi", v: $pkg.Psalter_Pahlavi }, { k: "Rejang", v: $pkg.Rejang }, { k: "Runic", v: $pkg.Runic }, { k: "Samaritan", v: $pkg.Samaritan }, { k: "Saurashtra", v: $pkg.Saurashtra }, { k: "Sharada", v: $pkg.Sharada }, { k: "Shavian", v: $pkg.Shavian }, { k: "Siddham", v: $pkg.Siddham }, { k: "SignWriting", v: $pkg.SignWriting }, { k: "Sinhala", v: $pkg.Sinhala }, { k: "Sogdian", v: $pkg.Sogdian }, { k: "Sora_Sompeng", v: $pkg.Sora_Sompeng }, { k: "Soyombo", v: $pkg.Soyombo }, { k: "Sundanese", v: $pkg.Sundanese }, { k: "Syloti_Nagri", v: $pkg.Syloti_Nagri }, { k: "Syriac", v: $pkg.Syriac }, { k: "Tagalog", v: $pkg.Tagalog }, { k: "Tagbanwa", v: $pkg.Tagbanwa }, { k: "Tai_Le", v: $pkg.Tai_Le }, { k: "Tai_Tham", v: $pkg.Tai_Tham }, { k: "Tai_Viet", v: $pkg.Tai_Viet }, { k: "Takri", v: $pkg.Takri }, { k: "Tamil", v: $pkg.Tamil }, { k: "Tangut", v: $pkg.Tangut }, { k: "Telugu", v: $pkg.Telugu }, { k: "Thaana", v: $pkg.Thaana }, { k: "Thai", v: $pkg.Thai }, { k: "Tibetan", v: $pkg.Tibetan }, { k: "Tifinagh", v: $pkg.Tifinagh }, { k: "Tirhuta", v: $pkg.Tirhuta }, { k: "Ugaritic", v: $pkg.Ugaritic }, { k: "Vai", v: $pkg.Vai }, { k: "Wancho", v: $pkg.Wancho }, { k: "Warang_Citi", v: $pkg.Warang_Citi }, { k: "Yezidi", v: $pkg.Yezidi }, { k: "Yi", v: $pkg.Yi }, { k: "Zanabazar_Square", v: $pkg.Zanabazar_Square }]);
 		_White_Space = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(9, 13, 1), Range16), $clone(new Range16.ptr(32, 133, 101), Range16), $clone(new Range16.ptr(160, 5760, 5600), Range16), $clone(new Range16.ptr(8192, 8202, 1), Range16), $clone(new Range16.ptr(8232, 8233, 1), Range16), $clone(new Range16.ptr(8239, 8287, 48), Range16), $clone(new Range16.ptr(12288, 12288, 1), Range16)]), sliceType$1.nil, 2);
 		$pkg.White_Space = _White_Space;
-		caseOrbit = new sliceType$2([$clone(new foldPair.ptr(75, 107), foldPair), $clone(new foldPair.ptr(83, 115), foldPair), $clone(new foldPair.ptr(107, 8490), foldPair), $clone(new foldPair.ptr(115, 383), foldPair), $clone(new foldPair.ptr(181, 924), foldPair), $clone(new foldPair.ptr(197, 229), foldPair), $clone(new foldPair.ptr(223, 7838), foldPair), $clone(new foldPair.ptr(229, 8491), foldPair), $clone(new foldPair.ptr(304, 304), foldPair), $clone(new foldPair.ptr(305, 305), foldPair), $clone(new foldPair.ptr(383, 83), foldPair), $clone(new foldPair.ptr(452, 453), foldPair), $clone(new foldPair.ptr(453, 454), foldPair), $clone(new foldPair.ptr(454, 452), foldPair), $clone(new foldPair.ptr(455, 456), foldPair), $clone(new foldPair.ptr(456, 457), foldPair), $clone(new foldPair.ptr(457, 455), foldPair), $clone(new foldPair.ptr(458, 459), foldPair), $clone(new foldPair.ptr(459, 460), foldPair), $clone(new foldPair.ptr(460, 458), foldPair), $clone(new foldPair.ptr(497, 498), foldPair), $clone(new foldPair.ptr(498, 499), foldPair), $clone(new foldPair.ptr(499, 497), foldPair), $clone(new foldPair.ptr(837, 921), foldPair), $clone(new foldPair.ptr(914, 946), foldPair), $clone(new foldPair.ptr(917, 949), foldPair), $clone(new foldPair.ptr(920, 952), foldPair), $clone(new foldPair.ptr(921, 953), foldPair), $clone(new foldPair.ptr(922, 954), foldPair), $clone(new foldPair.ptr(924, 956), foldPair), $clone(new foldPair.ptr(928, 960), foldPair), $clone(new foldPair.ptr(929, 961), foldPair), $clone(new foldPair.ptr(931, 962), foldPair), $clone(new foldPair.ptr(934, 966), foldPair), $clone(new foldPair.ptr(937, 969), foldPair), $clone(new foldPair.ptr(946, 976), foldPair), $clone(new foldPair.ptr(949, 1013), foldPair), $clone(new foldPair.ptr(952, 977), foldPair), $clone(new foldPair.ptr(953, 8126), foldPair), $clone(new foldPair.ptr(954, 1008), foldPair), $clone(new foldPair.ptr(956, 181), foldPair), $clone(new foldPair.ptr(960, 982), foldPair), $clone(new foldPair.ptr(961, 1009), foldPair), $clone(new foldPair.ptr(962, 963), foldPair), $clone(new foldPair.ptr(963, 931), foldPair), $clone(new foldPair.ptr(966, 981), foldPair), $clone(new foldPair.ptr(969, 8486), foldPair), $clone(new foldPair.ptr(976, 914), foldPair), $clone(new foldPair.ptr(977, 1012), foldPair), $clone(new foldPair.ptr(981, 934), foldPair), $clone(new foldPair.ptr(982, 928), foldPair), $clone(new foldPair.ptr(1008, 922), foldPair), $clone(new foldPair.ptr(1009, 929), foldPair), $clone(new foldPair.ptr(1012, 920), foldPair), $clone(new foldPair.ptr(1013, 917), foldPair), $clone(new foldPair.ptr(1042, 1074), foldPair), $clone(new foldPair.ptr(1044, 1076), foldPair), $clone(new foldPair.ptr(1054, 1086), foldPair), $clone(new foldPair.ptr(1057, 1089), foldPair), $clone(new foldPair.ptr(1058, 1090), foldPair), $clone(new foldPair.ptr(1066, 1098), foldPair), $clone(new foldPair.ptr(1074, 7296), foldPair), $clone(new foldPair.ptr(1076, 7297), foldPair), $clone(new foldPair.ptr(1086, 7298), foldPair), $clone(new foldPair.ptr(1089, 7299), foldPair), $clone(new foldPair.ptr(1090, 7300), foldPair), $clone(new foldPair.ptr(1098, 7302), foldPair), $clone(new foldPair.ptr(1122, 1123), foldPair), $clone(new foldPair.ptr(1123, 7303), foldPair), $clone(new foldPair.ptr(7296, 1042), foldPair), $clone(new foldPair.ptr(7297, 1044), foldPair), $clone(new foldPair.ptr(7298, 1054), foldPair), $clone(new foldPair.ptr(7299, 1057), foldPair), $clone(new foldPair.ptr(7300, 7301), foldPair), $clone(new foldPair.ptr(7301, 1058), foldPair), $clone(new foldPair.ptr(7302, 1066), foldPair), $clone(new foldPair.ptr(7303, 1122), foldPair), $clone(new foldPair.ptr(7304, 42570), foldPair), $clone(new foldPair.ptr(7776, 7777), foldPair), $clone(new foldPair.ptr(7777, 7835), foldPair), $clone(new foldPair.ptr(7835, 7776), foldPair), $clone(new foldPair.ptr(7838, 223), foldPair), $clone(new foldPair.ptr(8126, 837), foldPair), $clone(new foldPair.ptr(8486, 937), foldPair), $clone(new foldPair.ptr(8490, 75), foldPair), $clone(new foldPair.ptr(8491, 197), foldPair), $clone(new foldPair.ptr(42570, 42571), foldPair), $clone(new foldPair.ptr(42571, 7304), foldPair)]);
+		_CaseRanges = new sliceType$2([$clone(new CaseRange.ptr(65, 90, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(97, 122, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(181, 181, $clone($toNativeArray($kindInt32, [743, 0, 743]), d)), CaseRange), $clone(new CaseRange.ptr(192, 214, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(216, 222, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(224, 246, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(248, 254, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(255, 255, $clone($toNativeArray($kindInt32, [121, 0, 121]), d)), CaseRange), $clone(new CaseRange.ptr(256, 303, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(304, 304, $clone($toNativeArray($kindInt32, [0, -199, 0]), d)), CaseRange), $clone(new CaseRange.ptr(305, 305, $clone($toNativeArray($kindInt32, [-232, 0, -232]), d)), CaseRange), $clone(new CaseRange.ptr(306, 311, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(313, 328, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(330, 375, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(376, 376, $clone($toNativeArray($kindInt32, [0, -121, 0]), d)), CaseRange), $clone(new CaseRange.ptr(377, 382, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(383, 383, $clone($toNativeArray($kindInt32, [-300, 0, -300]), d)), CaseRange), $clone(new CaseRange.ptr(384, 384, $clone($toNativeArray($kindInt32, [195, 0, 195]), d)), CaseRange), $clone(new CaseRange.ptr(385, 385, $clone($toNativeArray($kindInt32, [0, 210, 0]), d)), CaseRange), $clone(new CaseRange.ptr(386, 389, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(390, 390, $clone($toNativeArray($kindInt32, [0, 206, 0]), d)), CaseRange), $clone(new CaseRange.ptr(391, 392, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(393, 394, $clone($toNativeArray($kindInt32, [0, 205, 0]), d)), CaseRange), $clone(new CaseRange.ptr(395, 396, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(398, 398, $clone($toNativeArray($kindInt32, [0, 79, 0]), d)), CaseRange), $clone(new CaseRange.ptr(399, 399, $clone($toNativeArray($kindInt32, [0, 202, 0]), d)), CaseRange), $clone(new CaseRange.ptr(400, 400, $clone($toNativeArray($kindInt32, [0, 203, 0]), d)), CaseRange), $clone(new CaseRange.ptr(401, 402, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(403, 403, $clone($toNativeArray($kindInt32, [0, 205, 0]), d)), CaseRange), $clone(new CaseRange.ptr(404, 404, $clone($toNativeArray($kindInt32, [0, 207, 0]), d)), CaseRange), $clone(new CaseRange.ptr(405, 405, $clone($toNativeArray($kindInt32, [97, 0, 97]), d)), CaseRange), $clone(new CaseRange.ptr(406, 406, $clone($toNativeArray($kindInt32, [0, 211, 0]), d)), CaseRange), $clone(new CaseRange.ptr(407, 407, $clone($toNativeArray($kindInt32, [0, 209, 0]), d)), CaseRange), $clone(new CaseRange.ptr(408, 409, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(410, 410, $clone($toNativeArray($kindInt32, [163, 0, 163]), d)), CaseRange), $clone(new CaseRange.ptr(412, 412, $clone($toNativeArray($kindInt32, [0, 211, 0]), d)), CaseRange), $clone(new CaseRange.ptr(413, 413, $clone($toNativeArray($kindInt32, [0, 213, 0]), d)), CaseRange), $clone(new CaseRange.ptr(414, 414, $clone($toNativeArray($kindInt32, [130, 0, 130]), d)), CaseRange), $clone(new CaseRange.ptr(415, 415, $clone($toNativeArray($kindInt32, [0, 214, 0]), d)), CaseRange), $clone(new CaseRange.ptr(416, 421, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(422, 422, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(423, 424, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(425, 425, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(428, 429, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(430, 430, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(431, 432, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(433, 434, $clone($toNativeArray($kindInt32, [0, 217, 0]), d)), CaseRange), $clone(new CaseRange.ptr(435, 438, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(439, 439, $clone($toNativeArray($kindInt32, [0, 219, 0]), d)), CaseRange), $clone(new CaseRange.ptr(440, 441, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(444, 445, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(447, 447, $clone($toNativeArray($kindInt32, [56, 0, 56]), d)), CaseRange), $clone(new CaseRange.ptr(452, 452, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(453, 453, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(454, 454, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(455, 455, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(456, 456, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(457, 457, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(458, 458, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(459, 459, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(460, 460, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(461, 476, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(477, 477, $clone($toNativeArray($kindInt32, [-79, 0, -79]), d)), CaseRange), $clone(new CaseRange.ptr(478, 495, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(497, 497, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(498, 498, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(499, 499, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(500, 501, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(502, 502, $clone($toNativeArray($kindInt32, [0, -97, 0]), d)), CaseRange), $clone(new CaseRange.ptr(503, 503, $clone($toNativeArray($kindInt32, [0, -56, 0]), d)), CaseRange), $clone(new CaseRange.ptr(504, 543, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(544, 544, $clone($toNativeArray($kindInt32, [0, -130, 0]), d)), CaseRange), $clone(new CaseRange.ptr(546, 563, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(570, 570, $clone($toNativeArray($kindInt32, [0, 10795, 0]), d)), CaseRange), $clone(new CaseRange.ptr(571, 572, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(573, 573, $clone($toNativeArray($kindInt32, [0, -163, 0]), d)), CaseRange), $clone(new CaseRange.ptr(574, 574, $clone($toNativeArray($kindInt32, [0, 10792, 0]), d)), CaseRange), $clone(new CaseRange.ptr(575, 576, $clone($toNativeArray($kindInt32, [10815, 0, 10815]), d)), CaseRange), $clone(new CaseRange.ptr(577, 578, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(579, 579, $clone($toNativeArray($kindInt32, [0, -195, 0]), d)), CaseRange), $clone(new CaseRange.ptr(580, 580, $clone($toNativeArray($kindInt32, [0, 69, 0]), d)), CaseRange), $clone(new CaseRange.ptr(581, 581, $clone($toNativeArray($kindInt32, [0, 71, 0]), d)), CaseRange), $clone(new CaseRange.ptr(582, 591, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(592, 592, $clone($toNativeArray($kindInt32, [10783, 0, 10783]), d)), CaseRange), $clone(new CaseRange.ptr(593, 593, $clone($toNativeArray($kindInt32, [10780, 0, 10780]), d)), CaseRange), $clone(new CaseRange.ptr(594, 594, $clone($toNativeArray($kindInt32, [10782, 0, 10782]), d)), CaseRange), $clone(new CaseRange.ptr(595, 595, $clone($toNativeArray($kindInt32, [-210, 0, -210]), d)), CaseRange), $clone(new CaseRange.ptr(596, 596, $clone($toNativeArray($kindInt32, [-206, 0, -206]), d)), CaseRange), $clone(new CaseRange.ptr(598, 599, $clone($toNativeArray($kindInt32, [-205, 0, -205]), d)), CaseRange), $clone(new CaseRange.ptr(601, 601, $clone($toNativeArray($kindInt32, [-202, 0, -202]), d)), CaseRange), $clone(new CaseRange.ptr(603, 603, $clone($toNativeArray($kindInt32, [-203, 0, -203]), d)), CaseRange), $clone(new CaseRange.ptr(604, 604, $clone($toNativeArray($kindInt32, [42319, 0, 42319]), d)), CaseRange), $clone(new CaseRange.ptr(608, 608, $clone($toNativeArray($kindInt32, [-205, 0, -205]), d)), CaseRange), $clone(new CaseRange.ptr(609, 609, $clone($toNativeArray($kindInt32, [42315, 0, 42315]), d)), CaseRange), $clone(new CaseRange.ptr(611, 611, $clone($toNativeArray($kindInt32, [-207, 0, -207]), d)), CaseRange), $clone(new CaseRange.ptr(613, 613, $clone($toNativeArray($kindInt32, [42280, 0, 42280]), d)), CaseRange), $clone(new CaseRange.ptr(614, 614, $clone($toNativeArray($kindInt32, [42308, 0, 42308]), d)), CaseRange), $clone(new CaseRange.ptr(616, 616, $clone($toNativeArray($kindInt32, [-209, 0, -209]), d)), CaseRange), $clone(new CaseRange.ptr(617, 617, $clone($toNativeArray($kindInt32, [-211, 0, -211]), d)), CaseRange), $clone(new CaseRange.ptr(618, 618, $clone($toNativeArray($kindInt32, [42308, 0, 42308]), d)), CaseRange), $clone(new CaseRange.ptr(619, 619, $clone($toNativeArray($kindInt32, [10743, 0, 10743]), d)), CaseRange), $clone(new CaseRange.ptr(620, 620, $clone($toNativeArray($kindInt32, [42305, 0, 42305]), d)), CaseRange), $clone(new CaseRange.ptr(623, 623, $clone($toNativeArray($kindInt32, [-211, 0, -211]), d)), CaseRange), $clone(new CaseRange.ptr(625, 625, $clone($toNativeArray($kindInt32, [10749, 0, 10749]), d)), CaseRange), $clone(new CaseRange.ptr(626, 626, $clone($toNativeArray($kindInt32, [-213, 0, -213]), d)), CaseRange), $clone(new CaseRange.ptr(629, 629, $clone($toNativeArray($kindInt32, [-214, 0, -214]), d)), CaseRange), $clone(new CaseRange.ptr(637, 637, $clone($toNativeArray($kindInt32, [10727, 0, 10727]), d)), CaseRange), $clone(new CaseRange.ptr(640, 640, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(642, 642, $clone($toNativeArray($kindInt32, [42307, 0, 42307]), d)), CaseRange), $clone(new CaseRange.ptr(643, 643, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(647, 647, $clone($toNativeArray($kindInt32, [42282, 0, 42282]), d)), CaseRange), $clone(new CaseRange.ptr(648, 648, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(649, 649, $clone($toNativeArray($kindInt32, [-69, 0, -69]), d)), CaseRange), $clone(new CaseRange.ptr(650, 651, $clone($toNativeArray($kindInt32, [-217, 0, -217]), d)), CaseRange), $clone(new CaseRange.ptr(652, 652, $clone($toNativeArray($kindInt32, [-71, 0, -71]), d)), CaseRange), $clone(new CaseRange.ptr(658, 658, $clone($toNativeArray($kindInt32, [-219, 0, -219]), d)), CaseRange), $clone(new CaseRange.ptr(669, 669, $clone($toNativeArray($kindInt32, [42261, 0, 42261]), d)), CaseRange), $clone(new CaseRange.ptr(670, 670, $clone($toNativeArray($kindInt32, [42258, 0, 42258]), d)), CaseRange), $clone(new CaseRange.ptr(837, 837, $clone($toNativeArray($kindInt32, [84, 0, 84]), d)), CaseRange), $clone(new CaseRange.ptr(880, 883, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(886, 887, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(891, 893, $clone($toNativeArray($kindInt32, [130, 0, 130]), d)), CaseRange), $clone(new CaseRange.ptr(895, 895, $clone($toNativeArray($kindInt32, [0, 116, 0]), d)), CaseRange), $clone(new CaseRange.ptr(902, 902, $clone($toNativeArray($kindInt32, [0, 38, 0]), d)), CaseRange), $clone(new CaseRange.ptr(904, 906, $clone($toNativeArray($kindInt32, [0, 37, 0]), d)), CaseRange), $clone(new CaseRange.ptr(908, 908, $clone($toNativeArray($kindInt32, [0, 64, 0]), d)), CaseRange), $clone(new CaseRange.ptr(910, 911, $clone($toNativeArray($kindInt32, [0, 63, 0]), d)), CaseRange), $clone(new CaseRange.ptr(913, 929, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(931, 939, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(940, 940, $clone($toNativeArray($kindInt32, [-38, 0, -38]), d)), CaseRange), $clone(new CaseRange.ptr(941, 943, $clone($toNativeArray($kindInt32, [-37, 0, -37]), d)), CaseRange), $clone(new CaseRange.ptr(945, 961, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(962, 962, $clone($toNativeArray($kindInt32, [-31, 0, -31]), d)), CaseRange), $clone(new CaseRange.ptr(963, 971, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(972, 972, $clone($toNativeArray($kindInt32, [-64, 0, -64]), d)), CaseRange), $clone(new CaseRange.ptr(973, 974, $clone($toNativeArray($kindInt32, [-63, 0, -63]), d)), CaseRange), $clone(new CaseRange.ptr(975, 975, $clone($toNativeArray($kindInt32, [0, 8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(976, 976, $clone($toNativeArray($kindInt32, [-62, 0, -62]), d)), CaseRange), $clone(new CaseRange.ptr(977, 977, $clone($toNativeArray($kindInt32, [-57, 0, -57]), d)), CaseRange), $clone(new CaseRange.ptr(981, 981, $clone($toNativeArray($kindInt32, [-47, 0, -47]), d)), CaseRange), $clone(new CaseRange.ptr(982, 982, $clone($toNativeArray($kindInt32, [-54, 0, -54]), d)), CaseRange), $clone(new CaseRange.ptr(983, 983, $clone($toNativeArray($kindInt32, [-8, 0, -8]), d)), CaseRange), $clone(new CaseRange.ptr(984, 1007, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1008, 1008, $clone($toNativeArray($kindInt32, [-86, 0, -86]), d)), CaseRange), $clone(new CaseRange.ptr(1009, 1009, $clone($toNativeArray($kindInt32, [-80, 0, -80]), d)), CaseRange), $clone(new CaseRange.ptr(1010, 1010, $clone($toNativeArray($kindInt32, [7, 0, 7]), d)), CaseRange), $clone(new CaseRange.ptr(1011, 1011, $clone($toNativeArray($kindInt32, [-116, 0, -116]), d)), CaseRange), $clone(new CaseRange.ptr(1012, 1012, $clone($toNativeArray($kindInt32, [0, -60, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1013, 1013, $clone($toNativeArray($kindInt32, [-96, 0, -96]), d)), CaseRange), $clone(new CaseRange.ptr(1015, 1016, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1017, 1017, $clone($toNativeArray($kindInt32, [0, -7, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1018, 1019, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1021, 1023, $clone($toNativeArray($kindInt32, [0, -130, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1024, 1039, $clone($toNativeArray($kindInt32, [0, 80, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1040, 1071, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1072, 1103, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(1104, 1119, $clone($toNativeArray($kindInt32, [-80, 0, -80]), d)), CaseRange), $clone(new CaseRange.ptr(1120, 1153, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1162, 1215, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1216, 1216, $clone($toNativeArray($kindInt32, [0, 15, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1217, 1230, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1231, 1231, $clone($toNativeArray($kindInt32, [-15, 0, -15]), d)), CaseRange), $clone(new CaseRange.ptr(1232, 1327, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1329, 1366, $clone($toNativeArray($kindInt32, [0, 48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1377, 1414, $clone($toNativeArray($kindInt32, [-48, 0, -48]), d)), CaseRange), $clone(new CaseRange.ptr(4256, 4293, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4295, 4295, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4301, 4301, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4304, 4346, $clone($toNativeArray($kindInt32, [3008, 0, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4349, 4351, $clone($toNativeArray($kindInt32, [3008, 0, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5024, 5103, $clone($toNativeArray($kindInt32, [0, 38864, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5104, 5109, $clone($toNativeArray($kindInt32, [0, 8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5112, 5117, $clone($toNativeArray($kindInt32, [-8, 0, -8]), d)), CaseRange), $clone(new CaseRange.ptr(7296, 7296, $clone($toNativeArray($kindInt32, [-6254, 0, -6254]), d)), CaseRange), $clone(new CaseRange.ptr(7297, 7297, $clone($toNativeArray($kindInt32, [-6253, 0, -6253]), d)), CaseRange), $clone(new CaseRange.ptr(7298, 7298, $clone($toNativeArray($kindInt32, [-6244, 0, -6244]), d)), CaseRange), $clone(new CaseRange.ptr(7299, 7300, $clone($toNativeArray($kindInt32, [-6242, 0, -6242]), d)), CaseRange), $clone(new CaseRange.ptr(7301, 7301, $clone($toNativeArray($kindInt32, [-6243, 0, -6243]), d)), CaseRange), $clone(new CaseRange.ptr(7302, 7302, $clone($toNativeArray($kindInt32, [-6236, 0, -6236]), d)), CaseRange), $clone(new CaseRange.ptr(7303, 7303, $clone($toNativeArray($kindInt32, [-6181, 0, -6181]), d)), CaseRange), $clone(new CaseRange.ptr(7304, 7304, $clone($toNativeArray($kindInt32, [35266, 0, 35266]), d)), CaseRange), $clone(new CaseRange.ptr(7312, 7354, $clone($toNativeArray($kindInt32, [0, -3008, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7357, 7359, $clone($toNativeArray($kindInt32, [0, -3008, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7545, 7545, $clone($toNativeArray($kindInt32, [35332, 0, 35332]), d)), CaseRange), $clone(new CaseRange.ptr(7549, 7549, $clone($toNativeArray($kindInt32, [3814, 0, 3814]), d)), CaseRange), $clone(new CaseRange.ptr(7566, 7566, $clone($toNativeArray($kindInt32, [35384, 0, 35384]), d)), CaseRange), $clone(new CaseRange.ptr(7680, 7829, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(7835, 7835, $clone($toNativeArray($kindInt32, [-59, 0, -59]), d)), CaseRange), $clone(new CaseRange.ptr(7838, 7838, $clone($toNativeArray($kindInt32, [0, -7615, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7840, 7935, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(7936, 7943, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7944, 7951, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7952, 7957, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7960, 7965, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7968, 7975, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7976, 7983, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7984, 7991, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7992, 7999, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8000, 8005, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8008, 8013, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8017, 8017, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8019, 8019, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8021, 8021, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8023, 8023, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8025, 8025, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8027, 8027, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8029, 8029, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8031, 8031, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8032, 8039, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8040, 8047, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8048, 8049, $clone($toNativeArray($kindInt32, [74, 0, 74]), d)), CaseRange), $clone(new CaseRange.ptr(8050, 8053, $clone($toNativeArray($kindInt32, [86, 0, 86]), d)), CaseRange), $clone(new CaseRange.ptr(8054, 8055, $clone($toNativeArray($kindInt32, [100, 0, 100]), d)), CaseRange), $clone(new CaseRange.ptr(8056, 8057, $clone($toNativeArray($kindInt32, [128, 0, 128]), d)), CaseRange), $clone(new CaseRange.ptr(8058, 8059, $clone($toNativeArray($kindInt32, [112, 0, 112]), d)), CaseRange), $clone(new CaseRange.ptr(8060, 8061, $clone($toNativeArray($kindInt32, [126, 0, 126]), d)), CaseRange), $clone(new CaseRange.ptr(8064, 8071, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8072, 8079, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8080, 8087, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8088, 8095, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8096, 8103, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8104, 8111, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8112, 8113, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8115, 8115, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8120, 8121, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8122, 8123, $clone($toNativeArray($kindInt32, [0, -74, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8124, 8124, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8126, 8126, $clone($toNativeArray($kindInt32, [-7205, 0, -7205]), d)), CaseRange), $clone(new CaseRange.ptr(8131, 8131, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8136, 8139, $clone($toNativeArray($kindInt32, [0, -86, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8140, 8140, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8144, 8145, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8152, 8153, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8154, 8155, $clone($toNativeArray($kindInt32, [0, -100, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8160, 8161, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8165, 8165, $clone($toNativeArray($kindInt32, [7, 0, 7]), d)), CaseRange), $clone(new CaseRange.ptr(8168, 8169, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8170, 8171, $clone($toNativeArray($kindInt32, [0, -112, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8172, 8172, $clone($toNativeArray($kindInt32, [0, -7, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8179, 8179, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8184, 8185, $clone($toNativeArray($kindInt32, [0, -128, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8186, 8187, $clone($toNativeArray($kindInt32, [0, -126, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8188, 8188, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8486, 8486, $clone($toNativeArray($kindInt32, [0, -7517, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8490, 8490, $clone($toNativeArray($kindInt32, [0, -8383, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8491, 8491, $clone($toNativeArray($kindInt32, [0, -8262, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8498, 8498, $clone($toNativeArray($kindInt32, [0, 28, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8526, 8526, $clone($toNativeArray($kindInt32, [-28, 0, -28]), d)), CaseRange), $clone(new CaseRange.ptr(8544, 8559, $clone($toNativeArray($kindInt32, [0, 16, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8560, 8575, $clone($toNativeArray($kindInt32, [-16, 0, -16]), d)), CaseRange), $clone(new CaseRange.ptr(8579, 8580, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(9398, 9423, $clone($toNativeArray($kindInt32, [0, 26, 0]), d)), CaseRange), $clone(new CaseRange.ptr(9424, 9449, $clone($toNativeArray($kindInt32, [-26, 0, -26]), d)), CaseRange), $clone(new CaseRange.ptr(11264, 11310, $clone($toNativeArray($kindInt32, [0, 48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11312, 11358, $clone($toNativeArray($kindInt32, [-48, 0, -48]), d)), CaseRange), $clone(new CaseRange.ptr(11360, 11361, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11362, 11362, $clone($toNativeArray($kindInt32, [0, -10743, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11363, 11363, $clone($toNativeArray($kindInt32, [0, -3814, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11364, 11364, $clone($toNativeArray($kindInt32, [0, -10727, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11365, 11365, $clone($toNativeArray($kindInt32, [-10795, 0, -10795]), d)), CaseRange), $clone(new CaseRange.ptr(11366, 11366, $clone($toNativeArray($kindInt32, [-10792, 0, -10792]), d)), CaseRange), $clone(new CaseRange.ptr(11367, 11372, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11373, 11373, $clone($toNativeArray($kindInt32, [0, -10780, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11374, 11374, $clone($toNativeArray($kindInt32, [0, -10749, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11375, 11375, $clone($toNativeArray($kindInt32, [0, -10783, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11376, 11376, $clone($toNativeArray($kindInt32, [0, -10782, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11378, 11379, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11381, 11382, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11390, 11391, $clone($toNativeArray($kindInt32, [0, -10815, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11392, 11491, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11499, 11502, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11506, 11507, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11520, 11557, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(11559, 11559, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(11565, 11565, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(42560, 42605, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42624, 42651, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42786, 42799, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42802, 42863, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42873, 42876, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42877, 42877, $clone($toNativeArray($kindInt32, [0, -35332, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42878, 42887, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42891, 42892, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42893, 42893, $clone($toNativeArray($kindInt32, [0, -42280, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42896, 42899, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42900, 42900, $clone($toNativeArray($kindInt32, [48, 0, 48]), d)), CaseRange), $clone(new CaseRange.ptr(42902, 42921, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42922, 42922, $clone($toNativeArray($kindInt32, [0, -42308, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42923, 42923, $clone($toNativeArray($kindInt32, [0, -42319, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42924, 42924, $clone($toNativeArray($kindInt32, [0, -42315, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42925, 42925, $clone($toNativeArray($kindInt32, [0, -42305, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42926, 42926, $clone($toNativeArray($kindInt32, [0, -42308, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42928, 42928, $clone($toNativeArray($kindInt32, [0, -42258, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42929, 42929, $clone($toNativeArray($kindInt32, [0, -42282, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42930, 42930, $clone($toNativeArray($kindInt32, [0, -42261, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42931, 42931, $clone($toNativeArray($kindInt32, [0, 928, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42932, 42943, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42946, 42947, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42948, 42948, $clone($toNativeArray($kindInt32, [0, -48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42949, 42949, $clone($toNativeArray($kindInt32, [0, -42307, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42950, 42950, $clone($toNativeArray($kindInt32, [0, -35384, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42951, 42954, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42997, 42998, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(43859, 43859, $clone($toNativeArray($kindInt32, [-928, 0, -928]), d)), CaseRange), $clone(new CaseRange.ptr(43888, 43967, $clone($toNativeArray($kindInt32, [-38864, 0, -38864]), d)), CaseRange), $clone(new CaseRange.ptr(65313, 65338, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(65345, 65370, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(66560, 66599, $clone($toNativeArray($kindInt32, [0, 40, 0]), d)), CaseRange), $clone(new CaseRange.ptr(66600, 66639, $clone($toNativeArray($kindInt32, [-40, 0, -40]), d)), CaseRange), $clone(new CaseRange.ptr(66736, 66771, $clone($toNativeArray($kindInt32, [0, 40, 0]), d)), CaseRange), $clone(new CaseRange.ptr(66776, 66811, $clone($toNativeArray($kindInt32, [-40, 0, -40]), d)), CaseRange), $clone(new CaseRange.ptr(68736, 68786, $clone($toNativeArray($kindInt32, [0, 64, 0]), d)), CaseRange), $clone(new CaseRange.ptr(68800, 68850, $clone($toNativeArray($kindInt32, [-64, 0, -64]), d)), CaseRange), $clone(new CaseRange.ptr(71840, 71871, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(71872, 71903, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(93760, 93791, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(93792, 93823, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(125184, 125217, $clone($toNativeArray($kindInt32, [0, 34, 0]), d)), CaseRange), $clone(new CaseRange.ptr(125218, 125251, $clone($toNativeArray($kindInt32, [-34, 0, -34]), d)), CaseRange)]);
+		$pkg.CaseRanges = _CaseRanges;
+		properties = $toNativeArray($kindUint8, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 144, 130, 130, 130, 136, 130, 130, 130, 130, 130, 130, 136, 130, 130, 130, 130, 132, 132, 132, 132, 132, 132, 132, 132, 132, 132, 130, 130, 136, 136, 136, 130, 130, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 130, 130, 130, 136, 130, 136, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 130, 136, 130, 136, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 16, 130, 136, 136, 136, 136, 136, 130, 136, 136, 224, 130, 136, 0, 136, 136, 136, 136, 132, 132, 136, 192, 130, 130, 136, 132, 224, 130, 132, 132, 132, 130, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 136, 160, 160, 160, 160, 160, 160, 160, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 136, 192, 192, 192, 192, 192, 192, 192, 192]);
+		asciiFold = $toNativeArray($kindUint16, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 91, 92, 93, 94, 95, 96, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 8490, 76, 77, 78, 79, 80, 81, 82, 383, 84, 85, 86, 87, 88, 89, 90, 123, 124, 125, 126, 127]);
+		caseOrbit = new sliceType$3([$clone(new foldPair.ptr(75, 107), foldPair), $clone(new foldPair.ptr(83, 115), foldPair), $clone(new foldPair.ptr(107, 8490), foldPair), $clone(new foldPair.ptr(115, 383), foldPair), $clone(new foldPair.ptr(181, 924), foldPair), $clone(new foldPair.ptr(197, 229), foldPair), $clone(new foldPair.ptr(223, 7838), foldPair), $clone(new foldPair.ptr(229, 8491), foldPair), $clone(new foldPair.ptr(304, 304), foldPair), $clone(new foldPair.ptr(305, 305), foldPair), $clone(new foldPair.ptr(383, 83), foldPair), $clone(new foldPair.ptr(452, 453), foldPair), $clone(new foldPair.ptr(453, 454), foldPair), $clone(new foldPair.ptr(454, 452), foldPair), $clone(new foldPair.ptr(455, 456), foldPair), $clone(new foldPair.ptr(456, 457), foldPair), $clone(new foldPair.ptr(457, 455), foldPair), $clone(new foldPair.ptr(458, 459), foldPair), $clone(new foldPair.ptr(459, 460), foldPair), $clone(new foldPair.ptr(460, 458), foldPair), $clone(new foldPair.ptr(497, 498), foldPair), $clone(new foldPair.ptr(498, 499), foldPair), $clone(new foldPair.ptr(499, 497), foldPair), $clone(new foldPair.ptr(837, 921), foldPair), $clone(new foldPair.ptr(914, 946), foldPair), $clone(new foldPair.ptr(917, 949), foldPair), $clone(new foldPair.ptr(920, 952), foldPair), $clone(new foldPair.ptr(921, 953), foldPair), $clone(new foldPair.ptr(922, 954), foldPair), $clone(new foldPair.ptr(924, 956), foldPair), $clone(new foldPair.ptr(928, 960), foldPair), $clone(new foldPair.ptr(929, 961), foldPair), $clone(new foldPair.ptr(931, 962), foldPair), $clone(new foldPair.ptr(934, 966), foldPair), $clone(new foldPair.ptr(937, 969), foldPair), $clone(new foldPair.ptr(946, 976), foldPair), $clone(new foldPair.ptr(949, 1013), foldPair), $clone(new foldPair.ptr(952, 977), foldPair), $clone(new foldPair.ptr(953, 8126), foldPair), $clone(new foldPair.ptr(954, 1008), foldPair), $clone(new foldPair.ptr(956, 181), foldPair), $clone(new foldPair.ptr(960, 982), foldPair), $clone(new foldPair.ptr(961, 1009), foldPair), $clone(new foldPair.ptr(962, 963), foldPair), $clone(new foldPair.ptr(963, 931), foldPair), $clone(new foldPair.ptr(966, 981), foldPair), $clone(new foldPair.ptr(969, 8486), foldPair), $clone(new foldPair.ptr(976, 914), foldPair), $clone(new foldPair.ptr(977, 1012), foldPair), $clone(new foldPair.ptr(981, 934), foldPair), $clone(new foldPair.ptr(982, 928), foldPair), $clone(new foldPair.ptr(1008, 922), foldPair), $clone(new foldPair.ptr(1009, 929), foldPair), $clone(new foldPair.ptr(1012, 920), foldPair), $clone(new foldPair.ptr(1013, 917), foldPair), $clone(new foldPair.ptr(1042, 1074), foldPair), $clone(new foldPair.ptr(1044, 1076), foldPair), $clone(new foldPair.ptr(1054, 1086), foldPair), $clone(new foldPair.ptr(1057, 1089), foldPair), $clone(new foldPair.ptr(1058, 1090), foldPair), $clone(new foldPair.ptr(1066, 1098), foldPair), $clone(new foldPair.ptr(1074, 7296), foldPair), $clone(new foldPair.ptr(1076, 7297), foldPair), $clone(new foldPair.ptr(1086, 7298), foldPair), $clone(new foldPair.ptr(1089, 7299), foldPair), $clone(new foldPair.ptr(1090, 7300), foldPair), $clone(new foldPair.ptr(1098, 7302), foldPair), $clone(new foldPair.ptr(1122, 1123), foldPair), $clone(new foldPair.ptr(1123, 7303), foldPair), $clone(new foldPair.ptr(7296, 1042), foldPair), $clone(new foldPair.ptr(7297, 1044), foldPair), $clone(new foldPair.ptr(7298, 1054), foldPair), $clone(new foldPair.ptr(7299, 1057), foldPair), $clone(new foldPair.ptr(7300, 7301), foldPair), $clone(new foldPair.ptr(7301, 1058), foldPair), $clone(new foldPair.ptr(7302, 1066), foldPair), $clone(new foldPair.ptr(7303, 1122), foldPair), $clone(new foldPair.ptr(7304, 42570), foldPair), $clone(new foldPair.ptr(7776, 7777), foldPair), $clone(new foldPair.ptr(7777, 7835), foldPair), $clone(new foldPair.ptr(7835, 7776), foldPair), $clone(new foldPair.ptr(7838, 223), foldPair), $clone(new foldPair.ptr(8126, 837), foldPair), $clone(new foldPair.ptr(8486, 937), foldPair), $clone(new foldPair.ptr(8490, 75), foldPair), $clone(new foldPair.ptr(8491, 197), foldPair), $clone(new foldPair.ptr(42570, 42571), foldPair), $clone(new foldPair.ptr(42571, 7304), foldPair)]);
 		foldL = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(837, 837, 1), Range16)]), sliceType$1.nil, 0);
 		foldLl = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(65, 90, 1), Range16), $clone(new Range16.ptr(192, 214, 1), Range16), $clone(new Range16.ptr(216, 222, 1), Range16), $clone(new Range16.ptr(256, 302, 2), Range16), $clone(new Range16.ptr(306, 310, 2), Range16), $clone(new Range16.ptr(313, 327, 2), Range16), $clone(new Range16.ptr(330, 376, 2), Range16), $clone(new Range16.ptr(377, 381, 2), Range16), $clone(new Range16.ptr(385, 386, 1), Range16), $clone(new Range16.ptr(388, 390, 2), Range16), $clone(new Range16.ptr(391, 393, 2), Range16), $clone(new Range16.ptr(394, 395, 1), Range16), $clone(new Range16.ptr(398, 401, 1), Range16), $clone(new Range16.ptr(403, 404, 1), Range16), $clone(new Range16.ptr(406, 408, 1), Range16), $clone(new Range16.ptr(412, 413, 1), Range16), $clone(new Range16.ptr(415, 416, 1), Range16), $clone(new Range16.ptr(418, 422, 2), Range16), $clone(new Range16.ptr(423, 425, 2), Range16), $clone(new Range16.ptr(428, 430, 2), Range16), $clone(new Range16.ptr(431, 433, 2), Range16), $clone(new Range16.ptr(434, 435, 1), Range16), $clone(new Range16.ptr(437, 439, 2), Range16), $clone(new Range16.ptr(440, 444, 4), Range16), $clone(new Range16.ptr(452, 453, 1), Range16), $clone(new Range16.ptr(455, 456, 1), Range16), $clone(new Range16.ptr(458, 459, 1), Range16), $clone(new Range16.ptr(461, 475, 2), Range16), $clone(new Range16.ptr(478, 494, 2), Range16), $clone(new Range16.ptr(497, 498, 1), Range16), $clone(new Range16.ptr(500, 502, 2), Range16), $clone(new Range16.ptr(503, 504, 1), Range16), $clone(new Range16.ptr(506, 562, 2), Range16), $clone(new Range16.ptr(570, 571, 1), Range16), $clone(new Range16.ptr(573, 574, 1), Range16), $clone(new Range16.ptr(577, 579, 2), Range16), $clone(new Range16.ptr(580, 582, 1), Range16), $clone(new Range16.ptr(584, 590, 2), Range16), $clone(new Range16.ptr(837, 880, 43), Range16), $clone(new Range16.ptr(882, 886, 4), Range16), $clone(new Range16.ptr(895, 902, 7), Range16), $clone(new Range16.ptr(904, 906, 1), Range16), $clone(new Range16.ptr(908, 910, 2), Range16), $clone(new Range16.ptr(911, 913, 2), Range16), $clone(new Range16.ptr(914, 929, 1), Range16), $clone(new Range16.ptr(931, 939, 1), Range16), $clone(new Range16.ptr(975, 984, 9), Range16), $clone(new Range16.ptr(986, 1006, 2), Range16), $clone(new Range16.ptr(1012, 1015, 3), Range16), $clone(new Range16.ptr(1017, 1018, 1), Range16), $clone(new Range16.ptr(1021, 1071, 1), Range16), $clone(new Range16.ptr(1120, 1152, 2), Range16), $clone(new Range16.ptr(1162, 1216, 2), Range16), $clone(new Range16.ptr(1217, 1229, 2), Range16), $clone(new Range16.ptr(1232, 1326, 2), Range16), $clone(new Range16.ptr(1329, 1366, 1), Range16), $clone(new Range16.ptr(4256, 4293, 1), Range16), $clone(new Range16.ptr(4295, 4301, 6), Range16), $clone(new Range16.ptr(5024, 5109, 1), Range16), $clone(new Range16.ptr(7312, 7354, 1), Range16), $clone(new Range16.ptr(7357, 7359, 1), Range16), $clone(new Range16.ptr(7680, 7828, 2), Range16), $clone(new Range16.ptr(7838, 7934, 2), Range16), $clone(new Range16.ptr(7944, 7951, 1), Range16), $clone(new Range16.ptr(7960, 7965, 1), Range16), $clone(new Range16.ptr(7976, 7983, 1), Range16), $clone(new Range16.ptr(7992, 7999, 1), Range16), $clone(new Range16.ptr(8008, 8013, 1), Range16), $clone(new Range16.ptr(8025, 8031, 2), Range16), $clone(new Range16.ptr(8040, 8047, 1), Range16), $clone(new Range16.ptr(8072, 8079, 1), Range16), $clone(new Range16.ptr(8088, 8095, 1), Range16), $clone(new Range16.ptr(8104, 8111, 1), Range16), $clone(new Range16.ptr(8120, 8124, 1), Range16), $clone(new Range16.ptr(8136, 8140, 1), Range16), $clone(new Range16.ptr(8152, 8155, 1), Range16), $clone(new Range16.ptr(8168, 8172, 1), Range16), $clone(new Range16.ptr(8184, 8188, 1), Range16), $clone(new Range16.ptr(8486, 8490, 4), Range16), $clone(new Range16.ptr(8491, 8498, 7), Range16), $clone(new Range16.ptr(8579, 11264, 2685), Range16), $clone(new Range16.ptr(11265, 11310, 1), Range16), $clone(new Range16.ptr(11360, 11362, 2), Range16), $clone(new Range16.ptr(11363, 11364, 1), Range16), $clone(new Range16.ptr(11367, 11373, 2), Range16), $clone(new Range16.ptr(11374, 11376, 1), Range16), $clone(new Range16.ptr(11378, 11381, 3), Range16), $clone(new Range16.ptr(11390, 11392, 1), Range16), $clone(new Range16.ptr(11394, 11490, 2), Range16), $clone(new Range16.ptr(11499, 11501, 2), Range16), $clone(new Range16.ptr(11506, 42560, 31054), Range16), $clone(new Range16.ptr(42562, 42604, 2), Range16), $clone(new Range16.ptr(42624, 42650, 2), Range16), $clone(new Range16.ptr(42786, 42798, 2), Range16), $clone(new Range16.ptr(42802, 42862, 2), Range16), $clone(new Range16.ptr(42873, 42877, 2), Range16), $clone(new Range16.ptr(42878, 42886, 2), Range16), $clone(new Range16.ptr(42891, 42893, 2), Range16), $clone(new Range16.ptr(42896, 42898, 2), Range16), $clone(new Range16.ptr(42902, 42922, 2), Range16), $clone(new Range16.ptr(42923, 42926, 1), Range16), $clone(new Range16.ptr(42928, 42932, 1), Range16), $clone(new Range16.ptr(42934, 42942, 2), Range16), $clone(new Range16.ptr(42946, 42948, 2), Range16), $clone(new Range16.ptr(42949, 42951, 1), Range16), $clone(new Range16.ptr(42953, 42997, 44), Range16), $clone(new Range16.ptr(65313, 65338, 1), Range16)]), new sliceType$1([$clone(new Range32.ptr(66560, 66599, 1), Range32), $clone(new Range32.ptr(66736, 66771, 1), Range32), $clone(new Range32.ptr(68736, 68786, 1), Range32), $clone(new Range32.ptr(71840, 71871, 1), Range32), $clone(new Range32.ptr(93760, 93791, 1), Range32), $clone(new Range32.ptr(125184, 125217, 1), Range32)]), 3);
 		foldLt = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(452, 454, 2), Range16), $clone(new Range16.ptr(455, 457, 2), Range16), $clone(new Range16.ptr(458, 460, 2), Range16), $clone(new Range16.ptr(497, 499, 2), Range16), $clone(new Range16.ptr(8064, 8071, 1), Range16), $clone(new Range16.ptr(8080, 8087, 1), Range16), $clone(new Range16.ptr(8096, 8103, 1), Range16), $clone(new Range16.ptr(8115, 8131, 16), Range16), $clone(new Range16.ptr(8179, 8179, 1), Range16)]), sliceType$1.nil, 0);
@@ -12656,10 +12735,6 @@ $packages["unicode"] = (function() {
 		foldGreek = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(181, 837, 656), Range16)]), sliceType$1.nil, 0);
 		foldInherited = new RangeTable.ptr(new sliceType([$clone(new Range16.ptr(921, 953, 32), Range16), $clone(new Range16.ptr(8126, 8126, 1), Range16)]), sliceType$1.nil, 0);
 		$pkg.FoldScript = $makeMap($String.keyFor, [{ k: "Common", v: foldCommon }, { k: "Greek", v: foldGreek }, { k: "Inherited", v: foldInherited }]);
-		asciiFold = $toNativeArray($kindUint16, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 91, 92, 93, 94, 95, 96, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 8490, 76, 77, 78, 79, 80, 81, 82, 383, 84, 85, 86, 87, 88, 89, 90, 123, 124, 125, 126, 127]);
-		_CaseRanges = new sliceType$3([$clone(new CaseRange.ptr(65, 90, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(97, 122, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(181, 181, $clone($toNativeArray($kindInt32, [743, 0, 743]), d)), CaseRange), $clone(new CaseRange.ptr(192, 214, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(216, 222, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(224, 246, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(248, 254, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(255, 255, $clone($toNativeArray($kindInt32, [121, 0, 121]), d)), CaseRange), $clone(new CaseRange.ptr(256, 303, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(304, 304, $clone($toNativeArray($kindInt32, [0, -199, 0]), d)), CaseRange), $clone(new CaseRange.ptr(305, 305, $clone($toNativeArray($kindInt32, [-232, 0, -232]), d)), CaseRange), $clone(new CaseRange.ptr(306, 311, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(313, 328, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(330, 375, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(376, 376, $clone($toNativeArray($kindInt32, [0, -121, 0]), d)), CaseRange), $clone(new CaseRange.ptr(377, 382, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(383, 383, $clone($toNativeArray($kindInt32, [-300, 0, -300]), d)), CaseRange), $clone(new CaseRange.ptr(384, 384, $clone($toNativeArray($kindInt32, [195, 0, 195]), d)), CaseRange), $clone(new CaseRange.ptr(385, 385, $clone($toNativeArray($kindInt32, [0, 210, 0]), d)), CaseRange), $clone(new CaseRange.ptr(386, 389, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(390, 390, $clone($toNativeArray($kindInt32, [0, 206, 0]), d)), CaseRange), $clone(new CaseRange.ptr(391, 392, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(393, 394, $clone($toNativeArray($kindInt32, [0, 205, 0]), d)), CaseRange), $clone(new CaseRange.ptr(395, 396, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(398, 398, $clone($toNativeArray($kindInt32, [0, 79, 0]), d)), CaseRange), $clone(new CaseRange.ptr(399, 399, $clone($toNativeArray($kindInt32, [0, 202, 0]), d)), CaseRange), $clone(new CaseRange.ptr(400, 400, $clone($toNativeArray($kindInt32, [0, 203, 0]), d)), CaseRange), $clone(new CaseRange.ptr(401, 402, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(403, 403, $clone($toNativeArray($kindInt32, [0, 205, 0]), d)), CaseRange), $clone(new CaseRange.ptr(404, 404, $clone($toNativeArray($kindInt32, [0, 207, 0]), d)), CaseRange), $clone(new CaseRange.ptr(405, 405, $clone($toNativeArray($kindInt32, [97, 0, 97]), d)), CaseRange), $clone(new CaseRange.ptr(406, 406, $clone($toNativeArray($kindInt32, [0, 211, 0]), d)), CaseRange), $clone(new CaseRange.ptr(407, 407, $clone($toNativeArray($kindInt32, [0, 209, 0]), d)), CaseRange), $clone(new CaseRange.ptr(408, 409, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(410, 410, $clone($toNativeArray($kindInt32, [163, 0, 163]), d)), CaseRange), $clone(new CaseRange.ptr(412, 412, $clone($toNativeArray($kindInt32, [0, 211, 0]), d)), CaseRange), $clone(new CaseRange.ptr(413, 413, $clone($toNativeArray($kindInt32, [0, 213, 0]), d)), CaseRange), $clone(new CaseRange.ptr(414, 414, $clone($toNativeArray($kindInt32, [130, 0, 130]), d)), CaseRange), $clone(new CaseRange.ptr(415, 415, $clone($toNativeArray($kindInt32, [0, 214, 0]), d)), CaseRange), $clone(new CaseRange.ptr(416, 421, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(422, 422, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(423, 424, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(425, 425, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(428, 429, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(430, 430, $clone($toNativeArray($kindInt32, [0, 218, 0]), d)), CaseRange), $clone(new CaseRange.ptr(431, 432, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(433, 434, $clone($toNativeArray($kindInt32, [0, 217, 0]), d)), CaseRange), $clone(new CaseRange.ptr(435, 438, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(439, 439, $clone($toNativeArray($kindInt32, [0, 219, 0]), d)), CaseRange), $clone(new CaseRange.ptr(440, 441, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(444, 445, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(447, 447, $clone($toNativeArray($kindInt32, [56, 0, 56]), d)), CaseRange), $clone(new CaseRange.ptr(452, 452, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(453, 453, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(454, 454, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(455, 455, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(456, 456, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(457, 457, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(458, 458, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(459, 459, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(460, 460, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(461, 476, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(477, 477, $clone($toNativeArray($kindInt32, [-79, 0, -79]), d)), CaseRange), $clone(new CaseRange.ptr(478, 495, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(497, 497, $clone($toNativeArray($kindInt32, [0, 2, 1]), d)), CaseRange), $clone(new CaseRange.ptr(498, 498, $clone($toNativeArray($kindInt32, [-1, 1, 0]), d)), CaseRange), $clone(new CaseRange.ptr(499, 499, $clone($toNativeArray($kindInt32, [-2, 0, -1]), d)), CaseRange), $clone(new CaseRange.ptr(500, 501, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(502, 502, $clone($toNativeArray($kindInt32, [0, -97, 0]), d)), CaseRange), $clone(new CaseRange.ptr(503, 503, $clone($toNativeArray($kindInt32, [0, -56, 0]), d)), CaseRange), $clone(new CaseRange.ptr(504, 543, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(544, 544, $clone($toNativeArray($kindInt32, [0, -130, 0]), d)), CaseRange), $clone(new CaseRange.ptr(546, 563, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(570, 570, $clone($toNativeArray($kindInt32, [0, 10795, 0]), d)), CaseRange), $clone(new CaseRange.ptr(571, 572, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(573, 573, $clone($toNativeArray($kindInt32, [0, -163, 0]), d)), CaseRange), $clone(new CaseRange.ptr(574, 574, $clone($toNativeArray($kindInt32, [0, 10792, 0]), d)), CaseRange), $clone(new CaseRange.ptr(575, 576, $clone($toNativeArray($kindInt32, [10815, 0, 10815]), d)), CaseRange), $clone(new CaseRange.ptr(577, 578, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(579, 579, $clone($toNativeArray($kindInt32, [0, -195, 0]), d)), CaseRange), $clone(new CaseRange.ptr(580, 580, $clone($toNativeArray($kindInt32, [0, 69, 0]), d)), CaseRange), $clone(new CaseRange.ptr(581, 581, $clone($toNativeArray($kindInt32, [0, 71, 0]), d)), CaseRange), $clone(new CaseRange.ptr(582, 591, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(592, 592, $clone($toNativeArray($kindInt32, [10783, 0, 10783]), d)), CaseRange), $clone(new CaseRange.ptr(593, 593, $clone($toNativeArray($kindInt32, [10780, 0, 10780]), d)), CaseRange), $clone(new CaseRange.ptr(594, 594, $clone($toNativeArray($kindInt32, [10782, 0, 10782]), d)), CaseRange), $clone(new CaseRange.ptr(595, 595, $clone($toNativeArray($kindInt32, [-210, 0, -210]), d)), CaseRange), $clone(new CaseRange.ptr(596, 596, $clone($toNativeArray($kindInt32, [-206, 0, -206]), d)), CaseRange), $clone(new CaseRange.ptr(598, 599, $clone($toNativeArray($kindInt32, [-205, 0, -205]), d)), CaseRange), $clone(new CaseRange.ptr(601, 601, $clone($toNativeArray($kindInt32, [-202, 0, -202]), d)), CaseRange), $clone(new CaseRange.ptr(603, 603, $clone($toNativeArray($kindInt32, [-203, 0, -203]), d)), CaseRange), $clone(new CaseRange.ptr(604, 604, $clone($toNativeArray($kindInt32, [42319, 0, 42319]), d)), CaseRange), $clone(new CaseRange.ptr(608, 608, $clone($toNativeArray($kindInt32, [-205, 0, -205]), d)), CaseRange), $clone(new CaseRange.ptr(609, 609, $clone($toNativeArray($kindInt32, [42315, 0, 42315]), d)), CaseRange), $clone(new CaseRange.ptr(611, 611, $clone($toNativeArray($kindInt32, [-207, 0, -207]), d)), CaseRange), $clone(new CaseRange.ptr(613, 613, $clone($toNativeArray($kindInt32, [42280, 0, 42280]), d)), CaseRange), $clone(new CaseRange.ptr(614, 614, $clone($toNativeArray($kindInt32, [42308, 0, 42308]), d)), CaseRange), $clone(new CaseRange.ptr(616, 616, $clone($toNativeArray($kindInt32, [-209, 0, -209]), d)), CaseRange), $clone(new CaseRange.ptr(617, 617, $clone($toNativeArray($kindInt32, [-211, 0, -211]), d)), CaseRange), $clone(new CaseRange.ptr(618, 618, $clone($toNativeArray($kindInt32, [42308, 0, 42308]), d)), CaseRange), $clone(new CaseRange.ptr(619, 619, $clone($toNativeArray($kindInt32, [10743, 0, 10743]), d)), CaseRange), $clone(new CaseRange.ptr(620, 620, $clone($toNativeArray($kindInt32, [42305, 0, 42305]), d)), CaseRange), $clone(new CaseRange.ptr(623, 623, $clone($toNativeArray($kindInt32, [-211, 0, -211]), d)), CaseRange), $clone(new CaseRange.ptr(625, 625, $clone($toNativeArray($kindInt32, [10749, 0, 10749]), d)), CaseRange), $clone(new CaseRange.ptr(626, 626, $clone($toNativeArray($kindInt32, [-213, 0, -213]), d)), CaseRange), $clone(new CaseRange.ptr(629, 629, $clone($toNativeArray($kindInt32, [-214, 0, -214]), d)), CaseRange), $clone(new CaseRange.ptr(637, 637, $clone($toNativeArray($kindInt32, [10727, 0, 10727]), d)), CaseRange), $clone(new CaseRange.ptr(640, 640, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(642, 642, $clone($toNativeArray($kindInt32, [42307, 0, 42307]), d)), CaseRange), $clone(new CaseRange.ptr(643, 643, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(647, 647, $clone($toNativeArray($kindInt32, [42282, 0, 42282]), d)), CaseRange), $clone(new CaseRange.ptr(648, 648, $clone($toNativeArray($kindInt32, [-218, 0, -218]), d)), CaseRange), $clone(new CaseRange.ptr(649, 649, $clone($toNativeArray($kindInt32, [-69, 0, -69]), d)), CaseRange), $clone(new CaseRange.ptr(650, 651, $clone($toNativeArray($kindInt32, [-217, 0, -217]), d)), CaseRange), $clone(new CaseRange.ptr(652, 652, $clone($toNativeArray($kindInt32, [-71, 0, -71]), d)), CaseRange), $clone(new CaseRange.ptr(658, 658, $clone($toNativeArray($kindInt32, [-219, 0, -219]), d)), CaseRange), $clone(new CaseRange.ptr(669, 669, $clone($toNativeArray($kindInt32, [42261, 0, 42261]), d)), CaseRange), $clone(new CaseRange.ptr(670, 670, $clone($toNativeArray($kindInt32, [42258, 0, 42258]), d)), CaseRange), $clone(new CaseRange.ptr(837, 837, $clone($toNativeArray($kindInt32, [84, 0, 84]), d)), CaseRange), $clone(new CaseRange.ptr(880, 883, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(886, 887, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(891, 893, $clone($toNativeArray($kindInt32, [130, 0, 130]), d)), CaseRange), $clone(new CaseRange.ptr(895, 895, $clone($toNativeArray($kindInt32, [0, 116, 0]), d)), CaseRange), $clone(new CaseRange.ptr(902, 902, $clone($toNativeArray($kindInt32, [0, 38, 0]), d)), CaseRange), $clone(new CaseRange.ptr(904, 906, $clone($toNativeArray($kindInt32, [0, 37, 0]), d)), CaseRange), $clone(new CaseRange.ptr(908, 908, $clone($toNativeArray($kindInt32, [0, 64, 0]), d)), CaseRange), $clone(new CaseRange.ptr(910, 911, $clone($toNativeArray($kindInt32, [0, 63, 0]), d)), CaseRange), $clone(new CaseRange.ptr(913, 929, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(931, 939, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(940, 940, $clone($toNativeArray($kindInt32, [-38, 0, -38]), d)), CaseRange), $clone(new CaseRange.ptr(941, 943, $clone($toNativeArray($kindInt32, [-37, 0, -37]), d)), CaseRange), $clone(new CaseRange.ptr(945, 961, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(962, 962, $clone($toNativeArray($kindInt32, [-31, 0, -31]), d)), CaseRange), $clone(new CaseRange.ptr(963, 971, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(972, 972, $clone($toNativeArray($kindInt32, [-64, 0, -64]), d)), CaseRange), $clone(new CaseRange.ptr(973, 974, $clone($toNativeArray($kindInt32, [-63, 0, -63]), d)), CaseRange), $clone(new CaseRange.ptr(975, 975, $clone($toNativeArray($kindInt32, [0, 8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(976, 976, $clone($toNativeArray($kindInt32, [-62, 0, -62]), d)), CaseRange), $clone(new CaseRange.ptr(977, 977, $clone($toNativeArray($kindInt32, [-57, 0, -57]), d)), CaseRange), $clone(new CaseRange.ptr(981, 981, $clone($toNativeArray($kindInt32, [-47, 0, -47]), d)), CaseRange), $clone(new CaseRange.ptr(982, 982, $clone($toNativeArray($kindInt32, [-54, 0, -54]), d)), CaseRange), $clone(new CaseRange.ptr(983, 983, $clone($toNativeArray($kindInt32, [-8, 0, -8]), d)), CaseRange), $clone(new CaseRange.ptr(984, 1007, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1008, 1008, $clone($toNativeArray($kindInt32, [-86, 0, -86]), d)), CaseRange), $clone(new CaseRange.ptr(1009, 1009, $clone($toNativeArray($kindInt32, [-80, 0, -80]), d)), CaseRange), $clone(new CaseRange.ptr(1010, 1010, $clone($toNativeArray($kindInt32, [7, 0, 7]), d)), CaseRange), $clone(new CaseRange.ptr(1011, 1011, $clone($toNativeArray($kindInt32, [-116, 0, -116]), d)), CaseRange), $clone(new CaseRange.ptr(1012, 1012, $clone($toNativeArray($kindInt32, [0, -60, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1013, 1013, $clone($toNativeArray($kindInt32, [-96, 0, -96]), d)), CaseRange), $clone(new CaseRange.ptr(1015, 1016, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1017, 1017, $clone($toNativeArray($kindInt32, [0, -7, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1018, 1019, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1021, 1023, $clone($toNativeArray($kindInt32, [0, -130, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1024, 1039, $clone($toNativeArray($kindInt32, [0, 80, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1040, 1071, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1072, 1103, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(1104, 1119, $clone($toNativeArray($kindInt32, [-80, 0, -80]), d)), CaseRange), $clone(new CaseRange.ptr(1120, 1153, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1162, 1215, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1216, 1216, $clone($toNativeArray($kindInt32, [0, 15, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1217, 1230, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1231, 1231, $clone($toNativeArray($kindInt32, [-15, 0, -15]), d)), CaseRange), $clone(new CaseRange.ptr(1232, 1327, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(1329, 1366, $clone($toNativeArray($kindInt32, [0, 48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(1377, 1414, $clone($toNativeArray($kindInt32, [-48, 0, -48]), d)), CaseRange), $clone(new CaseRange.ptr(4256, 4293, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4295, 4295, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4301, 4301, $clone($toNativeArray($kindInt32, [0, 7264, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4304, 4346, $clone($toNativeArray($kindInt32, [3008, 0, 0]), d)), CaseRange), $clone(new CaseRange.ptr(4349, 4351, $clone($toNativeArray($kindInt32, [3008, 0, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5024, 5103, $clone($toNativeArray($kindInt32, [0, 38864, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5104, 5109, $clone($toNativeArray($kindInt32, [0, 8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(5112, 5117, $clone($toNativeArray($kindInt32, [-8, 0, -8]), d)), CaseRange), $clone(new CaseRange.ptr(7296, 7296, $clone($toNativeArray($kindInt32, [-6254, 0, -6254]), d)), CaseRange), $clone(new CaseRange.ptr(7297, 7297, $clone($toNativeArray($kindInt32, [-6253, 0, -6253]), d)), CaseRange), $clone(new CaseRange.ptr(7298, 7298, $clone($toNativeArray($kindInt32, [-6244, 0, -6244]), d)), CaseRange), $clone(new CaseRange.ptr(7299, 7300, $clone($toNativeArray($kindInt32, [-6242, 0, -6242]), d)), CaseRange), $clone(new CaseRange.ptr(7301, 7301, $clone($toNativeArray($kindInt32, [-6243, 0, -6243]), d)), CaseRange), $clone(new CaseRange.ptr(7302, 7302, $clone($toNativeArray($kindInt32, [-6236, 0, -6236]), d)), CaseRange), $clone(new CaseRange.ptr(7303, 7303, $clone($toNativeArray($kindInt32, [-6181, 0, -6181]), d)), CaseRange), $clone(new CaseRange.ptr(7304, 7304, $clone($toNativeArray($kindInt32, [35266, 0, 35266]), d)), CaseRange), $clone(new CaseRange.ptr(7312, 7354, $clone($toNativeArray($kindInt32, [0, -3008, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7357, 7359, $clone($toNativeArray($kindInt32, [0, -3008, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7545, 7545, $clone($toNativeArray($kindInt32, [35332, 0, 35332]), d)), CaseRange), $clone(new CaseRange.ptr(7549, 7549, $clone($toNativeArray($kindInt32, [3814, 0, 3814]), d)), CaseRange), $clone(new CaseRange.ptr(7566, 7566, $clone($toNativeArray($kindInt32, [35384, 0, 35384]), d)), CaseRange), $clone(new CaseRange.ptr(7680, 7829, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(7835, 7835, $clone($toNativeArray($kindInt32, [-59, 0, -59]), d)), CaseRange), $clone(new CaseRange.ptr(7838, 7838, $clone($toNativeArray($kindInt32, [0, -7615, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7840, 7935, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(7936, 7943, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7944, 7951, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7952, 7957, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7960, 7965, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7968, 7975, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7976, 7983, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(7984, 7991, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(7992, 7999, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8000, 8005, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8008, 8013, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8017, 8017, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8019, 8019, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8021, 8021, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8023, 8023, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8025, 8025, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8027, 8027, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8029, 8029, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8031, 8031, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8032, 8039, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8040, 8047, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8048, 8049, $clone($toNativeArray($kindInt32, [74, 0, 74]), d)), CaseRange), $clone(new CaseRange.ptr(8050, 8053, $clone($toNativeArray($kindInt32, [86, 0, 86]), d)), CaseRange), $clone(new CaseRange.ptr(8054, 8055, $clone($toNativeArray($kindInt32, [100, 0, 100]), d)), CaseRange), $clone(new CaseRange.ptr(8056, 8057, $clone($toNativeArray($kindInt32, [128, 0, 128]), d)), CaseRange), $clone(new CaseRange.ptr(8058, 8059, $clone($toNativeArray($kindInt32, [112, 0, 112]), d)), CaseRange), $clone(new CaseRange.ptr(8060, 8061, $clone($toNativeArray($kindInt32, [126, 0, 126]), d)), CaseRange), $clone(new CaseRange.ptr(8064, 8071, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8072, 8079, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8080, 8087, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8088, 8095, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8096, 8103, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8104, 8111, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8112, 8113, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8115, 8115, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8120, 8121, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8122, 8123, $clone($toNativeArray($kindInt32, [0, -74, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8124, 8124, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8126, 8126, $clone($toNativeArray($kindInt32, [-7205, 0, -7205]), d)), CaseRange), $clone(new CaseRange.ptr(8131, 8131, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8136, 8139, $clone($toNativeArray($kindInt32, [0, -86, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8140, 8140, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8144, 8145, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8152, 8153, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8154, 8155, $clone($toNativeArray($kindInt32, [0, -100, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8160, 8161, $clone($toNativeArray($kindInt32, [8, 0, 8]), d)), CaseRange), $clone(new CaseRange.ptr(8165, 8165, $clone($toNativeArray($kindInt32, [7, 0, 7]), d)), CaseRange), $clone(new CaseRange.ptr(8168, 8169, $clone($toNativeArray($kindInt32, [0, -8, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8170, 8171, $clone($toNativeArray($kindInt32, [0, -112, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8172, 8172, $clone($toNativeArray($kindInt32, [0, -7, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8179, 8179, $clone($toNativeArray($kindInt32, [9, 0, 9]), d)), CaseRange), $clone(new CaseRange.ptr(8184, 8185, $clone($toNativeArray($kindInt32, [0, -128, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8186, 8187, $clone($toNativeArray($kindInt32, [0, -126, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8188, 8188, $clone($toNativeArray($kindInt32, [0, -9, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8486, 8486, $clone($toNativeArray($kindInt32, [0, -7517, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8490, 8490, $clone($toNativeArray($kindInt32, [0, -8383, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8491, 8491, $clone($toNativeArray($kindInt32, [0, -8262, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8498, 8498, $clone($toNativeArray($kindInt32, [0, 28, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8526, 8526, $clone($toNativeArray($kindInt32, [-28, 0, -28]), d)), CaseRange), $clone(new CaseRange.ptr(8544, 8559, $clone($toNativeArray($kindInt32, [0, 16, 0]), d)), CaseRange), $clone(new CaseRange.ptr(8560, 8575, $clone($toNativeArray($kindInt32, [-16, 0, -16]), d)), CaseRange), $clone(new CaseRange.ptr(8579, 8580, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(9398, 9423, $clone($toNativeArray($kindInt32, [0, 26, 0]), d)), CaseRange), $clone(new CaseRange.ptr(9424, 9449, $clone($toNativeArray($kindInt32, [-26, 0, -26]), d)), CaseRange), $clone(new CaseRange.ptr(11264, 11310, $clone($toNativeArray($kindInt32, [0, 48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11312, 11358, $clone($toNativeArray($kindInt32, [-48, 0, -48]), d)), CaseRange), $clone(new CaseRange.ptr(11360, 11361, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11362, 11362, $clone($toNativeArray($kindInt32, [0, -10743, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11363, 11363, $clone($toNativeArray($kindInt32, [0, -3814, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11364, 11364, $clone($toNativeArray($kindInt32, [0, -10727, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11365, 11365, $clone($toNativeArray($kindInt32, [-10795, 0, -10795]), d)), CaseRange), $clone(new CaseRange.ptr(11366, 11366, $clone($toNativeArray($kindInt32, [-10792, 0, -10792]), d)), CaseRange), $clone(new CaseRange.ptr(11367, 11372, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11373, 11373, $clone($toNativeArray($kindInt32, [0, -10780, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11374, 11374, $clone($toNativeArray($kindInt32, [0, -10749, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11375, 11375, $clone($toNativeArray($kindInt32, [0, -10783, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11376, 11376, $clone($toNativeArray($kindInt32, [0, -10782, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11378, 11379, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11381, 11382, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11390, 11391, $clone($toNativeArray($kindInt32, [0, -10815, 0]), d)), CaseRange), $clone(new CaseRange.ptr(11392, 11491, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11499, 11502, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11506, 11507, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(11520, 11557, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(11559, 11559, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(11565, 11565, $clone($toNativeArray($kindInt32, [-7264, 0, -7264]), d)), CaseRange), $clone(new CaseRange.ptr(42560, 42605, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42624, 42651, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42786, 42799, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42802, 42863, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42873, 42876, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42877, 42877, $clone($toNativeArray($kindInt32, [0, -35332, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42878, 42887, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42891, 42892, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42893, 42893, $clone($toNativeArray($kindInt32, [0, -42280, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42896, 42899, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42900, 42900, $clone($toNativeArray($kindInt32, [48, 0, 48]), d)), CaseRange), $clone(new CaseRange.ptr(42902, 42921, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42922, 42922, $clone($toNativeArray($kindInt32, [0, -42308, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42923, 42923, $clone($toNativeArray($kindInt32, [0, -42319, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42924, 42924, $clone($toNativeArray($kindInt32, [0, -42315, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42925, 42925, $clone($toNativeArray($kindInt32, [0, -42305, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42926, 42926, $clone($toNativeArray($kindInt32, [0, -42308, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42928, 42928, $clone($toNativeArray($kindInt32, [0, -42258, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42929, 42929, $clone($toNativeArray($kindInt32, [0, -42282, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42930, 42930, $clone($toNativeArray($kindInt32, [0, -42261, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42931, 42931, $clone($toNativeArray($kindInt32, [0, 928, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42932, 42943, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42946, 42947, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42948, 42948, $clone($toNativeArray($kindInt32, [0, -48, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42949, 42949, $clone($toNativeArray($kindInt32, [0, -42307, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42950, 42950, $clone($toNativeArray($kindInt32, [0, -35384, 0]), d)), CaseRange), $clone(new CaseRange.ptr(42951, 42954, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(42997, 42998, $clone($toNativeArray($kindInt32, [1114112, 1114112, 1114112]), d)), CaseRange), $clone(new CaseRange.ptr(43859, 43859, $clone($toNativeArray($kindInt32, [-928, 0, -928]), d)), CaseRange), $clone(new CaseRange.ptr(43888, 43967, $clone($toNativeArray($kindInt32, [-38864, 0, -38864]), d)), CaseRange), $clone(new CaseRange.ptr(65313, 65338, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(65345, 65370, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(66560, 66599, $clone($toNativeArray($kindInt32, [0, 40, 0]), d)), CaseRange), $clone(new CaseRange.ptr(66600, 66639, $clone($toNativeArray($kindInt32, [-40, 0, -40]), d)), CaseRange), $clone(new CaseRange.ptr(66736, 66771, $clone($toNativeArray($kindInt32, [0, 40, 0]), d)), CaseRange), $clone(new CaseRange.ptr(66776, 66811, $clone($toNativeArray($kindInt32, [-40, 0, -40]), d)), CaseRange), $clone(new CaseRange.ptr(68736, 68786, $clone($toNativeArray($kindInt32, [0, 64, 0]), d)), CaseRange), $clone(new CaseRange.ptr(68800, 68850, $clone($toNativeArray($kindInt32, [-64, 0, -64]), d)), CaseRange), $clone(new CaseRange.ptr(71840, 71871, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(71872, 71903, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(93760, 93791, $clone($toNativeArray($kindInt32, [0, 32, 0]), d)), CaseRange), $clone(new CaseRange.ptr(93792, 93823, $clone($toNativeArray($kindInt32, [-32, 0, -32]), d)), CaseRange), $clone(new CaseRange.ptr(125184, 125217, $clone($toNativeArray($kindInt32, [0, 34, 0]), d)), CaseRange), $clone(new CaseRange.ptr(125218, 125251, $clone($toNativeArray($kindInt32, [-34, 0, -34]), d)), CaseRange)]);
-		$pkg.CaseRanges = _CaseRanges;
-		properties = $toNativeArray($kindUint8, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 144, 130, 130, 130, 136, 130, 130, 130, 130, 130, 130, 136, 130, 130, 130, 130, 132, 132, 132, 132, 132, 132, 132, 132, 132, 132, 130, 130, 136, 136, 136, 130, 130, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 130, 130, 130, 136, 130, 136, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 130, 136, 130, 136, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 16, 130, 136, 136, 136, 136, 136, 130, 136, 136, 224, 130, 136, 0, 136, 136, 136, 136, 132, 132, 136, 192, 130, 130, 136, 132, 224, 130, 132, 132, 132, 130, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 136, 160, 160, 160, 160, 160, 160, 160, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 192, 136, 192, 192, 192, 192, 192, 192, 192, 192]);
 		$pkg.GraphicRanges = new sliceType$4([$pkg.L, $pkg.M, $pkg.N, $pkg.P, $pkg.S, $pkg.Zs]);
 		$pkg.PrintRanges = new sliceType$4([$pkg.L, $pkg.M, $pkg.N, $pkg.P, $pkg.S]);
 		/* */ } return; } if ($f === undefined) { $f = { $blk: $init }; } $f.$s = $s; $f.$r = $r; return $f;
@@ -73344,7 +73419,7 @@ $packages["regexp"] = (function() {
 	return $pkg;
 })();
 $packages["go/types"] = (function() {
-	var $pkg = {}, $init, bytes, heap, errors, fmt, ast, constant, typeparams, parser, token, errors$1, io, math, regexp, runtime, sort, strconv, strings, sync, atomic, unicode, utf8, version, builtinId, Union, Term, unifier, tparamsList, term, Qualifier, typeWriter, _TypeSet, byUniqueMethodName, TypeParam, TypeParamList, TypeList, Type, Tuple, termlist, substMap, subster, Struct, stmtContext, valueMap, valueType, Slice, Sizes, StdSizes, Signature, SelectionKind, Selection, Scope, lazyObject, declInfo, inSourceOrder, ifacePair, Pointer, Package, operandMode, operand, objset, Object, object, color, PkgName, Const, TypeName, Var, Func, Label, Builtin, Nil, Named, instance, namedState, monoGraph, monoVertex, monoEdge, MethodSet, methodSet, Map, embeddedType, instanceLookup, block, Interface, dependency, graphNode, nodeSet, nodeQueue, tpWalker, cycleFinder, opPredicates, exprKind, error_, errorDesc, positioner, posSpan, atPos, decl, importDecl, constDecl, varDecl, typeDecl, funcDecl, Context, ctxtEntry, exprInfo, environment, importKey, dotImportKey, action, actionDesc, Checker, cleaner, bailout, Chan, ChanDir, BasicKind, BasicInfo, Basic, Array, Error, Importer, ImportMode, ImporterFrom, Config, Info, TypeAndValue, Instance, Initializer, methodInfo, ptrType, ptrType$1, ptrType$2, sliceType, ptrType$3, sliceType$1, ptrType$4, ptrType$5, sliceType$2, sliceType$3, ptrType$6, ptrType$7, structType, structType$1, ptrType$8, sliceType$4, sliceType$5, sliceType$6, ptrType$9, sliceType$7, ptrType$10, ptrType$11, ptrType$12, ptrType$13, ptrType$14, sliceType$8, sliceType$9, ptrType$15, ptrType$16, sliceType$10, ptrType$17, ptrType$18, sliceType$11, ptrType$19, sliceType$12, ptrType$20, ptrType$21, ptrType$22, sliceType$13, ptrType$23, ptrType$24, sliceType$14, ptrType$25, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, ptrType$48, ptrType$49, ptrType$50, ptrType$51, ptrType$52, arrayType, ptrType$53, ptrType$54, ptrType$55, ptrType$56, sliceType$15, sliceType$16, ptrType$57, ptrType$58, ptrType$59, sliceType$17, ptrType$60, ptrType$61, sliceType$18, ptrType$62, ptrType$63, ptrType$64, ptrType$65, ptrType$66, ptrType$67, ptrType$68, ptrType$69, ptrType$70, ptrType$71, ptrType$72, ptrType$73, ptrType$74, ptrType$75, ptrType$76, ptrType$77, ptrType$78, ptrType$79, ptrType$80, ptrType$81, ptrType$82, sliceType$19, ptrType$83, ptrType$84, sliceType$20, ptrType$85, ptrType$86, ptrType$87, ptrType$88, sliceType$21, ptrType$89, ptrType$90, sliceType$22, sliceType$23, sliceType$24, ptrType$91, sliceType$25, arrayType$1, ptrType$92, sliceType$26, ptrType$93, sliceType$27, ptrType$94, ptrType$95, ptrType$96, sliceType$28, sliceType$29, arrayType$2, ptrType$97, ptrType$98, ptrType$99, ptrType$100, ptrType$101, ptrType$102, sliceType$30, ptrType$103, sliceType$31, ptrType$104, ptrType$105, ptrType$106, ptrType$107, ptrType$108, sliceType$32, sliceType$33, sliceType$34, ptrType$109, ptrType$110, ptrType$111, sliceType$35, sliceType$36, sliceType$37, sliceType$38, sliceType$39, sliceType$40, funcType$1, ptrType$112, sliceType$41, arrayType$3, ptrType$113, ptrType$114, ptrType$115, mapType, funcType$2, funcType$3, ptrType$116, funcType$4, funcType$5, mapType$1, mapType$2, ptrType$117, funcType$6, ptrType$118, mapType$3, mapType$4, ptrType$119, ptrType$120, mapType$5, mapType$6, ptrType$121, ptrType$122, mapType$7, mapType$8, ptrType$123, mapType$9, ptrType$124, mapType$10, sliceType$42, funcType$7, funcType$8, mapType$11, mapType$12, mapType$13, mapType$14, mapType$15, mapType$16, mapType$17, mapType$18, mapType$19, mapType$20, mapType$21, funcType$9, mapType$22, mapType$23, mapType$24, mapType$25, mapType$26, mapType$27, universeIota, universeByte, universeRune, universeAny, universeError, universeComparable, invalidTypeSet, invalidTypeSet$24ptr, lastID, lastID$24ptr, emptyMethodSet, emptyMethodSet$24ptr, unaryOpPredicates, binaryOpPredicates, goVersionRx, _r, allTermlist, topTypeSet, topTypeSet$24ptr, gcArchSizes, operandModeString, emptyInterface, emptyInterface$24ptr, gccgoArchSizes, stdSizes, op2str1, op2str2, predeclaredFuncs, errBadCgo, cgoPrefixes, basicSizes, predeclaredConsts, aliases, parseGoVersion, makeObjList, defPredeclaredTypes, defPredeclaredConsts, defPredeclaredNil, defPredeclaredFuncs, init, def, NewUnion, NewTerm, parseUnion, parseTilde, overlappingTerm, flattenUnion, newUnifier, tparamIndex, goTypeName, RelativeTo, TypeString, WriteType, WriteSignature, newTypeWriter, newTypeHasher, subscript, computeInterfaceTypeSet, intersectTermLists, sortMethods, assertSortedMethods, computeUnionTypeSet, nextID, NewTypeParam, newTypeList, bindTParams, under, coreType, coreString, match, NewTuple, makeSubstMap, makeRenameMap, substVar, substFunc, replaceRecvType, embeddedFieldIdent, trimTrailingEmptyStmts, assignOp, goVal, rangeKeyVal, NewSlice, isSyncAtomicAlign64, SizesFor, align, NewSignatureType, SelectionString, NewScope, resolve, hasBreak, hasBreakList, validatedImportPath, dir, isBoolean, isInteger, isUnsigned, isFloat, isComplex, isNumeric, isString, isIntegerOrFloat, isConstType, isBasic, allBoolean, allInteger, allUnsigned, allNumeric, allString, allOrdered, allNumericOrString, allBasic, hasName, isTyped, isUntyped, IsInterface, isNonTypeParamInterface, isTypeParam, hasEmptyTypeset, isGeneric, Comparable, comparable, hasNil, identical, identicalInstance, Default, NewPointer, NewPackage, operandString, Id, colorFor, NewPkgName, NewConst, NewTypeName, NewVar, NewParam, NewField, NewFunc, NewLabel, newBuiltin, writeObject, packagePrefix, ObjectString, writeFuncName, NewNamed, safeUnderlying, NewMethodSet, LookupFieldOrMethod, lookupFieldOrMethod, consolidateMultiples, lookupType, isInterfacePtr, deref, derefStructPtr, concat, fieldIndex, lookupMethod, NewInterfaceType, mentions, findPath, dependencyGraph, typeParamsString, isParameterized, coreTerm, ExprString, WriteExpr, writeSigExpr, writeFieldList, writeIdentList, writeExprList, init$1, opName, underIs, isShift, isComparison, fitsFloat32, roundFloat32, fitsFloat64, roundFloat64, representableConst, init$2, keyVal, assert, unreachable, sprintf, newErrorf, inNode, spanOf, stripAnnotations, pathString, firstInSrc, isUintptr, isUnsafePointer, isPointer, isBytesOrRunes, NewContext, NewChecker, instantiatedIdent, hasVarSize, makeSig, arrayPtrDeref, unparen, operandTypes, varTypes, measure, Identical, IdenticalIgnoreTags;
+	var $pkg = {}, $init, bytes, heap, errors, fmt, ast, constant, typeparams, parser, token, errors$1, io, math, regexp, runtime, sort, strconv, strings, sync, atomic, unicode, utf8, version, builtinId, Union, Term, unifier, tparamsList, term, Qualifier, typeWriter, _TypeSet, byUniqueMethodName, TypeParam, TypeParamList, TypeList, Type, Tuple, termlist, substMap, subster, Struct, stmtContext, valueMap, valueType, Slice, Sizes, StdSizes, Signature, SelectionKind, Selection, Scope, lazyObject, declInfo, inSourceOrder, ifacePair, Pointer, Package, operandMode, operand, objset, Object, object, color, PkgName, Const, TypeName, Var, Func, Label, Builtin, Nil, Named, instance, namedState, monoGraph, monoVertex, monoEdge, MethodSet, methodSet, Map, embeddedType, instanceLookup, block, Interface, dependency, graphNode, nodeSet, nodeQueue, tpWalker, cycleFinder, opPredicates, exprKind, error_, errorDesc, positioner, posSpan, atPos, decl, importDecl, constDecl, varDecl, typeDecl, funcDecl, Context, ctxtEntry, exprInfo, environment, importKey, dotImportKey, action, actionDesc, Checker, cleaner, bailout, Chan, ChanDir, BasicKind, BasicInfo, Basic, Array, Error, Importer, ImportMode, ImporterFrom, Config, Info, TypeAndValue, Instance, Initializer, methodInfo, ptrType, ptrType$1, ptrType$2, sliceType, ptrType$3, sliceType$1, ptrType$4, sliceType$2, structType, structType$1, ptrType$5, ptrType$6, sliceType$3, sliceType$4, ptrType$7, ptrType$8, sliceType$5, sliceType$6, ptrType$9, sliceType$7, ptrType$10, ptrType$11, ptrType$12, ptrType$13, ptrType$14, sliceType$8, sliceType$9, ptrType$15, ptrType$16, sliceType$10, ptrType$17, ptrType$18, sliceType$11, ptrType$19, sliceType$12, ptrType$20, ptrType$21, ptrType$22, sliceType$13, ptrType$23, ptrType$24, sliceType$14, ptrType$25, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, ptrType$48, ptrType$49, ptrType$50, ptrType$51, ptrType$52, arrayType, ptrType$53, ptrType$54, ptrType$55, ptrType$56, sliceType$15, sliceType$16, ptrType$57, ptrType$58, ptrType$59, sliceType$17, ptrType$60, ptrType$61, sliceType$18, ptrType$62, ptrType$63, ptrType$64, ptrType$65, ptrType$66, ptrType$67, ptrType$68, ptrType$69, ptrType$70, ptrType$71, ptrType$72, ptrType$73, ptrType$74, ptrType$75, ptrType$76, ptrType$77, ptrType$78, ptrType$79, ptrType$80, ptrType$81, ptrType$82, sliceType$19, ptrType$83, ptrType$84, sliceType$20, ptrType$85, ptrType$86, ptrType$87, ptrType$88, sliceType$21, ptrType$89, ptrType$90, sliceType$22, sliceType$23, sliceType$24, ptrType$91, sliceType$25, arrayType$1, ptrType$92, sliceType$26, ptrType$93, sliceType$27, ptrType$94, ptrType$95, ptrType$96, sliceType$28, sliceType$29, arrayType$2, ptrType$97, ptrType$98, ptrType$99, ptrType$100, ptrType$101, ptrType$102, sliceType$30, ptrType$103, sliceType$31, ptrType$104, ptrType$105, ptrType$106, ptrType$107, ptrType$108, sliceType$32, sliceType$33, sliceType$34, ptrType$109, ptrType$110, ptrType$111, sliceType$35, sliceType$36, sliceType$37, sliceType$38, sliceType$39, sliceType$40, funcType$1, ptrType$112, sliceType$41, arrayType$3, ptrType$113, ptrType$114, ptrType$115, mapType, funcType$2, funcType$3, ptrType$116, funcType$4, funcType$5, mapType$1, mapType$2, ptrType$117, funcType$6, ptrType$118, mapType$3, mapType$4, ptrType$119, ptrType$120, mapType$5, mapType$6, ptrType$121, ptrType$122, mapType$7, mapType$8, ptrType$123, mapType$9, ptrType$124, mapType$10, sliceType$42, funcType$7, funcType$8, mapType$11, mapType$12, mapType$13, mapType$14, mapType$15, mapType$16, mapType$17, mapType$18, mapType$19, mapType$20, mapType$21, funcType$9, mapType$22, mapType$23, mapType$24, mapType$25, mapType$26, mapType$27, universeIota, universeByte, universeRune, universeAny, universeError, universeComparable, invalidTypeSet, invalidTypeSet$24ptr, lastID, lastID$24ptr, emptyMethodSet, emptyMethodSet$24ptr, unaryOpPredicates, binaryOpPredicates, goVersionRx, _r, aliases, predeclaredConsts, predeclaredFuncs, allTermlist, topTypeSet, topTypeSet$24ptr, basicSizes, gcArchSizes, operandModeString, emptyInterface, emptyInterface$24ptr, gccgoArchSizes, stdSizes, op2str1, op2str2, errBadCgo, cgoPrefixes, parseGoVersion, makeObjList, defPredeclaredTypes, defPredeclaredConsts, defPredeclaredNil, defPredeclaredFuncs, init, def, NewUnion, NewTerm, parseUnion, parseTilde, overlappingTerm, flattenUnion, newUnifier, tparamIndex, goTypeName, RelativeTo, TypeString, WriteType, WriteSignature, newTypeWriter, newTypeHasher, subscript, computeInterfaceTypeSet, intersectTermLists, sortMethods, assertSortedMethods, computeUnionTypeSet, nextID, NewTypeParam, newTypeList, bindTParams, under, coreType, coreString, match, NewTuple, makeSubstMap, makeRenameMap, substVar, substFunc, replaceRecvType, embeddedFieldIdent, trimTrailingEmptyStmts, assignOp, goVal, rangeKeyVal, NewSlice, isSyncAtomicAlign64, SizesFor, align, NewSignatureType, SelectionString, NewScope, resolve, hasBreak, hasBreakList, validatedImportPath, dir, isBoolean, isInteger, isUnsigned, isFloat, isComplex, isNumeric, isString, isIntegerOrFloat, isConstType, isBasic, allBoolean, allInteger, allUnsigned, allNumeric, allString, allOrdered, allNumericOrString, allBasic, hasName, isTyped, isUntyped, IsInterface, isNonTypeParamInterface, isTypeParam, hasEmptyTypeset, isGeneric, Comparable, comparable, hasNil, identical, identicalInstance, Default, NewPointer, NewPackage, operandString, Id, colorFor, NewPkgName, NewConst, NewTypeName, NewVar, NewParam, NewField, NewFunc, NewLabel, newBuiltin, writeObject, packagePrefix, ObjectString, writeFuncName, NewNamed, safeUnderlying, NewMethodSet, LookupFieldOrMethod, lookupFieldOrMethod, consolidateMultiples, lookupType, isInterfacePtr, deref, derefStructPtr, concat, fieldIndex, lookupMethod, NewInterfaceType, mentions, findPath, dependencyGraph, typeParamsString, isParameterized, coreTerm, ExprString, WriteExpr, writeSigExpr, writeFieldList, writeIdentList, writeExprList, init$1, opName, underIs, isShift, isComparison, fitsFloat32, roundFloat32, fitsFloat64, roundFloat64, representableConst, init$2, keyVal, assert, unreachable, sprintf, newErrorf, inNode, spanOf, stripAnnotations, pathString, firstInSrc, isUintptr, isUnsafePointer, isPointer, isBytesOrRunes, NewContext, NewChecker, instantiatedIdent, hasVarSize, makeSig, arrayPtrDeref, unparen, operandTypes, varTypes, measure, Identical, IdenticalIgnoreTags;
 	bytes = $packages["bytes"];
 	heap = $packages["container/heap"];
 	errors = $packages["errors"];
@@ -73401,7 +73476,7 @@ $packages["go/types"] = (function() {
 			this.exact = false;
 			this.x = new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil);
 			this.y = new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil);
-			this.types = sliceType$2.nil;
+			this.types = sliceType$3.nil;
 			this.depth = 0;
 			return;
 		}
@@ -73472,7 +73547,7 @@ $packages["go/types"] = (function() {
 	TypeParam = $newType(0, $kindStruct, "types.TypeParam", true, "go/types", true, function(check_, id_, obj_, index_, bound_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.check = ptrType$5.nil;
+			this.check = ptrType$6.nil;
 			this.id = new $Uint64(0, 0);
 			this.obj = ptrType$17.nil;
 			this.index = 0;
@@ -73496,7 +73571,7 @@ $packages["go/types"] = (function() {
 	TypeList = $newType(0, $kindStruct, "types.TypeList", true, "go/types", true, function(types_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.types = sliceType$2.nil;
+			this.types = sliceType$3.nil;
 			return;
 		}
 		this.types = types_;
@@ -73517,7 +73592,7 @@ $packages["go/types"] = (function() {
 		if (arguments.length === 0) {
 			this.pos = 0;
 			this.smap = false;
-			this.check = ptrType$5.nil;
+			this.check = ptrType$6.nil;
 			this.expanding = ptrType$9.nil;
 			this.ctxt = ptrType$51.nil;
 			return;
@@ -73836,7 +73911,7 @@ $packages["go/types"] = (function() {
 	Named = $newType(0, $kindStruct, "types.Named", true, "go/types", true, function(check_, obj_, fromRHS_, inst_, mu_, state__, underlying_, tparams_, methods_, loader_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.check = ptrType$5.nil;
+			this.check = ptrType$6.nil;
 			this.obj = ptrType$17.nil;
 			this.fromRHS = $ifaceNil;
 			this.inst = ptrType$52.nil;
@@ -73976,13 +74051,13 @@ $packages["go/types"] = (function() {
 	Interface = $newType(0, $kindStruct, "types.Interface", true, "go/types", true, function(check_, methods_, embeddeds_, embedPos_, implicit_, complete_, tset_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.check = ptrType$5.nil;
+			this.check = ptrType$6.nil;
 			this.methods = sliceType.nil;
-			this.embeddeds = sliceType$2.nil;
-			this.embedPos = ptrType$6.nil;
+			this.embeddeds = sliceType$3.nil;
+			this.embedPos = ptrType$7.nil;
 			this.implicit = false;
 			this.complete = false;
-			this.tset = ptrType$7.nil;
+			this.tset = ptrType$8.nil;
 			return;
 		}
 		this.check = check_;
@@ -74026,7 +74101,7 @@ $packages["go/types"] = (function() {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.tparams = sliceType$9.nil;
-			this.types = sliceType$2.nil;
+			this.types = sliceType$3.nil;
 			this.seen = false;
 			return;
 		}
@@ -74141,7 +74216,7 @@ $packages["go/types"] = (function() {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.orig = $ifaceNil;
-			this.targs = sliceType$2.nil;
+			this.targs = sliceType$3.nil;
 			this.instance = $ifaceNil;
 			return;
 		}
@@ -74154,7 +74229,7 @@ $packages["go/types"] = (function() {
 		if (arguments.length === 0) {
 			this.isLhs = false;
 			this.mode = 0;
-			this.typ = ptrType$8.nil;
+			this.typ = ptrType$4.nil;
 			this.val = $ifaceNil;
 			return;
 		}
@@ -74559,16 +74634,16 @@ $packages["go/types"] = (function() {
 		sliceType = $sliceType(ptrType$2);
 		ptrType$3 = $ptrType(Selection);
 		sliceType$1 = $sliceType(ptrType$3);
-		ptrType$4 = $ptrType(term);
-		ptrType$5 = $ptrType(Checker);
-		sliceType$2 = $sliceType(Type);
-		sliceType$3 = $sliceType(token.Pos);
-		ptrType$6 = $ptrType(sliceType$3);
-		ptrType$7 = $ptrType(_TypeSet);
-		structType = $structType("go/types", [{prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "nargs", name: "nargs", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "variadic", name: "variadic", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "kind", name: "kind", embedded: false, exported: false, typ: exprKind, tag: ""}]);
-		structType$1 = $structType("go/types", [{prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "kind", name: "kind", embedded: false, exported: false, typ: BasicKind, tag: ""}, {prop: "val", name: "val", embedded: false, exported: false, typ: constant.Value, tag: ""}]);
-		ptrType$8 = $ptrType(Basic);
-		sliceType$4 = $sliceType(ptrType$8);
+		ptrType$4 = $ptrType(Basic);
+		sliceType$2 = $sliceType(ptrType$4);
+		structType = $structType("go/types", [{prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "kind", name: "kind", embedded: false, exported: false, typ: BasicKind, tag: ""}, {prop: "val", name: "val", embedded: false, exported: false, typ: constant.Value, tag: ""}]);
+		structType$1 = $structType("go/types", [{prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "nargs", name: "nargs", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "variadic", name: "variadic", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "kind", name: "kind", embedded: false, exported: false, typ: exprKind, tag: ""}]);
+		ptrType$5 = $ptrType(term);
+		ptrType$6 = $ptrType(Checker);
+		sliceType$3 = $sliceType(Type);
+		sliceType$4 = $sliceType(token.Pos);
+		ptrType$7 = $ptrType(sliceType$4);
+		ptrType$8 = $ptrType(_TypeSet);
 		sliceType$5 = $sliceType($String);
 		sliceType$6 = $sliceType($emptyInterface);
 		ptrType$9 = $ptrType(Named);
@@ -74629,7 +74704,7 @@ $packages["go/types"] = (function() {
 		ptrType$55 = $ptrType($Uint32);
 		ptrType$56 = $ptrType(TypeList);
 		sliceType$15 = $sliceType($Bool);
-		sliceType$16 = $sliceType(ptrType$4);
+		sliceType$16 = $sliceType(ptrType$5);
 		ptrType$57 = $ptrType(ast.BasicLit);
 		ptrType$58 = $ptrType(declInfo);
 		ptrType$59 = $ptrType(ast.EmptyStmt);
@@ -74719,7 +74794,7 @@ $packages["go/types"] = (function() {
 		ptrType$114 = $ptrType(bytes.Buffer);
 		ptrType$115 = $ptrType(typeWriter);
 		mapType = $mapType(Type, $Bool);
-		funcType$2 = $funcType([ptrType$4], [$Bool], false);
+		funcType$2 = $funcType([ptrType$5], [$Bool], false);
 		funcType$3 = $funcType([Type], [$Bool], false);
 		ptrType$116 = $ptrType(subster);
 		funcType$4 = $funcType([], [Object], false);
@@ -74754,7 +74829,7 @@ $packages["go/types"] = (function() {
 		mapType$16 = $mapType(dotImportKey, ptrType$31);
 		mapType$17 = $mapType(ptrType$30, ptrType$14);
 		mapType$18 = $mapType(ptrType$17, $Bool);
-		mapType$19 = $mapType(ptrType$12, ptrType$7);
+		mapType$19 = $mapType(ptrType$12, ptrType$8);
 		mapType$20 = $mapType(ptrType$17, sliceType);
 		mapType$21 = $mapType(ast.Expr, exprInfo);
 		funcType$9 = $funcType([$error], [], false);
@@ -75048,7 +75123,7 @@ $packages["go/types"] = (function() {
 				_i$1++;
 			$s = 4; continue;
 			case 5:
-			$r = def(NewTypeName(0, ptrType$1.nil, "any", new Interface.ptr(ptrType$5.nil, sliceType.nil, sliceType$2.nil, ptrType$6.nil, false, true, topTypeSet))); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = def(NewTypeName(0, ptrType$1.nil, "any", new Interface.ptr(ptrType$6.nil, sliceType.nil, sliceType$3.nil, ptrType$7.nil, false, true, topTypeSet))); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			obj = NewTypeName(0, ptrType$1.nil, "error", $ifaceNil);
 			$r = obj.object.setColor(1); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			typ = NewNamed(obj, $ifaceNil, sliceType.nil);
@@ -75057,15 +75132,15 @@ $packages["go/types"] = (function() {
 			_r$1 = NewSignatureType(recv, sliceType$9.nil, sliceType$9.nil, ptrType$15.nil, NewTuple(new sliceType$10([res])), false); /* */ $s = 9; case 9: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			sig = _r$1;
 			err = NewFunc(0, ptrType$1.nil, "Error", sig);
-			ityp = new Interface.ptr(ptrType$5.nil, new sliceType([err]), sliceType$2.nil, ptrType$6.nil, false, true, ptrType$7.nil);
-			_r$2 = computeInterfaceTypeSet(ptrType$5.nil, 0, ityp); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			ityp = new Interface.ptr(ptrType$6.nil, new sliceType([err]), sliceType$3.nil, ptrType$7.nil, false, true, ptrType$8.nil);
+			_r$2 = computeInterfaceTypeSet(ptrType$6.nil, 0, ityp); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			_r$2;
 			$r = typ.SetUnderlying(ityp); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$r = def(obj); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			obj$1 = NewTypeName(0, ptrType$1.nil, "comparable", $ifaceNil);
 			$r = obj$1.object.setColor(1); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			typ$1 = NewNamed(obj$1, $ifaceNil, sliceType.nil);
-			ityp$1 = new Interface.ptr(ptrType$5.nil, sliceType.nil, sliceType$2.nil, ptrType$6.nil, false, true, new _TypeSet.ptr(sliceType.nil, allTermlist, true));
+			ityp$1 = new Interface.ptr(ptrType$6.nil, sliceType.nil, sliceType$3.nil, ptrType$7.nil, false, true, new _TypeSet.ptr(sliceType.nil, allTermlist, true));
 			$r = typ$1.SetUnderlying(ityp$1); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$r = def(obj$1); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return;
@@ -75078,7 +75153,7 @@ $packages["go/types"] = (function() {
 			_i = 0;
 			/* while (true) { */ case 1:
 				/* if (!(_i < 3)) { break; } */ if(!(_i < 3)) { $s = 2; continue; }
-				c = $clone(((_i < 0 || _i >= _ref.length) ? ($throwRuntimeError("index out of range"), undefined) : _ref[_i]), structType$1);
+				c = $clone(((_i < 0 || _i >= _ref.length) ? ($throwRuntimeError("index out of range"), undefined) : _ref[_i]), structType);
 				$r = def(NewConst(0, ptrType$1.nil, c.name, (x = c.kind, ((x < 0 || x >= $pkg.Typ.$length) ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + x])), c.val)); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				_i++;
 			$s = 1; continue;
@@ -75236,7 +75311,7 @@ $packages["go/types"] = (function() {
 			var {$24r, _r$1, t, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			t = this;
-			_r$1 = ($pointerOfStructConversion(t, ptrType$4)).String(); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = ($pointerOfStructConversion(t, ptrType$5)).String(); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			$24r = _r$1;
 			$s = 2; case 2: return $24r;
 			/* */ } return; } var $f = {$blk: String$1, $c: true, $r, $24r, _r$1, t, $s};return $f;
@@ -75422,7 +75497,7 @@ $packages["go/types"] = (function() {
 						$panic(new $String("empty or top union term"));
 					}
 				}
-				_r$3 = ($pointerOfStructConversion(x, ptrType$4)).disjoint(($pointerOfStructConversion(y, ptrType$4))); /* */ $s = 10; case 10: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+				_r$3 = ($pointerOfStructConversion(x, ptrType$5)).disjoint(($pointerOfStructConversion(y, ptrType$5))); /* */ $s = 10; case 10: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 				/* */ if (!_r$3) { $s = 8; continue; }
 				/* */ $s = 9; continue;
 				/* if (!_r$3) { */ case 8:
@@ -75455,7 +75530,7 @@ $packages["go/types"] = (function() {
 		};
 		newUnifier = function newUnifier$1(exact) {
 			var exact, u;
-			u = new unifier.ptr(exact, new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil), new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil), sliceType$2.nil, 0);
+			u = new unifier.ptr(exact, new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil), new tparamsList.ptr(ptrType$22.nil, sliceType$9.nil, sliceType$13.nil), sliceType$3.nil, 0);
 			u.x.unifier = u;
 			u.y.unifier = u;
 			return u;
@@ -75672,10 +75747,10 @@ $packages["go/types"] = (function() {
 		};
 		$ptrType(tparamsList).prototype.types = function types() {
 			var _i, _ref, d, i, index$1, list, t;
-			list = sliceType$2.nil;
+			list = sliceType$3.nil;
 			index$1 = 0;
 			d = this;
-			list = $makeSlice(sliceType$2, d.tparams.$length);
+			list = $makeSlice(sliceType$3, d.tparams.$length);
 			index$1 = -1;
 			_ref = d.tparams;
 			_i = 0;
@@ -75876,7 +75951,7 @@ $packages["go/types"] = (function() {
 				/* } */ case 55:
 			/* } */ case 52:
 			_ref = x[0];
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 72; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 72; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 73; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 74; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 75; continue; }
@@ -75890,9 +75965,9 @@ $packages["go/types"] = (function() {
 			/* */ if ($assertType(_ref, ptrType$14, true)[1]) { $s = 83; continue; }
 			/* */ if (_ref === $ifaceNil) { $s = 84; continue; }
 			/* */ $s = 85; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 72:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 72:
 				x$1 = _ref.$val;
-				_tuple$2 = $assertType(y[0], ptrType$8, true);
+				_tuple$2 = $assertType(y[0], ptrType$4, true);
 				y$1 = _tuple$2[0];
 				ok = _tuple$2[1];
 				/* */ if (ok) { $s = 87; continue; }
@@ -76797,9 +76872,9 @@ $packages["go/types"] = (function() {
 			/* } */ case 13:
 			_r$5 = check[0].typeList(ix[0].IndexListExpr.Indices); /* */ $s = 16; case 16: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			targs = _r$5;
-			/* */ if (targs === sliceType$2.nil) { $s = 17; continue; }
+			/* */ if (targs === sliceType$3.nil) { $s = 17; continue; }
 			/* */ $s = 18; continue;
-			/* if (targs === sliceType$2.nil) { */ case 17:
+			/* if (targs === sliceType$3.nil) { */ case 17:
 				def$2.setUnderlying((0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0]));
 				res[0] = (0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0]);
 				$24r$1 = res[0];
@@ -76946,7 +77021,7 @@ $packages["go/types"] = (function() {
 			var {_i, _r$1, _ref, check, i, list, res, t, x, $s, $r, $c} = $restore(this, {list});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			check = this;
-			res = $makeSlice(sliceType$2, list.$length);
+			res = $makeSlice(sliceType$3, list.$length);
 			_ref = list;
 			_i = 0;
 			/* while (true) { */ case 1:
@@ -76956,9 +77031,9 @@ $packages["go/types"] = (function() {
 				_r$1 = check.varType(x); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				t = _r$1;
 				if ($interfaceIsEqual(t, (0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0]))) {
-					res = sliceType$2.nil;
+					res = sliceType$3.nil;
 				}
-				if (!(res === sliceType$2.nil)) {
+				if (!(res === sliceType$3.nil)) {
 					((i < 0 || i >= res.$length) ? ($throwRuntimeError("index out of range"), undefined) : res.$array[res.$offset + i] = t);
 				}
 				_i++;
@@ -76971,11 +77046,11 @@ $packages["go/types"] = (function() {
 			var {$24r, $24r$1, _r$1, _r$2, x, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			x = this;
-				/* */ if (x === ptrType$4.nil) { $s = 2; continue; }
+				/* */ if (x === ptrType$5.nil) { $s = 2; continue; }
 				/* */ if ($interfaceIsEqual(x.typ, $ifaceNil)) { $s = 3; continue; }
 				/* */ if (x.tilde) { $s = 4; continue; }
 				/* */ $s = 5; continue;
-				/* if (x === ptrType$4.nil) { */ case 2:
+				/* if (x === ptrType$5.nil) { */ case 2:
 					$s = -1; return "\xE2\x88\x85";
 				/* } else if ($interfaceIsEqual(x.typ, $ifaceNil)) { */ case 3:
 					$s = -1; return "\xF0\x9D\x93\xA4";
@@ -76995,36 +77070,36 @@ $packages["go/types"] = (function() {
 		$ptrType(term).prototype.union = function union(y) {
 			var {_, _$1, _r$1, _tmp, _tmp$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, x, y, $s, $r, $c} = $restore(this, {y});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_ = ptrType$4.nil;
-			_$1 = ptrType$4.nil;
+			_ = ptrType$5.nil;
+			_$1 = ptrType$5.nil;
 			x = this;
-			if (x === ptrType$4.nil && y === ptrType$4.nil) {
-				_tmp = ptrType$4.nil;
-				_tmp$1 = ptrType$4.nil;
+			if (x === ptrType$5.nil && y === ptrType$5.nil) {
+				_tmp = ptrType$5.nil;
+				_tmp$1 = ptrType$5.nil;
 				_ = _tmp;
 				_$1 = _tmp$1;
 				$s = -1; return [_, _$1];
-			} else if (x === ptrType$4.nil) {
+			} else if (x === ptrType$5.nil) {
 				_tmp$2 = y;
-				_tmp$3 = ptrType$4.nil;
+				_tmp$3 = ptrType$5.nil;
 				_ = _tmp$2;
 				_$1 = _tmp$3;
 				$s = -1; return [_, _$1];
-			} else if (y === ptrType$4.nil) {
+			} else if (y === ptrType$5.nil) {
 				_tmp$4 = x;
-				_tmp$5 = ptrType$4.nil;
+				_tmp$5 = ptrType$5.nil;
 				_ = _tmp$4;
 				_$1 = _tmp$5;
 				$s = -1; return [_, _$1];
 			} else if ($interfaceIsEqual(x.typ, $ifaceNil)) {
 				_tmp$6 = x;
-				_tmp$7 = ptrType$4.nil;
+				_tmp$7 = ptrType$5.nil;
 				_ = _tmp$6;
 				_$1 = _tmp$7;
 				$s = -1; return [_, _$1];
 			} else if ($interfaceIsEqual(y.typ, $ifaceNil)) {
 				_tmp$8 = y;
-				_tmp$9 = ptrType$4.nil;
+				_tmp$9 = ptrType$5.nil;
 				_ = _tmp$8;
 				_$1 = _tmp$9;
 				$s = -1; return [_, _$1];
@@ -77041,13 +77116,13 @@ $packages["go/types"] = (function() {
 			/* } */ case 2:
 			if (x.tilde || !y.tilde) {
 				_tmp$12 = x;
-				_tmp$13 = ptrType$4.nil;
+				_tmp$13 = ptrType$5.nil;
 				_ = _tmp$12;
 				_$1 = _tmp$13;
 				$s = -1; return [_, _$1];
 			}
 			_tmp$14 = y;
-			_tmp$15 = ptrType$4.nil;
+			_tmp$15 = ptrType$5.nil;
 			_ = _tmp$14;
 			_$1 = _tmp$15;
 			$s = -1; return [_, _$1];
@@ -77057,8 +77132,8 @@ $packages["go/types"] = (function() {
 			var {_r$1, x, y, $s, $r, $c} = $restore(this, {y});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			x = this;
-			if (x === ptrType$4.nil || y === ptrType$4.nil) {
-				$s = -1; return ptrType$4.nil;
+			if (x === ptrType$5.nil || y === ptrType$5.nil) {
+				$s = -1; return ptrType$5.nil;
 			} else if ($interfaceIsEqual(x.typ, $ifaceNil)) {
 				$s = -1; return y;
 			} else if ($interfaceIsEqual(y.typ, $ifaceNil)) {
@@ -77068,7 +77143,7 @@ $packages["go/types"] = (function() {
 			/* */ if (_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (_r$1) { */ case 1:
-				$s = -1; return ptrType$4.nil;
+				$s = -1; return ptrType$5.nil;
 			/* } */ case 2:
 			if (!x.tilde || y.tilde) {
 				$s = -1; return x;
@@ -77080,7 +77155,7 @@ $packages["go/types"] = (function() {
 			var {$24r, _r$1, _r$2, t, u, x, $s, $r, $c} = $restore(this, {t});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			x = this;
-			if (x === ptrType$4.nil) {
+			if (x === ptrType$5.nil) {
 				$s = -1; return false;
 			} else if ($interfaceIsEqual(x.typ, $ifaceNil)) {
 				$s = -1; return true;
@@ -77101,9 +77176,9 @@ $packages["go/types"] = (function() {
 			var {_r$1, x, y, $s, $r, $c} = $restore(this, {y});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			x = this;
-			if (x === ptrType$4.nil) {
+			if (x === ptrType$5.nil) {
 				$s = -1; return true;
-			} else if (y === ptrType$4.nil) {
+			} else if (y === ptrType$5.nil) {
 				$s = -1; return false;
 			} else if ($interfaceIsEqual(y.typ, $ifaceNil)) {
 				$s = -1; return true;
@@ -77239,7 +77314,7 @@ $packages["go/types"] = (function() {
 			$deferred.push([function(_arg, _arg$1) { $mapDelete(_arg, Type.keyFor(_arg$1)); }, [w.seen, typ$2]]);
 			_ref = typ$2;
 			/* */ if (_ref === $ifaceNil) { $s = 5; continue; }
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 6; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 6; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 7; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 8; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 9; continue; }
@@ -77257,7 +77332,7 @@ $packages["go/types"] = (function() {
 				t = _ref;
 				w.error("nil");
 				$s = 20; continue;
-			/* } else if ($assertType(_ref, ptrType$8, true)[1]) { */ case 6:
+			/* } else if ($assertType(_ref, ptrType$4, true)[1]) { */ case 6:
 				t$1 = _ref.$val;
 				/* */ if (token.IsExported(t$1.name)) { $s = 21; continue; }
 				/* */ $s = 22; continue;
@@ -77687,9 +77762,9 @@ $packages["go/types"] = (function() {
 							$s = 9; continue;
 						/* } else { */ case 8:
 							_r$1 = under(typ$2); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-							_tuple$1 = $assertType(_r$1, ptrType$8, true);
+							_tuple$1 = $assertType(_r$1, ptrType$4, true);
 							t = _tuple$1[0];
-							if (t === ptrType$8.nil || !((t.kind === 17))) {
+							if (t === ptrType$4.nil || !((t.kind === 17))) {
 								w.error("expected string type");
 								_i++;
 								/* continue; */ $s = 3; continue;
@@ -77784,7 +77859,7 @@ $packages["go/types"] = (function() {
 			_r$1 = s.is((function(seen) { return function _TypeSet·IsComparable·func1(t) {
 					var {$24r, _r$1, _v, t, $s, $r, $c} = $restore(this, {t});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					if (!(!(t === ptrType$4.nil))) { _v = false; $s = 1; continue s; }
+					if (!(!(t === ptrType$5.nil))) { _v = false; $s = 1; continue s; }
 					_r$1 = comparable(t.typ, false, seen[0], $throwNilPointerError); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 					_v = _r$1; case 1:
 					$24r = _v;
@@ -77879,7 +77954,7 @@ $packages["go/types"] = (function() {
 			/* */ if (!s.hasTerms()) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!s.hasTerms()) { */ case 1:
-				_r$1 = f(ptrType$4.nil); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+				_r$1 = f(ptrType$5.nil); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				$24r = _r$1;
 				$s = 4; case 4: return $24r;
 			/* } */ case 2:
@@ -77955,15 +78030,15 @@ $packages["go/types"] = (function() {
 			mpos = [mpos];
 			pos = [pos];
 			seen = [seen];
-			if (!(ityp[0].tset === ptrType$7.nil)) {
+			if (!(ityp[0].tset === ptrType$8.nil)) {
 				$s = -1; return ityp[0].tset;
 			}
 			if (!ityp[0].complete) {
 				$s = -1; return topTypeSet;
 			}
-			/* */ if (!(check[0] === ptrType$5.nil) && false) { $s = 1; continue; }
+			/* */ if (!(check[0] === ptrType$6.nil) && false) { $s = 1; continue; }
 			/* */ $s = 2; continue;
-			/* if (!(check[0] === ptrType$5.nil) && false) { */ case 1:
+			/* if (!(check[0] === ptrType$6.nil) && false) { */ case 1:
 				if (!new token.Pos(pos[0]).IsValid() && ityp[0].methods.$length > 0) {
 					pos[0] = (x = ityp[0].methods, (0 >= x.$length ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + 0])).object.pos;
 				}
@@ -77983,7 +78058,7 @@ $packages["go/types"] = (function() {
 			/* } */ case 2:
 			ityp[0].tset = new _TypeSet.ptr(sliceType.nil, allTermlist, false);
 			unionSets = false;
-			if (!(check[0] === ptrType$5.nil)) {
+			if (!(check[0] === ptrType$6.nil)) {
 				if (check[0].unionTypeSets === false) {
 					check[0].unionTypeSets = new $global.Map();
 				}
@@ -78004,21 +78079,21 @@ $packages["go/types"] = (function() {
 						other[0] = _r$1;
 						/* */ if ($interfaceIsEqual(other[0], $ifaceNil)) { $s = 3; continue; }
 						/* */ if (explicit) { $s = 4; continue; }
-						/* */ if (!(check[0] === ptrType$5.nil)) { $s = 5; continue; }
+						/* */ if (!(check[0] === ptrType$6.nil)) { $s = 5; continue; }
 						/* */ $s = 6; continue;
 						/* if ($interfaceIsEqual(other[0], $ifaceNil)) { */ case 3:
 							allMethods[0] = $append(allMethods[0], m[0]);
 							_key = m[0]; (mpos[0] || $throwRuntimeError("assignment to entry in nil map")).set(ptrType$2.keyFor(_key), { k: _key, v: pos$1[0] });
 							$s = 6; continue;
 						/* } else if (explicit) { */ case 4:
-							/* */ if (!(check[0] === ptrType$5.nil)) { $s = 7; continue; }
+							/* */ if (!(check[0] === ptrType$6.nil)) { $s = 7; continue; }
 							/* */ $s = 8; continue;
-							/* if (!(check[0] === ptrType$5.nil)) { */ case 7:
+							/* if (!(check[0] === ptrType$6.nil)) { */ case 7:
 								$r = check[0].errorf(new atPos(((pos$1[0] >> 0))), 10, "duplicate method %s", new sliceType$6([new $String(m[0].object.name)])); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 								$r = check[0].errorf(new atPos((((_entry = $mapIndex(mpos[0],ptrType$2.keyFor($assertType(other[0], ptrType$2))), _entry !== undefined ? _entry.v : 0) >> 0))), 10, "\tother declaration of %s", new sliceType$6([new $String(m[0].object.name)])); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* } */ case 8:
 							$s = 6; continue;
-						/* } else if (!(check[0] === ptrType$5.nil)) { */ case 5:
+						/* } else if (!(check[0] === ptrType$6.nil)) { */ case 5:
 							check[0].later((function(allMethods, check, ityp, m, mpos, other, pos, pos$1, seen) { return function computeInterfaceTypeSet·func2·func1() {
 									var {_arg, _arg$1, _entry$1, _r$2, _r$3, _v, $s, $r, $c} = $restore(this, {});
 									/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
@@ -78060,7 +78135,7 @@ $packages["go/types"] = (function() {
 				i = _i$1;
 				typ$2 = ((_i$1 < 0 || _i$1 >= _ref$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref$1.$array[_ref$1.$offset + _i$1]);
 				pos$1 = 0;
-				if (!(ityp[0].embedPos === ptrType$6.nil)) {
+				if (!(ityp[0].embedPos === ptrType$7.nil)) {
 					pos$1 = (x$1 = ityp[0].embedPos.$get(), ((i < 0 || i >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + i]));
 				}
 				comparable$1 = false;
@@ -78075,7 +78150,7 @@ $packages["go/types"] = (function() {
 					$r = assert(!isTypeParam(typ$2)); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					_r$2 = computeInterfaceTypeSet(check[0], pos$1, u); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 					tset = _r$2;
-					if (!(!(check[0] === ptrType$5.nil))) { _v = false; $s = 18; continue s; }
+					if (!(!(check[0] === ptrType$6.nil))) { _v = false; $s = 18; continue s; }
 					_r$3 = check[0].isImportedConstraint(typ$2); /* */ $s = 19; case 19: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 					_v = _r$3; case 18:
 					/* */ if (_v && !check[0].allowVersion(check[0].pkg, 1, 18)) { $s = 16; continue; }
@@ -78099,9 +78174,9 @@ $packages["go/types"] = (function() {
 					$s = 13; continue;
 				/* } else if ($assertType(_ref$2, ptrType$12, true)[1]) { */ case 11:
 					u$1 = _ref$2.$val;
-					/* */ if (!(check[0] === ptrType$5.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { $s = 24; continue; }
+					/* */ if (!(check[0] === ptrType$6.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { $s = 24; continue; }
 					/* */ $s = 25; continue;
-					/* if (!(check[0] === ptrType$5.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { */ case 24:
+					/* if (!(check[0] === ptrType$6.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { */ case 24:
 						$r = check[0].errorf(new atPos(((pos$1 >> 0))), 135, "embedding interface element %s requires go1.18 or later", new sliceType$6([u$1])); /* */ $s = 26; case 26: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						_i$1++;
 						/* continue; */ $s = 7; continue;
@@ -78122,9 +78197,9 @@ $packages["go/types"] = (function() {
 						_i$1++;
 						/* continue; */ $s = 7; continue;
 					}
-					/* */ if (!(check[0] === ptrType$5.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { $s = 30; continue; }
+					/* */ if (!(check[0] === ptrType$6.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { $s = 30; continue; }
 					/* */ $s = 31; continue;
-					/* if (!(check[0] === ptrType$5.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { */ case 30:
+					/* if (!(check[0] === ptrType$6.nil) && !check[0].allowVersion(check[0].pkg, 1, 18)) { */ case 30:
 						$r = check[0].errorf(new atPos(((pos$1 >> 0))), 135, "embedding non-interface type %s requires go1.18 or later", new sliceType$6([typ$2])); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						_i$1++;
 						/* continue; */ $s = 7; continue;
@@ -78138,7 +78213,7 @@ $packages["go/types"] = (function() {
 				_i$1++;
 			$s = 7; continue;
 			case 8:
-			ityp[0].embedPos = ptrType$6.nil;
+			ityp[0].embedPos = ptrType$7.nil;
 			ityp[0].tset.comparable = allComparable;
 			/* */ if (!((allMethods[0].$length === 0))) { $s = 34; continue; }
 			/* */ $s = 35; continue;
@@ -78149,7 +78224,7 @@ $packages["go/types"] = (function() {
 			ityp[0].tset.terms = allTerms;
 			$24r = ityp[0].tset;
 			$s = 37; case 37: return $24r;
-			/* */ } return; } } catch(err) { $err = err; $s = -1; return ptrType$7.nil; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: computeInterfaceTypeSet$1, $c: true, $r, $24r, _i, _i$1, _i$2, _r$1, _r$2, _r$3, _r$4, _r$5, _ref, _ref$1, _ref$2, _ref$3, _tuple, _v, addMethod, allComparable, allMethods, allTerms, check, comparable$1, i, ityp, m, m$1, mpos, pos, pos$1, seen, terms, tset, tset$1, typ$2, u, u$1, u$2, unionSets, x, x$1, $s, $deferred};return $f; } }
+			/* */ } return; } } catch(err) { $err = err; $s = -1; return ptrType$8.nil; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: computeInterfaceTypeSet$1, $c: true, $r, $24r, _i, _i$1, _i$2, _r$1, _r$2, _r$3, _r$4, _r$5, _ref, _ref$1, _ref$2, _ref$3, _tuple, _v, addMethod, allComparable, allMethods, allTerms, check, comparable$1, i, ityp, m, m$1, mpos, pos, pos$1, seen, terms, tset, tset$1, typ$2, u, u$1, u$2, unionSets, x, x$1, $s, $deferred};return $f; } }
 		};
 		intersectTermLists = function intersectTermLists$1(xterms, xcomp, yterms, ycomp) {
 			var {_i, _r$1, _r$2, _ref, comp, i, t, terms, xcomp, xterms, ycomp, yterms, $s, $r, $c} = $restore(this, {xterms, xcomp, yterms, ycomp});
@@ -78232,9 +78307,9 @@ $packages["go/types"] = (function() {
 		computeUnionTypeSet = function computeUnionTypeSet$1(check, unionSets, pos, utyp) {
 			var {_entry, _entry$1, _entry$2, _entry$3, _i, _key, _key$1, _r$1, _r$2, _r$3, _r$4, _ref, _tuple, _tuple$1, _v, allTerms, check, pos, t, terms, tset, u, ui, unionSets, utyp, $s, $r, $c} = $restore(this, {check, unionSets, pos, utyp});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tuple = (_entry = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry !== undefined ? [_entry.v, true] : [ptrType$7.nil, false]);
+			_tuple = (_entry = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry !== undefined ? [_entry.v, true] : [ptrType$8.nil, false]);
 			tset = _tuple[0];
-			if (!(tset === ptrType$7.nil)) {
+			if (!(tset === ptrType$8.nil)) {
 				$s = -1; return tset;
 			}
 			_key = utyp; (unionSets || $throwRuntimeError("assignment to entry in nil map")).set(ptrType$12.keyFor(_key), { k: _key, v: new _TypeSet.ptr(sliceType.nil, termlist.nil, false) });
@@ -78270,26 +78345,26 @@ $packages["go/types"] = (function() {
 					/* if (_v) { */ case 10:
 						t = ptrType$19.nil;
 					/* } */ case 11:
-					terms = new termlist([($pointerOfStructConversion(t, ptrType$4))]);
+					terms = new termlist([($pointerOfStructConversion(t, ptrType$5))]);
 				/* } */ case 7:
 				_r$4 = allTerms.union(terms); /* */ $s = 14; case 14: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 				allTerms = _r$4;
 				/* */ if (allTerms.$length > 100) { $s = 15; continue; }
 				/* */ $s = 16; continue;
 				/* if (allTerms.$length > 100) { */ case 15:
-					/* */ if (!(check === ptrType$5.nil)) { $s = 17; continue; }
+					/* */ if (!(check === ptrType$6.nil)) { $s = 17; continue; }
 					/* */ $s = 18; continue;
-					/* if (!(check === ptrType$5.nil)) { */ case 17:
+					/* if (!(check === ptrType$6.nil)) { */ case 17:
 						$r = check.errorf(new atPos(((pos >> 0))), 141, "cannot handle more than %d union terms (implementation limitation)", new sliceType$6([new $Int(100)])); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 18:
 					_key$1 = utyp; (unionSets || $throwRuntimeError("assignment to entry in nil map")).set(ptrType$12.keyFor(_key$1), { k: _key$1, v: invalidTypeSet });
-					$s = -1; return (_entry$1 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$1 !== undefined ? _entry$1.v : ptrType$7.nil);
+					$s = -1; return (_entry$1 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$1 !== undefined ? _entry$1.v : ptrType$8.nil);
 				/* } */ case 16:
 				_i++;
 			$s = 1; continue;
 			case 2:
-			(_entry$2 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$2 !== undefined ? _entry$2.v : ptrType$7.nil).terms = allTerms;
-			$s = -1; return (_entry$3 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$3 !== undefined ? _entry$3.v : ptrType$7.nil);
+			(_entry$2 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$2 !== undefined ? _entry$2.v : ptrType$8.nil).terms = allTerms;
+			$s = -1; return (_entry$3 = $mapIndex(unionSets,ptrType$12.keyFor(utyp)), _entry$3 !== undefined ? _entry$3.v : ptrType$8.nil);
 			/* */ } return; } var $f = {$blk: computeUnionTypeSet$1, $c: true, $r, _entry, _entry$1, _entry$2, _entry$3, _i, _key, _key$1, _r$1, _r$2, _r$3, _r$4, _ref, _tuple, _tuple$1, _v, allTerms, check, pos, t, terms, tset, u, ui, unionSets, utyp, $s};return $f;
 		};
 		nextID = function nextID$1() {
@@ -78298,7 +78373,7 @@ $packages["go/types"] = (function() {
 		NewTypeParam = function NewTypeParam$1(obj, constraint) {
 			var {$24r, _r$1, constraint, obj, $s, $r, $c} = $restore(this, {obj, constraint});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_r$1 = (ptrType$5.nil).newTypeParam(obj, constraint); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = (ptrType$6.nil).newTypeParam(obj, constraint); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			$24r = _r$1;
 			$s = 2; case 2: return $24r;
 			/* */ } return; } var $f = {$blk: NewTypeParam$1, $c: true, $r, $24r, _r$1, constraint, obj, $s};return $f;
@@ -78309,7 +78384,7 @@ $packages["go/types"] = (function() {
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			check = this;
 			id = nextID();
-			if (!(check === ptrType$5.nil)) {
+			if (!(check === ptrType$6.nil)) {
 				check.nextID = (x = check.nextID, x$1 = new $Uint64(0, 1), new $Uint64(x.$high + x$1.$high, x.$low + x$1.$low));
 				id = check.nextID;
 			}
@@ -78317,10 +78392,10 @@ $packages["go/types"] = (function() {
 			if ($interfaceIsEqual(obj.object.typ, $ifaceNil)) {
 				obj.object.typ = typ$2;
 			}
-			/* */ if (!(check === ptrType$5.nil)) { $s = 1; continue; }
+			/* */ if (!(check === ptrType$6.nil)) { $s = 1; continue; }
 			/* */ if (!($interfaceIsEqual(constraint, $ifaceNil))) { $s = 2; continue; }
 			/* */ $s = 3; continue;
-			/* if (!(check === ptrType$5.nil)) { */ case 1:
+			/* if (!(check === ptrType$6.nil)) { */ case 1:
 				check.needsCleanup(typ$2);
 				$s = 3; continue;
 			/* } else if (!($interfaceIsEqual(constraint, $ifaceNil))) { */ case 2:
@@ -78382,7 +78457,7 @@ $packages["go/types"] = (function() {
 			t = this;
 			_r$1 = t.iface(); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_r$1;
-			t.check = ptrType$5.nil;
+			t.check = ptrType$6.nil;
 			$s = -1; return;
 			/* */ } return; } var $f = {$blk: cleanup, $c: true, $r, _r$1, t, $s};return $f;
 		};
@@ -78394,10 +78469,10 @@ $packages["go/types"] = (function() {
 			ityp = ptrType$13.nil;
 			_r$1 = under(bound); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 3; continue; }
 			/* */ $s = 4; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				u = _ref.$val;
 				if (u === (0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0])) {
 					$s = -1; return emptyInterface;
@@ -78413,14 +78488,14 @@ $packages["go/types"] = (function() {
 			/* */ if (ityp === ptrType$13.nil) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (ityp === ptrType$13.nil) { */ case 5:
-				_r$2 = NewInterfaceType(sliceType.nil, new sliceType$2([bound])); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+				_r$2 = NewInterfaceType(sliceType.nil, new sliceType$3([bound])); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				ityp = _r$2;
 				ityp.implicit = true;
 				t.bound = ityp;
 			/* } */ case 6:
-			/* */ if (ityp.tset === ptrType$7.nil) { $s = 8; continue; }
+			/* */ if (ityp.tset === ptrType$8.nil) { $s = 8; continue; }
 			/* */ $s = 9; continue;
-			/* if (ityp.tset === ptrType$7.nil) { */ case 8:
+			/* if (ityp.tset === ptrType$8.nil) { */ case 8:
 				pos = t.obj.object.pos;
 				_tuple = $assertType(bound, ptrType$9, true);
 				n = _tuple[0];
@@ -78494,7 +78569,7 @@ $packages["go/types"] = (function() {
 			var l;
 			l = this;
 			if (l === ptrType$56.nil) {
-				return sliceType$2.nil;
+				return sliceType$3.nil;
 			}
 			return l.types;
 		};
@@ -78730,7 +78805,7 @@ $packages["go/types"] = (function() {
 			while (true) {
 				if (!(_i < _ref.$length)) { break; }
 				x = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-				if (!(x === ptrType$4.nil)) {
+				if (!(x === ptrType$5.nil)) {
 					return false;
 				}
 				_i++;
@@ -78746,7 +78821,7 @@ $packages["go/types"] = (function() {
 			while (true) {
 				if (!(_i < _ref.$length)) { break; }
 				x = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-				if (!(x === ptrType$4.nil) && $interfaceIsEqual(x.typ, $ifaceNil)) {
+				if (!(x === ptrType$5.nil) && $interfaceIsEqual(x.typ, $ifaceNil)) {
 					return true;
 				}
 				_i++;
@@ -78766,7 +78841,7 @@ $packages["go/types"] = (function() {
 				/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 2; continue; }
 				i = _i;
 				xi = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-				if (xi === ptrType$4.nil || ((i < 0 || i >= used.$length) ? ($throwRuntimeError("index out of range"), undefined) : used.$array[used.$offset + i])) {
+				if (xi === ptrType$5.nil || ((i < 0 || i >= used.$length) ? ($throwRuntimeError("index out of range"), undefined) : used.$array[used.$offset + i])) {
 					_i++;
 					/* continue; */ $s = 1; continue;
 				}
@@ -78774,7 +78849,7 @@ $packages["go/types"] = (function() {
 				/* while (true) { */ case 3:
 					/* if (!(j < xl.$length)) { break; } */ if(!(j < xl.$length)) { $s = 4; continue; }
 					xj = ((j < 0 || j >= xl.$length) ? ($throwRuntimeError("index out of range"), undefined) : xl.$array[xl.$offset + j]);
-					if (xj === ptrType$4.nil || ((j < 0 || j >= used.$length) ? ($throwRuntimeError("index out of range"), undefined) : used.$array[used.$offset + j])) {
+					if (xj === ptrType$5.nil || ((j < 0 || j >= used.$length) ? ($throwRuntimeError("index out of range"), undefined) : used.$array[used.$offset + j])) {
 						j = j + (1) >> 0;
 						/* continue; */ $s = 3; continue;
 					}
@@ -78782,7 +78857,7 @@ $packages["go/types"] = (function() {
 					_tuple = _r$1;
 					u1 = _tuple[0];
 					u2 = _tuple[1];
-					if (u2 === ptrType$4.nil) {
+					if (u2 === ptrType$5.nil) {
 						if ($interfaceIsEqual(u1.typ, $ifaceNil)) {
 							$s = -1; return allTermlist;
 						}
@@ -78830,7 +78905,7 @@ $packages["go/types"] = (function() {
 					y = ((_i$1 < 0 || _i$1 >= _ref$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref$1.$array[_ref$1.$offset + _i$1]);
 					_r$1 = x.intersect(y); /* */ $s = 5; case 5: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 					r = _r$1;
-					if (!(r === ptrType$4.nil)) {
+					if (!(r === ptrType$5.nil)) {
 						rl = $append(rl, r);
 					}
 					_i$1++;
@@ -78986,7 +79061,7 @@ $packages["go/types"] = (function() {
 				$s = -1; return typ$2;
 			}
 			_ref = typ$2;
-			if ($assertType(_ref, ptrType$8, true)[1]) {
+			if ($assertType(_ref, ptrType$4, true)[1]) {
 				t = _ref.$val;
 				$s = -1; return typ$2;
 			} else if ($assertType(_ref, ptrType$14, true)[1]) {
@@ -79006,7 +79081,7 @@ $packages["go/types"] = (function() {
 			subst$1[0] = this;
 			_ref = typ$3;
 			/* */ if (_ref === $ifaceNil) { $s = 1; continue; }
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 4; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 5; continue; }
@@ -79024,7 +79099,7 @@ $packages["go/types"] = (function() {
 				t = _ref;
 				$panic(new $String("nil typ"));
 				$s = 16; continue;
-			/* } else if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* } else if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				t$1 = _ref.$val;
 				$s = 16; continue;
 			/* } else if ($assertType(_ref, ptrType$10, true)[1]) { */ case 3:
@@ -79132,9 +79207,9 @@ $packages["go/types"] = (function() {
 				dump = (function(subst$1) { return function subster·typ·func1(param, param$1) {
 						var param, param$1;
 					}; })(subst$1);
-				/* */ if (!(subst$1[0].check === ptrType$5.nil) && false) { $s = 31; continue; }
+				/* */ if (!(subst$1[0].check === ptrType$6.nil) && false) { $s = 31; continue; }
 				/* */ $s = 32; continue;
-				/* if (!(subst$1[0].check === ptrType$5.nil) && false) { */ case 31:
+				/* if (!(subst$1[0].check === ptrType$6.nil) && false) { */ case 31:
 					subst$1[0].check.indent = subst$1[0].check.indent + (1) >> 0;
 					$deferred.push([(function(subst$1) { return function subster·typ·func2() {
 							subst$1[0].check.indent = subst$1[0].check.indent - (1) >> 0;
@@ -79157,7 +79232,7 @@ $packages["go/types"] = (function() {
 					$r = dump(">>> %s is not parameterized", new sliceType$6([t$12])); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return t$12;
 				/* } */ case 36:
-				newTArgs = sliceType$2.nil;
+				newTArgs = sliceType$3.nil;
 				if (!((t$12.TypeArgs().Len() === n))) {
 					$s = -1; return (0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0]);
 				}
@@ -79175,8 +79250,8 @@ $packages["go/types"] = (function() {
 					/* */ $s = 44; continue;
 					/* if (!($interfaceIsEqual(new_targ, targ))) { */ case 43:
 						$r = dump(">>> substituted %d targ %s => %s", new sliceType$6([new $Int(i), targ, new_targ])); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						if (newTArgs === sliceType$2.nil) {
-							newTArgs = $makeSlice(sliceType$2, n);
+						if (newTArgs === sliceType$3.nil) {
+							newTArgs = $makeSlice(sliceType$3, n);
 							$copySlice(newTArgs, t$12.TypeArgs().list());
 						}
 						((i < 0 || i >= newTArgs.$length) ? ($throwRuntimeError("index out of range"), undefined) : newTArgs.$array[newTArgs.$offset + i] = new_targ);
@@ -79184,9 +79259,9 @@ $packages["go/types"] = (function() {
 					_i++;
 				$s = 39; continue;
 				case 40:
-				/* */ if (newTArgs === sliceType$2.nil) { $s = 46; continue; }
+				/* */ if (newTArgs === sliceType$3.nil) { $s = 46; continue; }
 				/* */ $s = 47; continue;
-				/* if (newTArgs === sliceType$2.nil) { */ case 46:
+				/* if (newTArgs === sliceType$3.nil) { */ case 46:
 					$r = dump(">>> nothing to substitute in %s", new sliceType$6([t$12])); /* */ $s = 48; case 48: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return t$12;
 				/* } */ case 47:
@@ -79342,7 +79417,7 @@ $packages["go/types"] = (function() {
 		$ptrType(subster).prototype.typeList = function typeList$2(in$1) {
 			var {_i, _r$1, _ref, copied, i, in$1, new$1, out, subst$1, t, u, $s, $r, $c} = $restore(this, {in$1});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			out = sliceType$2.nil;
+			out = sliceType$3.nil;
 			copied = false;
 			subst$1 = this;
 			out = in$1;
@@ -79356,7 +79431,7 @@ $packages["go/types"] = (function() {
 				u = _r$1;
 				if (!($interfaceIsEqual(u, t))) {
 					if (!copied) {
-						new$1 = $makeSlice(sliceType$2, in$1.$length);
+						new$1 = $makeSlice(sliceType$3, in$1.$length);
 						$copySlice(new$1, out);
 						out = new$1;
 						copied = true;
@@ -79567,11 +79642,11 @@ $packages["go/types"] = (function() {
 							isPtr = _tuple[1];
 							_r$4 = under(t); /* */ $s = 1; case 1: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 							_ref$2 = _r$4;
-							/* */ if ($assertType(_ref$2, ptrType$8, true)[1]) { $s = 2; continue; }
+							/* */ if ($assertType(_ref$2, ptrType$4, true)[1]) { $s = 2; continue; }
 							/* */ if ($assertType(_ref$2, ptrType$26, true)[1]) { $s = 3; continue; }
 							/* */ if ($assertType(_ref$2, ptrType$13, true)[1]) { $s = 4; continue; }
 							/* */ $s = 5; continue;
-							/* switch (0) { default: if ($assertType(_ref$2, ptrType$8, true)[1]) { */ case 2:
+							/* switch (0) { default: if ($assertType(_ref$2, ptrType$4, true)[1]) { */ case 2:
 								u = _ref$2.$val;
 								if ($interfaceIsEqual(t, (0 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 0]))) {
 									$s = -1; return;
@@ -80949,13 +81024,13 @@ $packages["go/types"] = (function() {
 			val = $ifaceNil;
 			_r$1 = arrayPtrDeref(typ$3); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 4; continue; }
 			/* */ if ($assertType(_ref, ptrType$28, true)[1]) { $s = 5; continue; }
 			/* */ if ($assertType(_ref, ptrType$29, true)[1]) { $s = 6; continue; }
 			/* */ $s = 7; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				typ$4 = _ref.$val;
 				_r$2 = isString(typ$4); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				/* */ if (_r$2) { $s = 8; continue; }
@@ -81033,7 +81108,7 @@ $packages["go/types"] = (function() {
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1] || $assertType(_ref, ptrType$13, true)[1]) { $s = 4; continue; }
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 5; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 5; continue; }
 			/* */ if ($assertType(_ref, ptrType$14, true)[1] || $assertType(_ref, ptrType$12, true)[1]) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if ($assertType(_ref, ptrType$10, true)[1]) { */ case 2:
@@ -81065,7 +81140,7 @@ $packages["go/types"] = (function() {
 				t$2 = _ref;
 				$r = assert(!isTypeParam(T)); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				$s = -1; return s.WordSize;
-			/* } else if ($assertType(_ref, ptrType$8, true)[1]) { */ case 5:
+			/* } else if ($assertType(_ref, ptrType$4, true)[1]) { */ case 5:
 				t$3 = _ref.$val;
 				if (!(((t$3.Info() & 32) === 0))) {
 					$s = -1; return s.WordSize;
@@ -81133,14 +81208,14 @@ $packages["go/types"] = (function() {
 			s = this;
 			_r$1 = under(T); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 4; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 5; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 6; continue; }
 			/* */ if ($assertType(_ref, ptrType$14, true)[1] || $assertType(_ref, ptrType$12, true)[1]) { $s = 7; continue; }
 			/* */ $s = 8; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				t = _ref.$val;
 				$r = assert(isTyped(T)); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				k = t.kind;
@@ -81542,7 +81617,7 @@ $packages["go/types"] = (function() {
 						}
 						_ref$2 = rtyp;
 						/* */ if ($assertType(_ref$2, ptrType$9, true)[1]) { $s = 1; continue; }
-						/* */ if ($assertType(_ref$2, ptrType$8, true)[1]) { $s = 2; continue; }
+						/* */ if ($assertType(_ref$2, ptrType$4, true)[1]) { $s = 2; continue; }
 						/* */ $s = 3; continue;
 						/* switch (0) { default: if ($assertType(_ref$2, ptrType$9, true)[1]) { */ case 1:
 							T = _ref$2.$val;
@@ -81561,11 +81636,11 @@ $packages["go/types"] = (function() {
 							cause = "";
 							_r$12 = T.under(); /* */ $s = 11; case 11: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 							_ref$3 = _r$12;
-							/* */ if ($assertType(_ref$3, ptrType$8, true)[1]) { $s = 12; continue; }
+							/* */ if ($assertType(_ref$3, ptrType$4, true)[1]) { $s = 12; continue; }
 							/* */ if ($assertType(_ref$3, ptrType$26, true)[1] || $assertType(_ref$3, ptrType$13, true)[1]) { $s = 13; continue; }
 							/* */ if ($assertType(_ref$3, ptrType$14, true)[1]) { $s = 14; continue; }
 							/* */ $s = 15; continue;
-							/* if ($assertType(_ref$3, ptrType$8, true)[1]) { */ case 12:
+							/* if ($assertType(_ref$3, ptrType$4, true)[1]) { */ case 12:
 								u = _ref$3.$val;
 								if (u.kind === 18) {
 									cause = "unsafe.Pointer";
@@ -81585,7 +81660,7 @@ $packages["go/types"] = (function() {
 								$r = check[0].errorf(recv[0], 32, "invalid receiver type %s (%s)", new sliceType$6([rtyp, new $String(cause)])); /* */ $s = 18; case 18: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* } */ case 17:
 							$s = 4; continue;
-						/* } else if ($assertType(_ref$2, ptrType$8, true)[1]) { */ case 2:
+						/* } else if ($assertType(_ref$2, ptrType$4, true)[1]) { */ case 2:
 							T$1 = _ref$2.$val;
 							$r = check[0].errorf(recv[0], 32, "cannot define new methods on non-local type %s", new sliceType$6([rtyp])); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = 4; continue;
@@ -83336,9 +83411,9 @@ $packages["go/types"] = (function() {
 			var {_r$1, _tuple, info, t, u, $s, $r, $c} = $restore(this, {t, info});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_r$1 = under(t); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			_tuple = $assertType(_r$1, ptrType$8, true);
+			_tuple = $assertType(_r$1, ptrType$4, true);
 			u = _tuple[0];
-			$s = -1; return !(u === ptrType$8.nil) && !(((u.info & info) === 0));
+			$s = -1; return !(u === ptrType$4.nil) && !(((u.info & info) === 0));
 			/* */ } return; } var $f = {$blk: isBasic$1, $c: true, $r, _r$1, _tuple, info, t, u, $s};return $f;
 		};
 		allBoolean = function allBoolean$1(typ$3) {
@@ -83409,7 +83484,7 @@ $packages["go/types"] = (function() {
 				_r$1 = tpar.is((function(info) { return function allBasic·func1(t$1) {
 						var {$24r, _r$1, _v, t$1, $s, $r, $c} = $restore(this, {t$1});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						if (!(!(t$1 === ptrType$4.nil))) { _v = false; $s = 1; continue s; }
+						if (!(!(t$1 === ptrType$5.nil))) { _v = false; $s = 1; continue s; }
 						_r$1 = isBasic(t$1.typ, info[0]); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 						_v = _r$1; case 1:
 						$24r = _v;
@@ -83427,16 +83502,16 @@ $packages["go/types"] = (function() {
 		hasName = function hasName$1(t) {
 			var _ref, t;
 			_ref = t;
-			if ($assertType(_ref, ptrType$8, true)[1] || $assertType(_ref, ptrType$9, true)[1] || $assertType(_ref, ptrType$14, true)[1]) {
+			if ($assertType(_ref, ptrType$4, true)[1] || $assertType(_ref, ptrType$9, true)[1] || $assertType(_ref, ptrType$14, true)[1]) {
 				return true;
 			}
 			return false;
 		};
 		isTyped = function isTyped$1(t) {
 			var _tuple, b, t;
-			_tuple = $assertType(t, ptrType$8, true);
+			_tuple = $assertType(t, ptrType$4, true);
 			b = _tuple[0];
-			return b === ptrType$8.nil || ((b.info & 64) === 0);
+			return b === ptrType$4.nil || ((b.info & 64) === 0);
 		};
 		isUntyped = function isUntyped$1(t) {
 			var t;
@@ -83479,7 +83554,7 @@ $packages["go/types"] = (function() {
 				_r$1 = safeUnderlying(tpar.bound); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				_tuple$1 = $assertType(_r$1, ptrType$13, true);
 				iface$1 = _tuple$1[0];
-				$s = -1; return !(iface$1 === ptrType$13.nil) && !(iface$1.tset === ptrType$7.nil) && iface$1.tset.IsEmpty();
+				$s = -1; return !(iface$1 === ptrType$13.nil) && !(iface$1.tset === ptrType$8.nil) && iface$1.tset.IsEmpty();
 			/* } */ case 2:
 			$s = -1; return false;
 			/* */ } return; } var $f = {$blk: hasEmptyTypeset$1, $c: true, $r, _r$1, _tuple, _tuple$1, iface$1, t, tpar, $s};return $f;
@@ -83518,13 +83593,13 @@ $packages["go/types"] = (function() {
 			_key = T; (seen || $throwRuntimeError("assignment to entry in nil map")).set(Type.keyFor(_key), { k: _key, v: true });
 			_r$1 = under(T); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$26, true)[1] || $assertType(_ref, ptrType$29, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 4; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 5; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 6; continue; }
 			/* */ $s = 7; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				t = _ref.$val;
 				$s = -1; return !((t.kind === 25));
 			/* } else if ($assertType(_ref, ptrType$26, true)[1] || $assertType(_ref, ptrType$29, true)[1]) { */ case 3:
@@ -83600,11 +83675,11 @@ $packages["go/types"] = (function() {
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_r$1 = under(t); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 2; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1] || $assertType(_ref, ptrType$26, true)[1] || $assertType(_ref, ptrType$27, true)[1] || $assertType(_ref, ptrType$28, true)[1] || $assertType(_ref, ptrType$29, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 4; continue; }
 			/* */ $s = 5; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 2:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 2:
 				u = _ref.$val;
 				$s = -1; return u.kind === 18;
 			/* } else if ($assertType(_ref, ptrType$25, true)[1] || $assertType(_ref, ptrType$26, true)[1] || $assertType(_ref, ptrType$27, true)[1] || $assertType(_ref, ptrType$28, true)[1] || $assertType(_ref, ptrType$29, true)[1]) { */ case 3:
@@ -83643,7 +83718,7 @@ $packages["go/types"] = (function() {
 				$s = -1; return true;
 			}
 			_ref = x;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 1; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 1; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 4; continue; }
@@ -83658,9 +83733,9 @@ $packages["go/types"] = (function() {
 			/* */ if ($assertType(_ref, ptrType$14, true)[1]) { $s = 13; continue; }
 			/* */ if (_ref === $ifaceNil) { $s = 14; continue; }
 			/* */ $s = 15; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 1:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 1:
 				x$1 = _ref.$val;
-				_tuple = $assertType(y, ptrType$8, true);
+				_tuple = $assertType(y, ptrType$4, true);
 				y$1 = _tuple[0];
 				ok = _tuple[1];
 				if (ok) {
@@ -83793,7 +83868,7 @@ $packages["go/types"] = (function() {
 				/* if (x$7.TypeParams().Len() > 0) { */ case 51:
 					xtparams = x$7.TypeParams().list();
 					ytparams = y$7.TypeParams().list();
-					targs = sliceType$2.nil;
+					targs = sliceType$3.nil;
 					_ref$3 = xtparams;
 					_i$2 = 0;
 					while (true) {
@@ -83804,7 +83879,7 @@ $packages["go/types"] = (function() {
 					}
 					_r$6 = makeSubstMap(ytparams, targs); /* */ $s = 53; case 53: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 					smap = _r$6;
-					check = ptrType$5.nil;
+					check = ptrType$6.nil;
 					ctxt = NewContext();
 					_ref$4 = xtparams;
 					_i$3 = 0;
@@ -83844,9 +83919,9 @@ $packages["go/types"] = (function() {
 				/* */ $s = 68; continue;
 				/* if (!(y$8 === ptrType$12.nil)) { */ case 67:
 					unionSets = new $global.Map();
-					_r$13 = computeUnionTypeSet(ptrType$5.nil, unionSets, 0, x$8); /* */ $s = 69; case 69: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+					_r$13 = computeUnionTypeSet(ptrType$6.nil, unionSets, 0, x$8); /* */ $s = 69; case 69: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 					xset = _r$13;
-					_r$14 = computeUnionTypeSet(ptrType$5.nil, unionSets, 0, y$8); /* */ $s = 70; case 70: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+					_r$14 = computeUnionTypeSet(ptrType$6.nil, unionSets, 0, y$8); /* */ $s = 70; case 70: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
 					yset = _r$14;
 					_r$15 = xset.terms.equal(yset.terms); /* */ $s = 71; case 71: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 					$24r$4 = _r$15;
@@ -84029,7 +84104,7 @@ $packages["go/types"] = (function() {
 		};
 		Default = function Default$1(t) {
 			var _1, _tuple, ok, t, t$1;
-			_tuple = $assertType(t, ptrType$8, true);
+			_tuple = $assertType(t, ptrType$4, true);
 			t$1 = _tuple[0];
 			ok = _tuple[1];
 			if (ok) {
@@ -84195,7 +84270,7 @@ $packages["go/types"] = (function() {
 				if ((_2 === (0)) || (_2 === (1)) || (_2 === (2)) || (_2 === (3))) {
 				} else if (!($interfaceIsEqual(x.typ, $ifaceNil))) {
 					if (isUntyped(x.typ)) {
-						buf[0].WriteString($assertType(x.typ, ptrType$8).name);
+						buf[0].WriteString($assertType(x.typ, ptrType$4).name);
 						buf[0].WriteByte(32);
 						break;
 					}
@@ -84349,7 +84424,7 @@ $packages["go/types"] = (function() {
 					_r$4 = Tp[0].is((function(T, Tp, Vp, cause, check, code, code$1, errorf, ok, ok$1, x, x$1) { return function operand·assignableTo·func1(t) {
 							var {_r$4, _tuple$2, newType, t, $s, $r, $c} = $restore(this, {t});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-							if (t === ptrType$4.nil) {
+							if (t === ptrType$5.nil) {
 								$s = -1; return false;
 							}
 							_r$4 = check[0].implicitTypeAndValue(x[0], t.typ); /* */ $s = 1; case 1: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
@@ -84427,9 +84502,9 @@ $packages["go/types"] = (function() {
 			errorf[0] = (function(T, Tp, Vp, cause, check, code, code$1, errorf, ok, ok$1, x, x$1) { return function operand·assignableTo·func2(format, args) {
 					var {_r$11, args, format, msg, $s, $r, $c} = $restore(this, {format, args});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					/* */ if (!(check[0] === ptrType$5.nil) && !(cause[0] === ptrType$34.nil)) { $s = 1; continue; }
+					/* */ if (!(check[0] === ptrType$6.nil) && !(cause[0] === ptrType$34.nil)) { $s = 1; continue; }
 					/* */ $s = 2; continue;
-					/* if (!(check[0] === ptrType$5.nil) && !(cause[0] === ptrType$34.nil)) { */ case 1:
+					/* if (!(check[0] === ptrType$6.nil) && !(cause[0] === ptrType$34.nil)) { */ case 1:
 						_r$11 = check[0].sprintf(format, args); /* */ $s = 3; case 3: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 						msg = _r$11;
 						if (!(cause[0].$get() === "")) {
@@ -84448,7 +84523,7 @@ $packages["go/types"] = (function() {
 				_r$11 = Tp[0].is((function(T, Tp, Vp, cause, check, code, code$1, errorf, ok, ok$1, x, x$1) { return function operand·assignableTo·func3(T$1) {
 						var {T$1, _r$11, _tuple$7, $s, $r, $c} = $restore(this, {T$1});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						if (T$1 === ptrType$4.nil) {
+						if (T$1 === ptrType$5.nil) {
 							$s = -1; return false;
 						}
 						_r$11 = x[0].assignableTo(check[0], T$1.typ, cause[0]); /* */ $s = 1; case 1: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
@@ -84476,7 +84551,7 @@ $packages["go/types"] = (function() {
 				_r$12 = Vp[0].is((function(T, Tp, Vp, cause, check, code, code$1, errorf, ok, ok$1, x, x$1) { return function operand·assignableTo·func4(V$1) {
 						var {V$1, _r$12, _tuple$7, $s, $r, $c} = $restore(this, {V$1});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						if (V$1 === ptrType$4.nil) {
+						if (V$1 === ptrType$5.nil) {
 							$s = -1; return false;
 						}
 						x$1[0].typ = V$1.typ;
@@ -84677,7 +84752,7 @@ $packages["go/types"] = (function() {
 			if (_ref === $ifaceNil) {
 				t = _ref;
 				return false;
-			} else if ($assertType(_ref, ptrType$8, true)[1]) {
+			} else if ($assertType(_ref, ptrType$4, true)[1]) {
 				t$1 = _ref.$val;
 				if (obj.object.pkg === $pkg.Unsafe) {
 					return false;
@@ -84887,10 +84962,10 @@ $packages["go/types"] = (function() {
 			/* */ $s = 34; continue;
 			/* if (!(tname === ptrType$17.nil)) { */ case 33:
 				_ref$1 = typ$3;
-				/* */ if ($assertType(_ref$1, ptrType$8, true)[1]) { $s = 35; continue; }
+				/* */ if ($assertType(_ref$1, ptrType$4, true)[1]) { $s = 35; continue; }
 				/* */ if ($assertType(_ref$1, ptrType$9, true)[1]) { $s = 36; continue; }
 				/* */ $s = 37; continue;
-				/* if ($assertType(_ref$1, ptrType$8, true)[1]) { */ case 35:
+				/* if ($assertType(_ref$1, ptrType$4, true)[1]) { */ case 35:
 					t = _ref$1.$val;
 					$s = -1; return;
 				/* } else if ($assertType(_ref$1, ptrType$9, true)[1]) { */ case 36:
@@ -85083,7 +85158,7 @@ $packages["go/types"] = (function() {
 			if (ok) {
 				$panic(new $String("underlying type must not be *Named"));
 			}
-			return (ptrType$5.nil).newNamed(obj, underlying, methods);
+			return (ptrType$6.nil).newNamed(obj, underlying, methods);
 		};
 		$pkg.NewNamed = NewNamed;
 		$ptrType(Named).prototype.resolve = function resolve$2() {
@@ -85161,7 +85236,7 @@ $packages["go/types"] = (function() {
 			if ($interfaceIsEqual(obj.object.typ, $ifaceNil)) {
 				obj.object.typ = typ$3;
 			}
-			if (!(check === ptrType$5.nil)) {
+			if (!(check === ptrType$6.nil)) {
 				check.needsCleanup(typ$3);
 			}
 			return typ$3;
@@ -85178,7 +85253,7 @@ $packages["go/types"] = (function() {
 			}
 			typ$3 = new Named.ptr(check, obj, $ifaceNil, inst, new sync.Mutex.ptr(0, 0), 0, $ifaceNil, ptrType$48.nil, sliceType.nil, $throwNilPointerError);
 			obj.object.typ = typ$3;
-			if (!(check === ptrType$5.nil)) {
+			if (!(check === ptrType$6.nil)) {
 				check.needsCleanup(typ$3);
 			}
 			$s = -1; return typ$3;
@@ -85202,7 +85277,7 @@ $packages["go/types"] = (function() {
 				_r$1 = t.under(); /* */ $s = 5; case 5: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				_r$1;
 			/* } */ case 4:
-			t.check = ptrType$5.nil;
+			t.check = ptrType$6.nil;
 			$s = -1; return;
 			/* */ } return; } var $f = {$blk: cleanup$1, $c: true, $r, _r$1, _ref, t, $s};return $f;
 		};
@@ -85302,9 +85377,9 @@ $packages["go/types"] = (function() {
 			origm = _r$1;
 			$r = assert(!(origm === ptrType$2.nil)); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			check = t.check;
-			/* */ if (!(check === ptrType$5.nil)) { $s = 3; continue; }
+			/* */ if (!(check === ptrType$6.nil)) { $s = 3; continue; }
 			/* */ $s = 4; continue;
-			/* if (!(check === ptrType$5.nil)) { */ case 3:
+			/* if (!(check === ptrType$6.nil)) { */ case 3:
 				$r = check.objDecl(origm, ptrType$9.nil); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* } */ case 4:
 			origSig = $assertType(origm.object.typ, ptrType$27);
@@ -85320,7 +85395,7 @@ $packages["go/types"] = (function() {
 				_r$2 = makeSubstMap(origSig.RecvTypeParams().list(), t.inst.targs.list()); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				smap = _r$2;
 				ctxt = ptrType$51.nil;
-				if (!(check === ptrType$5.nil)) {
+				if (!(check === ptrType$6.nil)) {
 					ctxt = check.context();
 				}
 				_r$3 = check.subst(origm.object.pos, origSig, smap, t, ctxt); /* */ $s = 9; case 9: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
@@ -85412,7 +85487,7 @@ $packages["go/types"] = (function() {
 				u1$1 = _ref;
 				$s = -1; return u;
 			}
-			if (n0.check === ptrType$5.nil) {
+			if (n0.check === ptrType$6.nil) {
 				$panic(new $String("Named.check == nil but type is incomplete"));
 			}
 			check = n0.check;
@@ -85509,9 +85584,9 @@ $packages["go/types"] = (function() {
 			n = [n];
 			n[0] = this;
 			check[0] = n[0].check;
-			/* */ if (!(check[0] === ptrType$5.nil) && false) { $s = 1; continue; }
+			/* */ if (!(check[0] === ptrType$6.nil) && false) { $s = 1; continue; }
 			/* */ $s = 2; continue;
-			/* if (!(check[0] === ptrType$5.nil) && false) { */ case 1:
+			/* if (!(check[0] === ptrType$6.nil) && false) { */ case 1:
 				$r = check[0].trace(n[0].obj.object.pos, "-- Named.expandUnderlying %s", new sliceType$6([n[0]])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				check[0].indent = check[0].indent + (1) >> 0;
 				$deferred.push([(function(check, n) { return function Named·expandUnderlying·func1() {
@@ -85534,7 +85609,7 @@ $packages["go/types"] = (function() {
 			/* */ if (unexpanded) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (unexpanded) { */ case 5:
-				$r = assert(!(check[0] === ptrType$5.nil)); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				$r = assert(!(check[0] === ptrType$6.nil)); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* } */ case 6:
 			/* */ if (!((orig.tparams.Len() === targs.Len()))) { $s = 8; continue; }
 			/* */ $s = 9; continue;
@@ -85550,7 +85625,7 @@ $packages["go/types"] = (function() {
 			_r$3 = makeSubstMap(orig.tparams.list(), targs.list()); /* */ $s = 14; case 14: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			smap = _r$3;
 			ctxt = ptrType$51.nil;
-			if (!(check[0] === ptrType$5.nil)) {
+			if (!(check[0] === ptrType$6.nil)) {
 				ctxt = check[0].context();
 			}
 			_r$4 = n[0].check.subst(n[0].obj.object.pos, orig.underlying, smap, n[0], ctxt); /* */ $s = 15; case 15: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
@@ -85744,7 +85819,7 @@ $packages["go/types"] = (function() {
 					/* */ if ($assertType(_ref, ptrType$14, true)[1]) { $s = 1; continue; }
 					/* */ if ($assertType(_ref, ptrType$9, true)[1]) { $s = 2; continue; }
 					/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 3; continue; }
-					/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 4; continue; }
+					/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 4; continue; }
 					/* */ if ($assertType(_ref, ptrType$29, true)[1]) { $s = 5; continue; }
 					/* */ if ($assertType(_ref, ptrType$28, true)[1]) { $s = 6; continue; }
 					/* */ if ($assertType(_ref, ptrType$26, true)[1]) { $s = 7; continue; }
@@ -85779,7 +85854,7 @@ $packages["go/types"] = (function() {
 						typ$7 = _ref.$val;
 						$r = do$1[0](typ$7.Elem()); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = 13; continue;
-					/* } else if ($assertType(_ref, ptrType$8, true)[1]) { */ case 4:
+					/* } else if ($assertType(_ref, ptrType$4, true)[1]) { */ case 4:
 						typ$8 = _ref.$val;
 						$s = 13; continue;
 					/* } else if ($assertType(_ref, ptrType$29, true)[1]) { */ case 5:
@@ -86695,9 +86770,9 @@ $packages["go/types"] = (function() {
 					alt = _tmp$5;
 					$s = -1; return [method, alt];
 				}
-				/* */ if (!(check === ptrType$5.nil)) { $s = 24; continue; }
+				/* */ if (!(check === ptrType$6.nil)) { $s = 24; continue; }
 				/* */ $s = 25; continue;
-				/* if (!(check === ptrType$5.nil)) { */ case 24:
+				/* if (!(check === ptrType$6.nil)) { */ case 24:
 					$r = check.objDecl(f$1, ptrType$9.nil); /* */ $s = 26; case 26: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 25:
 				if (!found) { _v = true; $s = 29; continue s; }
@@ -86839,7 +86914,7 @@ $packages["go/types"] = (function() {
 			check = this;
 			buf = bytes.NewBufferString(f.object.name);
 			qf = $throwNilPointerError;
-			if (!(check === ptrType$5.nil) && !pkgInfo) {
+			if (!(check === ptrType$6.nil) && !pkgInfo) {
 				qf = $methodVal(check, "qualifier");
 			}
 			w = newTypeWriter(buf, qf);
@@ -87325,7 +87400,7 @@ $packages["go/types"] = (function() {
 			if ((methods.$length === 0) && (embeddeds.$length === 0)) {
 				$s = -1; return emptyInterface;
 			}
-			typ$3 = (ptrType$5.nil).newInterface();
+			typ$3 = (ptrType$6.nil).newInterface();
 			_ref = methods;
 			_i = 0;
 			while (true) {
@@ -87348,8 +87423,8 @@ $packages["go/types"] = (function() {
 		$ptrType(Checker).prototype.newInterface = function newInterface() {
 			var check, typ$3;
 			check = this;
-			typ$3 = new Interface.ptr(check, sliceType.nil, sliceType$2.nil, ptrType$6.nil, false, false, ptrType$7.nil);
-			if (!(check === ptrType$5.nil)) {
+			typ$3 = new Interface.ptr(check, sliceType.nil, sliceType$3.nil, ptrType$7.nil, false, false, ptrType$8.nil);
+			if (!(check === ptrType$6.nil)) {
 				check.needsCleanup(typ$3);
 			}
 			return typ$3;
@@ -87470,8 +87545,8 @@ $packages["go/types"] = (function() {
 		$ptrType(Interface).prototype.cleanup = function cleanup$2() {
 			var t;
 			t = this;
-			t.check = ptrType$5.nil;
-			t.embedPos = ptrType$6.nil;
+			t.check = ptrType$6.nil;
+			t.embedPos = ptrType$7.nil;
 		};
 		$ptrType(Checker).prototype.interfaceType = function interfaceType(ityp, iface$1, def$2) {
 			var {_arg, _arg$1, _i, _r$1, _r$2, _r$3, _ref, _tuple, _tuple$1, addEmbedded, at$1, check, def$2, f, ftyp, iface$1, ityp, m, name, recvTyp, sig, typ$3, x, $s, $r, $c} = $restore(this, {ityp, iface$1, def$2});
@@ -87483,8 +87558,8 @@ $packages["go/types"] = (function() {
 			addEmbedded = (function(check, iface$1, ityp) { return function Checker·interfaceType·func1(pos, typ$3) {
 					var pos, typ$3;
 					ityp[0].embeddeds = $append(ityp[0].embeddeds, typ$3);
-					if (ityp[0].embedPos === ptrType$6.nil) {
-						ityp[0].embedPos = $newDataPointer(sliceType$3.nil, ptrType$6);
+					if (ityp[0].embedPos === ptrType$7.nil) {
+						ityp[0].embedPos = $newDataPointer(sliceType$4.nil, ptrType$7);
 					}
 					ityp[0].embedPos.$set($append(ityp[0].embedPos.$get(), pos));
 				}; })(check, iface$1, ityp);
@@ -87686,9 +87761,9 @@ $packages["go/types"] = (function() {
 			/* */ if (!((ntargs === ntparams))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((ntargs === ntparams))) { */ case 1:
-				/* */ if (!(check === ptrType$5.nil)) { $s = 3; continue; }
+				/* */ if (!(check === ptrType$6.nil)) { $s = 3; continue; }
 				/* */ $s = 4; continue;
-				/* if (!(check === ptrType$5.nil)) { */ case 3:
+				/* if (!(check === ptrType$6.nil)) { */ case 3:
 					$r = check.errorf(new atPos(((pos >> 0))), 137, "got %d arguments but %d type parameters", new sliceType$6([new $Int(ntargs), new $Int(ntparams)])); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return false;
 				/* } */ case 4:
@@ -87850,9 +87925,9 @@ $packages["go/types"] = (function() {
 					/* if (_r$18) { */ case 4:
 						$s = -1; return true;
 					/* } */ case 5:
-					/* */ if (!(check[0] === ptrType$5.nil) && check[0].conf.oldComparableSemantics) { $s = 7; continue; }
+					/* */ if (!(check[0] === ptrType$6.nil) && check[0].conf.oldComparableSemantics) { $s = 7; continue; }
 					/* */ $s = 8; continue;
-					/* if (!(check[0] === ptrType$5.nil) && check[0].conf.oldComparableSemantics) { */ case 7:
+					/* if (!(check[0] === ptrType$6.nil) && check[0].conf.oldComparableSemantics) { */ case 7:
 						/* */ if (!(cause[0] === ptrType$34.nil)) { $s = 9; continue; }
 						/* */ $s = 10; continue;
 						/* if (!(cause[0] === ptrType$34.nil)) { */ case 9:
@@ -87867,7 +87942,7 @@ $packages["go/types"] = (function() {
 					/* */ if (_v$2) { $s = 12; continue; }
 					/* */ $s = 13; continue;
 					/* if (_v$2) { */ case 12:
-						if (check[0] === ptrType$5.nil || check[0].allowVersion(check[0].pkg, 1, 20)) {
+						if (check[0] === ptrType$6.nil || check[0].allowVersion(check[0].pkg, 1, 20)) {
 							$s = -1; return true;
 						}
 						/* */ if (!(cause[0] === ptrType$34.nil)) { $s = 16; continue; }
@@ -88547,7 +88622,7 @@ $packages["go/types"] = (function() {
 			result = [result];
 			tparams = [tparams];
 			u = [u];
-			result[0] = sliceType$2.nil;
+			result[0] = sliceType$3.nil;
 			check[0] = this;
 			/* */ if (false) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -88555,7 +88630,7 @@ $packages["go/types"] = (function() {
 				$deferred.push([(function(check, result, tparams, u) { return function Checker·infer·func1() {
 						var {_i, _ref, targ, $s, $r, $c} = $restore(this, {});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						$r = assert(result[0] === sliceType$2.nil || (result[0].$length === tparams[0].$length)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$r = assert(result[0] === sliceType$3.nil || (result[0].$length === tparams[0].$length)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						_ref = result[0];
 						_i = 0;
 						/* while (true) { */ case 2:
@@ -88675,7 +88750,7 @@ $packages["go/types"] = (function() {
 				}
 			}
 			if (targs.$length < n) {
-				targs2 = $makeSlice(sliceType$2, n);
+				targs2 = $makeSlice(sliceType$3, n);
 				$copySlice(targs2, targs);
 				targs = targs2;
 			}
@@ -88772,7 +88847,7 @@ $packages["go/types"] = (function() {
 						/* */ $s = 42; continue;
 						/* if (!_r$10) { */ case 41:
 							$r = errorf("type", par.object.typ, targ$1, arg$1); /* */ $s = 44; case 44: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							result[0] = sliceType$2.nil;
+							result[0] = sliceType$3.nil;
 							$24r$1 = result[0];
 							$s = 45; case 45: return $24r$1;
 						/* } */ case 42:
@@ -88803,9 +88878,9 @@ $packages["go/types"] = (function() {
 			_tuple$2 = _r$11;
 			targs = _tuple$2[0];
 			index$1 = _tuple$2[1];
-			/* */ if (targs === sliceType$2.nil || index$1 < 0) { $s = 50; continue; }
+			/* */ if (targs === sliceType$3.nil || index$1 < 0) { $s = 50; continue; }
 			/* */ $s = 51; continue;
-			/* if (targs === sliceType$2.nil || index$1 < 0) { */ case 50:
+			/* if (targs === sliceType$3.nil || index$1 < 0) { */ case 50:
 				result[0] = targs;
 				$24r$3 = result[0];
 				$s = 52; case 52: return $24r$3;
@@ -88828,7 +88903,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 58; continue;
 					/* if (_v) { */ case 57:
 						$r = errorf("default type", tpar, targ$2, arg$2); /* */ $s = 61; case 61: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						result[0] = sliceType$2.nil;
+						result[0] = sliceType$3.nil;
 						$24r$4 = result[0];
 						$s = 62; case 62: return $24r$4;
 					/* } */ case 58:
@@ -88850,9 +88925,9 @@ $packages["go/types"] = (function() {
 			_tuple$4 = _r$13;
 			targs = _tuple$4[0];
 			index$1 = _tuple$4[1];
-			/* */ if (targs === sliceType$2.nil || index$1 < 0) { $s = 67; continue; }
+			/* */ if (targs === sliceType$3.nil || index$1 < 0) { $s = 67; continue; }
 			/* */ $s = 68; continue;
-			/* if (targs === sliceType$2.nil || index$1 < 0) { */ case 67:
+			/* if (targs === sliceType$3.nil || index$1 < 0) { */ case 67:
 				result[0] = targs;
 				$24r$6 = result[0];
 				$s = 69; case 69: return $24r$6;
@@ -88860,7 +88935,7 @@ $packages["go/types"] = (function() {
 			$r = assert(index$1 >= 0 && $interfaceIsEqual(((index$1 < 0 || index$1 >= targs.$length) ? ($throwRuntimeError("index out of range"), undefined) : targs.$array[targs.$offset + index$1]), $ifaceNil)); /* */ $s = 70; case 70: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			tpar$1 = ((index$1 < 0 || index$1 >= tparams[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : tparams[0].$array[tparams[0].$offset + index$1]);
 			$r = check[0].errorf(posn, 138, "cannot infer %s (%v)", new sliceType$6([new $String(tpar$1.obj.object.name), new token.Pos(tpar$1.obj.object.pos)])); /* */ $s = 71; case 71: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			result[0] = sliceType$2.nil;
+			result[0] = sliceType$3.nil;
 			$24r$7 = result[0];
 			$s = 72; case 72: return $24r$7;
 			/* */ } return; } } catch(err) { $err = err; $s = -1; } finally { $callDeferred($deferred, $err); if (!$curGoroutine.asleep) { return  result[0]; } if($curGoroutine.asleep) { var $f = {$blk: infer, $c: true, $r, $24r, $24r$1, $24r$2, $24r$3, $24r$4, $24r$5, $24r$6, $24r$7, _i, _i$1, _i$2, _i$3, _i$4, _i$5, _i$6, _i$7, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _ref, _ref$1, _ref$2, _ref$3, _ref$4, _ref$5, _ref$6, _ref$7, _tmp, _tmp$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _v, arg, arg$1, arg$2, args, args2, check, errorf, i, i$1, i$2, i$3, i$4, i$5, i$6, index$1, indices, j, j$1, m, n, named, ok, par, params, params2, posn, renameMap, result, smap, targ, targ$1, targ$2, targs, targs2, tname, tpar, tpar$1, tparam, tparam$1, tparams, tparams2, u, unnamed, x, $s, $deferred};return $f; } }
@@ -88923,7 +88998,7 @@ $packages["go/types"] = (function() {
 					_key$1 = typ$3[0]; (w[0].seen || $throwRuntimeError("assignment to entry in nil map")).set(Type.keyFor(_key$1), { k: _key$1, v: res[0] });
 				}; })(res, typ$3, w), []]);
 			_ref = typ$3[0];
-			/* */ if (_ref === $ifaceNil || $assertType(_ref, ptrType$8, true)[1]) { $s = 1; continue; }
+			/* */ if (_ref === $ifaceNil || $assertType(_ref, ptrType$4, true)[1]) { $s = 1; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 4; continue; }
@@ -88936,7 +89011,7 @@ $packages["go/types"] = (function() {
 			/* */ if ($assertType(_ref, ptrType$9, true)[1]) { $s = 11; continue; }
 			/* */ if ($assertType(_ref, ptrType$14, true)[1]) { $s = 12; continue; }
 			/* */ $s = 13; continue;
-			/* switch (0) { default: if (_ref === $ifaceNil || $assertType(_ref, ptrType$8, true)[1]) { */ case 1:
+			/* switch (0) { default: if (_ref === $ifaceNil || $assertType(_ref, ptrType$4, true)[1]) { */ case 1:
 				t = _ref;
 				/* break; */ $s = 14; continue;
 				$s = 14; continue;
@@ -89024,7 +89099,7 @@ $packages["go/types"] = (function() {
 				_r$10 = tset.is((function(res, typ$3, w) { return function tpWalker·isParameterized·func2(t$13) {
 						var {$24r$4, _r$10, _v$1, t$13, $s, $r, $c} = $restore(this, {t$13});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						if (!(!(t$13 === ptrType$4.nil))) { _v$1 = false; $s = 1; continue s; }
+						if (!(!(t$13 === ptrType$5.nil))) { _v$1 = false; $s = 1; continue s; }
 						_r$10 = w[0].isParameterized(t$13.typ); /* */ $s = 2; case 2: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
 						_v$1 = _r$10; case 1:
 						$24r$4 = _v$1;
@@ -89094,7 +89169,7 @@ $packages["go/types"] = (function() {
 			check = [check];
 			tparams = [tparams];
 			types$1 = [types$1];
-			types$1[0] = sliceType$2.nil;
+			types$1[0] = sliceType$3.nil;
 			index$1 = 0;
 			check[0] = this;
 			$r = assert(tparams[0].$length >= targs.$length && targs.$length > 0); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
@@ -89141,9 +89216,9 @@ $packages["go/types"] = (function() {
 					_tuple = _r$1;
 					core = _tuple[0];
 					single = _tuple[1];
-					/* */ if (!(core === ptrType$4.nil)) { $s = 16; continue; }
+					/* */ if (!(core === ptrType$5.nil)) { $s = 16; continue; }
 					/* */ $s = 17; continue;
-					/* if (!(core === ptrType$4.nil)) { */ case 16:
+					/* if (!(core === ptrType$5.nil)) { */ case 16:
 						tx = u.x.at(i$1);
 							/* */ if (!($interfaceIsEqual(tx, $ifaceNil))) { $s = 19; continue; }
 							/* */ if (single && !core.tilde) { $s = 20; continue; }
@@ -89164,7 +89239,7 @@ $packages["go/types"] = (function() {
 										tilde = "~";
 									}
 									$r = check[0].errorf(posn, 139, "%s does not match %s%s", new sliceType$6([tx, new $String(tilde), core.typ])); /* */ $s = 29; case 29: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-									_tmp = sliceType$2.nil;
+									_tmp = sliceType$3.nil;
 									_tmp$1 = 0;
 									types$1[0] = _tmp;
 									index$1 = _tmp$1;
@@ -89298,14 +89373,14 @@ $packages["go/types"] = (function() {
 			single = [single];
 			tilde = [tilde];
 			n[0] = 0;
-			single[0] = ptrType$4.nil;
+			single[0] = ptrType$5.nil;
 			tilde[0] = false;
 			_r$1 = tpar.is((function(n, single, tilde) { return function coreTerm·func1(t) {
 					var {t, $s, $r, $c} = $restore(this, {t});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					/* */ if (t === ptrType$4.nil) { $s = 1; continue; }
+					/* */ if (t === ptrType$5.nil) { $s = 1; continue; }
 					/* */ $s = 2; continue;
-					/* if (t === ptrType$4.nil) { */ case 1:
+					/* if (t === ptrType$5.nil) { */ case 1:
 						$r = assert(n[0] === 0); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = -1; return false;
 					/* } */ case 2:
@@ -89337,7 +89412,7 @@ $packages["go/types"] = (function() {
 			if (!($interfaceIsEqual(typ$3, $ifaceNil))) {
 				$s = -1; return [new term.ptr(tilde[0], typ$3), false];
 			}
-			$s = -1; return [ptrType$4.nil, false];
+			$s = -1; return [ptrType$5.nil, false];
 			/* */ } return; } var $f = {$blk: coreTerm$1, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _v, n, single, tilde, tpar, typ$3, $s};return $f;
 		};
 		$ptrType(cycleFinder).prototype.typ = function typ$3(typ$4) {
@@ -89358,7 +89433,7 @@ $packages["go/types"] = (function() {
 			_key = typ$4; (w.seen || $throwRuntimeError("assignment to entry in nil map")).set(Type.keyFor(_key), { k: _key, v: true });
 			$deferred.push([function(_arg, _arg$1) { $mapDelete(_arg, Type.keyFor(_arg$1)); }, [w.seen, typ$4]]);
 			_ref = typ$4;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 1; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 1; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 2; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 3; continue; }
 			/* */ if ($assertType(_ref, ptrType$11, true)[1]) { $s = 4; continue; }
@@ -89371,7 +89446,7 @@ $packages["go/types"] = (function() {
 			/* */ if ($assertType(_ref, ptrType$9, true)[1]) { $s = 11; continue; }
 			/* */ if ($assertType(_ref, ptrType$14, true)[1]) { $s = 12; continue; }
 			/* */ $s = 13; continue;
-			/* if ($assertType(_ref, ptrType$8, true)[1]) { */ case 1:
+			/* if ($assertType(_ref, ptrType$4, true)[1]) { */ case 1:
 				t = _ref.$val;
 				$s = 14; continue;
 			/* } else if ($assertType(_ref, ptrType$10, true)[1]) { */ case 2:
@@ -89540,14 +89615,14 @@ $packages["go/types"] = (function() {
 			length[0] = new $Int64(-1, 4294967295);
 			_r$3 = under(x[0].typ); /* */ $s = 11; case 11: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			_ref = _r$3;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 12; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 12; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 13; continue; }
 			/* */ if ($assertType(_ref, ptrType$26, true)[1]) { $s = 14; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 15; continue; }
 			/* */ if ($assertType(_ref, ptrType$28, true)[1]) { $s = 16; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 17; continue; }
 			/* */ $s = 18; continue;
-			/* switch (0) { default: if ($assertType(_ref, ptrType$8, true)[1]) { */ case 12:
+			/* switch (0) { default: if ($assertType(_ref, ptrType$4, true)[1]) { */ case 12:
 				typ$4 = _ref.$val;
 				_r$4 = isString(typ$4); /* */ $s = 21; case 21: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 				/* */ if (_r$4) { $s = 19; continue; }
@@ -89628,13 +89703,13 @@ $packages["go/types"] = (function() {
 						k$1 = _tmp$2;
 						e$1 = _tmp$3;
 						_ref$1 = u;
-						/* */ if ($assertType(_ref$1, ptrType$8, true)[1]) { $s = 1; continue; }
+						/* */ if ($assertType(_ref$1, ptrType$4, true)[1]) { $s = 1; continue; }
 						/* */ if ($assertType(_ref$1, ptrType$10, true)[1]) { $s = 2; continue; }
 						/* */ if ($assertType(_ref$1, ptrType$26, true)[1]) { $s = 3; continue; }
 						/* */ if ($assertType(_ref$1, ptrType$25, true)[1]) { $s = 4; continue; }
 						/* */ if ($assertType(_ref$1, ptrType$28, true)[1]) { $s = 5; continue; }
 						/* */ $s = 6; continue;
-						/* if ($assertType(_ref$1, ptrType$8, true)[1]) { */ case 1:
+						/* if ($assertType(_ref$1, ptrType$4, true)[1]) { */ case 1:
 							t = _ref$1.$val;
 							_r$9 = isString(t); /* */ $s = 9; case 9: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 							/* */ if (_r$9) { $s = 7; continue; }
@@ -89767,7 +89842,7 @@ $packages["go/types"] = (function() {
 			_r$1 = coreString(x.typ); /* */ $s = 5; case 5: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			_ref = _r$1;
 			/* */ if (_ref === $ifaceNil) { $s = 6; continue; }
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 7; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 7; continue; }
 			/* */ if ($assertType(_ref, ptrType$10, true)[1]) { $s = 8; continue; }
 			/* */ if ($assertType(_ref, ptrType$26, true)[1]) { $s = 9; continue; }
 			/* */ if ($assertType(_ref, ptrType$25, true)[1]) { $s = 10; continue; }
@@ -89777,7 +89852,7 @@ $packages["go/types"] = (function() {
 				$r = check.errorf(x, 54, "invalid operation: cannot slice %s: %s has no core type", new sliceType$6([x, x.typ])); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				x.mode = 0;
 				$s = -1; return;
-			/* } else if ($assertType(_ref, ptrType$8, true)[1]) { */ case 7:
+			/* } else if ($assertType(_ref, ptrType$4, true)[1]) { */ case 7:
 				u$1 = _ref.$val;
 				_r$2 = isString(u$1); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				/* */ if (_r$2) { $s = 13; continue; }
@@ -90439,7 +90514,7 @@ $packages["go/types"] = (function() {
 			/* if (isTyped(x.typ)) { */ case 6:
 				_arg = x;
 				_r$2 = under(x.typ); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-				_arg$1 = $assertType(_r$2, ptrType$8);
+				_arg$1 = $assertType(_r$2, ptrType$4);
 				$r = check.representable(_arg, _arg$1); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				$s = -1; return;
 			/* } */ case 7:
@@ -90667,7 +90742,7 @@ $packages["go/types"] = (function() {
 				$s = -1; return true;
 			/* } */ case 2:
 			conf = ptrType$101.nil;
-			if (!(check === ptrType$5.nil)) {
+			if (!(check === ptrType$6.nil)) {
 				conf = check.conf;
 			}
 				_r$2 = isInteger(typ$4); /* */ $s = 11; case 11: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
@@ -90993,7 +91068,7 @@ $packages["go/types"] = (function() {
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			c = [c];
 			check = this;
-			_tuple = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$8.nil, $ifaceNil), false]);
+			_tuple = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$4.nil, $ifaceNil), false]);
 			old = $clone(_tuple[0], exprInfo);
 			found = _tuple[1];
 			if (!found) {
@@ -91064,7 +91139,7 @@ $packages["go/types"] = (function() {
 			/* */ $s = 23; continue;
 			/* if (!final$1 && isUntyped(typ$4)) { */ case 22:
 				_r$2 = under(typ$4); /* */ $s = 24; case 24: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-				old.typ = $assertType(_r$2, ptrType$8);
+				old.typ = $assertType(_r$2, ptrType$4);
 				_key = x; (check.untyped || $throwRuntimeError("assignment to entry in nil map")).set(ast.Expr.keyFor(_key), { k: _key, v: $clone(old, exprInfo) });
 				$s = -1; return;
 			/* } */ case 23:
@@ -91096,7 +91171,7 @@ $packages["go/types"] = (function() {
 		$ptrType(Checker).prototype.updateExprVal = function updateExprVal(x, val) {
 			var _entry, _key, _tuple, check, info, ok, val, x;
 			check = this;
-			_tuple = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$8.nil, $ifaceNil), false]);
+			_tuple = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$4.nil, $ifaceNil), false]);
 			info = $clone(_tuple[0], exprInfo);
 			ok = _tuple[1];
 			if (ok) {
@@ -91152,8 +91227,8 @@ $packages["go/types"] = (function() {
 			/* */ if (isUntyped(target)) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (isUntyped(target)) { */ case 1:
-				xkind = $assertType(x[0].typ, ptrType$8).kind;
-				tkind = $assertType(target, ptrType$8).kind;
+				xkind = $assertType(x[0].typ, ptrType$4).kind;
+				tkind = $assertType(target, ptrType$4).kind;
 				_r$1 = isNumeric(x[0].typ); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				if (!(_r$1)) { _v = false; $s = 6; continue s; }
 				_r$2 = isNumeric(target); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
@@ -91173,11 +91248,11 @@ $packages["go/types"] = (function() {
 			/* } */ case 2:
 			_r$3 = under(target); /* */ $s = 9; case 9: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			_ref = _r$3;
-			/* */ if ($assertType(_ref, ptrType$8, true)[1]) { $s = 10; continue; }
+			/* */ if ($assertType(_ref, ptrType$4, true)[1]) { $s = 10; continue; }
 			/* */ if ($assertType(_ref, ptrType$13, true)[1]) { $s = 11; continue; }
 			/* */ if ($assertType(_ref, ptrType$26, true)[1] || $assertType(_ref, ptrType$27, true)[1] || $assertType(_ref, ptrType$25, true)[1] || $assertType(_ref, ptrType$28, true)[1] || $assertType(_ref, ptrType$29, true)[1]) { $s = 12; continue; }
 			/* */ $s = 13; continue;
-			/* switch (0) { default: if ($assertType(_ref, ptrType$8, true)[1]) { */ case 10:
+			/* switch (0) { default: if ($assertType(_ref, ptrType$4, true)[1]) { */ case 10:
 				u = _ref.$val;
 				/* */ if (x[0].mode === 4) { $s = 15; continue; }
 				/* */ $s = 16; continue;
@@ -91191,7 +91266,7 @@ $packages["go/types"] = (function() {
 					}
 					$s = -1; return [target, v, code];
 				/* } */ case 16:
-					_1 = $assertType(x[0].typ, ptrType$8).kind;
+					_1 = $assertType(x[0].typ, ptrType$4).kind;
 					/* */ if (_1 === (19)) { $s = 19; continue; }
 					/* */ if ((_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23))) { $s = 20; continue; }
 					/* */ if (_1 === (24)) { $s = 21; continue; }
@@ -91632,7 +91707,7 @@ $packages["go/types"] = (function() {
 					$s = -1; return;
 				/* } */ case 40:
 				if (isUntyped(x.typ)) {
-					_tuple$2 = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x.expr)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$8.nil, $ifaceNil), false]);
+					_tuple$2 = (_entry = $mapIndex(check.untyped,ast.Expr.keyFor(x.expr)), _entry !== undefined ? [_entry.v, true] : [new exprInfo.ptr(false, 0, ptrType$4.nil, $ifaceNil), false]);
 					info = $clone(_tuple$2[0], exprInfo);
 					found = _tuple$2[1];
 					if (found) {
@@ -92269,7 +92344,7 @@ $packages["go/types"] = (function() {
 							/* */ if (keyIsInterface) { $s = 131; continue; }
 							/* */ $s = 132; continue;
 							/* if (keyIsInterface) { */ case 131:
-								_ref$5 = (_entry = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry !== undefined ? _entry.v : sliceType$2.nil);
+								_ref$5 = (_entry = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry !== undefined ? _entry.v : sliceType$3.nil);
 								_i$3 = 0;
 								/* while (true) { */ case 134:
 									/* if (!(_i$3 < _ref$5.$length)) { break; } */ if(!(_i$3 < _ref$5.$length)) { $s = 135; continue; }
@@ -92284,12 +92359,12 @@ $packages["go/types"] = (function() {
 									_i$3++;
 								$s = 134; continue;
 								case 135:
-								_key = xkey; (visited$1 || $throwRuntimeError("assignment to entry in nil map")).set($emptyInterface.keyFor(_key), { k: _key, v: $append((_entry$1 = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry$1 !== undefined ? _entry$1.v : sliceType$2.nil), x[0].typ) });
+								_key = xkey; (visited$1 || $throwRuntimeError("assignment to entry in nil map")).set($emptyInterface.keyFor(_key), { k: _key, v: $append((_entry$1 = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry$1 !== undefined ? _entry$1.v : sliceType$3.nil), x[0].typ) });
 								$s = 133; continue;
 							/* } else { */ case 132:
-								_tuple$9 = (_entry$2 = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry$2 !== undefined ? [_entry$2.v, true] : [sliceType$2.nil, false]);
+								_tuple$9 = (_entry$2 = $mapIndex(visited$1,$emptyInterface.keyFor(xkey)), _entry$2 !== undefined ? [_entry$2.v, true] : [sliceType$3.nil, false]);
 								duplicate = _tuple$9[1];
-								_key$1 = xkey; (visited$1 || $throwRuntimeError("assignment to entry in nil map")).set($emptyInterface.keyFor(_key$1), { k: _key$1, v: sliceType$2.nil });
+								_key$1 = xkey; (visited$1 || $throwRuntimeError("assignment to entry in nil map")).set($emptyInterface.keyFor(_key$1), { k: _key$1, v: sliceType$3.nil });
 							/* } */ case 133:
 							/* */ if (duplicate) { $s = 139; continue; }
 							/* */ $s = 140; continue;
@@ -92895,7 +92970,7 @@ $packages["go/types"] = (function() {
 			check = this;
 			fset = ptrType$24.nil;
 			qf = $throwNilPointerError;
-			if (!(check === ptrType$5.nil)) {
+			if (!(check === ptrType$6.nil)) {
 				fset = check.fset;
 				qf = $methodVal(check, "qualifier");
 			}
@@ -92926,7 +93001,7 @@ $packages["go/types"] = (function() {
 				/* */ if ($assertType(_ref$1, sliceType$11, true)[1]) { $s = 8; continue; }
 				/* */ if ($assertType(_ref$1, Object, true)[1]) { $s = 9; continue; }
 				/* */ if ($assertType(_ref$1, Type, true)[1]) { $s = 10; continue; }
-				/* */ if ($assertType(_ref$1, sliceType$2, true)[1]) { $s = 11; continue; }
+				/* */ if ($assertType(_ref$1, sliceType$3, true)[1]) { $s = 11; continue; }
 				/* */ if ($assertType(_ref$1, sliceType$9, true)[1]) { $s = 12; continue; }
 				/* */ $s = 13; continue;
 				/* if (_ref$1 === $ifaceNil) { */ case 3:
@@ -92978,7 +93053,7 @@ $packages["go/types"] = (function() {
 					$r = w.typ(a$7); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					arg = new $String(buf$1[0].String());
 					$s = 13; continue;
-				/* } else if ($assertType(_ref$1, sliceType$2, true)[1]) { */ case 11:
+				/* } else if ($assertType(_ref$1, sliceType$3, true)[1]) { */ case 11:
 					a$8 = _ref$1.$val;
 					buf$2[0] = new bytes.Buffer.ptr(sliceType$14.nil, 0, 0);
 					w$1 = newTypeWriter(buf$2[0], qf);
@@ -94522,9 +94597,9 @@ $packages["go/types"] = (function() {
 					var {T$1, _r$1, _r$2, _r$3, _r$4, _r$5, _tuple, _tuple$1, _v, codepoint, i, ok, t, val, $s, $r, $c} = $restore(this, {T$1, val});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 						_r$1 = under(T$1); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-						_tuple = $assertType(_r$1, ptrType$8, true);
+						_tuple = $assertType(_r$1, ptrType$4, true);
 						t = _tuple[0];
-						/* */ if (t === ptrType$8.nil) { $s = 3; continue; }
+						/* */ if (t === ptrType$4.nil) { $s = 3; continue; }
 						_r$2 = representableConst(x[0].val, check[0], t, val); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 						/* */ if (_r$2) { $s = 4; continue; }
 						_r$3 = isInteger(x[0].typ); /* */ $s = 9; case 9: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
@@ -94533,7 +94608,7 @@ $packages["go/types"] = (function() {
 						_v = _r$4; case 8:
 						/* */ if (_v) { $s = 5; continue; }
 						/* */ $s = 6; continue;
-						/* if (t === ptrType$8.nil) { */ case 3:
+						/* if (t === ptrType$4.nil) { */ case 3:
 							$s = 6; continue;
 						/* } else if (_r$2) { */ case 4:
 							$s = -1; return true;
@@ -94789,7 +94864,7 @@ $packages["go/types"] = (function() {
 					/* */ if (_r$23) { $s = 57; continue; }
 					/* */ $s = 58; continue;
 					/* if (_r$23) { */ case 57:
-						if (check[0] === ptrType$5.nil || check[0].allowVersion(check[0].pkg, 1, 20)) {
+						if (check[0] === ptrType$6.nil || check[0].allowVersion(check[0].pkg, 1, 20)) {
 							$s = -1; return true;
 						}
 						if (!(cause[0] === ptrType$34.nil)) {
@@ -94810,7 +94885,7 @@ $packages["go/types"] = (function() {
 						/* */ if (_r$25) { $s = 63; continue; }
 						/* */ $s = 64; continue;
 						/* if (_r$25) { */ case 63:
-							if (check[0] === ptrType$5.nil || check[0].allowVersion(check[0].pkg, 1, 17)) {
+							if (check[0] === ptrType$6.nil || check[0].allowVersion(check[0].pkg, 1, 17)) {
 								$s = -1; return true;
 							}
 							if (!(cause[0] === ptrType$34.nil)) {
@@ -94827,9 +94902,9 @@ $packages["go/types"] = (function() {
 			errorf$2[0] = (function(T, Tp, Vp, cause, check, errorf$2, x, x$1, x$2) { return function operand·convertibleTo·func1(format, args) {
 					var {_r$26, args, format, msg$1, $s, $r, $c} = $restore(this, {format, args});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					/* */ if (!(check[0] === ptrType$5.nil) && !(cause[0] === ptrType$34.nil)) { $s = 1; continue; }
+					/* */ if (!(check[0] === ptrType$6.nil) && !(cause[0] === ptrType$34.nil)) { $s = 1; continue; }
 					/* */ $s = 2; continue;
-					/* if (!(check[0] === ptrType$5.nil) && !(cause[0] === ptrType$34.nil)) { */ case 1:
+					/* if (!(check[0] === ptrType$6.nil) && !(cause[0] === ptrType$34.nil)) { */ case 1:
 						_r$26 = check[0].sprintf(format, args); /* */ $s = 3; case 3: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 						msg$1 = _r$26;
 						if (!(cause[0].$get() === "")) {
@@ -94850,14 +94925,14 @@ $packages["go/types"] = (function() {
 							var {$24r, V$2, _r$26, $s, $r, $c} = $restore(this, {V$2});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							V$2 = [V$2];
-							if (V$2[0] === ptrType$4.nil) {
+							if (V$2[0] === ptrType$5.nil) {
 								$s = -1; return false;
 							}
 							x[0].typ = V$2[0].typ;
 							_r$26 = Tp[0].is((function(T, Tp, V$2, Vp, cause, check, errorf$2, x, x$1, x$2) { return function operand·convertibleTo·func2·func1(T$2) {
 									var {T$2, _r$26, $s, $r, $c} = $restore(this, {T$2});
 									/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-									if (T$2 === ptrType$4.nil) {
+									if (T$2 === ptrType$5.nil) {
 										$s = -1; return false;
 									}
 									_r$26 = x[0].convertibleTo(check[0], T$2.typ, cause[0]); /* */ $s = 3; case 3: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
@@ -94881,7 +94956,7 @@ $packages["go/types"] = (function() {
 					_r$27 = Vp[0].is((function(T, Tp, Vp, cause, check, errorf$2, x, x$1, x$2) { return function operand·convertibleTo·func3(V$2) {
 							var {V$2, _r$27, $s, $r, $c} = $restore(this, {V$2});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-							if (V$2 === ptrType$4.nil) {
+							if (V$2 === ptrType$5.nil) {
 								$s = -1; return false;
 							}
 							x$1[0].typ = V$2.typ;
@@ -94901,7 +94976,7 @@ $packages["go/types"] = (function() {
 					_r$28 = Tp[0].is((function(T, Tp, Vp, cause, check, errorf$2, x, x$1, x$2) { return function operand·convertibleTo·func4(T$2) {
 							var {T$2, _r$28, $s, $r, $c} = $restore(this, {T$2});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-							if (T$2 === ptrType$4.nil) {
+							if (T$2 === ptrType$5.nil) {
 								$s = -1; return false;
 							}
 							_r$28 = x$2[0].convertibleTo(check[0], T$2.typ, cause[0]); /* */ $s = 3; case 3: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
@@ -94925,18 +95000,18 @@ $packages["go/types"] = (function() {
 			var {_r$1, _tuple, t, typ$4, $s, $r, $c} = $restore(this, {typ$4});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_r$1 = under(typ$4); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			_tuple = $assertType(_r$1, ptrType$8, true);
+			_tuple = $assertType(_r$1, ptrType$4, true);
 			t = _tuple[0];
-			$s = -1; return !(t === ptrType$8.nil) && (t.kind === 12);
+			$s = -1; return !(t === ptrType$4.nil) && (t.kind === 12);
 			/* */ } return; } var $f = {$blk: isUintptr$1, $c: true, $r, _r$1, _tuple, t, typ$4, $s};return $f;
 		};
 		isUnsafePointer = function isUnsafePointer$1(typ$4) {
 			var {_r$1, _tuple, t, typ$4, $s, $r, $c} = $restore(this, {typ$4});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_r$1 = under(typ$4); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			_tuple = $assertType(_r$1, ptrType$8, true);
+			_tuple = $assertType(_r$1, ptrType$4, true);
 			t = _tuple[0];
-			$s = -1; return !(t === ptrType$8.nil) && (t.kind === 18);
+			$s = -1; return !(t === ptrType$4.nil) && (t.kind === 18);
 			/* */ } return; } var $f = {$blk: isUnsafePointer$1, $c: true, $r, _r$1, _tuple, t, typ$4, $s};return $f;
 		};
 		isPointer = function isPointer$1(typ$4) {
@@ -94958,9 +95033,9 @@ $packages["go/types"] = (function() {
 			/* */ $s = 3; continue;
 			/* if (!(s === ptrType$25.nil)) { */ case 2:
 				_r$2 = under(s.elem); /* */ $s = 4; case 4: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-				_tuple$1 = $assertType(_r$2, ptrType$8, true);
+				_tuple$1 = $assertType(_r$2, ptrType$4, true);
 				t = _tuple$1[0];
-				$s = -1; return !(t === ptrType$8.nil) && ((t.kind === 8) || (t.kind === 5));
+				$s = -1; return !(t === ptrType$4.nil) && ((t.kind === 8) || (t.kind === 5));
 			/* } */ case 3:
 			$s = -1; return false;
 			/* */ } return; } var $f = {$blk: isBytesOrRunes$1, $c: true, $r, _r$1, _r$2, _tuple, _tuple$1, s, t, typ$4, $s};return $f;
@@ -95389,7 +95464,7 @@ $packages["go/types"] = (function() {
 			/* */ if (isUntyped(typ$4)) { $s = 2; continue; }
 			/* */ $s = 3; continue;
 			/* if (isUntyped(typ$4)) { */ case 2:
-				check.rememberUntyped(x.expr, false, x.mode, $assertType(typ$4, ptrType$8), val);
+				check.rememberUntyped(x.expr, false, x.mode, $assertType(typ$4, ptrType$4), val);
 				$s = 4; continue;
 			/* } else { */ case 3:
 				$r = check.recordTypeAndValue(x.expr, x.mode, typ$4, val); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
@@ -95655,7 +95730,7 @@ $packages["go/types"] = (function() {
 			/* } */ case 2:
 			_r$2 = check.typeList(ix.IndexListExpr.Indices); /* */ $s = 5; case 5: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			targs = _r$2;
-			if (targs === sliceType$2.nil) {
+			if (targs === sliceType$3.nil) {
 				x.mode = 0;
 				x.expr = ix.Orig;
 				$s = -1; return;
@@ -95679,7 +95754,7 @@ $packages["go/types"] = (function() {
 			/* if (got < want) { */ case 10:
 				_r$3 = check.infer(ix.Orig, sig.TypeParams().list(), targs, ptrType$15.nil, sliceType$29.nil); /* */ $s = 12; case 12: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 				targs = _r$3;
-				if (targs === sliceType$2.nil) {
+				if (targs === sliceType$3.nil) {
 					x.mode = 0;
 					x.expr = ix.Orig;
 					$s = -1; return;
@@ -95709,7 +95784,7 @@ $packages["go/types"] = (function() {
 			xlist = [xlist];
 			res[0] = ptrType$27.nil;
 			check[0] = this;
-			$r = assert(!(check[0] === ptrType$5.nil)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = assert(!(check[0] === ptrType$6.nil)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$r = assert(targs[0].$length === typ$4[0].TypeParams().Len()); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* */ if (false) { $s = 3; continue; }
 			/* */ $s = 4; continue;
@@ -95871,16 +95946,16 @@ $packages["go/types"] = (function() {
 			/* } */ case 46:
 			wasGeneric = sig.TypeParams().Len() > 0;
 			xlist = sliceType$11.nil;
-			targs = sliceType$2.nil;
+			targs = sliceType$3.nil;
 			/* */ if (!(ix === ptrType$112.nil)) { $s = 48; continue; }
 			/* */ $s = 49; continue;
 			/* if (!(ix === ptrType$112.nil)) { */ case 48:
 				xlist = ix.IndexListExpr.Indices;
 				_r$7 = check.typeList(xlist); /* */ $s = 50; case 50: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 				targs = _r$7;
-				/* */ if (targs === sliceType$2.nil) { $s = 51; continue; }
+				/* */ if (targs === sliceType$3.nil) { $s = 51; continue; }
 				/* */ $s = 52; continue;
-				/* if (targs === sliceType$2.nil) { */ case 51:
+				/* if (targs === sliceType$3.nil) { */ case 51:
 					$r = check.use(call.Args); /* */ $s = 53; case 53: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					x.mode = 0;
 					x.expr = call;
@@ -95914,7 +95989,7 @@ $packages["go/types"] = (function() {
 					sig = _r$10;
 					$r = assert(sig.TypeParams().Len() === 0); /* */ $s = 67; case 67: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$r = check.recordInstance(ix.Orig, targs, sig); /* */ $s = 68; case 68: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					targs = sliceType$2.nil;
+					targs = sliceType$3.nil;
 					xlist = sliceType$11.nil;
 				/* } */ case 60:
 			/* } */ case 49:
@@ -96135,7 +96210,7 @@ $packages["go/types"] = (function() {
 				/* } */ case 32:
 				_r$7 = check.infer(call, sig.TypeParams().list(), targs, sigParams, args); /* */ $s = 40; case 40: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 				targs$1 = _r$7;
-				if (targs$1 === sliceType$2.nil) {
+				if (targs$1 === sliceType$3.nil) {
 					$s = -1; return rsig;
 				}
 				_r$8 = call.Pos(); /* */ $s = 41; case 41: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
@@ -96601,7 +96676,7 @@ $packages["go/types"] = (function() {
 			y$4 = [y$4];
 			_ = false;
 			check[0] = this;
-			bin = $clone(((id[0] < 0 || id[0] >= predeclaredFuncs.length) ? ($throwRuntimeError("index out of range"), undefined) : predeclaredFuncs[id[0]]), structType);
+			bin = $clone(((id[0] < 0 || id[0] >= predeclaredFuncs.length) ? ($throwRuntimeError("index out of range"), undefined) : predeclaredFuncs[id[0]]), structType$1);
 			/* */ if (new token.Pos(call.Ellipsis).IsValid() && !((id[0] === 0))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (new token.Pos(call.Ellipsis).IsValid() && !((id[0] === 0))) { */ case 1:
@@ -96748,7 +96823,7 @@ $packages["go/types"] = (function() {
 								/* */ if (!(check[0].Info.Types === false)) { $s = 73; continue; }
 								/* */ $s = 74; continue;
 								/* if (!(check[0].Info.Types === false)) { */ case 73:
-									_r$11 = makeSig(S, new sliceType$2([S, x[0].typ])); /* */ $s = 75; case 75: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+									_r$11 = makeSig(S, new sliceType$3([S, x[0].typ])); /* */ $s = 75; case 75: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 									sig = _r$11;
 									sig.variadic = true;
 									$r = check[0].recordBuiltinType(call.Fun, sig); /* */ $s = 76; case 76: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
@@ -96760,7 +96835,7 @@ $packages["go/types"] = (function() {
 							alist = $append(alist, x[0]);
 						/* } */ case 66:
 					/* } */ case 63:
-					_r$12 = makeSig(S, new sliceType$2([S, NewSlice(T)])); /* */ $s = 77; case 77: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+					_r$12 = makeSig(S, new sliceType$3([S, NewSlice(T)])); /* */ $s = 77; case 77: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 					sig$1 = _r$12;
 					sig$1.variadic = true;
 					xlist$1 = sliceType$29.nil;
@@ -96782,7 +96857,7 @@ $packages["go/types"] = (function() {
 						i$1 = i$1 + (1) >> 0;
 					$s = 78; continue;
 					case 79:
-					_r$13 = check[0].arguments$(call, sig$1, sliceType$2.nil, xlist$1, sliceType$11.nil); /* */ $s = 81; case 81: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+					_r$13 = check[0].arguments$(call, sig$1, sliceType$3.nil, xlist$1, sliceType$11.nil); /* */ $s = 81; case 81: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 					_r$13;
 					x[0].mode = 7;
 					x[0].typ = S;
@@ -96798,13 +96873,13 @@ $packages["go/types"] = (function() {
 					_r$14 = under(x[0].typ); /* */ $s = 85; case 85: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
 					_r$15 = arrayPtrDeref(_r$14); /* */ $s = 86; case 86: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 					_ref$1 = _r$15;
-					/* */ if ($assertType(_ref$1, ptrType$8, true)[1]) { $s = 87; continue; }
+					/* */ if ($assertType(_ref$1, ptrType$4, true)[1]) { $s = 87; continue; }
 					/* */ if ($assertType(_ref$1, ptrType$10, true)[1]) { $s = 88; continue; }
 					/* */ if ($assertType(_ref$1, ptrType$25, true)[1] || $assertType(_ref$1, ptrType$29, true)[1]) { $s = 89; continue; }
 					/* */ if ($assertType(_ref$1, ptrType$28, true)[1]) { $s = 90; continue; }
 					/* */ if ($assertType(_ref$1, ptrType$13, true)[1]) { $s = 91; continue; }
 					/* */ $s = 92; continue;
-					/* switch (0) { default: if ($assertType(_ref$1, ptrType$8, true)[1]) { */ case 87:
+					/* switch (0) { default: if ($assertType(_ref$1, ptrType$4, true)[1]) { */ case 87:
 						t$2 = _ref$1.$val;
 						_r$16 = isString(t$2); /* */ $s = 95; case 95: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
 						/* */ if (_r$16 && (id[0] === 8)) { $s = 93; continue; }
@@ -96856,11 +96931,11 @@ $packages["go/types"] = (function() {
 								/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 								_r$20 = arrayPtrDeref(t$7); /* */ $s = 1; case 1: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
 								_ref$2 = _r$20;
-								/* */ if ($assertType(_ref$2, ptrType$8, true)[1]) { $s = 2; continue; }
+								/* */ if ($assertType(_ref$2, ptrType$4, true)[1]) { $s = 2; continue; }
 								/* */ if ($assertType(_ref$2, ptrType$10, true)[1] || $assertType(_ref$2, ptrType$25, true)[1] || $assertType(_ref$2, ptrType$29, true)[1]) { $s = 3; continue; }
 								/* */ if ($assertType(_ref$2, ptrType$28, true)[1]) { $s = 4; continue; }
 								/* */ $s = 5; continue;
-								/* if ($assertType(_ref$2, ptrType$8, true)[1]) { */ case 2:
+								/* if ($assertType(_ref$2, ptrType$4, true)[1]) { */ case 2:
 									t$8 = _ref$2.$val;
 									_r$21 = isString(t$8); /* */ $s = 8; case 8: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
 									/* */ if (_r$21 && (id[0] === 8)) { $s = 6; continue; }
@@ -96904,7 +96979,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 111; continue;
 					/* if (!(check[0].Info.Types === false) && !((mode === 4))) { */ case 110:
 						_arg = call.Fun;
-						_r$22 = makeSig((2 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 2]), new sliceType$2([x[0].typ])); /* */ $s = 112; case 112: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+						_r$22 = makeSig((2 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 2]), new sliceType$3([x[0].typ])); /* */ $s = 112; case 112: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
 						_arg$1 = _r$22;
 						$r = check[0].recordBuiltinType(_arg, _arg$1); /* */ $s = 113; case 113: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 111:
@@ -96952,7 +97027,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 121; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 120:
 						_arg$2 = call.Fun;
-						_r$24 = makeSig($ifaceNil, new sliceType$2([x[0].typ])); /* */ $s = 122; case 122: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+						_r$24 = makeSig($ifaceNil, new sliceType$3([x[0].typ])); /* */ $s = 122; case 122: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 						_arg$3 = _r$24;
 						$r = check[0].recordBuiltinType(_arg$2, _arg$3); /* */ $s = 123; case 123: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 121:
@@ -96988,7 +97063,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 128; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 127:
 						_arg$4 = call.Fun;
-						_r$26 = makeSig($ifaceNil, new sliceType$2([x[0].typ])); /* */ $s = 129; case 129: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+						_r$26 = makeSig($ifaceNil, new sliceType$3([x[0].typ])); /* */ $s = 129; case 129: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 						_arg$5 = _r$26;
 						$r = check[0].recordBuiltinType(_arg$4, _arg$5); /* */ $s = 130; case 130: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 128:
@@ -97064,9 +97139,9 @@ $packages["go/types"] = (function() {
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							$r = assert(!isTypeParam(typ$4)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							_r$28 = under(typ$4); /* */ $s = 2; case 2: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
-							_tuple$3 = $assertType(_r$28, ptrType$8, true);
+							_tuple$3 = $assertType(_r$28, ptrType$4, true);
 							t$7 = _tuple$3[0];
-							if (!(t$7 === ptrType$8.nil)) {
+							if (!(t$7 === ptrType$4.nil)) {
 								_4 = t$7.kind;
 								if (_4 === (13)) {
 									$s = -1; return (15 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 15]);
@@ -97105,7 +97180,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 163; continue;
 					/* if (!(check[0].Info.Types === false) && !((x[0].mode === 4))) { */ case 162:
 						_arg$8 = call.Fun;
-						_r$33 = makeSig(resTyp, new sliceType$2([x[0].typ, x[0].typ])); /* */ $s = 164; case 164: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+						_r$33 = makeSig(resTyp, new sliceType$3([x[0].typ, x[0].typ])); /* */ $s = 164; case 164: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
 						_arg$9 = _r$33;
 						$r = check[0].recordBuiltinType(_arg$8, _arg$9); /* */ $s = 165; case 165: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 163:
@@ -97149,7 +97224,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 181; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 180:
 						_arg$10 = call.Fun;
-						_r$38 = makeSig((2 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 2]), new sliceType$2([x[0].typ, y$1[0].typ])); /* */ $s = 182; case 182: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+						_r$38 = makeSig((2 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 2]), new sliceType$3([x[0].typ, y$1[0].typ])); /* */ $s = 182; case 182: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
 						_arg$11 = _r$38;
 						$r = check[0].recordBuiltinType(_arg$10, _arg$11); /* */ $s = 183; case 183: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 181:
@@ -97201,7 +97276,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 190; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 189:
 						_arg$12 = call.Fun;
-						_r$40 = makeSig($ifaceNil, new sliceType$2([map_, key[0]])); /* */ $s = 191; case 191: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
+						_r$40 = makeSig($ifaceNil, new sliceType$3([map_, key[0]])); /* */ $s = 191; case 191: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
 						_arg$13 = _r$40;
 						$r = check[0].recordBuiltinType(_arg$12, _arg$13); /* */ $s = 192; case 192: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 190:
@@ -97232,9 +97307,9 @@ $packages["go/types"] = (function() {
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							$r = assert(!isTypeParam(typ$4)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							_r$42 = under(typ$4); /* */ $s = 2; case 2: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
-							_tuple$5 = $assertType(_r$42, ptrType$8, true);
+							_tuple$5 = $assertType(_r$42, ptrType$4, true);
 							t$7 = _tuple$5[0];
-							if (!(t$7 === ptrType$8.nil)) {
+							if (!(t$7 === ptrType$4.nil)) {
 								_5 = t$7.kind;
 								if (_5 === (15)) {
 									$s = -1; return (13 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 13]);
@@ -97280,7 +97355,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 215; continue;
 					/* if (!(check[0].Info.Types === false) && !((x[0].mode === 4))) { */ case 214:
 						_arg$14 = call.Fun;
-						_r$45 = makeSig(resTyp$1, new sliceType$2([x[0].typ])); /* */ $s = 216; case 216: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
+						_r$45 = makeSig(resTyp$1, new sliceType$3([x[0].typ])); /* */ $s = 216; case 216: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
 						_arg$15 = _r$45;
 						$r = check[0].recordBuiltinType(_arg$14, _arg$15); /* */ $s = 217; case 217: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 215:
@@ -97319,7 +97394,7 @@ $packages["go/types"] = (function() {
 						$r = check[0].errorf(call, 126, "invalid operation: %v expects %d or %d arguments; found %d", new sliceType$6([call, new $Int(min), new $Int((min + 1 >> 0)), new $Int(nargs)])); /* */ $s = 229; case 229: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = -1; return _;
 					/* } */ case 228:
-					types$1 = new sliceType$2([T$1]);
+					types$1 = new sliceType$3([T$1]);
 					sizes = sliceType$19.nil;
 					_ref$3 = $subslice(call.Args, 1);
 					_i$1 = 0;
@@ -97365,7 +97440,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 242; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 241:
 						_arg$18 = call.Fun;
-						_r$51 = makeSig(x[0].typ, new sliceType$2([T$2])); /* */ $s = 243; case 243: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
+						_r$51 = makeSig(x[0].typ, new sliceType$3([T$2])); /* */ $s = 243; case 243: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
 						_arg$19 = _r$51;
 						$r = check[0].recordBuiltinType(_arg$18, _arg$19); /* */ $s = 244; case 244: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 242:
@@ -97388,17 +97463,17 @@ $packages["go/types"] = (function() {
 					/* */ $s = 247; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 246:
 						_arg$20 = call.Fun;
-						_r$52 = makeSig($ifaceNil, new sliceType$2([emptyInterface])); /* */ $s = 248; case 248: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
+						_r$52 = makeSig($ifaceNil, new sliceType$3([emptyInterface])); /* */ $s = 248; case 248: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
 						_arg$21 = _r$52;
 						$r = check[0].recordBuiltinType(_arg$20, _arg$21); /* */ $s = 249; case 249: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 247:
 					$s = 44; continue;
 				/* } else if ((_2 === (12)) || (_2 === (13))) { */ case 31:
-					params = sliceType$2.nil;
+					params = sliceType$3.nil;
 					/* */ if (nargs > 0) { $s = 250; continue; }
 					/* */ $s = 251; continue;
 					/* if (nargs > 0) { */ case 250:
-						params = $makeSlice(sliceType$2, nargs);
+						params = $makeSlice(sliceType$3, nargs);
 						i$2 = 0;
 						/* while (true) { */ case 252:
 							/* if (!(i$2 < nargs)) { break; } */ if(!(i$2 < nargs)) { $s = 253; continue; }
@@ -97433,7 +97508,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 263; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 262:
 						_arg$24 = call.Fun;
-						_r$54 = makeSig(x[0].typ, sliceType$2.nil); /* */ $s = 264; case 264: if($c) { $c = false; _r$54 = _r$54.$blk(); } if (_r$54 && _r$54.$blk !== undefined) { break s; }
+						_r$54 = makeSig(x[0].typ, sliceType$3.nil); /* */ $s = 264; case 264: if($c) { $c = false; _r$54 = _r$54.$blk(); } if (_r$54 && _r$54.$blk !== undefined) { break s; }
 						_arg$25 = _r$54;
 						$r = check[0].recordBuiltinType(_arg$24, _arg$25); /* */ $s = 265; case 265: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 263:
@@ -97463,7 +97538,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 275; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 274:
 						_arg$26 = call.Fun;
-						_r$56 = makeSig(x[0].typ, new sliceType$2([x[0].typ, y$2[0].typ])); /* */ $s = 276; case 276: if($c) { $c = false; _r$56 = _r$56.$blk(); } if (_r$56 && _r$56.$blk !== undefined) { break s; }
+						_r$56 = makeSig(x[0].typ, new sliceType$3([x[0].typ, y$2[0].typ])); /* */ $s = 276; case 276: if($c) { $c = false; _r$56 = _r$56.$blk(); } if (_r$56 && _r$56.$blk !== undefined) { break s; }
 						_arg$27 = _r$56;
 						$r = check[0].recordBuiltinType(_arg$26, _arg$27); /* */ $s = 277; case 277: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 275:
@@ -97482,7 +97557,7 @@ $packages["go/types"] = (function() {
 						/* */ $s = 284; continue;
 						/* if (!(check[0].Info.Types === false)) { */ case 283:
 							_arg$28 = call.Fun;
-							_r$58 = makeSig((12 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 12]), new sliceType$2([x[0].typ])); /* */ $s = 285; case 285: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
+							_r$58 = makeSig((12 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 12]), new sliceType$3([x[0].typ])); /* */ $s = 285; case 285: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
 							_arg$29 = _r$58;
 							$r = check[0].recordBuiltinType(_arg$28, _arg$29); /* */ $s = 286; case 286: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						/* } */ case 284:
@@ -97554,7 +97629,7 @@ $packages["go/types"] = (function() {
 							_arg$31 = (12 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 12]);
 							_r$65 = obj.Type(); /* */ $s = 313; case 313: if($c) { $c = false; _r$65 = _r$65.$blk(); } if (_r$65 && _r$65.$blk !== undefined) { break s; }
 							_arg$32 = _r$65;
-							_r$66 = makeSig(_arg$31, new sliceType$2([_arg$32])); /* */ $s = 314; case 314: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
+							_r$66 = makeSig(_arg$31, new sliceType$3([_arg$32])); /* */ $s = 314; case 314: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
 							_arg$33 = _r$66;
 							$r = check[0].recordBuiltinType(_arg$30, _arg$33); /* */ $s = 315; case 315: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						/* } */ case 312:
@@ -97581,7 +97656,7 @@ $packages["go/types"] = (function() {
 						/* */ $s = 324; continue;
 						/* if (!(check[0].Info.Types === false)) { */ case 323:
 							_arg$34 = call.Fun;
-							_r$70 = makeSig((12 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 12]), new sliceType$2([x[0].typ])); /* */ $s = 325; case 325: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
+							_r$70 = makeSig((12 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 12]), new sliceType$3([x[0].typ])); /* */ $s = 325; case 325: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
 							_arg$35 = _r$70;
 							$r = check[0].recordBuiltinType(_arg$34, _arg$35); /* */ $s = 326; case 326: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						/* } */ case 324:
@@ -97624,7 +97699,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 341; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 340:
 						_arg$36 = call.Fun;
-						_r$75 = makeSig(x[0].typ, new sliceType$2([ptr, y$3[0].typ])); /* */ $s = 342; case 342: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
+						_r$75 = makeSig(x[0].typ, new sliceType$3([ptr, y$3[0].typ])); /* */ $s = 342; case 342: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
 						_arg$37 = _r$75;
 						$r = check[0].recordBuiltinType(_arg$36, _arg$37); /* */ $s = 343; case 343: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 341:
@@ -97651,7 +97726,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 352; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 351:
 						_arg$38 = call.Fun;
-						_r$77 = makeSig(x[0].typ, new sliceType$2([slice])); /* */ $s = 353; case 353: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
+						_r$77 = makeSig(x[0].typ, new sliceType$3([slice])); /* */ $s = 353; case 353: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
 						_arg$39 = _r$77;
 						$r = check[0].recordBuiltinType(_arg$38, _arg$39); /* */ $s = 354; case 354: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 352:
@@ -97681,7 +97756,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 364; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 363:
 						_arg$40 = call.Fun;
-						_r$79 = makeSig(x[0].typ, new sliceType$2([NewPointer(universeByte), y$4[0].typ])); /* */ $s = 365; case 365: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
+						_r$79 = makeSig(x[0].typ, new sliceType$3([NewPointer(universeByte), y$4[0].typ])); /* */ $s = 365; case 365: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
 						_arg$41 = _r$79;
 						$r = check[0].recordBuiltinType(_arg$40, _arg$41); /* */ $s = 366; case 366: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 364:
@@ -97703,7 +97778,7 @@ $packages["go/types"] = (function() {
 					/* */ $s = 372; continue;
 					/* if (!(check[0].Info.Types === false)) { */ case 371:
 						_arg$42 = call.Fun;
-						_r$80 = makeSig(x[0].typ, new sliceType$2([(17 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 17])])); /* */ $s = 373; case 373: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
+						_r$80 = makeSig(x[0].typ, new sliceType$3([(17 >= $pkg.Typ.$length ? ($throwRuntimeError("index out of range"), undefined) : $pkg.Typ.$array[$pkg.Typ.$offset + 17])])); /* */ $s = 373; case 373: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
 						_arg$43 = _r$80;
 						$r = check[0].recordBuiltinType(_arg$42, _arg$43); /* */ $s = 374; case 374: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 372:
@@ -97854,7 +97929,7 @@ $packages["go/types"] = (function() {
 				_r$1 = tp.is((function(f, terms) { return function Checker·applyTypeFunc·func1(t) {
 						var {_r$1, r, t, $s, $r, $c} = $restore(this, {t});
 						/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-						if (t === ptrType$4.nil) {
+						if (t === ptrType$5.nil) {
 							$s = -1; return false;
 						}
 						_r$1 = f[0](t.typ); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
@@ -97885,7 +97960,7 @@ $packages["go/types"] = (function() {
 				$r = check.softErrorf(x, code, "%s not supported as argument to %s for go1.18 (see issue #50937)", new sliceType$6([x, new $String(((id < 0 || id >= predeclaredFuncs.length) ? ($throwRuntimeError("index out of range"), undefined) : predeclaredFuncs[id]).name)])); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				tpar = NewTypeName(0, check.pkg, tp.obj.object.name, $ifaceNil);
 				_arg = tpar;
-				_r$2 = NewInterfaceType(sliceType.nil, new sliceType$2([NewUnion(terms[0])])); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+				_r$2 = NewInterfaceType(sliceType.nil, new sliceType$3([NewUnion(terms[0])])); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				_arg$1 = _r$2;
 				_r$3 = check.newTypeParam(_arg, _arg$1); /* */ $s = 8; case 8: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 				ptyp = _r$3;
@@ -98239,7 +98314,7 @@ $packages["go/types"] = (function() {
 		};
 		operandTypes = function operandTypes$1(list$2) {
 			var _i, _ref, list$2, res, x;
-			res = sliceType$2.nil;
+			res = sliceType$3.nil;
 			_ref = list$2;
 			_i = 0;
 			while (true) {
@@ -98253,7 +98328,7 @@ $packages["go/types"] = (function() {
 		};
 		varTypes = function varTypes$1(list$2) {
 			var _i, _ref, list$2, res, x;
-			res = sliceType$2.nil;
+			res = sliceType$3.nil;
 			_ref = list$2;
 			_i = 0;
 			while (true) {
@@ -98296,7 +98371,7 @@ $packages["go/types"] = (function() {
 							s = "number";
 							$s = 11; continue;
 						/* } else { */ case 10:
-							s = strings.Replace($assertType(t, ptrType$8).name, "untyped ", "", -1);
+							s = strings.Replace($assertType(t, ptrType$4).name, "untyped ", "", -1);
 						/* } */ case 11:
 						$s = 8; continue;
 					/* } else if (variadic && (i === (list$2.$length - 1 >> 0))) { */ case 7:
@@ -98789,18 +98864,18 @@ $packages["go/types"] = (function() {
 		ptrType$12.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Term", name: "Term", pkg: "", typ: $funcType([$Int], [ptrType$19], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$19.methods = [{prop: "Tilde", name: "Tilde", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Type", name: "Type", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$22.methods = [{prop: "unify", name: "unify", pkg: "go/types", typ: $funcType([Type, Type], [$Bool], false)}, {prop: "tracef", name: "tracef", pkg: "go/types", typ: $funcType([$String, sliceType$6], [], true)}, {prop: "join", name: "join", pkg: "go/types", typ: $funcType([$Int, $Int], [$Bool], false)}, {prop: "nifyEq", name: "nifyEq", pkg: "go/types", typ: $funcType([Type, Type, ptrType$23], [$Bool], false)}, {prop: "nify", name: "nify", pkg: "go/types", typ: $funcType([Type, Type, ptrType$23], [$Bool], false)}];
-		ptrType$113.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "init", name: "init", pkg: "go/types", typ: $funcType([sliceType$9], [], false)}, {prop: "index", name: "index", pkg: "go/types", typ: $funcType([Type], [$Int], false)}, {prop: "setIndex", name: "setIndex", pkg: "go/types", typ: $funcType([$Int, $Int], [], false)}, {prop: "at", name: "at", pkg: "go/types", typ: $funcType([$Int], [Type], false)}, {prop: "set", name: "set", pkg: "go/types", typ: $funcType([$Int, Type], [], false)}, {prop: "unknowns", name: "unknowns", pkg: "go/types", typ: $funcType([], [$Int], false)}, {prop: "types", name: "types", pkg: "go/types", typ: $funcType([], [sliceType$2, $Int], false)}];
-		ptrType$4.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "equal", name: "equal", pkg: "go/types", typ: $funcType([ptrType$4], [$Bool], false)}, {prop: "union", name: "union", pkg: "go/types", typ: $funcType([ptrType$4], [ptrType$4, ptrType$4], false)}, {prop: "intersect", name: "intersect", pkg: "go/types", typ: $funcType([ptrType$4], [ptrType$4], false)}, {prop: "includes", name: "includes", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([ptrType$4], [$Bool], false)}, {prop: "disjoint", name: "disjoint", pkg: "go/types", typ: $funcType([ptrType$4], [$Bool], false)}];
-		ptrType$115.methods = [{prop: "byte$", name: "byte", pkg: "go/types", typ: $funcType([$Uint8], [], false)}, {prop: "string", name: "string", pkg: "go/types", typ: $funcType([$String], [], false)}, {prop: "error", name: "error", pkg: "go/types", typ: $funcType([$String], [], false)}, {prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([Type], [], false)}, {prop: "typeSet", name: "typeSet", pkg: "go/types", typ: $funcType([ptrType$7], [], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$2], [], false)}, {prop: "tParamList", name: "tParamList", pkg: "go/types", typ: $funcType([sliceType$9], [], false)}, {prop: "typeName", name: "typeName", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "tuple", name: "tuple", pkg: "go/types", typ: $funcType([ptrType$15, $Bool], [], false)}, {prop: "signature", name: "signature", pkg: "go/types", typ: $funcType([ptrType$27], [], false)}];
-		ptrType$7.methods = [{prop: "IsEmpty", name: "IsEmpty", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsAll", name: "IsAll", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsMethodSet", name: "IsMethodSet", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsComparable", name: "IsComparable", pkg: "", typ: $funcType([mapType], [$Bool], false)}, {prop: "NumMethods", name: "NumMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Method", name: "Method", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "LookupMethod", name: "LookupMethod", pkg: "", typ: $funcType([ptrType$1, $String, $Bool], [$Int, ptrType$2], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "hasTerms", name: "hasTerms", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([ptrType$7], [$Bool], false)}, {prop: "is", name: "is", pkg: "go/types", typ: $funcType([funcType$2], [$Bool], false)}, {prop: "underIs", name: "underIs", pkg: "go/types", typ: $funcType([funcType$3], [$Bool], false)}];
+		ptrType$113.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "init", name: "init", pkg: "go/types", typ: $funcType([sliceType$9], [], false)}, {prop: "index", name: "index", pkg: "go/types", typ: $funcType([Type], [$Int], false)}, {prop: "setIndex", name: "setIndex", pkg: "go/types", typ: $funcType([$Int, $Int], [], false)}, {prop: "at", name: "at", pkg: "go/types", typ: $funcType([$Int], [Type], false)}, {prop: "set", name: "set", pkg: "go/types", typ: $funcType([$Int, Type], [], false)}, {prop: "unknowns", name: "unknowns", pkg: "go/types", typ: $funcType([], [$Int], false)}, {prop: "types", name: "types", pkg: "go/types", typ: $funcType([], [sliceType$3, $Int], false)}];
+		ptrType$5.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "equal", name: "equal", pkg: "go/types", typ: $funcType([ptrType$5], [$Bool], false)}, {prop: "union", name: "union", pkg: "go/types", typ: $funcType([ptrType$5], [ptrType$5, ptrType$5], false)}, {prop: "intersect", name: "intersect", pkg: "go/types", typ: $funcType([ptrType$5], [ptrType$5], false)}, {prop: "includes", name: "includes", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([ptrType$5], [$Bool], false)}, {prop: "disjoint", name: "disjoint", pkg: "go/types", typ: $funcType([ptrType$5], [$Bool], false)}];
+		ptrType$115.methods = [{prop: "byte$", name: "byte", pkg: "go/types", typ: $funcType([$Uint8], [], false)}, {prop: "string", name: "string", pkg: "go/types", typ: $funcType([$String], [], false)}, {prop: "error", name: "error", pkg: "go/types", typ: $funcType([$String], [], false)}, {prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([Type], [], false)}, {prop: "typeSet", name: "typeSet", pkg: "go/types", typ: $funcType([ptrType$8], [], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$3], [], false)}, {prop: "tParamList", name: "tParamList", pkg: "go/types", typ: $funcType([sliceType$9], [], false)}, {prop: "typeName", name: "typeName", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "tuple", name: "tuple", pkg: "go/types", typ: $funcType([ptrType$15, $Bool], [], false)}, {prop: "signature", name: "signature", pkg: "go/types", typ: $funcType([ptrType$27], [], false)}];
+		ptrType$8.methods = [{prop: "IsEmpty", name: "IsEmpty", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsAll", name: "IsAll", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsMethodSet", name: "IsMethodSet", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsComparable", name: "IsComparable", pkg: "", typ: $funcType([mapType], [$Bool], false)}, {prop: "NumMethods", name: "NumMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Method", name: "Method", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "LookupMethod", name: "LookupMethod", pkg: "", typ: $funcType([ptrType$1, $String, $Bool], [$Int, ptrType$2], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "hasTerms", name: "hasTerms", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([ptrType$8], [$Bool], false)}, {prop: "is", name: "is", pkg: "go/types", typ: $funcType([funcType$2], [$Bool], false)}, {prop: "underIs", name: "underIs", pkg: "go/types", typ: $funcType([funcType$3], [$Bool], false)}];
 		byUniqueMethodName.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}];
 		ptrType$14.methods = [{prop: "Index", name: "Index", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Obj", name: "Obj", pkg: "", typ: $funcType([], [ptrType$17], false)}, {prop: "Constraint", name: "Constraint", pkg: "", typ: $funcType([], [Type], false)}, {prop: "SetConstraint", name: "SetConstraint", pkg: "", typ: $funcType([Type], [], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "iface", name: "iface", pkg: "go/types", typ: $funcType([], [ptrType$13], false)}, {prop: "is", name: "is", pkg: "go/types", typ: $funcType([funcType$2], [$Bool], false)}, {prop: "underIs", name: "underIs", pkg: "go/types", typ: $funcType([funcType$3], [$Bool], false)}];
 		ptrType$48.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "At", name: "At", pkg: "", typ: $funcType([$Int], [ptrType$14], false)}, {prop: "list", name: "list", pkg: "go/types", typ: $funcType([], [sliceType$9], false)}];
-		ptrType$56.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "At", name: "At", pkg: "", typ: $funcType([$Int], [Type], false)}, {prop: "list", name: "list", pkg: "go/types", typ: $funcType([], [sliceType$2], false)}];
+		ptrType$56.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "At", name: "At", pkg: "", typ: $funcType([$Int], [Type], false)}, {prop: "list", name: "list", pkg: "go/types", typ: $funcType([], [sliceType$3], false)}];
 		ptrType$15.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "At", name: "At", pkg: "", typ: $funcType([$Int], [ptrType$16], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
-		termlist.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "isEmpty", name: "isEmpty", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "isAll", name: "isAll", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "norm", name: "norm", pkg: "go/types", typ: $funcType([], [termlist], false)}, {prop: "union", name: "union", pkg: "go/types", typ: $funcType([termlist], [termlist], false)}, {prop: "intersect", name: "intersect", pkg: "go/types", typ: $funcType([termlist], [termlist], false)}, {prop: "equal", name: "equal", pkg: "go/types", typ: $funcType([termlist], [$Bool], false)}, {prop: "includes", name: "includes", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "supersetOf", name: "supersetOf", pkg: "go/types", typ: $funcType([ptrType$4], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([termlist], [$Bool], false)}];
+		termlist.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "isEmpty", name: "isEmpty", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "isAll", name: "isAll", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "norm", name: "norm", pkg: "go/types", typ: $funcType([], [termlist], false)}, {prop: "union", name: "union", pkg: "go/types", typ: $funcType([termlist], [termlist], false)}, {prop: "intersect", name: "intersect", pkg: "go/types", typ: $funcType([termlist], [termlist], false)}, {prop: "equal", name: "equal", pkg: "go/types", typ: $funcType([termlist], [$Bool], false)}, {prop: "includes", name: "includes", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "supersetOf", name: "supersetOf", pkg: "go/types", typ: $funcType([ptrType$5], [$Bool], false)}, {prop: "subsetOf", name: "subsetOf", pkg: "go/types", typ: $funcType([termlist], [$Bool], false)}];
 		substMap.methods = [{prop: "empty", name: "empty", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "lookup", name: "lookup", pkg: "go/types", typ: $funcType([ptrType$14], [Type], false)}];
-		ptrType$116.methods = [{prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([Type], [Type], false)}, {prop: "typOrNil", name: "typOrNil", pkg: "go/types", typ: $funcType([Type], [Type], false)}, {prop: "var_", name: "var_", pkg: "go/types", typ: $funcType([ptrType$16], [ptrType$16], false)}, {prop: "tuple", name: "tuple", pkg: "go/types", typ: $funcType([ptrType$15], [ptrType$15], false)}, {prop: "varList", name: "varList", pkg: "go/types", typ: $funcType([sliceType$10], [sliceType$10, $Bool], false)}, {prop: "func_", name: "func_", pkg: "go/types", typ: $funcType([ptrType$2], [ptrType$2], false)}, {prop: "funcList", name: "funcList", pkg: "go/types", typ: $funcType([sliceType], [sliceType, $Bool], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$2], [sliceType$2, $Bool], false)}, {prop: "termlist", name: "termlist", pkg: "go/types", typ: $funcType([sliceType$12], [sliceType$12, $Bool], false)}];
+		ptrType$116.methods = [{prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([Type], [Type], false)}, {prop: "typOrNil", name: "typOrNil", pkg: "go/types", typ: $funcType([Type], [Type], false)}, {prop: "var_", name: "var_", pkg: "go/types", typ: $funcType([ptrType$16], [ptrType$16], false)}, {prop: "tuple", name: "tuple", pkg: "go/types", typ: $funcType([ptrType$15], [ptrType$15], false)}, {prop: "varList", name: "varList", pkg: "go/types", typ: $funcType([sliceType$10], [sliceType$10, $Bool], false)}, {prop: "func_", name: "func_", pkg: "go/types", typ: $funcType([ptrType$2], [ptrType$2], false)}, {prop: "funcList", name: "funcList", pkg: "go/types", typ: $funcType([sliceType], [sliceType, $Bool], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$3], [sliceType$3, $Bool], false)}, {prop: "termlist", name: "termlist", pkg: "go/types", typ: $funcType([sliceType$12], [sliceType$12, $Bool], false)}];
 		ptrType$11.methods = [{prop: "NumFields", name: "NumFields", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Field", name: "Field", pkg: "", typ: $funcType([$Int], [ptrType$16], false)}, {prop: "Tag", name: "Tag", pkg: "", typ: $funcType([$Int], [$String], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "markComplete", name: "markComplete", pkg: "go/types", typ: $funcType([], [], false)}];
 		ptrType$25.methods = [{prop: "Elem", name: "Elem", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$83.methods = [{prop: "Alignof", name: "Alignof", pkg: "", typ: $funcType([Type], [$Int64], false)}, {prop: "Offsetsof", name: "Offsetsof", pkg: "", typ: $funcType([sliceType$10], [sliceType$19], false)}, {prop: "Sizeof", name: "Sizeof", pkg: "", typ: $funcType([Type], [$Int64], false)}];
@@ -98813,7 +98888,7 @@ $packages["go/types"] = (function() {
 		ptrType$23.methods = [{prop: "identical", name: "identical", pkg: "go/types", typ: $funcType([ptrType$23], [$Bool], false)}];
 		ptrType$26.methods = [{prop: "Elem", name: "Elem", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$1.methods = [{prop: "Path", name: "Path", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Name", name: "Name", pkg: "", typ: $funcType([], [$String], false)}, {prop: "SetName", name: "SetName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Scope", name: "Scope", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Complete", name: "Complete", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "MarkComplete", name: "MarkComplete", pkg: "", typ: $funcType([], [], false)}, {prop: "Imports", name: "Imports", pkg: "", typ: $funcType([], [sliceType$24], false)}, {prop: "SetImports", name: "SetImports", pkg: "", typ: $funcType([sliceType$24], [], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
-		ptrType$62.methods = [{prop: "Pos", name: "Pos", pkg: "", typ: $funcType([], [token.Pos], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "setConst", name: "setConst", pkg: "go/types", typ: $funcType([token.Token, $String], [], false)}, {prop: "isNil", name: "isNil", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "assignableTo", name: "assignableTo", pkg: "go/types", typ: $funcType([ptrType$5, Type, ptrType$34], [$Bool, errors$1.Code], false)}, {prop: "convertibleTo", name: "convertibleTo", pkg: "go/types", typ: $funcType([ptrType$5, Type, ptrType$34], [$Bool], false)}];
+		ptrType$62.methods = [{prop: "Pos", name: "Pos", pkg: "", typ: $funcType([], [token.Pos], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "setConst", name: "setConst", pkg: "go/types", typ: $funcType([token.Token, $String], [], false)}, {prop: "isNil", name: "isNil", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "assignableTo", name: "assignableTo", pkg: "go/types", typ: $funcType([ptrType$6, Type, ptrType$34], [$Bool, errors$1.Code], false)}, {prop: "convertibleTo", name: "convertibleTo", pkg: "go/types", typ: $funcType([ptrType$6, Type, ptrType$34], [$Bool], false)}];
 		ptrType$54.methods = [{prop: "insert", name: "insert", pkg: "go/types", typ: $funcType([Object], [Object], false)}];
 		ptrType$117.methods = [{prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Pos", name: "Pos", pkg: "", typ: $funcType([], [token.Pos], false)}, {prop: "Pkg", name: "Pkg", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "Name", name: "Name", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Type", name: "Type", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Exported", name: "Exported", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Id", name: "Id", pkg: "", typ: $funcType([], [$String], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "order", name: "order", pkg: "go/types", typ: $funcType([], [$Uint32], false)}, {prop: "color", name: "color", pkg: "go/types", typ: $funcType([], [color], false)}, {prop: "scopePos", name: "scopePos", pkg: "go/types", typ: $funcType([], [token.Pos], false)}, {prop: "setParent", name: "setParent", pkg: "go/types", typ: $funcType([ptrType], [], false)}, {prop: "setType", name: "setType", pkg: "go/types", typ: $funcType([Type], [], false)}, {prop: "setOrder", name: "setOrder", pkg: "go/types", typ: $funcType([$Uint32], [], false)}, {prop: "setColor", name: "setColor", pkg: "go/types", typ: $funcType([color], [], false)}, {prop: "setScopePos", name: "setScopePos", pkg: "go/types", typ: $funcType([token.Pos], [], false)}, {prop: "sameId", name: "sameId", pkg: "go/types", typ: $funcType([ptrType$1, $String], [$Bool], false)}];
 		color.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
@@ -98826,18 +98901,18 @@ $packages["go/types"] = (function() {
 		ptrType$18.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$33.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$9.methods = [{prop: "resolve", name: "resolve", pkg: "go/types", typ: $funcType([], [ptrType$9], false)}, {prop: "state", name: "state", pkg: "go/types", typ: $funcType([], [namedState], false)}, {prop: "setState", name: "setState", pkg: "go/types", typ: $funcType([namedState], [], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "Obj", name: "Obj", pkg: "", typ: $funcType([], [ptrType$17], false)}, {prop: "Origin", name: "Origin", pkg: "", typ: $funcType([], [ptrType$9], false)}, {prop: "TypeParams", name: "TypeParams", pkg: "", typ: $funcType([], [ptrType$48], false)}, {prop: "SetTypeParams", name: "SetTypeParams", pkg: "", typ: $funcType([sliceType$9], [], false)}, {prop: "TypeArgs", name: "TypeArgs", pkg: "", typ: $funcType([], [ptrType$56], false)}, {prop: "NumMethods", name: "NumMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Method", name: "Method", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "expandMethod", name: "expandMethod", pkg: "go/types", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "SetUnderlying", name: "SetUnderlying", pkg: "", typ: $funcType([Type], [], false)}, {prop: "AddMethod", name: "AddMethod", pkg: "", typ: $funcType([ptrType$2], [], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "under", name: "under", pkg: "go/types", typ: $funcType([], [Type], false)}, {prop: "setUnderlying", name: "setUnderlying", pkg: "go/types", typ: $funcType([Type], [], false)}, {prop: "lookupMethod", name: "lookupMethod", pkg: "go/types", typ: $funcType([ptrType$1, $String, $Bool], [$Int, ptrType$2], false)}, {prop: "expandUnderlying", name: "expandUnderlying", pkg: "go/types", typ: $funcType([], [Type], false)}];
-		ptrType$118.methods = [{prop: "recordCanon", name: "recordCanon", pkg: "go/types", typ: $funcType([ptrType$14, ptrType$14], [], false)}, {prop: "recordInstance", name: "recordInstance", pkg: "go/types", typ: $funcType([ptrType$1, token.Pos, sliceType$9, sliceType$2, sliceType$11], [], false)}, {prop: "assign", name: "assign", pkg: "go/types", typ: $funcType([ptrType$1, token.Pos, ptrType$14, Type], [], false)}, {prop: "localNamedVertex", name: "localNamedVertex", pkg: "go/types", typ: $funcType([ptrType$1, ptrType$9], [$Int], false)}, {prop: "typeParamVertex", name: "typeParamVertex", pkg: "go/types", typ: $funcType([ptrType$14], [$Int], false)}, {prop: "addEdge", name: "addEdge", pkg: "go/types", typ: $funcType([$Int, $Int, $Int, token.Pos, Type], [], false)}];
+		ptrType$118.methods = [{prop: "recordCanon", name: "recordCanon", pkg: "go/types", typ: $funcType([ptrType$14, ptrType$14], [], false)}, {prop: "recordInstance", name: "recordInstance", pkg: "go/types", typ: $funcType([ptrType$1, token.Pos, sliceType$9, sliceType$3, sliceType$11], [], false)}, {prop: "assign", name: "assign", pkg: "go/types", typ: $funcType([ptrType$1, token.Pos, ptrType$14, Type], [], false)}, {prop: "localNamedVertex", name: "localNamedVertex", pkg: "go/types", typ: $funcType([ptrType$1, ptrType$9], [$Int], false)}, {prop: "typeParamVertex", name: "typeParamVertex", pkg: "go/types", typ: $funcType([ptrType$14], [$Int], false)}, {prop: "addEdge", name: "addEdge", pkg: "go/types", typ: $funcType([$Int, $Int, $Int, token.Pos, Type], [], false)}];
 		ptrType$119.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "At", name: "At", pkg: "", typ: $funcType([$Int], [ptrType$3], false)}, {prop: "Lookup", name: "Lookup", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType$3], false)}];
 		methodSet.methods = [{prop: "add", name: "add", pkg: "go/types", typ: $funcType([sliceType, sliceType$13, $Bool, $Bool], [methodSet], false)}, {prop: "addOne", name: "addOne", pkg: "go/types", typ: $funcType([ptrType$2, sliceType$13, $Bool, $Bool], [methodSet], false)}];
 		ptrType$28.methods = [{prop: "Key", name: "Key", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Elem", name: "Elem", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$120.methods = [{prop: "lookup", name: "lookup", pkg: "go/types", typ: $funcType([ptrType$9], [ptrType$9], false)}, {prop: "add", name: "add", pkg: "go/types", typ: $funcType([ptrType$9], [], false)}];
 		ptrType$92.methods = [{prop: "insert", name: "insert", pkg: "go/types", typ: $funcType([ptrType$65], [], false)}, {prop: "gotoTarget", name: "gotoTarget", pkg: "go/types", typ: $funcType([$String], [ptrType$65], false)}, {prop: "enclosingTarget", name: "enclosingTarget", pkg: "go/types", typ: $funcType([$String], [ptrType$65], false)}];
-		ptrType$13.methods = [{prop: "typeSet", name: "typeSet", pkg: "go/types", typ: $funcType([], [ptrType$7], false)}, {prop: "MarkImplicit", name: "MarkImplicit", pkg: "", typ: $funcType([], [], false)}, {prop: "NumExplicitMethods", name: "NumExplicitMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "ExplicitMethod", name: "ExplicitMethod", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "NumEmbeddeds", name: "NumEmbeddeds", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Embedded", name: "Embedded", pkg: "", typ: $funcType([$Int], [ptrType$9], false)}, {prop: "EmbeddedType", name: "EmbeddedType", pkg: "", typ: $funcType([$Int], [Type], false)}, {prop: "NumMethods", name: "NumMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Method", name: "Method", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "Empty", name: "Empty", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsComparable", name: "IsComparable", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsMethodSet", name: "IsMethodSet", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsImplicit", name: "IsImplicit", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Complete", name: "Complete", pkg: "", typ: $funcType([], [ptrType$13], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}];
+		ptrType$13.methods = [{prop: "typeSet", name: "typeSet", pkg: "go/types", typ: $funcType([], [ptrType$8], false)}, {prop: "MarkImplicit", name: "MarkImplicit", pkg: "", typ: $funcType([], [], false)}, {prop: "NumExplicitMethods", name: "NumExplicitMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "ExplicitMethod", name: "ExplicitMethod", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "NumEmbeddeds", name: "NumEmbeddeds", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Embedded", name: "Embedded", pkg: "", typ: $funcType([$Int], [ptrType$9], false)}, {prop: "EmbeddedType", name: "EmbeddedType", pkg: "", typ: $funcType([$Int], [Type], false)}, {prop: "NumMethods", name: "NumMethods", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Method", name: "Method", pkg: "", typ: $funcType([$Int], [ptrType$2], false)}, {prop: "Empty", name: "Empty", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsComparable", name: "IsComparable", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsMethodSet", name: "IsMethodSet", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsImplicit", name: "IsImplicit", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Complete", name: "Complete", pkg: "", typ: $funcType([], [ptrType$13], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}];
 		ptrType$95.methods = [{prop: "cost", name: "cost", pkg: "go/types", typ: $funcType([], [$Int], false)}];
 		ptrType$96.methods = [{prop: "add", name: "add", pkg: "go/types", typ: $funcType([ptrType$95], [], false)}];
 		nodeQueue.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}];
 		ptrType$94.methods = [{prop: "Push", name: "Push", pkg: "", typ: $funcType([$emptyInterface], [], false)}, {prop: "Pop", name: "Pop", pkg: "", typ: $funcType([], [$emptyInterface], false)}];
-		ptrType$121.methods = [{prop: "isParameterized", name: "isParameterized", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "isParameterizedTypeList", name: "isParameterizedTypeList", pkg: "go/types", typ: $funcType([sliceType$2], [$Bool], false)}];
+		ptrType$121.methods = [{prop: "isParameterized", name: "isParameterized", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "isParameterizedTypeList", name: "isParameterizedTypeList", pkg: "go/types", typ: $funcType([sliceType$3], [$Bool], false)}];
 		ptrType$122.methods = [{prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([Type], [], false)}, {prop: "varList", name: "varList", pkg: "go/types", typ: $funcType([sliceType$10], [], false)}];
 		ptrType$104.methods = [{prop: "empty", name: "empty", pkg: "go/types", typ: $funcType([], [$Bool], false)}, {prop: "pos", name: "pos", pkg: "go/types", typ: $funcType([], [token.Pos], false)}, {prop: "msg", name: "msg", pkg: "go/types", typ: $funcType([ptrType$24, Qualifier], [$String], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "errorf", name: "errorf", pkg: "go/types", typ: $funcType([token.Pos, $String, sliceType$6], [], true)}];
 		posSpan.methods = [{prop: "Pos", name: "Pos", pkg: "", typ: $funcType([], [token.Pos], false)}];
@@ -98847,12 +98922,12 @@ $packages["go/types"] = (function() {
 		varDecl.methods = [{prop: "node", name: "node", pkg: "go/types", typ: $funcType([], [ast.Node], false)}];
 		typeDecl.methods = [{prop: "node", name: "node", pkg: "go/types", typ: $funcType([], [ast.Node], false)}];
 		funcDecl.methods = [{prop: "node", name: "node", pkg: "go/types", typ: $funcType([], [ast.Node], false)}];
-		ptrType$51.methods = [{prop: "instanceHash", name: "instanceHash", pkg: "go/types", typ: $funcType([Type, sliceType$2], [$String], false)}, {prop: "lookup", name: "lookup", pkg: "go/types", typ: $funcType([$String, Type, sliceType$2], [Type], false)}, {prop: "update", name: "update", pkg: "go/types", typ: $funcType([$String, Type, sliceType$2, Type], [Type], false)}, {prop: "getID", name: "getID", pkg: "go/types", typ: $funcType([Type], [$Int], false)}];
+		ptrType$51.methods = [{prop: "instanceHash", name: "instanceHash", pkg: "go/types", typ: $funcType([Type, sliceType$3], [$String], false)}, {prop: "lookup", name: "lookup", pkg: "go/types", typ: $funcType([$String, Type, sliceType$3], [Type], false)}, {prop: "update", name: "update", pkg: "go/types", typ: $funcType([$String, Type, sliceType$3, Type], [Type], false)}, {prop: "getID", name: "getID", pkg: "go/types", typ: $funcType([Type], [$Int], false)}];
 		ptrType$123.methods = [{prop: "lookup", name: "lookup", pkg: "go/types", typ: $funcType([$String], [Object], false)}];
 		ptrType$124.methods = [{prop: "describef", name: "describef", pkg: "go/types", typ: $funcType([positioner, $String, sliceType$6], [], true)}];
-		ptrType$5.methods = [{prop: "langCompat", name: "langCompat", pkg: "go/types", typ: $funcType([ptrType$57], [], false)}, {prop: "allowVersion", name: "allowVersion", pkg: "go/types", typ: $funcType([ptrType$1, $Int, $Int], [$Bool], false)}, {prop: "validType", name: "validType", pkg: "go/types", typ: $funcType([ptrType$9], [], false)}, {prop: "validType0", name: "validType0", pkg: "go/types", typ: $funcType([Type, sliceType$7, sliceType$7], [$Bool], false)}, {prop: "ident", name: "ident", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$30, ptrType$9, $Bool], [], false)}, {prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "varType", name: "varType", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "validVarType", name: "validVarType", pkg: "go/types", typ: $funcType([ast.Expr, Type], [], false)}, {prop: "definedType", name: "definedType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$9], [Type], false)}, {prop: "genericType", name: "genericType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$34], [Type], false)}, {prop: "typInternal", name: "typInternal", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$9], [Type], false)}, {prop: "instantiatedType", name: "instantiatedType", pkg: "go/types", typ: $funcType([ptrType$112, ptrType$9], [Type], false)}, {prop: "arrayLength", name: "arrayLength", pkg: "go/types", typ: $funcType([ast.Expr], [$Int64], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$11], [sliceType$2], false)}, {prop: "newTypeParam", name: "newTypeParam", pkg: "go/types", typ: $funcType([ptrType$17, Type], [ptrType$14], false)}, {prop: "subst", name: "subst", pkg: "go/types", typ: $funcType([token.Pos, Type, substMap, ptrType$9, ptrType$51], [Type], false)}, {prop: "structType", name: "structType", pkg: "go/types", typ: $funcType([ptrType$11, ptrType$42], [], false)}, {prop: "declareInSet", name: "declareInSet", pkg: "go/types", typ: $funcType([ptrType$54, token.Pos, Object], [$Bool], false)}, {prop: "tag", name: "tag", pkg: "go/types", typ: $funcType([ptrType$57], [$String], false)}, {prop: "funcBody", name: "funcBody", pkg: "go/types", typ: $funcType([ptrType$58, $String, ptrType$27, ptrType$74, constant.Value], [], false)}, {prop: "usage", name: "usage", pkg: "go/types", typ: $funcType([ptrType], [], false)}, {prop: "simpleStmt", name: "simpleStmt", pkg: "go/types", typ: $funcType([ast.Stmt], [], false)}, {prop: "stmtList", name: "stmtList", pkg: "go/types", typ: $funcType([stmtContext, sliceType$17], [], false)}, {prop: "multipleDefaults", name: "multipleDefaults", pkg: "go/types", typ: $funcType([sliceType$17], [], false)}, {prop: "openScope", name: "openScope", pkg: "go/types", typ: $funcType([ast.Node, $String], [], false)}, {prop: "closeScope", name: "closeScope", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "suspendedCall", name: "suspendedCall", pkg: "go/types", typ: $funcType([$String, ptrType$86], [], false)}, {prop: "caseValues", name: "caseValues", pkg: "go/types", typ: $funcType([ptrType$62, sliceType$11, valueMap], [], false)}, {prop: "isNil", name: "isNil", pkg: "go/types", typ: $funcType([ast.Expr], [$Bool], false)}, {prop: "caseTypes", name: "caseTypes", pkg: "go/types", typ: $funcType([ptrType$62, sliceType$11, mapType$10], [Type], false)}, {prop: "stmt", name: "stmt", pkg: "go/types", typ: $funcType([stmtContext, ast.Stmt], [], false)}, {prop: "funcType", name: "funcType", pkg: "go/types", typ: $funcType([ptrType$27, ptrType$49, ptrType$44], [], false)}, {prop: "collectParams", name: "collectParams", pkg: "go/types", typ: $funcType([ptrType, ptrType$49, $Bool], [sliceType$10, $Bool], false)}, {prop: "isTerminating", name: "isTerminating", pkg: "go/types", typ: $funcType([ast.Stmt, $String], [$Bool], false)}, {prop: "isTerminatingList", name: "isTerminatingList", pkg: "go/types", typ: $funcType([sliceType$17, $String], [$Bool], false)}, {prop: "isTerminatingSwitch", name: "isTerminatingSwitch", pkg: "go/types", typ: $funcType([ptrType$74, $String], [$Bool], false)}, {prop: "arityMatch", name: "arityMatch", pkg: "go/types", typ: $funcType([ptrType$88, ptrType$88], [], false)}, {prop: "declarePkgObj", name: "declarePkgObj", pkg: "go/types", typ: $funcType([ptrType$30, Object, ptrType$58], [], false)}, {prop: "filename", name: "filename", pkg: "go/types", typ: $funcType([$Int], [$String], false)}, {prop: "importPackage", name: "importPackage", pkg: "go/types", typ: $funcType([positioner, $String, $String], [ptrType$1], false)}, {prop: "collectObjects", name: "collectObjects", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "unpackRecv", name: "unpackRecv", pkg: "go/types", typ: $funcType([ast.Expr, $Bool], [$Bool, ptrType$30, sliceType$22], false)}, {prop: "resolveBaseTypeName", name: "resolveBaseTypeName", pkg: "go/types", typ: $funcType([$Bool, ptrType$30], [$Bool, ptrType$17], false)}, {prop: "packageObjects", name: "packageObjects", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "unusedImports", name: "unusedImports", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "errorUnusedPkg", name: "errorUnusedPkg", pkg: "go/types", typ: $funcType([ptrType$31], [], false)}, {prop: "newNamed", name: "newNamed", pkg: "go/types", typ: $funcType([ptrType$17, Type, sliceType], [ptrType$9], false)}, {prop: "newNamedInstance", name: "newNamedInstance", pkg: "go/types", typ: $funcType([token.Pos, ptrType$9, sliceType$2, ptrType$9], [ptrType$9], false)}, {prop: "context", name: "context", pkg: "go/types", typ: $funcType([], [ptrType$51], false)}, {prop: "monomorph", name: "monomorph", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "reportInstanceLoop", name: "reportInstanceLoop", pkg: "go/types", typ: $funcType([$Int], [], false)}, {prop: "missingMethod", name: "missingMethod", pkg: "go/types", typ: $funcType([Type, ptrType$13, $Bool], [ptrType$2, ptrType$2], false)}, {prop: "missingMethodCause", name: "missingMethodCause", pkg: "go/types", typ: $funcType([Type, Type, ptrType$2, ptrType$2], [$String], false)}, {prop: "interfacePtrError", name: "interfacePtrError", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "funcString", name: "funcString", pkg: "go/types", typ: $funcType([ptrType$2, $Bool], [$String], false)}, {prop: "assertableTo", name: "assertableTo", pkg: "go/types", typ: $funcType([ptrType$13, Type], [ptrType$2, ptrType$2], false)}, {prop: "newAssertableTo", name: "newAssertableTo", pkg: "go/types", typ: $funcType([ptrType$13, Type], [$Bool], false)}, {prop: "labels", name: "labels", pkg: "go/types", typ: $funcType([ptrType$74], [], false)}, {prop: "blockBranches", name: "blockBranches", pkg: "go/types", typ: $funcType([ptrType, ptrType$92, ptrType$65, sliceType$17], [sliceType$26], false)}, {prop: "newInterface", name: "newInterface", pkg: "go/types", typ: $funcType([], [ptrType$13], false)}, {prop: "interfaceType", name: "interfaceType", pkg: "go/types", typ: $funcType([ptrType$13, ptrType$45, ptrType$9], [], false)}, {prop: "instance", name: "instance", pkg: "go/types", typ: $funcType([token.Pos, Type, sliceType$2, ptrType$9, ptrType$51], [Type], false)}, {prop: "validateTArgLen", name: "validateTArgLen", pkg: "go/types", typ: $funcType([token.Pos, $Int, $Int], [$Bool], false)}, {prop: "verify", name: "verify", pkg: "go/types", typ: $funcType([token.Pos, sliceType$9, sliceType$2, ptrType$51], [$Int, $error], false)}, {prop: "implements$", name: "implements", pkg: "go/types", typ: $funcType([Type, Type, $Bool, ptrType$34], [$Bool], false)}, {prop: "initOrder", name: "initOrder", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "reportCycle", name: "reportCycle", pkg: "go/types", typ: $funcType([sliceType$8], [], false)}, {prop: "infer", name: "infer", pkg: "go/types", typ: $funcType([positioner, sliceType$9, sliceType$2, ptrType$15, sliceType$29], [sliceType$2], false)}, {prop: "inferB", name: "inferB", pkg: "go/types", typ: $funcType([positioner, sliceType$9, sliceType$2], [sliceType$2, $Int], false)}, {prop: "indexExpr", name: "indexExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$112], [$Bool], false)}, {prop: "sliceExpr", name: "sliceExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$100], [], false)}, {prop: "singleIndex", name: "singleIndex", pkg: "go/types", typ: $funcType([ptrType$112], [ast.Expr], false)}, {prop: "index", name: "index", pkg: "go/types", typ: $funcType([ast.Expr, $Int64], [Type, $Int64], false)}, {prop: "isValidIndex", name: "isValidIndex", pkg: "go/types", typ: $funcType([ptrType$62, errors$1.Code, $String, $Bool], [$Bool], false)}, {prop: "indexedElts", name: "indexedElts", pkg: "go/types", typ: $funcType([sliceType$11, Type, $Int64], [$Int64], false)}, {prop: "op", name: "op", pkg: "go/types", typ: $funcType([opPredicates, ptrType$62, token.Token], [$Bool], false)}, {prop: "overflow", name: "overflow", pkg: "go/types", typ: $funcType([ptrType$62, token.Pos], [], false)}, {prop: "unary", name: "unary", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$20], [], false)}, {prop: "representable", name: "representable", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$8], [], false)}, {prop: "representation", name: "representation", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$8], [constant.Value, errors$1.Code], false)}, {prop: "invalidConversion", name: "invalidConversion", pkg: "go/types", typ: $funcType([errors$1.Code, ptrType$62, Type], [], false)}, {prop: "updateExprType", name: "updateExprType", pkg: "go/types", typ: $funcType([ast.Expr, Type, $Bool], [], false)}, {prop: "updateExprType0", name: "updateExprType0", pkg: "go/types", typ: $funcType([ast.Expr, ast.Expr, Type, $Bool], [], false)}, {prop: "updateExprVal", name: "updateExprVal", pkg: "go/types", typ: $funcType([ast.Expr, constant.Value], [], false)}, {prop: "convertUntyped", name: "convertUntyped", pkg: "go/types", typ: $funcType([ptrType$62, Type], [], false)}, {prop: "implicitTypeAndValue", name: "implicitTypeAndValue", pkg: "go/types", typ: $funcType([ptrType$62, Type], [Type, constant.Value, errors$1.Code], false)}, {prop: "comparison", name: "comparison", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$62, token.Token, $Bool], [], false)}, {prop: "incomparableCause", name: "incomparableCause", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "kindString", name: "kindString", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "shift", name: "shift", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$62, ast.Expr, token.Token], [], false)}, {prop: "binary", name: "binary", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, ast.Expr, ast.Expr, token.Token, token.Pos], [], false)}, {prop: "rawExpr", name: "rawExpr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type, $Bool], [exprKind], false)}, {prop: "nonGeneric", name: "nonGeneric", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "exprInternal", name: "exprInternal", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type], [exprKind], false)}, {prop: "typeAssertion", name: "typeAssertion", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$62, Type, $Bool], [], false)}, {prop: "expr", name: "expr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr], [], false)}, {prop: "multiExpr", name: "multiExpr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr], [], false)}, {prop: "exprWithHint", name: "exprWithHint", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type], [], false)}, {prop: "exprOrType", name: "exprOrType", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, $Bool], [], false)}, {prop: "exclude", name: "exclude", pkg: "go/types", typ: $funcType([ptrType$62, $Uint], [], false)}, {prop: "singleValue", name: "singleValue", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "qualifier", name: "qualifier", pkg: "go/types", typ: $funcType([ptrType$1], [$String], false)}, {prop: "markImports", name: "markImports", pkg: "go/types", typ: $funcType([ptrType$1], [], false)}, {prop: "sprintf", name: "sprintf", pkg: "go/types", typ: $funcType([$String, sliceType$6], [$String], true)}, {prop: "trace", name: "trace", pkg: "go/types", typ: $funcType([token.Pos, $String, sliceType$6], [], true)}, {prop: "dump", name: "dump", pkg: "go/types", typ: $funcType([$String, sliceType$6], [], true)}, {prop: "report", name: "report", pkg: "go/types", typ: $funcType([ptrType$104], [], false)}, {prop: "error", name: "error", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String], [], false)}, {prop: "errorf", name: "errorf", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String, sliceType$6], [], true)}, {prop: "softErrorf", name: "softErrorf", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String, sliceType$6], [], true)}, {prop: "versionErrorf", name: "versionErrorf", pkg: "go/types", typ: $funcType([positioner, $String, $String, sliceType$6], [], true)}, {prop: "reportAltDecl", name: "reportAltDecl", pkg: "go/types", typ: $funcType([Object], [], false)}, {prop: "declare", name: "declare", pkg: "go/types", typ: $funcType([ptrType, ptrType$30, Object, token.Pos], [], false)}, {prop: "objDecl", name: "objDecl", pkg: "go/types", typ: $funcType([Object, ptrType$9], [], false)}, {prop: "validCycle", name: "validCycle", pkg: "go/types", typ: $funcType([Object], [$Bool], false)}, {prop: "cycleError", name: "cycleError", pkg: "go/types", typ: $funcType([sliceType$8], [], false)}, {prop: "walkDecls", name: "walkDecls", pkg: "go/types", typ: $funcType([sliceType$42, funcType$7], [], false)}, {prop: "walkDecl", name: "walkDecl", pkg: "go/types", typ: $funcType([ast.Decl, funcType$7], [], false)}, {prop: "constDecl", name: "constDecl", pkg: "go/types", typ: $funcType([ptrType$32, ast.Expr, ast.Expr, $Bool], [], false)}, {prop: "varDecl", name: "varDecl", pkg: "go/types", typ: $funcType([ptrType$16, sliceType$10, ast.Expr, ast.Expr], [], false)}, {prop: "isImportedConstraint", name: "isImportedConstraint", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "typeDecl", name: "typeDecl", pkg: "go/types", typ: $funcType([ptrType$17, ptrType$90, ptrType$9], [], false)}, {prop: "collectTypeParams", name: "collectTypeParams", pkg: "go/types", typ: $funcType([ptrType$84, ptrType$49], [], false)}, {prop: "bound", name: "bound", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "declareTypeParams", name: "declareTypeParams", pkg: "go/types", typ: $funcType([sliceType$9, sliceType$22], [sliceType$9], false)}, {prop: "collectMethods", name: "collectMethods", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "checkFieldUniqueness", name: "checkFieldUniqueness", pkg: "go/types", typ: $funcType([ptrType$9], [], false)}, {prop: "funcDecl", name: "funcDecl", pkg: "go/types", typ: $funcType([ptrType$2, ptrType$58], [], false)}, {prop: "declStmt", name: "declStmt", pkg: "go/types", typ: $funcType([ast.Decl], [], false)}, {prop: "conversion", name: "conversion", pkg: "go/types", typ: $funcType([ptrType$62, Type], [], false)}, {prop: "addDeclDep", name: "addDeclDep", pkg: "go/types", typ: $funcType([Object], [], false)}, {prop: "brokenAlias", name: "brokenAlias", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "validAlias", name: "validAlias", pkg: "go/types", typ: $funcType([ptrType$17, Type], [], false)}, {prop: "isBrokenAlias", name: "isBrokenAlias", pkg: "go/types", typ: $funcType([ptrType$17], [$Bool], false)}, {prop: "rememberUntyped", name: "rememberUntyped", pkg: "go/types", typ: $funcType([ast.Expr, $Bool, operandMode, ptrType$8, constant.Value], [], false)}, {prop: "later", name: "later", pkg: "go/types", typ: $funcType([funcType$1], [ptrType$124], false)}, {prop: "push", name: "push", pkg: "go/types", typ: $funcType([Object], [$Int], false)}, {prop: "pop", name: "pop", pkg: "go/types", typ: $funcType([], [Object], false)}, {prop: "needsCleanup", name: "needsCleanup", pkg: "go/types", typ: $funcType([cleaner], [], false)}, {prop: "initFiles", name: "initFiles", pkg: "go/types", typ: $funcType([sliceType$35], [], false)}, {prop: "handleBailout", name: "handleBailout", pkg: "go/types", typ: $funcType([ptrType$103], [], false)}, {prop: "Files", name: "Files", pkg: "", typ: $funcType([sliceType$35], [$error], false)}, {prop: "checkFiles", name: "checkFiles", pkg: "go/types", typ: $funcType([sliceType$35], [$error], false)}, {prop: "processDelayed", name: "processDelayed", pkg: "go/types", typ: $funcType([$Int], [], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "record", name: "record", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "recordUntyped", name: "recordUntyped", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "recordTypeAndValue", name: "recordTypeAndValue", pkg: "go/types", typ: $funcType([ast.Expr, operandMode, Type, constant.Value], [], false)}, {prop: "recordBuiltinType", name: "recordBuiltinType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$27], [], false)}, {prop: "recordCommaOkTypes", name: "recordCommaOkTypes", pkg: "go/types", typ: $funcType([ast.Expr, arrayType$3], [], false)}, {prop: "recordInstance", name: "recordInstance", pkg: "go/types", typ: $funcType([ast.Expr, sliceType$2, Type], [], false)}, {prop: "recordDef", name: "recordDef", pkg: "go/types", typ: $funcType([ptrType$30, Object], [], false)}, {prop: "recordUse", name: "recordUse", pkg: "go/types", typ: $funcType([ptrType$30, Object], [], false)}, {prop: "recordImplicit", name: "recordImplicit", pkg: "go/types", typ: $funcType([ast.Node, Object], [], false)}, {prop: "recordSelection", name: "recordSelection", pkg: "go/types", typ: $funcType([ptrType$36, SelectionKind, Type, Object, sliceType$13, $Bool], [], false)}, {prop: "recordScope", name: "recordScope", pkg: "go/types", typ: $funcType([ast.Node, ptrType], [], false)}, {prop: "funcInst", name: "funcInst", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$112], [], false)}, {prop: "instantiateSignature", name: "instantiateSignature", pkg: "go/types", typ: $funcType([token.Pos, ptrType$27, sliceType$2, sliceType$11], [ptrType$27], false)}, {prop: "callExpr", name: "callExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$86], [exprKind], false)}, {prop: "exprList", name: "exprList", pkg: "go/types", typ: $funcType([sliceType$11, $Bool], [sliceType$29, $Bool], false)}, {prop: "arguments$", name: "arguments", pkg: "go/types", typ: $funcType([ptrType$86, ptrType$27, sliceType$2, sliceType$29, sliceType$11], [ptrType$27], false)}, {prop: "selector", name: "selector", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$36, ptrType$9, $Bool], [], false)}, {prop: "use", name: "use", pkg: "go/types", typ: $funcType([sliceType$11], [], true)}, {prop: "useLHS", name: "useLHS", pkg: "go/types", typ: $funcType([sliceType$11], [], true)}, {prop: "builtin", name: "builtin", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$86, builtinId], [$Bool], false)}, {prop: "applyTypeFunc", name: "applyTypeFunc", pkg: "go/types", typ: $funcType([funcType$8, ptrType$62, builtinId], [Type], false)}, {prop: "assignment", name: "assignment", pkg: "go/types", typ: $funcType([ptrType$62, Type, $String], [], false)}, {prop: "initConst", name: "initConst", pkg: "go/types", typ: $funcType([ptrType$32, ptrType$62], [], false)}, {prop: "initVar", name: "initVar", pkg: "go/types", typ: $funcType([ptrType$16, ptrType$62, $String], [Type], false)}, {prop: "assignVar", name: "assignVar", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$62], [Type], false)}, {prop: "typesSummary", name: "typesSummary", pkg: "go/types", typ: $funcType([sliceType$2, $Bool], [$String], false)}, {prop: "assignError", name: "assignError", pkg: "go/types", typ: $funcType([sliceType$11, $Int, $Int], [], false)}, {prop: "initVars", name: "initVars", pkg: "go/types", typ: $funcType([sliceType$10, sliceType$11, ast.Stmt], [], false)}, {prop: "assignVars", name: "assignVars", pkg: "go/types", typ: $funcType([sliceType$11, sliceType$11], [], false)}, {prop: "shortVarDecl", name: "shortVarDecl", pkg: "go/types", typ: $funcType([positioner, sliceType$11, sliceType$11], [], false)}];
+		ptrType$6.methods = [{prop: "langCompat", name: "langCompat", pkg: "go/types", typ: $funcType([ptrType$57], [], false)}, {prop: "allowVersion", name: "allowVersion", pkg: "go/types", typ: $funcType([ptrType$1, $Int, $Int], [$Bool], false)}, {prop: "validType", name: "validType", pkg: "go/types", typ: $funcType([ptrType$9], [], false)}, {prop: "validType0", name: "validType0", pkg: "go/types", typ: $funcType([Type, sliceType$7, sliceType$7], [$Bool], false)}, {prop: "ident", name: "ident", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$30, ptrType$9, $Bool], [], false)}, {prop: "typ", name: "typ", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "varType", name: "varType", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "validVarType", name: "validVarType", pkg: "go/types", typ: $funcType([ast.Expr, Type], [], false)}, {prop: "definedType", name: "definedType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$9], [Type], false)}, {prop: "genericType", name: "genericType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$34], [Type], false)}, {prop: "typInternal", name: "typInternal", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$9], [Type], false)}, {prop: "instantiatedType", name: "instantiatedType", pkg: "go/types", typ: $funcType([ptrType$112, ptrType$9], [Type], false)}, {prop: "arrayLength", name: "arrayLength", pkg: "go/types", typ: $funcType([ast.Expr], [$Int64], false)}, {prop: "typeList", name: "typeList", pkg: "go/types", typ: $funcType([sliceType$11], [sliceType$3], false)}, {prop: "newTypeParam", name: "newTypeParam", pkg: "go/types", typ: $funcType([ptrType$17, Type], [ptrType$14], false)}, {prop: "subst", name: "subst", pkg: "go/types", typ: $funcType([token.Pos, Type, substMap, ptrType$9, ptrType$51], [Type], false)}, {prop: "structType", name: "structType", pkg: "go/types", typ: $funcType([ptrType$11, ptrType$42], [], false)}, {prop: "declareInSet", name: "declareInSet", pkg: "go/types", typ: $funcType([ptrType$54, token.Pos, Object], [$Bool], false)}, {prop: "tag", name: "tag", pkg: "go/types", typ: $funcType([ptrType$57], [$String], false)}, {prop: "funcBody", name: "funcBody", pkg: "go/types", typ: $funcType([ptrType$58, $String, ptrType$27, ptrType$74, constant.Value], [], false)}, {prop: "usage", name: "usage", pkg: "go/types", typ: $funcType([ptrType], [], false)}, {prop: "simpleStmt", name: "simpleStmt", pkg: "go/types", typ: $funcType([ast.Stmt], [], false)}, {prop: "stmtList", name: "stmtList", pkg: "go/types", typ: $funcType([stmtContext, sliceType$17], [], false)}, {prop: "multipleDefaults", name: "multipleDefaults", pkg: "go/types", typ: $funcType([sliceType$17], [], false)}, {prop: "openScope", name: "openScope", pkg: "go/types", typ: $funcType([ast.Node, $String], [], false)}, {prop: "closeScope", name: "closeScope", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "suspendedCall", name: "suspendedCall", pkg: "go/types", typ: $funcType([$String, ptrType$86], [], false)}, {prop: "caseValues", name: "caseValues", pkg: "go/types", typ: $funcType([ptrType$62, sliceType$11, valueMap], [], false)}, {prop: "isNil", name: "isNil", pkg: "go/types", typ: $funcType([ast.Expr], [$Bool], false)}, {prop: "caseTypes", name: "caseTypes", pkg: "go/types", typ: $funcType([ptrType$62, sliceType$11, mapType$10], [Type], false)}, {prop: "stmt", name: "stmt", pkg: "go/types", typ: $funcType([stmtContext, ast.Stmt], [], false)}, {prop: "funcType", name: "funcType", pkg: "go/types", typ: $funcType([ptrType$27, ptrType$49, ptrType$44], [], false)}, {prop: "collectParams", name: "collectParams", pkg: "go/types", typ: $funcType([ptrType, ptrType$49, $Bool], [sliceType$10, $Bool], false)}, {prop: "isTerminating", name: "isTerminating", pkg: "go/types", typ: $funcType([ast.Stmt, $String], [$Bool], false)}, {prop: "isTerminatingList", name: "isTerminatingList", pkg: "go/types", typ: $funcType([sliceType$17, $String], [$Bool], false)}, {prop: "isTerminatingSwitch", name: "isTerminatingSwitch", pkg: "go/types", typ: $funcType([ptrType$74, $String], [$Bool], false)}, {prop: "arityMatch", name: "arityMatch", pkg: "go/types", typ: $funcType([ptrType$88, ptrType$88], [], false)}, {prop: "declarePkgObj", name: "declarePkgObj", pkg: "go/types", typ: $funcType([ptrType$30, Object, ptrType$58], [], false)}, {prop: "filename", name: "filename", pkg: "go/types", typ: $funcType([$Int], [$String], false)}, {prop: "importPackage", name: "importPackage", pkg: "go/types", typ: $funcType([positioner, $String, $String], [ptrType$1], false)}, {prop: "collectObjects", name: "collectObjects", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "unpackRecv", name: "unpackRecv", pkg: "go/types", typ: $funcType([ast.Expr, $Bool], [$Bool, ptrType$30, sliceType$22], false)}, {prop: "resolveBaseTypeName", name: "resolveBaseTypeName", pkg: "go/types", typ: $funcType([$Bool, ptrType$30], [$Bool, ptrType$17], false)}, {prop: "packageObjects", name: "packageObjects", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "unusedImports", name: "unusedImports", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "errorUnusedPkg", name: "errorUnusedPkg", pkg: "go/types", typ: $funcType([ptrType$31], [], false)}, {prop: "newNamed", name: "newNamed", pkg: "go/types", typ: $funcType([ptrType$17, Type, sliceType], [ptrType$9], false)}, {prop: "newNamedInstance", name: "newNamedInstance", pkg: "go/types", typ: $funcType([token.Pos, ptrType$9, sliceType$3, ptrType$9], [ptrType$9], false)}, {prop: "context", name: "context", pkg: "go/types", typ: $funcType([], [ptrType$51], false)}, {prop: "monomorph", name: "monomorph", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "reportInstanceLoop", name: "reportInstanceLoop", pkg: "go/types", typ: $funcType([$Int], [], false)}, {prop: "missingMethod", name: "missingMethod", pkg: "go/types", typ: $funcType([Type, ptrType$13, $Bool], [ptrType$2, ptrType$2], false)}, {prop: "missingMethodCause", name: "missingMethodCause", pkg: "go/types", typ: $funcType([Type, Type, ptrType$2, ptrType$2], [$String], false)}, {prop: "interfacePtrError", name: "interfacePtrError", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "funcString", name: "funcString", pkg: "go/types", typ: $funcType([ptrType$2, $Bool], [$String], false)}, {prop: "assertableTo", name: "assertableTo", pkg: "go/types", typ: $funcType([ptrType$13, Type], [ptrType$2, ptrType$2], false)}, {prop: "newAssertableTo", name: "newAssertableTo", pkg: "go/types", typ: $funcType([ptrType$13, Type], [$Bool], false)}, {prop: "labels", name: "labels", pkg: "go/types", typ: $funcType([ptrType$74], [], false)}, {prop: "blockBranches", name: "blockBranches", pkg: "go/types", typ: $funcType([ptrType, ptrType$92, ptrType$65, sliceType$17], [sliceType$26], false)}, {prop: "newInterface", name: "newInterface", pkg: "go/types", typ: $funcType([], [ptrType$13], false)}, {prop: "interfaceType", name: "interfaceType", pkg: "go/types", typ: $funcType([ptrType$13, ptrType$45, ptrType$9], [], false)}, {prop: "instance", name: "instance", pkg: "go/types", typ: $funcType([token.Pos, Type, sliceType$3, ptrType$9, ptrType$51], [Type], false)}, {prop: "validateTArgLen", name: "validateTArgLen", pkg: "go/types", typ: $funcType([token.Pos, $Int, $Int], [$Bool], false)}, {prop: "verify", name: "verify", pkg: "go/types", typ: $funcType([token.Pos, sliceType$9, sliceType$3, ptrType$51], [$Int, $error], false)}, {prop: "implements$", name: "implements", pkg: "go/types", typ: $funcType([Type, Type, $Bool, ptrType$34], [$Bool], false)}, {prop: "initOrder", name: "initOrder", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "reportCycle", name: "reportCycle", pkg: "go/types", typ: $funcType([sliceType$8], [], false)}, {prop: "infer", name: "infer", pkg: "go/types", typ: $funcType([positioner, sliceType$9, sliceType$3, ptrType$15, sliceType$29], [sliceType$3], false)}, {prop: "inferB", name: "inferB", pkg: "go/types", typ: $funcType([positioner, sliceType$9, sliceType$3], [sliceType$3, $Int], false)}, {prop: "indexExpr", name: "indexExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$112], [$Bool], false)}, {prop: "sliceExpr", name: "sliceExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$100], [], false)}, {prop: "singleIndex", name: "singleIndex", pkg: "go/types", typ: $funcType([ptrType$112], [ast.Expr], false)}, {prop: "index", name: "index", pkg: "go/types", typ: $funcType([ast.Expr, $Int64], [Type, $Int64], false)}, {prop: "isValidIndex", name: "isValidIndex", pkg: "go/types", typ: $funcType([ptrType$62, errors$1.Code, $String, $Bool], [$Bool], false)}, {prop: "indexedElts", name: "indexedElts", pkg: "go/types", typ: $funcType([sliceType$11, Type, $Int64], [$Int64], false)}, {prop: "op", name: "op", pkg: "go/types", typ: $funcType([opPredicates, ptrType$62, token.Token], [$Bool], false)}, {prop: "overflow", name: "overflow", pkg: "go/types", typ: $funcType([ptrType$62, token.Pos], [], false)}, {prop: "unary", name: "unary", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$20], [], false)}, {prop: "representable", name: "representable", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$4], [], false)}, {prop: "representation", name: "representation", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$4], [constant.Value, errors$1.Code], false)}, {prop: "invalidConversion", name: "invalidConversion", pkg: "go/types", typ: $funcType([errors$1.Code, ptrType$62, Type], [], false)}, {prop: "updateExprType", name: "updateExprType", pkg: "go/types", typ: $funcType([ast.Expr, Type, $Bool], [], false)}, {prop: "updateExprType0", name: "updateExprType0", pkg: "go/types", typ: $funcType([ast.Expr, ast.Expr, Type, $Bool], [], false)}, {prop: "updateExprVal", name: "updateExprVal", pkg: "go/types", typ: $funcType([ast.Expr, constant.Value], [], false)}, {prop: "convertUntyped", name: "convertUntyped", pkg: "go/types", typ: $funcType([ptrType$62, Type], [], false)}, {prop: "implicitTypeAndValue", name: "implicitTypeAndValue", pkg: "go/types", typ: $funcType([ptrType$62, Type], [Type, constant.Value, errors$1.Code], false)}, {prop: "comparison", name: "comparison", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$62, token.Token, $Bool], [], false)}, {prop: "incomparableCause", name: "incomparableCause", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "kindString", name: "kindString", pkg: "go/types", typ: $funcType([Type], [$String], false)}, {prop: "shift", name: "shift", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$62, ast.Expr, token.Token], [], false)}, {prop: "binary", name: "binary", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, ast.Expr, ast.Expr, token.Token, token.Pos], [], false)}, {prop: "rawExpr", name: "rawExpr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type, $Bool], [exprKind], false)}, {prop: "nonGeneric", name: "nonGeneric", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "exprInternal", name: "exprInternal", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type], [exprKind], false)}, {prop: "typeAssertion", name: "typeAssertion", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$62, Type, $Bool], [], false)}, {prop: "expr", name: "expr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr], [], false)}, {prop: "multiExpr", name: "multiExpr", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr], [], false)}, {prop: "exprWithHint", name: "exprWithHint", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, Type], [], false)}, {prop: "exprOrType", name: "exprOrType", pkg: "go/types", typ: $funcType([ptrType$62, ast.Expr, $Bool], [], false)}, {prop: "exclude", name: "exclude", pkg: "go/types", typ: $funcType([ptrType$62, $Uint], [], false)}, {prop: "singleValue", name: "singleValue", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "qualifier", name: "qualifier", pkg: "go/types", typ: $funcType([ptrType$1], [$String], false)}, {prop: "markImports", name: "markImports", pkg: "go/types", typ: $funcType([ptrType$1], [], false)}, {prop: "sprintf", name: "sprintf", pkg: "go/types", typ: $funcType([$String, sliceType$6], [$String], true)}, {prop: "trace", name: "trace", pkg: "go/types", typ: $funcType([token.Pos, $String, sliceType$6], [], true)}, {prop: "dump", name: "dump", pkg: "go/types", typ: $funcType([$String, sliceType$6], [], true)}, {prop: "report", name: "report", pkg: "go/types", typ: $funcType([ptrType$104], [], false)}, {prop: "error", name: "error", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String], [], false)}, {prop: "errorf", name: "errorf", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String, sliceType$6], [], true)}, {prop: "softErrorf", name: "softErrorf", pkg: "go/types", typ: $funcType([positioner, errors$1.Code, $String, sliceType$6], [], true)}, {prop: "versionErrorf", name: "versionErrorf", pkg: "go/types", typ: $funcType([positioner, $String, $String, sliceType$6], [], true)}, {prop: "reportAltDecl", name: "reportAltDecl", pkg: "go/types", typ: $funcType([Object], [], false)}, {prop: "declare", name: "declare", pkg: "go/types", typ: $funcType([ptrType, ptrType$30, Object, token.Pos], [], false)}, {prop: "objDecl", name: "objDecl", pkg: "go/types", typ: $funcType([Object, ptrType$9], [], false)}, {prop: "validCycle", name: "validCycle", pkg: "go/types", typ: $funcType([Object], [$Bool], false)}, {prop: "cycleError", name: "cycleError", pkg: "go/types", typ: $funcType([sliceType$8], [], false)}, {prop: "walkDecls", name: "walkDecls", pkg: "go/types", typ: $funcType([sliceType$42, funcType$7], [], false)}, {prop: "walkDecl", name: "walkDecl", pkg: "go/types", typ: $funcType([ast.Decl, funcType$7], [], false)}, {prop: "constDecl", name: "constDecl", pkg: "go/types", typ: $funcType([ptrType$32, ast.Expr, ast.Expr, $Bool], [], false)}, {prop: "varDecl", name: "varDecl", pkg: "go/types", typ: $funcType([ptrType$16, sliceType$10, ast.Expr, ast.Expr], [], false)}, {prop: "isImportedConstraint", name: "isImportedConstraint", pkg: "go/types", typ: $funcType([Type], [$Bool], false)}, {prop: "typeDecl", name: "typeDecl", pkg: "go/types", typ: $funcType([ptrType$17, ptrType$90, ptrType$9], [], false)}, {prop: "collectTypeParams", name: "collectTypeParams", pkg: "go/types", typ: $funcType([ptrType$84, ptrType$49], [], false)}, {prop: "bound", name: "bound", pkg: "go/types", typ: $funcType([ast.Expr], [Type], false)}, {prop: "declareTypeParams", name: "declareTypeParams", pkg: "go/types", typ: $funcType([sliceType$9, sliceType$22], [sliceType$9], false)}, {prop: "collectMethods", name: "collectMethods", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "checkFieldUniqueness", name: "checkFieldUniqueness", pkg: "go/types", typ: $funcType([ptrType$9], [], false)}, {prop: "funcDecl", name: "funcDecl", pkg: "go/types", typ: $funcType([ptrType$2, ptrType$58], [], false)}, {prop: "declStmt", name: "declStmt", pkg: "go/types", typ: $funcType([ast.Decl], [], false)}, {prop: "conversion", name: "conversion", pkg: "go/types", typ: $funcType([ptrType$62, Type], [], false)}, {prop: "addDeclDep", name: "addDeclDep", pkg: "go/types", typ: $funcType([Object], [], false)}, {prop: "brokenAlias", name: "brokenAlias", pkg: "go/types", typ: $funcType([ptrType$17], [], false)}, {prop: "validAlias", name: "validAlias", pkg: "go/types", typ: $funcType([ptrType$17, Type], [], false)}, {prop: "isBrokenAlias", name: "isBrokenAlias", pkg: "go/types", typ: $funcType([ptrType$17], [$Bool], false)}, {prop: "rememberUntyped", name: "rememberUntyped", pkg: "go/types", typ: $funcType([ast.Expr, $Bool, operandMode, ptrType$4, constant.Value], [], false)}, {prop: "later", name: "later", pkg: "go/types", typ: $funcType([funcType$1], [ptrType$124], false)}, {prop: "push", name: "push", pkg: "go/types", typ: $funcType([Object], [$Int], false)}, {prop: "pop", name: "pop", pkg: "go/types", typ: $funcType([], [Object], false)}, {prop: "needsCleanup", name: "needsCleanup", pkg: "go/types", typ: $funcType([cleaner], [], false)}, {prop: "initFiles", name: "initFiles", pkg: "go/types", typ: $funcType([sliceType$35], [], false)}, {prop: "handleBailout", name: "handleBailout", pkg: "go/types", typ: $funcType([ptrType$103], [], false)}, {prop: "Files", name: "Files", pkg: "", typ: $funcType([sliceType$35], [$error], false)}, {prop: "checkFiles", name: "checkFiles", pkg: "go/types", typ: $funcType([sliceType$35], [$error], false)}, {prop: "processDelayed", name: "processDelayed", pkg: "go/types", typ: $funcType([$Int], [], false)}, {prop: "cleanup", name: "cleanup", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "record", name: "record", pkg: "go/types", typ: $funcType([ptrType$62], [], false)}, {prop: "recordUntyped", name: "recordUntyped", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "recordTypeAndValue", name: "recordTypeAndValue", pkg: "go/types", typ: $funcType([ast.Expr, operandMode, Type, constant.Value], [], false)}, {prop: "recordBuiltinType", name: "recordBuiltinType", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$27], [], false)}, {prop: "recordCommaOkTypes", name: "recordCommaOkTypes", pkg: "go/types", typ: $funcType([ast.Expr, arrayType$3], [], false)}, {prop: "recordInstance", name: "recordInstance", pkg: "go/types", typ: $funcType([ast.Expr, sliceType$3, Type], [], false)}, {prop: "recordDef", name: "recordDef", pkg: "go/types", typ: $funcType([ptrType$30, Object], [], false)}, {prop: "recordUse", name: "recordUse", pkg: "go/types", typ: $funcType([ptrType$30, Object], [], false)}, {prop: "recordImplicit", name: "recordImplicit", pkg: "go/types", typ: $funcType([ast.Node, Object], [], false)}, {prop: "recordSelection", name: "recordSelection", pkg: "go/types", typ: $funcType([ptrType$36, SelectionKind, Type, Object, sliceType$13, $Bool], [], false)}, {prop: "recordScope", name: "recordScope", pkg: "go/types", typ: $funcType([ast.Node, ptrType], [], false)}, {prop: "funcInst", name: "funcInst", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$112], [], false)}, {prop: "instantiateSignature", name: "instantiateSignature", pkg: "go/types", typ: $funcType([token.Pos, ptrType$27, sliceType$3, sliceType$11], [ptrType$27], false)}, {prop: "callExpr", name: "callExpr", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$86], [exprKind], false)}, {prop: "exprList", name: "exprList", pkg: "go/types", typ: $funcType([sliceType$11, $Bool], [sliceType$29, $Bool], false)}, {prop: "arguments$", name: "arguments", pkg: "go/types", typ: $funcType([ptrType$86, ptrType$27, sliceType$3, sliceType$29, sliceType$11], [ptrType$27], false)}, {prop: "selector", name: "selector", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$36, ptrType$9, $Bool], [], false)}, {prop: "use", name: "use", pkg: "go/types", typ: $funcType([sliceType$11], [], true)}, {prop: "useLHS", name: "useLHS", pkg: "go/types", typ: $funcType([sliceType$11], [], true)}, {prop: "builtin", name: "builtin", pkg: "go/types", typ: $funcType([ptrType$62, ptrType$86, builtinId], [$Bool], false)}, {prop: "applyTypeFunc", name: "applyTypeFunc", pkg: "go/types", typ: $funcType([funcType$8, ptrType$62, builtinId], [Type], false)}, {prop: "assignment", name: "assignment", pkg: "go/types", typ: $funcType([ptrType$62, Type, $String], [], false)}, {prop: "initConst", name: "initConst", pkg: "go/types", typ: $funcType([ptrType$32, ptrType$62], [], false)}, {prop: "initVar", name: "initVar", pkg: "go/types", typ: $funcType([ptrType$16, ptrType$62, $String], [Type], false)}, {prop: "assignVar", name: "assignVar", pkg: "go/types", typ: $funcType([ast.Expr, ptrType$62], [Type], false)}, {prop: "typesSummary", name: "typesSummary", pkg: "go/types", typ: $funcType([sliceType$3, $Bool], [$String], false)}, {prop: "assignError", name: "assignError", pkg: "go/types", typ: $funcType([sliceType$11, $Int, $Int], [], false)}, {prop: "initVars", name: "initVars", pkg: "go/types", typ: $funcType([sliceType$10, sliceType$11, ast.Stmt], [], false)}, {prop: "assignVars", name: "assignVars", pkg: "go/types", typ: $funcType([sliceType$11, sliceType$11], [], false)}, {prop: "shortVarDecl", name: "shortVarDecl", pkg: "go/types", typ: $funcType([positioner, sliceType$11, sliceType$11], [], false)}];
 		ptrType$29.methods = [{prop: "Dir", name: "Dir", pkg: "", typ: $funcType([], [ChanDir], false)}, {prop: "Elem", name: "Elem", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
-		ptrType$8.methods = [{prop: "Kind", name: "Kind", pkg: "", typ: $funcType([], [BasicKind], false)}, {prop: "Info", name: "Info", pkg: "", typ: $funcType([], [BasicInfo], false)}, {prop: "Name", name: "Name", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
+		ptrType$4.methods = [{prop: "Kind", name: "Kind", pkg: "", typ: $funcType([], [BasicKind], false)}, {prop: "Info", name: "Info", pkg: "", typ: $funcType([], [BasicInfo], false)}, {prop: "Name", name: "Name", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$10.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "Elem", name: "Elem", pkg: "", typ: $funcType([], [Type], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 		Error.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
 		ptrType$101.methods = [{prop: "alignof", name: "alignof", pkg: "go/types", typ: $funcType([Type], [$Int64], false)}, {prop: "offsetsof", name: "offsetsof", pkg: "go/types", typ: $funcType([ptrType$11], [sliceType$19], false)}, {prop: "offsetof", name: "offsetof", pkg: "go/types", typ: $funcType([Type, sliceType$13], [$Int64], false)}, {prop: "sizeof", name: "sizeof", pkg: "go/types", typ: $funcType([Type], [$Int64], false)}, {prop: "Check", name: "Check", pkg: "", typ: $funcType([$String, ptrType$24, sliceType$35, ptrType$110], [ptrType$1, $error], false)}];
@@ -98862,21 +98937,21 @@ $packages["go/types"] = (function() {
 		version.init("go/types", [{prop: "major", name: "major", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "minor", name: "minor", embedded: false, exported: false, typ: $Int, tag: ""}]);
 		Union.init("go/types", [{prop: "terms", name: "terms", embedded: false, exported: false, typ: sliceType$12, tag: ""}]);
 		Term.init("go/types", [{prop: "tilde", name: "tilde", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "typ", name: "typ", embedded: false, exported: false, typ: Type, tag: ""}]);
-		unifier.init("go/types", [{prop: "exact", name: "exact", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "x", name: "x", embedded: false, exported: false, typ: tparamsList, tag: ""}, {prop: "y", name: "y", embedded: false, exported: false, typ: tparamsList, tag: ""}, {prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$2, tag: ""}, {prop: "depth", name: "depth", embedded: false, exported: false, typ: $Int, tag: ""}]);
+		unifier.init("go/types", [{prop: "exact", name: "exact", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "x", name: "x", embedded: false, exported: false, typ: tparamsList, tag: ""}, {prop: "y", name: "y", embedded: false, exported: false, typ: tparamsList, tag: ""}, {prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "depth", name: "depth", embedded: false, exported: false, typ: $Int, tag: ""}]);
 		tparamsList.init("go/types", [{prop: "unifier", name: "unifier", embedded: false, exported: false, typ: ptrType$22, tag: ""}, {prop: "tparams", name: "tparams", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "indices", name: "indices", embedded: false, exported: false, typ: sliceType$13, tag: ""}]);
 		term.init("go/types", [{prop: "tilde", name: "tilde", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "typ", name: "typ", embedded: false, exported: false, typ: Type, tag: ""}]);
 		Qualifier.init([ptrType$1], [$String], false);
 		typeWriter.init("go/types", [{prop: "buf", name: "buf", embedded: false, exported: false, typ: ptrType$114, tag: ""}, {prop: "seen", name: "seen", embedded: false, exported: false, typ: mapType, tag: ""}, {prop: "qf", name: "qf", embedded: false, exported: false, typ: Qualifier, tag: ""}, {prop: "ctxt", name: "ctxt", embedded: false, exported: false, typ: ptrType$51, tag: ""}, {prop: "tparams", name: "tparams", embedded: false, exported: false, typ: ptrType$48, tag: ""}, {prop: "paramNames", name: "paramNames", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "tpSubscripts", name: "tpSubscripts", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "pkgInfo", name: "pkgInfo", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		_TypeSet.init("go/types", [{prop: "methods", name: "methods", embedded: false, exported: false, typ: sliceType, tag: ""}, {prop: "terms", name: "terms", embedded: false, exported: false, typ: termlist, tag: ""}, {prop: "comparable", name: "comparable", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		byUniqueMethodName.init(ptrType$2);
-		TypeParam.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$5, tag: ""}, {prop: "id", name: "id", embedded: false, exported: false, typ: $Uint64, tag: ""}, {prop: "obj", name: "obj", embedded: false, exported: false, typ: ptrType$17, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "bound", name: "bound", embedded: false, exported: false, typ: Type, tag: ""}]);
+		TypeParam.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "id", name: "id", embedded: false, exported: false, typ: $Uint64, tag: ""}, {prop: "obj", name: "obj", embedded: false, exported: false, typ: ptrType$17, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "bound", name: "bound", embedded: false, exported: false, typ: Type, tag: ""}]);
 		TypeParamList.init("go/types", [{prop: "tparams", name: "tparams", embedded: false, exported: false, typ: sliceType$9, tag: ""}]);
-		TypeList.init("go/types", [{prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$2, tag: ""}]);
+		TypeList.init("go/types", [{prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$3, tag: ""}]);
 		Type.init([{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Underlying", name: "Underlying", pkg: "", typ: $funcType([], [Type], false)}]);
 		Tuple.init("go/types", [{prop: "vars", name: "vars", embedded: false, exported: false, typ: sliceType$10, tag: ""}]);
-		termlist.init(ptrType$4);
+		termlist.init(ptrType$5);
 		substMap.init(ptrType$14, Type);
-		subster.init("go/types", [{prop: "pos", name: "pos", embedded: false, exported: false, typ: token.Pos, tag: ""}, {prop: "smap", name: "smap", embedded: false, exported: false, typ: substMap, tag: ""}, {prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$5, tag: ""}, {prop: "expanding", name: "expanding", embedded: false, exported: false, typ: ptrType$9, tag: ""}, {prop: "ctxt", name: "ctxt", embedded: false, exported: false, typ: ptrType$51, tag: ""}]);
+		subster.init("go/types", [{prop: "pos", name: "pos", embedded: false, exported: false, typ: token.Pos, tag: ""}, {prop: "smap", name: "smap", embedded: false, exported: false, typ: substMap, tag: ""}, {prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "expanding", name: "expanding", embedded: false, exported: false, typ: ptrType$9, tag: ""}, {prop: "ctxt", name: "ctxt", embedded: false, exported: false, typ: ptrType$51, tag: ""}]);
 		Struct.init("go/types", [{prop: "fields", name: "fields", embedded: false, exported: false, typ: sliceType$10, tag: ""}, {prop: "tags", name: "tags", embedded: false, exported: false, typ: sliceType$5, tag: ""}]);
 		valueMap.init($emptyInterface, sliceType$18);
 		valueType.init("go/types", [{prop: "pos", name: "pos", embedded: false, exported: false, typ: token.Pos, tag: ""}, {prop: "typ", name: "typ", embedded: false, exported: false, typ: Type, tag: ""}]);
@@ -98904,7 +98979,7 @@ $packages["go/types"] = (function() {
 		Label.init("go/types", [{prop: "object", name: "object", embedded: true, exported: false, typ: object, tag: ""}, {prop: "used", name: "used", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		Builtin.init("go/types", [{prop: "object", name: "object", embedded: true, exported: false, typ: object, tag: ""}, {prop: "id", name: "id", embedded: false, exported: false, typ: builtinId, tag: ""}]);
 		Nil.init("go/types", [{prop: "object", name: "object", embedded: true, exported: false, typ: object, tag: ""}]);
-		Named.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$5, tag: ""}, {prop: "obj", name: "obj", embedded: false, exported: false, typ: ptrType$17, tag: ""}, {prop: "fromRHS", name: "fromRHS", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "inst", name: "inst", embedded: false, exported: false, typ: ptrType$52, tag: ""}, {prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "state_", name: "state_", embedded: false, exported: false, typ: $Uint32, tag: ""}, {prop: "underlying", name: "underlying", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "tparams", name: "tparams", embedded: false, exported: false, typ: ptrType$48, tag: ""}, {prop: "methods", name: "methods", embedded: false, exported: false, typ: sliceType, tag: ""}, {prop: "loader", name: "loader", embedded: false, exported: false, typ: funcType$6, tag: ""}]);
+		Named.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "obj", name: "obj", embedded: false, exported: false, typ: ptrType$17, tag: ""}, {prop: "fromRHS", name: "fromRHS", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "inst", name: "inst", embedded: false, exported: false, typ: ptrType$52, tag: ""}, {prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "state_", name: "state_", embedded: false, exported: false, typ: $Uint32, tag: ""}, {prop: "underlying", name: "underlying", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "tparams", name: "tparams", embedded: false, exported: false, typ: ptrType$48, tag: ""}, {prop: "methods", name: "methods", embedded: false, exported: false, typ: sliceType, tag: ""}, {prop: "loader", name: "loader", embedded: false, exported: false, typ: funcType$6, tag: ""}]);
 		instance.init("go/types", [{prop: "orig", name: "orig", embedded: false, exported: false, typ: ptrType$9, tag: ""}, {prop: "targs", name: "targs", embedded: false, exported: false, typ: ptrType$56, tag: ""}, {prop: "expandedMethods", name: "expandedMethods", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "ctxt", name: "ctxt", embedded: false, exported: false, typ: ptrType$51, tag: ""}]);
 		monoGraph.init("go/types", [{prop: "vertices", name: "vertices", embedded: false, exported: false, typ: sliceType$37, tag: ""}, {prop: "edges", name: "edges", embedded: false, exported: false, typ: sliceType$38, tag: ""}, {prop: "canon", name: "canon", embedded: false, exported: false, typ: mapType$3, tag: ""}, {prop: "nameIdx", name: "nameIdx", embedded: false, exported: false, typ: mapType$4, tag: ""}]);
 		monoVertex.init("go/types", [{prop: "weight", name: "weight", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "pre", name: "pre", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "len", name: "len", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "obj", name: "obj", embedded: false, exported: false, typ: ptrType$17, tag: ""}]);
@@ -98915,13 +98990,13 @@ $packages["go/types"] = (function() {
 		embeddedType.init("go/types", [{prop: "typ", name: "typ", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: sliceType$13, tag: ""}, {prop: "indirect", name: "indirect", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "multiples", name: "multiples", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		instanceLookup.init("go/types", [{prop: "buf", name: "buf", embedded: false, exported: false, typ: arrayType$1, tag: ""}, {prop: "m", name: "m", embedded: false, exported: false, typ: mapType$5, tag: ""}]);
 		block.init("go/types", [{prop: "parent", name: "parent", embedded: false, exported: false, typ: ptrType$92, tag: ""}, {prop: "lstmt", name: "lstmt", embedded: false, exported: false, typ: ptrType$65, tag: ""}, {prop: "labels", name: "labels", embedded: false, exported: false, typ: mapType$6, tag: ""}]);
-		Interface.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$5, tag: ""}, {prop: "methods", name: "methods", embedded: false, exported: false, typ: sliceType, tag: ""}, {prop: "embeddeds", name: "embeddeds", embedded: false, exported: false, typ: sliceType$2, tag: ""}, {prop: "embedPos", name: "embedPos", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "implicit", name: "implicit", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "complete", name: "complete", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "tset", name: "tset", embedded: false, exported: false, typ: ptrType$7, tag: ""}]);
+		Interface.init("go/types", [{prop: "check", name: "check", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "methods", name: "methods", embedded: false, exported: false, typ: sliceType, tag: ""}, {prop: "embeddeds", name: "embeddeds", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "embedPos", name: "embedPos", embedded: false, exported: false, typ: ptrType$7, tag: ""}, {prop: "implicit", name: "implicit", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "complete", name: "complete", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "tset", name: "tset", embedded: false, exported: false, typ: ptrType$8, tag: ""}]);
 		dependency.init([{prop: "Exported", name: "Exported", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "Id", name: "Id", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Name", name: "Name", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Parent", name: "Parent", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Pkg", name: "Pkg", pkg: "", typ: $funcType([], [ptrType$1], false)}, {prop: "Pos", name: "Pos", pkg: "", typ: $funcType([], [token.Pos], false)}, {prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Type", name: "Type", pkg: "", typ: $funcType([], [Type], false)}, {prop: "color", name: "color", pkg: "go/types", typ: $funcType([], [color], false)}, {prop: "isDependency", name: "isDependency", pkg: "go/types", typ: $funcType([], [], false)}, {prop: "order", name: "order", pkg: "go/types", typ: $funcType([], [$Uint32], false)}, {prop: "sameId", name: "sameId", pkg: "go/types", typ: $funcType([ptrType$1, $String], [$Bool], false)}, {prop: "scopePos", name: "scopePos", pkg: "go/types", typ: $funcType([], [token.Pos], false)}, {prop: "setColor", name: "setColor", pkg: "go/types", typ: $funcType([color], [], false)}, {prop: "setOrder", name: "setOrder", pkg: "go/types", typ: $funcType([$Uint32], [], false)}, {prop: "setParent", name: "setParent", pkg: "go/types", typ: $funcType([ptrType], [], false)}, {prop: "setScopePos", name: "setScopePos", pkg: "go/types", typ: $funcType([token.Pos], [], false)}, {prop: "setType", name: "setType", pkg: "go/types", typ: $funcType([Type], [], false)}]);
 		graphNode.init("go/types", [{prop: "obj", name: "obj", embedded: false, exported: false, typ: dependency, tag: ""}, {prop: "pred", name: "pred", embedded: false, exported: false, typ: nodeSet, tag: ""}, {prop: "succ", name: "succ", embedded: false, exported: false, typ: nodeSet, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "ndeps", name: "ndeps", embedded: false, exported: false, typ: $Int, tag: ""}]);
 		nodeSet.init(ptrType$95, $Bool);
 		nodeQueue.init(ptrType$95);
 		tpWalker.init("go/types", [{prop: "seen", name: "seen", embedded: false, exported: false, typ: mapType, tag: ""}, {prop: "tparams", name: "tparams", embedded: false, exported: false, typ: sliceType$9, tag: ""}]);
-		cycleFinder.init("go/types", [{prop: "tparams", name: "tparams", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$2, tag: ""}, {prop: "seen", name: "seen", embedded: false, exported: false, typ: mapType, tag: ""}]);
+		cycleFinder.init("go/types", [{prop: "tparams", name: "tparams", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "types", name: "types", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "seen", name: "seen", embedded: false, exported: false, typ: mapType, tag: ""}]);
 		opPredicates.init(token.Token, funcType$3);
 		error_.init("go/types", [{prop: "desc", name: "desc", embedded: false, exported: false, typ: sliceType$31, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: errors$1.Code, tag: ""}, {prop: "soft", name: "soft", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		errorDesc.init("go/types", [{prop: "posn", name: "posn", embedded: false, exported: false, typ: positioner, tag: ""}, {prop: "format", name: "format", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "args", name: "args", embedded: false, exported: false, typ: sliceType$6, tag: ""}]);
@@ -98934,8 +99009,8 @@ $packages["go/types"] = (function() {
 		typeDecl.init("go/types", [{prop: "spec", name: "spec", embedded: false, exported: false, typ: ptrType$90, tag: ""}]);
 		funcDecl.init("go/types", [{prop: "decl", name: "decl", embedded: false, exported: false, typ: ptrType$87, tag: ""}]);
 		Context.init("go/types", [{prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "typeMap", name: "typeMap", embedded: false, exported: false, typ: mapType$7, tag: ""}, {prop: "nextID", name: "nextID", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "originIDs", name: "originIDs", embedded: false, exported: false, typ: mapType$8, tag: ""}]);
-		ctxtEntry.init("go/types", [{prop: "orig", name: "orig", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "targs", name: "targs", embedded: false, exported: false, typ: sliceType$2, tag: ""}, {prop: "instance", name: "instance", embedded: false, exported: false, typ: Type, tag: ""}]);
-		exprInfo.init("go/types", [{prop: "isLhs", name: "isLhs", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "mode", name: "mode", embedded: false, exported: false, typ: operandMode, tag: ""}, {prop: "typ", name: "typ", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "val", name: "val", embedded: false, exported: false, typ: constant.Value, tag: ""}]);
+		ctxtEntry.init("go/types", [{prop: "orig", name: "orig", embedded: false, exported: false, typ: Type, tag: ""}, {prop: "targs", name: "targs", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "instance", name: "instance", embedded: false, exported: false, typ: Type, tag: ""}]);
+		exprInfo.init("go/types", [{prop: "isLhs", name: "isLhs", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "mode", name: "mode", embedded: false, exported: false, typ: operandMode, tag: ""}, {prop: "typ", name: "typ", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "val", name: "val", embedded: false, exported: false, typ: constant.Value, tag: ""}]);
 		environment.init("go/types", [{prop: "decl", name: "decl", embedded: false, exported: false, typ: ptrType$58, tag: ""}, {prop: "scope", name: "scope", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "pos", name: "pos", embedded: false, exported: false, typ: token.Pos, tag: ""}, {prop: "iota", name: "iota", embedded: false, exported: false, typ: constant.Value, tag: ""}, {prop: "errpos", name: "errpos", embedded: false, exported: false, typ: positioner, tag: ""}, {prop: "inTParamList", name: "inTParamList", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "sig", name: "sig", embedded: false, exported: false, typ: ptrType$27, tag: ""}, {prop: "isPanic", name: "isPanic", embedded: false, exported: false, typ: mapType$9, tag: ""}, {prop: "hasLabel", name: "hasLabel", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "hasCallOrRecv", name: "hasCallOrRecv", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 		importKey.init("go/types", [{prop: "path", name: "path", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "dir", name: "dir", embedded: false, exported: false, typ: $String, tag: ""}]);
 		dotImportKey.init("go/types", [{prop: "scope", name: "scope", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}]);
@@ -98996,22 +99071,22 @@ $packages["go/types"] = (function() {
 		binaryOpPredicates = false;
 		_r = regexp.MustCompile("^go([1-9]\\d*)\\.(0|[1-9]\\d*)$"); /* */ $s = 22; case 22: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		goVersionRx = _r;
+		$pkg.Typ = new sliceType$2([new Basic.ptr(0, 0, "invalid type"), new Basic.ptr(1, 1, "bool"), new Basic.ptr(2, 2, "int"), new Basic.ptr(3, 2, "int8"), new Basic.ptr(4, 2, "int16"), new Basic.ptr(5, 2, "int32"), new Basic.ptr(6, 2, "int64"), new Basic.ptr(7, 6, "uint"), new Basic.ptr(8, 6, "uint8"), new Basic.ptr(9, 6, "uint16"), new Basic.ptr(10, 6, "uint32"), new Basic.ptr(11, 6, "uint64"), new Basic.ptr(12, 6, "uintptr"), new Basic.ptr(13, 8, "float32"), new Basic.ptr(14, 8, "float64"), new Basic.ptr(15, 16, "complex64"), new Basic.ptr(16, 16, "complex128"), new Basic.ptr(17, 32, "string"), new Basic.ptr(18, 0, "Pointer"), new Basic.ptr(19, 65, "untyped bool"), new Basic.ptr(20, 66, "untyped int"), new Basic.ptr(21, 66, "untyped rune"), new Basic.ptr(22, 72, "untyped float"), new Basic.ptr(23, 80, "untyped complex"), new Basic.ptr(24, 96, "untyped string"), new Basic.ptr(25, 64, "untyped nil")]);
+		aliases = $toNativeArray($kindPtr, [new Basic.ptr(8, 6, "byte"), new Basic.ptr(5, 2, "rune")]);
+		predeclaredConsts = $toNativeArray($kindStruct, [$clone(new structType.ptr("true", 19, constant.MakeBool(true)), structType), $clone(new structType.ptr("false", 19, constant.MakeBool(false)), structType), $clone(new structType.ptr("iota", 20, constant.MakeInt64(new $Int64(0, 0))), structType)]);
+		predeclaredFuncs = $toNativeArray($kindStruct, [$clone(new structType$1.ptr("append", 1, true, 1), structType$1), $clone(new structType$1.ptr("cap", 1, false, 1), structType$1), $clone(new structType$1.ptr("clear", 1, false, 2), structType$1), $clone(new structType$1.ptr("close", 1, false, 2), structType$1), $clone(new structType$1.ptr("complex", 2, false, 1), structType$1), $clone(new structType$1.ptr("copy", 2, false, 2), structType$1), $clone(new structType$1.ptr("delete", 2, false, 2), structType$1), $clone(new structType$1.ptr("imag", 1, false, 1), structType$1), $clone(new structType$1.ptr("len", 1, false, 1), structType$1), $clone(new structType$1.ptr("make", 1, true, 1), structType$1), $clone(new structType$1.ptr("new", 1, false, 1), structType$1), $clone(new structType$1.ptr("panic", 1, false, 2), structType$1), $clone(new structType$1.ptr("print", 0, true, 2), structType$1), $clone(new structType$1.ptr("println", 0, true, 2), structType$1), $clone(new structType$1.ptr("real", 1, false, 1), structType$1), $clone(new structType$1.ptr("recover", 0, false, 2), structType$1), $clone(new structType$1.ptr("Add", 2, false, 1), structType$1), $clone(new structType$1.ptr("Alignof", 1, false, 1), structType$1), $clone(new structType$1.ptr("Offsetof", 1, false, 1), structType$1), $clone(new structType$1.ptr("Sizeof", 1, false, 1), structType$1), $clone(new structType$1.ptr("Slice", 2, false, 1), structType$1), $clone(new structType$1.ptr("SliceData", 1, false, 1), structType$1), $clone(new structType$1.ptr("String", 2, false, 1), structType$1), $clone(new structType$1.ptr("StringData", 1, false, 1), structType$1), $clone(new structType$1.ptr("assert", 1, false, 2), structType$1), $clone(new structType$1.ptr("trace", 0, true, 2), structType$1)]);
 		allTermlist = new termlist([new term.ptr(false, $ifaceNil)]);
 		topTypeSet = new _TypeSet.ptr(sliceType.nil, allTermlist, false);
+		basicSizes = $toNativeArray($kindUint8, [0, 1, 0, 1, 2, 4, 8, 0, 1, 2, 4, 8, 0, 4, 8, 8, 16]);
 		gcArchSizes = $makeMap($String.keyFor, [{ k: "386", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 4)) }, { k: "amd64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "amd64p32", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "arm", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 4)) }, { k: "arm64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "loong64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "mips", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 4)) }, { k: "mipsle", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 4)) }, { k: "mips64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "mips64le", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "ppc64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "ppc64le", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "riscv64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "s390x", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "sparc64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "wasm", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }]);
 		operandModeString = $toNativeArray($kindString, ["invalid operand", "no value", "built-in", "type", "constant", "variable", "map index expression", "value", "comma, ok expression", "comma, error expression", "cgo function"]);
-		emptyInterface = new Interface.ptr(ptrType$5.nil, sliceType.nil, sliceType$2.nil, ptrType$6.nil, false, true, topTypeSet);
+		emptyInterface = new Interface.ptr(ptrType$6.nil, sliceType.nil, sliceType$3.nil, ptrType$7.nil, false, true, topTypeSet);
 		gccgoArchSizes = $makeMap($String.keyFor, [{ k: "386", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 4)) }, { k: "alpha", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "amd64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "amd64p32", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "arm", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "armbe", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "arm64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "arm64be", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "ia64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "loong64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "m68k", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 2)) }, { k: "mips", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "mipsle", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "mips64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "mips64le", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "mips64p32", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "mips64p32le", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "nios2", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "ppc", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "ppc64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "ppc64le", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "riscv", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "riscv64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "s390", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "s390x", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "sh", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "shbe", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "sparc", v: new StdSizes.ptr(new $Int64(0, 4), new $Int64(0, 8)) }, { k: "sparc64", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }, { k: "wasm", v: new StdSizes.ptr(new $Int64(0, 8), new $Int64(0, 8)) }]);
 		stdSizes = SizesFor("gc", "amd64");
 		op2str1 = $toNativeArray($kindString, ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "bitwise complement"]);
 		op2str2 = $toNativeArray($kindString, ["", "", "", "", "", "", "", "", "", "", "", "", "addition", "subtraction", "multiplication", "", "", "", "", "bitwise XOR", "shift"]);
-		predeclaredFuncs = $toNativeArray($kindStruct, [$clone(new structType.ptr("append", 1, true, 1), structType), $clone(new structType.ptr("cap", 1, false, 1), structType), $clone(new structType.ptr("clear", 1, false, 2), structType), $clone(new structType.ptr("close", 1, false, 2), structType), $clone(new structType.ptr("complex", 2, false, 1), structType), $clone(new structType.ptr("copy", 2, false, 2), structType), $clone(new structType.ptr("delete", 2, false, 2), structType), $clone(new structType.ptr("imag", 1, false, 1), structType), $clone(new structType.ptr("len", 1, false, 1), structType), $clone(new structType.ptr("make", 1, true, 1), structType), $clone(new structType.ptr("new", 1, false, 1), structType), $clone(new structType.ptr("panic", 1, false, 2), structType), $clone(new structType.ptr("print", 0, true, 2), structType), $clone(new structType.ptr("println", 0, true, 2), structType), $clone(new structType.ptr("real", 1, false, 1), structType), $clone(new structType.ptr("recover", 0, false, 2), structType), $clone(new structType.ptr("Add", 2, false, 1), structType), $clone(new structType.ptr("Alignof", 1, false, 1), structType), $clone(new structType.ptr("Offsetof", 1, false, 1), structType), $clone(new structType.ptr("Sizeof", 1, false, 1), structType), $clone(new structType.ptr("Slice", 2, false, 1), structType), $clone(new structType.ptr("SliceData", 1, false, 1), structType), $clone(new structType.ptr("String", 2, false, 1), structType), $clone(new structType.ptr("StringData", 1, false, 1), structType), $clone(new structType.ptr("assert", 1, false, 2), structType), $clone(new structType.ptr("trace", 0, true, 2), structType)]);
 		errBadCgo = errors.New("cannot use FakeImportC and go115UsesCgo together");
 		cgoPrefixes = $toNativeArray($kindString, ["_Ciconst_", "_Cfconst_", "_Csconst_", "_Ctype_", "_Cvar_", "_Cfpvar_fp_", "_Cfunc_", "_Cmacro_"]);
-		basicSizes = $toNativeArray($kindUint8, [0, 1, 0, 1, 2, 4, 8, 0, 1, 2, 4, 8, 0, 4, 8, 8, 16]);
-		predeclaredConsts = $toNativeArray($kindStruct, [$clone(new structType$1.ptr("true", 19, constant.MakeBool(true)), structType$1), $clone(new structType$1.ptr("false", 19, constant.MakeBool(false)), structType$1), $clone(new structType$1.ptr("iota", 20, constant.MakeInt64(new $Int64(0, 0))), structType$1)]);
-		aliases = $toNativeArray($kindPtr, [new Basic.ptr(8, 6, "byte"), new Basic.ptr(5, 2, "rune")]);
-		$pkg.Typ = new sliceType$4([new Basic.ptr(0, 0, "invalid type"), new Basic.ptr(1, 1, "bool"), new Basic.ptr(2, 2, "int"), new Basic.ptr(3, 2, "int8"), new Basic.ptr(4, 2, "int16"), new Basic.ptr(5, 2, "int32"), new Basic.ptr(6, 2, "int64"), new Basic.ptr(7, 6, "uint"), new Basic.ptr(8, 6, "uint8"), new Basic.ptr(9, 6, "uint16"), new Basic.ptr(10, 6, "uint32"), new Basic.ptr(11, 6, "uint64"), new Basic.ptr(12, 6, "uintptr"), new Basic.ptr(13, 8, "float32"), new Basic.ptr(14, 8, "float64"), new Basic.ptr(15, 16, "complex64"), new Basic.ptr(16, 16, "complex128"), new Basic.ptr(17, 32, "string"), new Basic.ptr(18, 0, "Pointer"), new Basic.ptr(19, 65, "untyped bool"), new Basic.ptr(20, 66, "untyped int"), new Basic.ptr(21, 66, "untyped rune"), new Basic.ptr(22, 72, "untyped float"), new Basic.ptr(23, 80, "untyped complex"), new Basic.ptr(24, 96, "untyped string"), new Basic.ptr(25, 64, "untyped nil")]);
 		$r = init(); /* */ $s = 23; case 23: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		init$1();
 		init$2();
@@ -103056,23 +103131,23 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 			_r$3 = react.UseRefLazy[2 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */](NoopCodeBoxHandle); /* */ $s = 3; case 3: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			codeBoxRef[0] = $clone(_r$3, react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]);
 			_r$4 = react.UseRefLazy[3 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */](compiler); /* */ $s = 4; case 4: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			compilerRef[0] = $clone(_r$4, react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]);
+			compilerRef[0] = $clone(_r$4, react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]);
 			_r$5 = react.UseRefLazy[4 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */](runner); /* */ $s = 5; case 5: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			runnerRef[0] = $clone(_r$5, react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]);
+			runnerRef[0] = $clone(_r$5, react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]);
 			_r$6 = react.UseRefLazy[5 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */](snippetStore); /* */ $s = 6; case 6: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			snippetsStoreRef[0] = $clone(_r$6, react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]);
+			snippetsStoreRef[0] = $clone(_r$6, react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]);
 			react.UseEffect((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func1() {
 					var {$s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().GetVersion($methodVal($clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current(), "SetVersion")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().GetVersion($methodVal($clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current(), "SetVersion")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func1, $c: true, $r, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged), new sliceType$1([new bannerRef[0].constructor.elem(bannerRef[0])]));
 			urlQueryChanged[0] = react.UseCallback(new funcType$2((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func2() {
 					var {$s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetVerbose(url.GetQueryBool("debug")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().SetLocalOnly(url.GetQueryBool("local")); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetVerbose(url.GetQueryBool("debug")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().SetLocalOnly(url.GetQueryBool("local")); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func2, $c: true, $r, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)), new sliceType$1([new compilerRef[0].constructor.elem(compilerRef[0]), new snippetsStoreRef[0].constructor.elem(snippetsStoreRef[0])]));
@@ -103088,7 +103163,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					var {hash, $s, $r, $c} = $restore(this, {hash});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					hash = [hash];
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Read(hash[0], (function(bannerRef, codeBoxRef, compilerRef, hash, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func4·func1(snippet, err) {
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Read(hash[0], (function(bannerRef, codeBoxRef, compilerRef, hash, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func4·func1(snippet, err) {
 							var {_r$7, cb, err, o, snippet, $s, $r, $c} = $restore(this, {snippet, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							o = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -103100,6 +103175,9 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 								$r = o.AddError(err); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 								$s = 4; continue;
 							/* } else { */ case 3:
+								if (hash[0] === "") {
+									hash[0] = "#Hello";
+								}
 								$r = $clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current().SetShareHash(hash[0]); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* } */ case 4:
 							cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
@@ -103148,7 +103226,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					_r$7 = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current().Code(); /* */ $s = 1; case 1: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 					code = _r$7;
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Write(code, (function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func9·func1(hash, err) {
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Write(code, (function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func9·func1(hash, err) {
 							var {err, hash, output, $s, $r, $c} = $restore(this, {hash, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							output = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -103188,8 +103266,8 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					var {out, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					out = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetOutput(out); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().SetOutput(out); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetOutput(out); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().SetOutput(out); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func12, $c: true, $r, out, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged), new sliceType$1([new outputRef[0].constructor.elem(outputRef[0]), new compilerRef[0].constructor.elem(compilerRef[0]), new runnerRef[0].constructor.elem(runnerRef[0])]));
@@ -103199,18 +103277,18 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
 					_r$7 = cb.FileName(); /* */ $s = 1; case 1: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 					_r$8 = cb.Code(); /* */ $s = 2; case 2: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetCode($makeMap($String.keyFor, [{ k: _r$7, v: _r$8 }])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetCode($makeMap($String.keyFor, [{ k: _r$7, v: _r$8 }])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func13, $c: true, $r, _r$7, _r$8, cb, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)), new sliceType$1([new codeBoxRef[0].constructor.elem(codeBoxRef[0]), new compilerRef[0].constructor.elem(compilerRef[0])]));
 			onRun = react.UseCallback(new funcType$2((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14() {
 					var {_r$7, output, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					output = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
 					$r = output.Clear(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$r = output.AddSystem("Fetching packages and compiling..."); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$7 = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().Compile((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14·func1(jsCode, err) {
+					_r$7 = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().Compile((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14·func1(jsCode, err) {
 							var {err, jsCode, output$1, $s, $r, $c} = $restore(this, {jsCode, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							output$1 = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -103222,7 +103300,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 								$r = output$1.AddSystem("GopherJS build failed."); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 								$s = -1; return;
 							/* } */ case 3:
-							$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Run(jsCode); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Run(jsCode); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = -1; return;
 							/* */ } return; } var $f = {$blk: playgroundComponent·func14·func1, $c: true, $r, err, jsCode, output$1, $s};return $f;
 						}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)); /* */ $s = 4; case 4: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
@@ -103233,7 +103311,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 			onFormat[0] = react.UseCallback(new funcType$5((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func15(fmtImports) {
 					var {_arg, _arg$1, _arg$2, _r$10, _r$11, _r$12, _r$7, _r$8, _r$9, _tuple, _tuple$1, cb, err, fmtImports, out, output, $s, $r, $c} = $restore(this, {fmtImports});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
 					out = sliceType$3.nil;
 					err = $ifaceNil;
@@ -103571,7 +103649,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 		};
 		$pkg.DropDown = DropDown;
 		dropDownComponent = function dropDownComponent$1(props) {
-			var {_arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, $s, $r, $c} = $restore(this, {props});
+			var {_arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, x$2, x$3, $s, $r, $c} = $restore(this, {props});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			onSelect = [onSelect];
 			id = $clone(props, react.Props).GetString("id");
@@ -103588,7 +103666,8 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: dropDownComponent·func1, $c: true, $r, _r$1, e, selected$1, $s};return $f;
 				}; })(onSelect)), new sliceType$1([onSelect[0]]));
-			options = $makeSlice(sliceType, items.$length);
+			options = $makeSlice(sliceType, (items.$length + 1 >> 0));
+			(0 >= options.$length ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + 0] = react.CreateElement(new $String("option"), (x = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("key", new $String(id + "-placeholder")), react.Props).Set("value", new $String("")), react.Props).Set("disabled", new $Bool(true)), react.Props).Set("hidden", new $Bool(true)), new x.constructor.elem(x)), new sliceType([new $String("\xE2\x80\x94")])));
 			_ref = items;
 			_i = 0;
 			/* while (true) { */ case 1:
@@ -103600,15 +103679,15 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 				_arg = new $String(_r$1);
 				_r$2 = $clone(new react.Props.ptr(null), react.Props).Set("key", _arg); /* */ $s = 4; case 4: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				_r$3 = $clone(_r$2, react.Props).Set("value", new $String(value)); /* */ $s = 5; case 5: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-				_arg$1 = (x = _r$3, new x.constructor.elem(x));
+				_arg$1 = (x$1 = _r$3, new x$1.constructor.elem(x$1));
 				_arg$2 = new $String(value);
 				_r$4 = react.CreateElement(new $String("option"), _arg$1, new sliceType([_arg$2])); /* */ $s = 6; case 6: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-				((i < 0 || i >= options.$length) ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + i] = _r$4);
+				(x$2 = i + 1 >> 0, ((x$2 < 0 || x$2 >= options.$length) ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + x$2] = _r$4));
 				_i++;
 			$s = 1; continue;
 			case 2:
-			$s = -1; return react.CreateElement(new $String("select"), (x$1 = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String(id)), react.Props).Set("value", new $jsObjectPtr(selected)), react.Props).Set("className", new $String(className)), react.Props).Set("onChange", onChange), new x$1.constructor.elem(x$1)), options);
-			/* */ } return; } var $f = {$blk: dropDownComponent$1, $c: true, $r, _arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, $s};return $f;
+			$s = -1; return react.CreateElement(new $String("select"), (x$3 = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String(id)), react.Props).Set("value", new $jsObjectPtr(selected)), react.Props).Set("className", new $String(className)), react.Props).Set("onChange", onChange), new x$3.constructor.elem(x$3)), options);
+			/* */ } return; } var $f = {$blk: dropDownComponent$1, $c: true, $r, _arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, x$2, x$3, $s};return $f;
 		};
 		CodeBox = function CodeBox$1(codeBoxRef, onCodeChange, onUserChange, onSave, onEscape) {
 			var codeBoxRef, onCodeChange, onEscape, onSave, onUserChange, x;
@@ -103982,79 +104061,107 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 		};
 		$pkg.Banner = Banner;
 		bannerComponent = function bannerComponent$1(props) {
-			var _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x;
+			var {_r$1, _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, prevShareHashRef, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x, $s, $r, $c} = $restore(this, {props});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			fmtImports = [fmtImports];
+			lightTheme = [lightTheme];
+			onFormat = [onFormat];
+			onShare = [onShare];
+			onSnippetSelected = [onSnippetSelected];
+			prevShareHashRef = [prevShareHashRef];
+			runButtonRef = [runButtonRef];
+			setShareHash = [setShareHash];
+			setVersion = [setVersion];
+			shareHash = [shareHash];
+			shareUrlRef = [shareUrlRef];
+			version = [version];
 			bannerRef = $clone(react.GetValueRef[32 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(props, react.Props), "bannerRef"), react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]);
 			onRun = $clone(props, react.Props).GetFunc("onRun");
-			onFormat = $clone(props, react.Props).GetFunc("onFormat");
-			onShare = $clone(props, react.Props).GetFunc("onShare");
-			onSnippetSelected = $clone(props, react.Props).GetFunc("onSnippetSelected");
+			onFormat[0] = $clone(props, react.Props).GetFunc("onFormat");
+			onShare[0] = $clone(props, react.Props).GetFunc("onShare");
+			onSnippetSelected[0] = $clone(props, react.Props).GetFunc("onSnippetSelected");
 			_tuple = react.UseState[18 /* string */]("--");
-			version = _tuple[0];
-			setVersion = _tuple[1];
+			version[0] = _tuple[0];
+			setVersion[0] = _tuple[1];
 			_tuple$1 = react.UseState[18 /* string */]("");
-			shareHash = _tuple$1[0];
-			setShareHash = _tuple$1[1];
-			runButtonRef = $clone(react.UseRef(), react.Ref);
-			shareUrlRef = $clone(react.UseRef(), react.Ref);
-			_tuple$2 = react.UseStateLazy[33 /* bool */](getDefaultToLightTheme);
-			lightTheme = _tuple$2[0];
+			shareHash[0] = _tuple$1[0];
+			setShareHash[0] = _tuple$1[1];
+			_r$1 = react.UseRefWith[33 /* string */](""); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			prevShareHashRef[0] = $clone(_r$1, react.ValueRef[56 /* string */]);
+			runButtonRef[0] = $clone(react.UseRef(), react.Ref);
+			shareUrlRef[0] = $clone(react.UseRef(), react.Ref);
+			_tuple$2 = react.UseStateLazy[34 /* bool */](getDefaultToLightTheme);
+			lightTheme[0] = _tuple$2[0];
 			setLightTheme = _tuple$2[1];
-			_tuple$3 = react.UseState[34 /* bool */](true);
-			fmtImports = _tuple$3[0];
+			_tuple$3 = react.UseState[35 /* bool */](true);
+			fmtImports[0] = _tuple$3[0];
 			setFmtImports = _tuple$3[1];
-			react.UseImperativeHandle[35 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(bannerRef, react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]), (function bannerComponent·func1() {
-					return new bannerHandle.ptr($clone(runButtonRef, react.Ref), fmtImports, setVersion, shareHash, setShareHash);
-				}), new sliceType$1([new runButtonRef.constructor.elem(runButtonRef), new $Bool(fmtImports), setVersion, new $String(shareHash), setShareHash]));
-			react.UseLayoutEffect((function bannerComponent·func2() {
-					setDataTheme(lightTheme);
-				}), new sliceType$1([new $Bool(lightTheme)]));
-			react.UseEffect((function bannerComponent·func3() {
-					var {$s, $r, $c} = $restore(this, {});
+			react.UseImperativeHandle[36 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(bannerRef, react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]), (function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func1() {
+					return new bannerHandle.ptr($clone(runButtonRef[0], react.Ref), fmtImports[0], setVersion[0], shareHash[0], setShareHash[0]);
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new runButtonRef[0].constructor.elem(runButtonRef[0]), new $Bool(fmtImports[0]), setVersion[0], new $String(shareHash[0]), setShareHash[0]]));
+			react.UseLayoutEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func2() {
+					setDataTheme(lightTheme[0]);
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $Bool(lightTheme[0])]));
+			react.UseEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func3() {
+					var {prevHash, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = url.SetUrlHash(shareHash); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (shareHash[0] === "") { $s = 1; continue; }
+					/* */ $s = 2; continue;
+					/* if (shareHash[0] === "") { */ case 1:
+						prevHash = $clone(prevShareHashRef[0], react.ValueRef[56 /* string */]).Current();
+						/* */ if (!(prevHash === "") && url.GetUrlHash() === prevHash) { $s = 4; continue; }
+						/* */ $s = 5; continue;
+						/* if (!(prevHash === "") && url.GetUrlHash() === prevHash) { */ case 4:
+							$r = url.SetUrlHash(""); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 5:
+						$s = 3; continue;
+					/* } else { */ case 2:
+						$r = url.SetUrlHash(shareHash[0]); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 3:
+					$clone(prevShareHashRef[0], react.ValueRef[56 /* string */]).SetCurrent(shareHash[0]);
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func3, $c: true, $r, $s};return $f;
-				}), new sliceType$1([new $String(shareHash)]));
-			onFormatClick = react.UseCallback(new funcType$2((function bannerComponent·func4() {
-					var {_r$1, $s, $r, $c} = $restore(this, {});
+					/* */ } return; } var $f = {$blk: bannerComponent·func3, $c: true, $r, prevHash, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(shareHash[0])]));
+			onFormatClick = react.UseCallback(new funcType$2((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func4() {
+					var {_r$2, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onFormat.Invoke(new sliceType$1([new $Bool(fmtImports)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onFormat[0].Invoke(new sliceType$1([new $Bool(fmtImports[0])])); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func4, $c: true, $r, _r$1, $s};return $f;
-				})), new sliceType$1([onFormat, new $Bool(fmtImports)]));
-			tagUrl = react.UseMemo[36 /* string */]((function bannerComponent·func5() {
+					/* */ } return; } var $f = {$blk: bannerComponent·func4, $c: true, $r, _r$2, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onFormat[0], new $Bool(fmtImports[0])]));
+			tagUrl = react.UseMemo[37 /* string */]((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func5() {
 					var _tuple$4, before, ok;
-					_tuple$4 = strings.Cut(version, "+");
+					_tuple$4 = strings.Cut(version[0], "+");
 					before = _tuple$4[0];
 					ok = _tuple$4[2];
 					if (ok) {
 						return "https://github.com/gopherjs/gopherjs/releases/tag/v" + before;
 					}
 					return "https://github.com/gopherjs/gopherjs";
-				}), new sliceType$1([new $String(version)]));
-			react.UseLayoutEffect((function bannerComponent·func6() {
-					if (shareHash.length > 0 && strings.HasPrefix(shareHash, "#/")) {
-						$clone(shareUrlRef, react.Ref).Current().focus();
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(version[0])]));
+			react.UseLayoutEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func6() {
+					if (shareHash[0].length > 0 && strings.HasPrefix(shareHash[0], "#/")) {
+						$clone(shareUrlRef[0], react.Ref).Current().focus();
 					}
-				}), new sliceType$1([new $String(shareHash)]));
-			onShareClick = react.UseCallback(new funcType$1((function bannerComponent·func7(e) {
-					var {_r$1, e, $s, $r, $c} = $restore(this, {e});
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(shareHash[0])]));
+			onShareClick = react.UseCallback(new funcType$1((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func7(e) {
+					var {_r$2, e, $s, $r, $c} = $restore(this, {e});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onShare.Invoke(sliceType$1.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onShare[0].Invoke(sliceType$1.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func7, $c: true, $r, _r$1, e, $s};return $f;
-				})), new sliceType$1([onShare]));
-			onShareUrlFocus = react.UseCallback(new funcType$1((function bannerComponent·func8(e) {
+					/* */ } return; } var $f = {$blk: bannerComponent·func7, $c: true, $r, _r$2, e, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onShare[0]]));
+			onShareUrlFocus = react.UseCallback(new funcType$1((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func8(e) {
 					var e;
 					e.target.select();
-				})), new sliceType$1([]));
-			snippetItems = react.UseMemo[37 /* []any */]((function bannerComponent·func9() {
-					var {_i, _r$1, _ref, i, items, name, names, $s, $r, $c} = $restore(this, {});
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([]));
+			snippetItems = react.UseMemo[38 /* []any */]((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func9() {
+					var {_i, _r$2, _ref, i, items, name, names, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = snippets.SnippetNames(); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					names = _r$1;
+					_r$2 = snippets.SnippetNames(); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					names = _r$2;
 					items = $makeSlice(sliceType$1, names.$length);
 					_ref = names;
 					_i = 0;
@@ -104066,30 +104173,31 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 						_i++;
 					}
 					$s = -1; return items;
-					/* */ } return; } var $f = {$blk: bannerComponent·func9, $c: true, $r, _i, _r$1, _ref, i, items, name, names, $s};return $f;
-				}), new sliceType$1([]));
-			onSelectSnippet = react.UseCallback(new funcType$3((function bannerComponent·func10(name) {
-					var {_r$1, name, $s, $r, $c} = $restore(this, {name});
+					/* */ } return; } var $f = {$blk: bannerComponent·func9, $c: true, $r, _i, _r$2, _ref, i, items, name, names, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([]));
+			onSelectSnippet = react.UseCallback(new funcType$3((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func10(name) {
+					var {_r$2, name, $s, $r, $c} = $restore(this, {name});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onSnippetSelected.Invoke(new sliceType$1([new $String(name)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onSnippetSelected[0].Invoke(new sliceType$1([new $String(name)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func10, $c: true, $r, _r$1, name, $s};return $f;
-				})), new sliceType$1([onSnippetSelected]));
+					/* */ } return; } var $f = {$blk: bannerComponent·func10, $c: true, $r, _r$2, name, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onSnippetSelected[0]]));
 			shareUrlClass = "share-url-hidden";
 			snippetsClass = "snippets-drop-down-show";
-			selSnippet = "Hello";
+			selSnippet = "";
 			shownSharedUrl = "";
-			if (shareHash.length > 0) {
-				if (strings.HasPrefix(shareHash, "#/")) {
-					shownSharedUrl = url.GetUrlWithoutHash() + shareHash;
+			if (shareHash[0].length > 0) {
+				if (strings.HasPrefix(shareHash[0], "#/")) {
+					shownSharedUrl = url.GetUrlWithoutHash() + shareHash[0];
 					shareUrlClass = "share-url-show";
 					snippetsClass = "snippets-drop-down-hidden";
-				} else if (strings.HasPrefix(shareHash, "#")) {
-					selSnippet = $substring(shareHash, 1);
+				} else if (strings.HasPrefix(shareHash[0], "#")) {
+					selSnippet = $substring(shareHash[0], 1);
 				}
 			}
-			return react.Div($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner")), react.Props), new sliceType([react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title")), react.Props), new sliceType([new $String("playground "), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-sub")), react.Props), new sliceType([react.A("https://github.com/gopherjs/gopherjs", $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String("GopherJS")])), new $String(" ")])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-version")), react.Props), new sliceType([new $String("("), react.A(tagUrl, $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String(version)])), new $String(")")]))])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("controls")), react.Props), new sliceType([react.Button("run-button", "Run", $clone($clone(new react.Props.ptr(null), react.Props).Set("ref", new runButtonRef.constructor.elem(runButtonRef)), react.Props), onRun), react.Button("format-button", "Format", $clone(new react.Props.ptr(null), react.Props), onFormatClick), ToggleBox("format-imports", "Rewrite imports on Format", "Imports", fmtImports, setFmtImports), react.Button("share-button", "Share", $clone(new react.Props.ptr(null), react.Props), onShareClick), react.CreateElement(new $String("input"), (x = $clone($clone($clone($clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("share-url")), react.Props).Set("type", new $String("text")), react.Props).Set("className", new $String(shareUrlClass)), react.Props).Set("ref", new shareUrlRef.constructor.elem(shareUrlRef)), react.Props).Set("value", new $String(shownSharedUrl)), react.Props).Set("readOnly", new $Bool(true)), react.Props).Set("onFocus", onShareUrlFocus), new x.constructor.elem(x)), sliceType.nil), DropDown("snippets-drop-down", snippetsClass, snippetItems, new $String(selSnippet), onSelectSnippet), ToggleBox("color-theme", "Change color-theme", "", lightTheme, setLightTheme)]))]));
+			$s = -1; return react.Div($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner")), react.Props), new sliceType([react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title")), react.Props), new sliceType([new $String("playground "), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-sub")), react.Props), new sliceType([react.A("https://github.com/gopherjs/gopherjs", $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String("GopherJS")])), new $String(" ")])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-version")), react.Props), new sliceType([new $String("("), react.A(tagUrl, $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String(version[0])])), new $String(")")]))])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("controls")), react.Props), new sliceType([react.Button("run-button", "Run", $clone($clone(new react.Props.ptr(null), react.Props).Set("ref", new runButtonRef[0].constructor.elem(runButtonRef[0])), react.Props), onRun), react.Button("format-button", "Format", $clone(new react.Props.ptr(null), react.Props), onFormatClick), ToggleBox("format-imports", "Rewrite imports on Format", "Imports", fmtImports[0], setFmtImports), react.Button("share-button", "Share", $clone(new react.Props.ptr(null), react.Props), onShareClick), react.CreateElement(new $String("input"), (x = $clone($clone($clone($clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("share-url")), react.Props).Set("type", new $String("text")), react.Props).Set("className", new $String(shareUrlClass)), react.Props).Set("ref", new shareUrlRef[0].constructor.elem(shareUrlRef[0])), react.Props).Set("value", new $String(shownSharedUrl)), react.Props).Set("readOnly", new $Bool(true)), react.Props).Set("onFocus", onShareUrlFocus), new x.constructor.elem(x)), sliceType.nil), DropDown("snippets-drop-down", snippetsClass, snippetItems, new $String(selSnippet), onSelectSnippet), ToggleBox("color-theme", "Change color-theme", "", lightTheme[0], setLightTheme)]))]));
+			/* */ } return; } var $f = {$blk: bannerComponent$1, $c: true, $r, _r$1, _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, prevShareHashRef, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x, $s};return $f;
 		};
 		NoopBannerHandle = function NoopBannerHandle$1() {
 			return (ptrType$5.nil);
