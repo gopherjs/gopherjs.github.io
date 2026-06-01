@@ -27,6 +27,7 @@
 	--color-share-url-background: #EED;
 	--color-share-url-boarder: #CCC;
 	--color-share-url-text: black;
+	--color-share-url-placeholder: #888;
 
 	--color-code-text: black;
 	--color-code-background: #F5ECE3;
@@ -87,6 +88,7 @@
 	--color-share-url-background: #333;
 	--color-share-url-boarder: #50B7E0;
 	--color-share-url-text: #7CF;
+	--color-share-url-placeholder: #007D9C;
 
 	--color-code-text: #F0F1F2;
 	--color-code-background: #253443;
@@ -308,6 +310,10 @@ html, body {
 
 .snippets-drop-down-hidden {
 	display: none;
+}
+
+#snippets-drop-down:has(option[value=""]:checked) {
+	color: var(--color-share-url-placeholder);
 }
 
 /* The panel that contains everything below the banner */

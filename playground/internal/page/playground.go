@@ -83,6 +83,10 @@ func playgroundComponent(props react.Props) *react.Element {
 				bannerRef.Current().SetShareHash(``)
 				o.AddError(err)
 			} else {
+				// If loading default (empty hash), set to #Hello for consistency
+				if hash == `` {
+					hash = `#` + snippets.DefaultName
+				}
 				bannerRef.Current().SetShareHash(hash)
 			}
 			// even on error, set the code so the default code is shown.

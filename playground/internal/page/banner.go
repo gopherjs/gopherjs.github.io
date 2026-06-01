@@ -44,6 +44,7 @@ func bannerComponent(props react.Props) *react.Element {
 
 		version, setVersion       = react.UseState(`--`)
 		shareHash, setShareHash   = react.UseState(``)
+		prevShareHashRef          = react.UseRefWith(``)
 		runButtonRef              = react.UseRef()
 		shareUrlRef               = react.UseRef()
 		lightTheme, setLightTheme = react.UseStateLazy(getDefaultToLightTheme)
@@ -66,7 +67,17 @@ func bannerComponent(props react.Props) *react.Element {
 
 	// This updates the top window's URL hash when the share hash state has changed.
 	react.UseEffect(func() {
-		url.SetUrlHash(shareHash)
+		// if shareHash is empty, then either this is the initial state or
+		// clearing out the hash because of a code change
+		if shareHash == `` {
+			prevHash := prevShareHashRef.Current()
+			if prevHash != `` && url.GetUrlHash() == prevHash {
+				url.SetUrlHash(``)
+			}
+		} else {
+			url.SetUrlHash(shareHash)
+		}
+		prevShareHashRef.SetCurrent(shareHash)
 	}, []any{shareHash})
 
 	onFormatClick := react.UseCallback(func() {
@@ -111,7 +122,7 @@ func bannerComponent(props react.Props) *react.Element {
 	// based on the URL Hash, determine which UI elements to show.
 	shareUrlClass := `share-url-hidden`
 	snippetsClass := `snippets-drop-down-show`
-	selSnippet := snippets.DefaultName
+	selSnippet := ``
 	shownSharedUrl := ``
 	if len(shareHash) > 0 {
 		if strings.HasPrefix(shareHash, `#/`) {
