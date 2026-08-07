@@ -1,0 +1,2866 @@
+{
+  "schema_version": 1,
+  "source": "sourcey-godoc",
+  "module_path": "github.com/gopherjs/gopherjs",
+  "generated_at": "2026-08-05T18:50:16Z",
+  "packages": [
+    {
+      "importPath": "github.com/gopherjs/gopherjs",
+      "name": "main",
+      "synopsis": "",
+      "doc": "",
+      "dir": ".",
+      "files": [
+        "embed.go",
+        "tool.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/build",
+      "name": "build",
+      "synopsis": "Package build implements GopherJS build system.",
+      "doc": "Package build implements GopherJS build system.\n\nWARNING: This package's API is treated as internal and currently doesn't\nprovide any API stability guarantee, use it at your own risk. If you need a\nstable interface, prefer invoking the gopherjs CLI tool as a subprocess.",
+      "dir": "build",
+      "files": [
+        "build/build.go",
+        "build/context.go",
+        "build/embed.go",
+        "build/fsutil.go",
+        "build/vfs.go"
+      ],
+      "consts": [],
+      "vars": [
+        {
+          "name": "DefaultGOROOT",
+          "doc": "DefaultGOROOT is the default GOROOT value for builds.\n\nIt uses the GOPHERJS_GOROOT environment variable if it is set,\nor else the default GOROOT value of the system Go distribution.",
+          "declaration": "var DefaultGOROOT = func() string {\n\tif goroot, ok := os.LookupEnv(\"GOPHERJS_GOROOT\"); ok {\n\n\t\treturn goroot\n\t}\n\n\treturn build.Default.GOROOT\n}()",
+          "position": {
+            "file": "build/build.go",
+            "line": 45
+          }
+        }
+      ],
+      "funcs": [
+        {
+          "name": "DefaultEnv",
+          "doc": "DefaultEnv creates a new instance of build Env according to environment\nvariables.\n\nBy default, GopherJS will use GOOS=js GOARCH=ecmascript to build non-standard\nlibrary packages. If GOOS or GOARCH environment variables are set and not\nempty, user-provided values will be used instead. This is done to facilitate\ntransition from the legacy GopherJS behavior, which used native GOOS, and may\nbe removed in future.",
+          "signature": "func DefaultEnv() Env",
+          "position": {
+            "file": "build/context.go",
+            "line": 46
+          },
+          "examples": []
+        },
+        {
+          "name": "Import",
+          "doc": "Import returns details about the Go package named by the import path. If the\npath is a local import path naming a package that can be imported using\na standard import path, the returned package will set p.ImportPath to\nthat path.\n\nIn the directory containing the package, .go and .inc.js files are\nconsidered part of the package except for:\n\n  - .go files in package documentation\n  - files starting with _ or . (likely editor temporary files)\n  - files with build constraints not satisfied by the context\n\nIf an error occurs, Import returns a non-nil error and a nil\n*PackageData.",
+          "signature": "func Import(path string, mode build.ImportMode, installSuffix string, buildTags []string) (*PackageData, error)",
+          "position": {
+            "file": "build/build.go",
+            "line": 85
+          },
+          "examples": []
+        },
+        {
+          "name": "ImportDir",
+          "doc": "ImportDir is like Import but processes the Go package found in the named\ndirectory.",
+          "signature": "func ImportDir(dir string, mode build.ImportMode, installSuffix string, buildTags []string) (*PackageData, error)",
+          "position": {
+            "file": "build/build.go",
+            "line": 114
+          },
+          "examples": []
+        },
+        {
+          "name": "IsPkgNotFound",
+          "doc": "IsPkgNotFound returns true if the error was caused by package not found.\n\nUnfortunately, go/build doesn't make use of typed errors, so we have to\nrely on the error message.",
+          "signature": "func IsPkgNotFound(err error) bool",
+          "position": {
+            "file": "build/context.go",
+            "line": 458
+          },
+          "examples": []
+        },
+        {
+          "name": "NewBuildContext",
+          "doc": "NewBuildContext creates a build context for building Go packages\nwith GopherJS compiler.\n\nCore GopherJS packages (i.e., \"github.com/gopherjs/gopherjs/js\", \"github.com/gopherjs/gopherjs/nosync\")\nare loaded from gopherjspkg.FS virtual filesystem if not present in GOPATH or\ngo.mod.",
+          "signature": "func NewBuildContext(installSuffix string, buildTags []string) XContext",
+          "position": {
+            "file": "build/build.go",
+            "line": 60
+          },
+          "examples": []
+        },
+        {
+          "name": "NewSession",
+          "doc": "NewSession creates a new GopherJS build session.",
+          "signature": "func NewSession(options *Options) (*Session, error)",
+          "position": {
+            "file": "build/build.go",
+            "line": 865
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "Env",
+          "doc": "Env contains build environment configuration required to define an instance\nof XContext.",
+          "declaration": "type Env struct {\n\tGOROOT string\n\tGOPATH string\n\n\tGOOS   string\n\tGOARCH string\n\n\tBuildTags     []string\n\tInstallSuffix string\n}",
+          "kind": "struct",
+          "position": {
+            "file": "build/context.go",
+            "line": 27
+          },
+          "fields": [
+            {
+              "name": "GOROOT",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOPATH",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOOS",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOARCH",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "BuildTags",
+              "doc": "",
+              "type": "[]string"
+            },
+            {
+              "name": "InstallSuffix",
+              "doc": "",
+              "type": "string"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "Options",
+          "doc": "Options controls build process behavior.",
+          "declaration": "type Options struct {\n\tVerbose        bool\n\tQuiet          bool\n\tWatch          bool\n\tCreateMapFile  bool\n\tMapToLocalDisk bool\n\tMinify         bool\n\tColor          bool\n\tBuildTags      []string\n\tTestedPackage  string\n\tNoCache        bool\n}",
+          "kind": "struct",
+          "position": {
+            "file": "build/build.go",
+            "line": 672
+          },
+          "fields": [
+            {
+              "name": "Verbose",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "Quiet",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "Watch",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "CreateMapFile",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "MapToLocalDisk",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "Minify",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "Color",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "BuildTags",
+              "doc": "",
+              "type": "[]string"
+            },
+            {
+              "name": "TestedPackage",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "NoCache",
+              "doc": "",
+              "type": "bool"
+            }
+          ],
+          "methods": [
+            {
+              "name": "PrintError",
+              "doc": "PrintError message to the terminal.",
+              "signature": "func  PrintError(format string, a ...any)",
+              "position": {
+                "file": "build/build.go",
+                "line": 686
+              },
+              "examples": []
+            },
+            {
+              "name": "PrintSuccess",
+              "doc": "PrintSuccess message to the terminal.",
+              "signature": "func  PrintSuccess(format string, a ...any)",
+              "position": {
+                "file": "build/build.go",
+                "line": 694
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "PackageData",
+          "doc": "PackageData is an extension of go/build.Package with additional metadata\nGopherJS requires.",
+          "declaration": "type PackageData struct {\n\t*build.Package\n\tJSFiles []incjs.File\n\t// IsTest is true if the package is being built for running tests.\n\tIsTest     bool\n\tSrcModTime time.Time\n\tUpToDate   bool\n\t// If true, the package does not have a corresponding physical directory on disk.\n\tIsVirtual bool\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "build/build.go",
+            "line": 703
+          },
+          "fields": [
+            {
+              "name": "*build.Package",
+              "doc": "",
+              "type": "*build.Package",
+              "embedded": true
+            },
+            {
+              "name": "JSFiles",
+              "doc": "",
+              "type": "[]incjs.File"
+            },
+            {
+              "name": "IsTest",
+              "doc": "IsTest is true if the package is being built for running tests.",
+              "type": "bool"
+            },
+            {
+              "name": "SrcModTime",
+              "doc": "",
+              "type": "time.Time"
+            },
+            {
+              "name": "UpToDate",
+              "doc": "",
+              "type": "bool"
+            },
+            {
+              "name": "IsVirtual",
+              "doc": "If true, the package does not have a corresponding physical directory on disk.",
+              "type": "bool"
+            }
+          ],
+          "methods": [
+            {
+              "name": "FileModTime",
+              "doc": "FileModTime returns the most recent modification time of the package's source\nfiles. This includes all .go and .inc.js that would be included in the build,\nbut excludes any dependencies.",
+              "signature": "func  FileModTime() time.Time",
+              "position": {
+                "file": "build/build.go",
+                "line": 723
+              },
+              "examples": []
+            },
+            {
+              "name": "InstallPath",
+              "doc": "InstallPath returns the path where \"gopherjs install\" command should place the\ngenerated output.",
+              "signature": "func  InstallPath() (string, error)",
+              "position": {
+                "file": "build/build.go",
+                "line": 800
+              },
+              "examples": []
+            },
+            {
+              "name": "InternalBuildContext",
+              "doc": "InternalBuildContext returns the build context that produced the package.\n\nWARNING: This function is a part of internal API and will be removed in\nfuture.",
+              "signature": "func  InternalBuildContext() *build.Context",
+              "position": {
+                "file": "build/build.go",
+                "line": 761
+              },
+              "examples": []
+            },
+            {
+              "name": "String",
+              "doc": "",
+              "signature": "func  String() string",
+              "position": {
+                "file": "build/build.go",
+                "line": 716
+              },
+              "examples": []
+            },
+            {
+              "name": "TestPackage",
+              "doc": "TestPackage returns a variant of the package with \"internal\" tests.",
+              "signature": "func  TestPackage() *PackageData",
+              "position": {
+                "file": "build/build.go",
+                "line": 766
+              },
+              "examples": []
+            },
+            {
+              "name": "XTestPackage",
+              "doc": "XTestPackage returns a variant of the package with \"external\" tests.",
+              "signature": "func  XTestPackage() *PackageData",
+              "position": {
+                "file": "build/build.go",
+                "line": 783
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Session",
+          "doc": "Session manages internal state GopherJS requires to perform a build.\n\nThis is the main interface to GopherJS build system. Session lifetime is\nroughly equivalent to a single GopherJS tool invocation.",
+          "declaration": "type Session struct {\n\n\t// Binary archives produced during the current session and assumed to be\n\t// up to date with input sources and dependencies. In the -w (\"watch\") mode\n\t// must be cleared upon entering watching.\n\tUpToDateArchives map[string]*compiler.Archive\n\tWatcher          *fsnotify.Watcher\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "build/build.go",
+            "line": 833
+          },
+          "fields": [
+            {
+              "name": "UpToDateArchives",
+              "doc": "Binary archives produced during the current session and assumed to be\nup to date with input sources and dependencies. In the -w (\"watch\") mode\nmust be cleared upon entering watching.",
+              "type": "map[string]*compiler.Archive"
+            },
+            {
+              "name": "Watcher",
+              "doc": "",
+              "type": "*fsnotify.Watcher"
+            }
+          ],
+          "methods": [
+            {
+              "name": "BuildFiles",
+              "doc": "BuildFiles passed to the GopherJS tool as if they were a package.\n\nA ephemeral package will be created with only the provided files. This\nfunction is intended for use with, for example, `gopherjs run main.go`.",
+              "signature": "func  BuildFiles(filenames []string, pkgObj string, cwd string) error",
+              "position": {
+                "file": "build/build.go",
+                "line": 950
+              },
+              "examples": []
+            },
+            {
+              "name": "BuildProject",
+              "doc": "BuildProject builds a command project (one with a main method) or\nbuilds a test project (one with a synthesized test main package).",
+              "signature": "func  BuildProject(pkg *PackageData) (*compiler.Archive, error)",
+              "position": {
+                "file": "build/build.go",
+                "line": 1030
+              },
+              "examples": []
+            },
+            {
+              "name": "EnableMapping",
+              "doc": "SourceMappingCallback returns a callback for [github.com/gopherjs/gopherjs/compiler.SourceMapFilter]\nconfigured for the current build session.",
+              "signature": "func  EnableMapping(filter *sourcemapx.Filter, jsFileName string)",
+              "position": {
+                "file": "build/build.go",
+                "line": 1380
+              },
+              "examples": []
+            },
+            {
+              "name": "GetSortedSources",
+              "doc": "GetSortedSources returns the sources sorted by import path.\nThe files in the sources may still not be sorted yet.",
+              "signature": "func  GetSortedSources() []*sources.Sources",
+              "position": {
+                "file": "build/build.go",
+                "line": 1052
+              },
+              "examples": []
+            },
+            {
+              "name": "GoRelease",
+              "doc": "GoRelease returns Go release version this session is building with.",
+              "signature": "func  GoRelease() string",
+              "position": {
+                "file": "build/build.go",
+                "line": 930
+              },
+              "examples": []
+            },
+            {
+              "name": "ImportResolverFor",
+              "doc": "ImportResolverFor returns a function which returns a compiled package archive\ngiven an import path.",
+              "signature": "func  ImportResolverFor(srcDir string) func(string) (*compiler.Archive, error)",
+              "position": {
+                "file": "build/build.go",
+                "line": 1363
+              },
+              "examples": []
+            },
+            {
+              "name": "InstallSuffix",
+              "doc": "InstallSuffix returns the suffix added to the generated output file.",
+              "signature": "func  InstallSuffix() string",
+              "position": {
+                "file": "build/build.go",
+                "line": 922
+              },
+              "examples": []
+            },
+            {
+              "name": "LoadPackages",
+              "doc": "LoadPackages will recursively load and parse the given package and\nits dependencies. This will return the sources for the given package.\nThe returned source and sources for the dependencies will be added\nto the session's sources map.",
+              "signature": "func  LoadPackages(pkg *PackageData) (*sources.Sources, error)",
+              "position": {
+                "file": "build/build.go",
+                "line": 1189
+              },
+              "examples": []
+            },
+            {
+              "name": "SourcesForImport",
+              "doc": "",
+              "signature": "func  SourcesForImport(path, srcDir string) (*sources.Sources, error)",
+              "position": {
+                "file": "build/build.go",
+                "line": 1347
+              },
+              "examples": []
+            },
+            {
+              "name": "TestBinary",
+              "doc": "TestBinary returns the testBinary value that is normally passed into\ncmd/link by a -X option. The testBinary value is defined in the STL at\ntesting/testing.go for the `testing.Testing() bool` function.\nIt is set to \"1\" if the binary (the JS output in our case) is built\nwith \"go test\" and \"0\" otherwise.",
+              "signature": "func  TestBinary() string",
+              "position": {
+                "file": "build/build.go",
+                "line": 939
+              },
+              "examples": []
+            },
+            {
+              "name": "WaitForChange",
+              "doc": "WaitForChange watches file system events and returns if either when one of\nthe source files is modified.",
+              "signature": "func  WaitForChange()",
+              "position": {
+                "file": "build/build.go",
+                "line": 1420
+              },
+              "examples": []
+            },
+            {
+              "name": "WriteCommandPackage",
+              "doc": "WriteCommandPackage writes the final JavaScript output file at pkgObj path.",
+              "signature": "func  WriteCommandPackage(archive *compiler.Archive, pkgObj string) error",
+              "position": {
+                "file": "build/build.go",
+                "line": 1385
+              },
+              "examples": []
+            },
+            {
+              "name": "XContext",
+              "doc": "XContext returns the session's build context.",
+              "signature": "func  XContext() XContext",
+              "position": {
+                "file": "build/build.go",
+                "line": 919
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "XContext",
+          "doc": "XContext is an extension of go/build.Context with GopherJS-specific features.\n\nIt abstracts away several different sources GopherJS can load its packages\nfrom, with a minimal API.",
+          "declaration": "type XContext interface {\n\t// Import returns details about the Go package named by the importPath,\n\t// interpreting local import paths relative to the srcDir directory.\n\tImport(path string, srcDir string, mode build.ImportMode) (*PackageData, error)\n\n\t// Env returns build environment configuration this context has been set up for.\n\tEnv() Env\n\n\t// Match explans build patterns into a set of matching import paths (see go help packages).\n\tMatch(patterns []string) ([]string, error)\n}",
+          "kind": "interface",
+          "position": {
+            "file": "build/context.go",
+            "line": 69
+          },
+          "fields": [
+            {
+              "name": "Import",
+              "doc": "Import returns details about the Go package named by the importPath,\ninterpreting local import paths relative to the srcDir directory.",
+              "type": "func(path string, srcDir string, mode build.ImportMode) (*PackageData, error)"
+            },
+            {
+              "name": "Env",
+              "doc": "Env returns build environment configuration this context has been set up for.",
+              "type": "func() Env"
+            },
+            {
+              "name": "Match",
+              "doc": "Match explans build patterns into a set of matching import paths (see go help packages).",
+              "type": "func(patterns []string) ([]string, error)"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/build/cache",
+      "name": "cache",
+      "synopsis": "Package cache solves one of the hardest computer science problems in application to GopherJS compiler outputs.",
+      "doc": "Package cache solves one of the hardest computer science problems in\napplication to GopherJS compiler outputs.",
+      "dir": "build/cache",
+      "files": [
+        "build/cache/cache.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "Clear",
+          "doc": "Clear the cache. This will remove *all* cached artifacts from *all* build\nconfigurations.",
+          "signature": "func Clear() error",
+          "position": {
+            "file": "build/cache/cache.go",
+            "line": 78
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "BuildCache",
+          "doc": "BuildCache manages build artifacts that are cached for incremental builds.\n\nCache is designed to be non-durable: any store and load errors are swallowed\nand simply lead to a cache miss. The caller must be able to handle cache\nmisses. Nil pointer to BuildCache is valid and simply disables caching.\n\nBuildCache struct fields represent build parameters which change invalidates\nthe cache. For example, any artifacts that were cached for a Linux build\nmust not be reused for a non-Linux build. GopherJS version change also\ninvalidates the cache. It is callers responsibility to ensure that artifacts\npassed the Store function were generated with the same build\nparameters as the cache is configured.\n\nThere is no upper limit for the total cache size. It can be cleared\nprogrammatically via the Clear() function, or the user can just delete the\ndirectory if it grows too big.\n\nThe cached files are gzip compressed, therefore each file uses the gzip\nchecksum as a basic integrity check performed after reading the file.\n\nTODO(nevkontakte): changes in the input sources or dependencies doesn't\ncurrently invalidate the cache. This is handled at the higher level by\nchecking cached package timestamp against loaded package modification time.",
+          "declaration": "type BuildCache struct {\n\tGOOS      string\n\tGOARCH    string\n\tGOROOT    string\n\tGOPATH    string\n\tBuildTags []string\n\n\t// Version should be set to compiler.Version\n\tVersion string\n\n\t// TestedPackage is the import path of the package being tested, or\n\t// empty when not building for tests. The package under test is built\n\t// with *_test.go sources included so we should always skip reading\n\t// and writing cache in that case. Since we are caching prior to\n\t// type-checking for generics, any package importing the package under\n\t// test should be unaffected.\n\tTestedPackage string\n}",
+          "kind": "struct",
+          "position": {
+            "file": "build/cache/cache.go",
+            "line": 107
+          },
+          "fields": [
+            {
+              "name": "GOOS",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOARCH",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOROOT",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "GOPATH",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "BuildTags",
+              "doc": "",
+              "type": "[]string"
+            },
+            {
+              "name": "Version",
+              "doc": "Version should be set to compiler.Version",
+              "type": "string"
+            },
+            {
+              "name": "TestedPackage",
+              "doc": "TestedPackage is the import path of the package being tested, or\nempty when not building for tests. The package under test is built\nwith *_test.go sources included so we should always skip reading\nand writing cache in that case. Since we are caching prior to\ntype-checking for generics, any package importing the package under\ntest should be unaffected.",
+              "type": "string"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Load",
+              "doc": "",
+              "signature": "func  Load(c Cacheable, importPath string, srcModTime time.Time) bool",
+              "position": {
+                "file": "build/cache/cache.go",
+                "line": 174
+              },
+              "examples": []
+            },
+            {
+              "name": "Store",
+              "doc": "",
+              "signature": "func  Store(c Cacheable, importPath string, buildTime time.Time) bool",
+              "position": {
+                "file": "build/cache/cache.go",
+                "line": 135
+              },
+              "examples": []
+            },
+            {
+              "name": "String",
+              "doc": "",
+              "signature": "func  String() string",
+              "position": {
+                "file": "build/cache/cache.go",
+                "line": 126
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Cache",
+          "doc": "Cache defines methods to store and load cacheable objects.",
+          "declaration": "type Cache interface {\n\t// Store stores the package with the given import path in the cache.\n\t// Any error inside this method will cause the cache not to be persisted.\n\t//\n\t// The passed in buildTime is used to determine if the package is out-of-date when reloaded.\n\t// Typically it should be set to the srcModTime or time.Now().\n\tStore(c Cacheable, importPath string, buildTime time.Time) bool\n\n\t// Load reads a previously cached package at the given import path,\n\t// if it was previously stored.\n\t//\n\t// The loaded package would have been built with the same configuration as\n\t// the build cache was.\n\tLoad(c Cacheable, importPath string, srcModTime time.Time) bool\n}",
+          "kind": "interface",
+          "position": {
+            "file": "build/cache/cache.go",
+            "line": 32
+          },
+          "fields": [
+            {
+              "name": "Store",
+              "doc": "Store stores the package with the given import path in the cache.\nAny error inside this method will cause the cache not to be persisted.\n\nThe passed in buildTime is used to determine if the package is out-of-date when reloaded.\nTypically it should be set to the srcModTime or time.Now().",
+              "type": "func(c Cacheable, importPath string, buildTime time.Time) bool"
+            },
+            {
+              "name": "Load",
+              "doc": "Load reads a previously cached package at the given import path,\nif it was previously stored.\n\nThe loaded package would have been built with the same configuration as\nthe build cache was.",
+              "type": "func(c Cacheable, importPath string, srcModTime time.Time) bool"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "Cacheable",
+          "doc": "Cacheable defines methods to serialize and deserialize cachable objects.\nThis object should represent a package's build artifact.\n\nThe encode and decode functions are typically wrappers around gob.Encoder.Encode\nand gob.Decoder.Decode, but other formats are possible as well, the same way\nas FileSet.Write and FileSet.Read work with any encode/decode functions.",
+          "declaration": "type Cacheable interface {\n\tWrite(encode func(any) error) error\n\tRead(decode func(any) error) error\n}",
+          "kind": "interface",
+          "position": {
+            "file": "build/cache/cache.go",
+            "line": 26
+          },
+          "fields": [
+            {
+              "name": "Write",
+              "doc": "",
+              "type": "func(encode func(any) error) error"
+            },
+            {
+              "name": "Read",
+              "doc": "",
+              "type": "func(decode func(any) error) error"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/build/versionhack",
+      "name": "versionhack",
+      "synopsis": "Package versionhack makes sure go/build doesn't disable module support whenever GopherJS is compiled by a different Go version than it's targeted Go version.",
+      "doc": "Package versionhack makes sure go/build doesn't disable module support\nwhenever GopherJS is compiled by a different Go version than it's targeted\nGo version.\n\nUnder the hood, go/build relies on `go list` utility for module support; more\nspecifically, for package location discovery. Since ReleaseTags are\neffectively baked into the go binary and can't be overridden, it needs to\nensure that ReleaseTags set in a go/build.Context instance match the Go tool.\n\nHowever, it naively assumes that the go tool version in the PATH matches the\nversion that was used to build GopherJS and disables module support whenever\nReleaseTags in the context are set to anything other than the default. This,\nunfortunately, isn't very helpful since gopherjs may be built by a Go version\nother than the PATH's default.\n\nLuckily, even if go tool version is mismatched, it's only used for discovery\nof the package locations, and go/build evaluates build constraints on its own\nwith ReleaseTags we've passed.\n\nA better solution would've been for go/build to use go tool from GOROOT and\ncheck its version against build tags: https://github.com/golang/go/issues/46856.\n\nUntil that issue is fixed, we trick go/build into thinking that whatever\nReleaseTags we've passed are indeed the default. We gain access to the\nvariable go/build checks against using \"go:linkname\" directive and override\nits content as we wish.",
+      "dir": "build/versionhack",
+      "files": [
+        "build/versionhack/versionhack.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler",
+      "name": "compiler",
+      "synopsis": "Package compiler implements GopherJS compiler logic.",
+      "doc": "Package compiler implements GopherJS compiler logic.\n\nWARNING: This package's API is treated as internal and currently doesn't\nprovide any API stability guarantee, use it at your own risk. If you need a\nstable interface, prefer invoking the gopherjs CLI tool as a subprocess.",
+      "dir": "compiler",
+      "files": [
+        "compiler/compiler.go",
+        "compiler/declNames.go",
+        "compiler/decls.go",
+        "compiler/expressions.go",
+        "compiler/functions.go",
+        "compiler/package.go",
+        "compiler/statements.go",
+        "compiler/utils.go",
+        "compiler/version_check.go"
+      ],
+      "consts": [
+        {
+          "name": "GoVersion",
+          "doc": "GoVersion is the current Go 1.x version that GopherJS is compatible with.",
+          "declaration": "const GoVersion = 21",
+          "position": {
+            "file": "compiler/version_check.go",
+            "line": 18
+          }
+        },
+        {
+          "name": "Version",
+          "doc": "Version is the GopherJS compiler version string.",
+          "declaration": "const Version = \"1.21.0+go1.21.13\"",
+          "position": {
+            "file": "compiler/version_check.go",
+            "line": 15
+          }
+        }
+      ],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "CheckGoVersion",
+          "doc": "CheckGoVersion checks the version of the Go distribution\nat goroot, and reports an error if it's not compatible\nwith this version of the GopherJS compiler.",
+          "signature": "func CheckGoVersion(goroot string) error",
+          "position": {
+            "file": "compiler/version_check.go",
+            "line": 23
+          },
+          "examples": []
+        },
+        {
+          "name": "Compile",
+          "doc": "Compile the provided Go sources as a single package.\n\nProvided sources must be prepared so that the type information has been determined,\nand the source files have been sorted by name to ensure reproducible JavaScript output.",
+          "signature": "func Compile(srcs *sources.Sources, tContext *types.Context, minify bool) (_ *Archive, err error)",
+          "position": {
+            "file": "compiler/package.go",
+            "line": 165
+          },
+          "examples": []
+        },
+        {
+          "name": "DefaultFilter",
+          "doc": "DefaultFilter creates a new sourcemapx.Filter that writes to the given writer.\nThis is not in the internal package so that tools like the playground can\nuse it when calling things like the exported WriteProgramCode function.",
+          "signature": "func DefaultFilter(w io.Writer) *sourcemapx.Filter",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 127
+          },
+          "examples": []
+        },
+        {
+          "name": "GoRelease",
+          "doc": "GoRelease does a best-effort to identify the Go release we are building with.\nIf unable to determine the precise version for the given GOROOT, falls back\nto the best guess available.",
+          "signature": "func GoRelease(goroot string) string",
+          "position": {
+            "file": "compiler/version_check.go",
+            "line": 63
+          },
+          "examples": []
+        },
+        {
+          "name": "ImportDependencies",
+          "doc": "",
+          "signature": "func ImportDependencies(archive *Archive, importPkg func(string) (*Archive, error)) ([]*Archive, error)",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 89
+          },
+          "examples": []
+        },
+        {
+          "name": "PrepareAllSources",
+          "doc": "PrepareAllSources prepares all sources for compilation by\nparsing go linknames, type checking, sorting, simplifying, and\nperforming cross package analysis.\nThe results are stored in the provided sources.\n\nAll sources must be given at the same time for cross package analysis to\nwork correctly. For consistency, the sources should be sorted by import path.",
+          "signature": "func PrepareAllSources(allSources []*sources.Sources, importer sources.Importer, tContext *types.Context) error",
+          "position": {
+            "file": "compiler/package.go",
+            "line": 243
+          },
+          "examples": []
+        },
+        {
+          "name": "WritePkgCode",
+          "doc": "",
+          "signature": "func WritePkgCode(pkg *Archive, dceSelection map[*Decl]struct{}, gls linkname.GoLinknameSet, minify bool, w *sourcemapx.Filter) error",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 209
+          },
+          "examples": []
+        },
+        {
+          "name": "WriteProgramCode",
+          "doc": "",
+          "signature": "func WriteProgramCode(pkgs []*Archive, w *sourcemapx.Filter, goVersion, testBinary string) error",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 131
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "Archive",
+          "doc": "Archive contains intermediate build outputs of a single package.\n\nThis is a logical equivalent of an object file in traditional compilers.",
+          "declaration": "type Archive struct {\n\t// Package's full import path, e.g. \"some/package/name\".\n\tImportPath string\n\t// Package's name as per \"package\" statement at the top of a source file.\n\t// Usually matches the last component of import path, but may differ in\n\t// certain cases (e.g. main or test packages).\n\tName string\n\t// A list of full package import paths that the current package imports across\n\t// all source files. See go/types.Package.Imports().\n\tImports []string\n\t// The package information is used by the compiler to type-check packages\n\t// that import this one. See [gcexportdata.Write].\n\tPackage *types.Package\n\t// Compiled package-level symbols.\n\tDeclarations []*Decl\n\t// Concatenated contents of all raw .inc.js of the package.\n\tIncJSCode []incjs.File\n\t// The file set containing the source code locations for various symbols\n\t// (e.g. for sourcemap generation). See [token.FileSet.Write].\n\tFileSet *token.FileSet\n\t// Whether or not the package was compiled with minification enabled.\n\tMinified bool\n\t// A list of go:linkname directives encountered in the package.\n\tGoLinknames []linkname.GoLinkname\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 53
+          },
+          "fields": [
+            {
+              "name": "ImportPath",
+              "doc": "Package's full import path, e.g. \"some/package/name\".",
+              "type": "string"
+            },
+            {
+              "name": "Name",
+              "doc": "Package's name as per \"package\" statement at the top of a source file.\nUsually matches the last component of import path, but may differ in\ncertain cases (e.g. main or test packages).",
+              "type": "string"
+            },
+            {
+              "name": "Imports",
+              "doc": "A list of full package import paths that the current package imports across\nall source files. See go/types.Package.Imports().",
+              "type": "[]string"
+            },
+            {
+              "name": "Package",
+              "doc": "The package information is used by the compiler to type-check packages\nthat import this one. See [gcexportdata.Write].",
+              "type": "*types.Package"
+            },
+            {
+              "name": "Declarations",
+              "doc": "Compiled package-level symbols.",
+              "type": "[]*Decl"
+            },
+            {
+              "name": "IncJSCode",
+              "doc": "Concatenated contents of all raw .inc.js of the package.",
+              "type": "[]incjs.File"
+            },
+            {
+              "name": "FileSet",
+              "doc": "The file set containing the source code locations for various symbols\n(e.g. for sourcemap generation). See [token.FileSet.Write].",
+              "type": "*token.FileSet"
+            },
+            {
+              "name": "Minified",
+              "doc": "Whether or not the package was compiled with minification enabled.",
+              "type": "bool"
+            },
+            {
+              "name": "GoLinknames",
+              "doc": "A list of go:linkname directives encountered in the package.",
+              "type": "[]linkname.GoLinkname"
+            }
+          ],
+          "methods": [
+            {
+              "name": "String",
+              "doc": "",
+              "signature": "func  String() string",
+              "position": {
+                "file": "compiler/compiler.go",
+                "line": 79
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Decl",
+          "doc": "Decl represents a package-level symbol (e.g. a function, variable or type).\n\nIt contains code generated by the compiler for this specific symbol, which is\ngrouped by the execution stage it belongs to in the JavaScript runtime.\n\nWhen adding new fields to this struct, make sure the field is exported\nso that it Gob serializes correctly for the archive cache.",
+          "declaration": "type Decl struct {\n\t// The package- or receiver-type-qualified name of function or method obj.\n\t// See go/types.Func.FullName().\n\tFullName string\n\t// A logical equivalent of a symbol name in an object file in the traditional\n\t// Go compiler/linker toolchain. Used by GopherJS to support go:linkname\n\t// directives. Must be set for decls that are supported by go:linkname\n\t// implementation.\n\tLinkingName symbol.Name\n\t// A list of package-level JavaScript variable names this symbol needs to declare.\n\tVars []string\n\t// A JS expression by which the object represented by this decl may be\n\t// referenced within the package context. Empty if the decl represents no such\n\t// object.\n\tRefExpr string\n\t// NamedRecvType is method named recv declare.\n\tNamedRecvType string\n\t// JavaScript code that declares a local variable for an imported package.\n\tImportCode []byte\n\t// JavaScript code that declares basic information about a named type symbol.\n\t// It configures basic information about the type and its identity.\n\tTypeDeclCode []byte\n\t// JavaScript code that assigns exposed named types to the package.\n\tExportTypeCode []byte\n\t// JavaScript code that declares basic information about an anonymous type.\n\t// It configures basic information about the type.\n\t// This is added to the finish setup phase to have access to all packages.\n\tAnonTypeDeclCode []byte\n\t// JavaScript code that declares basic information about a function or\n\t// method symbol. This contains the function's or method's compiled body.\n\t// This is added to the finish setup phase to have access to all packages.\n\tFuncDeclCode []byte\n\t// JavaScript code that assigns exposed functions to the package.\n\t// This is added to the finish setup phase to have access to all packages.\n\tExportFuncCode []byte\n\t// JavaScript code that initializes reflection metadata about a type's method list.\n\t// This is added to the finish setup phase to have access to all packages.\n\tMethodListCode []byte\n\t// JavaScript code that initializes the rest of reflection metadata about a type\n\t// (e.g. struct fields, array type sizes, element types, etc.).\n\t// This is added to the finish setup phase to have access to all packages.\n\tTypeInitCode []byte\n\t// JavaScript code that needs to be executed during the package init phase to\n\t// set the symbol up (e.g. initialize package-level variable value).\n\tInitCode []byte\n\t// DCEInfo stores the information for dead-code elimination.\n\tDCEInfo dce.Info\n\t// Set to true if a function performs a blocking operation (I/O or\n\t// synchronization). The compiler will have to generate function code such\n\t// that it can be resumed after a blocking operation completes without\n\t// blocking the main thread in the meantime.\n\tBlocking bool\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/decls.go",
+            "line": 30
+          },
+          "fields": [
+            {
+              "name": "FullName",
+              "doc": "The package- or receiver-type-qualified name of function or method obj.\nSee go/types.Func.FullName().",
+              "type": "string"
+            },
+            {
+              "name": "LinkingName",
+              "doc": "A logical equivalent of a symbol name in an object file in the traditional\nGo compiler/linker toolchain. Used by GopherJS to support go:linkname\ndirectives. Must be set for decls that are supported by go:linkname\nimplementation.",
+              "type": "symbol.Name"
+            },
+            {
+              "name": "Vars",
+              "doc": "A list of package-level JavaScript variable names this symbol needs to declare.",
+              "type": "[]string"
+            },
+            {
+              "name": "RefExpr",
+              "doc": "A JS expression by which the object represented by this decl may be\nreferenced within the package context. Empty if the decl represents no such\nobject.",
+              "type": "string"
+            },
+            {
+              "name": "NamedRecvType",
+              "doc": "NamedRecvType is method named recv declare.",
+              "type": "string"
+            },
+            {
+              "name": "ImportCode",
+              "doc": "JavaScript code that declares a local variable for an imported package.",
+              "type": "[]byte"
+            },
+            {
+              "name": "TypeDeclCode",
+              "doc": "JavaScript code that declares basic information about a named type symbol.\nIt configures basic information about the type and its identity.",
+              "type": "[]byte"
+            },
+            {
+              "name": "ExportTypeCode",
+              "doc": "JavaScript code that assigns exposed named types to the package.",
+              "type": "[]byte"
+            },
+            {
+              "name": "AnonTypeDeclCode",
+              "doc": "JavaScript code that declares basic information about an anonymous type.\nIt configures basic information about the type.\nThis is added to the finish setup phase to have access to all packages.",
+              "type": "[]byte"
+            },
+            {
+              "name": "FuncDeclCode",
+              "doc": "JavaScript code that declares basic information about a function or\nmethod symbol. This contains the function's or method's compiled body.\nThis is added to the finish setup phase to have access to all packages.",
+              "type": "[]byte"
+            },
+            {
+              "name": "ExportFuncCode",
+              "doc": "JavaScript code that assigns exposed functions to the package.\nThis is added to the finish setup phase to have access to all packages.",
+              "type": "[]byte"
+            },
+            {
+              "name": "MethodListCode",
+              "doc": "JavaScript code that initializes reflection metadata about a type's method list.\nThis is added to the finish setup phase to have access to all packages.",
+              "type": "[]byte"
+            },
+            {
+              "name": "TypeInitCode",
+              "doc": "JavaScript code that initializes the rest of reflection metadata about a type\n(e.g. struct fields, array type sizes, element types, etc.).\nThis is added to the finish setup phase to have access to all packages.",
+              "type": "[]byte"
+            },
+            {
+              "name": "InitCode",
+              "doc": "JavaScript code that needs to be executed during the package init phase to\nset the symbol up (e.g. initialize package-level variable value).",
+              "type": "[]byte"
+            },
+            {
+              "name": "DCEInfo",
+              "doc": "DCEInfo stores the information for dead-code elimination.",
+              "type": "dce.Info"
+            },
+            {
+              "name": "Blocking",
+              "doc": "Set to true if a function performs a blocking operation (I/O or\nsynchronization). The compiler will have to generate function code such\nthat it can be resumed after a blocking operation completes without\nblocking the main thread in the meantime.",
+              "type": "bool"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Dce",
+              "doc": "Dce gets the information for dead-code elimination.",
+              "signature": "func  Dce() *dce.Info",
+              "position": {
+                "file": "compiler/decls.go",
+                "line": 100
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Dependency",
+          "doc": "",
+          "declaration": "type Dependency struct {\n\tPkg    string\n\tType   string\n\tMethod string\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/compiler.go",
+            "line": 83
+          },
+          "fields": [
+            {
+              "name": "Pkg",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "Type",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "Method",
+              "doc": "",
+              "type": "string"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "FatalError",
+          "doc": "FatalError is an error compiler panics with when it encountered a fatal error.\n\nFatalError implements io.Writer, which can be used to record any free-form\ndebugging details for human consumption. This information will be included\ninto String() result along with the rest.",
+          "declaration": "type FatalError struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/utils.go",
+            "line": 952
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Error",
+              "doc": "",
+              "signature": "func  Error) Error() string",
+              "position": {
+                "file": "compiler/utils.go",
+                "line": 974
+              },
+              "examples": []
+            },
+            {
+              "name": "Unwrap",
+              "doc": "",
+              "signature": "func  Unwrap() error",
+              "position": {
+                "file": "compiler/utils.go",
+                "line": 958
+              },
+              "examples": []
+            },
+            {
+              "name": "Write",
+              "doc": "Write implements io.Writer and can be used to store free-form debugging clues.",
+              "signature": "func  Write(p []byte) (n int, err error)",
+              "position": {
+                "file": "compiler/utils.go",
+                "line": 972
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/astutil",
+      "name": "astutil",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/astutil",
+      "files": [
+        "compiler/astutil/astutil.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "DirectiveNew",
+          "doc": "DirectiveNew returns true if gopherjs:new directive is\npresent on a struct, interface, type, variable, constant, or function.\n\n`//gopherjs:new` is a GopherJS-specific directive, which can be\napplied in native overlays and will instruct the augmentation logic to\nensure that the original code is not present so that this code does not\noverride any original code, otherwise an error will be raised.",
+          "signature": "func DirectiveNew(d ast.Node) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 154
+          },
+          "examples": []
+        },
+        {
+          "name": "DirectiveReplace",
+          "doc": "DirectiveReplace returns true if gopherjs:replace directive is present\non a struct, interface, type, variable, constant, or function.\n\n`//gopherjs:replace` is a GopherJS-specific directive, which can be\napplied in native overlays and will instruct the augmentation logic to\nensure that the original code is present and has not been removed nor renamed,\notherwise an error will be raised.",
+          "signature": "func DirectiveReplace(d ast.Node) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 143
+          },
+          "examples": []
+        },
+        {
+          "name": "EndsWithReturn",
+          "doc": "EndsWithReturn returns true if the last effective statement is a \"return\".",
+          "signature": "func EndsWithReturn(stmts []ast.Stmt) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 295
+          },
+          "examples": []
+        },
+        {
+          "name": "FindLoopStmt",
+          "doc": "FindLoopStmt tries to find the loop statement among the AST nodes in the\n|stack| that corresponds to the break/continue statement represented by\nbranch.\n\nThis function is label-aware and assumes the code was successfully\ntype-checked.",
+          "signature": "func FindLoopStmt(stack []ast.Node, branch *ast.BranchStmt, typeInfo *types.Info) ast.Stmt",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 263
+          },
+          "examples": []
+        },
+        {
+          "name": "FuncKey",
+          "doc": "FuncKey returns a string, which uniquely identifies a top-level function or\nmethod in a package.",
+          "signature": "func FuncKey(d *ast.FuncDecl) string",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 102
+          },
+          "examples": []
+        },
+        {
+          "name": "FuncReceiverKey",
+          "doc": "FuncReceiverKey returns a string that uniquely identifies the receiver\nstruct of the function or an empty string if there is no receiver.\nThis name will match the name of the struct in the struct's type spec.",
+          "signature": "func FuncReceiverKey(d *ast.FuncDecl) string",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 112
+          },
+          "examples": []
+        },
+        {
+          "name": "HasDirectivePrefix",
+          "doc": "HasDirectivePrefix determines if any line in the given file\nhas the given directive prefix in it.",
+          "signature": "func HasDirectivePrefix(file *ast.File, prefix string) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 246
+          },
+          "examples": []
+        },
+        {
+          "name": "ImportName",
+          "doc": "ImportName tries to determine the package name for an import.\n\nIf the package name isn't specified then this will make a best\nmake a best guess using the import path.\nIf the import name is dot (`.`), blank (`_`), or there\nwas an issue determining the package name then empty is returned.",
+          "signature": "func ImportName(spec *ast.ImportSpec) string",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 83
+          },
+          "examples": []
+        },
+        {
+          "name": "ImportsUnsafe",
+          "doc": "",
+          "signature": "func ImportsUnsafe(file *ast.File) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 68
+          },
+          "examples": []
+        },
+        {
+          "name": "IsTypeExpr",
+          "doc": "IsTypeExpr returns true if expr denotes a type. This can be used to\ndistinguish between calls and type conversions.",
+          "signature": "func IsTypeExpr(expr ast.Expr, info *types.Info) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 40
+          },
+          "examples": []
+        },
+        {
+          "name": "KeepOriginal",
+          "doc": "KeepOriginal returns true if gopherjs:keep-original directive is present\nbefore a function decl.\n\n`//gopherjs:keep-original` is a GopherJS-specific directive, which can be\napplied to functions in native overlays and will instruct the augmentation\nlogic to expose the original function such that it can be called. For a\nfunction in the original called `foo`, it will be accessible by the name\n`_gopherjs_original_foo`.\n\nThis will also ensure that the original function exists and hasn't been\nremoved or renamed, otherwise an error will be raised.",
+          "signature": "func KeepOriginal(d *ast.FuncDecl) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 169
+          },
+          "examples": []
+        },
+        {
+          "name": "NewIdent",
+          "doc": "",
+          "signature": "func NewIdent(name string, t types.Type, info *types.Info, pkg *types.Package) *ast.Ident",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 30
+          },
+          "examples": []
+        },
+        {
+          "name": "OverrideSignature",
+          "doc": "OverrideSignature returns true if gopherjs:override-signature directive is\npresent on a function.\n\n`//gopherjs:override-signature` is a GopherJS-specific directive, which can\nbe applied in native overlays and will instruct the augmentation logic to\nreplace the original function signature which has the same FuncKey with the\nsignature defined in the native overlays.\n\nThis directive can be used to remove generics from a function signature or\nto replace a receiver of a function with another one. The given native\noverlay function will be removed, so no method body is needed in the overlay.\n\nThe new signature may not contain types which require a new import since\nthe imports will not be automatically added when needed, only removed.\nUse a type alias in the overlay to deal manage imports.\n\nThis will also ensure that the original code exists and hasn't been\nremoved or renamed, otherwise an error will be raised.",
+          "signature": "func OverrideSignature(d *ast.FuncDecl) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 209
+          },
+          "examples": []
+        },
+        {
+          "name": "Purge",
+          "doc": "Purge returns true if gopherjs:purge directive is present\non a struct, interface, type, variable, constant, or function.\n\n`//gopherjs:purge` is a GopherJS-specific directive, which can be\napplied in native overlays and will instruct the augmentation logic to\ndelete part of the standard library without a replacement. This directive\ncan be used to remove code that would be invalid in GopherJS, such as code\nusing unsupported features (e.g. generic interfaces before generics were\nfully supported). It should be used with caution since it may remove needed\ndependencies. If a type is purged, all methods using that type as\na receiver will also be purged.\n\nThis will also ensure that the original code exists and hasn't been\nremoved or renamed, otherwise an error will be raised.",
+          "signature": "func Purge(d ast.Node) bool",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 187
+          },
+          "examples": []
+        },
+        {
+          "name": "RemoveParens",
+          "doc": "",
+          "signature": "func RemoveParens(e ast.Expr) ast.Expr",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 15
+          },
+          "examples": []
+        },
+        {
+          "name": "SetType",
+          "doc": "",
+          "signature": "func SetType(info *types.Info, t types.Type, e ast.Expr) ast.Expr",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 25
+          },
+          "examples": []
+        },
+        {
+          "name": "Squeeze",
+          "doc": "Squeeze removes all nil nodes from the slice.\n\nThe given slice will be modified. This is designed for squeezing\ndeclaration, specification, imports, and identifier lists.",
+          "signature": "func Squeeze[E ast.Node, S ~[]E](s S) S",
+          "position": {
+            "file": "compiler/astutil/astutil.go",
+            "line": 316
+          },
+          "examples": []
+        }
+      ],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/errlist",
+      "name": "errlist",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/errlist",
+      "files": [
+        "compiler/errlist/errlist.go"
+      ],
+      "consts": [],
+      "vars": [
+        {
+          "name": "ErrTooManyErrors",
+          "doc": "ErrTooManyErrors is added to the ErrorList by the Trim method.",
+          "declaration": "var ErrTooManyErrors = errors.New(\"too many errors\")",
+          "position": {
+            "file": "compiler/errlist/errlist.go",
+            "line": 9
+          }
+        }
+      ],
+      "funcs": [],
+      "types": [
+        {
+          "name": "ErrorList",
+          "doc": "ErrorList wraps multiple errors as a single error.",
+          "declaration": "type ErrorList []error",
+          "kind": "defined",
+          "position": {
+            "file": "compiler/errlist/errlist.go",
+            "line": 12
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Append",
+              "doc": "Append an error to the list.\n\nIf err is an instance of ErrorList, the lists are concatenated together,\notherwise err is appended at the end of the list. If err is nil, the list is\nreturned unmodified.\n\n\terr := DoStuff()\n\terrList := errList.Append(err)",
+              "signature": "func  Append(err error) ErrorList",
+              "position": {
+                "file": "compiler/errlist/errlist.go",
+                "line": 37
+              },
+              "examples": []
+            },
+            {
+              "name": "AppendDistinct",
+              "doc": "AppendDistinct is similar to Append, but doesn't append the error if it has\nthe same message as the last error on the list.",
+              "signature": "func  AppendDistinct(err error) ErrorList",
+              "position": {
+                "file": "compiler/errlist/errlist.go",
+                "line": 49
+              },
+              "examples": []
+            },
+            {
+              "name": "ErrOrNil",
+              "doc": "ErrOrNil returns nil if ErrorList is empty, or the error otherwise.",
+              "signature": "func  ErrOrNil() error",
+              "position": {
+                "file": "compiler/errlist/errlist.go",
+                "line": 22
+              },
+              "examples": []
+            },
+            {
+              "name": "Error",
+              "doc": "",
+              "signature": "func  ErrorList) Error() string",
+              "position": {
+                "file": "compiler/errlist/errlist.go",
+                "line": 14
+              },
+              "examples": []
+            },
+            {
+              "name": "Trim",
+              "doc": "Trim the error list if it has more than limit errors. If the list is trimmed,\nall extraneous errors are replaced with a single ErrTooManyErrors, making the\nreturned ErrorList length of limit+1.",
+              "signature": "func  Trim(limit int) ErrorList",
+              "position": {
+                "file": "compiler/errlist/errlist.go",
+                "line": 62
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/filter",
+      "name": "filter",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/filter",
+      "files": [
+        "compiler/filter/assign.go",
+        "compiler/filter/incdecstmt.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "Assign",
+          "doc": "",
+          "signature": "func Assign(stmt ast.Stmt, info *types.Info, pkg *types.Package) ast.Stmt",
+          "position": {
+            "file": "compiler/filter/assign.go",
+            "line": 11
+          },
+          "examples": []
+        },
+        {
+          "name": "IncDecStmt",
+          "doc": "",
+          "signature": "func IncDecStmt(stmt ast.Stmt, info *types.Info) ast.Stmt",
+          "position": {
+            "file": "compiler/filter/incdecstmt.go",
+            "line": 10
+          },
+          "examples": []
+        }
+      ],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/gopherjspkg",
+      "name": "gopherjspkg",
+      "synopsis": "Package gopherjspkg provides core GopherJS packages via a virtual filesystem.",
+      "doc": "Package gopherjspkg provides core GopherJS packages via a virtual filesystem.\n\nCore GopherJS packages are packages that are critical for GopherJS compiler\noperation. They are needed to build the Go standard library with GopherJS.\nCurrently, they include:\n\n\tgithub.com/gopherjs/gopherjs/js\n\tgithub.com/gopherjs/gopherjs/nosync",
+      "dir": "compiler/gopherjspkg",
+      "files": [
+        "compiler/gopherjspkg/doc.go",
+        "compiler/gopherjspkg/fs.go"
+      ],
+      "consts": [],
+      "vars": [
+        {
+          "name": "FS",
+          "doc": "FS is a virtual filesystem that contains core GopherJS packages.",
+          "declaration": "var FS http.FileSystem",
+          "position": {
+            "file": "compiler/gopherjspkg/fs.go",
+            "line": 6
+          }
+        }
+      ],
+      "funcs": [
+        {
+          "name": "RegisterFS",
+          "doc": "RegisterFS allows setting the embedded fs from another package.",
+          "signature": "func RegisterFS(fs http.FileSystem)",
+          "position": {
+            "file": "compiler/gopherjspkg/fs.go",
+            "line": 9
+          },
+          "examples": []
+        }
+      ],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/incjs",
+      "name": "incjs",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/incjs",
+      "files": [
+        "compiler/incjs/file.go"
+      ],
+      "consts": [
+        {
+          "name": "Ext",
+          "doc": "Ext is the file extension for .inc.js files.",
+          "declaration": "const Ext = \".inc.js\"",
+          "position": {
+            "file": "compiler/incjs/file.go",
+            "line": 15
+          }
+        }
+      ],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "FromDir",
+          "doc": "FromDir finds and loads any *.inc.js packages in the build context\ndirectory.",
+          "signature": "func FromDir(bctx *build.Context, dir string) ([]File, error)",
+          "position": {
+            "file": "compiler/incjs/file.go",
+            "line": 26
+          },
+          "examples": []
+        },
+        {
+          "name": "FromFilename",
+          "doc": "",
+          "signature": "func FromFilename(filename string) (*File, error)",
+          "position": {
+            "file": "compiler/incjs/file.go",
+            "line": 75
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "File",
+          "doc": "File represents a *.inc.js file metadata and content.",
+          "declaration": "type File struct {\n\tPath    string // Full file path for the build context the file came from.\n\tModTime time.Time\n\tContent []byte\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/incjs/file.go",
+            "line": 18
+          },
+          "fields": [
+            {
+              "name": "Path",
+              "doc": "Full file path for the build context the file came from.",
+              "type": "string"
+            },
+            {
+              "name": "ModTime",
+              "doc": "",
+              "type": "time.Time"
+            },
+            {
+              "name": "Content",
+              "doc": "",
+              "type": "[]byte"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/linkname",
+      "name": "linkname",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/linkname",
+      "files": [
+        "compiler/linkname/linkname.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "ParseGoLinknames",
+          "doc": "parseGoLinknames processed comments in a source file and extracts //go:linkname\ncompiler directive from the comments.\n\nThe following directive format is supported:\n//go:linkname <localname> <importpath>.<name>\n//go:linkname <localname> <importpath>.<type>.<name>\n//go:linkname <localname> <importpath>.<(*type)>.<name>\n\nGopherJS directive support has the following limitations:\n\n  - External linkname must be specified.\n  - The directive must be applied to a package-level function or method (variables\n    are not supported).\n  - The local function referenced by the directive must have no body (in other\n    words, it can only \"import\" an external function implementation into the\n    local scope).",
+          "signature": "func ParseGoLinknames(fset *token.FileSet, pkgPath string, file *ast.File) ([]GoLinkname, error)",
+          "position": {
+            "file": "compiler/linkname/linkname.go",
+            "line": 118
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "GoLinkname",
+          "doc": "GoLinkname describes a go:linkname compiler directive found in the source code.\n\nGopherJS treats these directives in a way that resembles a symbolic link,\nwhere for a single given symbol implementation there may be zero or more\nsymbols referencing it. This is subtly different from the upstream Go\nimplementation, which simply overrides symbol name the linker will use.",
+          "declaration": "type GoLinkname struct {\n\tImplementation symbol.Name\n\tReference      symbol.Name\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/linkname/linkname.go",
+            "line": 20
+          },
+          "fields": [
+            {
+              "name": "Implementation",
+              "doc": "",
+              "type": "symbol.Name"
+            },
+            {
+              "name": "Reference",
+              "doc": "",
+              "type": "symbol.Name"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "GoLinknameSet",
+          "doc": "GoLinknameSet is a utility that enables quick lookup of whether a decl is\naffected by any go:linkname directive in the program.",
+          "declaration": "type GoLinknameSet struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/linkname/linkname.go",
+            "line": 213
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Add",
+              "doc": "Add more GoLinkname directives into the set.",
+              "signature": "func  Add(entries []GoLinkname) error",
+              "position": {
+                "file": "compiler/linkname/linkname.go",
+                "line": 219
+              },
+              "examples": []
+            },
+            {
+              "name": "FindImplementation",
+              "doc": "FindImplementation returns a symbol name, which provides the implementation\nfor the given symbol. The second value indicates whether the implementation\nwas found.",
+              "signature": "func  FindImplementation(sym symbol.Name) (symbol.Name, bool)",
+              "position": {
+                "file": "compiler/linkname/linkname.go",
+                "line": 247
+              },
+              "examples": []
+            },
+            {
+              "name": "IsImplementation",
+              "doc": "IsImplementation returns true if there is a directive referencing this symbol\nas an implementation.",
+              "signature": "func  IsImplementation(sym symbol.Name) bool",
+              "position": {
+                "file": "compiler/linkname/linkname.go",
+                "line": 239
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/natives",
+      "name": "natives",
+      "synopsis": "Package natives provides native packages via a virtual filesystem.",
+      "doc": "Package natives provides native packages via a virtual filesystem.\n\nSee documentation of parseAndAugment in github.com/gopherjs/gopherjs/build\nfor explanation of behavior used to augment the native packages using the files\nin src subfolder.",
+      "dir": "compiler/natives",
+      "files": [
+        "compiler/natives/natives.go"
+      ],
+      "consts": [],
+      "vars": [
+        {
+          "name": "FS",
+          "doc": "FS is a virtual filesystem that contains native packages.",
+          "declaration": "var FS embed.FS",
+          "position": {
+            "file": "compiler/natives/natives.go",
+            "line": 13
+          }
+        }
+      ],
+      "funcs": [],
+      "types": [],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/prelude",
+      "name": "prelude",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/prelude",
+      "files": [
+        "compiler/prelude/prelude.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "PreludeFiles",
+          "doc": "PreludeFiles gets the GopherJS JavaScript interop layers.",
+          "signature": "func PreludeFiles() (files []PreludeFile)",
+          "position": {
+            "file": "compiler/prelude/prelude.go",
+            "line": 31
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "PreludeFile",
+          "doc": "",
+          "declaration": "type PreludeFile struct {\n\tName   string\n\tSource string\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/prelude/prelude.go",
+            "line": 25
+          },
+          "fields": [
+            {
+              "name": "Name",
+              "doc": "",
+              "type": "string"
+            },
+            {
+              "name": "Source",
+              "doc": "",
+              "type": "string"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/sources",
+      "name": "sources",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/sources",
+      "files": [
+        "compiler/sources/serializer.go",
+        "compiler/sources/sources.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "SortedSourcesSlice",
+          "doc": "SortedSourcesSlice in place sorts the given slice of Sources by ImportPath.\nThis will not change the order of the files within any Sources.",
+          "signature": "func SortedSourcesSlice(sourcesSlice []*Sources)",
+          "position": {
+            "file": "compiler/sources/sources.go",
+            "line": 269
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "Importer",
+          "doc": "",
+          "declaration": "type Importer func(path, srcDir string) (*Sources, error)",
+          "kind": "defined",
+          "position": {
+            "file": "compiler/sources/sources.go",
+            "line": 62
+          },
+          "fields": [],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "Sources",
+          "doc": "Sources is a slice of parsed Go sources and additional data for a package.\n\nNote that the sources would normally belong to a single logical Go package,\nbut they don't have to be a real Go package (i.e. found on the file system)\nor represent a complete package (i.e. it could be only a few source files\ncompiled by `gopherjs build foo.go bar.go`).",
+          "declaration": "type Sources struct {\n\t// ImportPath representing the sources, if exists.\n\t//\n\t// May be empty for \"virtual\"\n\t// packages like testmain or playground-generated package.\n\t// Otherwise this must be the absolute import path for a package.\n\tImportPath string\n\n\t// Dir is the directory containing package sources\n\tDir string\n\n\t// Files is the parsed and augmented Go AST files for the package.\n\tFiles []*ast.File\n\n\t// FileSet is the file set for the parsed files for this source.\n\tFileSet *token.FileSet\n\n\t// JSFiles is the JavaScript files that are part of the package.\n\tJSFiles []incjs.File\n\n\t// TypeInfo is the type information for this package.\n\t// This is nil until set by Analyze.\n\tTypeInfo *analysis.Info\n\n\t// Package is the types package for these source files.\n\t// This is nil until set by TypeCheck.\n\tPackage *types.Package\n\n\t// GoLinknames is the set of Go linknames for this package.\n\t// This is nil until set by ParseGoLinknames.\n\tGoLinknames []linkname.GoLinkname\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/sources/sources.go",
+            "line": 25
+          },
+          "fields": [
+            {
+              "name": "ImportPath",
+              "doc": "ImportPath representing the sources, if exists.\n\nMay be empty for \"virtual\"\npackages like testmain or playground-generated package.\nOtherwise this must be the absolute import path for a package.",
+              "type": "string"
+            },
+            {
+              "name": "Dir",
+              "doc": "Dir is the directory containing package sources",
+              "type": "string"
+            },
+            {
+              "name": "Files",
+              "doc": "Files is the parsed and augmented Go AST files for the package.",
+              "type": "[]*ast.File"
+            },
+            {
+              "name": "FileSet",
+              "doc": "FileSet is the file set for the parsed files for this source.",
+              "type": "*token.FileSet"
+            },
+            {
+              "name": "JSFiles",
+              "doc": "JSFiles is the JavaScript files that are part of the package.",
+              "type": "[]incjs.File"
+            },
+            {
+              "name": "TypeInfo",
+              "doc": "TypeInfo is the type information for this package.\nThis is nil until set by Analyze.",
+              "type": "*analysis.Info"
+            },
+            {
+              "name": "Package",
+              "doc": "Package is the types package for these source files.\nThis is nil until set by TypeCheck.",
+              "type": "*types.Package"
+            },
+            {
+              "name": "GoLinknames",
+              "doc": "GoLinknames is the set of Go linknames for this package.\nThis is nil until set by ParseGoLinknames.",
+              "type": "[]linkname.GoLinkname"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Analyze",
+              "doc": "Analyze will determine the type parameters instances, blocking,\nand other type information for the package.\nThis will set the TypeInfo and Instances fields on the Sources.\n\nThis must be called after to simplify to ensure the pointers\nin the AST are still valid.\nThe instances must be collected prior to this call.\n\nNote that at the end of this call the analysis information\nhas NOT been propagated across packages yet.",
+              "signature": "func  Analyze(importer Importer, tContext *types.Context, instances *typeparams.PackageInstanceSets)",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 174
+              },
+              "examples": []
+            },
+            {
+              "name": "CollectInstances",
+              "doc": "CollectInstances will determine the type parameters instances for the package.\n\nThis must be called before Analyze to have the type parameters instances\nneeded during analysis.\n\nNote that once all the sources are collected, the collector needs to be\nfinished to ensure all the instances are collected.",
+              "signature": "func  CollectInstances(tc *typeparams.Collector)",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 160
+              },
+              "examples": []
+            },
+            {
+              "name": "ParseGoLinknames",
+              "doc": "ParseGoLinknames extracts all //go:linkname compiler directive from the sources.\n\nThis will set the GoLinknames field on the Sources.",
+              "signature": "func  ParseGoLinknames() error",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 188
+              },
+              "examples": []
+            },
+            {
+              "name": "Read",
+              "doc": "Read will call decode multiple times to read the various fields\nof the sources.\nThe order of the calls must match the order of the calls in encodeSources.\n\nThe given srcModTime is used to determine if the serialized sources are\nout-of-date. If they are then this returns a nil sources and nil error,\nand the build time that was read.",
+              "signature": "func  Read(decode func(any) error) error",
+              "position": {
+                "file": "compiler/sources/serializer.go",
+                "line": 53
+              },
+              "examples": []
+            },
+            {
+              "name": "Simplify",
+              "doc": "Simplify processed each Files entry with astrewrite.Simplify.\n\nNote this function mutates the original Files slice.\nThis must be called after TypeCheck and before analyze since\nthis will change the pointers in the AST. For example, the pointers\nto function literals will change, making it impossible to find them\nin the type information, if analyze is called first.",
+              "signature": "func  Simplify()",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 85
+              },
+              "examples": []
+            },
+            {
+              "name": "Sort",
+              "doc": "Sort sorts the Go files slice by the original source name to ensure consistent order\nof processing. This is required for reproducible JavaScript output.\n\nNote this function mutates the original Files slice.",
+              "signature": "func  Sort()",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 68
+              },
+              "examples": []
+            },
+            {
+              "name": "TypeCheck",
+              "doc": "TypeCheck the sources. Returns information about declared package types and\ntype information for the supplied AST.\nThis will set the Package field on the Sources.\n\nIf the Package field is not nil, e.g. this function has already been run,\nthis will be a no-op.\n\nThis must be called prior to simplify to get the types.Info used by simplify.",
+              "signature": "func  TypeCheck(importer Importer, sizes types.Sizes, tContext *types.Context) error",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 99
+              },
+              "examples": []
+            },
+            {
+              "name": "UnresolvedImports",
+              "doc": "UnresolvedImports calculates the import paths of the package's dependencies\nbased on all the imports in the augmented Go AST files.\n\nThis is used to determine the unresolved imports that weren't in the\nPackageData.Imports slice since they were added during augmentation or\nduring template generation.\n\nThe given skip paths (typically those imports from PackageData.Imports)\nwill not be returned in the results.\nThis will not return any `*_test` packages in the results.",
+              "signature": "func  UnresolvedImports(skip ...string) []string",
+              "position": {
+                "file": "compiler/sources/sources.go",
+                "line": 213
+              },
+              "examples": []
+            },
+            {
+              "name": "Write",
+              "doc": "Write will call encode multiple times to write the various fields\nof the sources. This is designed to be used with a gob.Encoder.\n\nThe order of the calls must match the order of the calls in Read.\n\ns.TypeInfo, s.baseInfo, s.Package, and s.GoLinknames are intentionally\nomitted from encoding since they must be constructed in the context of the\nfull program to be able to handle generics and cross-package references.",
+              "signature": "func  Write(encode func(any) error) error",
+              "position": {
+                "file": "compiler/sources/serializer.go",
+                "line": 18
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/compiler/typesutil",
+      "name": "typesutil",
+      "synopsis": "",
+      "doc": "",
+      "dir": "compiler/typesutil",
+      "files": [
+        "compiler/typesutil/map.go",
+        "compiler/typesutil/signature.go",
+        "compiler/typesutil/typelist.go",
+        "compiler/typesutil/typenames.go",
+        "compiler/typesutil/typesutil.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [
+        {
+          "name": "IsJsObject",
+          "doc": "",
+          "signature": "func IsJsObject(t types.Type) bool",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 12
+          },
+          "examples": []
+        },
+        {
+          "name": "IsJsPackage",
+          "doc": "",
+          "signature": "func IsJsPackage(pkg *types.Package) bool",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 8
+          },
+          "examples": []
+        },
+        {
+          "name": "IsMethod",
+          "doc": "IsMethod returns true if the passed object is a method.",
+          "signature": "func IsMethod(o types.Object) bool",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 112
+          },
+          "examples": []
+        },
+        {
+          "name": "NewSelection",
+          "doc": "NewSelection creates a new selection.",
+          "signature": "func NewSelection(kind types.SelectionKind, recv types.Type, index []int, obj types.Object, typ types.Type) Selection",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 60
+          },
+          "examples": []
+        },
+        {
+          "name": "OffsetOf",
+          "doc": "OffsetOf returns byte offset of a struct field specified by the provided\nselection.\n\nAdapted from go/types.Config.offsetof().",
+          "signature": "func OffsetOf(sizes types.Sizes, sel Selection) int64",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 96
+          },
+          "examples": []
+        },
+        {
+          "name": "RecvAsFirstArg",
+          "doc": "RecvAsFirstArg takes a method signature and returns a function\nsignature with receiver as the first parameter.",
+          "signature": "func RecvAsFirstArg(sig *types.Signature) *types.Signature",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 40
+          },
+          "examples": []
+        },
+        {
+          "name": "RecvType",
+          "doc": "RecvType returns a named type of a method receiver, or nil if it's not a method.\n\nFor methods on a pointer receiver, the underlying named type is returned.",
+          "signature": "func RecvType(sig *types.Signature) *types.Named",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 24
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "Map",
+          "doc": "Map is a type-safe wrapper around golang.org/x/tools/go/types/typeutil.Map.",
+          "declaration": "type Map[Val any] struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/typesutil/map.go",
+            "line": 10
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "At",
+              "doc": "",
+              "signature": "func  At(key types.Type) Val",
+              "position": {
+                "file": "compiler/typesutil/map.go",
+                "line": 12
+              },
+              "examples": []
+            },
+            {
+              "name": "Delete",
+              "doc": "",
+              "signature": "func  Delete(key types.Type) bool",
+              "position": {
+                "file": "compiler/typesutil/map.go",
+                "line": 30
+              },
+              "examples": []
+            },
+            {
+              "name": "Len",
+              "doc": "",
+              "signature": "func  Len() int",
+              "position": {
+                "file": "compiler/typesutil/map.go",
+                "line": 32
+              },
+              "examples": []
+            },
+            {
+              "name": "Set",
+              "doc": "",
+              "signature": "func  Set(key types.Type, value Val) (prev Val)",
+              "position": {
+                "file": "compiler/typesutil/map.go",
+                "line": 21
+              },
+              "examples": []
+            },
+            {
+              "name": "String",
+              "doc": "",
+              "signature": "func  String() string",
+              "position": {
+                "file": "compiler/typesutil/map.go",
+                "line": 34
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Selection",
+          "doc": "Selection is a common interface for go/types.Selection and our custom-constructed\nmethod and field selections.",
+          "declaration": "type Selection interface {\n\tKind() types.SelectionKind\n\tRecv() types.Type\n\tIndex() []int\n\tObj() types.Object\n\tType() types.Type\n}",
+          "kind": "interface",
+          "position": {
+            "file": "compiler/typesutil/typesutil.go",
+            "line": 51
+          },
+          "fields": [
+            {
+              "name": "Kind",
+              "doc": "",
+              "type": "func() types.SelectionKind"
+            },
+            {
+              "name": "Recv",
+              "doc": "",
+              "type": "func() types.Type"
+            },
+            {
+              "name": "Index",
+              "doc": "",
+              "type": "func() []int"
+            },
+            {
+              "name": "Obj",
+              "doc": "",
+              "type": "func() types.Object"
+            },
+            {
+              "name": "Type",
+              "doc": "",
+              "type": "func() types.Type"
+            }
+          ],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "Signature",
+          "doc": "Signature is a helper that provides convenient access to function\nsignature type information.",
+          "declaration": "type Signature struct {\n\tSig *types.Signature\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/typesutil/signature.go",
+            "line": 10
+          },
+          "fields": [
+            {
+              "name": "Sig",
+              "doc": "",
+              "type": "*types.Signature"
+            }
+          ],
+          "methods": [
+            {
+              "name": "HasNamedResults",
+              "doc": "HasNamedResults returns true if the function signature returns something and\nreturned results are names (e.g. `func () (val int, err error)`).",
+              "signature": "func  HasNamedResults() bool",
+              "position": {
+                "file": "compiler/typesutil/signature.go",
+                "line": 65
+              },
+              "examples": []
+            },
+            {
+              "name": "HasResults",
+              "doc": "HasResults returns true if the function signature returns something.",
+              "signature": "func  HasResults() bool",
+              "position": {
+                "file": "compiler/typesutil/signature.go",
+                "line": 59
+              },
+              "examples": []
+            },
+            {
+              "name": "Param",
+              "doc": "Param returns the expected argument type for the i'th argument position.\n\nThis function is able to return correct expected types for variadic calls\nboth when ellipsis syntax (e.g. myFunc(requiredArg, optionalArgSlice...))\nis used and when optional args are passed individually.\n\nThe returned types may differ from the actual argument expression types if\nthere is an implicit type conversion involved (e.g. passing a struct into a\nfunction that expects an interface).",
+              "signature": "func  Param(i int, ellipsis bool) types.Type",
+              "position": {
+                "file": "compiler/typesutil/signature.go",
+                "line": 44
+              },
+              "examples": []
+            },
+            {
+              "name": "RequiredParams",
+              "doc": "RequiredParams returns the number of required parameters in the function signature.",
+              "signature": "func  RequiredParams() int",
+              "position": {
+                "file": "compiler/typesutil/signature.go",
+                "line": 15
+              },
+              "examples": []
+            },
+            {
+              "name": "VariadicType",
+              "doc": "VariadicType returns the slice-type corresponding to the signature's variadic\nparameter, or nil of the signature is not variadic. With the exception of\nthe special-case `append([]byte{}, \"string\"...)`, the returned type is\n`*types.Slice` and `.Elem()` method can be used to get the type of individual\narguments.",
+              "signature": "func  VariadicType() types.Type",
+              "position": {
+                "file": "compiler/typesutil/signature.go",
+                "line": 28
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "TypeList",
+          "doc": "TypeList an ordered list of types.",
+          "declaration": "type TypeList []types.Type",
+          "kind": "defined",
+          "position": {
+            "file": "compiler/typesutil/typelist.go",
+            "line": 9
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Equal",
+              "doc": "Equal returns true if both lists of type arguments are identical.",
+              "signature": "func  Equal(other TypeList) bool",
+              "position": {
+                "file": "compiler/typesutil/typelist.go",
+                "line": 23
+              },
+              "examples": []
+            },
+            {
+              "name": "String",
+              "doc": "",
+              "signature": "func  String() string",
+              "position": {
+                "file": "compiler/typesutil/typelist.go",
+                "line": 11
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "TypeNames",
+          "doc": "TypeNames implements an ordered set of *types.TypeName pointers.\n\nThe set is ordered to ensure deterministic behavior across compiler runs.",
+          "declaration": "type TypeNames struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "compiler/typesutil/typenames.go",
+            "line": 8
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Add",
+              "doc": "Add a type name to the set. If the type name has been previously added,\nthis operation is a no-op. Two type names are considered equal iff they have\nthe same memory address.",
+              "signature": "func  Add(name *types.TypeName)",
+              "position": {
+                "file": "compiler/typesutil/typenames.go",
+                "line": 16
+              },
+              "examples": []
+            },
+            {
+              "name": "Slice",
+              "doc": "Slice returns set elements in the order they were first added to the set.",
+              "signature": "func  Slice() []*types.TypeName",
+              "position": {
+                "file": "compiler/typesutil/typenames.go",
+                "line": 28
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/js",
+      "name": "js",
+      "synopsis": "Package js provides functions for interacting with native JavaScript APIs.",
+      "doc": "Package js provides functions for interacting with native JavaScript APIs. Calls to these functions are treated specially by GopherJS and translated directly to their corresponding JavaScript syntax.\n\nUse MakeWrapper to expose methods to JavaScript. Use MakeFullWrapper to expose methods AND fields to JavaScript. When passing values directly, the following type conversions are performed:\n\n\t| Go type               | JavaScript type       | Conversions back to any |\n\t| --------------------- | --------------------- | ----------------------- |\n\t| bool                  | Boolean               | bool                    |\n\t| integers and floats   | Number                | float64                 |\n\t| string                | String                | string                  |\n\t| []int8                | Int8Array             | []int8                  |\n\t| []int16               | Int16Array            | []int16                 |\n\t| []int32, []int        | Int32Array            | []int                   |\n\t| []uint8               | Uint8Array            | []uint8                 |\n\t| []uint16              | Uint16Array           | []uint16                |\n\t| []uint32, []uint      | Uint32Array           | []uint                  |\n\t| []float32             | Float32Array          | []float32               |\n\t| []float64             | Float64Array          | []float64               |\n\t| all other slices      | Array                 | []any                   |\n\t| arrays                | see slice type        | see slice type          |\n\t| functions             | Function              | func(...any) *js.Object |\n\t| time.Time             | Date                  | time.Time               |\n\t| -                     | instanceof Node       | *js.Object              |\n\t| maps, structs         | instanceof Object     | map[string]any          |\n\nAdditionally, for a struct containing a *js.Object field, only the content of the field will be passed to JavaScript and vice versa.",
+      "dir": "js",
+      "files": [
+        "js/js.go"
+      ],
+      "consts": [],
+      "vars": [
+        {
+          "name": "Global",
+          "doc": "Global gives JavaScript's global object (\"window\" for browsers and \"GLOBAL\" for Node.js).",
+          "declaration": "var Global *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 98
+          }
+        },
+        {
+          "name": "Module",
+          "doc": "Module gives the value of the \"module\" variable set by Node.js. Hint: Set a\nmodule export with 'js.Module.Get(\"exports\").Set(\"exportName\", ...)'.\n\nNote that js.Module is only defined in runtimes which support CommonJS\nmodules (https://nodejs.org/api/modules.html). NodeJS supports it natively,\nbut in browsers it can only be used if GopherJS output is passed through a\nbundler which implements CommonJS (for example, webpack or esbuild).",
+          "declaration": "var Module *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 107
+          }
+        },
+        {
+          "name": "Undefined",
+          "doc": "Undefined gives the JavaScript value \"undefined\".",
+          "declaration": "var Undefined *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 110
+          }
+        }
+      ],
+      "funcs": [
+        {
+          "name": "Debugger",
+          "doc": "Debugger gets compiled to JavaScript's \"debugger;\" statement.",
+          "signature": "func Debugger()",
+          "position": {
+            "file": "js/js.go",
+            "line": 113
+          },
+          "examples": []
+        },
+        {
+          "name": "InternalObject",
+          "doc": "InternalObject returns the internal JavaScript object that represents i. Not intended for public use.",
+          "signature": "func InternalObject(i any) *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 116
+          },
+          "examples": []
+        },
+        {
+          "name": "Keys",
+          "doc": "Keys returns the keys of the given JavaScript object.",
+          "signature": "func Keys(o *Object) []string",
+          "position": {
+            "file": "js/js.go",
+            "line": 126
+          },
+          "examples": []
+        },
+        {
+          "name": "MakeFullWrapper",
+          "doc": "MakeFullWrapper creates a JavaScript object which has wrappers for the exported\nmethods of i, and, where i is a (pointer to a) struct value, wrapped getters\nand setters\n(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)\nfor the non-embedded exported fields of i. Values accessed via these methods\nand getters are themselves wrapped when accessed, but an important point to\nnote is that a new wrapped value is created on each access.",
+          "signature": "func MakeFullWrapper(i any) *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 163
+          },
+          "examples": []
+        },
+        {
+          "name": "MakeFunc",
+          "doc": "MakeFunc wraps a function and gives access to the values of JavaScript's \"this\" and \"arguments\" keywords.",
+          "signature": "func MakeFunc(fn func(this *Object, arguments []*Object) any) *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 121
+          },
+          "examples": []
+        },
+        {
+          "name": "MakeUint64",
+          "doc": "MakeUint64 will take the high and low parts to construct a uint64 number.\nSince JS doesn't have a 64-bit integer we store it as a high and low 32-bit integers.",
+          "signature": "func MakeUint64(hi, lo float64) uint64",
+          "position": {
+            "file": "js/js.go",
+            "line": 265
+          },
+          "examples": []
+        },
+        {
+          "name": "MakeWrapper",
+          "doc": "MakeWrapper creates a JavaScript object which has wrappers for the exported methods of i. Use explicit getter and setter methods to expose struct fields to JavaScript.",
+          "signature": "func MakeWrapper(i any) *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 139
+          },
+          "examples": []
+        },
+        {
+          "name": "NewArrayBuffer",
+          "doc": "NewArrayBuffer creates a JavaScript ArrayBuffer from a byte slice.",
+          "signature": "func NewArrayBuffer(b []byte) *Object",
+          "position": {
+            "file": "js/js.go",
+            "line": 250
+          },
+          "examples": []
+        },
+        {
+          "name": "Uint64High",
+          "doc": "Uint64High will get the high 32-bit integer used when storing uint64.",
+          "signature": "func Uint64High(x uint64) uint32",
+          "position": {
+            "file": "js/js.go",
+            "line": 268
+          },
+          "examples": []
+        },
+        {
+          "name": "Uint64Low",
+          "doc": "Uint64Low will get the low 32-bit integer used when storing uint64.",
+          "signature": "func Uint64Low(x uint64) uint32",
+          "position": {
+            "file": "js/js.go",
+            "line": 271
+          },
+          "examples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "Error",
+          "doc": "Error encapsulates JavaScript errors. Those are turned into a Go panic and may be recovered, giving an *Error that holds the JavaScript error object.",
+          "declaration": "type Error struct {\n\t*Object\n}",
+          "kind": "struct",
+          "position": {
+            "file": "js/js.go",
+            "line": 83
+          },
+          "fields": [
+            {
+              "name": "*Object",
+              "doc": "",
+              "type": "*Object",
+              "embedded": true
+            }
+          ],
+          "methods": [
+            {
+              "name": "Error",
+              "doc": "Error returns the message of the encapsulated JavaScript error object.",
+              "signature": "func  Error) Error() string",
+              "position": {
+                "file": "js/js.go",
+                "line": 88
+              },
+              "examples": []
+            },
+            {
+              "name": "Stack",
+              "doc": "Stack returns the stack property of the encapsulated JavaScript error object.",
+              "signature": "func  Stack() string",
+              "position": {
+                "file": "js/js.go",
+                "line": 93
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "M",
+          "doc": "M is a simple map type. It is intended as a shorthand for JavaScript objects (before conversion).",
+          "declaration": "type M map[string]any",
+          "kind": "defined",
+          "position": {
+            "file": "js/js.go",
+            "line": 258
+          },
+          "fields": [],
+          "methods": [],
+          "examples": []
+        },
+        {
+          "name": "Object",
+          "doc": "Object is a container for a native JavaScript object. Calls to its methods are treated specially by GopherJS and translated directly to their JavaScript syntax. A nil pointer to Object is equal to JavaScript's \"null\". Object can not be used as a map key.",
+          "declaration": "type Object struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "js/js.go",
+            "line": 29
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Bool",
+              "doc": "Bool returns the object converted to bool according to JavaScript type conversions.",
+              "signature": "func  Bool() bool",
+              "position": {
+                "file": "js/js.go",
+                "line": 59
+              },
+              "examples": []
+            },
+            {
+              "name": "Call",
+              "doc": "Call calls the object's method with the given name.",
+              "signature": "func  Call(name string, args ...any) *Object",
+              "position": {
+                "file": "js/js.go",
+                "line": 50
+              },
+              "examples": []
+            },
+            {
+              "name": "Delete",
+              "doc": "Delete removes the object's property with the given key.",
+              "signature": "func  Delete(key string)",
+              "position": {
+                "file": "js/js.go",
+                "line": 38
+              },
+              "examples": []
+            },
+            {
+              "name": "Float",
+              "doc": "Float returns the object converted to float64 according to JavaScript type conversions (parseFloat).",
+              "signature": "func  Float() float64",
+              "position": {
+                "file": "js/js.go",
+                "line": 74
+              },
+              "examples": []
+            },
+            {
+              "name": "Get",
+              "doc": "Get returns the object's property with the given key.",
+              "signature": "func  Get(key string) *Object",
+              "position": {
+                "file": "js/js.go",
+                "line": 32
+              },
+              "examples": []
+            },
+            {
+              "name": "Index",
+              "doc": "Index returns the i'th element of an array.",
+              "signature": "func  Index(i int) *Object",
+              "position": {
+                "file": "js/js.go",
+                "line": 44
+              },
+              "examples": []
+            },
+            {
+              "name": "Int",
+              "doc": "Int returns the object converted to int according to JavaScript type conversions (parseInt).",
+              "signature": "func  Int() int",
+              "position": {
+                "file": "js/js.go",
+                "line": 65
+              },
+              "examples": []
+            },
+            {
+              "name": "Int64",
+              "doc": "Int64 returns the object converted to int64 according to JavaScript type conversions (parseInt).",
+              "signature": "func  Int64() int64",
+              "position": {
+                "file": "js/js.go",
+                "line": 68
+              },
+              "examples": []
+            },
+            {
+              "name": "Interface",
+              "doc": "Interface returns the object converted to any. See table in package comment for details.",
+              "signature": "func  Interface() any",
+              "position": {
+                "file": "js/js.go",
+                "line": 77
+              },
+              "examples": []
+            },
+            {
+              "name": "Invoke",
+              "doc": "Invoke calls the object itself. This will fail if it is not a function.",
+              "signature": "func  Invoke(args ...any) *Object",
+              "position": {
+                "file": "js/js.go",
+                "line": 53
+              },
+              "examples": []
+            },
+            {
+              "name": "Length",
+              "doc": "Length returns the object's \"length\" property, converted to int.",
+              "signature": "func  Length() int",
+              "position": {
+                "file": "js/js.go",
+                "line": 41
+              },
+              "examples": []
+            },
+            {
+              "name": "New",
+              "doc": "New creates a new instance of this type object. This will fail if it not a function (constructor).",
+              "signature": "func  New(args ...any) *Object",
+              "position": {
+                "file": "js/js.go",
+                "line": 56
+              },
+              "examples": []
+            },
+            {
+              "name": "Set",
+              "doc": "Set assigns the value to the object's property with the given key.",
+              "signature": "func  Set(key string, value any)",
+              "position": {
+                "file": "js/js.go",
+                "line": 35
+              },
+              "examples": []
+            },
+            {
+              "name": "SetIndex",
+              "doc": "SetIndex sets the i'th element of an array.",
+              "signature": "func  SetIndex(i int, value any)",
+              "position": {
+                "file": "js/js.go",
+                "line": 47
+              },
+              "examples": []
+            },
+            {
+              "name": "String",
+              "doc": "String returns the object converted to string according to JavaScript type conversions.",
+              "signature": "func  String() string",
+              "position": {
+                "file": "js/js.go",
+                "line": 62
+              },
+              "examples": []
+            },
+            {
+              "name": "Uint64",
+              "doc": "Uint64 returns the object converted to uint64 according to JavaScript type conversions (parseInt).",
+              "signature": "func  Uint64() uint64",
+              "position": {
+                "file": "js/js.go",
+                "line": 71
+              },
+              "examples": []
+            },
+            {
+              "name": "Unsafe",
+              "doc": "Unsafe returns the object as an uintptr, which can be converted via unsafe.Pointer. Not intended for public use.",
+              "signature": "func  Unsafe() uintptr",
+              "position": {
+                "file": "js/js.go",
+                "line": 80
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "S",
+          "doc": "S is a simple slice type. It is intended as a shorthand for JavaScript arrays (before conversion).",
+          "declaration": "type S []any",
+          "kind": "defined",
+          "position": {
+            "file": "js/js.go",
+            "line": 261
+          },
+          "fields": [],
+          "methods": [],
+          "examples": []
+        }
+      ],
+      "examples": []
+    },
+    {
+      "importPath": "github.com/gopherjs/gopherjs/nosync",
+      "name": "nosync",
+      "synopsis": "",
+      "doc": "",
+      "dir": "nosync",
+      "files": [
+        "nosync/map.go",
+        "nosync/mutex.go",
+        "nosync/once.go",
+        "nosync/pool.go"
+      ],
+      "consts": [],
+      "vars": [],
+      "funcs": [],
+      "types": [
+        {
+          "name": "Map",
+          "doc": "Map is a concurrent map with amortized-constant-time loads, stores, and deletes.\nIt is safe for multiple goroutines to call a Map's methods concurrently.\n\nThe zero Map is valid and empty.\n\nA Map must not be copied after first use.",
+          "declaration": "type Map struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/map.go",
+            "line": 9
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Delete",
+              "doc": "Delete deletes the value for a key.",
+              "signature": "func  Delete(key any)",
+              "position": {
+                "file": "nosync/map.go",
+                "line": 44
+              },
+              "examples": []
+            },
+            {
+              "name": "Load",
+              "doc": "Load returns the value stored in the map for a key, or nil if no\nvalue is present.\nThe ok result indicates whether value was found in the map.",
+              "signature": "func  Load(key any) (value any, ok bool)",
+              "position": {
+                "file": "nosync/map.go",
+                "line": 16
+              },
+              "examples": []
+            },
+            {
+              "name": "LoadOrStore",
+              "doc": "LoadOrStore returns the existing value for the key if present.\nOtherwise, it stores and returns the given value.\nThe loaded result is true if the value was loaded, false if stored.",
+              "signature": "func  LoadOrStore(key, value any) (actual any, loaded bool)",
+              "position": {
+                "file": "nosync/map.go",
+                "line": 32
+              },
+              "examples": []
+            },
+            {
+              "name": "Range",
+              "doc": "Range calls f sequentially for each key and value present in the map.\nIf f returns false, range stops the iteration.\n\nRange does not necessarily correspond to any consistent snapshot of the Map's\ncontents: no key will be visited more than once, but if the value for any key\nis stored or deleted concurrently, Range may reflect any mapping for that key\nfrom any point during the Range call.\n\nRange may be O(N) with the number of elements in the map even if f returns\nfalse after a constant number of calls.",
+              "signature": "func  Range(f func(key, value any) bool)",
+              "position": {
+                "file": "nosync/map.go",
+                "line": 61
+              },
+              "examples": []
+            },
+            {
+              "name": "Store",
+              "doc": "Store sets the value for a key.",
+              "signature": "func  Store(key, value any)",
+              "position": {
+                "file": "nosync/map.go",
+                "line": 22
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Mutex",
+          "doc": "Mutex is a dummy which is non-blocking.",
+          "declaration": "type Mutex struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/mutex.go",
+            "line": 4
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Lock",
+              "doc": "Lock locks m. It is a run-time error if m is already locked.",
+              "signature": "func  Lock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 13
+              },
+              "examples": []
+            },
+            {
+              "name": "Unlock",
+              "doc": "Unlock unlocks m. It is a run-time error if m is not locked.",
+              "signature": "func  Unlock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 21
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Once",
+          "doc": "Once is an object that will perform exactly one action.",
+          "declaration": "type Once struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/once.go",
+            "line": 4
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Do",
+              "doc": "Do calls the function f if and only if Do is being called for the\nfirst time for this instance of Once. In other words, given\n\n\tvar once Once\n\nif once.Do(f) is called multiple times, only the first call will invoke f,\neven if f has a different value in each invocation.  A new instance of\nOnce is required for each function to execute.\n\nDo is intended for initialization that must be run exactly once.  Since f\nis niladic, it may be necessary to use a function literal to capture the\narguments to a function to be invoked by Do:\n\n\tconfig.once.Do(func() { config.init(filename) })\n\nIf f causes Do to be called, it will panic.\n\nIf f panics, Do considers it to have returned; future calls of Do return\nwithout calling f.",
+              "signature": "func  Do(f func())",
+              "position": {
+                "file": "nosync/once.go",
+                "line": 28
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "Pool",
+          "doc": "A Pool is a set of temporary objects that may be individually saved and\nretrieved.\n\nAny item stored in the Pool may be removed automatically at any time without\nnotification. If the Pool holds the only reference when this happens, the\nitem might be deallocated.\n\nA Pool is safe for use by multiple goroutines simultaneously.\n\nPool's purpose is to cache allocated but unused items for later reuse,\nrelieving pressure on the garbage collector. That is, it makes it easy to\nbuild efficient, thread-safe free lists. However, it is not suitable for all\nfree lists.\n\nAn appropriate use of a Pool is to manage a group of temporary items\nsilently shared among and potentially reused by concurrent independent\nclients of a package. Pool provides a way to amortize allocation overhead\nacross many clients.\n\nAn example of good use of a Pool is in the fmt package, which maintains a\ndynamically-sized store of temporary output buffers. The store scales under\nload (when many goroutines are actively printing) and shrinks when\nquiescent.\n\nOn the other hand, a free list maintained as part of a short-lived object is\nnot a suitable use for a Pool, since the overhead does not amortize well in\nthat scenario. It is more efficient to have such objects implement their own\nfree list.",
+          "declaration": "type Pool struct {\n\tNew func() any\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/pool.go",
+            "line": 31
+          },
+          "fields": [
+            {
+              "name": "New",
+              "doc": "",
+              "type": "func() any"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Get",
+              "doc": "Get selects an arbitrary item from the Pool, removes it from the\nPool, and returns it to the caller.\nGet may choose to ignore the pool and treat it as empty.\nCallers should not assume any relation between values passed to Put and\nthe values returned by Get.\n\nIf Get would otherwise return nil and p.New is non-nil, Get returns\nthe result of calling p.New.",
+              "signature": "func  Get() any",
+              "position": {
+                "file": "nosync/pool.go",
+                "line": 44
+              },
+              "examples": []
+            },
+            {
+              "name": "Put",
+              "doc": "Put adds x to the pool.",
+              "signature": "func  Put(x any)",
+              "position": {
+                "file": "nosync/pool.go",
+                "line": 57
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "RWMutex",
+          "doc": "RWMutex is a dummy which is non-blocking.",
+          "declaration": "type RWMutex struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/mutex.go",
+            "line": 29
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Lock",
+              "doc": "Lock locks m for writing. It is a run-time error if rw is already locked for reading or writing.",
+              "signature": "func  Lock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 41
+              },
+              "examples": []
+            },
+            {
+              "name": "RLock",
+              "doc": "RLock locks m for reading. It is a run-time error if rw is already locked for reading or writing.",
+              "signature": "func  RLock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 57
+              },
+              "examples": []
+            },
+            {
+              "name": "RUnlock",
+              "doc": "RUnlock undoes a single RLock call; it does not affect other simultaneous readers. It is a run-time error if rw is not locked for reading.",
+              "signature": "func  RUnlock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 65
+              },
+              "examples": []
+            },
+            {
+              "name": "Unlock",
+              "doc": "Unlock unlocks rw for writing. It is a run-time error if rw is not locked for writing.",
+              "signature": "func  Unlock()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 49
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        },
+        {
+          "name": "WaitGroup",
+          "doc": "WaitGroup is a dummy which is non-blocking.",
+          "declaration": "type WaitGroup struct {\n\t// contains filtered or unexported fields\n}",
+          "kind": "struct",
+          "position": {
+            "file": "nosync/mutex.go",
+            "line": 73
+          },
+          "fields": [],
+          "methods": [
+            {
+              "name": "Add",
+              "doc": "Add adds delta, which may be negative, to the WaitGroup If the counter goes negative, Add panics.",
+              "signature": "func  Add(delta int)",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 78
+              },
+              "examples": []
+            },
+            {
+              "name": "Done",
+              "doc": "Done decrements the WaitGroup counter.",
+              "signature": "func  Done()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 86
+              },
+              "examples": []
+            },
+            {
+              "name": "Wait",
+              "doc": "Wait panics if the WaitGroup counter is not zero.",
+              "signature": "func  WaitGroup) Wait()",
+              "position": {
+                "file": "nosync/mutex.go",
+                "line": 91
+              },
+              "examples": []
+            }
+          ],
+          "examples": []
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

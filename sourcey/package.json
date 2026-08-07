@@ -1,0 +1,11 @@
+{
+  "name": "gopherjs-sourcey-docs",
+  "private": true,
+  "scripts": {
+    "build": "sourcey build -c sourcey.config.ts -o ../docs",
+    "postbuild": "node scripts/fix-sourcey-links.mjs"
+  },
+  "devDependencies": {
+    "sourcey": "3.6.5"
+  }
+}
