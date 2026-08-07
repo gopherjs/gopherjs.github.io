@@ -7,6 +7,16 @@ The committed `godoc.json` snapshot was generated from
 `gopherjs/gopherjs@490705b1d6fc7d5bd9202ac41888e146183328eb`. The Sourcey build uses snapshot
 mode, so publishing the committed site does not require a Go toolchain.
 
+## Live review site
+
+A generated review build is available at
+<https://samedaydesk.com/docs-lab/gopherjs/> while this pull request is under
+review. SameDayDesk owns and maintains that durable mirror as a public Docs Lab
+case study; it is not affiliated with GopherJS and is not represented as the
+project's canonical documentation. If this pull request merges, the same
+reference will instead be served from this repository's project-owned `/docs/`
+path.
+
 ## Build
 
 From this directory:
