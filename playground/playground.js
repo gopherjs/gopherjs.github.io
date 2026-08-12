@@ -4984,7 +4984,7 @@ $packages["errors"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react"] = (function() {
-	var $pkg = {}, $init, errors, js, Node, Root, Element, Props, Ref, ValueRef = [], Func, sliceType, funcType, sliceType$1, sliceType$2, funcType$1, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType, ptrType$1, valueRefLastId, valueRefStore, reactDom, react, CreateRoot, CreateElement, StrictMode, Fragment, Memo, Div, TextArea, Span, Button, A, GetProp = [], GetValueRef = [], castObj = [], UseState = [], UseStateLazy = [], UseRef, UseRefLazy = [], UseEffect, UseEffectWithCleanup, UseLayoutEffect, UseLayoutEffectWithCleanup, UseImperativeHandle = [], UseMemo = [], UseCallback;
+	var $pkg = {}, $init, errors, js, Node, Root, Element, Props, Ref, ValueRef = [], Func, sliceType, funcType, sliceType$1, sliceType$2, funcType$1, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType, ptrType$1, valueRefLastId, valueRefStore, reactDom, react, CreateRoot, CreateElement, StrictMode, Fragment, Memo, Div, TextArea, Span, Button, A, GetProp = [], GetValueRef = [], castObj = [], UseState = [], UseStateLazy = [], UseRef, UseRefWith = [], UseRefLazy = [], UseEffect, UseEffectWithCleanup, UseLayoutEffect, UseLayoutEffectWithCleanup, UseImperativeHandle = [], UseMemo = [], UseCallback;
 	errors = $packages["errors"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	Node = $newType(8, $kindInterface, "react.Node", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, null);
@@ -5052,7 +5052,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5060,7 +5060,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5068,7 +5068,15 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		}
 		this.Object = Object_;
 	});
-	ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+	ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */] = $newType(0, $kindStruct, "react.ValueRef[github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Object = null;
+			return;
+		}
+		this.Object = Object_;
+	});
+	ValueRef[56 /* string */] = $newType(0, $kindStruct, "react.ValueRef[string]", true, "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", true, function(Object_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Object = null;
@@ -5257,7 +5265,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		Props.prototype.GetRef = function(...$args) { return this.$val.GetRef(...$args); };
 		GetProp[23 /* []int */] = function GetProp$1(p, key) {
 			var key, p;
-			return castObj[54 /* []int */]($clone(p, Props).Get(key));
+			return castObj[55 /* []int */]($clone(p, Props).Get(key));
 		};
 		GetValueRef[10 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */] = function GetValueRef$1(p, key) {
 			var key, p;
@@ -5271,7 +5279,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			var key, p;
 			return new ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].ptr($clone(p, Props).Get(key));
 		};
-		castObj[53 /* int */] = function castObj$1(obj) {
+		castObj[54 /* int */] = function castObj$1(obj) {
 			var _ref, obj, result, v;
 			result = 0;
 			if (obj === null || obj === undefined) {
@@ -5329,7 +5337,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[54 /* []int */] = function castObj$2(obj) {
+		castObj[55 /* []int */] = function castObj$2(obj) {
 			var _ref, obj, result, v;
 			result = sliceType$2.nil;
 			if (obj === null || obj === undefined) {
@@ -5387,7 +5395,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[55 /* bool */] = function castObj$3(obj) {
+		castObj[61 /* bool */] = function castObj$3(obj) {
 			var _ref, obj, result, v;
 			result = false;
 			if (obj === null || obj === undefined) {
@@ -5445,7 +5453,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[56 /* string */] = function castObj$4(obj) {
+		castObj[62 /* string */] = function castObj$4(obj) {
 			var _ref, obj, result, v;
 			result = "";
 			if (obj === null || obj === undefined) {
@@ -5503,7 +5511,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 				return result;
 			}
 		};
-		castObj[57 /* []any */] = function castObj$5(obj) {
+		castObj[63 /* []any */] = function castObj$5(obj) {
 			var _ref, obj, result, v;
 			result = sliceType.nil;
 			if (obj === null || obj === undefined) {
@@ -5563,53 +5571,53 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		};
 		UseState[11 /* []any */] = function UseState$1(initial) {
 			var initial;
-			return UseStateLazy[50 /* []any */]((function UseState·func1() {
+			return UseStateLazy[51 /* []any */]((function UseState·func1() {
 					return initial;
 				}));
 		};
 		UseState[18 /* string */] = function UseState$2(initial) {
 			var initial;
-			return UseStateLazy[51 /* string */]((function UseState·func1$1() {
+			return UseStateLazy[52 /* string */]((function UseState·func1$1() {
 					return initial;
 				}));
 		};
 		UseState[19 /* []int */] = function UseState$3(initial) {
 			var initial;
-			return UseStateLazy[52 /* []int */]((function UseState·func1$2() {
+			return UseStateLazy[53 /* []int */]((function UseState·func1$2() {
 					return initial;
 				}));
 		};
-		UseState[34 /* bool */] = function UseState$4(initial) {
+		UseState[35 /* bool */] = function UseState$4(initial) {
 			var initial;
-			return UseStateLazy[33 /* bool */]((function UseState·func1$3() {
+			return UseStateLazy[34 /* bool */]((function UseState·func1$3() {
 					return initial;
 				}));
 		};
-		UseStateLazy[33 /* bool */] = function UseStateLazy$1(initialFn) {
+		UseStateLazy[34 /* bool */] = function UseStateLazy$1(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$1));
-			current = castObj[55 /* bool */](r[0]);
+			current = castObj[61 /* bool */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[50 /* []any */] = function UseStateLazy$2(initialFn) {
+		UseStateLazy[51 /* []any */] = function UseStateLazy$2(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$2));
-			current = castObj[57 /* []any */](r[0]);
+			current = castObj[63 /* []any */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[51 /* string */] = function UseStateLazy$3(initialFn) {
+		UseStateLazy[52 /* string */] = function UseStateLazy$3(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$3));
-			current = castObj[56 /* string */](r[0]);
+			current = castObj[62 /* string */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
-		UseStateLazy[52 /* []int */] = function UseStateLazy$4(initialFn) {
+		UseStateLazy[53 /* []int */] = function UseStateLazy$4(initialFn) {
 			var current, initialFn, r, setter;
 			r = react().useState($externalize(initialFn, funcType$4));
-			current = castObj[54 /* []int */](r[0]);
+			current = castObj[55 /* []int */](r[0]);
 			setter = r[1];
 			return [current, new $jsObjectPtr(setter)];
 		};
@@ -5629,6 +5637,17 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			ref.Object.current = v;
 		};
 		Ref.prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		UseRefWith[33 /* string */] = function UseRefWith$1(initial) {
+			var {$24r, _r, initial, $s, $r, $c} = $restore(this, {initial});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			initial = [initial];
+			_r = UseRefLazy[60 /* string */]((function(initial) { return function UseRefWith·func1() {
+					return initial[0];
+				}; })(initial)); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+			$24r = _r;
+			$s = 2; case 2: return $24r;
+			/* */ } return; } var $f = {$blk: UseRefWith$1, $c: true, $r, $24r, _r, initial, $s};return $f;
+		};
 		UseRefLazy[0 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseRefLazy$1(initialFn) {
 			var {_key, _r, id, initialFn, ref, $s, $r, $c} = $restore(this, {initialFn});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
@@ -5739,7 +5758,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].ptr(react().useRef(-1));
+			ref = new ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -5774,7 +5793,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].ptr(react().useRef(-1));
+			ref = new ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -5809,7 +5828,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			id = [id];
 			initialFn = [initialFn];
-			ref = new ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].ptr(react().useRef(-1));
+			ref = new ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].ptr(react().useRef(-1));
 			id[0] = $parseInt(ref.Object.current) >> 0;
 			/* */ if (id[0] <= 0) { $s = 1; continue; }
 			/* */ $s = 2; continue;
@@ -5874,6 +5893,41 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			$s = -1; return ref;
 			/* */ } return; } var $f = {$blk: UseRefLazy$7, $c: true, $r, _key, _r, id, initialFn, ref, $s};return $f;
 		};
+		UseRefLazy[60 /* string */] = function UseRefLazy$8(initialFn) {
+			var {_key, _r, id, initialFn, ref, $s, $r, $c} = $restore(this, {initialFn});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			id = [id];
+			initialFn = [initialFn];
+			ref = new ValueRef[56 /* string */].ptr(react().useRef(-1));
+			id[0] = $parseInt(ref.Object.current) >> 0;
+			/* */ if (id[0] <= 0) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (id[0] <= 0) { */ case 1:
+				valueRefLastId = valueRefLastId + (1) >> 0;
+				id[0] = valueRefLastId;
+				ref.Object.current = id[0];
+				_r = initialFn[0](); /* */ $s = 3; case 3: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+				_key = id[0]; (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: new $String(_r) });
+			/* } */ case 2:
+			UseLayoutEffectWithCleanup((function(id, initialFn) { return function UseRefLazy·func1$7() {
+					var {_entry, _key$1, _r$1, _tuple, ok, $s, $r, $c} = $restore(this, {});
+					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+					_tuple = (_entry = $mapIndex(valueRefStore,$Int.keyFor(id[0])), _entry !== undefined ? [_entry.v, true] : [$ifaceNil, false]);
+					ok = _tuple[1];
+					/* */ if (!ok) { $s = 1; continue; }
+					/* */ $s = 2; continue;
+					/* if (!ok) { */ case 1:
+						_r$1 = initialFn[0](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+						_key$1 = id[0]; (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key$1), { k: _key$1, v: new $String(_r$1) });
+					/* } */ case 2:
+					$s = -1; return (function(id, initialFn) { return function UseRefLazy·func1·func1$7() {
+							$mapDelete(valueRefStore, $Int.keyFor(id[0]));
+						}; })(id, initialFn);
+					/* */ } return; } var $f = {$blk: UseRefLazy·func1$7, $c: true, $r, _entry, _key$1, _r$1, _tuple, ok, $s};return $f;
+				}; })(id, initialFn), new sliceType([]));
+			$s = -1; return ref;
+			/* */ } return; } var $f = {$blk: UseRefLazy$8, $c: true, $r, _key, _r, id, initialFn, ref, $s};return $f;
+		};
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.getId = function getId() {
 			var ref;
 			ref = this;
@@ -5898,24 +5952,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			return $parseInt(ref.Object.current) >> 0;
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.getId = function getId$4() {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.getId = function getId$4() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.getId = function getId$5() {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.getId = function getId$5() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.getId = function getId$6() {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.getId = function getId$6() {
 			var ref;
 			ref = this;
 			return $parseInt(ref.Object.current) >> 0;
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.getId = function getId$7() {
+			var ref;
+			ref = this;
+			return $parseInt(ref.Object.current) >> 0;
+		};
+		ValueRef[56 /* string */].prototype.getId = function(...$args) { return this.$val.getId(...$args); };
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.Current = function Current$1() {
 			var _entry, ref;
 			ref = this;
@@ -5940,24 +6000,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle);
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.Current = function Current$5() {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.Current = function Current$5() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler);
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.Current = function Current$6() {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.Current = function Current$6() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner);
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.Current = function Current$7() {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.Current = function Current$7() {
 			var _entry, ref;
 			ref = this;
-			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore);
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore);
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.Current = function Current$8() {
+			var _entry, ref;
+			ref = this;
+			return $assertType((_entry = $mapIndex(valueRefStore,$Int.keyFor($clone(ref, ValueRef[56 /* string */]).getId())), _entry !== undefined ? _entry.v : $ifaceNil), $String);
+		};
+		ValueRef[56 /* string */].prototype.Current = function(...$args) { return this.$val.Current(...$args); };
 		$ptrType(ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).prototype.SetCurrent = function SetCurrent$1(v) {
 			var _key, ref, v;
 			ref = this;
@@ -5982,24 +6048,30 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 			_key = $clone(ref, ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.SetCurrent = function SetCurrent$5(v) {
+		$ptrType(ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).prototype.SetCurrent = function SetCurrent$5(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.SetCurrent = function SetCurrent$6(v) {
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).prototype.SetCurrent = function SetCurrent$6(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
-		$ptrType(ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.SetCurrent = function SetCurrent$7(v) {
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).prototype.SetCurrent = function SetCurrent$7(v) {
 			var _key, ref, v;
 			ref = this;
-			_key = $clone(ref, ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
+			_key = $clone(ref, ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: v });
 		};
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
+		$ptrType(ValueRef[56 /* string */]).prototype.SetCurrent = function SetCurrent$8(v) {
+			var _key, ref, v;
+			ref = this;
+			_key = $clone(ref, ValueRef[56 /* string */]).getId(); (valueRefStore || $throwRuntimeError("assignment to entry in nil map")).set($Int.keyFor(_key), { k: _key, v: new $String(v) });
+		};
+		ValueRef[56 /* string */].prototype.SetCurrent = function(...$args) { return this.$val.SetCurrent(...$args); };
 		UseEffect = function UseEffect$1(effect, deps) {
 			var deps, effect;
 			react().useEffect($externalize(effect, funcType), $externalize(deps, sliceType));
@@ -6050,7 +6122,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 					/* */ } return; } var $f = {$blk: UseImperativeHandle·func1$1, $c: true, $r, _r, $s};return $f;
 				}), deps);
 		};
-		UseImperativeHandle[35 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseImperativeHandle$3(ref, createHandle, deps) {
+		UseImperativeHandle[36 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */] = function UseImperativeHandle$3(ref, createHandle, deps) {
 			var createHandle, deps, ref;
 			UseLayoutEffectWithCleanup((function UseImperativeHandle·func1$2() {
 					var {_r, $s, $r, $c} = $restore(this, {});
@@ -6068,17 +6140,17 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		UseMemo[22 /* int */] = function UseMemo$1(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$6), $externalize(deps, sliceType));
-			return castObj[53 /* int */](r);
+			return castObj[54 /* int */](r);
 		};
-		UseMemo[36 /* string */] = function UseMemo$2(compute, deps) {
+		UseMemo[37 /* string */] = function UseMemo$2(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$3), $externalize(deps, sliceType));
-			return castObj[56 /* string */](r);
+			return castObj[62 /* string */](r);
 		};
-		UseMemo[37 /* []any */] = function UseMemo$3(compute, deps) {
+		UseMemo[38 /* []any */] = function UseMemo$3(compute, deps) {
 			var compute, deps, r;
 			r = react().useMemo($externalize(compute, funcType$2), $externalize(deps, sliceType));
-			return castObj[57 /* []any */](r);
+			return castObj[63 /* []any */](r);
 		};
 		UseCallback = function UseCallback$1(fn, deps) {
 			var deps, fn;
@@ -6089,6 +6161,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		$pkg.GetValueRef = GetValueRef;
 		$pkg.UseState = UseState;
 		$pkg.UseStateLazy = UseStateLazy;
+		$pkg.UseRefWith = UseRefWith;
 		$pkg.UseRefLazy = UseRefLazy;
 		$pkg.UseImperativeHandle = UseImperativeHandle;
 		$pkg.UseMemo = UseMemo;
@@ -6099,9 +6172,10 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].CodeBoxHandle], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].CodeBoxHandle], [], false)}];
 		ValueRef[24 /* github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo.UndoRedoStack */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo"].UndoRedoStack], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo"].UndoRedoStack], [], false)}];
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"].BannerHandle], [], false)}];
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], [], false)}];
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], [], false)}];
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], [], false)}];
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Compiler], [], false)}];
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/workers"].Runner], [], false)}];
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$packages["github.com/gopherjs/gopherjs.github.io/playground/internal/snippets"].SnippetStore], [], false)}];
+		ValueRef[56 /* string */].methods = [{prop: "getId", name: "getId", pkg: "github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/react", typ: $funcType([], [$Int], false)}, {prop: "Current", name: "Current", pkg: "", typ: $funcType([], [$String], false)}, {prop: "SetCurrent", name: "SetCurrent", pkg: "", typ: $funcType([$String], [], false)}];
 		Node.init([]);
 		Root.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		Element.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
@@ -6111,9 +6185,10 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/bindings/r
 		ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		ValueRef[24 /* github.com/gopherjs/gopherjs.github.io/playground/internal/undoRedo.UndoRedoStack */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
-		ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
+		ValueRef[56 /* string */].init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$1, tag: ""}]);
 		Func.init([{prop: "Invoke", name: "Invoke", pkg: "", typ: $funcType([sliceType], [ptrType$1], true)}]);
 	};
 	$init = function() {
@@ -63308,23 +63383,23 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 			_r$3 = react.UseRefLazy[2 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */](NoopCodeBoxHandle); /* */ $s = 3; case 3: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			codeBoxRef[0] = $clone(_r$3, react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]);
 			_r$4 = react.UseRefLazy[3 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */](compiler); /* */ $s = 4; case 4: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			compilerRef[0] = $clone(_r$4, react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]);
+			compilerRef[0] = $clone(_r$4, react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]);
 			_r$5 = react.UseRefLazy[4 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */](runner); /* */ $s = 5; case 5: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			runnerRef[0] = $clone(_r$5, react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]);
+			runnerRef[0] = $clone(_r$5, react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]);
 			_r$6 = react.UseRefLazy[5 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */](snippetStore); /* */ $s = 6; case 6: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			snippetsStoreRef[0] = $clone(_r$6, react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]);
+			snippetsStoreRef[0] = $clone(_r$6, react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]);
 			react.UseEffect((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func1() {
 					var {$s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().GetVersion($methodVal($clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current(), "SetVersion")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().GetVersion($methodVal($clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current(), "SetVersion")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func1, $c: true, $r, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged), new sliceType$1([new bannerRef[0].constructor.elem(bannerRef[0])]));
 			urlQueryChanged[0] = react.UseCallback(new funcType$2((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func2() {
 					var {$s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetVerbose(url.GetQueryBool("debug")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().SetLocalOnly(url.GetQueryBool("local")); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetVerbose(url.GetQueryBool("debug")); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().SetLocalOnly(url.GetQueryBool("local")); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func2, $c: true, $r, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)), new sliceType$1([new compilerRef[0].constructor.elem(compilerRef[0]), new snippetsStoreRef[0].constructor.elem(snippetsStoreRef[0])]));
@@ -63340,7 +63415,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					var {hash, $s, $r, $c} = $restore(this, {hash});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					hash = [hash];
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Read(hash[0], (function(bannerRef, codeBoxRef, compilerRef, hash, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func4·func1(snippet, err) {
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Read(hash[0], (function(bannerRef, codeBoxRef, compilerRef, hash, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func4·func1(snippet, err) {
 							var {_r$7, cb, err, o, snippet, $s, $r, $c} = $restore(this, {snippet, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							o = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -63352,6 +63427,9 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 								$r = o.AddError(err); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 								$s = 4; continue;
 							/* } else { */ case 3:
+								if (hash[0] === "") {
+									hash[0] = "#Hello";
+								}
 								$r = $clone(bannerRef[0], react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]).Current().SetShareHash(hash[0]); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* } */ case 4:
 							cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
@@ -63400,7 +63478,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					_r$7 = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current().Code(); /* */ $s = 1; case 1: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 					code = _r$7;
-					$r = $clone(snippetsStoreRef[0], react.ValueRef[46 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Write(code, (function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func9·func1(hash, err) {
+					$r = $clone(snippetsStoreRef[0], react.ValueRef[47 /* github.com/gopherjs/gopherjs.github.io/playground/internal/snippets.SnippetStore */]).Current().Write(code, (function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func9·func1(hash, err) {
 							var {err, hash, output, $s, $r, $c} = $restore(this, {hash, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							output = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -63440,8 +63518,8 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					var {out, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 					out = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetOutput(out); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().SetOutput(out); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetOutput(out); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().SetOutput(out); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func12, $c: true, $r, out, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged), new sliceType$1([new outputRef[0].constructor.elem(outputRef[0]), new compilerRef[0].constructor.elem(compilerRef[0]), new runnerRef[0].constructor.elem(runnerRef[0])]));
@@ -63451,18 +63529,18 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
 					_r$7 = cb.FileName(); /* */ $s = 1; case 1: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 					_r$8 = cb.Code(); /* */ $s = 2; case 2: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-					$r = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetCode($makeMap($String.keyFor, [{ k: _r$7, v: _r$8 }])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().SetCode($makeMap($String.keyFor, [{ k: _r$7, v: _r$8 }])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: playgroundComponent·func13, $c: true, $r, _r$7, _r$8, cb, $s};return $f;
 				}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)), new sliceType$1([new codeBoxRef[0].constructor.elem(codeBoxRef[0]), new compilerRef[0].constructor.elem(compilerRef[0])]));
 			onRun = react.UseCallback(new funcType$2((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14() {
 					var {_r$7, output, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					output = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
 					$r = output.Clear(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$r = output.AddSystem("Fetching packages and compiling..."); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$7 = $clone(compilerRef[0], react.ValueRef[38 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().Compile((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14·func1(jsCode, err) {
+					_r$7 = $clone(compilerRef[0], react.ValueRef[39 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Compiler */]).Current().Compile((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func14·func1(jsCode, err) {
 							var {err, jsCode, output$1, $s, $r, $c} = $restore(this, {jsCode, err});
 							/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 							output$1 = $clone(outputRef[0], react.ValueRef[6 /* github.com/gopherjs/gopherjs.github.io/playground/internal/common.Output */]).Current();
@@ -63474,7 +63552,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 								$r = output$1.AddSystem("GopherJS build failed."); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 								$s = -1; return;
 							/* } */ case 3:
-							$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Run(jsCode); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Run(jsCode); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = -1; return;
 							/* */ } return; } var $f = {$blk: playgroundComponent·func14·func1, $c: true, $r, err, jsCode, output$1, $s};return $f;
 						}; })(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged)); /* */ $s = 4; case 4: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
@@ -63485,7 +63563,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 			onFormat[0] = react.UseCallback(new funcType$5((function(bannerRef, codeBoxRef, compilerRef, onFormat, outputRef, readSnippet, runnerRef, snippetsStoreRef, urlHashChanged, urlQueryChanged) { return function playgroundComponent·func15(fmtImports) {
 					var {_arg, _arg$1, _arg$2, _r$10, _r$11, _r$12, _r$7, _r$8, _r$9, _tuple, _tuple$1, cb, err, fmtImports, out, output, $s, $r, $c} = $restore(this, {fmtImports});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = $clone(runnerRef[0], react.ValueRef[42 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = $clone(runnerRef[0], react.ValueRef[43 /* github.com/gopherjs/gopherjs.github.io/playground/internal/workers.Runner */]).Current().Stop(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					cb = $clone(codeBoxRef[0], react.ValueRef[13 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.CodeBoxHandle */]).Current();
 					out = sliceType$3.nil;
 					err = $ifaceNil;
@@ -63823,7 +63901,7 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 		};
 		$pkg.DropDown = DropDown;
 		dropDownComponent = function dropDownComponent$1(props) {
-			var {_arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, $s, $r, $c} = $restore(this, {props});
+			var {_arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, x$2, x$3, $s, $r, $c} = $restore(this, {props});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			onSelect = [onSelect];
 			id = $clone(props, react.Props).GetString("id");
@@ -63840,7 +63918,8 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 					$s = -1; return;
 					/* */ } return; } var $f = {$blk: dropDownComponent·func1, $c: true, $r, _r$1, e, selected$1, $s};return $f;
 				}; })(onSelect)), new sliceType$1([onSelect[0]]));
-			options = $makeSlice(sliceType, items.$length);
+			options = $makeSlice(sliceType, (items.$length + 1 >> 0));
+			(0 >= options.$length ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + 0] = react.CreateElement(new $String("option"), (x = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("key", new $String(id + "-placeholder")), react.Props).Set("value", new $String("")), react.Props).Set("disabled", new $Bool(true)), react.Props).Set("hidden", new $Bool(true)), new x.constructor.elem(x)), new sliceType([new $String("\xE2\x80\x94")])));
 			_ref = items;
 			_i = 0;
 			/* while (true) { */ case 1:
@@ -63852,15 +63931,15 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 				_arg = new $String(_r$1);
 				_r$2 = $clone(new react.Props.ptr(null), react.Props).Set("key", _arg); /* */ $s = 4; case 4: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				_r$3 = $clone(_r$2, react.Props).Set("value", new $String(value)); /* */ $s = 5; case 5: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-				_arg$1 = (x = _r$3, new x.constructor.elem(x));
+				_arg$1 = (x$1 = _r$3, new x$1.constructor.elem(x$1));
 				_arg$2 = new $String(value);
 				_r$4 = react.CreateElement(new $String("option"), _arg$1, new sliceType([_arg$2])); /* */ $s = 6; case 6: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-				((i < 0 || i >= options.$length) ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + i] = _r$4);
+				(x$2 = i + 1 >> 0, ((x$2 < 0 || x$2 >= options.$length) ? ($throwRuntimeError("index out of range"), undefined) : options.$array[options.$offset + x$2] = _r$4));
 				_i++;
 			$s = 1; continue;
 			case 2:
-			$s = -1; return react.CreateElement(new $String("select"), (x$1 = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String(id)), react.Props).Set("value", new $jsObjectPtr(selected)), react.Props).Set("className", new $String(className)), react.Props).Set("onChange", onChange), new x$1.constructor.elem(x$1)), options);
-			/* */ } return; } var $f = {$blk: dropDownComponent$1, $c: true, $r, _arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, $s};return $f;
+			$s = -1; return react.CreateElement(new $String("select"), (x$3 = $clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String(id)), react.Props).Set("value", new $jsObjectPtr(selected)), react.Props).Set("className", new $String(className)), react.Props).Set("onChange", onChange), new x$3.constructor.elem(x$3)), options);
+			/* */ } return; } var $f = {$blk: dropDownComponent$1, $c: true, $r, _arg, _arg$1, _arg$2, _i, _r$1, _r$2, _r$3, _r$4, _ref, className, i, id, item, items, onChange, onSelect, options, props, selected, value, x, x$1, x$2, x$3, $s};return $f;
 		};
 		CodeBox = function CodeBox$1(codeBoxRef, onCodeChange, onUserChange, onSave, onEscape) {
 			var codeBoxRef, onCodeChange, onEscape, onSave, onUserChange, x;
@@ -64234,79 +64313,107 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 		};
 		$pkg.Banner = Banner;
 		bannerComponent = function bannerComponent$1(props) {
-			var _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x;
+			var {_r$1, _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, prevShareHashRef, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x, $s, $r, $c} = $restore(this, {props});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			fmtImports = [fmtImports];
+			lightTheme = [lightTheme];
+			onFormat = [onFormat];
+			onShare = [onShare];
+			onSnippetSelected = [onSnippetSelected];
+			prevShareHashRef = [prevShareHashRef];
+			runButtonRef = [runButtonRef];
+			setShareHash = [setShareHash];
+			setVersion = [setVersion];
+			shareHash = [shareHash];
+			shareUrlRef = [shareUrlRef];
+			version = [version];
 			bannerRef = $clone(react.GetValueRef[32 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(props, react.Props), "bannerRef"), react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]);
 			onRun = $clone(props, react.Props).GetFunc("onRun");
-			onFormat = $clone(props, react.Props).GetFunc("onFormat");
-			onShare = $clone(props, react.Props).GetFunc("onShare");
-			onSnippetSelected = $clone(props, react.Props).GetFunc("onSnippetSelected");
+			onFormat[0] = $clone(props, react.Props).GetFunc("onFormat");
+			onShare[0] = $clone(props, react.Props).GetFunc("onShare");
+			onSnippetSelected[0] = $clone(props, react.Props).GetFunc("onSnippetSelected");
 			_tuple = react.UseState[18 /* string */]("--");
-			version = _tuple[0];
-			setVersion = _tuple[1];
+			version[0] = _tuple[0];
+			setVersion[0] = _tuple[1];
 			_tuple$1 = react.UseState[18 /* string */]("");
-			shareHash = _tuple$1[0];
-			setShareHash = _tuple$1[1];
-			runButtonRef = $clone(react.UseRef(), react.Ref);
-			shareUrlRef = $clone(react.UseRef(), react.Ref);
-			_tuple$2 = react.UseStateLazy[33 /* bool */](getDefaultToLightTheme);
-			lightTheme = _tuple$2[0];
+			shareHash[0] = _tuple$1[0];
+			setShareHash[0] = _tuple$1[1];
+			_r$1 = react.UseRefWith[33 /* string */](""); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			prevShareHashRef[0] = $clone(_r$1, react.ValueRef[56 /* string */]);
+			runButtonRef[0] = $clone(react.UseRef(), react.Ref);
+			shareUrlRef[0] = $clone(react.UseRef(), react.Ref);
+			_tuple$2 = react.UseStateLazy[34 /* bool */](getDefaultToLightTheme);
+			lightTheme[0] = _tuple$2[0];
 			setLightTheme = _tuple$2[1];
-			_tuple$3 = react.UseState[34 /* bool */](true);
-			fmtImports = _tuple$3[0];
+			_tuple$3 = react.UseState[35 /* bool */](true);
+			fmtImports[0] = _tuple$3[0];
 			setFmtImports = _tuple$3[1];
-			react.UseImperativeHandle[35 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(bannerRef, react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]), (function bannerComponent·func1() {
-					return new bannerHandle.ptr($clone(runButtonRef, react.Ref), fmtImports, setVersion, shareHash, setShareHash);
-				}), new sliceType$1([new runButtonRef.constructor.elem(runButtonRef), new $Bool(fmtImports), setVersion, new $String(shareHash), setShareHash]));
-			react.UseLayoutEffect((function bannerComponent·func2() {
-					setDataTheme(lightTheme);
-				}), new sliceType$1([new $Bool(lightTheme)]));
-			react.UseEffect((function bannerComponent·func3() {
-					var {$s, $r, $c} = $restore(this, {});
+			react.UseImperativeHandle[36 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]($clone(bannerRef, react.ValueRef[28 /* github.com/gopherjs/gopherjs.github.io/playground/internal/page.BannerHandle */]), (function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func1() {
+					return new bannerHandle.ptr($clone(runButtonRef[0], react.Ref), fmtImports[0], setVersion[0], shareHash[0], setShareHash[0]);
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new runButtonRef[0].constructor.elem(runButtonRef[0]), new $Bool(fmtImports[0]), setVersion[0], new $String(shareHash[0]), setShareHash[0]]));
+			react.UseLayoutEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func2() {
+					setDataTheme(lightTheme[0]);
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $Bool(lightTheme[0])]));
+			react.UseEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func3() {
+					var {prevHash, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					$r = url.SetUrlHash(shareHash); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (shareHash[0] === "") { $s = 1; continue; }
+					/* */ $s = 2; continue;
+					/* if (shareHash[0] === "") { */ case 1:
+						prevHash = $clone(prevShareHashRef[0], react.ValueRef[56 /* string */]).Current();
+						/* */ if (!(prevHash === "") && url.GetUrlHash() === prevHash) { $s = 4; continue; }
+						/* */ $s = 5; continue;
+						/* if (!(prevHash === "") && url.GetUrlHash() === prevHash) { */ case 4:
+							$r = url.SetUrlHash(""); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 5:
+						$s = 3; continue;
+					/* } else { */ case 2:
+						$r = url.SetUrlHash(shareHash[0]); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 3:
+					$clone(prevShareHashRef[0], react.ValueRef[56 /* string */]).SetCurrent(shareHash[0]);
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func3, $c: true, $r, $s};return $f;
-				}), new sliceType$1([new $String(shareHash)]));
-			onFormatClick = react.UseCallback(new funcType$2((function bannerComponent·func4() {
-					var {_r$1, $s, $r, $c} = $restore(this, {});
+					/* */ } return; } var $f = {$blk: bannerComponent·func3, $c: true, $r, prevHash, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(shareHash[0])]));
+			onFormatClick = react.UseCallback(new funcType$2((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func4() {
+					var {_r$2, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onFormat.Invoke(new sliceType$1([new $Bool(fmtImports)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onFormat[0].Invoke(new sliceType$1([new $Bool(fmtImports[0])])); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func4, $c: true, $r, _r$1, $s};return $f;
-				})), new sliceType$1([onFormat, new $Bool(fmtImports)]));
-			tagUrl = react.UseMemo[36 /* string */]((function bannerComponent·func5() {
+					/* */ } return; } var $f = {$blk: bannerComponent·func4, $c: true, $r, _r$2, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onFormat[0], new $Bool(fmtImports[0])]));
+			tagUrl = react.UseMemo[37 /* string */]((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func5() {
 					var _tuple$4, before, ok;
-					_tuple$4 = strings.Cut(version, "+");
+					_tuple$4 = strings.Cut(version[0], "+");
 					before = _tuple$4[0];
 					ok = _tuple$4[2];
 					if (ok) {
 						return "https://github.com/gopherjs/gopherjs/releases/tag/v" + before;
 					}
 					return "https://github.com/gopherjs/gopherjs";
-				}), new sliceType$1([new $String(version)]));
-			react.UseLayoutEffect((function bannerComponent·func6() {
-					if (shareHash.length > 0 && strings.HasPrefix(shareHash, "#/")) {
-						$clone(shareUrlRef, react.Ref).Current().focus();
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(version[0])]));
+			react.UseLayoutEffect((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func6() {
+					if (shareHash[0].length > 0 && strings.HasPrefix(shareHash[0], "#/")) {
+						$clone(shareUrlRef[0], react.Ref).Current().focus();
 					}
-				}), new sliceType$1([new $String(shareHash)]));
-			onShareClick = react.UseCallback(new funcType$1((function bannerComponent·func7(e) {
-					var {_r$1, e, $s, $r, $c} = $restore(this, {e});
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([new $String(shareHash[0])]));
+			onShareClick = react.UseCallback(new funcType$1((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func7(e) {
+					var {_r$2, e, $s, $r, $c} = $restore(this, {e});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onShare.Invoke(sliceType$1.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onShare[0].Invoke(sliceType$1.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func7, $c: true, $r, _r$1, e, $s};return $f;
-				})), new sliceType$1([onShare]));
-			onShareUrlFocus = react.UseCallback(new funcType$1((function bannerComponent·func8(e) {
+					/* */ } return; } var $f = {$blk: bannerComponent·func7, $c: true, $r, _r$2, e, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onShare[0]]));
+			onShareUrlFocus = react.UseCallback(new funcType$1((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func8(e) {
 					var e;
 					e.target.select();
-				})), new sliceType$1([]));
-			snippetItems = react.UseMemo[37 /* []any */]((function bannerComponent·func9() {
-					var {_i, _r$1, _ref, i, items, name, names, $s, $r, $c} = $restore(this, {});
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([]));
+			snippetItems = react.UseMemo[38 /* []any */]((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func9() {
+					var {_i, _r$2, _ref, i, items, name, names, $s, $r, $c} = $restore(this, {});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = snippets.SnippetNames(); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					names = _r$1;
+					_r$2 = snippets.SnippetNames(); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					names = _r$2;
 					items = $makeSlice(sliceType$1, names.$length);
 					_ref = names;
 					_i = 0;
@@ -64318,30 +64425,31 @@ $packages["github.com/gopherjs/gopherjs.github.io/playground/internal/page"] = (
 						_i++;
 					}
 					$s = -1; return items;
-					/* */ } return; } var $f = {$blk: bannerComponent·func9, $c: true, $r, _i, _r$1, _ref, i, items, name, names, $s};return $f;
-				}), new sliceType$1([]));
-			onSelectSnippet = react.UseCallback(new funcType$3((function bannerComponent·func10(name) {
-					var {_r$1, name, $s, $r, $c} = $restore(this, {name});
+					/* */ } return; } var $f = {$blk: bannerComponent·func9, $c: true, $r, _i, _r$2, _ref, i, items, name, names, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version), new sliceType$1([]));
+			onSelectSnippet = react.UseCallback(new funcType$3((function(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version) { return function bannerComponent·func10(name) {
+					var {_r$2, name, $s, $r, $c} = $restore(this, {name});
 					/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-					_r$1 = onSnippetSelected.Invoke(new sliceType$1([new $String(name)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					_r$1;
+					_r$2 = onSnippetSelected[0].Invoke(new sliceType$1([new $String(name)])); /* */ $s = 1; case 1: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					_r$2;
 					$s = -1; return;
-					/* */ } return; } var $f = {$blk: bannerComponent·func10, $c: true, $r, _r$1, name, $s};return $f;
-				})), new sliceType$1([onSnippetSelected]));
+					/* */ } return; } var $f = {$blk: bannerComponent·func10, $c: true, $r, _r$2, name, $s};return $f;
+				}; })(fmtImports, lightTheme, onFormat, onShare, onSnippetSelected, prevShareHashRef, runButtonRef, setShareHash, setVersion, shareHash, shareUrlRef, version)), new sliceType$1([onSnippetSelected[0]]));
 			shareUrlClass = "share-url-hidden";
 			snippetsClass = "snippets-drop-down-show";
-			selSnippet = "Hello";
+			selSnippet = "";
 			shownSharedUrl = "";
-			if (shareHash.length > 0) {
-				if (strings.HasPrefix(shareHash, "#/")) {
-					shownSharedUrl = url.GetUrlWithoutHash() + shareHash;
+			if (shareHash[0].length > 0) {
+				if (strings.HasPrefix(shareHash[0], "#/")) {
+					shownSharedUrl = url.GetUrlWithoutHash() + shareHash[0];
 					shareUrlClass = "share-url-show";
 					snippetsClass = "snippets-drop-down-hidden";
-				} else if (strings.HasPrefix(shareHash, "#")) {
-					selSnippet = $substring(shareHash, 1);
+				} else if (strings.HasPrefix(shareHash[0], "#")) {
+					selSnippet = $substring(shareHash[0], 1);
 				}
 			}
-			return react.Div($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner")), react.Props), new sliceType([react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title")), react.Props), new sliceType([new $String("playground "), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-sub")), react.Props), new sliceType([react.A("https://github.com/gopherjs/gopherjs", $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String("GopherJS")])), new $String(" ")])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-version")), react.Props), new sliceType([new $String("("), react.A(tagUrl, $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String(version)])), new $String(")")]))])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("controls")), react.Props), new sliceType([react.Button("run-button", "Run", $clone($clone(new react.Props.ptr(null), react.Props).Set("ref", new runButtonRef.constructor.elem(runButtonRef)), react.Props), onRun), react.Button("format-button", "Format", $clone(new react.Props.ptr(null), react.Props), onFormatClick), ToggleBox("format-imports", "Rewrite imports on Format", "Imports", fmtImports, setFmtImports), react.Button("share-button", "Share", $clone(new react.Props.ptr(null), react.Props), onShareClick), react.CreateElement(new $String("input"), (x = $clone($clone($clone($clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("share-url")), react.Props).Set("type", new $String("text")), react.Props).Set("className", new $String(shareUrlClass)), react.Props).Set("ref", new shareUrlRef.constructor.elem(shareUrlRef)), react.Props).Set("value", new $String(shownSharedUrl)), react.Props).Set("readOnly", new $Bool(true)), react.Props).Set("onFocus", onShareUrlFocus), new x.constructor.elem(x)), sliceType.nil), DropDown("snippets-drop-down", snippetsClass, snippetItems, new $String(selSnippet), onSelectSnippet), ToggleBox("color-theme", "Change color-theme", "", lightTheme, setLightTheme)]))]));
+			$s = -1; return react.Div($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner")), react.Props), new sliceType([react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title")), react.Props), new sliceType([new $String("playground "), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-sub")), react.Props), new sliceType([react.A("https://github.com/gopherjs/gopherjs", $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String("GopherJS")])), new $String(" ")])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("banner-title-version")), react.Props), new sliceType([new $String("("), react.A(tagUrl, $clone(new react.Props.ptr(null), react.Props), new sliceType([new $String(version[0])])), new $String(")")]))])), react.Span($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("controls")), react.Props), new sliceType([react.Button("run-button", "Run", $clone($clone(new react.Props.ptr(null), react.Props).Set("ref", new runButtonRef[0].constructor.elem(runButtonRef[0])), react.Props), onRun), react.Button("format-button", "Format", $clone(new react.Props.ptr(null), react.Props), onFormatClick), ToggleBox("format-imports", "Rewrite imports on Format", "Imports", fmtImports[0], setFmtImports), react.Button("share-button", "Share", $clone(new react.Props.ptr(null), react.Props), onShareClick), react.CreateElement(new $String("input"), (x = $clone($clone($clone($clone($clone($clone($clone(new react.Props.ptr(null), react.Props).Set("id", new $String("share-url")), react.Props).Set("type", new $String("text")), react.Props).Set("className", new $String(shareUrlClass)), react.Props).Set("ref", new shareUrlRef[0].constructor.elem(shareUrlRef[0])), react.Props).Set("value", new $String(shownSharedUrl)), react.Props).Set("readOnly", new $Bool(true)), react.Props).Set("onFocus", onShareUrlFocus), new x.constructor.elem(x)), sliceType.nil), DropDown("snippets-drop-down", snippetsClass, snippetItems, new $String(selSnippet), onSelectSnippet), ToggleBox("color-theme", "Change color-theme", "", lightTheme[0], setLightTheme)]))]));
+			/* */ } return; } var $f = {$blk: bannerComponent$1, $c: true, $r, _r$1, _tuple, _tuple$1, _tuple$2, _tuple$3, bannerRef, fmtImports, lightTheme, onFormat, onFormatClick, onRun, onSelectSnippet, onShare, onShareClick, onShareUrlFocus, onSnippetSelected, prevShareHashRef, props, runButtonRef, selSnippet, setFmtImports, setLightTheme, setShareHash, setVersion, shareHash, shareUrlClass, shareUrlRef, shownSharedUrl, snippetItems, snippetsClass, tagUrl, version, x, $s};return $f;
 		};
 		NoopBannerHandle = function NoopBannerHandle$1() {
 			return (ptrType$5.nil);

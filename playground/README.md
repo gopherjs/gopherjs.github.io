@@ -44,8 +44,10 @@ Then open <http://localhost:8080?debug=true&local=true>.
 The `debug` query will enable debugging for react and verbose output.
 
 If running locally or from a fork, trying to access the remote store will
-fail with a a CORS error. Use the `local` query to make the snippet store
-(used when clicking "Share" or loading with a shared url) use local cache only.
+fail with a a CORS error. Read how to run the snippet-store locally at
+<https://github.com/gopherjs/snippet-store>. Or you can use the `local` query
+to make the snippet store (used when clicking "Share" or loading with a shared url)
+use local cache only.
 
 There are a few ways to check changes. When working on the playground itself
 it may be simpliest to run `gopherjs build ./playground.go && gopherjs serve`

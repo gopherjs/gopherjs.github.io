@@ -31,10 +31,19 @@ func dropDownComponent(props react.Props) *react.Element {
 		onSelect.Invoke(selected)
 	}, []any{onSelect})
 
-	options := make([]react.Node, len(items))
+	options := make([]react.Node, len(items)+1)
+
+	// Add hidden placeholder option
+	options[0] = react.CreateElement(`option`, react.Props{}.
+		Set(`key`, id+`-placeholder`).
+		Set(`value`, ``).
+		Set(`disabled`, true).
+		Set(`hidden`, true),
+		`—`)
+
 	for i, item := range items {
 		value := item.(string)
-		options[i] = react.CreateElement(`option`, react.Props{}.
+		options[i+1] = react.CreateElement(`option`, react.Props{}.
 			Set(`key`, fmt.Sprintf("%s-%v", id, value)).
 			Set(`value`, value),
 			value)
