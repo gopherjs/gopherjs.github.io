@@ -245,6 +245,7 @@ func (r *compilerImp) prepareAndCompilePackages(rootPath string, allSources map[
 // The archives must be ordered by dependency.
 func (r *compilerImp) write(allPkgs []*compiler.Archive) string {
 	jsCode := bytes.NewBuffer(nil)
-	compiler.WriteProgramCode(allPkgs, compiler.DefaultFilter(jsCode), runtime.Version())
+	const testBinary = `0`
+	compiler.WriteProgramCode(allPkgs, compiler.DefaultFilter(jsCode), runtime.Version(), testBinary)
 	return jsCode.String()
 }
